@@ -3,7 +3,7 @@ package estructuradatos1;
 import javax.swing.JOptionPane;
 
 
-public class EjerciciosEstructura {
+public class EjerciciosEstructura1 {
  
 
 public static int cantidadEstudiantes = 0,longitud = 0;
