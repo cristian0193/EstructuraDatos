@@ -13,28 +13,21 @@ public class Vector {
 
         vectorNumeros = new double[100];
        
-        for (int posicionVector = 0;posicionVector < 100 && numeroTeclado != 0.0;posicionVector++){
-            numeroTeclado = leerNumero();
-            if (numeroTeclado != 0.0) {
-                totalNumeros++;
-                vectorNumeros[posicionVector] = numeroTeclado;
-            }
-        }
-
+//        for (int posicionVector = 0;posicionVector < 100 && numeroTeclado != 0.0;posicionVector++){
+//            numeroTeclado = leerNumero();
+//            if (numeroTeclado != 0.0) {
+//                totalNumeros++;
+//                vectorNumeros[posicionVector] = numeroTeclado;
+//            }
+//        }
 
 	numeroTeclado = leerNumero();
-	for (int posicionVector = 0;posicionVector < 100 && numeroTeclado != 0.0;posicionVector++){
-            
-            
+	for (int posicionVector = 0;posicionVector < 100 && numeroTeclado != 0.0;posicionVector++){                        
                 totalNumeros++;
                 vectorNumeros[posicionVector] = numeroTeclado;
 	    numeroTeclado = leerNumero();
         }
 
-
-
-
-       
         numeroMayor = numeroMenor = menorPositivo = mayorNegativo = vectorNumeros[0];
 
         if (vectorNumeros[0] > 0.0) {
@@ -98,7 +91,6 @@ public class Vector {
             }
             System.out.println("La media aritmética es                      " + (sumaNumeros / totalNumeros) + '\n');
         }
-
     }
 
     private static double leerNumero() {
