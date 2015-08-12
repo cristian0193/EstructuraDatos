@@ -19,9 +19,18 @@ public class EjerciciosEstructura2 {
         for (int posicionFilas = 0; posicionFilas < filas; posicionFilas++) {
             for (int posicionColumnas = 0; posicionColumnas < columnas; posicionColumnas++) {
 
-                numero = Integer.parseInt(JOptionPane.showInputDialog("INGRESE NUMERO DE LA MATRIZ EN POSICION : [" + posicionFilas + " - " + posicionColumnas + "]"));
-                matriz[posicionFilas][posicionColumnas] = numero;
-
+                
+                do {                    
+                    numero = Integer.parseInt(JOptionPane.showInputDialog("INGRESE NUMERO DE LA MATRIZ EN POSICION : [" + posicionFilas + " - " + posicionColumnas + "]"));
+                if (numero>0 && numero<99999) {
+                    matriz[posicionFilas][posicionColumnas] = numero;
+                    error = 0;
+                } else {
+                     JOptionPane.showMessageDialog(null, "INGRESE UN NUMERO DE 5 DIGITOS");
+                     error = 1;
+                }
+                } while (error == 1);
+                
             }
         }
 
@@ -34,7 +43,6 @@ public class EjerciciosEstructura2 {
             mat = mat + "\n";
         }
         
-        JOptionPane.showMessageDialog(null, "a matriz que usted ingreso es la siguiente");
         JOptionPane.showMessageDialog(null, mat);
     }
 }
