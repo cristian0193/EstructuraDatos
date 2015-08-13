@@ -6,7 +6,7 @@ public class EjerciciosEstructura2 {
 
     public static int[][] matriz;
     public static int numero = 0, error;
-    public static String numero2 = "";
+    public static String numero2 = "", mensajeMatriz="";
     public static EjerciciosEstructura2 clase;
 
     public static void main(String[] args) {
@@ -34,15 +34,13 @@ public class EjerciciosEstructura2 {
             }
         }
 
-        
-        String mat = "";
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[0].length; j++) {
-                mat = mat + matriz[i][j] + " ";
+                mensajeMatriz = mensajeMatriz + matriz[i][j] + " ";
             }
-            mat = mat + "\n";
+            mensajeMatriz = mensajeMatriz + "\n";
         }
         
-        JOptionPane.showMessageDialog(null, mat);
+        JOptionPane.showMessageDialog(null, mensajeMatriz);
     }
 }
