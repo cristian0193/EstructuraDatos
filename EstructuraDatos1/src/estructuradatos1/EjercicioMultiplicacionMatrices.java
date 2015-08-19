@@ -50,7 +50,7 @@ public class EjercicioMultiplicacionMatrices {
             
        for (int posicionFilas = 0; posicionFilas < filasA; posicionFilas++) {
                 for (int posicionColumnas2 = 0; posicionColumnas2 < columnasB; posicionColumnas2++) {                    
-				for(int posicionColumnas1 = 0; posicionColumnas1 <= filasA+1; posicionColumnas1++){	
+				for(int posicionColumnas1 = 0; posicionColumnas1 < columnasA; posicionColumnas1++){	
                                     matrizProducto[posicionFilas][posicionColumnas2] += matrizA[posicionFilas][posicionColumnas1] * matrizB[posicionColumnas1][posicionColumnas2];                    
                                 }
                    
