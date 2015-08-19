@@ -48,17 +48,18 @@ public class EjercicioMultiplicacionMatrices {
         //INICIALIZO LA MATRIZ RESULTADO CON LAS DIMENCIONES (M X P)
         matrizProducto = new int[filasA][columnasB];
             
-           for (int posicionFilas = 0; posicionFilas < filasA; posicionFilas++) {
-                for (int posicionColumnas = 0; posicionColumnas < columnasB; posicionColumnas++) {                    
-				for(int k = 0; k < columnasB; k++){
-					suma += matrizA[posicionFilas][k] * matrizB[k][posicionColumnas];                                       
+       for (int posicionFilas = 0; posicionFilas < filasA; posicionFilas++) {
+                for (int posicionColumnas2 = 0; posicionColumnas2 < columnasB; posicionColumnas2++) {                    
+				for(int posicionColumnas1 = 0; posicionColumnas1 <= filasA+1; posicionColumnas1++){	
+                                    matrizProducto[posicionFilas][posicionColumnas2] += matrizA[posicionFilas][posicionColumnas1] * matrizB[posicionColumnas1][posicionColumnas2];                    
                                 }
-                    matrizProducto[posicionFilas][posicionColumnas] = suma;
-                    
-                   // matrizProducto[posicionFilas][posicionColumnas] = (matrizProducto[posicionFilas][posicionColumnas] + matrizA[posicionFilas][posicionColumnas]) * (matrizB[posicionFilas][posicionColumnas]);                    
+                   
                 }
             }
        
+       
+
+//           
            
        //MUESTRA EL MENSAJE    
        for (int i = 0; i < matrizProducto.length; i++) {
