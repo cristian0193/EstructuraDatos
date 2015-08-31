@@ -8,6 +8,8 @@ public class ParcialEDExamenB {
     public static String[] vectorMateria;
     public static double[] VectorPromedioSemestral;
     public static double[][][] VetorMateriaExamen;
+    public static String[] vectorNotas;
+  
 
     public static int numeroIntero = 0;
     public static double numeroDouble = 0;
@@ -18,6 +20,10 @@ public class ParcialEDExamenB {
     public static double notafinal = 0.0;
     public static double notaDefinida = 0.0;
     public static String resultado = "";
+    public static String calificacionFinal = "";
+    public static String resultadoAprobados = "";
+    public static String resultadoReprobados = "";
+    public static String nombreEstudiante = "";
 
     static final int numeroMaterias = 5;
     static final int numeroExamenes = 3;
@@ -28,6 +34,7 @@ public class ParcialEDExamenB {
 
         vectorEstudiantes = new String[numeroEstudiantes];
         VectorPromedioSemestral = new double[vectorEstudiantes.length];
+        vectorNotas = new String[numeroEstudiantes];
         VetorMateriaExamen = new double[vectorEstudiantes.length][numeroMaterias][numeroExamenes];
 
         ParcialEDExamenB objClasePrincipal = new ParcialEDExamenB();
@@ -36,7 +43,10 @@ public class ParcialEDExamenB {
         String menu = "Seleccione una opción\n\n"
                 + "1.- Agregar nota \n"
                 + "2.- Consultar notas\n"
-                + "3.- Salir\n\n";
+                + "3.- Consultar Notas Finales\n"
+                + "4.- Consultar Estudiantes Aprobados\n"
+                + "5.- Consultar Estudiantes Reprobados\n"
+                + "0.- Salir\n\n";
         do {
             opcionMenu = objClasePrincipal.leerNumeroEntero(menu);
 
@@ -45,11 +55,17 @@ public class ParcialEDExamenB {
                     objClasePrincipal.LlenarNotas();
                     break;
                 case 2:
-                     objClasePrincipal.MostarNotas(VetorMateriaExamen);
+                    objClasePrincipal.MostarNotas(VetorMateriaExamen);
                     break;
                 case 3:
-                     objClasePrincipal.CalcularNotaDefinitiva();
-                    break;    
+                    objClasePrincipal.CalcularNotaDefinitiva();
+                    break;
+                case 4:
+                    objClasePrincipal.mensajes(resultadoAprobados);
+                    break;
+                case 5:
+                    objClasePrincipal.mensajes(resultadoReprobados);
+                    break;
                 case 0:
                     System.exit(0);
                     break;
@@ -58,7 +74,7 @@ public class ParcialEDExamenB {
                     break;
             }
 
-        } while (opcionMenu != 3);
+        } while (opcionMenu != 0);
 
     }
 
@@ -89,7 +105,7 @@ public class ParcialEDExamenB {
         }
     }
 
-    public void MostarNotas(double[][][]notaEstudiante) {
+    public void MostarNotas(double[][][] notaEstudiante) {
 
         int estudiante, materia, examen;
         double nota;
@@ -105,42 +121,76 @@ public class ParcialEDExamenB {
                     + " en la Materia : " + materia + "\n"
                     + " del examen # : " + examen + "\n "
                     + " NOTA : " + nota);
-        } else if(nota == 0.0){
+        } else if (nota == 0.0) {
             mensajes("No Hay Notas Relacionadas para este estudiante");
         }
 
     }
 
-    public void CalcularNotaDefinitiva(){
-         for (int cantEstudiantes = 0; cantEstudiantes < vectorEstudiantes.length; cantEstudiantes++) {          
+    public void CalcularNotaDefinitiva() {
+        for (int cantEstudiantes = 0; cantEstudiantes < vectorEstudiantes.length; cantEstudiantes++) {
             for (int cantExamenes = 0; cantExamenes < numeroExamenes; cantExamenes++) {
-                for (int cantMaterias = 0; cantMaterias < numeroMaterias; cantMaterias++) {                  
+                for (int cantMaterias = 0; cantMaterias < numeroMaterias; cantMaterias++) {
                     notaDefinitiva = VetorMateriaExamen[cantEstudiantes][cantMaterias][cantExamenes];
                 }
-                notaDefinida += ValidacionNota(cantExamenes,notaDefinitiva);
-                               
-            }                                    
-            resultado += "ESTUDIANTE : " + (cantEstudiantes + 1) + " NOTA DEFINITIVA : " + notaDefinida + "\n"; 
+                notaDefinida += CalculoNota(cantExamenes, notaDefinitiva);
+            }
+            calificacionFinal = ValidacionNota(notaDefinida);
+
+            if (nombreEstudiante == null) {
+                mensajes("INGRESE NOMBRE PARA UN ESTUDIANTE");
+            } else {
+                nombreEstudiante = vectorEstudiantes[cantEstudiantes];
+                resultado += " ESTUDIANTE : " + nombreEstudiante + "\n"
+                        + " NOTA DEFINITIVA : " + notaDefinida + "\n"
+                        + " CALIFICACION : " + calificacionFinal + "\n"
+                        + "------------------------------------------ \n";
+
+                if (notaDefinida <= 7.5) {
+                    resultadoReprobados += " ESTUDIANTE : " + nombreEstudiante + "\n"
+                            + " NOTA DEFINITIVA : " + notaDefinida + "\n"
+                            + " CALIFICACION : " + calificacionFinal + "\n"
+                            + "------------------------------------------";
+                } else {
+                    resultadoAprobados += " ESTUDIANTE : " + nombreEstudiante + "\n"
+                            + " NOTA DEFINITIVA : " + notaDefinida + "\n"
+                            + " CALIFICACION : " + calificacionFinal + "\n"
+                            + "------------------------------------------";
+                }
+            }
+
         }
-         mensajes(resultado);
+        mensajes(resultado);
     }
-    
+
     public String leerString(String mensaje) {
         cadena = JOptionPane.showInputDialog(mensaje);
         return cadena;
     }
 
-     public double ValidacionNota(int ExamenNumero, double notaFinal){
-        if(ExamenNumero==0){
-                    notafinal =notaFinal * 0.33;
-                }else if (ExamenNumero == 1){
-                    notafinal =notafinal + (notaFinal * 0.22);
-                }else{
-                    notafinal = notafinal +(notaFinal * 0.45);
-                }
+    public double CalculoNota(int ExamenNumero, double notaFinal) {
+        if (ExamenNumero == 0) {
+            notafinal = notaFinal * 0.33;
+        } else if (ExamenNumero == 1) {
+            notafinal = notafinal + (notaFinal * 0.22);
+        } else {
+            notafinal = notafinal + (notaFinal * 0.45);
+        }
         return notafinal;
     }
-    
+
+    public String ValidacionNota(double notaDefinitiva) {
+        String calificacion = "";
+
+        if (notaDefinitiva <= 7.5) {
+            calificacion = "REAPROBADO";
+        } else {
+            calificacion = "APROBADO";
+
+        }
+        return calificacion;
+    }
+
     public int leerNumeroEntero(String mensaje) {
         numeroIntero = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
         return numeroIntero;
@@ -150,7 +200,7 @@ public class ParcialEDExamenB {
         numeroDouble = Double.parseDouble(JOptionPane.showInputDialog(mensaje));
         return numeroDouble;
     }
-    
+
     public void mensajes(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje);
     }
