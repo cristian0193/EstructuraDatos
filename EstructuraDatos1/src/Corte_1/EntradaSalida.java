@@ -1,4 +1,4 @@
-package entradasalida;
+package Corte_1;
 
 import javax.swing.JOptionPane;
 

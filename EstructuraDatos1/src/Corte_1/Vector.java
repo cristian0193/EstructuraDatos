@@ -1,4 +1,4 @@
-package estructuradatos1;
+package Corte_1;
 import java.io.*;
 
 public class Vector {

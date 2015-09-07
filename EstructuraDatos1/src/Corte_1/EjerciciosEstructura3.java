@@ -1,8 +1,10 @@
-package estructuradatos1;
+
+package Corte_1;
 
 import javax.swing.JOptionPane;
 
-public class EjercicioMultiplicacionMatrices {
+
+public class EjerciciosEstructura3 {
 
     public static int[][] matrizA;
     public static int[][] matrizB;
@@ -90,5 +92,4 @@ public class EjercicioMultiplicacionMatrices {
 
             JOptionPane.showMessageDialog(null, mensajeMatriz);
     }
-    
 }

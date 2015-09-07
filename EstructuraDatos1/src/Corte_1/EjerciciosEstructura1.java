@@ -1,4 +1,4 @@
-package estructuradatos1;
+package Corte_1;
 
 import javax.swing.JOptionPane;
 

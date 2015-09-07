@@ -1,6 +1,4 @@
-package asignacionsalones;
-
-import entradasalida.*;
+package Corte_1;
 
 /**
  * Este programa permite resolver el ejercicio 4, en el cual se asignan salones 
