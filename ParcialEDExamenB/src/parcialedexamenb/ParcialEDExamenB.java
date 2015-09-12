@@ -8,9 +8,7 @@ public class ParcialEDExamenB {
     public static String[] vectorMateria;
     public static double[] VectorPromedioSemestral;
     public static double[][][] VetorMateriaExamen;
-    public static String[] vectorNotas;
-  
-
+    public static String[] vectorNotas;  
     public static int numeroIntero = 0;
     public static double numeroDouble = 0;
     public static String cadena = "";
@@ -24,11 +22,11 @@ public class ParcialEDExamenB {
     public static String resultadoAprobados = "";
     public static String resultadoReprobados = "";
     public static String nombreEstudiante = "";
-
     static final int numeroMaterias = 5;
     static final int numeroExamenes = 3;
     static final int numeroEstudiantes = 2;
     static final int maximaOpcionMenu = 3;
+    public static String numDouble = "";
 
     public static void main(String[] args) {
 
@@ -83,9 +81,8 @@ public class ParcialEDExamenB {
         for (int cantEstiantes = 0; cantEstiantes < vectorEstudiantes.length; cantEstiantes++) {
             vectorEstudiantes[cantEstiantes] = leerString("INGRESE NOMBRE DEL ALUMNO A EVALUAR # " + (cantEstiantes + 1));
             nombre = vectorEstudiantes[cantEstiantes];
-            for (int cantExamenes = 0; cantExamenes < numeroExamenes; cantExamenes++) {
-                for (int cantMaterias = 0; cantMaterias < numeroMaterias; cantMaterias++) {
-
+            for (int cantMaterias = 0; cantMaterias < numeroMaterias; cantMaterias++) {
+                for (int cantExamenes = 0; cantExamenes < numeroExamenes; cantExamenes++) {
                     do {
                         notaValidacion = leerNumeroDouble("Ingresar nota para: \n"
                                 + "   Estudiante " + nombre + "\n"
@@ -133,8 +130,9 @@ public class ParcialEDExamenB {
                 for (int cantMaterias = 0; cantMaterias < numeroMaterias; cantMaterias++) {
                     notaDefinitiva = VetorMateriaExamen[cantEstudiantes][cantMaterias][cantExamenes];
                 }
-                notaDefinida += CalculoNota(cantExamenes, notaDefinitiva);
+                notaDefinida += CalculoNota(cantExamenes, notaDefinitiva);                
             }
+            
             calificacionFinal = ValidacionNota(notaDefinida);
 
             if (nombreEstudiante == null) {
