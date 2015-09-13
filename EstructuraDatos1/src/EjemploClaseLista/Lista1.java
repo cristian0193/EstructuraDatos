@@ -7,7 +7,6 @@ package  EjemploClaseLista;
  * @since 05Sep2015
  */
 public class Lista1 {
-
     
     public static void main(String[] args) {
       EjemploLista1 ejemploLista1 = new EjemploLista1();

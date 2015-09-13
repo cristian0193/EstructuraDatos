@@ -7,6 +7,7 @@ public class Funciones {
 
     Mensajes mensajes = new Mensajes();
     public Nodo cabeza;
+    private int contador = 0;
 
     public Funciones adicionarNodo(int valorEntero) {
         Nodo nodo;
@@ -15,9 +16,11 @@ public class Funciones {
 
         if (cabeza == null) {
             cabeza = nodo;
+            contador++;
         } else {
             nodo.siguiente = cabeza;
             cabeza = nodo;
+            contador++;
         }
         return this;
     }
@@ -25,11 +28,16 @@ public class Funciones {
     public void mostrarLista(Nodo nodo) {
         int contador = 0;
 
-        if (nodo != null) {
-            contador++;
-            mensajes.mostrarInformacion("Contenido : " + nodo.getNumero() + "\n");
-            mostrarLista(nodo.getSiguiente());
-        }
+        if (nodo != null) 
+            {
+                contador++;
+                mensajes.mostrarInformacion("Contenido : " + nodo.getNumero() + "\n");
+                mostrarLista(nodo.getSiguiente());
+            }        
     }
 
+    public int contarNodo() {               
+        return contador;        
+    }
+    
 }

@@ -1,7 +1,5 @@
 package EjemplosListas;
 
-import javax.swing.JOptionPane;
-
 /**
  * @author Usuario
  */
@@ -15,8 +13,7 @@ public class Lista {
        Funciones fun = new Funciones();
        Lista lista = new Lista();
        Mensajes  mensajes = new Mensajes();
-       
-       
+              
        int opcion;
         
         do{
@@ -27,7 +24,10 @@ public class Lista {
                     break;
                 case 2:
                     fun.mostrarLista(fun.cabeza);
-                    break;                
+                    break;  
+                case 3:
+                    mensajes.mostrarInformacion("Cantidad de Nodos Ingresados : " + fun.contarNodo() );
+                    break;  
                 default:
                     mensajes.mostrarError("¡La opción no existe!");                                  
             }
@@ -37,10 +37,11 @@ public class Lista {
     
     public int menu(){
         Mensajes entrada = new Mensajes();
-        String cadena = "M  E  N  U\n "
-                + "1) Adicionar nodo\n"
-                + "2) Mostrar Lista\n"
-                + "0) Salir.";
+        String cadena = "M  E  N  U \n"
+                + "1) Adicionar nodo \n"
+                + "2) Mostrar Lista \n"
+                + "3) Contar Nodos \n"
+                + "0) Salir. ";
         
         return entrada.leerInt(cadena);                
     }    

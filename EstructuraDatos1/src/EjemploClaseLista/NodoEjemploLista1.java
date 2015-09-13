@@ -6,7 +6,9 @@ package  EjemploClaseLista;
  * @version 1.0
  * @since 04Sep2015
  */
+
  public class NodoEjemploLista1 {
+     
    private int valorEntero;
    private NodoEjemploLista1 enlace;
 
