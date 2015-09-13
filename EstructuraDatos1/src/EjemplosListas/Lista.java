@@ -10,6 +10,8 @@ public class Lista {
     
     public static void main(String[] args) {
         
+        
+        
        Funciones fun = new Funciones();
        Lista lista = new Lista();
        Mensajes  mensajes = new Mensajes();
@@ -28,6 +30,9 @@ public class Lista {
                 case 3:
                     mensajes.mostrarInformacion("Cantidad de Nodos Ingresados : " + fun.contarNodo() );
                     break;  
+                case 0:
+                    System.exit(0);
+                    break;
                 default:
                     mensajes.mostrarError("¡La opción no existe!");                                  
             }
