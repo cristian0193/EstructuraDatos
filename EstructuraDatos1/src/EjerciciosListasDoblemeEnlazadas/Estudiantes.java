@@ -15,6 +15,7 @@ private String Estudiante;
     public Estudiantes(int codigoEstudiante, int identificacionEstudiante, String Estudiante) {
         this.codigoEstudiante = codigoEstudiante;
         this.identificacionEstudiante = identificacionEstudiante;
+                
         this.Estudiante = Estudiante;
     }
 

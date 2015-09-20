@@ -3,25 +3,21 @@ package EjerciciosListasDoblemeEnlazadas;
 
 public class Nodo {
 
-    private int valorEntero;    
     public Nodo siguiente;
-    public Nodo anterior; 
+    public Nodo anterior;
     private Estudiantes estudiante;
     private NotasSemestre nota;
 
     public Nodo(){
-        valorEntero = 0;
         siguiente = null;
         anterior = null;
-        estudiante = null;
-        nota = null; 
+        estudiante = new Estudiantes();
+        nota = new NotasSemestre();
     }
             
-    public Nodo(Estudiantes study,NotasSemestre notas){
+    public Nodo(Estudiantes estudiante){
         this();
-        this.estudiante = study;
-        this.nota = notas;
-        
+        this.estudiante = estudiante;       
     }
 
     public Nodo getAnterior() {
@@ -31,16 +27,7 @@ public class Nodo {
     public void setAnterior(Nodo anterior) {
         this.anterior = anterior;
     }            
-
-    public int getValorEntero() {
-        return valorEntero;
-    }
-
-    public void setValorEntero(int codigo) {
-        this.valorEntero = codigo;
-    }
-
-   
+  
     public Nodo getSiguiente() {
         return siguiente;
     }

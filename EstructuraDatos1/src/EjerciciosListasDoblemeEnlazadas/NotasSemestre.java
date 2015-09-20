@@ -8,9 +8,7 @@ public class NotasSemestre {
     private double notaSemestre;
     private boolean estadoSemestre;
 
-    public NotasSemestre(int cantidad,int filas, int columnas){        
-        nombreAsignatura =new String[cantidad];
-        notas =new double[filas][columnas];
+    public NotasSemestre(){        
         notaSemestre = 0.0;
         estadoSemestre = false;
         

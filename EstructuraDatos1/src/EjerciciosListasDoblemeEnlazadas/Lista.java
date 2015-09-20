@@ -13,14 +13,15 @@ public class Lista {
         Funciones fun = new Funciones();
         Lista lista = new Lista();
         Mensajes mensajes = new Mensajes();
-        Nodo nodo = null;
+        Estudiantes estudiante = new Estudiantes();        
+        
+        Nodo nodo;
 
         int codigo;
-        int posicion;
+        int identificacion;
         String nombre;
-        String identificacion;
-        int semestre;
-        String materias;
+                
+        int posicion;
 
         int opcion;
 
@@ -28,10 +29,18 @@ public class Lista {
             opcion = lista.menu();
             switch (opcion) {
                 case 1:
-
-                    codigo = mensajes.leerInt("Ingrese el nodo :");
-
-//                    fun.adicionarNodo(codigo);
+//                    NotasSemestre notas = null;
+                    
+                    codigo = mensajes.leerInt("Ingrese un codigo :");
+                    identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
+                    nombre = mensajes.leerString("Ingrese Nombre de Estudiante : ");
+                  
+                    estudiante.setCodigoEstudiante(codigo);
+                    estudiante.setIdentificacionEstudiante(identificacion);
+                    estudiante.setEstudiante(nombre);
+                                                            
+                   // fun.adicionarNodo();
+                    
                     break;
                 case 2:
                     fun.mostrarLista(fun.cabeza);
