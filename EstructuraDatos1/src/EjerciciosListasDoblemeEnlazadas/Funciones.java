@@ -11,12 +11,11 @@ public class Funciones {
     public Nodo cabeza;
     private int contador = 0;
 
-    public Funciones adicionarNodo(int datoEntero) {
+    public Funciones adicionarNodo(Estudiantes estudiante, NotasSemestre notas) {
         Nodo nodo,aux = null;
-        nodo = new Nodo(datoEntero);
+        nodo = new Nodo(estudiante,notas);
         aux = nodo.getSiguiente();
         
-
         if (cabeza == null) {
             cabeza = nodo;
             contador++;
@@ -60,7 +59,6 @@ public class Funciones {
        
         return this;
     }
-    
     
      public Funciones eliminarNodo(Nodo nodo){
         Nodo aux,anterior;
