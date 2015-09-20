@@ -1,5 +1,4 @@
-package BuscarNodo;
-
+package EjerciciosListaSimple;
 /**
  * @author Usuario
  */

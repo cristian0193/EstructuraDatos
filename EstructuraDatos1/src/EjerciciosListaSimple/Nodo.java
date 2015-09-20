@@ -1,4 +1,4 @@
-package BuscarNodo;
+package EjerciciosListaSimple;
 
 
 public class Nodo {

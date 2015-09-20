@@ -1,6 +1,4 @@
-package BuscarNodo;
-
-import EjercicioListaNodos.*;
+package EjerciciosListaSimple;
 
 /**
  * @author Usuario
@@ -45,28 +43,39 @@ public class Funciones {
         nodo = cabeza;
         int conta = 1;
 
+        int contar = contarNodo();
+        
+     if(posicion<=contar){
+         
         while (nodo != null) {
 
             if (conta == posicion) {
-
-                mensajes.mostrarInformacion("" + nodo.getValorEntero());
+                mensajes.mostrarInformacion("El nodo en la Psicion : " + posicion +"\n"+
+                                            "Corresponte a : " + nodo.getValorEntero());
             }
             nodo = nodo.getSiguiente();
             conta++;
         }
+     }else{
+         mensajes.mostrarInformacion("NODO NO EXISTE");
+     }   
+        
+        
     }
 
     public Funciones intercalarNodo(int posicion, int nuevoNumero) {
 
-        Nodo nodo;
-        nodo = cabeza;
+        Nodo nodo;        
+        nodo = cabeza;        
+        
         int conta = 1;
+        nodo.siguiente = null;
 
         while (nodo != null) {
 
             if (conta == posicion) {
                 nodo = new Nodo(nuevoNumero);
-                nodo.siguiente = nodo.getSiguiente();
+                adicionarNodo(nuevoNumero);
                 nodo.siguiente = nodo;
                 mensajes.mostrarInformacion("Nodo ingresado con exito");
                 break;

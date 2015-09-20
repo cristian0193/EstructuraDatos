@@ -1,6 +1,5 @@
-package BuscarNodo;
+package EjerciciosListaSimple;
 
-import EjercicioListaNodos.*;
 import javax.swing.JOptionPane;
 
 public class Mensajes {
