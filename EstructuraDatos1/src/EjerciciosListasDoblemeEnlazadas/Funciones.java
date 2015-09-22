@@ -25,7 +25,7 @@ public class Funciones {
         return this;
     }
     
-    public void adicionarNodoFinal(Estudiantes estudiante) {  
+    public Funciones adicionarNodoFinal(Estudiantes estudiante) {  
       Nodo nodoAuxiliar, ultimoNodo = getUltimoNodo();
       
       if (ultimoNodo == null) {
@@ -36,7 +36,8 @@ public class Funciones {
          nodoAuxiliar = new Nodo(estudiante);
          ultimoNodo.setSiguiente(nodoAuxiliar);
          nodoAuxiliar.setAnterior(ultimoNodo);
-      }       
+      }  
+      return this;
    }        
 
     public void mostrarLista(Nodo nodo) {
