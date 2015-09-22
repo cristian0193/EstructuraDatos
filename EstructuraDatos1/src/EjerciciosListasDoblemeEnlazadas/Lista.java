@@ -55,9 +55,8 @@ public class Lista {
 
                     nodosNotas = fun.buscarNodo(identificacion);
                     estudianteNotas = nodosNotas.getEstudiante();
-                    int cant = estudianteNotas.getNombreAsignatura().length;                   
-                    estudianteNotas.setNotas(fun.asignarNotas(cant,identificacion));
-
+                    int cantidadMaterias = estudianteNotas.getNombreAsignatura().length;                   
+                    estudianteNotas.setNotas(fun.asignarNotas(cantidadMaterias,identificacion));
                     nodosNotas.setEstudiante(estudianteNotas);
                     
                     break;

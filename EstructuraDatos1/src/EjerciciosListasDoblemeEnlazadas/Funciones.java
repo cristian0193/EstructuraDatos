@@ -74,21 +74,20 @@ public class Funciones {
 
     public double[][] asignarNotas(int cantidadAsignaturas, int identificacion) {
 
-         Nodo nodoCantidad;
         double[][] matrizNotas;
         String asignatura;     
         nodoBase = cabeza;       
-        matrizNotas = new double[3][cantidadAsignaturas];
+        matrizNotas = new double[cantidadAsignaturas][3];
 
         while (nodoBase != null) {
             if (identificacion == nodoBase.getEstudiante().getIdentificacionEstudiante()) {
-                for (int posicionAsignatura = 0; posicionAsignatura < matrizNotas.length; posicionAsignatura++) {
+                for (int posicionAsignatura = 0; posicionAsignatura < cantidadAsignaturas ; posicionAsignatura++) {
                     for (int posicionCortes = 0; posicionCortes < matrizNotas.length; posicionCortes++) {
 
                         asignatura = nodoBase.getEstudiante().getNombreAsignatura()[posicionAsignatura];
-                        matrizNotas[posicionCortes][posicionAsignatura] = mensajes.leerDouble(" Ingrese la nota para : \n"
-                                + " La Asignatura : " + asignatura + "\n"
-                                + " Corte : " + (posicionCortes + 1));
+                        matrizNotas[posicionAsignatura][posicionCortes] = mensajes.leerDouble(" INGRESE LA NOTA PARA : \n"
+                                + " LA ASIGNATURA : " + asignatura + "\n"
+                                + " CORTE : " + (posicionCortes + 1));
                     }
                 }
                 return matrizNotas;
