@@ -1,5 +1,7 @@
 package EjerciciosListasDoblemeEnlazadas;
 
+
+
 public class Funciones {
 
     Mensajes mensajes = new Mensajes();
@@ -7,7 +9,7 @@ public class Funciones {
     private int contador = 0;
     Nodo nodoBase;
 
-    public Funciones adicionarNodo(Estudiantes estudiante) {
+    public Funciones adicionarNodoInicio(Estudiantes estudiante) {
         Nodo nodo;
 
         nodo = new Nodo(estudiante);
@@ -22,6 +24,20 @@ public class Funciones {
         }
         return this;
     }
+    
+    public void adicionarNodoFinal(Estudiantes estudiante) {  
+      Nodo nodoAuxiliar, ultimoNodo = getUltimoNodo();
+      
+      if (ultimoNodo == null) {
+         ultimoNodo = new Nodo(estudiante);
+         cabeza = ultimoNodo;
+      }
+      else {
+         nodoAuxiliar = new Nodo(estudiante);
+         ultimoNodo.setSiguiente(nodoAuxiliar);
+         nodoAuxiliar.setAnterior(ultimoNodo);
+      }       
+   }        
 
     public void mostrarLista(Nodo nodo) {
         String datos;
@@ -116,5 +132,17 @@ public class Funciones {
     public int contarNodo() {
         return contador;
     }
+    
+     private Nodo getUltimoNodo() {
+      Nodo lastNode = null;
+        
+      if (cabeza != null) {
+         lastNode = cabeza;
+         while (lastNode.getSiguiente() != null){
+            lastNode = lastNode.getSiguiente();
+         }
+      }
+      return lastNode;
+   }
 
 }

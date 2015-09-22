@@ -28,8 +28,8 @@ public class Lista {
                     codigo = mensajes.leerInt("Ingrese un codigo :");
                     identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
                     nombre = mensajes.leerString("Ingrese Nombre de Estudiante : ");                    
-                    
-                    fun.adicionarNodo(new Estudiantes(codigo,identificacion,nombre,0,0,false));
+                   
+                    fun.adicionarNodoFinal(new Estudiantes(codigo,identificacion,nombre,0,0,false));
 
                     break;
                 
