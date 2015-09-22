@@ -1,24 +1,41 @@
 package EjerciciosListasDoblemeEnlazadas;
 
-
 public class Nodo {
 
     public Nodo siguiente;
     public Nodo anterior;
     private Estudiantes estudiante;
-    private NotasSemestre nota;
 
-    public Nodo(){
-        siguiente = null;
+    /**
+    * Constructor del nodo
+    */
+   public Nodo() {
+        estudiante = null;
         anterior = null;
-        estudiante = new Estudiantes();
-        nota = new NotasSemestre();
+        siguiente = null;
     }
-            
-    public Nodo(Estudiantes estudiante){
+    
+    /**
+     * Constructor del nodo
+     * @param estudiante
+     */
+    public Nodo(Estudiantes estudiante) {
         this();
-        this.estudiante = estudiante;       
+        this.estudiante = estudiante;
     }
+    
+    /**
+     * Constructor del nodo
+     * @param estudiante
+     * @param anterior
+     * @param siguiente
+     */
+    public Nodo(Estudiantes estudiante, Nodo anterior, Nodo siguiente) {
+        this.estudiante = estudiante;
+        this.anterior = anterior;
+        this.siguiente = siguiente;
+    }
+    
 
     public Nodo getAnterior() {
         return anterior;
@@ -44,13 +61,6 @@ public class Nodo {
         this.estudiante = estudiante;
     }
 
-    public NotasSemestre getNota() {
-        return nota;
-    }
-
-    public void setNota(NotasSemestre nota) {
-        this.nota = nota;
-    }
     
     
 }

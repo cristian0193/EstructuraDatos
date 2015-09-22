@@ -1,8 +1,5 @@
 package EjerciciosListasDoblemeEnlazadas;
 
-import EjerciciosListaSimple.*;
-
-
 public class Lista {
 
     public Nodo cabeza;
@@ -13,15 +10,13 @@ public class Lista {
         Funciones fun = new Funciones();
         Lista lista = new Lista();
         Mensajes mensajes = new Mensajes();
-        Estudiantes estudiante = new Estudiantes();        
-        
+
         Nodo nodo;
 
         int codigo;
         int identificacion;
         String nombre;
-                
-        int posicion;
+        int cantidad;
 
         int opcion;
 
@@ -29,43 +24,58 @@ public class Lista {
             opcion = lista.menu();
             switch (opcion) {
                 case 1:
-//                    NotasSemestre notas = null;
-                    
+
                     codigo = mensajes.leerInt("Ingrese un codigo :");
                     identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
-                    nombre = mensajes.leerString("Ingrese Nombre de Estudiante : ");
-                  
-                    estudiante.setCodigoEstudiante(codigo);
-                    estudiante.setIdentificacionEstudiante(identificacion);
-                    estudiante.setEstudiante(nombre);
-                                                            
-                   // fun.adicionarNodo();
+                    nombre = mensajes.leerString("Ingrese Nombre de Estudiante : ");                    
+                    
+                    fun.adicionarNodo(new Estudiantes(codigo,identificacion,nombre,0,0,false));
+
+                    break;
+                
+                case 2:
+                    
+                    Estudiantes estudianteMaterias;
+                    Nodo nodosMaterias;
+                    identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
+                    cantidad = mensajes.leerInt("Ingrese cantidad de Asignaturas del estudiante  : ");
+
+                    nodosMaterias = fun.buscarNodo(identificacion);
+                    estudianteMaterias = nodosMaterias.getEstudiante();
+                    estudianteMaterias.setNombreAsignatura(fun.asignarAsigantura(cantidad));
+                    nodosMaterias.setEstudiante(estudianteMaterias);
                     
                     break;
-                case 2:
-                    fun.mostrarLista(fun.cabeza);
-                    break;
+                    
                 case 3:
-                    mensajes.mostrarInformacion("Cantidad de Nodos Ingresados : " + fun.contarNodo());
+                    
+                    Estudiantes estudianteNotas;
+                    Nodo nodosNotas;
+                    identificacion = mensajes.leerInt("Ingrese una Identificacion : ");                    
+
+                    nodosNotas = fun.buscarNodo(identificacion);
+                    estudianteNotas = nodosNotas.getEstudiante();
+                    int cant = estudianteNotas.getNombreAsignatura().length;                   
+                    estudianteNotas.setNotas(fun.asignarNotas(cant,identificacion));
+
+                    nodosNotas.setEstudiante(estudianteNotas);
+                    
                     break;
+                    
                 case 4:
-                    int pos = mensajes.leerInt("ingresar posicion : ");
-                    fun.buscarNodoPosicion(pos);        
+                     fun.mostrarLista(fun.cabeza);
                     break;
                 case 5:
-                    codigo = mensajes.leerInt("Ingrese el Nuevo nodo :");
-                    posicion = mensajes.leerInt("Ingrese posicion :");
-                    fun.intercalarNodo(posicion,codigo);
-                    
+
                     break;
                 case 6:
-                    mensajes.mostrarInformacion("Cantidad de Nodos Ingresados : " + fun.contarNodo());
+                    
                     break;
-                    
+
                 case 7:
-                    mensajes.mostrarInformacion("Cantidad de Nodos Ingresados : " + fun.contarNodo());
-                    break;    
                     
+                    break;
+
                 case 0:
                     System.exit(0);
                     break;
@@ -78,7 +88,7 @@ public class Lista {
 
     public int menu() {
         Mensajes entrada = new Mensajes();
-        
+
         String cadena = "M  E  N  U \n"
                 + "1) Adicionar Datos Basicos \n"
                 + "2) Ingreso de Materias \n"
