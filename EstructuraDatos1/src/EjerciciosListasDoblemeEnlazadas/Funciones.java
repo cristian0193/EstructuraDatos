@@ -1,6 +1,6 @@
 package EjerciciosListasDoblemeEnlazadas;
 
-
+import java.util.Locale;
 
 public class Funciones {
 
@@ -24,21 +24,20 @@ public class Funciones {
         }
         return this;
     }
-    
-    public Funciones adicionarNodoFinal(Estudiantes estudiante) {  
-      Nodo nodoAuxiliar, ultimoNodo = getUltimoNodo();
-      
-      if (ultimoNodo == null) {
-         ultimoNodo = new Nodo(estudiante);
-         cabeza = ultimoNodo;
-      }
-      else {
-         nodoAuxiliar = new Nodo(estudiante);
-         ultimoNodo.setSiguiente(nodoAuxiliar);
-         nodoAuxiliar.setAnterior(ultimoNodo);
-      }  
-      return this;
-   }        
+
+    public Funciones adicionarNodoFinal(Estudiantes estudiante) {
+        Nodo nodoAuxiliar, ultimoNodo = getUltimoNodo();
+
+        if (ultimoNodo == null) {
+            ultimoNodo = new Nodo(estudiante);
+            cabeza = ultimoNodo;
+        } else {
+            nodoAuxiliar = new Nodo(estudiante);
+            ultimoNodo.setSiguiente(nodoAuxiliar);
+            nodoAuxiliar.setAnterior(ultimoNodo);
+        }
+        return this;
+    }
 
     public void mostrarLista(Nodo nodo) {
         String datos;
@@ -92,13 +91,13 @@ public class Funciones {
     public double[][] asignarNotas(int cantidadAsignaturas, int identificacion) {
 
         double[][] matrizNotas;
-        String asignatura;     
-        nodoBase = cabeza;       
+        String asignatura;
+        nodoBase = cabeza;
         matrizNotas = new double[cantidadAsignaturas][3];
 
         while (nodoBase != null) {
             if (identificacion == nodoBase.getEstudiante().getIdentificacionEstudiante()) {
-                for (int posicionAsignatura = 0; posicionAsignatura < cantidadAsignaturas ; posicionAsignatura++) {
+                for (int posicionAsignatura = 0; posicionAsignatura < cantidadAsignaturas; posicionAsignatura++) {
                     for (int posicionCortes = 0; posicionCortes < matrizNotas.length; posicionCortes++) {
 
                         asignatura = nodoBase.getEstudiante().getNombreAsignatura()[posicionAsignatura];
@@ -115,11 +114,10 @@ public class Funciones {
     }
 
     public int cantidadMateriasNodo(int identificacion, Nodo nodoMateria) {
-       int cantidad = 0;
-       
-        
-       nodoMateria = cabeza;
-              
+        int cantidad = 0;
+
+        nodoMateria = cabeza;
+
         while (nodoMateria != null) {
             if (identificacion == nodoMateria.getEstudiante().getIdentificacionEstudiante()) {
                 cantidad = nodoMateria.getEstudiante().getNombreAsignatura().length;
@@ -133,17 +131,127 @@ public class Funciones {
     public int contarNodo() {
         return contador;
     }
-    
-     private Nodo getUltimoNodo() {
-      Nodo lastNode = null;
+
+    private Nodo getUltimoNodo() {
+        Nodo lastNode = null;
+
+        if (cabeza != null) {
+            lastNode = cabeza;
+            while (lastNode.getSiguiente() != null) {
+                lastNode = lastNode.getSiguiente();
+            }
+        }
+        return lastNode;
+    }
+
+    public String notasDefinitivaCortes(int cantidadAsignaturas, int identificacion) {
+
+        double[][] matrizNotas;
+        String asignatura;
+        Double notaDefinitiva = 0.0;
+        Double notaCorte = 0.0;
+        String mensaje = "";
+
+        nodoBase = cabeza;
+        matrizNotas = new double[cantidadAsignaturas][3];
+
+        while (nodoBase != null) {
+            if (identificacion == nodoBase.getEstudiante().getIdentificacionEstudiante()) {
+                for (int posicionAsignatura = 0; posicionAsignatura < cantidadAsignaturas; posicionAsignatura++) {
+
+                    asignatura = nodoBase.getEstudiante().getNombreAsignatura()[posicionAsignatura];
+
+                    for (int posicionCortes = 0; posicionCortes < matrizNotas.length; posicionCortes++) {
+
+                        notaCorte = nodoBase.getEstudiante().getNotas()[posicionAsignatura][posicionCortes];
+
+                        if (posicionCortes == 0) {
+                            notaDefinitiva += notaCorte * 0.33;
+                        } else if (posicionCortes == 1) {
+                            notaDefinitiva += notaCorte * 0.22;
+                        } else {
+                            notaDefinitiva += notaCorte * 0.45;
+                            notaDefinitiva = Redondear(notaDefinitiva, 2);
+                        }
+
+                    }
+                    mensaje += "ASIGNATURA : " + asignatura + " SU NOTA DEFINITIVA DE CORTE ES " + notaDefinitiva + "\n";
+                    notaDefinitiva = 0.0;
+                }
+            }
+            nodoBase = nodoBase.getSiguiente();
+        }
+        return mensaje;
+    }
+
+    public Double notasPromedioSemestre(int cantidadAsignaturas, int identificacion) {
+
+        double[][] matrizNotas;
+        Double notaDefinitiva = 0.0;
+        Double notaCorte = 0.0;
+        Double SumatoriaPromedioSemestre = 0.0;
+        Double PromedioSemestre = 0.0;
+
+        nodoBase = cabeza;
+        matrizNotas = new double[cantidadAsignaturas][3];
+
+        while (nodoBase != null) {
+            if (identificacion == nodoBase.getEstudiante().getIdentificacionEstudiante()) {
+                for (int posicionAsignatura = 0; posicionAsignatura < cantidadAsignaturas; posicionAsignatura++) {
+
+                    for (int posicionCortes = 0; posicionCortes < matrizNotas.length; posicionCortes++) {
+
+                        notaCorte = nodoBase.getEstudiante().getNotas()[posicionAsignatura][posicionCortes];
+
+                        if (posicionCortes == 0) {
+                            notaDefinitiva += notaCorte * 0.33;
+                        } else if (posicionCortes == 1) {
+                            notaDefinitiva += notaCorte * 0.22;
+                        } else {
+                            notaDefinitiva += notaCorte * 0.45;
+                            notaDefinitiva = Redondear(notaDefinitiva, 2);
+                        }
+                    }
+                    SumatoriaPromedioSemestre += notaDefinitiva;
+                    notaDefinitiva = 0.0;
+                }
+                PromedioSemestre = SumatoriaPromedioSemestre / cantidadAsignaturas;
+            }
+            nodoBase = nodoBase.getSiguiente();
+        }
+        return PromedioSemestre;
+    }
+
+    public String estudiantesGanadoresSemestre() {
+
+        String mensaje = "";
+        Double promedioSemestre = 0.0;
+        String estudiante;
+        int count = 0;
+
+        nodoBase = cabeza;
+
+        while (nodoBase != null) {
+            if (count <= contarNodo()) {             
+               
+                estudiante = nodoBase.getEstudiante().getEstudiante();                
+                promedioSemestre = nodoBase.getEstudiante().getNotaSemestre();
+                                
+                if(promedioSemestre > 3.75){
+                    mensaje += "EL ESTUDIANTE : " + estudiante.toUpperCase() + " CON PROMEDIO : " + promedioSemestre + " GANO EL SEMESTRE ";
+                }
+                
+            }
+            nodoBase = nodoBase.getSiguiente();
+            count++;
+        }
         
-      if (cabeza != null) {
-         lastNode = cabeza;
-         while (lastNode.getSiguiente() != null){
-            lastNode = lastNode.getSiguiente();
-         }
-      }
-      return lastNode;
-   }
+        return mensaje;
+    }
+
+    public double Redondear(double numero, int digitos) {
+        int cifras = (int) Math.pow(10, digitos);
+        return Math.rint(numero * cifras) / cifras;
+    }
 
 }
