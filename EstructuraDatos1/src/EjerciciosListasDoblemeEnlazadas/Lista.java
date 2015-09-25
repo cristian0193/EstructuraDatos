@@ -1,5 +1,12 @@
 package EjerciciosListasDoblemeEnlazadas;
 
+/**
+ * Esta clase ejecuta el programa medante un menu
+ * @author Christian A. Rodriguez
+ * @version 1.0
+ * @since 24Sep2015
+ */
+
 public class Lista {
 
     public Nodo cabeza;
@@ -27,6 +34,7 @@ public class Lista {
                     identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
                     nombre = mensajes.leerString("Ingrese Nombre de Estudiante : ");
 
+                    //pasan parametros al metodo para ingresar los nodos
                     fun.adicionarNodoFinal(new Estudiantes(codigo, identificacion, nombre, 0, 0, false));
 
                     break;
@@ -37,6 +45,7 @@ public class Lista {
                     identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
                     cantidadMaterias = mensajes.leerInt("Ingrese cantidad de Asignaturas del estudiante  : ");
 
+                    //Buscan el nodo y s ejcuta el metodo para ingresar materias y se añaden al nodo.
                     nodosMaterias = fun.buscarNodo(identificacion);
                     estudianteMaterias = nodosMaterias.getEstudiante();
                     estudianteMaterias.setNombreAsignatura(fun.asignarAsigantura(cantidadMaterias));
@@ -49,6 +58,7 @@ public class Lista {
                     Nodo nodosNotas;
                     identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
 
+                    //Buscan el nodo y la cantidad de materias de nodo y ejcuta el metodo para ingresar notas y se añaden al nodo.
                     nodosNotas = fun.buscarNodo(identificacion);
                     estudianteNotas = nodosNotas.getEstudiante();
                     int cantidadMateriaNotas = estudianteNotas.getNombreAsignatura().length;
@@ -67,6 +77,7 @@ public class Lista {
                     String reporte = "";
                     identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
 
+                    //Buscan el nodo y la cantidad de materias de nodo y ejecuta el metodo para definir notas de corte y se añaden al nodo.
                     nodoNotas = fun.buscarNodo(identificacion);
                     estudiantNotas = nodoNotas.getEstudiante();
                     int cantiMaterias = estudiantNotas.getNombreAsignatura().length;
@@ -80,6 +91,7 @@ public class Lista {
                     Double PromedioSemestral;
                     identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
 
+                    //Buscan el nodo y la cantidad de materias de nodo y ejecuta el metodo para definir promedio de notas y se añaden al nodo.
                     nodoPromedio = fun.buscarNodo(identificacion);
                     estudiantePromedio = nodoPromedio.getEstudiante();
                     int cantidadMateriaPromedio = estudiantePromedio.getNombreAsignatura().length;
@@ -90,10 +102,12 @@ public class Lista {
                     break;
 
                 case 7:
+                    //Muestra losestudiantes que aprobaron el semestre
                     mensajes.mostrarInformacion("ESTUDIANTES QUE GANARON SEMESTRE : \n"+fun.estudiantesGanadoresSemestre());
                     break;
 
                 case 8:
+                    //Muestra losestudiantes que Reprobaron el semestre
                      mensajes.mostrarInformacion("ESTUDIANTES QUE PERDIERON SEMESTRE : \n"+fun.estudiantesPerdieronSemestre());
                     break;
 
