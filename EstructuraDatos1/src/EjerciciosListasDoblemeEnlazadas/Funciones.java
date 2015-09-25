@@ -1,7 +1,5 @@
 package EjerciciosListasDoblemeEnlazadas;
 
-import java.util.Locale;
-
 public class Funciones {
 
     Mensajes mensajes = new Mensajes();
@@ -242,7 +240,7 @@ public class Funciones {
                 promedioSemestre = nodoBase.getEstudiante().getNotaSemestre();
                                 
                 if(promedioSemestre > 3.75){
-                    mensaje += "EL ESTUDIANTE : " + estudiante.toUpperCase() + " CON PROMEDIO : " + promedioSemestre + "";
+                    mensaje += "EL ESTUDIANTE : " + estudiante.toUpperCase() + " CON PROMEDIO : " + promedioSemestre + "\n";
                 }
                 
             }

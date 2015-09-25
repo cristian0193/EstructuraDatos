@@ -119,7 +119,6 @@ public class Lista {
                 + "6) Consultar Promedio de Semestre\n"
                 + "7) Lista de Estudiantes Ganadores\n"
                 + "8) Lista de Estudiantes Perdieron\n"
-                + "9) Tabla de Notas\n"
                 + "0) Salir. ";
 
         return entrada.leerInt(cadena);
