@@ -82,8 +82,8 @@ public class Lista {
 
                     nodoPromedio = fun.buscarNodo(identificacion);
                     estudiantePromedio = nodoPromedio.getEstudiante();
-                    int cantiMateri = estudiantePromedio.getNombreAsignatura().length;
-                    PromedioSemestral = fun.notasPromedioSemestre(cantiMateri, identificacion);
+                    int cantidadMateriaPromedio = estudiantePromedio.getNombreAsignatura().length;
+                    PromedioSemestral = fun.notasPromedioSemestre(cantidadMateriaPromedio, identificacion);
                     estudiantePromedio.setNotaSemestre(PromedioSemestral);
                     nodoPromedio.setEstudiante(estudiantePromedio);
                     mensajes.mostrarInformacion("PROMEDIO SEMESTRAL ES : " + PromedioSemestral);
