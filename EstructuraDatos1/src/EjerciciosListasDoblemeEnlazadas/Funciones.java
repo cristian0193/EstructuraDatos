@@ -31,10 +31,12 @@ public class Funciones {
         if (ultimoNodo == null) {
             ultimoNodo = new Nodo(estudiante);
             cabeza = ultimoNodo;
+            contador++;
         } else {
             nodoAuxiliar = new Nodo(estudiante);
             ultimoNodo.setSiguiente(nodoAuxiliar);
             nodoAuxiliar.setAnterior(ultimoNodo);
+            contador++;
         }
         return this;
     }
@@ -98,7 +100,7 @@ public class Funciones {
         while (nodoBase != null) {
             if (identificacion == nodoBase.getEstudiante().getIdentificacionEstudiante()) {
                 for (int posicionAsignatura = 0; posicionAsignatura < cantidadAsignaturas; posicionAsignatura++) {
-                    for (int posicionCortes = 0; posicionCortes < matrizNotas.length; posicionCortes++) {
+                    for (int posicionCortes = 0; posicionCortes < 3; posicionCortes++) {
 
                         asignatura = nodoBase.getEstudiante().getNombreAsignatura()[posicionAsignatura];
                         matrizNotas[posicionAsignatura][posicionCortes] = mensajes.leerDouble(" INGRESE LA NOTA PARA : \n"
@@ -227,18 +229,20 @@ public class Funciones {
         String mensaje = "";
         Double promedioSemestre = 0.0;
         String estudiante;
-        int count = 0;
+        int count = 1;
+        int contador2 = 0;
 
         nodoBase = cabeza;
+        contador2 = contarNodo();
 
         while (nodoBase != null) {
-            if (count <= contarNodo()) {             
+            if (count <= contador2) {             
                
                 estudiante = nodoBase.getEstudiante().getEstudiante();                
                 promedioSemestre = nodoBase.getEstudiante().getNotaSemestre();
                                 
                 if(promedioSemestre > 3.75){
-                    mensaje += "EL ESTUDIANTE : " + estudiante.toUpperCase() + " CON PROMEDIO : " + promedioSemestre + " GANO EL SEMESTRE ";
+                    mensaje += "EL ESTUDIANTE : " + estudiante.toUpperCase() + " CON PROMEDIO : " + promedioSemestre + "";
                 }
                 
             }
@@ -249,6 +253,35 @@ public class Funciones {
         return mensaje;
     }
 
+    public String estudiantesPerdieronSemestre() {
+
+        String mensaje = "";
+        Double promedioSemestre = 0.0;
+        String estudiante;
+        int count = 1;
+        int contador2 = 0;
+
+        nodoBase = cabeza;
+        contador2 = contarNodo();
+
+        while (nodoBase != null) {
+            if (count <= contador2) {             
+               
+                estudiante = nodoBase.getEstudiante().getEstudiante();                
+                promedioSemestre = nodoBase.getEstudiante().getNotaSemestre();
+                                
+                if(promedioSemestre < 3.75){
+                    mensaje += "EL ESTUDIANTE : " + estudiante.toUpperCase() + " CON PROMEDIO : " + promedioSemestre + "";
+                }
+                
+            }
+            nodoBase = nodoBase.getSiguiente();
+            count++;
+        }
+        
+        return mensaje;
+    }
+    
     public double Redondear(double numero, int digitos) {
         int cifras = (int) Math.pow(10, digitos);
         return Math.rint(numero * cifras) / cifras;

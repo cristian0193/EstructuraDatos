@@ -11,12 +11,10 @@ public class Lista {
         Lista lista = new Lista();
         Mensajes mensajes = new Mensajes();
 
-        Nodo nodo;
-
         int codigo;
         int identificacion;
         String nombre;
-        int cantidad;
+        int cantidadMaterias;
 
         int opcion;
 
@@ -37,11 +35,11 @@ public class Lista {
                     Estudiantes estudianteMaterias;
                     Nodo nodosMaterias;
                     identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
-                    cantidad = mensajes.leerInt("Ingrese cantidad de Asignaturas del estudiante  : ");
+                    cantidadMaterias = mensajes.leerInt("Ingrese cantidad de Asignaturas del estudiante  : ");
 
                     nodosMaterias = fun.buscarNodo(identificacion);
                     estudianteMaterias = nodosMaterias.getEstudiante();
-                    estudianteMaterias.setNombreAsignatura(fun.asignarAsigantura(cantidad));
+                    estudianteMaterias.setNombreAsignatura(fun.asignarAsigantura(cantidadMaterias));
                     nodosMaterias.setEstudiante(estudianteMaterias);
 
                     break;
@@ -53,8 +51,8 @@ public class Lista {
 
                     nodosNotas = fun.buscarNodo(identificacion);
                     estudianteNotas = nodosNotas.getEstudiante();
-                    int cantidadMaterias = estudianteNotas.getNombreAsignatura().length;
-                    estudianteNotas.setNotas(fun.asignarNotas(cantidadMaterias, identificacion));
+                    int cantidadMateriaNotas = estudianteNotas.getNombreAsignatura().length;
+                    estudianteNotas.setNotas(fun.asignarNotas(cantidadMateriaNotas, identificacion));
                     nodosNotas.setEstudiante(estudianteNotas);
 
                     break;
@@ -92,11 +90,11 @@ public class Lista {
                     break;
 
                 case 7:
-                    mensajes.mostrarInformacion(""+fun.estudiantesGanadoresSemestre());
+                    mensajes.mostrarInformacion("ESTUDIANTES QUE GANARON SEMESTRE : \n"+fun.estudiantesGanadoresSemestre());
                     break;
 
                 case 8:
-
+                     mensajes.mostrarInformacion("ESTUDIANTES QUE PERDIERON SEMESTRE : \n"+fun.estudiantesPerdieronSemestre());
                     break;
 
                 case 0:
