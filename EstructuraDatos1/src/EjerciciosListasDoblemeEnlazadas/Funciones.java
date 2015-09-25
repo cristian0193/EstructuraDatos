@@ -1,5 +1,11 @@
 package EjerciciosListasDoblemeEnlazadas;
 
+/**
+ * Esta clase crea una lista y Nodos
+ * @author Christian A. Rodriguez
+ * @version 1.0
+ * @since 24Sep2015
+ */
 public class Funciones {
 
     Mensajes mensajes = new Mensajes();
@@ -7,6 +13,11 @@ public class Funciones {
     private int contador = 0;
     Nodo nodoBase;
 
+    /**
+     * Método permite crear la lista desde el inicio ingresado cada nodo por parte de la clase Estudiante
+     * @param estudiante  Datos de Estudiante
+     * @return Tipo Funcionan (Clase)
+     */
     public Funciones adicionarNodoInicio(Estudiantes estudiante) {
         Nodo nodo;
 
@@ -23,6 +34,11 @@ public class Funciones {
         return this;
     }
 
+    /**
+     * Método permite crear la lista desde el final ingresado cada nodo por parte de la clase Estudiante
+     * @param estudiante  Datos de Estudiante
+     * @return Tipo Funcionan (Clase)
+     */
     public Funciones adicionarNodoFinal(Estudiantes estudiante) {
         Nodo nodoAuxiliar, ultimoNodo = getUltimoNodo();
 
@@ -39,6 +55,10 @@ public class Funciones {
         return this;
     }
 
+     /**
+     * Método permite Monstrar la informacion de cada nodo almanceada por la clase estudiantes
+     * @param nodo  Nodo
+     */
     public void mostrarLista(Nodo nodo) {
         String datos;
         String asignatura = "";
@@ -60,6 +80,11 @@ public class Funciones {
         }
     }
 
+    /**
+     * Método permite buscar y recorrer una lista por su Identificacion
+     * @param identificacion  identificacion de estudiante
+     * @return Nodo
+     */
     public Nodo buscarNodo(int identificacion) {
         Nodo apuntadorNodoBuscado;
 
@@ -75,6 +100,11 @@ public class Funciones {
         return apuntadorNodoBuscado;
     }
 
+    /**
+     * Método permite ingresar las asignaturas para cada estudiante
+     * @param cantidadAsignaturas  cantidad de asignaturas
+     * @return Arreglo asignatura String []
+     */
     public String[] asignarAsigantura(int cantidadAsignaturas) {
 
         String[] arregloMaterias;
@@ -88,6 +118,12 @@ public class Funciones {
         return arregloMaterias;
     }
 
+    /**
+     * Método permite ingresar las notas para cada estudiante
+     * @param cantidadAsignaturas  cantidad de asignaturas
+     * @param identificacion  identificacion de estudiante
+     * @return Matriz Notas String [][]
+     */
     public double[][] asignarNotas(int cantidadAsignaturas, int identificacion) {
 
         double[][] matrizNotas;
@@ -113,6 +149,12 @@ public class Funciones {
         return matrizNotas;
     }
 
+    /**
+     * Método permite consultar la cantidad de materias que se encuentran en un nodo
+     * @param nodoMateria  nodo de materias
+     * @param identificacion  identificacion de estudiante
+     * @return valor entero de cantidad de materias
+     */
     public int cantidadMateriasNodo(int identificacion, Nodo nodoMateria) {
         int cantidad = 0;
 
@@ -128,10 +170,18 @@ public class Funciones {
         return cantidad;
     }
 
+    /**
+     * Método permite contar la cantidad de nodos ingresados
+     * @return valor entero de contador
+     */
     public int contarNodo() {
         return contador;
     }
 
+    /**
+     * Método permite apuntar a ultimo nodo de la lista
+     * @return nodo
+     */
     private Nodo getUltimoNodo() {
         Nodo lastNode = null;
 
@@ -144,6 +194,12 @@ public class Funciones {
         return lastNode;
     }
 
+    /**
+     * Método permite concocer las notas definitivas de cada materias por estudiante consultado
+     * @param cantidadAsignaturas  cantidad de asignaturas
+     * @param identificacion  identificacion de estudiante
+     * @return Notas definitivas por asignatura 
+     */
     public String notasDefinitivaCortes(int cantidadAsignaturas, int identificacion) {
 
         double[][] matrizNotas;
@@ -184,6 +240,12 @@ public class Funciones {
         return mensaje;
     }
 
+    /**
+     * Método permite concocer el promedio acomulado por materias por estudiante consultado
+     * @param cantidadAsignaturas  cantidad de asignaturas
+     * @param identificacion  identificacion de estudiante
+     * @return Promedio de Notas Semestre 
+     */
     public Double notasPromedioSemestre(int cantidadAsignaturas, int identificacion) {
 
         double[][] matrizNotas;
@@ -222,6 +284,10 @@ public class Funciones {
         return PromedioSemestre;
     }
 
+    /**
+     * Método permite muestrar los estudaintes que ganaron el promedio del semestre mayor a 3,75 
+     * @return estudiantes que ganaron el semestre
+     */
     public String estudiantesGanadoresSemestre() {
 
         String mensaje = "";
@@ -251,6 +317,10 @@ public class Funciones {
         return mensaje;
     }
 
+     /**
+     * Método permite muestrar los estudaintes que perdieron el promedio del semestre menor a 3,75 
+     * @return estudiantes que perdieron el semestre
+     */
     public String estudiantesPerdieronSemestre() {
 
         String mensaje = "";
@@ -278,8 +348,12 @@ public class Funciones {
         }
         
         return mensaje;
-    }
+    }    
     
+     /**
+     * Método permite redonderar numeros decimales
+     * @return numero double redondeado
+     */
     public double Redondear(double numero, int digitos) {
         int cifras = (int) Math.pow(10, digitos);
         return Math.rint(numero * cifras) / cifras;
