@@ -2,6 +2,7 @@ package EjerciciosListasDoblemeEnlazadas;
 
 /**
  * Esta clase crea una lista y Nodos
+ *
  * @author Christian A. Rodriguez
  * @version 1.0
  * @since 24Sep2015
@@ -14,8 +15,10 @@ public class Funciones {
     Nodo nodoBase;
 
     /**
-     * Método permite crear la lista desde el inicio ingresado cada nodo por parte de la clase Estudiante
-     * @param estudiante  Datos de Estudiante
+     * Método permite crear la lista desde el inicio ingresado cada nodo por
+     * parte de la clase Estudiante
+     *
+     * @param estudiante Datos de Estudiante
      * @return Tipo Funcionan (Clase)
      */
     public Funciones adicionarNodoInicio(Estudiantes estudiante) {
@@ -35,8 +38,52 @@ public class Funciones {
     }
 
     /**
-     * Método permite crear la lista desde el final ingresado cada nodo por parte de la clase Estudiante
-     * @param estudiante  Datos de Estudiante
+     * Método permite crear la lista desde el inicio ingresado cada nodo por
+     * parte de la clase Estudiante
+     *
+     * @param estudiante Datos de Estudiante
+     */
+    public void agregarAlfabiticamente(Estudiantes estudiante) {
+
+        Nodo nuevo = new Nodo(estudiante);
+
+        String NombreCadena;
+        NombreCadena = nuevo.getEstudiante().getEstudiante();
+
+        if (cabeza == null) {
+            cabeza = nuevo;
+            contador++;
+        } else {
+            if (NombreCadena.compareTo(cabeza.getEstudiante().getEstudiante()) < 0) {
+                nuevo.siguiente = cabeza;
+                nuevo.siguiente.siguiente = null;
+                cabeza = nuevo;
+            } else {
+                Nodo recorre = cabeza;
+                Nodo atras = cabeza;
+
+                while (recorre.siguiente != null) {
+                    atras = recorre;
+                    recorre = recorre.siguiente;
+                }
+
+                if (NombreCadena.compareTo(recorre.getEstudiante().getEstudiante()) > 0) {
+                    recorre.siguiente = nuevo;
+                    nuevo.anterior = recorre;
+                } else {
+                    nuevo.siguiente = recorre;
+                    atras.siguiente = nuevo;
+                }
+            }
+            contador++;
+        }
+    }
+
+    /**
+     * Método permite crear la lista desde el final ingresado cada nodo por
+     * parte de la clase Estudiante
+     *
+     * @param estudiante Datos de Estudiante
      * @return Tipo Funcionan (Clase)
      */
     public Funciones adicionarNodoFinal(Estudiantes estudiante) {
@@ -55,34 +102,32 @@ public class Funciones {
         return this;
     }
 
-     /**
-     * Método permite Monstrar la informacion de cada nodo almanceada por la clase estudiantes
-     * @param nodo  Nodo
+    /**
+     * Método permite Monstrar la informacion de cada nodo almanceada por la
+     * clase estudiantes
      */
-    public void mostrarLista(Nodo nodo) {
-        String datos;
-        String asignatura = "";
+    public void mostrarContenidoLista() {
+        Nodo temporal;
 
-        for (int i = 0; i < nodo.getEstudiante().getNombreAsignatura().length; i++) {
-            asignatura += nodo.getEstudiante().getNombreAsignatura()[i] + ",";
-        }
+        nodoBase = cabeza;
 
-        if (nodoBase != null) {
-            datos = " Codigo : " + nodo.getEstudiante().getCodigoEstudiante() + "\n"
-                    + " Identificacion : " + nodo.getEstudiante().getIdentificacionEstudiante() + "\n"
-                    + " Nombre : " + nodo.getEstudiante().getEstudiante() + "\n"
-                    + " Asignaturas : " + asignatura + "\n"
-                    + " Nota Semestre : " + nodo.getEstudiante().getNotaSemestre() + "\n"
-                    + " Estado Semestre : " + nodo.getEstudiante().isEstadoSemestre() + "\n";
-            mensajes.mostrarInformacion(datos);
-
-            mostrarLista(nodo.getSiguiente());
+        if (nodoBase == null) {
+            mensajes.mostrarInformacion("La lista doble está vacía");
+        } else {
+            mensajes.mostrarInformacion("Se muestra el contenido de todos los nodos ("
+                    + contarNodo() + ")");
+            temporal = cabeza;
+            while (temporal != null) {
+                mensajes.mostrarInformacion(temporal.getEstudiante().toString());
+                temporal = temporal.getSiguiente();
+            }
         }
     }
 
     /**
      * Método permite buscar y recorrer una lista por su Identificacion
-     * @param identificacion  identificacion de estudiante
+     *
+     * @param identificacion identificacion de estudiante
      * @return Nodo
      */
     public Nodo buscarNodo(int identificacion) {
@@ -102,7 +147,8 @@ public class Funciones {
 
     /**
      * Método permite ingresar las asignaturas para cada estudiante
-     * @param cantidadAsignaturas  cantidad de asignaturas
+     *
+     * @param cantidadAsignaturas cantidad de asignaturas
      * @return Arreglo asignatura String []
      */
     public String[] asignarAsigantura(int cantidadAsignaturas) {
@@ -120,8 +166,9 @@ public class Funciones {
 
     /**
      * Método permite ingresar las notas para cada estudiante
-     * @param cantidadAsignaturas  cantidad de asignaturas
-     * @param identificacion  identificacion de estudiante
+     *
+     * @param cantidadAsignaturas cantidad de asignaturas
+     * @param identificacion identificacion de estudiante
      * @return Matriz Notas String [][]
      */
     public double[][] asignarNotas(int cantidadAsignaturas, int identificacion) {
@@ -150,9 +197,11 @@ public class Funciones {
     }
 
     /**
-     * Método permite consultar la cantidad de materias que se encuentran en un nodo
-     * @param nodoMateria  nodo de materias
-     * @param identificacion  identificacion de estudiante
+     * Método permite consultar la cantidad de materias que se encuentran en un
+     * nodo
+     *
+     * @param nodoMateria nodo de materias
+     * @param identificacion identificacion de estudiante
      * @return valor entero de cantidad de materias
      */
     public int cantidadMateriasNodo(int identificacion, Nodo nodoMateria) {
@@ -172,6 +221,7 @@ public class Funciones {
 
     /**
      * Método permite contar la cantidad de nodos ingresados
+     *
      * @return valor entero de contador
      */
     public int contarNodo() {
@@ -180,6 +230,7 @@ public class Funciones {
 
     /**
      * Método permite apuntar a ultimo nodo de la lista
+     *
      * @return nodo
      */
     private Nodo getUltimoNodo() {
@@ -195,10 +246,12 @@ public class Funciones {
     }
 
     /**
-     * Método permite concocer las notas definitivas de cada materias por estudiante consultado
-     * @param cantidadAsignaturas  cantidad de asignaturas
-     * @param identificacion  identificacion de estudiante
-     * @return Notas definitivas por asignatura 
+     * Método permite concocer las notas definitivas de cada materias por
+     * estudiante consultado
+     *
+     * @param cantidadAsignaturas cantidad de asignaturas
+     * @param identificacion identificacion de estudiante
+     * @return Notas definitivas por asignatura
      */
     public String notasDefinitivaCortes(int cantidadAsignaturas, int identificacion) {
 
@@ -207,6 +260,7 @@ public class Funciones {
         Double notaDefinitiva = 0.0;
         Double notaCorte = 0.0;
         String mensaje = "";
+        String calificacion = "";
 
         nodoBase = cabeza;
         matrizNotas = new double[cantidadAsignaturas][3];
@@ -228,10 +282,16 @@ public class Funciones {
                         } else {
                             notaDefinitiva += notaCorte * 0.45;
                             notaDefinitiva = Redondear(notaDefinitiva, 2);
+
+                            if (notaDefinitiva > 3.75) {
+                                calificacion = "GANO";
+                            } else {
+                                calificacion = "PERDIO";
+                            }
                         }
 
                     }
-                    mensaje += "ASIGNATURA : " + asignatura + " SU NOTA DEFINITIVA DE CORTE ES " + notaDefinitiva + "\n";
+                    mensaje += "ASIGNATURA : " + asignatura + " SU NOTA DEFINITIVA DE CORTE ES " + notaDefinitiva + " - (" + calificacion + ")\n";
                     notaDefinitiva = 0.0;
                 }
             }
@@ -241,10 +301,12 @@ public class Funciones {
     }
 
     /**
-     * Método permite concocer el promedio acomulado por materias por estudiante consultado
-     * @param cantidadAsignaturas  cantidad de asignaturas
-     * @param identificacion  identificacion de estudiante
-     * @return Promedio de Notas Semestre 
+     * Método permite concocer el promedio acomulado por materias por estudiante
+     * consultado
+     *
+     * @param cantidadAsignaturas cantidad de asignaturas
+     * @param identificacion identificacion de estudiante
+     * @return Promedio de Notas Semestre
      */
     public Double notasPromedioSemestre(int cantidadAsignaturas, int identificacion) {
 
@@ -285,7 +347,9 @@ public class Funciones {
     }
 
     /**
-     * Método permite muestrar los estudaintes que ganaron el promedio del semestre mayor a 3,75 
+     * Método permite muestrar los estudaintes que ganaron el promedio del
+     * semestre mayor a 3,75
+     *
      * @return estudiantes que ganaron el semestre
      */
     public String estudiantesGanadoresSemestre() {
@@ -300,25 +364,27 @@ public class Funciones {
         contador2 = contarNodo();
 
         while (nodoBase != null) {
-            if (count <= contador2) {             
-               
-                estudiante = nodoBase.getEstudiante().getEstudiante();                
+            if (count <= contador2) {
+
+                estudiante = nodoBase.getEstudiante().getEstudiante();
                 promedioSemestre = nodoBase.getEstudiante().getNotaSemestre();
-                                
-                if(promedioSemestre > 3.75){
+
+                if (promedioSemestre > 3.75) {
                     mensaje += "EL ESTUDIANTE : " + estudiante.toUpperCase() + " CON PROMEDIO : " + promedioSemestre + "\n";
                 }
-                
+
             }
             nodoBase = nodoBase.getSiguiente();
             count++;
         }
-        
+
         return mensaje;
     }
 
-     /**
-     * Método permite muestrar los estudaintes que perdieron el promedio del semestre menor a 3,75 
+    /**
+     * Método permite muestrar los estudaintes que perdieron el promedio del
+     * semestre menor a 3,75
+     *
      * @return estudiantes que perdieron el semestre
      */
     public String estudiantesPerdieronSemestre() {
@@ -333,25 +399,70 @@ public class Funciones {
         contador2 = contarNodo();
 
         while (nodoBase != null) {
-            if (count <= contador2) {             
-               
-                estudiante = nodoBase.getEstudiante().getEstudiante();                
+            if (count <= contador2) {
+
+                estudiante = nodoBase.getEstudiante().getEstudiante();
                 promedioSemestre = nodoBase.getEstudiante().getNotaSemestre();
-                                
-                if(promedioSemestre < 3.75){
+
+                if (promedioSemestre < 3.75) {
                     mensaje += "EL ESTUDIANTE : " + estudiante.toUpperCase() + " CON PROMEDIO : " + promedioSemestre + "";
                 }
-                
+
             }
             nodoBase = nodoBase.getSiguiente();
             count++;
         }
-        
+
         return mensaje;
-    }    
-    
-     /**
+    }
+
+    /**
+     * Método permite concocer las notas definitivas de cada materias por
+     * estudiante consultado
+     *
+     * @param cantidadAsignaturas cantidad de asignaturas
+     * @param identificacion identificacion de estudiante
+     * @return Notas definitivas por asignatura
+     */
+    public String ListaNotasEstudiantes(int cantidadAsignaturas, int identificacion) {
+
+        double[][] matrizNotas;
+        String asignatura = "";
+        Double notaDefinitiva = 0.0;
+        Double notaCorte = 0.0;
+        String mensaje = "";
+        String nota = "";
+        String notaMatriz = "";
+        String asignaturaEstudiante = "";
+
+        nodoBase = cabeza;
+        matrizNotas = new double[cantidadAsignaturas][3];
+
+        while (nodoBase != null) {
+            if (identificacion == nodoBase.getEstudiante().getIdentificacionEstudiante()) {
+                for (int posicionAsignatura = 0; posicionAsignatura < cantidadAsignaturas; posicionAsignatura++) {
+
+                    asignatura = nodoBase.getEstudiante().getNombreAsignatura()[posicionAsignatura];
+
+                    for (int posicionCortes = 0; posicionCortes < matrizNotas.length; posicionCortes++) {
+
+                        notaCorte = nodoBase.getEstudiante().getNotas()[posicionAsignatura][posicionCortes];
+                        nota += notaCorte + " , ";
+                    }
+                    notaMatriz += " " + asignatura + " : " + nota + " \n ";
+                    nota = "";
+                }
+
+                mensaje += " " + notaMatriz + "";
+            }
+            nodoBase = nodoBase.getSiguiente();
+        }
+        return mensaje;
+    }
+
+    /**
      * Método permite redonderar numeros decimales
+     *
      * @return numero double redondeado
      */
     public double Redondear(double numero, int digitos) {

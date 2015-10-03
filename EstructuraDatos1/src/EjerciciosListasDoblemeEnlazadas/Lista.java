@@ -10,6 +10,7 @@ package EjerciciosListasDoblemeEnlazadas;
 public class Lista {
 
     public Nodo cabeza;
+        
     Nodo nodo = new Nodo();
 
     public static void main(String[] args) {
@@ -32,10 +33,10 @@ public class Lista {
                 case 1:
                     codigo = mensajes.leerInt("Ingrese un codigo :");
                     identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
-                    nombre = mensajes.leerString("Ingrese Nombre de Estudiante : ");
-
+                    nombre = mensajes.leerString("Ingrese Nombre de Estudiante : ");                                        
+                    
                     //pasan parametros al metodo para ingresar los nodos
-                    fun.adicionarNodoFinal(new Estudiantes(codigo, identificacion, nombre, 0, 0, false));
+                    fun.agregarAlfabiticamente(new Estudiantes(codigo, identificacion, nombre.toUpperCase(), 0, 0, false));
 
                     break;
                 
@@ -68,7 +69,7 @@ public class Lista {
                     break;
                 
                 case 4:
-                    fun.mostrarLista(fun.cabeza);
+                    fun.mostrarContenidoLista();
                     break;
                 
                 case 5:
@@ -110,7 +111,21 @@ public class Lista {
                     //Muestra losestudiantes que Reprobaron el semestre
                      mensajes.mostrarInformacion("ESTUDIANTES QUE PERDIERON SEMESTRE : \n"+fun.estudiantesPerdieronSemestre());
                     break;
+                case 9:
+                    Nodo nodoNotasEstudiantes;
+                    Estudiantes estudiantesNotasLista;
+                    String ListaNotas = "";
+                    identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
 
+                    //Buscan el nodo y la cantidad de materias de nodo y ejecuta el metodo para mostar notas de corte.
+                    nodoNotasEstudiantes = fun.buscarNodo(identificacion);
+                    estudiantesNotasLista = nodoNotasEstudiantes.getEstudiante();
+                    int cantidad_Materias = estudiantesNotasLista.getNombreAsignatura().length;
+                    ListaNotas = fun.ListaNotasEstudiantes(cantidad_Materias, identificacion);
+                    mensajes.mostrarInformacion(ListaNotas);
+                          
+                    break;
+                                        
                 case 0:
                     System.exit(0);
                     break;
@@ -128,11 +143,12 @@ public class Lista {
                 + "1) Adicionar Datos Basicos \n"
                 + "2) Ingreso de Materias \n"
                 + "3) Ingreso de Notas \n"
-                + "4) Mostrar Estudiantes Totales\n"
-                + "5) Consultar Notas Definitivas\n"
-                + "6) Consultar Promedio de Semestre\n"
-                + "7) Lista de Estudiantes Ganadores\n"
-                + "8) Lista de Estudiantes Perdieron\n"
+                + "4) Mostrar Estudiantes Totales \n"
+                + "5) Consultar Notas Definitivas \n"
+                + "6) Consultar Promedio de Semestre \n"
+                + "7) Lista de Estudiantes Ganadores \n"
+                + "8) Lista de Estudiantes Perdieron \n"
+                + "9) Mostar Notas de Estudiante \n"
                 + "0) Salir. ";
 
         return entrada.leerInt(cadena);

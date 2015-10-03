@@ -34,7 +34,7 @@ public class Estudiantes {
     public Estudiantes(int codigoEstudiante, int identificacionEstudiante, String Estudiante, int cantidadAsignatura, double notaSemestre, boolean estadoSemestre) {
         this.codigoEstudiante = codigoEstudiante;
         this.identificacionEstudiante = identificacionEstudiante;
-        this.Estudiante = Estudiante;
+        this.Estudiante = Estudiante.toUpperCase();
         this.nombreAsignatura = new String[cantidadAsignatura];
         this.notas = new double[3][cantidadAsignatura];
         this.notaSemestre = notaSemestre;
@@ -78,7 +78,7 @@ public class Estudiantes {
      * @return Estudiante 
      */
     public String getEstudiante() {
-        return Estudiante;
+        return Estudiante.toUpperCase();
     }
 
     /**
@@ -86,7 +86,7 @@ public class Estudiantes {
      * @param Estudiante  Datos de estudiante
      */
     public void setEstudiante(String Estudiante) {
-        this.Estudiante = Estudiante;
+        this.Estudiante = Estudiante.toUpperCase();
     }
 
     /**
@@ -168,5 +168,16 @@ public class Estudiantes {
             }
         }
     }
+    
+    @Override
+   public String toString() {
+      return "Estudiante{\n" +
+             "             codigoEst = " + codigoEstudiante + "\n" +
+             "             idEst = " + identificacionEstudiante + "\n" +
+             "             nombreEst = " + Estudiante + "\n" +
+             "             materias = " + nombreAsignatura.toString() + "\n" +
+             "            materias = " + nombreAsignatura.length + "\n" +
+             "}";
+   }
 
 }
