@@ -1,5 +1,7 @@
 package EjerciciosListasDoblemeEnlazadas;
 
+import java.util.Stack;
+
 /**
  * Esta clase crea una lista y Nodos
  *
@@ -78,6 +80,13 @@ public class Funciones {
             contador++;
         }
     }
+    
+    public void agregarPlia(Estudiantes estudiante){
+        
+        Stack pilas = new Stack();
+        pilas.push(estudiante);
+        System.out.println("" + estudiante.getCodigoEstudiante());
+    }            
 
     /**
      * Método permite crear la lista desde el final ingresado cada nodo por
