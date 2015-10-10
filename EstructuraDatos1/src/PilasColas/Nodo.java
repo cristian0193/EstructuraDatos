@@ -11,39 +11,39 @@ public class Nodo {
 
     public Nodo siguiente;
     public Nodo anterior;
-    private Estudiantes estudiante;
+    private Clientes cliente;
 
     /*
     * Constructor del nodo
     */
    public Nodo() {
-        estudiante = null;
-        anterior = null;
+        cliente = null;        
         siguiente = null;
+        anterior = null;
     }
     
     /**
      * Constructor del nodo
      * @param estudiante
      */
-    public Nodo(Estudiantes estudiante) {
+    public Nodo(Clientes estudiante) {
         this();
-        this.estudiante = estudiante;
+        this.cliente = estudiante;
     }
     
     /**
      * Constructor del nodo
-     * @param estudiante
+     * @param cliente
      * @param anterior
      * @param siguiente
      */
-    public Nodo(Estudiantes estudiante, Nodo anterior, Nodo siguiente) {
-        this.estudiante = estudiante;
+    public Nodo(Clientes cliente, Nodo siguiente, Nodo anterior) {
+        this.cliente = cliente;
         this.anterior = anterior;
         this.siguiente = siguiente;
     }
     
-
+    
     /**
      * Método para consultar o recuperar el valor del apuntador al nodo anterior
      * @return Nodo     Apuntador al nodo anterior 
@@ -58,8 +58,8 @@ public class Nodo {
      */
     public void setAnterior(Nodo anterior) {
         this.anterior = anterior;
-    }            
-  
+    } 
+            
     /**
      * Método para consultar o recuperar el valor del apuntador al nodo siguiente
      * @return Nodo     Apuntador al nodo siguiente 
@@ -77,20 +77,24 @@ public class Nodo {
     }       
 
     /**
-     * Método para consultar o recuperar los datos del estudiante
-     * @return Estudiante  Datos del estudiante
+     * Método para consultar o recuperar los datos del cliente
+     * @return Estudiante  Datos del cliente
      */
-    public Estudiantes getEstudiante() {
-        return estudiante;
+    public Clientes getCliente() {
+        return cliente;
     }
 
     /**
-     * Método para asignar los datos del estudiante
-     * @param estudiante  Datos del estudiante
+     * Método para asignar los datos del cliente
+     * @param cliente  Datos del cliente
      */
-    public void setEstudiante(Estudiantes estudiante) {
-        this.estudiante = estudiante;
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
     }    
+
+    
+    
+    
     
 }
 

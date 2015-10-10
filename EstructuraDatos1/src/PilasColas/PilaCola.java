@@ -24,6 +24,7 @@ public class PilaCola {
         int contador = 0;
         int identificacion = 0;
         String nombre = "";
+        String datosCliente = "";
 
         int opcion;
 
@@ -33,44 +34,42 @@ public class PilaCola {
 
                 case 1:
 
-                    while (contador != 10) {
+                    while (contador != 4) {
                         try {
+                            mensajes.mostrarInformacion("ESPERE POR FAVOR HACER ATENDIDO .......");
                             Thread.sleep(5000);
 
+                            mensajes.mostrarInformacion("TURNO # " + (contador + 1));
+                            
                             identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
                             nombre = mensajes.leerString("Ingrese Nombre de Estudiante : ");
-                            int numeroEspecial = (int) (Math.random() * 100);
 
+                            int numeroEspecial = (int) (Math.random() * 100);
                             int numeroAleatorioCola = (int) (Math.random() * 25);
-                            
-                            fun.adicionarNodoInicio(new Estudiantes(identificacion, nombre, numeroEspecial);
-                            
-                            
+                            String especial = fun.estadoEspecial(numeroEspecial);
+
+                            fun.adicionarClienteCola(new Clientes(identificacion, nombre, especial),numeroAleatorioCola);
+                              
 
                             contador++;
+                            System.out.println("contador : " + contador);
                         } catch (InterruptedException ex) {
                             JOptionPane.showMessageDialog(null, "ERROR " + ex);
-
                         }
-
                     }
 
+                    mensajes.mostrarInformacion("EL DIA DE HOY TERMINA LA JORNADA \n" + "MUCHAS GRACIAS POR SU ESPERA");
+
                     break;
 
-                case 2:
-
-//                    Estudiantes estudianteMaterias;
-//                    Nodo nodosMaterias;
-//                    identificacion = mensajes.leerInt("Ingrese una Identificacion : ");
-//                    cantidadMaterias = mensajes.leerInt("Ingrese cantidad de Asignaturas del estudiante  : ");
-//
-//                    //Buscan el nodo y s ejcuta el metodo para ingresar materias y se añaden al nodo.
-//                    nodosMaterias = fun.buscarNodo(identificacion);
-//                    estudianteMaterias = nodosMaterias.getEstudiante();
-//                    estudianteMaterias.setNombreAsignatura(fun.asignarAsigantura(cantidadMaterias));
-//                    nodosMaterias.setEstudiante(estudianteMaterias);
+                case 3:
+                    mensajes.mostrarInformacion(""+fun.ListarPila());
                     break;
 
+                case 4:
+                    mensajes.mostrarInformacion(""+fun.ListarCola());
+                    break;
+                    
                 case 0:
                     System.exit(0);
                     break;
@@ -87,6 +86,8 @@ public class PilaCola {
         String cadena = "M  E  N  U \n"
                 + "1) Inicio Jornada del Dia \n"
                 + "2) Proceso de Atencion \n"
+                + "3) Mostar Pilas \n"
+                + "4) Mostar Colas \n"
                 + "0) Salir. ";
 
         return entrada.leerInt(cadena);
