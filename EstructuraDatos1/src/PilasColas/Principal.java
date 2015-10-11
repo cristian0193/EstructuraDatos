@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
  * @version 1.0
  * @since 24Sep2015
  */
-public class PilaCola {
+public class Principal {
 
     public Nodo cabeza;
     Nodo nodo = new Nodo();
@@ -17,7 +17,7 @@ public class PilaCola {
     public static void main(String[] args) {
 
         Funciones fun = new Funciones();
-        PilaCola lista = new PilaCola();
+        Principal lista = new Principal();
         Mensajes mensajes = new Mensajes();
         Colas colas = new Colas();
         Pilas pilas = new Pilas();
