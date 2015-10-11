@@ -1,4 +1,5 @@
-package PilasColas;
+
+package PilasColasObjectos;
 
 /**
  * Esta clase representa el nodo definida 
@@ -24,11 +25,11 @@ public class Nodo {
     
     /**
      * Constructor del nodo
-     * @param estudiante
+     * @param cliente
      */
-    public Nodo(Clientes estudiante) {
+    public Nodo(Clientes cliente) {
         this();
-        this.cliente = estudiante;
+        this.cliente = cliente;
     }
     
     /**
@@ -42,7 +43,8 @@ public class Nodo {
         this.anterior = anterior;
         this.siguiente = siguiente;
     }
-        
+    
+    
     /**
      * Método para consultar o recuperar el valor del apuntador al nodo anterior
      * @return Nodo     Apuntador al nodo anterior 
@@ -99,3 +101,5 @@ public class Nodo {
 
      
     
+
+
