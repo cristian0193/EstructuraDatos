@@ -328,26 +328,6 @@ public class Colas {
         return mensaje;
     }
 
-    //METODOS COMPLEMENTARIOS    
-    public String CantidadNodosCola() {
-        String mensaje = "";
-        int cont = 0;
-        if (listaVaciaColas()) {
-            mensaje = "No hay datos en la cola";
-        } else if (primero.siguiente == null) {
-            mensaje = "hay un dato en la cola";
-        } else {
-            Nodo actual = primero;
-            while (actual.siguiente != null) {
-                actual = actual.siguiente;
-                cont++;
-            }
-            cont++;
-            mensaje += "\n El numero de Cliente es: " + cont;
-        }
-        return mensaje;
-    }
-
     public Colas adicionarClienteCola(Clientes cliente, int aleatorioCola, String especialCola) {
 
         if (cliente != null) {
@@ -608,7 +588,163 @@ public class Colas {
             eliminar.siguiente = null;
         }
     }
+    
+    public void EliminarNodoPagoServicios() {
+        if (listaVaciaColaClientePrioritario()) {
+            mensajes.mostrarInformacion("No hay datos en la cola");
+        } else if (colaPagoServicios.siguiente == null) {
+            colaPagoServicios = null;
+        } else {
+            Nodo eliminar = colaPagoServicios;
+            colaPagoServicios = colaPagoServicios.siguiente;
+            eliminar.siguiente = null;
+        }
+    }
 
+   
+    //METODOS COMPLEMENTARIOS    
+    public int CantidadClientecolaPagoTarjetaCredito() {
+        int contador = 0;
+        if (listaVaciaColaPagoTarjetaCredito()) {
+            contador = 0;
+        } else if (colaPagoTarjetaCredito.siguiente == null) {
+            contador = 1;
+        } else {
+            Nodo actual = colaPagoTarjetaCredito;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
+                contador++;
+            }
+            contador++;
+        }
+        return contador;
+    }        
+    
+    public int CantidadClientecolaPagoImpuestos() {
+        int contador = 0;
+        if (listaVaciaColaPagoImpuestos()) {
+            contador = 0;
+        } else if (colaPagoImpuestos.siguiente == null) {
+            contador = 1;
+        } else {
+            Nodo actual = colaPagoImpuestos;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
+                contador++;
+            }
+            contador++;
+        }
+        return contador;
+    }    
+    
+    public int CantidadClientecolaRetiroEfectivo() {
+        int contador = 0;
+        if (listaVaciaColaRetiroEfectivo()) {
+            contador = 0;
+        } else if (colaRetiroEfectivo.siguiente == null) {
+            contador = 1;
+        } else {
+            Nodo actual = colaRetiroEfectivo;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
+                contador++;
+            }
+            contador++;
+        }
+        return contador;
+    }  
+    
+    public int CantidadClientecolaConsignacionEfectivo() {
+        int contador = 0;
+        if (listaVaciaColaConsignacionEfectivo()) {
+            contador = 0;
+        } else if (colaConsignacionEfectivo.siguiente == null) {
+            contador = 1;
+        } else {
+            Nodo actual = colaConsignacionEfectivo;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
+                contador++;
+            }
+            contador++;
+        }
+        return contador;
+    }  
+    
+    public int CantidadClientecolaConsignacionCheque(){
+        int contador = 0;
+        if (listaVaciaColaConsignacionCheque()) {
+            contador = 0;
+        } else if (colaConsignacionCheque.siguiente == null) {
+            contador = 1;
+        } else {
+            Nodo actual = colaConsignacionCheque;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
+                contador++;
+            }
+            contador++;
+        }
+        return contador;
+    }  
+    
+    public int CantidadClientecolaCambioCheque(){
+        int contador = 0;
+        if (listaVaciaColaCambioCheque()) {
+            contador = 0;
+        } else if (colaCambioCheque.siguiente == null) {
+            contador = 1;
+        } else {
+            Nodo actual = colaCambioCheque;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
+                contador++;
+            }
+            contador++;
+        }
+        return contador;
+    } 
+    
+    public int CantidadClientecolaPagoServicios(){
+        int contador = 0;
+        if (listaVaciaColaPagoServicios()) {
+            contador = 0;
+        } else if (colaPagoServicios.siguiente == null) {
+            contador = 1;
+        } else {
+            Nodo actual = colaPagoServicios;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
+                contador++;
+            }
+            contador++;
+        }
+        return contador;
+    } 
+    
+    public int CantidadClientecolaClientePrioritario(){
+        int contador = 0;
+        if (listaVaciaColaClientePrioritario()) {
+
+        } else if (colaClientePrioritario.siguiente == null) {
+            contador = 1;
+        } else {
+            Nodo actual = colaClientePrioritario;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
+                contador++;
+            }
+            contador++;
+        }
+        return contador;
+    } 
+    
+    
+    
+    
+    
+    
+    
     
     
 }

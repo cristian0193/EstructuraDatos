@@ -36,7 +36,7 @@ public class Principal {
             switch (opcion) {
 
                 case 1:
-                    while (contador != 4) {
+                    while (contador != 10) {
                         try {
                             mensajes.mostrarInformacion("ESPERE POR FAVOR HACER ATENDIDO ....... \n" + "PRESIONE ACEPTAR");
                             //Thread.sleep(3000);
@@ -50,7 +50,7 @@ public class Principal {
                             int numeroAleatorioCola = (int) (Math.random() * 25);
                             String especial = fun.estadoEspecial(numeroEspecial);
 
-                            colas.adicionarClienteCola(new Clientes(identificacion, nombre, especial), numeroAleatorioCola, "SI");
+                            colas.adicionarClienteCola(new Clientes(identificacion, nombre, especial), numeroAleatorioCola, especial);
 
                             contador++;
 
@@ -66,14 +66,16 @@ public class Principal {
 
                 case 2:
                     
-                    Clientes cliente;
-                    Nodo InformacionCliente;
-                    
-                    InformacionCliente = colas.buscarNodoClientePrioritario();
-                    cliente = InformacionCliente.getCliente();
-                    pilas.AddCajaAtencion1(cliente);
-                    colas.EliminarNodoClientePrioritario();
-                     mensajes.mostrarInformacion("PROCESO REALIZADO");
+//                    Clientes cliente;
+//                    Nodo InformacionCliente;
+//                    
+//                    InformacionCliente = colas.buscarNodoClientePrioritario();
+//                    cliente = InformacionCliente.getCliente();
+//                    pilas.AddCajaAtencion1(cliente);
+//                    colas.EliminarNodoClientePrioritario();
+//                     mensajes.mostrarInformacion("PROCESO REALIZADO");
+                   String mensaje = pilas.ProcesoCajas();
+                   mensajes.mostrarInformacion(mensaje);
                                                                                 
                     break;
 
