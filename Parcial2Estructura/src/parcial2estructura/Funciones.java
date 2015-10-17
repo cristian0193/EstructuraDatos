@@ -1,5 +1,12 @@
 package parcial2estructura;
 
+/**
+ * Esta clase que presenta los metodos de ayuda
+ * @author Christian A. Rodriguez
+ * @version 1.0
+ * @since 17Oct2015
+ */
+
 import javax.swing.JOptionPane;
 
 public class Funciones {
@@ -10,10 +17,20 @@ public class Funciones {
 
     Mensajes mensajes = new Mensajes();
     
+    
+    /**
+    * Metodo para validar si esta null la lista
+    * @return Boolean de Lista
+    */
     public boolean ListaVacia() {
         return (lista == null);
     }
 
+    /**
+    * Metodo para validar si un numero es par o impar
+    * @param numero
+    * @return Boolean de Lista
+    */
     public boolean numeroParoImpar(int numero) {
 
         if (numero % 2 == 0) {
@@ -24,6 +41,10 @@ public class Funciones {
 
     }
 
+    /**
+    * Metodo para ingresar un Nodo a la lista en el inicio
+    * @param numero
+    */
     public void AddInicio(String numero) {
 
         Nodo nodo = new Nodo(numero);
@@ -44,6 +65,10 @@ public class Funciones {
 
     }
     
+   /**
+    * Metodo para ingresar un Nodo a la lista al final
+    * @param numero
+    */
     public void AddFinal(String numero) {
          Nodo nodo = new Nodo(numero);
          if (ListaVacia()) {
@@ -60,6 +85,10 @@ public class Funciones {
         }
     }
 
+    /**
+    * Metodo para organizar los datos
+    * @param numero
+    */
     public void OrdenamientoDatos(String numero) {
 
         Nodo nodo = new Nodo(numero);
@@ -95,6 +124,9 @@ public class Funciones {
         }
     }
 
+    /**
+    * Metodo mostrar los datos de derecha a izquierda
+    */
     public void MostarListaDerecha() {
         if (ListaVacia()) {
             JOptionPane.showInputDialog("Lista Vacia");
@@ -108,6 +140,9 @@ public class Funciones {
         }
     }
     
+    /**
+    * Metodo mostrar los datos de izquierda a derecha
+    */
     public void MostarListaIzquierda() {
         if (ListaVacia()) {
             JOptionPane.showInputDialog("Lista Vacia");
@@ -120,8 +155,22 @@ public class Funciones {
             }while(auxiliar != ultimo);
         }
     }
-        
+    
+    /**
+    * Metodo mostrar los datos de derecha a izquierda
+    * return numero de opcion de menu
+    */
     public int menuPrincipal() {
+        Mensajes entrada = new Mensajes();
+
+        String cadena = "1. Ejercicio # 1 \n"
+                + "2. Ejercicio # 2 \n"
+                + "0. Salir";
+
+        return entrada.leerInt(cadena);
+    }
+    
+    public int subMenuPrincipal1() {
         Mensajes entrada = new Mensajes();
 
         String cadena = "1. Ingresar de Datos a Lista \n"
@@ -131,4 +180,17 @@ public class Funciones {
         return entrada.leerInt(cadena);
     }
 
+    public int subMenuPrincipal2() {
+        Mensajes entrada = new Mensajes();
+
+        String cadena = "1. Ingresar Datos a la Cola \n"
+                + "2. Procesar \n"
+                + "3. Mostrar Colas \n"
+                + "4. Mostrar Pilas \n"
+                + "0. Salir";
+
+        return entrada.leerInt(cadena);
+    }
+   
+    
 }

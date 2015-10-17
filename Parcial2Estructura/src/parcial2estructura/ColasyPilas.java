@@ -7,14 +7,26 @@ public class ColasyPilas {
     public Nodo lista;
     public Nodo ultimo;
 
+    /**
+    * Metodo valida si la cola esta vacia
+    * return cola
+    */
     public boolean ListaVaciaCola() {
         return (cola == null);
     }
 
+    /**
+    * Metodo valida si la pila esta vacia
+    * return pila
+    */
     public boolean ListaVaciaPila() {
         return (pila == null);
     }
 
+    /**
+    * Metodo para ingresar un nodo a la cola
+    * @param numero
+    */
     public void AddCola(String numero) {
 
         Nodo nuevo = new Nodo(numero);
@@ -31,6 +43,10 @@ public class ColasyPilas {
         }
     }
 
+    /**
+    * Metodo para ingresar un nodo a la pila
+    * @param numero
+    */
     public void AddPila(String numero) {
         Nodo nuevo = new Nodo(numero);
         if (ListaVaciaPila()) {
@@ -41,4 +57,11 @@ public class ColasyPilas {
         }
     }
 
+    public void ProcesoPalindromo(){
+        
+        
+        
+        
+    }
+    
 }

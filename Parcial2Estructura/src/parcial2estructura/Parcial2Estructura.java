@@ -1,13 +1,12 @@
 package parcial2estructura;
 
-import javax.swing.JOptionPane;
-
 public class Parcial2Estructura {
 
     public static void main(String[] args) {
 
         boolean numeroPar;
         Funciones funciones = new Funciones();
+        ColasyPilas colas_pilas = new ColasyPilas();
         Mensajes mensajes = new Mensajes();
 
         String menu = "";
@@ -21,42 +20,91 @@ public class Parcial2Estructura {
             switch (opcion) {
 
                 case 1:
-                    int numeroIngresado = mensajes.leerInt("Ingresar un Numero");
-                    String numeroCadena = Integer.toString(numeroIngresado);
+                    
+                    opcion = funciones.subMenuPrincipal1();
+                    
+                    switch (opcion) {
 
-                    if (contador > 0) {
+                        case 1:
 
-                        int numeroAleatorio = (int) (Math.random() * 10);
-                        numeroPar = funciones.numeroParoImpar(numeroAleatorio);
+                            int numeroIngresado = mensajes.leerInt("Ingresar un Numero");
+                            String numeroCadena = Integer.toString(numeroIngresado);
 
-                        if (numeroPar) {
-                            funciones.AddFinal(numeroCadena);
-                        } else {
-                            funciones.AddInicio(numeroCadena);
-                            //funciones.OrdenamientoDatos(numeroCadena);
-                        }
+                            if (contador > 0) {
 
-                    } else {
-                        funciones.AddInicio(numeroCadena);
-                        contador++;
+                                int numeroAleatorio = (int) (Math.random() * 10);
+                                numeroPar = funciones.numeroParoImpar(numeroAleatorio);
+
+                                if (numeroPar) {
+                                    funciones.AddFinal(numeroCadena);
+                                } else {
+                                    funciones.AddInicio(numeroCadena);
+                                }
+
+                            } else {
+                                funciones.AddInicio(numeroCadena);
+                                contador++;
+                            }
+
+                            break;
+
+                        case 2:
+                            int numeroAleatorio = (int) (Math.random() * 30 + 20);
+                            numeroPar = funciones.numeroParoImpar(numeroAleatorio);
+
+                            if (numeroPar) {
+                                funciones.MostarListaDerecha();
+                            } else {
+                                funciones.MostarListaIzquierda();
+                            }
+
+                            break;
+                            
+                        case 0:
+                             System.exit(0);
+                            break;
                     }
 
-                    break;
 
                 case 2:
+                    
+                     opcion = funciones.subMenuPrincipal2();
+                    
+                     switch (opcion) {
 
-                    int numeroAleatorio = (int) (Math.random() * 30 + 20);
-                    numeroPar = funciones.numeroParoImpar(numeroAleatorio);
+                        case 1:                          
+                            
+                            String palabra = mensajes.leerString("Ingresar un Numero");
+                            colas_pilas.AddCola(palabra);
+                                                        
+                            break;
 
-                    if (numeroPar) {
-                        funciones.MostarListaDerecha();
-                    } else {
-                        funciones.MostarListaIzquierda();
-                    }
+                        case 2:                        
 
+                            break;
+                    
+                        case 3:                        
+
+                            break;
+                            
+                        case 4:                        
+
+                            break;    
+                       
+                        case 0:                        
+                            System.exit(0);
+                            break;  
+                     
+                     }
+                     
+                     
+                     
+                     
                     break;
-
+                
+                
                 case 0:
+                    System.exit(0);
                     break;
 
             }
