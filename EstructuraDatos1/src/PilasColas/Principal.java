@@ -12,33 +12,30 @@ import javax.swing.JOptionPane;
 public class Principal {
 
     public Nodo cabeza;
-    Nodo nodo = new Nodo();
-
+    Nodo nodo = new Nodo();    
+    
     public static void main(String[] args) {
 
         Funciones fun = new Funciones();
-        Principal lista = new Principal();
+        Principal principal = new Principal();
         Mensajes mensajes = new Mensajes();
         Colas colas = new Colas();
         Pilas pilas = new Pilas();
 
         int contador = 0;
         int identificacion = 0;
-        String nombre = "";
-        String datosCliente = "";
-
-        Nodo cola = null;
+        String nombre = "";;
 
         int opcion;
 
         do {
-            opcion = lista.menuPrincipal();
+            opcion = principal.menuPrincipal();
             switch (opcion) {
 
                 case 1:
-                    while (contador != 10) {
+                    while (contador != 5) {
                         try {
-                            mensajes.mostrarInformacion("ESPERE POR FAVOR HACER ATENDIDO ....... \n" + "PRESIONE ACEPTAR");
+                            //mensajes.mostrarInformacion("ESPERE POR FAVOR HACER ATENDIDO ....... \n" + "PRESIONE ACEPTAR");
                             //Thread.sleep(3000);
 
                             mensajes.mostrarInformacion("TURNO # " + (contador + 1));
@@ -50,7 +47,7 @@ public class Principal {
                             int numeroAleatorioCola = (int) (Math.random() * 25);
                             String especial = fun.estadoEspecial(numeroEspecial);
 
-                            colas.adicionarClienteCola(new Clientes(identificacion, nombre, especial), numeroAleatorioCola, especial);
+                            colas.adicionarClienteCola(new Clientes(identificacion, nombre, especial), numeroAleatorioCola, "SI");
 
                             contador++;
 
@@ -65,21 +62,14 @@ public class Principal {
                     break;
 
                 case 2:
-                    
-//                    Clientes cliente;
-//                    Nodo InformacionCliente;
-//                    
-//                    InformacionCliente = colas.buscarNodoClientePrioritario();
-//                    cliente = InformacionCliente.getCliente();
-//                    pilas.AddCajaAtencion1(cliente);
-//                    colas.EliminarNodoClientePrioritario();
-//                     mensajes.mostrarInformacion("PROCESO REALIZADO");
-                   String mensaje = pilas.ProcesoCajas();
-                   mensajes.mostrarInformacion(mensaje);
-                                                                                
-                    break;
 
-                case 3:
+                    String mensaje = colas.ProcesoCajas();
+                    mensajes.mostrarInformacion(mensaje);
+
+            break;
+
+          case 3:
+                           
                     mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 1 \n \n " + pilas.ListarCaja1());
                     mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 2 \n \n " + pilas.ListarCaja2());
                     mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 3 \n \n " + pilas.ListarCaja3());
@@ -105,7 +95,9 @@ public class Principal {
                 default:
                     mensajes.mostrarError("¡La opción no existe!");
             }
-        } while (opcion != 0);
+        
+    }
+    while (opcion != 0);
 
     }
 

@@ -24,11 +24,11 @@ public class Nodo {
     
     /**
      * Constructor del nodo
-     * @param estudiante
+     * @param cliente
      */
-    public Nodo(Clientes estudiante) {
+    public Nodo(Clientes cliente) {
         this();
-        this.cliente = estudiante;
+        this.cliente = cliente;
     }
     
     /**

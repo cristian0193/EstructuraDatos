@@ -3,8 +3,13 @@ package PilasColas;
 public class Colas {
 
     Mensajes mensajes = new Mensajes();
-    public Nodo primero;
-    public Nodo ultimo;
+//    public Nodo primero;
+//    public Nodo ultimo;
+
+    public int cola1 = 0, cola2 = 0, cola3 = 0, cola4 = 0, cola5 = 0, cola6 = 0, cola7 = 0, cola8 = 0;
+
+    Clientes cliente;
+    Nodo InformacionCliente;
 
     //COLAS
     public Nodo colaPagoTarjetaCredito;
@@ -15,13 +20,22 @@ public class Colas {
     public Nodo colaCambioCheque;
     public Nodo colaPagoServicios;
     public Nodo colaClientePrioritario;
+  
+    //CONTADORES
+    public int contador1 = 0;
+    public int contador2 = 0;
+    public int contador3 = 0;
+    public int contador4 = 0;
+    public int contador5 = 0;
+    public int contador6 = 0;
+    public int contador7 = 0;
+    public int contador8 = 0;
 
-    private int contador = 0;
     String nombre = "";
-
-    public boolean listaVaciaColas() {
-        return (primero == null);
-    }
+//
+//    public boolean listaVaciaColas() {
+//        return (primero == null);
+//    }
 
     public boolean listaVaciaColaPagoTarjetaCredito() {
         return (colaPagoTarjetaCredito == null);
@@ -56,22 +70,9 @@ public class Colas {
     }
 
     // METODOS AGREGAR DATOS A LAS COLAS
-    public void AddCola(Clientes cliente, Nodo Cola) {
-        Nodo nuevo = new Nodo(cliente);
-        if (listaVaciaColas()) {
-            Cola = nuevo;
-        } else if (Cola.siguiente == null) {
-            Cola.siguiente = nuevo;
-        } else {
-            Nodo actual = Cola;
-            while (actual.siguiente != null) {
-                actual = actual.siguiente;
-            }
-            actual.siguiente = nuevo;
-        }
-    }
 
     public void AddColaClientePrioritario(Clientes cliente) {
+
         Nodo nuevo = new Nodo(cliente);
         if (listaVaciaColaClientePrioritario()) {
             colaClientePrioritario = nuevo;
@@ -334,27 +335,35 @@ public class Colas {
 
             if (especialCola.equals("SI")) {
                 AddColaClientePrioritario(cliente);
+                contador1++;
             } else {
                 if (aleatorioCola >= 0 && aleatorioCola <= 3) {
                     AddColaPagoTarjetaCredito(cliente);
+                    contadorPagoTarjetaCredito();
 
                 } else if (aleatorioCola > 3 && aleatorioCola <= 5) {
                     AddColaPagoImpuestos(cliente);
+                    contadorPagoImpuestos();
 
                 } else if (aleatorioCola > 5 && aleatorioCola <= 10) {
                     AddColaRetiroEfectivo(cliente);
+                    contadorRetiroEfectivo();
 
                 } else if (aleatorioCola > 10 && aleatorioCola <= 15) {
                     AddColaConsignacionEfectivo(cliente);
+                    contadorConsignacionEfectivo();
 
                 } else if (aleatorioCola > 15 && aleatorioCola <= 20) {
                     AddColaConsignacionCheque(cliente);
+                    contadorConsignacionCheque();
 
                 } else if (aleatorioCola > 20 && aleatorioCola <= 22) {
                     AddColaCambioCheque(cliente);
+                    contadorCambioCheque();
 
                 } else if (aleatorioCola > 22 && aleatorioCola <= 25) {
                     AddColaPagoServicios(cliente);
+                    contadorPagoServicios();
 
                 } else {
                     System.out.println("Dato No encontrado");
@@ -365,7 +374,38 @@ public class Colas {
         return this;
     }
 
-    
+    public int contadorClientePrioritario() {
+        return contador1;
+    }
+
+    public int contadorPagoTarjetaCredito() {
+        return contador2;
+    }
+
+    public int contadorPagoImpuestos() {
+        return contador3++;
+    }
+
+    public int contadorRetiroEfectivo() {
+        return contador4++;
+    }
+
+    public int contadorConsignacionEfectivo() {
+        return contador5++;
+    }
+
+    public int contadorConsignacionCheque() {
+        return contador6++;
+    }
+
+    public int contadorCambioCheque() {
+        return contador7++;
+    }
+
+    public int contadorPagoServicios() {
+        return contador8++;
+    }
+
     //  METODOS BUSCAR DATOS A LAS COLAS
     public Nodo buscarNodoPagoTarjetaCredito() {
         Nodo apuntadorNodoBuscado;
@@ -503,7 +543,6 @@ public class Colas {
         return apuntadorNodoBuscado;
     }
 
-    
     //  METODOS ELIMIANR DATOS A LAS COLAS
     public void EliminarNodoPagoTarjetaCredito() {
         if (listaVaciaColaPagoTarjetaCredito()) {
@@ -516,7 +555,7 @@ public class Colas {
             eliminar.siguiente = null;
         }
     }
-    
+
     public void EliminarNodoPagoImpuestos() {
         if (listaVaciaColaPagoImpuestos()) {
             mensajes.mostrarInformacion("No hay datos en la cola");
@@ -528,7 +567,7 @@ public class Colas {
             eliminar.siguiente = null;
         }
     }
-    
+
     public void EliminarNodoRetiroEfectivo() {
         if (listaVaciaColaRetiroEfectivo()) {
             mensajes.mostrarInformacion("No hay datos en la cola");
@@ -540,7 +579,7 @@ public class Colas {
             eliminar.siguiente = null;
         }
     }
-    
+
     public void EliminarNodoConsignacionEfectivo() {
         if (listaVaciaColaConsignacionEfectivo()) {
             mensajes.mostrarInformacion("No hay datos en la cola");
@@ -552,7 +591,7 @@ public class Colas {
             eliminar.siguiente = null;
         }
     }
-    
+
     public void EliminarNodoConsignacionCheque() {
         if (listaVaciaColaConsignacionCheque()) {
             mensajes.mostrarInformacion("No hay datos en la cola");
@@ -564,7 +603,7 @@ public class Colas {
             eliminar.siguiente = null;
         }
     }
-    
+
     public void EliminarNodoCambioCheque() {
         if (listaVaciaColaCambioCheque()) {
             mensajes.mostrarInformacion("No hay datos en la cola");
@@ -576,7 +615,7 @@ public class Colas {
             eliminar.siguiente = null;
         }
     }
-    
+
     public void EliminarNodoClientePrioritario() {
         if (listaVaciaColaClientePrioritario()) {
             mensajes.mostrarInformacion("No hay datos en la cola");
@@ -588,7 +627,7 @@ public class Colas {
             eliminar.siguiente = null;
         }
     }
-    
+
     public void EliminarNodoPagoServicios() {
         if (listaVaciaColaClientePrioritario()) {
             mensajes.mostrarInformacion("No hay datos en la cola");
@@ -601,150 +640,291 @@ public class Colas {
         }
     }
 
-   
-    //METODOS COMPLEMENTARIOS    
-    public int CantidadClientecolaPagoTarjetaCredito() {
-        int contador = 0;
-        if (listaVaciaColaPagoTarjetaCredito()) {
-            contador = 0;
-        } else if (colaPagoTarjetaCredito.siguiente == null) {
-            contador = 1;
-        } else {
-            Nodo actual = colaPagoTarjetaCredito;
-            while (actual.siguiente != null) {
-                actual = actual.siguiente;
-                contador++;
-            }
-            contador++;
-        }
-        return contador;
-    }        
-    
-    public int CantidadClientecolaPagoImpuestos() {
-        int contador = 0;
-        if (listaVaciaColaPagoImpuestos()) {
-            contador = 0;
-        } else if (colaPagoImpuestos.siguiente == null) {
-            contador = 1;
-        } else {
-            Nodo actual = colaPagoImpuestos;
-            while (actual.siguiente != null) {
-                actual = actual.siguiente;
-                contador++;
-            }
-            contador++;
-        }
-        return contador;
-    }    
-    
-    public int CantidadClientecolaRetiroEfectivo() {
-        int contador = 0;
-        if (listaVaciaColaRetiroEfectivo()) {
-            contador = 0;
-        } else if (colaRetiroEfectivo.siguiente == null) {
-            contador = 1;
-        } else {
-            Nodo actual = colaRetiroEfectivo;
-            while (actual.siguiente != null) {
-                actual = actual.siguiente;
-                contador++;
-            }
-            contador++;
-        }
-        return contador;
-    }  
-    
-    public int CantidadClientecolaConsignacionEfectivo() {
-        int contador = 0;
-        if (listaVaciaColaConsignacionEfectivo()) {
-            contador = 0;
-        } else if (colaConsignacionEfectivo.siguiente == null) {
-            contador = 1;
-        } else {
-            Nodo actual = colaConsignacionEfectivo;
-            while (actual.siguiente != null) {
-                actual = actual.siguiente;
-                contador++;
-            }
-            contador++;
-        }
-        return contador;
-    }  
-    
-    public int CantidadClientecolaConsignacionCheque(){
-        int contador = 0;
-        if (listaVaciaColaConsignacionCheque()) {
-            contador = 0;
-        } else if (colaConsignacionCheque.siguiente == null) {
-            contador = 1;
-        } else {
-            Nodo actual = colaConsignacionCheque;
-            while (actual.siguiente != null) {
-                actual = actual.siguiente;
-                contador++;
-            }
-            contador++;
-        }
-        return contador;
-    }  
-    
-    public int CantidadClientecolaCambioCheque(){
-        int contador = 0;
-        if (listaVaciaColaCambioCheque()) {
-            contador = 0;
-        } else if (colaCambioCheque.siguiente == null) {
-            contador = 1;
-        } else {
-            Nodo actual = colaCambioCheque;
-            while (actual.siguiente != null) {
-                actual = actual.siguiente;
-                contador++;
-            }
-            contador++;
-        }
-        return contador;
-    } 
-    
-    public int CantidadClientecolaPagoServicios(){
-        int contador = 0;
-        if (listaVaciaColaPagoServicios()) {
-            contador = 0;
-        } else if (colaPagoServicios.siguiente == null) {
-            contador = 1;
-        } else {
-            Nodo actual = colaPagoServicios;
-            while (actual.siguiente != null) {
-                actual = actual.siguiente;
-                contador++;
-            }
-            contador++;
-        }
-        return contador;
-    } 
-    
-    public int CantidadClientecolaClientePrioritario(){
-        int contador = 0;
-        if (listaVaciaColaClientePrioritario()) {
+    public String ProcesoCajas() {
+        String mensaje = "FINALIZACION DEL PROCESO";
+        Pilas pilas = new Pilas();
+        
+        cola1 = 5;
+        cola2 = 0;
+        cola3 = 0;
+        cola4 = 0;
+        cola5 = 0;
+        cola6 = 0;
+        cola7 = 0;
+        cola8 = 0;
 
-        } else if (colaClientePrioritario.siguiente == null) {
-            contador = 1;
-        } else {
-            Nodo actual = colaClientePrioritario;
-            while (actual.siguiente != null) {
-                actual = actual.siguiente;
-                contador++;
+        while (cola1 != 0) {
+
+//            cola1 != 0 && cola2 != 0 && cola3 != 0 && cola4 != 0 && cola5 != 0 && cola6 != 0 && cola7 != 0 && cola8 != 0
+            //ATENCION CAJA 1
+            if (cola1 >= 3) {
+                int cantidad = 3;
+                while (cantidad != 0) {
+                    InformacionCliente = buscarNodoClientePrioritario();
+                    cliente = InformacionCliente.getCliente();
+                    pilas.AddCajaAtencion1(cliente);
+                    EliminarNodoClientePrioritario();
+                    cantidad--;
+                    cola1--;
+                }
+
+                if (cola6 > 0) {
+                    int cantidad2 = 1;
+                    while (cantidad2 != 0) {
+                        InformacionCliente = buscarNodoConsignacionCheque();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion1(cliente);
+                        EliminarNodoConsignacionCheque();
+                        cantidad2--;
+                    }
+
+                } else {
+
+                    if (cola8 > 0) {
+                        int cantidad3 = 1;
+                        while (cantidad3 != 0) {
+                            InformacionCliente = buscarNodoPagoTarjetaCredito();
+                            cliente = InformacionCliente.getCliente();
+                            pilas.AddCajaAtencion1(cliente);
+                            EliminarNodoPagoTarjetaCredito();
+                            cantidad3--;
+                        }
+
+                    } else {
+                        System.out.println("CAJA DE PAGO TARJETA DE CREDITO SIN CLIENTES");
+                        //mensajes.mostrarInformacion("CAJA DE PAGO TARJETA DE CREDITO SIN CLIENTES");
+                    }
+
+                }
+
+            } else {
+
+                if (cola1 > 0 && cola1 < 3) {
+                    int cantidad = 2;
+                    while (cantidad != 0) {
+                        InformacionCliente = buscarNodoClientePrioritario();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion1(cliente);
+                        EliminarNodoClientePrioritario();
+                        cantidad--;
+                        cola1--;
+                    }
+                } else {
+                    System.out.println("CAJA DE CLIENTE PRIORITARIO SIN CLIENTES");
+                }
+
+                if (cola6 > 0) {
+                    int cantidad2 = 1;
+                    while (cantidad2 != 0) {
+                        InformacionCliente = buscarNodoConsignacionCheque();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion1(cliente);
+                        EliminarNodoConsignacionCheque();
+                        cantidad2--;
+                    }
+
+                } else {
+                    System.out.println("CAJA DE CONSIGNACION DE CHEQUE SIN CLIENTES");
+                    //mensajes.mostrarInformacion("CAJA DE CONSIGNACION DE CHEQUE SIN CLIENTES");
+                }
+
+                if (cola8 > 0) {
+                    int cantidad2 = 1;
+                    while (cantidad2 != 0) {
+                        InformacionCliente = buscarNodoPagoTarjetaCredito();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion1(cliente);
+                        EliminarNodoPagoTarjetaCredito();
+                        cantidad2--;
+                    }
+
+                } else {
+                    //mensajes.mostrarInformacion("CAJA DE PAGO TARJETA DE CREDITO SIN CLIENTES");
+                    System.out.println("CAJA DE PAGO TARJETA DE CREDITO SIN CLIENTES");
+                }
             }
-            contador++;
+
+            //ATENCION CAJA 2
+            if (cola2 > 0 || cola3 > 0 || cola4 > 0) {
+
+                if (cola2 > 0) {
+                    int cantidad = 1;
+                    while (cantidad != 0) {
+                        InformacionCliente = buscarNodoRetiroEfectivo();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion2(cliente);
+                        EliminarNodoRetiroEfectivo();
+                        cantidad--;
+                    }
+                }
+
+                if (cola3 > 0) {
+                    int cantidad = 1;
+                    while (cantidad != 0) {
+                        InformacionCliente = buscarNodoConsignacionCheque();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion2(cliente);
+                        EliminarNodoConsignacionCheque();
+                        cantidad--;
+                    }
+                }
+
+                if (cola4 > 0) {
+                    int cantidad = 1;
+                    while (cantidad != 0) {
+                        InformacionCliente = buscarNodoPagoServicios();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion2(cliente);
+                        EliminarNodoPagoServicios();
+                        cantidad--;
+                    }
+                }
+
+            } else {
+                System.out.println("LAS COLAS NO TIENE CLIENTES");
+                // mensajes.mostrarInformacion("LAS COLAS NO TIENE CLIENTES");
+            }
+
+            //ATENCION CAJA 3           
+            if (cola2 > 0 || cola3 > 0 || cola4 > 0) {
+
+                if (cola2 > 0) {
+                    int cantidad = 1;
+                    while (cantidad != 0) {
+                        InformacionCliente = buscarNodoRetiroEfectivo();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion3(cliente);
+                        EliminarNodoRetiroEfectivo();
+                        cantidad--;
+                    }
+                }
+
+                if (cola3 > 0) {
+                    int cantidad = 1;
+                    while (cantidad != 0) {
+                        InformacionCliente = buscarNodoConsignacionCheque();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion3(cliente);
+                        EliminarNodoConsignacionCheque();
+                        cantidad--;
+                    }
+                }
+
+                if (cola4 > 0) {
+                    int cantidad = 1;
+                    while (cantidad != 0) {
+                        InformacionCliente = buscarNodoPagoServicios();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion3(cliente);
+                        EliminarNodoPagoServicios();
+                        cantidad--;
+                    }
+                }
+
+            } else {
+                System.out.println("LAS COLAS 2,3,4 NO TIENE CLIENTES");
+                //mensajes.mostrarInformacion("LAS COLAS 2,3,4 NO TIENE CLIENTES");
+            }
+
+            //ATENCION CAJA 4  
+            if (cola6 > 0 || cola7 > 0 || cola8 > 0) {
+
+                if (cola6 > 0) {
+                    int cantidad = 1;
+                    while (cantidad != 0) {
+                        InformacionCliente = buscarNodoConsignacionCheque();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion4(cliente);
+                        EliminarNodoConsignacionCheque();
+                        cantidad--;
+                    }
+                }
+
+                if (cola7 > 0) {
+                    int cantidad = 1;
+                    while (cantidad != 0) {
+                        InformacionCliente = buscarNodoConsignacionEfectivo();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion4(cliente);
+                        EliminarNodoConsignacionEfectivo();
+                        cantidad--;
+                    }
+                }
+
+                if (cola8 > 0) {
+                    int cantidad = 1;
+                    while (cantidad != 0) {
+                        InformacionCliente = buscarNodoPagoTarjetaCredito();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion4(cliente);
+                        EliminarNodoPagoTarjetaCredito();
+                        cantidad--;
+                    }
+                }
+
+            } else {
+                System.out.println("LAS COLAS 6,7,8 NO TIENE CLIENTES");
+                //mensajes.mostrarInformacion("LAS COLAS 6,7,8 NO TIENE CLIENTES");
+            }
+
+            //ATENCION CAJA 5  
+            if (cola6 > 0 || cola7 > 0 || cola8 > 0) {
+
+                if (cola6 > 0) {
+                    int cantidad = 1;
+                    while (cantidad != 0) {
+                        InformacionCliente = buscarNodoConsignacionCheque();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion5(cliente);
+                        EliminarNodoConsignacionCheque();
+                        cantidad--;
+                    }
+                }
+
+                if (cola7 > 0) {
+                    int cantidad = 1;
+                    while (cantidad != 0) {
+                        InformacionCliente = buscarNodoConsignacionEfectivo();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion5(cliente);
+                        EliminarNodoConsignacionEfectivo();
+                        cantidad--;
+                    }
+                }
+
+                if (cola8 > 0) {
+                    int cantidad = 1;
+                    while (cantidad != 0) {
+                        InformacionCliente = buscarNodoPagoTarjetaCredito();
+                        cliente = InformacionCliente.getCliente();
+                        pilas.AddCajaAtencion5(cliente);
+                        EliminarNodoPagoTarjetaCredito();
+                        cantidad--;
+                    }
+                }
+
+            } else {
+                System.out.println("LAS COLAS 6,7,8 NO TIENE CLIENTES");
+                //mensajes.mostrarInformacion("LAS COLAS 6,7,8 NO TIENE CLIENTES");
+            }
+
+            //ATENCION CAJA 6
+            if (cola5 > 0) {
+                int cantidad = 1;
+                while (cantidad != 0) {
+                    InformacionCliente = buscarNodoPagoImpuestos();
+                    cliente = InformacionCliente.getCliente();
+                    pilas.AddCajaAtencion6(cliente);
+                    EliminarNodoPagoImpuestos();
+                    cantidad--;
+                }
+            } else {
+                System.out.println("LA COLA 5 NO TIENE CLIENTES");
+                //mensajes.mostrarInformacion("LA COLA 5 NO TIENE CLIENTES");
+            }
+
         }
-        return contador;
-    } 
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        return mensaje;
+    }
+
 }
