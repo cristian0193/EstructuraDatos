@@ -380,31 +380,31 @@ public class Funciones {
             } else {
                 if (aleatorioCola >= 0 && aleatorioCola <= 3) {
                     AddColaPagoTarjetaCredito(cliente);
-                    contadorPagoTarjetaCredito();
+                    contador2++;
 
                 } else if (aleatorioCola > 3 && aleatorioCola <= 5) {
                     AddColaPagoImpuestos(cliente);
-                    contadorPagoImpuestos();
+                    contador3++;
 
                 } else if (aleatorioCola > 5 && aleatorioCola <= 10) {
                     AddColaRetiroEfectivo(cliente);
-                    contadorRetiroEfectivo();
+                    contador4++;
 
                 } else if (aleatorioCola > 10 && aleatorioCola <= 15) {
                     AddColaConsignacionEfectivo(cliente);
-                    contadorConsignacionEfectivo();
+                    contador5++;
 
                 } else if (aleatorioCola > 15 && aleatorioCola <= 20) {
                     AddColaConsignacionCheque(cliente);
-                    contadorConsignacionCheque();
+                    contador6++;
 
                 } else if (aleatorioCola > 20 && aleatorioCola <= 22) {
                     AddColaCambioCheque(cliente);
-                    contadorCambioCheque();
+                    contador7++;
 
                 } else if (aleatorioCola > 22 && aleatorioCola <= 25) {
                     AddColaPagoServicios(cliente);
-                    contadorPagoServicios();
+                    contador8++;
 
                 } else {
                     System.out.println("Dato No encontrado");
@@ -424,27 +424,27 @@ public class Funciones {
     }
 
     public int contadorPagoImpuestos() {
-        return contador3++;
+        return contador3;
     }
 
     public int contadorRetiroEfectivo() {
-        return contador4++;
+        return contador4;
     }
 
     public int contadorConsignacionEfectivo() {
-        return contador5++;
+        return contador5;
     }
 
     public int contadorConsignacionCheque() {
-        return contador6++;
+        return contador6;
     }
 
     public int contadorCambioCheque() {
-        return contador7++;
+        return contador7;
     }
 
     public int contadorPagoServicios() {
-        return contador8++;
+        return contador8;
     }
 
     //  METODOS BUSCAR DATOS A LAS COLAS
@@ -587,7 +587,7 @@ public class Funciones {
     //  METODOS ELIMIANR DATOS A LAS COLAS
     public void EliminarNodoPagoTarjetaCredito() {
         if (listaVaciaColaPagoTarjetaCredito()) {
-            mensajes.mostrarInformacion("No hay datos en la cola");
+            mensajes.mostrarInformacion("No hay datos en la cola pago tarjeta credito");
         } else if (colaPagoTarjetaCredito.siguiente == null) {
             colaPagoTarjetaCredito = null;
         } else {
@@ -599,7 +599,7 @@ public class Funciones {
 
     public void EliminarNodoPagoImpuestos() {
         if (listaVaciaColaPagoImpuestos()) {
-            mensajes.mostrarInformacion("No hay datos en la cola");
+            mensajes.mostrarInformacion("No hay datos en la cola pago impuestos");
         } else if (colaPagoImpuestos.siguiente == null) {
             colaPagoImpuestos = null;
         } else {
@@ -611,7 +611,7 @@ public class Funciones {
 
     public void EliminarNodoRetiroEfectivo() {
         if (listaVaciaColaRetiroEfectivo()) {
-            mensajes.mostrarInformacion("No hay datos en la cola");
+            mensajes.mostrarInformacion("No hay datos en la cola retiro efectivo");
         } else if (colaRetiroEfectivo.siguiente == null) {
             colaRetiroEfectivo = null;
         } else {
@@ -623,7 +623,7 @@ public class Funciones {
 
     public void EliminarNodoConsignacionEfectivo() {
         if (listaVaciaColaConsignacionEfectivo()) {
-            mensajes.mostrarInformacion("No hay datos en la cola");
+            mensajes.mostrarInformacion("No hay datos en la cola consignacion");
         } else if (colaConsignacionEfectivo.siguiente == null) {
             colaConsignacionEfectivo = null;
         } else {
@@ -635,7 +635,7 @@ public class Funciones {
 
     public void EliminarNodoConsignacionCheque() {
         if (listaVaciaColaConsignacionCheque()) {
-            mensajes.mostrarInformacion("No hay datos en la cola");
+            mensajes.mostrarInformacion("No hay datos en la cola consignacion cheque");
         } else if (colaConsignacionCheque.siguiente == null) {
             colaConsignacionCheque = null;
         } else {
@@ -647,7 +647,7 @@ public class Funciones {
 
     public void EliminarNodoCambioCheque() {
         if (listaVaciaColaCambioCheque()) {
-            mensajes.mostrarInformacion("No hay datos en la cola");
+            mensajes.mostrarInformacion("No hay datos en la cola cambio cheque");
         } else if (colaCambioCheque.siguiente == null) {
             colaCambioCheque = null;
         } else {
@@ -659,7 +659,7 @@ public class Funciones {
 
     public void EliminarNodoClientePrioritario() {
         if (listaVaciaColaClientePrioritario()) {
-            mensajes.mostrarInformacion("No hay datos en la cola");
+            mensajes.mostrarInformacion("No hay datos en la cola cliente prioritario");
         } else if (colaClientePrioritario.siguiente == null) {
             colaClientePrioritario = null;
         } else {
@@ -671,7 +671,7 @@ public class Funciones {
 
     public void EliminarNodoPagoServicios() {
         if (listaVaciaColaClientePrioritario()) {
-            mensajes.mostrarInformacion("No hay datos en la cola");
+            mensajes.mostrarInformacion("No hay datos en la cola pago servicios");
         } else if (colaPagoServicios.siguiente == null) {
             colaPagoServicios = null;
         } else {
@@ -681,19 +681,29 @@ public class Funciones {
         }
     }
 
+    public boolean logica(int cola1, int cola2, int cola3, int cola4, int cola5, int cola6, int cola7, int cola8) {
+
+        if ((cola1 == 0) && (cola2 == 0) && (cola3 == 0) && (cola4 == 0) && (cola5 == 0) && (cola6 == 0) && (cola7 == 0) && (cola8 == 0)) {
+            return false;
+        }
+        return true;
+    }
+
     public String ProcesoCajas() {
         String mensaje = "FINALIZACION DEL PROCESO";
 
-        cola1 = 5;
-        cola2 = 0;
-        cola3 = 0;
-        cola4 = 0;
-        cola5 = 0;
-        cola6 = 0;
-        cola7 = 0;
-        cola8 = 0;
+        cola1 = contadorClientePrioritario();
+        cola2 = contadorRetiroEfectivo();
+        cola3 = contadorCambioCheque();
+        cola4 = contadorPagoServicios();
+        cola5 = contadorPagoImpuestos();
+        cola6 = contadorConsignacionCheque();
+        cola7 = contadorConsignacionEfectivo();
+        cola8 = contadorPagoTarjetaCredito();
 
-        while (cola1 != 0) {
+        boolean condicion = true;
+
+        while (condicion) {
 
 //            cola1 != 0 && cola2 != 0 && cola3 != 0 && cola4 != 0 && cola5 != 0 && cola6 != 0 && cola7 != 0 && cola8 != 0
             //ATENCION CAJA 1
@@ -716,9 +726,13 @@ public class Funciones {
                         AddCajaAtencion1(cliente);
                         EliminarNodoConsignacionCheque();
                         cantidad2--;
+                        cola6--;
                     }
 
-                } else {
+                }else{    
+                    System.out.println("CAJA # 1 CONSIGNACION DE CHEQUE SIN CLIENTES");
+                    //mensajes.mostrarInformacion("CAJA DE PAGO TARJETA DE CREDITO SIN CLIENTES");
+                    } 
 
                     if (cola8 > 0) {
                         int cantidad3 = 1;
@@ -728,19 +742,19 @@ public class Funciones {
                             AddCajaAtencion1(cliente);
                             EliminarNodoPagoTarjetaCredito();
                             cantidad3--;
+                            cola8--;
                         }
 
                     } else {
-                        System.out.println("CAJA DE PAGO TARJETA DE CREDITO SIN CLIENTES");
+                        System.out.println("CAJA # 1 PAGO TARJETA DE CREDITO SIN CLIENTES");
                         //mensajes.mostrarInformacion("CAJA DE PAGO TARJETA DE CREDITO SIN CLIENTES");
                     }
+                
 
-                }
-
-            } else {
+            } else if (cola1 > 0 && cola1 < 3) {
 
                 if (cola1 > 0 && cola1 < 3) {
-                    int cantidad = 2;
+                    int cantidad = cola1;
                     while (cantidad != 0) {
                         InformacionCliente = buscarNodoClientePrioritario();
                         cliente = InformacionCliente.getCliente();
@@ -750,7 +764,7 @@ public class Funciones {
                         cola1--;
                     }
                 } else {
-                    System.out.println("CAJA DE CLIENTE PRIORITARIO SIN CLIENTES");
+                    System.out.println("CAJA # 1 CLIENTE PRIORITARIO SIN CLIENTES");
                 }
 
                 if (cola6 > 0) {
@@ -761,10 +775,11 @@ public class Funciones {
                         AddCajaAtencion1(cliente);
                         EliminarNodoConsignacionCheque();
                         cantidad2--;
+                        cola6--;
                     }
 
                 } else {
-                    System.out.println("CAJA DE CONSIGNACION DE CHEQUE SIN CLIENTES");
+                    System.out.println("CAJA # 1 CONSIGNACION DE CHEQUE SIN CLIENTES");
                     //mensajes.mostrarInformacion("CAJA DE CONSIGNACION DE CHEQUE SIN CLIENTES");
                 }
 
@@ -776,12 +791,15 @@ public class Funciones {
                         AddCajaAtencion1(cliente);
                         EliminarNodoPagoTarjetaCredito();
                         cantidad2--;
+                        cola8--;
                     }
 
                 } else {
                     //mensajes.mostrarInformacion("CAJA DE PAGO TARJETA DE CREDITO SIN CLIENTES");
-                    System.out.println("CAJA DE PAGO TARJETA DE CREDITO SIN CLIENTES");
+                    System.out.println("CAJA # 1 PAGO TARJETA DE CREDITO SIN CLIENTES");
                 }
+            } else {
+                System.out.println("CAJA # 1 CLIENTES PRIORITARIOS SIN CLIENTES");
             }
 
             //ATENCION CAJA 2
@@ -795,19 +813,26 @@ public class Funciones {
                         AddCajaAtencion2(cliente);
                         EliminarNodoRetiroEfectivo();
                         cantidad--;
+                        cola2--;
                     }
+                }else{
+                     System.out.println("CAJA # 2 RETIRO EFECTIVO SIN CLIENTES");
                 }
 
                 if (cola3 > 0) {
                     int cantidad = 1;
                     while (cantidad != 0) {
-                        InformacionCliente = buscarNodoConsignacionCheque();
+                        InformacionCliente = buscarNodoCambioCheque();
                         cliente = InformacionCliente.getCliente();
                         AddCajaAtencion2(cliente);
-                        EliminarNodoConsignacionCheque();
+                        EliminarNodoCambioCheque();
                         cantidad--;
+                        cola3--;
                     }
+                }else{
+                     System.out.println("CAJA # 2 CAMBIO DE CHEQUE SIN CLIENTES");
                 }
+
 
                 if (cola4 > 0) {
                     int cantidad = 1;
@@ -817,11 +842,15 @@ public class Funciones {
                         AddCajaAtencion2(cliente);
                         EliminarNodoPagoServicios();
                         cantidad--;
+                        cola4--;
                     }
+                }else{
+                     System.out.println("CAJA # 2 PAGO DE SERVICIOS SIN CLIENTES");
                 }
 
+
             } else {
-                System.out.println("LAS COLAS NO TIENE CLIENTES");
+                System.out.println("LAS COLAS 2,3,4 NO TIENE CLIENTES");
                 // mensajes.mostrarInformacion("LAS COLAS NO TIENE CLIENTES");
             }
 
@@ -836,18 +865,24 @@ public class Funciones {
                         AddCajaAtencion3(cliente);
                         EliminarNodoRetiroEfectivo();
                         cantidad--;
+                        cola2--;
                     }
+                }else{
+                     System.out.println("CAJA # 3 RETIRO EFECTIVO SIN CLIENTES");
                 }
 
                 if (cola3 > 0) {
                     int cantidad = 1;
                     while (cantidad != 0) {
-                        InformacionCliente = buscarNodoConsignacionCheque();
+                        InformacionCliente = buscarNodoCambioCheque();
                         cliente = InformacionCliente.getCliente();
                         AddCajaAtencion3(cliente);
-                        EliminarNodoConsignacionCheque();
+                        EliminarNodoCambioCheque();
                         cantidad--;
+                        cola3--;
                     }
+                }else{
+                     System.out.println("CAJA # 3 CAMBIO DE CHEQUE SIN CLIENTES");
                 }
 
                 if (cola4 > 0) {
@@ -858,7 +893,10 @@ public class Funciones {
                         AddCajaAtencion3(cliente);
                         EliminarNodoPagoServicios();
                         cantidad--;
+                        cola4--;
                     }
+                }else{
+                     System.out.println("CAJA # 3 PAGO DE SERVICIOS SIN CLIENTES");
                 }
 
             } else {
@@ -877,7 +915,10 @@ public class Funciones {
                         AddCajaAtencion4(cliente);
                         EliminarNodoConsignacionCheque();
                         cantidad--;
+                        cola6--;
                     }
+                }else{
+                     System.out.println("CAJA # 4 CONSIGNACION CHEQUE SIN CLIENTES");
                 }
 
                 if (cola7 > 0) {
@@ -888,7 +929,10 @@ public class Funciones {
                         AddCajaAtencion4(cliente);
                         EliminarNodoConsignacionEfectivo();
                         cantidad--;
+                        cola7--;
                     }
+                }else{
+                     System.out.println("CAJA # 4 CONSIGNACION EFECTIVO SIN CLIENTES");
                 }
 
                 if (cola8 > 0) {
@@ -899,7 +943,10 @@ public class Funciones {
                         AddCajaAtencion4(cliente);
                         EliminarNodoPagoTarjetaCredito();
                         cantidad--;
+                        cola8--;
                     }
+                }else{
+                     System.out.println("CAJA # 4 TARJETA DE CREDITO SIN CLIENTES");
                 }
 
             } else {
@@ -918,8 +965,12 @@ public class Funciones {
                         AddCajaAtencion5(cliente);
                         EliminarNodoConsignacionCheque();
                         cantidad--;
+                        cola6--;
                     }
+                }else{
+                     System.out.println("CAJA # 5 CONSIGNACION CHEQUE SIN CLIENTES");
                 }
+                
 
                 if (cola7 > 0) {
                     int cantidad = 1;
@@ -929,7 +980,10 @@ public class Funciones {
                         AddCajaAtencion5(cliente);
                         EliminarNodoConsignacionEfectivo();
                         cantidad--;
+                        cola7--;
                     }
+                }else{
+                     System.out.println("CAJA # 5 CONSIGNACION EFECTIVO SIN CLIENTES");
                 }
 
                 if (cola8 > 0) {
@@ -940,7 +994,10 @@ public class Funciones {
                         AddCajaAtencion5(cliente);
                         EliminarNodoPagoTarjetaCredito();
                         cantidad--;
+                        cola8--;
                     }
+                }else{
+                     System.out.println("CAJA # 5 PAGO TARJETA DE CREDITO SIN CLIENTES");
                 }
 
             } else {
@@ -957,12 +1014,13 @@ public class Funciones {
                     AddCajaAtencion6(cliente);
                     EliminarNodoPagoImpuestos();
                     cantidad--;
+                    cola5--;
                 }
             } else {
-                System.out.println("LA COLA 5 NO TIENE CLIENTES");
+                System.out.println("COLA # 5 PAGO DE IMPUESTOS TIENE CLIENTES");
                 //mensajes.mostrarInformacion("LA COLA 5 NO TIENE CLIENTES");
             }
-
+            condicion = logica(cola1, cola2, cola3, cola4, cola5, cola6, cola7, cola8);
         }
         return mensaje;
     }

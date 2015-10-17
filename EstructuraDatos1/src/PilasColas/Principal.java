@@ -45,7 +45,7 @@ public class Principal {
                             int numeroAleatorioCola = (int) (Math.random() * 25);
                             String especial = funiones.estadoEspecial(numeroEspecial);
 
-                            funiones.adicionarClienteCola(new Clientes(identificacion, nombre, especial), numeroAleatorioCola, "SI");
+                            funiones.adicionarClienteCola(new Clientes(identificacion, nombre, especial), numeroAleatorioCola, especial);
 
                             contador++;
 
