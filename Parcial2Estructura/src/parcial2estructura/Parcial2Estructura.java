@@ -80,29 +80,27 @@ public class Parcial2Estructura {
                             break;
 
                         case 2:                        
-
+                            colas_pilas.Procesos();
                             break;
                     
                         case 3:                        
-
+                            String cola = colas_pilas.ListarCola(); 
+                            mensajes.mostrarInformacion(cola);
                             break;
                             
                         case 4:                        
-
+                           String pila = colas_pilas.ListarCaja1(); 
+                           mensajes.mostrarInformacion(pila);
                             break;    
                        
                         case 0:                        
                             System.exit(0);
                             break;  
                      
-                     }
-                     
-                     
-                     
+                     }                                                               
                      
                     break;
-                
-                
+                                
                 case 0:
                     System.exit(0);
                     break;
