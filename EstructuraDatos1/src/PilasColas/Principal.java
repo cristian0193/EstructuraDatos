@@ -12,11 +12,11 @@ import javax.swing.JOptionPane;
 public class Principal {
 
     public Nodo cabeza;
-    Nodo nodo = new Nodo();    
-    
+    Nodo nodo = new Nodo();
+
     public static void main(String[] args) {
 
-        Funciones funiones = new Funciones();
+        Funciones funciones = new Funciones();
         Principal principal = new Principal();
         Mensajes mensajes = new Mensajes();
 
@@ -33,7 +33,7 @@ public class Principal {
                 case 1:
                     while (contador != 5) {
                         try {
-                            //mensajes.mostrarInformacion("ESPERE POR FAVOR HACER ATENDIDO ....... \n" + "PRESIONE ACEPTAR");
+                            mensajes.mostrarInformacion("ESPERE POR FAVOR HACER ATENDIDO ....... \n" + "PRESIONE ACEPTAR");
                             //Thread.sleep(3000);
 
                             mensajes.mostrarInformacion("TURNO # " + (contador + 1));
@@ -43,9 +43,9 @@ public class Principal {
 
                             int numeroEspecial = (int) (Math.random() * 100);
                             int numeroAleatorioCola = (int) (Math.random() * 25);
-                            String especial = funiones.estadoEspecial(numeroEspecial);
+                            String especial = funciones.estadoEspecial(numeroEspecial);
 
-                            funiones.adicionarClienteCola(new Clientes(identificacion, nombre, especial), numeroAleatorioCola, especial);
+                            funciones.adicionarClienteCola(new Clientes(identificacion, nombre, especial), numeroAleatorioCola, especial);
 
                             contador++;
 
@@ -61,30 +61,69 @@ public class Principal {
 
                 case 2:
 
-                    String mensaje = funiones.ProcesoCajas();
+                    String mensaje = funciones.ProcesoCajas();
                     mensajes.mostrarInformacion(mensaje);
 
-            break;
+                    break;
 
-          case 3:
-                           
-                    mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 1 \n \n " + funiones.ListarCaja1());
-                    mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 2 \n \n " + funiones.ListarCaja2());
-                    mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 3 \n \n " + funiones.ListarCaja3());
-                    mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 4 \n \n " + funiones.ListarCaja4());
-                    mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 5 \n \n " + funiones.ListarCaja5());
-                    mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 6 \n \n " + funiones.ListarCaja6());
+                case 3:
+
+                    mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 1 \n \n " + funciones.ListarCaja1());
+                    mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 2 \n \n " + funciones.ListarCaja2());
+                    mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 3 \n \n " + funciones.ListarCaja3());
+                    mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 4 \n \n " + funciones.ListarCaja4());
+                    mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 5 \n \n " + funciones.ListarCaja5());
+                    mensajes.mostrarInformacion("CLIENTES ATENDIDOS EN CAJA 6 \n \n " + funciones.ListarCaja6());
                     break;
 
                 case 4:
-                    mensajes.mostrarInformacion("COLA DE CLIENTES PRIORITARIOS \n \n " + funiones.ListarColaClientePrioritario());
-                    mensajes.mostrarInformacion("COLA DE RETIRO EN EFECTIVO \n \n " + funiones.ListarColaRetiroEfectivo());
-                    mensajes.mostrarInformacion("COLA DE CAMBIO DE CHEQUE \n \n " + funiones.ListarColaCambioCheque());
-                    mensajes.mostrarInformacion("COLA DE CONSIGNACION DE CHEQUE \n \n " + funiones.ListarColaConsignacionCheque());
-                    mensajes.mostrarInformacion("COLA DE PAGO IMPUESTO \n \n " + funiones.ListarColaPagoImpuestos());
-                    mensajes.mostrarInformacion("COLA DE PAGO DE SERVICIOS \n \n " + funiones.ListarColaPagoServicios());
-                    mensajes.mostrarInformacion("COLA DE PAGO TARJETA DE CREDITO \n \n " + funiones.ListarColaPagoTarjetaCredito());
-                    mensajes.mostrarInformacion("COLA DE CONSIGNACION EN EFECTIVO \n \n " + funiones.ListarColaConsignacionEfectivo());
+                    mensajes.mostrarInformacion("COLA DE CLIENTES PRIORITARIOS \n \n " + funciones.ListarColaClientePrioritario());
+                    mensajes.mostrarInformacion("COLA DE RETIRO EN EFECTIVO \n \n " + funciones.ListarColaRetiroEfectivo());
+                    mensajes.mostrarInformacion("COLA DE CAMBIO DE CHEQUE \n \n " + funciones.ListarColaCambioCheque());
+                    mensajes.mostrarInformacion("COLA DE CONSIGNACION DE CHEQUE \n \n " + funciones.ListarColaConsignacionCheque());
+                    mensajes.mostrarInformacion("COLA DE PAGO IMPUESTO \n \n " + funciones.ListarColaPagoImpuestos());
+                    mensajes.mostrarInformacion("COLA DE PAGO DE SERVICIOS \n \n " + funciones.ListarColaPagoServicios());
+                    mensajes.mostrarInformacion("COLA DE PAGO TARJETA DE CREDITO \n \n " + funciones.ListarColaPagoTarjetaCredito());
+                    mensajes.mostrarInformacion("COLA DE CONSIGNACION EN EFECTIVO \n \n " + funciones.ListarColaConsignacionEfectivo());
+                    break;
+
+                case 5:
+                    int opc = principal.menuProcesoReportes();
+
+                    switch (opc) {
+
+                        case 1:
+                            mensajes.mostrarInformacion("Total Clientes Atendidos : " + funciones.totalClientes());
+                            break;
+                            
+                        case 2:
+                            mensajes.mostrarInformacion("" + funciones.totalClientesxServicio());
+                            break;
+                            
+                        case 3:
+                            mensajes.mostrarInformacion("Total Clientes Especiales : " + funciones.totalClientesEspeciales());
+                            break;
+                            
+                        case 4:
+                            mensajes.mostrarInformacion("" + funciones.totalClientesServicosyTipo());
+                            break;
+                            
+                        case 5:
+                            mensajes.mostrarInformacion("EN CONTRUCCION");
+                            break;
+                            
+                        case 6:
+                            mensajes.mostrarInformacion(""+funciones.clientesAtendidosxCajas());
+                            break;
+                            
+                        case 0:
+                            System.exit(0);
+                            break;
+                            
+                        default:
+                            mensajes.mostrarError("¡La opción no existe!");
+                    }
+
                     break;
 
                 case 0:
@@ -93,9 +132,8 @@ public class Principal {
                 default:
                     mensajes.mostrarError("¡La opción no existe!");
             }
-        
-    }
-    while (opcion != 0);
+
+        } while (opcion != 0);
 
     }
 
@@ -107,6 +145,7 @@ public class Principal {
                 + "2) Proceso de Atencion \n"
                 + "3) Mostar Pilas \n"
                 + "4) Mostar Colas \n"
+                + "5) Reporte de Atencion \n"
                 + "0) Salir. ";
 
         return entrada.leerInt(cadena);

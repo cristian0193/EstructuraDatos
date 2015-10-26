@@ -1,6 +1,5 @@
 package Arboles;
 
-import EjerciciosListasDoblemeEnlazadas.*;
 
 /**
  * Esta clase representa el nodo definida 
@@ -11,87 +10,87 @@ import EjerciciosListasDoblemeEnlazadas.*;
 
 public class Nodo {
 
-    public Nodo siguiente;
-    public Nodo anterior;
-    private Estudiantes estudiante;
+    public Nodo izquierda;
+    public Nodo derecha;
+    public int dato;
 
     /*
     * Constructor del nodo
     */
    public Nodo() {
-        estudiante = null;
-        anterior = null;
-        siguiente = null;
+        dato = 0;
+        izquierda = null;
+        derecha = null;
     }
     
     /**
      * Constructor del nodo
-     * @param estudiante
+     * @param dato
      */
-    public Nodo(Estudiantes estudiante) {
+    public Nodo(int dato) {
         this();
-        this.estudiante = estudiante;
+        this.dato = dato;
     }
     
     /**
      * Constructor del nodo
-     * @param estudiante
-     * @param anterior
-     * @param siguiente
+     * @param dato
+     * @param izquierda
+     * @param derecha
      */
-    public Nodo(Estudiantes estudiante, Nodo anterior, Nodo siguiente) {
-        this.estudiante = estudiante;
-        this.anterior = anterior;
-        this.siguiente = siguiente;
+    public Nodo(int dato, Nodo izquierda, Nodo derecha) {
+        this.dato = dato;
+        this.izquierda = izquierda;
+        this.derecha = derecha;
     }
-    
 
+    
     /**
      * Método para consultar o recuperar el valor del apuntador al nodo anterior
      * @return Nodo     Apuntador al nodo anterior 
      */
-    public Nodo getAnterior() {
-        return anterior;
+    public Nodo getIzquierda() {
+        return izquierda;
     }
 
     /**
      * Método para asignar el valor del apuntador al nodo anterior
-     * @param anterior     Apuntador al nodo anterior 
+     * @param izquierda     Apuntador al nodo anterior 
      */
-    public void setAnterior(Nodo anterior) {
-        this.anterior = anterior;
-    }            
+    public void setIzquierda(Nodo izquierda) {
+        this.izquierda = izquierda;
+    }          
   
     /**
      * Método para consultar o recuperar el valor del apuntador al nodo siguiente
      * @return Nodo     Apuntador al nodo siguiente 
      */
-    public Nodo getSiguiente() {
-        return siguiente;
+    public Nodo getDerecha() {
+        return derecha;
     }
 
     /**
      * Método para asignar el valor del apuntador al nodo siguiente
-     * @param siguiente     Apuntador al nodo siguiente 
+     * @param derecha     Apuntador al nodo siguiente 
      */
-    public void setSiguiente(Nodo siguiente) {
-        this.siguiente = siguiente;
-    }       
+    public void setDerecha(Nodo derecha) {    
+        this.derecha = derecha;
+    }      
 
     /**
      * Método para consultar o recuperar los datos del estudiante
-     * @return Estudiante  Datos del estudiante
+     * @return dato  Datos del estudiante
      */
-    public Estudiantes getEstudiante() {
-        return estudiante;
+    public int getDato() {
+        return dato;
     }
 
     /**
      * Método para asignar los datos del estudiante
-     * @param estudiante  Datos del estudiante
+     * @param dato  Datos del estudiante
      */
-    public void setEstudiante(Estudiantes estudiante) {
-        this.estudiante = estudiante;
+    public void setEstudiante(int dato) {
+        this.dato = dato;
     }    
     
 }
