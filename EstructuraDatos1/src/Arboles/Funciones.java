@@ -23,7 +23,7 @@ public class Funciones {
      * Método permite crear la lista desde el inicio ingresado cada nodo por
      * parte de la clase Estudiante
      *
-     * @param dato Datos de Estudiante
+     * @param dato Numero
      */
     public void adicionarNodoArbol(int dato) {
         Nodo nuevo;
@@ -31,6 +31,7 @@ public class Funciones {
         nuevo.dato = dato;
         nuevo.izquierda = null;
         nuevo.derecha = null;
+        
         if (raiz == null) {
             raiz = nuevo;
         } else {
@@ -53,7 +54,7 @@ public class Funciones {
     }
 
     private void imprimirPre(Nodo nodo) {
-        String mensajePreorden = "";
+       
         if (nodo != null) {
             System.out.print(nodo.dato + " ");
             mensajes.mostrarInformacion(nodo.dato + " ");

@@ -89,7 +89,7 @@ public class Nodo {
      * Método para asignar los datos del estudiante
      * @param dato  Datos del estudiante
      */
-    public void setEstudiante(int dato) {
+    public void setDato(int dato) {
         this.dato = dato;
     }    
     
