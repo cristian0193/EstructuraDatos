@@ -11,11 +11,9 @@ package Vista;
  */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
     public Principal() {
         initComponents();
+        
     }
 
     /**
@@ -57,6 +55,11 @@ public class Principal extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel12 = new javax.swing.JLabel();
+        jComboBox5 = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
 
@@ -74,6 +77,8 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1020, 600));
+        setPreferredSize(new java.awt.Dimension(1020, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -85,7 +90,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 945, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 964, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -109,11 +114,11 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 137, -1));
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 58, 746, -1));
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 58, 830, -1));
 
         jLabel3.setText("Nombre Proyecto : ");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 58, -1, 17));
-        jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 140, -1));
+        jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 140, -1));
 
         jLabel4.setText("Planta :");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 130, 40, 20));
@@ -124,7 +129,7 @@ public class Principal extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 130, 180, -1));
+        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 180, -1));
 
         jLabel5.setText("Maquina :");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, -1, 20));
@@ -133,12 +138,12 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 187, -1));
 
         jLabel6.setText("Fecha Propuesta :");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, 20));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, 20));
 
         jLabel7.setText("Tipo Validacion :");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 92, -1, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Equipo", "CSV", "Producto", "L&S", "Empaque" }));
         jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 89, 178, -1));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -169,18 +174,38 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 137, -1));
 
         jButton1.setText("Prerequisitos de Calificacion");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 150, 170, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, 170, -1));
 
         jButton2.setText("Prerequisitos de Proceso");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 180, 170, -1));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 120, 170, -1));
 
         jButton3.setText("Reprogramacion");
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 210, 170, -1));
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 210, 80, -1));
-        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 150, 80, -1));
-        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 180, 80, -1));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 150, 170, -1));
+        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 150, 100, -1));
+        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 90, 100, -1));
+        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 120, 100, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, 950, 250));
+        jLabel10.setText("Observaciones :");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, -1, 20));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane3.setViewportView(jTextArea1);
+
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 600, 90));
+
+        jLabel12.setText("Estado del Proyecto :");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 110, 20));
+
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 130, 180, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, 970, 340));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -195,7 +220,7 @@ public class Principal extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 950, 200));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 970, 120));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -215,6 +240,10 @@ public class Principal extends javax.swing.JFrame {
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,9 +288,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JComboBox jComboBox5;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -274,8 +306,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
