@@ -7,11 +7,15 @@ import java.util.Date;
 
 public class Principal extends javax.swing.JFrame {
 
+    public static ConexioSQLite conexion;
+    
     public Principal() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);     
+        
     }
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -313,7 +317,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
-        ConexioSQLite conexion = new ConexioSQLite();
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
         String gcc = txt_GCC.getText();
         String nombre = txt_proyecto.getText();
         String tipo = combo_tipo.getSelectedItem().toString();
