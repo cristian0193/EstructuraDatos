@@ -14,7 +14,7 @@ public class ConexioSQLite {
     public static String query = "";
 
 //METODO DE CONEXION
-    public static void coneccionbase() {
+    public void coneccionbase() {
 
         try {
             Class.forName("org.sqlite.JDBC");
@@ -89,7 +89,7 @@ public class ConexioSQLite {
 
         try {
 
-            query = "INSERT INTO PLANEACIONES_VALIDACION"
+            query = "INSERT INTO PLANEACIONES_VALIDACION "
                     + "(NUMERO_REGISTRO, "
                     + "GCC_APR, "
                     + "NOMBRE_PROYECTO, "
@@ -144,6 +144,7 @@ public class ConexioSQLite {
                     + "'" + PRE_PRO_RM + "', '" + PRE_PRO_PC + "', '" + PRE_PRO_CG + "', '" + PRE_PRO_FP + "', "
                     + "'" + FECHA_REPROGRAMACION + "', '" + OBSERVACION_REPROGRAMACION + "')";
             System.out.println(query);
+            
             sentencia.executeUpdate(query);
             System.out.println("INSERTADO ...");
 

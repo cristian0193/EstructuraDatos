@@ -11,8 +11,7 @@ public class Principal extends javax.swing.JFrame {
     
     public Principal() {
         initComponents();
-        this.setLocationRelativeTo(null);     
-        
+        this.setLocationRelativeTo(null);             
     }
 
     
@@ -317,7 +316,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
-        conexion = new ConexioSQLite();
+        conexion = new ConexioSQLite();        
         conexion.coneccionbase();
         String gcc = txt_GCC.getText();
         String nombre = txt_proyecto.getText();
