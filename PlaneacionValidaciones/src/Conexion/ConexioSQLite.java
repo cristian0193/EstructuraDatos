@@ -3,20 +3,22 @@ package Conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConexioSQLite {
 
-    public static Connection conectar = null;
+    public static Connection conectar;
     public static Statement sentencia;
     public static ResultSet resultado;
+    public static String query = "";
 
 //METODO DE CONEXION
     public static void coneccionbase() {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            conectar = DriverManager.getConnection("jdbc:sqlite:ValidacionesSQLite.db");
+            conectar = DriverManager.getConnection("jdbc:sqlite:ValidacionesMaestro.db");
             sentencia = conectar.createStatement();
             sentencia.setQueryTimeout(30);
             System.out.println("CONECTO BIEN ...");
@@ -26,7 +28,7 @@ public class ConexioSQLite {
         }
     }
 
-    //METODOS DE DESCONEXION DE LA BASE DE DATOS
+//METODOS DE DESCONEXION
     public static void cerrar() {
         try {
             conectar.close();
@@ -81,8 +83,8 @@ public class ConexioSQLite {
                           String FECHA_REPROGRAMACION, 
                           String OBSERVACION_REPROGRAMACION){
         try {
-            String query = "";
-            query = "INSERT INTO PLANEACIONES_VALIDACION\n"
+            
+            query = "INSERT INTO PLANEACIONES\n"
                     + "(NUMERO_REGISTRO, "
                     + "GCC_APR, "
                     + "NOMBRE_PROYECTO, "
@@ -136,10 +138,12 @@ public class ConexioSQLite {
                     + "'"+ PRE_PRO_DIAGRAMA +"', '"+ PRE_PRO_FMEA +"', '"+ PRE_PRO_PR +"', '"+ PRE_PRO_PF +"', "
                     + "'"+ PRE_PRO_RM +"', '"+ PRE_PRO_PC +"', '"+ PRE_PRO_CG +"', '"+ PRE_PRO_FP +"', "
                     + "'"+ FECHA_REPROGRAMACION +"', '"+ OBSERVACION_REPROGRAMACION +"')";
-            sentencia.executeUpdate(query);
+            System.out.println(query);
+            sentencia.executeQuery(query);            
             System.out.println("INSERTADO ...");
             return true;
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println(query);
             System.err.println(e.getMessage());
             System.out.println("NO INSERTADO ...");
             return false;

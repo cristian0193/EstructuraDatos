@@ -1,5 +1,9 @@
 package Vista;
 
+import Conexion.ConexioSQLite;
+import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -8,7 +12,6 @@ public class Principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -86,7 +89,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 983, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 991, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -114,6 +117,8 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel3.setText("Nombre Proyecto : ");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 58, 110, 20));
+
+        date_fecha_propuesta.setDateFormatString("yyyy-MM-dd");
         jPanel2.add(date_fecha_propuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 140, -1));
 
         jLabel4.setText("Planta :");
@@ -130,7 +135,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel5.setText("Maquina :");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 60, 20));
 
-        combo_maquina.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Tanque Preparacion", "Kalish 1", "Kalish 2", "Kalish 4", "Linea 3", "Linea 5", "Linea 6", "Linea 7", "Volpack", "Comados", "Tonazzi", "21.1", "21.2", "21.3", "21.4", "38.1", "38.2", "Nativa 1", "Nativa 2", "Jabon", "Talco", "Pañitos Humedos", "General", "No Aplica" }));
+        combo_maquina.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Tanque Preparacion", "Kalish 1", "Kalish 2", "Kalish 4", "Linea 3", "Linea 5", "Linea 6", "Linea 7", "Volpack", "Comadis", "Tonazzi", "21.1", "21.2", "21.3", "21.4", "38.1", "38.2", "Nativa 1", "Nativa 2", "Jabon", "Talco", "Pañitos Humedos", "General", "No Aplica" }));
         jPanel2.add(combo_maquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 187, -1));
 
         jLabel6.setText("Fecha Propuesta :");
@@ -223,6 +228,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(txt_turnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 137, -1));
 
         jButton6.setText("Guardar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 110, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, 990, 340));
@@ -246,10 +256,14 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel13.setText("Fecha Inicial :");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 420, 80, 30));
+
+        date_fecha_inicio.setDateFormatString("yyyy-MM-dd");
         getContentPane().add(date_fecha_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 120, 30));
 
         jLabel14.setText("Fecha Final :");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 70, 30));
+
+        date_fecha_final.setDateFormatString("yyyy-MM-dd");
         getContentPane().add(date_fecha_final, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, 120, 30));
 
         jLabel15.setText("Lider Tecnico :");
@@ -280,7 +294,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         PrerequisitoCalificacion calificacion = new PrerequisitoCalificacion();
-        calificacion.setVisible(true);        
+        calificacion.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -296,11 +310,41 @@ public class Principal extends javax.swing.JFrame {
     private void txt_turnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_turnosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_turnosActionPerformed
- /**
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+
+        ConexioSQLite conexion = new ConexioSQLite();
+        String gcc = txt_GCC.getText();
+        String nombre = txt_proyecto.getText();
+        String tipo = combo_tipo.getSelectedItem().toString();
+        String lider = txt_lider.getText();
+        String planta = combo_planta.getSelectedItem().toString();
+        String maquina = combo_maquina.getSelectedItem().toString();
+        String lote = txt_lotes.getText();
+        String turno = txt_turnos.getText();
+
+        String formato = date_fecha_propuesta.getDateFormatString();
+        Date date = (Date) date_fecha_propuesta.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+        String fecha_ingresada = String.valueOf(sdf.format(date));
+
+        String estado = combo_estado.getSelectedItem().toString();
+        String observaciones = txt_observaciones_proyecto.getText();
+
+        boolean resultado = conexion.insert(gcc, nombre, tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones, "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "", "");
+
+        if (resultado == true) {
+            JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
+        } else {
+            JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+        }
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+    /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       /* Set the Nimbus look and feel */
+        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -321,7 +365,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-              //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

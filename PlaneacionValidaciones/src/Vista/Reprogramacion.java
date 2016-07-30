@@ -50,6 +50,8 @@ public class Reprogramacion extends javax.swing.JFrame {
 
         jLabel7.setText("Nueva Fecha :");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, 20));
+
+        txt_nueva_fecha.setDateFormatString("yyyy-MM-dd");
         getContentPane().add(txt_nueva_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 120, -1));
 
         tabla_proyectos.setModel(new javax.swing.table.DefaultTableModel(
@@ -72,6 +74,10 @@ public class Reprogramacion extends javax.swing.JFrame {
         jLabel2.setText("Fecha Inicial :");
 
         jLabel3.setText("Fecha Final :");
+
+        txt_fecha_inicio.setDateFormatString("yyyy-MM-dd");
+
+        txt_fecha_final.setDateFormatString("yyyy-MM-dd");
 
         jLabel4.setText("Lider Tecnico :");
 
