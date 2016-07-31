@@ -63,6 +63,14 @@ public class Principal extends javax.swing.JFrame {
         txt_fecha_propuesta = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         combo_estado1 = new javax.swing.JComboBox();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_contenido = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
@@ -117,8 +125,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Informacion Relevante"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("Lotes :");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, 20));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("*");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 20, 20));
 
         txt_lotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,7 +137,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txt_lotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 137, -1));
-        jPanel2.add(txt_proyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 58, 850, -1));
+        jPanel2.add(txt_proyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 58, 830, -1));
 
         jLabel3.setText("Nombre Proyecto : ");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 58, 110, 20));
@@ -141,7 +152,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 60, 20));
 
         combo_maquina.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Tanque Preparacion", "Kalish 1", "Kalish 2", "Kalish 4", "Linea 3", "Linea 5", "Linea 6", "Linea 7", "Volpack", "Comadis", "Tonazzi", "21.1", "21.2", "21.3", "21.4", "38.1", "38.2", "Nativa 1", "Nativa 2", "Jabon", "Talco", "Pañitos Humedos", "General", "No Aplica" }));
-        jPanel2.add(combo_maquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 187, -1));
+        jPanel2.add(combo_maquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 170, -1));
 
         jLabel6.setText("Fecha Propuesta :");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 100, 20));
@@ -156,7 +167,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(377, 92, 80, -1));
 
         jLabel9.setText("Numero GCC / APR :");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 30, 120, 17));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 30, 110, 17));
         jPanel2.add(txt_GCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 27, 130, -1));
 
         jLabel11.setText("Turnos : ");
@@ -167,7 +178,7 @@ public class Principal extends javax.swing.JFrame {
                 txt_liderActionPerformed(evt);
             }
         });
-        jPanel2.add(txt_lider, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 190, -1));
+        jPanel2.add(txt_lider, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 170, -1));
 
         jButton1.setText("Prerequisitos de Calificacion");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -195,15 +206,15 @@ public class Principal extends javax.swing.JFrame {
 
         txt_estado_reprogramacion.setEditable(false);
         txt_estado_reprogramacion.setText("No Reprogramado");
-        jPanel2.add(txt_estado_reprogramacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 150, 100, -1));
+        jPanel2.add(txt_estado_reprogramacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 150, 120, -1));
 
         txt_estado_pre_calificacion.setEditable(false);
         txt_estado_pre_calificacion.setText("No Ingresado");
-        jPanel2.add(txt_estado_pre_calificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 90, 100, -1));
+        jPanel2.add(txt_estado_pre_calificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 90, 120, -1));
 
         txt_estado_pre_proceso.setEditable(false);
         txt_estado_pre_proceso.setText("No Ingresado");
-        jPanel2.add(txt_estado_pre_proceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 120, 100, -1));
+        jPanel2.add(txt_estado_pre_proceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 120, 120, -1));
 
         jLabel10.setText("Observaciones :");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, -1, 20));
@@ -272,7 +283,52 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel2.add(combo_estado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 180, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, 990, 340));
+        jLabel17.setText("Lotes :");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, 20));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("*");
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, 20));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("*");
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 60, -1, 20));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("*");
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, 20, 20));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("*");
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 20, 20));
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("*");
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 20, 20));
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("*");
+        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 20, 20));
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("*");
+        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 20, 20));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, 1000, 340));
 
         tabla_contenido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -294,7 +350,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabla_contenido);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 990, 120));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 990, 130));
 
         jLabel13.setText("Fecha Inicial :");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 420, 80, 30));
@@ -386,34 +442,50 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
-        conexion = new ConexioSQLite();
-        conexion.coneccionbase();
-        String gcc = txt_GCC.getText();
-        String nombre = txt_proyecto.getText();
-        String tipo = combo_tipo.getSelectedItem().toString();
-        String lider = txt_lider.getText();
-        String planta = combo_planta.getSelectedItem().toString();
-        String maquina = combo_maquina.getSelectedItem().toString();
-        String lote = txt_lotes.getText();
-        String turno = txt_turnos.getText();
-
-        String formato = date_fecha_propuesta.getDateFormatString();
-        Date date = (Date) date_fecha_propuesta.getDate();
-        SimpleDateFormat sdf = new SimpleDateFormat(formato);
-        String fecha_ingresada = String.valueOf(sdf.format(date));
-
-        String estado = combo_consulta.getSelectedItem().toString();
-        String observaciones = txt_observaciones_proyecto.getText();
-
-        boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider.toUpperCase(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "", "");
-
-        if (resultado == true) {
-            JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
-            LimpiarCampos();
-            cargar_tabla();
+        if (txt_GCC.getText().equals("") || txt_proyecto.getText().equals("") || combo_tipo.getSelectedIndex() == 0 || txt_lider.getText().equals("") ||
+            combo_planta.getSelectedIndex() == 0 || combo_maquina.getSelectedIndex() == 0  || date_fecha_propuesta.getDate() == null || 
+            combo_estado1.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS OBLIGATORIOS (*)");
         } else {
-            JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-            LimpiarCampos();
+            
+            String lotes = txt_lotes.getText();
+            String turnos = txt_turnos.getText();
+                                                
+            if(!isNumeric(lotes)){
+                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
+            }else if(!isNumeric(turnos)){
+                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
+            }else{
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
+            String gcc = txt_GCC.getText();
+            String nombre = txt_proyecto.getText();
+            String tipo = combo_tipo.getSelectedItem().toString();
+            String lider = txt_lider.getText();
+            String planta = combo_planta.getSelectedItem().toString();
+            String maquina = combo_maquina.getSelectedItem().toString();
+            String lote = txt_lotes.getText();
+            String turno = txt_turnos.getText();
+
+            String formato = date_fecha_propuesta.getDateFormatString();
+            Date date = (Date) date_fecha_propuesta.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            String fecha_ingresada = String.valueOf(sdf.format(date));
+
+            String estado = combo_estado1.getSelectedItem().toString();
+            String observaciones = txt_observaciones_proyecto.getText();
+
+            boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider.toUpperCase(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "", "");
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
+                LimpiarCampos();
+                cargar_tabla();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                LimpiarCampos();
+            }
+            }                        
         }
 
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -450,39 +522,35 @@ public class Principal extends javax.swing.JFrame {
         if (index == 0) {
             JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
         } else if (index == 1) {
-            
-            
-            if(this.date_fecha_inicio.getDate() == null){
+
+            if (this.date_fecha_inicio.getDate() == null) {
                 JOptionPane.showMessageDialog(null, "INGRESE FECHA INICIAL");
-            }else if(this.date_fecha_final.getDate() == null){
+            } else if (this.date_fecha_final.getDate() == null) {
                 JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
-            }else{
+            } else {
                 String formato1 = date_fecha_inicio.getDateFormatString();
-            Date date1 = (Date) date_fecha_inicio.getDate();
-            SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
-            String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
+                Date date1 = (Date) date_fecha_inicio.getDate();
+                SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
+                String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
 
-            String formato2 = date_fecha_final.getDateFormatString();
-            Date date2 = (Date) date_fecha_final.getDate();
-            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-            String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
+                String formato2 = date_fecha_final.getDateFormatString();
+                Date date2 = (Date) date_fecha_final.getDate();
+                SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
 
-            consulta_rango_fechas(fecha_ingresada_inicio, fecha_ingresada_final);
+                consulta_rango_fechas(fecha_ingresada_inicio, fecha_ingresada_final);
             }
-                                    
+
         } else {
-            
-            String lider = txt_consulta_lider.getText(); 
-            
-            if(lider.equals("") ){
+
+            String lider = txt_consulta_lider.getText();
+
+            if (lider.equals("")) {
                 JOptionPane.showMessageDialog(null, "INGRESE LIDER TECNICO");
-            }else{
-                 consulta_lider(lider);
+            } else {
+                consulta_lider(lider);
             }
-            
-                         
-             
-            
+
         }
 
 
@@ -612,7 +680,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -657,6 +733,15 @@ public class Principal extends javax.swing.JFrame {
         txt_observaciones_proyecto.setText("");
     }
 
+    private boolean isNumeric(String cadena){
+	try {
+		Double.parseDouble(cadena);
+		return true;
+	} catch (NumberFormatException nfe){
+		return false;
+	}
+}
+    
     void cargar_tabla() {
 
         conexion = new ConexioSQLite();
