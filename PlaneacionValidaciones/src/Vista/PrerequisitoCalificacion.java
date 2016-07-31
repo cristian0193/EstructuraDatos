@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 public class PrerequisitoCalificacion extends javax.swing.JFrame {
 
@@ -405,6 +404,11 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
         );
 
         jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cargar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -540,6 +544,39 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_pre_entrenamientoActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+        
+        String registro = txt_registro_principal.getText();
+        String especificacion = combo_pre_especificacion.getSelectedItem().toString();
+        String protocolo = combo_pre_protocolos.getSelectedItem().toString();
+        String RU = combo_pre_RU.getSelectedItem().toString();
+        String libro = combo_pre_libro.getSelectedItem().toString();
+        String BR = combo_pre_BR.getSelectedItem().toString();
+        String SOP = combo_pre_SOP.getSelectedItem().toString();
+        String hoja = combo_pre_hoja.getSelectedItem().toString();
+        String rutinas = combo_pre_rutinas.getSelectedItem().toString();
+        String certificado = combo_pre_certificado.getSelectedItem().toString();
+        String planos = combo_pre_planos.getSelectedItem().toString();
+        String manuales = combo_pre_manual.getSelectedItem().toString();
+        String materiales = combo_pre_materiales.getSelectedItem().toString();
+        String recursos = combo_pre_recursos.getSelectedItem().toString();
+        String entrenamiento = combo_pre_entrenamiento.getSelectedItem().toString();
+        
+        boolean resultado = conexion.upgrade_pre_calificacion(registro, especificacion, protocolo, RU, libro, BR, SOP, hoja, rutinas, certificado, planos, manuales, materiales, recursos, entrenamiento);
+        
+        if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                coloresCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                consulta_pre_calificacion(registro);
+            }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox combo_pre_BR;
     private javax.swing.JComboBox combo_pre_RU;
@@ -620,7 +657,6 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "NUMERO_REGISTRO = " + registro + ";";
-        System.out.println(query);
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -649,6 +685,8 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
         }
     }
 
+    
+    
     public void coloresCampos() {
         
         //VALIDACION ESPECIFICACION DE EQUIPO

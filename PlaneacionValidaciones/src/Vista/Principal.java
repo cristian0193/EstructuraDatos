@@ -843,7 +843,8 @@ public class Principal extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "';";
+                + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "ORDER BY FECHA_PROPUESTA DESC";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
-
 public class ConexioSQLite {
 
     public static Connection conectar = null;
@@ -180,7 +179,7 @@ public class ConexioSQLite {
     }
 
     public boolean upgrade(String REGISTRO,
-            String GCC,            
+            String GCC,
             String NOMBRE,
             String TIPO,
             String LIDER,
@@ -197,19 +196,73 @@ public class ConexioSQLite {
             query = "UPDATE"
                     + " PLANEACIONES_VALIDACION"
                     + " SET "
-                    + "  GCC_APR = '"+ GCC +"',"
-                    + "  NOMBRE_PROYECTO = '"+ NOMBRE +"',"
-                    + "  TIPO_VALIDACION = '"+ TIPO +"',"
-                    + "  LIDER_TECNICO = '"+ LIDER +"',"
-                    + "  PLANTA = '"+ PLANTA +"',"
-                    + "  MAQUINA = '"+ MAQUINA +"',"
-                    + "  LOTE = '"+ LOTE +"',"
-                    + "  TURNOS = '"+ TURNO +"',"
-                    + "  FECHA_PROPUESTA = '"+ FECHA_PROPUESTA +"',"
-                    + "  ESTADO_PROYECTO = '"+ ESTADO +"',"
-                    + "  OBSERVACIONES_VALIDACION = '"+ OBSERVACION +"'"
+                    + "  GCC_APR = '" + GCC + "',"
+                    + "  NOMBRE_PROYECTO = '" + NOMBRE + "',"
+                    + "  TIPO_VALIDACION = '" + TIPO + "',"
+                    + "  LIDER_TECNICO = '" + LIDER + "',"
+                    + "  PLANTA = '" + PLANTA + "',"
+                    + "  MAQUINA = '" + MAQUINA + "',"
+                    + "  LOTE = '" + LOTE + "',"
+                    + "  TURNOS = '" + TURNO + "',"
+                    + "  FECHA_PROPUESTA = '" + FECHA_PROPUESTA + "',"
+                    + "  ESTADO_PROYECTO = '" + ESTADO + "',"
+                    + "  OBSERVACIONES_VALIDACION = '" + OBSERVACION + "'"
                     + " WHERE"
-                    + "  NUMERO_REGISTRO = "+ REGISTRO +";";
+                    + "  NUMERO_REGISTRO = " + REGISTRO + ";";
+
+            System.out.println(query);
+
+            sentencia.executeUpdate(query);
+            System.out.println("ACTUALIZADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ACTUALIZADO ...");
+            return false;
+
+        }
+    }
+
+    public boolean upgrade_pre_calificacion(String REGISTRO,
+            String ESPECIFICACION,
+            String PROTOCOLO,
+            String NO_GXP,
+            String LIBRO,
+            String BR,
+            String SOP,
+            String HOJA,
+            String RUTINA,
+            String CERTIFICADO,
+            String PLANOS,
+            String MANUALES,     
+            String MATERIALES,
+            String RECURSOS,
+            String ENTRENAMIENTO) {
+
+        try {
+
+            query = "UPDATE"
+                    + " PLANEACIONES_VALIDACION"
+                    + " SET "
+                    + "  PRE_CAL_ESPECIFICACION_EQUIPO = '" + ESPECIFICACION + "',"
+                    + "  PRE_CAL_PROTOCOLOS = '" + PROTOCOLO + "',"
+                    + "  PRE_CAL_RU_NO_GXP = '" + NO_GXP + "',"
+                    + "  PRE_CAL_LIBRO_PARAMETROS = '" + LIBRO + "',"
+                    + "  PRE_CAL_BR_ACTUALIZADO = '" + BR + "',"
+                    + "  PRE_CAL_SOP = '" + SOP + "',"
+                    + "  PRE_CAL_HOJA_VIDA = '" + HOJA + "',"
+                    + "  PRE_CAL_RUTINA_MANTENIMIENTO = '" + RUTINA + "',"
+                    + "  PRE_CAL_CERTIFICADO_MATERIALES = '" + CERTIFICADO + "',"
+                    + "  PRE_CAL_PLANOS = '" + PLANOS + "',"
+                    + "  PRE_CAL_MANUALES = '" + MANUALES + "',"
+                    + "  PRE_CAL_MATERIALES = '" + MATERIALES + "',"
+                    + "  PRE_CAL_RECURSOS = '" + RECURSOS + "',"
+                    + "  PRE_CAL_ENTRENAMIENTOS = '" + ENTRENAMIENTO + "'"
+                    + " WHERE"
+                    + "  NUMERO_REGISTRO = " + REGISTRO + ";";
 
             System.out.println(query);
 
