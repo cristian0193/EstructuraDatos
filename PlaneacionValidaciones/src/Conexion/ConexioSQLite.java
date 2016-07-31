@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ConexioSQLite {
 
@@ -144,7 +147,7 @@ public class ConexioSQLite {
                     + "'" + PRE_PRO_RM + "', '" + PRE_PRO_PC + "', '" + PRE_PRO_CG + "', '" + PRE_PRO_FP + "', "
                     + "'" + FECHA_REPROGRAMACION + "', '" + OBSERVACION_REPROGRAMACION + "')";
             System.out.println(query);
-            
+
             sentencia.executeUpdate(query);
             System.out.println("INSERTADO ...");
 
@@ -159,4 +162,22 @@ public class ConexioSQLite {
         }
     }
 
+//METODO 
+  public Connection Conectar() {
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        
+        try {
+            conectar = DriverManager.getConnection("jdbc:sqlite:ValidacionesSQLite.db");
+            System.out.println("CONECTO BIEN TABLA ........");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return conectar;
+
+    }
 }
