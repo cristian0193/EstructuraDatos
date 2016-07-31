@@ -17,6 +17,7 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
+        PrerequisitoCalificacion calificacion = new PrerequisitoCalificacion();
         this.setLocationRelativeTo(null);
         cargar_tabla();
     }
@@ -167,7 +168,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(377, 92, 80, -1));
 
         jLabel9.setText("Numero GCC / APR :");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 30, 110, 17));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 30, 120, 17));
         jPanel2.add(txt_GCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 27, 130, -1));
 
         jLabel11.setText("Turnos : ");
@@ -424,6 +425,9 @@ public class Principal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         PrerequisitoCalificacion calificacion = new PrerequisitoCalificacion();
         calificacion.setVisible(true);
+        
+        calificacion.txt_registro_principal.setText(txt_registro.getText());
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -567,6 +571,15 @@ public class Principal extends javax.swing.JFrame {
         } else if (this.date_fecha_propuesta.getDate() == null) {
             JOptionPane.showMessageDialog(null, "INGRESE FECHA PROPUESTA");
         } else {
+            
+            String lotes = txt_lotes.getText();
+            String turnos = txt_turnos.getText();
+            
+            if(!isNumeric(lotes)){
+                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
+            }else if(!isNumeric(turnos)){
+                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
+            }else{
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
             String registro = txt_registro.getText();
@@ -596,6 +609,8 @@ public class Principal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
                 LimpiarCampos();
             }
+            }            
+            
         }
 
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -713,7 +728,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField txt_lotes;
     private javax.swing.JTextArea txt_observaciones_proyecto;
     private javax.swing.JTextField txt_proyecto;
-    private javax.swing.JTextField txt_registro;
+    public static javax.swing.JTextField txt_registro;
     private javax.swing.JTextField txt_turnos;
     // End of variables declaration//GEN-END:variables
 
@@ -914,4 +929,7 @@ public class Principal extends javax.swing.JFrame {
 
         }
     }
+    
+    
+    
 }

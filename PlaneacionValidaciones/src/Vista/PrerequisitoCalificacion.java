@@ -1,16 +1,22 @@
-
 package Vista;
 
+import Conexion.ConexioSQLite;
+import static Vista.Principal.conexion;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class PrerequisitoCalificacion extends javax.swing.JFrame {
 
-    
     public PrerequisitoCalificacion() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -61,7 +67,8 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
         txt_pre_hoja = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txt_registro_principal = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -188,12 +195,38 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
             }
         });
 
+        txt_pre_rutinas.setEditable(false);
+
+        txt_pre_certificado.setEditable(false);
+
+        txt_pre_planos.setEditable(false);
+
+        txt_pre_manual.setEditable(false);
+
+        txt_pre_materiales.setEditable(false);
+
+        txt_pre_recursos.setEditable(false);
+
+        txt_pre_entrenamiento.setEditable(false);
         txt_pre_entrenamiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_pre_entrenamientoActionPerformed(evt);
             }
         });
 
+        txt_pre_especificacion.setEditable(false);
+
+        txt_pre_protocolo.setEditable(false);
+
+        txt_pre_RU.setEditable(false);
+
+        txt_pre_libro.setEditable(false);
+
+        txt_pre_BR.setEditable(false);
+
+        txt_pre_SOP.setEditable(false);
+
+        txt_pre_hoja.setEditable(false);
         txt_pre_hoja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_pre_hojaActionPerformed(evt);
@@ -368,12 +401,24 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(combo_pre_hoja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jButton1.setText("Actualizar");
 
         jButton2.setText("Cargar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        txt_registro_principal.setEditable(false);
+        txt_registro_principal.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        txt_registro_principal.setForeground(new java.awt.Color(255, 0, 0));
+        txt_registro_principal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel16.setText("Numero Registro :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -389,29 +434,33 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(309, 309, 309)
-                    .addComponent(jTextField1)
-                    .addGap(309, 309, 309)))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_registro_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_registro_principal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(216, 216, 216)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(216, Short.MAX_VALUE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -461,19 +510,35 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_pre_recursosActionPerformed
 
-    private void combo_pre_entrenamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_pre_entrenamientoActionPerformed
+    private void txt_pre_hojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_pre_hojaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combo_pre_entrenamientoActionPerformed
+    }//GEN-LAST:event_txt_pre_hojaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        if (!txt_registro_principal.getText().equals("")) {
+
+            String pre_calificacion = txt_registro_principal.getText();
+
+            if (consulta_pre_calificacion(pre_calificacion)) {
+                coloresCampos();
+                JOptionPane.showMessageDialog(null, "INFORMACION CARGADA");
+            } else {
+                JOptionPane.showMessageDialog(null, "INFORMACION NO CARGADA");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA");
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txt_pre_entrenamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_pre_entrenamientoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_pre_entrenamientoActionPerformed
 
-    private void txt_pre_hojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_pre_hojaActionPerformed
+    private void combo_pre_entrenamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_pre_entrenamientoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_pre_hojaActionPerformed
-
-   
+    }//GEN-LAST:event_combo_pre_entrenamientoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox combo_pre_BR;
@@ -499,6 +564,7 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -508,7 +574,6 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txt_pre_BR;
     private javax.swing.JTextField txt_pre_RU;
     private javax.swing.JTextField txt_pre_SOP;
@@ -523,5 +588,130 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
     private javax.swing.JTextField txt_pre_protocolo;
     private javax.swing.JTextField txt_pre_recursos;
     private javax.swing.JTextField txt_pre_rutinas;
+    public javax.swing.JTextField txt_registro_principal;
     // End of variables declaration//GEN-END:variables
+
+    public boolean consulta_pre_calificacion(String registro) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "PRE_CAL_ESPECIFICACION_EQUIPO AS ESPECIFICACION, "
+                + "PRE_CAL_PROTOCOLOS AS PROTOCOLO, "
+                + "PRE_CAL_RU_NO_GXP AS NO_GXP, "
+                + "PRE_CAL_LIBRO_PARAMETROS AS LIBRO, "
+                + "PRE_CAL_BR_ACTUALIZADO AS BR, "
+                + "PRE_CAL_SOP AS SOP, "
+                + "PRE_CAL_HOJA_VIDA AS HOJA, "
+                + "PRE_CAL_RUTINA_MANTENIMIENTO AS RUTINA, "
+                + "PRE_CAL_CERTIFICADO_MATERIALES AS CERTIFICADO, "
+                + "PRE_CAL_PLANOS AS PLANO, "
+                + "PRE_CAL_MANUALES AS MANUALES, "
+                + "PRE_CAL_MATERIALES AS MATERIAL, "
+                + "PRE_CAL_RECURSOS AS RECURSOS, "
+                + "PRE_CAL_ENTRENAMIENTOS AS ENTRENAMIENTO "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE "
+                + "NUMERO_REGISTRO = " + registro + ";";
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                combo_pre_especificacion.setSelectedItem(rs.getString("ESPECIFICACION"));
+                combo_pre_protocolos.setSelectedItem(rs.getString("PROTOCOLO"));
+                combo_pre_RU.setSelectedItem(rs.getString("NO_GXP"));
+                combo_pre_libro.setSelectedItem(rs.getString("LIBRO"));
+                combo_pre_BR.setSelectedItem(rs.getString("BR"));
+                combo_pre_SOP.setSelectedItem(rs.getString("SOP"));
+                combo_pre_hoja.setSelectedItem(rs.getString("HOJA"));
+                combo_pre_rutinas.setSelectedItem(rs.getString("RUTINA"));
+                combo_pre_certificado.setSelectedItem(rs.getString("CERTIFICADO"));
+                combo_pre_planos.setSelectedItem(rs.getString("PLANO"));
+                combo_pre_manual.setSelectedItem(rs.getString("MANUALES"));
+                combo_pre_materiales.setSelectedItem(rs.getString("MATERIAL"));
+                combo_pre_recursos.setSelectedItem(rs.getString("RECURSOS"));
+                combo_pre_entrenamiento.setSelectedItem(rs.getString("ENTRENAMIENTO"));
+            }
+            return true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            return false;
+
+        }
+    }
+
+    public void coloresCampos() {
+        
+        //VALIDACION ESPECIFICACION DE EQUIPO
+        if (combo_pre_especificacion.getSelectedIndex() == 0) {
+            txt_pre_especificacion.setBackground(Color.GRAY);
+        } else if (combo_pre_especificacion.getSelectedIndex() == 1) {
+            txt_pre_especificacion.setBackground(Color.RED);
+        } else {
+            txt_pre_especificacion.setBackground(Color.GREEN);
+        }
+                
+        //VALIDACION PROTOCOLOS
+        if (combo_pre_protocolos.getSelectedIndex() == 0) {
+            txt_pre_protocolo.setBackground(Color.GRAY);
+        } else if (combo_pre_protocolos.getSelectedIndex() == 1) {
+            txt_pre_protocolo.setBackground(Color.RED);
+        } else {
+            txt_pre_protocolo.setBackground(Color.GREEN);
+        }
+            
+        //VALIDACION RU
+        if (combo_pre_RU.getSelectedIndex() == 0) {
+            txt_pre_RU.setBackground(Color.GRAY);
+        } else if (combo_pre_RU.getSelectedIndex() == 1) {
+            txt_pre_RU.setBackground(Color.RED);
+        } else {
+            txt_pre_RU.setBackground(Color.GREEN);
+        }        
+        
+        //VALIDACION LIBRO
+        if (combo_pre_libro.getSelectedIndex() == 0) {
+            txt_pre_libro.setBackground(Color.GRAY);
+        } else if (combo_pre_libro.getSelectedIndex() == 1) {
+            txt_pre_libro.setBackground(Color.RED);
+        } else {
+            txt_pre_libro.setBackground(Color.GREEN);
+        }
+                
+        //VALIDACION BR
+        if (combo_pre_BR.getSelectedIndex() == 0) {
+            txt_pre_BR.setBackground(Color.GRAY);
+        } else if (combo_pre_BR.getSelectedIndex() == 1) {
+            txt_pre_BR.setBackground(Color.RED);
+        } else {
+            txt_pre_BR.setBackground(Color.GREEN);
+        }
+        
+        //VALIDACION SOP
+        if (combo_pre_SOP.getSelectedIndex() == 0) {
+            txt_pre_SOP.setBackground(Color.GRAY);
+        } else if (combo_pre_SOP.getSelectedIndex() == 1) {
+            txt_pre_SOP.setBackground(Color.RED);
+        } else {
+            txt_pre_SOP.setBackground(Color.GREEN);
+        }
+                
+         //VALIDACION HOJA DE VIDA
+        if (combo_pre_hoja.getSelectedIndex() == 0) {
+            txt_pre_hoja.setBackground(Color.GRAY);
+        } else if (combo_pre_hoja.getSelectedIndex() == 1) {
+            txt_pre_hoja.setBackground(Color.RED);
+        } else {
+            txt_pre_hoja.setBackground(Color.GREEN);
+        }
+    }
 }
