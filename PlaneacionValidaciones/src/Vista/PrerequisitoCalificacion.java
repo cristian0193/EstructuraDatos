@@ -713,5 +713,68 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
         } else {
             txt_pre_hoja.setBackground(Color.GREEN);
         }
+        
+         //VALIDACION RUTINA DE MANTENIMEINTO
+        if (combo_pre_rutinas.getSelectedIndex() == 0) {
+            txt_pre_rutinas.setBackground(Color.GRAY);
+        } else if (combo_pre_rutinas.getSelectedIndex() == 1) {
+            txt_pre_rutinas.setBackground(Color.RED);
+        } else {
+            txt_pre_rutinas.setBackground(Color.GREEN);
+        }
+        
+         //VALIDACION CERTIFICADO
+        if (combo_pre_certificado.getSelectedIndex() == 0) {
+            txt_pre_certificado.setBackground(Color.GRAY);
+        } else if (combo_pre_certificado.getSelectedIndex() == 1) {
+            txt_pre_certificado.setBackground(Color.RED);
+        } else {
+            txt_pre_certificado.setBackground(Color.GREEN);
+        }
+        
+         //VALIDACION PLANOS
+        if (combo_pre_planos.getSelectedIndex() == 0) {
+            txt_pre_planos.setBackground(Color.GRAY);
+        } else if (combo_pre_planos.getSelectedIndex() == 1) {
+            txt_pre_planos.setBackground(Color.RED);
+        } else {
+            txt_pre_planos.setBackground(Color.GREEN);
+        }
+        
+         //VALIDACION MANUALES
+        if (combo_pre_manual.getSelectedIndex() == 0) {
+            txt_pre_manual.setBackground(Color.GRAY);
+        } else if (combo_pre_manual.getSelectedIndex() == 1) {
+            txt_pre_manual.setBackground(Color.RED);
+        } else {
+            txt_pre_manual.setBackground(Color.GREEN);
+        }
+        
+         //VALIDACION MATERIALES
+        if (combo_pre_materiales.getSelectedIndex() == 0) {
+            txt_pre_materiales.setBackground(Color.GRAY);
+        } else if (combo_pre_materiales.getSelectedIndex() == 1) {
+            txt_pre_materiales.setBackground(Color.RED);
+        } else {
+            txt_pre_materiales.setBackground(Color.GREEN);
+        }
+        
+         //VALIDACION RECURSOS
+        if (combo_pre_recursos.getSelectedIndex() == 0) {
+            txt_pre_recursos.setBackground(Color.GRAY);
+        } else if (combo_pre_recursos.getSelectedIndex() == 1) {
+            txt_pre_recursos.setBackground(Color.RED);
+        } else {
+            txt_pre_recursos.setBackground(Color.GREEN);
+        }
+        
+         //VALIDACION ENTRENAMIENTO
+        if (combo_pre_entrenamiento.getSelectedIndex() == 0) {
+            txt_pre_entrenamiento.setBackground(Color.GRAY);
+        } else if (combo_pre_entrenamiento.getSelectedIndex() == 1) {
+            txt_pre_entrenamiento.setBackground(Color.RED);
+        } else {
+            txt_pre_entrenamiento.setBackground(Color.GREEN);
+        }
     }
 }
