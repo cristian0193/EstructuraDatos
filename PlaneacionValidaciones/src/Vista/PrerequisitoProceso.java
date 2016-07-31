@@ -538,7 +538,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             String pre_proceso = txt_registro_principal.getText();
 
             if (consulta_pre_proceso(pre_proceso)) {
-//                coloresCampos();
+                coloresCampos();
                 JOptionPane.showMessageDialog(null, "INFORMACION CARGADA");
             } else {
                 JOptionPane.showMessageDialog(null, "INFORMACION NO CARGADA");
@@ -665,133 +665,143 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         }
     }
         
-//    public void coloresCampos() {
-//        
-//        //VALIDACION ESPECIFICACION DE EQUIPO
-//        if (combo_pre_especificacion.getSelectedIndex() == 0) {
-//            txt_pre_especificacion.setBackground(Color.GRAY);
-//        } else if (combo_pre_especificacion.getSelectedIndex() == 1) {
-//            txt_pre_especificacion.setBackground(Color.RED);
-//        } else {
-//            txt_pre_especificacion.setBackground(Color.GREEN);
-//        }
-//                
-//        //VALIDACION PROTOCOLOS
-//        if (combo_pre_protocolos.getSelectedIndex() == 0) {
-//            txt_pre_protocolo.setBackground(Color.GRAY);
-//        } else if (combo_pre_protocolos.getSelectedIndex() == 1) {
-//            txt_pre_protocolo.setBackground(Color.RED);
-//        } else {
-//            txt_pre_protocolo.setBackground(Color.GREEN);
-//        }
-//            
-//        //VALIDACION RU
-//        if (combo_pre_RU.getSelectedIndex() == 0) {
-//            txt_pre_RU.setBackground(Color.GRAY);
-//        } else if (combo_pre_RU.getSelectedIndex() == 1) {
-//            txt_pre_RU.setBackground(Color.RED);
-//        } else {
-//            txt_pre_RU.setBackground(Color.GREEN);
-//        }        
-//        
-//        //VALIDACION LIBRO
-//        if (combo_pre_libro.getSelectedIndex() == 0) {
-//            txt_pre_libro.setBackground(Color.GRAY);
-//        } else if (combo_pre_libro.getSelectedIndex() == 1) {
-//            txt_pre_libro.setBackground(Color.RED);
-//        } else {
-//            txt_pre_libro.setBackground(Color.GREEN);
-//        }
-//                
-//        //VALIDACION BR
-//        if (combo_pre_BR.getSelectedIndex() == 0) {
-//            txt_pre_BR.setBackground(Color.GRAY);
-//        } else if (combo_pre_BR.getSelectedIndex() == 1) {
-//            txt_pre_BR.setBackground(Color.RED);
-//        } else {
-//            txt_pre_BR.setBackground(Color.GREEN);
-//        }
-//        
-//        //VALIDACION SOP
-//        if (combo_pre_SOP.getSelectedIndex() == 0) {
-//            txt_pre_SOP.setBackground(Color.GRAY);
-//        } else if (combo_pre_SOP.getSelectedIndex() == 1) {
-//            txt_pre_SOP.setBackground(Color.RED);
-//        } else {
-//            txt_pre_SOP.setBackground(Color.GREEN);
-//        }
-//                
-//         //VALIDACION HOJA DE VIDA
-//        if (combo_pre_hoja.getSelectedIndex() == 0) {
-//            txt_pre_hoja.setBackground(Color.GRAY);
-//        } else if (combo_pre_hoja.getSelectedIndex() == 1) {
-//            txt_pre_hoja.setBackground(Color.RED);
-//        } else {
-//            txt_pre_hoja.setBackground(Color.GREEN);
-//        }
-//        
-//         //VALIDACION RUTINA DE MANTENIMEINTO
-//        if (combo_pre_rutinas.getSelectedIndex() == 0) {
-//            txt_pre_rutinas.setBackground(Color.GRAY);
-//        } else if (combo_pre_rutinas.getSelectedIndex() == 1) {
-//            txt_pre_rutinas.setBackground(Color.RED);
-//        } else {
-//            txt_pre_rutinas.setBackground(Color.GREEN);
-//        }
-//        
-//         //VALIDACION CERTIFICADO
-//        if (combo_pre_certificado.getSelectedIndex() == 0) {
-//            txt_pre_certificado.setBackground(Color.GRAY);
-//        } else if (combo_pre_certificado.getSelectedIndex() == 1) {
-//            txt_pre_certificado.setBackground(Color.RED);
-//        } else {
-//            txt_pre_certificado.setBackground(Color.GREEN);
-//        }
-//        
-//         //VALIDACION PLANOS
-//        if (combo_pre_planos.getSelectedIndex() == 0) {
-//            txt_pre_planos.setBackground(Color.GRAY);
-//        } else if (combo_pre_planos.getSelectedIndex() == 1) {
-//            txt_pre_planos.setBackground(Color.RED);
-//        } else {
-//            txt_pre_planos.setBackground(Color.GREEN);
-//        }
-//        
-//         //VALIDACION MANUALES
-//        if (combo_pre_manual.getSelectedIndex() == 0) {
-//            txt_pre_manual.setBackground(Color.GRAY);
-//        } else if (combo_pre_manual.getSelectedIndex() == 1) {
-//            txt_pre_manual.setBackground(Color.RED);
-//        } else {
-//            txt_pre_manual.setBackground(Color.GREEN);
-//        }
-//        
-//         //VALIDACION MATERIALES
-//        if (combo_pre_materiales.getSelectedIndex() == 0) {
-//            txt_pre_materiales.setBackground(Color.GRAY);
-//        } else if (combo_pre_materiales.getSelectedIndex() == 1) {
-//            txt_pre_materiales.setBackground(Color.RED);
-//        } else {
-//            txt_pre_materiales.setBackground(Color.GREEN);
-//        }
-//        
-//         //VALIDACION RECURSOS
-//        if (combo_pre_recursos.getSelectedIndex() == 0) {
-//            txt_pre_recursos.setBackground(Color.GRAY);
-//        } else if (combo_pre_recursos.getSelectedIndex() == 1) {
-//            txt_pre_recursos.setBackground(Color.RED);
-//        } else {
-//            txt_pre_recursos.setBackground(Color.GREEN);
-//        }
-//        
-//         //VALIDACION ENTRENAMIENTO
-//        if (combo_pre_entrenamiento.getSelectedIndex() == 0) {
-//            txt_pre_entrenamiento.setBackground(Color.GRAY);
-//        } else if (combo_pre_entrenamiento.getSelectedIndex() == 1) {
-//            txt_pre_entrenamiento.setBackground(Color.RED);
-//        } else {
-//            txt_pre_entrenamiento.setBackground(Color.GREEN);
-//        }
-//    }
+    public void coloresCampos() {
+        
+        //VALIDACION CALIFICACION IQOQPQ
+        if (combo_pre_calificacion.getSelectedIndex() == 0) {
+            txt_pre_calificacion.setBackground(Color.GRAY);
+        } else if (combo_pre_calificacion.getSelectedIndex() == 1) {
+            txt_pre_calificacion.setBackground(Color.RED);
+        } else {
+            txt_pre_calificacion.setBackground(Color.GREEN);
+        }
+                
+        //VALIDACION HFM
+        if (combo_pre_HFM.getSelectedIndex() == 0) {
+            txt_pre_HFM.setBackground(Color.GRAY);
+        } else if (combo_pre_HFM.getSelectedIndex() == 1) {
+            txt_pre_HFM.setBackground(Color.RED);
+        } else {
+            txt_pre_HFM.setBackground(Color.GREEN);
+        }
+            
+        //VALIDACION ESPECIFICACION
+        if (combo_pre_especificacion.getSelectedIndex() == 0) {
+            txt_pre_especificacion.setBackground(Color.GRAY);
+        } else if (combo_pre_especificacion.getSelectedIndex() == 1) {
+            txt_pre_especificacion.setBackground(Color.RED);
+        } else {
+            txt_pre_especificacion.setBackground(Color.GREEN);
+        }        
+        
+        //VALIDACION TEST
+        if (combo_pre_test.getSelectedIndex() == 0) {
+            txt_pre_test.setBackground(Color.GRAY);
+        } else if (combo_pre_test.getSelectedIndex() == 1) {
+            txt_pre_test.setBackground(Color.RED);
+        } else {
+            txt_pre_test.setBackground(Color.GREEN);
+        }
+                
+        //VALIDACION PROTOCOLO
+        if (combo_pre_protocolo.getSelectedIndex() == 0) {
+            txt_pre_protocolo.setBackground(Color.GRAY);
+        } else if (combo_pre_protocolo.getSelectedIndex() == 1) {
+            txt_pre_protocolo.setBackground(Color.RED);
+        } else {
+            txt_pre_protocolo.setBackground(Color.GREEN);
+        }
+        
+        //VALIDACION MATERIALES
+        if (combo_pre_materiales.getSelectedIndex() == 0) {
+            txt_pre_materiales.setBackground(Color.GRAY);
+        } else if (combo_pre_materiales.getSelectedIndex() == 1) {
+            txt_pre_materiales.setBackground(Color.RED);
+        } else {
+            txt_pre_materiales.setBackground(Color.GREEN);
+        }
+                
+         //VALIDACION DP
+        if (combo_pre_DP.getSelectedIndex() == 0) {
+            txt_pre_DP.setBackground(Color.GRAY);
+        } else if (combo_pre_DP.getSelectedIndex() == 1) {
+            txt_pre_DP.setBackground(Color.RED);
+        } else {
+            txt_pre_DP.setBackground(Color.GREEN);
+        }
+        
+         //VALIDACION DIAGRAMA
+        if (combo_pre_diagrama.getSelectedIndex() == 0) {
+            txt_pre_diagrama.setBackground(Color.GRAY);
+        } else if (combo_pre_diagrama.getSelectedIndex() == 1) {
+            txt_pre_diagrama.setBackground(Color.RED);
+        } else {
+            txt_pre_diagrama.setBackground(Color.GREEN);
+        }
+        
+         //VALIDACION FMEA
+        if (combo_pre_FMEA.getSelectedIndex() == 0) {
+            txt_pre_FMEA.setBackground(Color.GRAY);
+        } else if (combo_pre_FMEA.getSelectedIndex() == 1) {
+            txt_pre_FMEA.setBackground(Color.RED);
+        } else {
+            txt_pre_FMEA.setBackground(Color.GREEN);
+        }
+        
+         //VALIDACION PR
+        if (combo_pre_PR.getSelectedIndex() == 0) {
+            txt_pre_PR.setBackground(Color.GRAY);
+        } else if (combo_pre_PR.getSelectedIndex() == 1) {
+            txt_pre_PR.setBackground(Color.RED);
+        } else {
+            txt_pre_PR.setBackground(Color.GREEN);
+        }
+        
+         //VALIDACION PF
+        if (combo_pre_PF.getSelectedIndex() == 0) {
+            txt_pre_PF.setBackground(Color.GRAY);
+        } else if (combo_pre_PF.getSelectedIndex() == 1) {
+            txt_pre_PF.setBackground(Color.RED);
+        } else {
+            txt_pre_PF.setBackground(Color.GREEN);
+        }
+        
+          //VALIDACION RM
+        if (combo_pre_RM.getSelectedIndex() == 0) {
+            txt_pre_RM.setBackground(Color.GRAY);
+        } else if (combo_pre_RM.getSelectedIndex() == 1) {
+            txt_pre_RM.setBackground(Color.RED);
+        } else {
+            txt_pre_RM.setBackground(Color.GREEN);
+        }
+        
+         //VALIDACION PC
+        if (combo_pre_PC.getSelectedIndex() == 0) {
+            txt_pre_PC.setBackground(Color.GRAY);
+        } else if (combo_pre_PC.getSelectedIndex() == 1) {
+            txt_pre_PC.setBackground(Color.RED);
+        } else {
+            txt_pre_PC.setBackground(Color.GREEN);
+        }
+        
+        //VALIDACION CG
+        if (combo_pre_CG.getSelectedIndex() == 0) {
+            txt_pre_CG.setBackground(Color.GRAY);
+        } else if (combo_pre_CG.getSelectedIndex() == 1) {
+            txt_pre_CG.setBackground(Color.RED);
+        } else {
+            txt_pre_CG.setBackground(Color.GREEN);
+        }
+        
+        //VALIDACION FP
+        if (combo_pre_FP.getSelectedIndex() == 0) {
+            txt_pre_FP.setBackground(Color.GRAY);
+        } else if (combo_pre_FP.getSelectedIndex() == 1) {
+            txt_pre_FP.setBackground(Color.RED);
+        } else {
+            txt_pre_FP.setBackground(Color.GREEN);
+        }
+        
+    }
 
 }
