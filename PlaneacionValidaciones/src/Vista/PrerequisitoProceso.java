@@ -83,6 +83,11 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         jLabel1.setText("PRE-REQUISITOS DE PROCESO");
 
         jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Documentacion"));
 
@@ -546,9 +551,42 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA");
         }
-        
-        
+                
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+        
+        String registro = txt_registro_principal.getText();
+        String calificacion = combo_pre_calificacion.getSelectedItem().toString();
+        String hfm = combo_pre_HFM.getSelectedItem().toString();
+        String especificacion = combo_pre_especificacion.getSelectedItem().toString();
+        String test = combo_pre_test.getSelectedItem().toString();
+        String protocolo = combo_pre_protocolo.getSelectedItem().toString();
+        String materiales = combo_pre_materiales.getSelectedItem().toString();
+        String dp = combo_pre_DP.getSelectedItem().toString();
+        String diagrama = combo_pre_diagrama.getSelectedItem().toString();
+        String fmea = combo_pre_FMEA.getSelectedItem().toString();
+        String pr = combo_pre_PR.getSelectedItem().toString();
+        String pf = combo_pre_PF.getSelectedItem().toString();
+        String rm = combo_pre_RM.getSelectedItem().toString();
+        String pc = combo_pre_PC.getSelectedItem().toString();
+        String cg = combo_pre_CG.getSelectedItem().toString();
+        String fp = combo_pre_FP.getSelectedItem().toString();
+        
+        boolean resultado = conexion.upgrade_pre_proceso(registro, calificacion, hfm, especificacion, test, protocolo, materiales, dp, diagrama, fmea, pr, pf, rm, pc, cg, fp);
+        
+        if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                coloresCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                consulta_pre_proceso(registro);
+            }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
  
 

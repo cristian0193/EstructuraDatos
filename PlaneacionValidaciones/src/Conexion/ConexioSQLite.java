@@ -227,7 +227,7 @@ public class ConexioSQLite {
         }
     }
 
-    //METODO DE ACTUALIZAR PREREQUISITOS
+    //METODO DE ACTUALIZAR PREREQUISITOS CALIFICACION
     public boolean upgrade_pre_calificacion(String REGISTRO,
             String ESPECIFICACION,
             String PROTOCOLO,
@@ -282,4 +282,60 @@ public class ConexioSQLite {
         }
     }
 
+     //METODO DE ACTUALIZAR PREREQUISITOS PROCESO
+    public boolean upgrade_pre_proceso(String REGISTRO,
+            String CALIFICACION,
+            String HFM,
+            String ESPECIFICACION,
+            String TEST,
+            String PROTOCOLO,
+            String MATERIALES,
+            String DP,
+            String DIAGRAMA,
+            String FMEA,
+            String PR,
+            String PF,     
+            String RM,
+            String PC,
+            String CG,
+            String FP) {
+
+        try {
+
+            query = "UPDATE"
+                    + " PLANEACIONES_VALIDACION"
+                    + " SET "
+                    + "  PRE_PRO_CALIFICACION_IQOQPQ = '" + CALIFICACION + "',"
+                    + "  PRE_PRO_ENTRENAMIENTO_HFM = '" + HFM + "',"
+                    + "  PRE_PRO_ENTRENAMIENTO_ESPECIFICACION = '" + ESPECIFICACION + "',"
+                    + "  PRE_PRO_ENTRENAMIENTO_TEST = '" + TEST + "',"
+                    + "  PRE_PRO_ENTRENAMIENTO_PROTOCOLO = '" + PROTOCOLO + "',"
+                    + "  PRE_PRO_MATERIALES = '" + MATERIALES + "',"
+                    + "  PRE_PRO_DP = '" + DP + "',"
+                    + "  PRE_PRO_DIAGRAMA = '" + DIAGRAMA + "',"
+                    + "  PRE_PRO_FMEA = '" + FMEA + "',"
+                    + "  PRE_PRO_PR = '" + PR + "',"
+                    + "  PRE_PRO_PF = '" + PF + "',"
+                    + "  PRE_PRO_RM = '" + RM + "',"
+                    + "  PRE_PRO_PC = '" + PC + "',"
+                    + "  PRE_PRO_CG = '" + CG + "',"
+                    + "  PRE_PRO_FP = '" + FP + "'"
+                    + " WHERE"
+                    + "  NUMERO_REGISTRO = " + REGISTRO + ";";
+
+            System.out.println(query);
+
+            sentencia.executeUpdate(query);
+            System.out.println("ACTUALIZADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ACTUALIZADO ...");
+            return false;
+
+        }
+    }
 }
