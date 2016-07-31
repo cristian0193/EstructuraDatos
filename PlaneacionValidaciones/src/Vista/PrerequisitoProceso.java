@@ -1,6 +1,15 @@
 
 package Vista;
 
+import Conexion.ConexioSQLite;
+import static Vista.Principal.conexion;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 
 public class PrerequisitoProceso extends javax.swing.JFrame {
 
@@ -63,6 +72,8 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         txt_pre_materiales = new javax.swing.JTextField();
         txt_pre_DP = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        txt_registro_principal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -200,6 +211,36 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             }
         });
 
+        txt_pre_diagrama.setEditable(false);
+
+        txt_pre_FMEA.setEditable(false);
+
+        txt_pre_PR.setEditable(false);
+
+        txt_pre_PF.setEditable(false);
+
+        txt_pre_RM.setEditable(false);
+
+        txt_pre_PC.setEditable(false);
+
+        txt_pre_CG.setEditable(false);
+
+        txt_pre_FP.setEditable(false);
+
+        txt_pre_calificacion.setEditable(false);
+
+        txt_pre_HFM.setEditable(false);
+
+        txt_pre_especificacion.setEditable(false);
+
+        txt_pre_test.setEditable(false);
+
+        txt_pre_protocolo.setEditable(false);
+
+        txt_pre_materiales.setEditable(false);
+
+        txt_pre_DP.setEditable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -238,12 +279,12 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_pre_calificacion)
-                    .addComponent(txt_pre_HFM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(txt_pre_especificacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(txt_pre_test, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(txt_pre_protocolo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(txt_pre_materiales, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(txt_pre_DP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
+                    .addComponent(txt_pre_HFM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(txt_pre_especificacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(txt_pre_test, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(txt_pre_protocolo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(txt_pre_materiales, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(txt_pre_DP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -282,13 +323,13 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_pre_diagrama)
-                    .addComponent(txt_pre_FMEA, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(txt_pre_PR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(txt_pre_PF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(txt_pre_RM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(txt_pre_PC, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(txt_pre_CG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(txt_pre_FP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
+                    .addComponent(txt_pre_FMEA, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(txt_pre_PR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(txt_pre_PF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(txt_pre_RM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(txt_pre_PC, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(txt_pre_CG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(txt_pre_FP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -379,10 +420,22 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                     .addComponent(jLabel16)
                     .addComponent(combo_pre_FP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_pre_FP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton2.setText("Cargar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Numero Registro :");
+
+        txt_registro_principal.setEditable(false);
+        txt_registro_principal.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        txt_registro_principal.setForeground(new java.awt.Color(255, 0, 0));
+        txt_registro_principal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -391,26 +444,36 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addGap(62, 62, 62)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(194, 194, 194))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_registro_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_registro_principal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -468,6 +531,25 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_pre_FPActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
+          if (!txt_registro_principal.getText().equals("")) {
+
+            String pre_proceso = txt_registro_principal.getText();
+
+            if (consulta_pre_proceso(pre_proceso)) {
+//                coloresCampos();
+                JOptionPane.showMessageDialog(null, "INFORMACION CARGADA");
+            } else {
+                JOptionPane.showMessageDialog(null, "INFORMACION NO CARGADA");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA");
+        }
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -496,6 +578,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -520,5 +603,195 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
     private javax.swing.JTextField txt_pre_materiales;
     private javax.swing.JTextField txt_pre_protocolo;
     private javax.swing.JTextField txt_pre_test;
+    public javax.swing.JTextField txt_registro_principal;
     // End of variables declaration//GEN-END:variables
+
+    public boolean consulta_pre_proceso(String registro) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "PRE_PRO_CALIFICACION_IQOQPQ AS CALIFICACION, "
+                + "PRE_PRO_ENTRENAMIENTO_HFM AS ENTRENAMIENTO, "
+                + "PRE_PRO_ENTRENAMIENTO_ESPECIFICACION AS ESPECIFICACION, "
+                + "PRE_PRO_ENTRENAMIENTO_TEST AS TEST, "
+                + "PRE_PRO_ENTRENAMIENTO_PROTOCOLO AS PROTOCOLO, "
+                + "PRE_PRO_MATERIALES AS MATERIAL, "
+                + "PRE_PRO_DP AS DP, "
+                + "PRE_PRO_DIAGRAMA AS DIAGRAMA, "
+                + "PRE_PRO_FMEA AS FMEA, "
+                + "PRE_PRO_PR AS PR, "
+                + "PRE_PRO_PF AS PF, "
+                + "PRE_PRO_RM AS RM, "
+                + "PRE_PRO_PC AS PC, "
+                + "PRE_PRO_CG AS CG, "
+                + "PRE_PRO_FP AS FP "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE "
+                + "NUMERO_REGISTRO = " + registro + ";";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                combo_pre_calificacion.setSelectedItem(rs.getString("CALIFICACION"));
+                combo_pre_HFM.setSelectedItem(rs.getString("ENTRENAMIENTO"));
+                combo_pre_especificacion.setSelectedItem(rs.getString("ESPECIFICACION"));
+                combo_pre_test.setSelectedItem(rs.getString("TEST"));
+                combo_pre_protocolo.setSelectedItem(rs.getString("PROTOCOLO"));
+                combo_pre_materiales.setSelectedItem(rs.getString("MATERIAL"));
+                combo_pre_DP.setSelectedItem(rs.getString("DP"));
+                combo_pre_diagrama.setSelectedItem(rs.getString("DIAGRAMA"));
+                combo_pre_FMEA.setSelectedItem(rs.getString("FMEA"));
+                combo_pre_PR.setSelectedItem(rs.getString("PR"));
+                combo_pre_PF.setSelectedItem(rs.getString("PF"));
+                combo_pre_RM.setSelectedItem(rs.getString("RM"));
+                combo_pre_PC.setSelectedItem(rs.getString("PC"));
+                combo_pre_CG.setSelectedItem(rs.getString("CG"));
+                combo_pre_FP.setSelectedItem(rs.getString("FP"));
+            }
+            return true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            return false;
+
+        }
+    }
+        
+//    public void coloresCampos() {
+//        
+//        //VALIDACION ESPECIFICACION DE EQUIPO
+//        if (combo_pre_especificacion.getSelectedIndex() == 0) {
+//            txt_pre_especificacion.setBackground(Color.GRAY);
+//        } else if (combo_pre_especificacion.getSelectedIndex() == 1) {
+//            txt_pre_especificacion.setBackground(Color.RED);
+//        } else {
+//            txt_pre_especificacion.setBackground(Color.GREEN);
+//        }
+//                
+//        //VALIDACION PROTOCOLOS
+//        if (combo_pre_protocolos.getSelectedIndex() == 0) {
+//            txt_pre_protocolo.setBackground(Color.GRAY);
+//        } else if (combo_pre_protocolos.getSelectedIndex() == 1) {
+//            txt_pre_protocolo.setBackground(Color.RED);
+//        } else {
+//            txt_pre_protocolo.setBackground(Color.GREEN);
+//        }
+//            
+//        //VALIDACION RU
+//        if (combo_pre_RU.getSelectedIndex() == 0) {
+//            txt_pre_RU.setBackground(Color.GRAY);
+//        } else if (combo_pre_RU.getSelectedIndex() == 1) {
+//            txt_pre_RU.setBackground(Color.RED);
+//        } else {
+//            txt_pre_RU.setBackground(Color.GREEN);
+//        }        
+//        
+//        //VALIDACION LIBRO
+//        if (combo_pre_libro.getSelectedIndex() == 0) {
+//            txt_pre_libro.setBackground(Color.GRAY);
+//        } else if (combo_pre_libro.getSelectedIndex() == 1) {
+//            txt_pre_libro.setBackground(Color.RED);
+//        } else {
+//            txt_pre_libro.setBackground(Color.GREEN);
+//        }
+//                
+//        //VALIDACION BR
+//        if (combo_pre_BR.getSelectedIndex() == 0) {
+//            txt_pre_BR.setBackground(Color.GRAY);
+//        } else if (combo_pre_BR.getSelectedIndex() == 1) {
+//            txt_pre_BR.setBackground(Color.RED);
+//        } else {
+//            txt_pre_BR.setBackground(Color.GREEN);
+//        }
+//        
+//        //VALIDACION SOP
+//        if (combo_pre_SOP.getSelectedIndex() == 0) {
+//            txt_pre_SOP.setBackground(Color.GRAY);
+//        } else if (combo_pre_SOP.getSelectedIndex() == 1) {
+//            txt_pre_SOP.setBackground(Color.RED);
+//        } else {
+//            txt_pre_SOP.setBackground(Color.GREEN);
+//        }
+//                
+//         //VALIDACION HOJA DE VIDA
+//        if (combo_pre_hoja.getSelectedIndex() == 0) {
+//            txt_pre_hoja.setBackground(Color.GRAY);
+//        } else if (combo_pre_hoja.getSelectedIndex() == 1) {
+//            txt_pre_hoja.setBackground(Color.RED);
+//        } else {
+//            txt_pre_hoja.setBackground(Color.GREEN);
+//        }
+//        
+//         //VALIDACION RUTINA DE MANTENIMEINTO
+//        if (combo_pre_rutinas.getSelectedIndex() == 0) {
+//            txt_pre_rutinas.setBackground(Color.GRAY);
+//        } else if (combo_pre_rutinas.getSelectedIndex() == 1) {
+//            txt_pre_rutinas.setBackground(Color.RED);
+//        } else {
+//            txt_pre_rutinas.setBackground(Color.GREEN);
+//        }
+//        
+//         //VALIDACION CERTIFICADO
+//        if (combo_pre_certificado.getSelectedIndex() == 0) {
+//            txt_pre_certificado.setBackground(Color.GRAY);
+//        } else if (combo_pre_certificado.getSelectedIndex() == 1) {
+//            txt_pre_certificado.setBackground(Color.RED);
+//        } else {
+//            txt_pre_certificado.setBackground(Color.GREEN);
+//        }
+//        
+//         //VALIDACION PLANOS
+//        if (combo_pre_planos.getSelectedIndex() == 0) {
+//            txt_pre_planos.setBackground(Color.GRAY);
+//        } else if (combo_pre_planos.getSelectedIndex() == 1) {
+//            txt_pre_planos.setBackground(Color.RED);
+//        } else {
+//            txt_pre_planos.setBackground(Color.GREEN);
+//        }
+//        
+//         //VALIDACION MANUALES
+//        if (combo_pre_manual.getSelectedIndex() == 0) {
+//            txt_pre_manual.setBackground(Color.GRAY);
+//        } else if (combo_pre_manual.getSelectedIndex() == 1) {
+//            txt_pre_manual.setBackground(Color.RED);
+//        } else {
+//            txt_pre_manual.setBackground(Color.GREEN);
+//        }
+//        
+//         //VALIDACION MATERIALES
+//        if (combo_pre_materiales.getSelectedIndex() == 0) {
+//            txt_pre_materiales.setBackground(Color.GRAY);
+//        } else if (combo_pre_materiales.getSelectedIndex() == 1) {
+//            txt_pre_materiales.setBackground(Color.RED);
+//        } else {
+//            txt_pre_materiales.setBackground(Color.GREEN);
+//        }
+//        
+//         //VALIDACION RECURSOS
+//        if (combo_pre_recursos.getSelectedIndex() == 0) {
+//            txt_pre_recursos.setBackground(Color.GRAY);
+//        } else if (combo_pre_recursos.getSelectedIndex() == 1) {
+//            txt_pre_recursos.setBackground(Color.RED);
+//        } else {
+//            txt_pre_recursos.setBackground(Color.GREEN);
+//        }
+//        
+//         //VALIDACION ENTRENAMIENTO
+//        if (combo_pre_entrenamiento.getSelectedIndex() == 0) {
+//            txt_pre_entrenamiento.setBackground(Color.GRAY);
+//        } else if (combo_pre_entrenamiento.getSelectedIndex() == 1) {
+//            txt_pre_entrenamiento.setBackground(Color.RED);
+//        } else {
+//            txt_pre_entrenamiento.setBackground(Color.GREEN);
+//        }
+//    }
+
 }

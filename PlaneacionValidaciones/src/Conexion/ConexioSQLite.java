@@ -178,6 +178,7 @@ public class ConexioSQLite {
         }
     }
 
+    //METODO DE ACTUALIZAR REGISTROS
     public boolean upgrade(String REGISTRO,
             String GCC,
             String NOMBRE,
@@ -226,6 +227,7 @@ public class ConexioSQLite {
         }
     }
 
+    //METODO DE ACTUALIZAR PREREQUISITOS
     public boolean upgrade_pre_calificacion(String REGISTRO,
             String ESPECIFICACION,
             String PROTOCOLO,

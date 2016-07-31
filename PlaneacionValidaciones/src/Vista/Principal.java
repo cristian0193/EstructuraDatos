@@ -50,9 +50,6 @@ public class Principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        txt_estado_reprogramacion = new javax.swing.JTextField();
-        txt_estado_pre_calificacion = new javax.swing.JTextField();
-        txt_estado_pre_proceso = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txt_observaciones_proyecto = new javax.swing.JTextArea();
@@ -187,7 +184,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, 190, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 190, -1));
 
         jButton2.setText("Prerequisitos de Proceso");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -195,7 +192,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, 190, -1));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 190, -1));
 
         jButton3.setText("Reprogramacion");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -203,19 +200,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 150, 190, -1));
-
-        txt_estado_reprogramacion.setEditable(false);
-        txt_estado_reprogramacion.setText("No Reprogramado");
-        jPanel2.add(txt_estado_reprogramacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 150, 120, -1));
-
-        txt_estado_pre_calificacion.setEditable(false);
-        txt_estado_pre_calificacion.setText("No Ingresado");
-        jPanel2.add(txt_estado_pre_calificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 90, 120, -1));
-
-        txt_estado_pre_proceso.setEditable(false);
-        txt_estado_pre_proceso.setText("No Ingresado");
-        jPanel2.add(txt_estado_pre_proceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 120, 120, -1));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, 190, -1));
 
         jLabel10.setText("Observaciones :");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, -1, 20));
@@ -433,6 +418,8 @@ public class Principal extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         PrerequisitoProceso proceso = new PrerequisitoProceso();
         proceso.setVisible(true);
+        
+        proceso.txt_registro_principal.setText(txt_registro.getText());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -720,9 +707,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable tabla_contenido;
     private javax.swing.JTextField txt_GCC;
     private javax.swing.JTextField txt_consulta_lider;
-    private javax.swing.JTextField txt_estado_pre_calificacion;
-    private javax.swing.JTextField txt_estado_pre_proceso;
-    private javax.swing.JTextField txt_estado_reprogramacion;
     private javax.swing.JTextField txt_fecha_propuesta;
     private javax.swing.JTextField txt_lider;
     private javax.swing.JTextField txt_lotes;
@@ -784,7 +768,8 @@ public class Principal extends javax.swing.JFrame {
                 + "FECHA_PROPUESTA AS FECHA, "
                 + "ESTADO_PROYECTO AS ESTADO "
                 + "FROM "
-                + "PLANEACIONES_VALIDACION;";
+                + "PLANEACIONES_VALIDACION "
+                + "ORDER BY FECHA_PROPUESTA DESC;";
 
         try {
             Statement st = cn.createStatement();

@@ -27,14 +27,22 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jButton1" min="-2" pref="142" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               <Component id="jButton2" min="-2" pref="142" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
           </Group>
           <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="txt_registro_principal" min="-2" pref="48" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -42,7 +50,12 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jLabel1" min="-2" pref="39" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txt_registro_principal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -50,7 +63,7 @@
                   <Component id="jButton1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jButton2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -125,12 +138,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txt_pre_calificacion" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txt_pre_HFM" alignment="1" pref="63" max="32767" attributes="0"/>
-                      <Component id="txt_pre_especificacion" alignment="1" pref="63" max="32767" attributes="0"/>
-                      <Component id="txt_pre_test" alignment="1" pref="63" max="32767" attributes="0"/>
-                      <Component id="txt_pre_protocolo" alignment="1" pref="63" max="32767" attributes="0"/>
-                      <Component id="txt_pre_materiales" alignment="0" pref="63" max="32767" attributes="0"/>
-                      <Component id="txt_pre_DP" alignment="1" pref="63" max="32767" attributes="0"/>
+                      <Component id="txt_pre_HFM" alignment="1" pref="60" max="32767" attributes="0"/>
+                      <Component id="txt_pre_especificacion" alignment="1" pref="60" max="32767" attributes="0"/>
+                      <Component id="txt_pre_test" alignment="1" pref="60" max="32767" attributes="0"/>
+                      <Component id="txt_pre_protocolo" alignment="1" pref="60" max="32767" attributes="0"/>
+                      <Component id="txt_pre_materiales" alignment="0" pref="60" max="32767" attributes="0"/>
+                      <Component id="txt_pre_DP" alignment="1" pref="60" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -181,13 +194,13 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txt_pre_diagrama" max="32767" attributes="0"/>
-                      <Component id="txt_pre_FMEA" alignment="1" pref="63" max="32767" attributes="0"/>
-                      <Component id="txt_pre_PR" alignment="1" pref="63" max="32767" attributes="0"/>
-                      <Component id="txt_pre_PF" alignment="1" pref="63" max="32767" attributes="0"/>
-                      <Component id="txt_pre_RM" alignment="1" pref="63" max="32767" attributes="0"/>
-                      <Component id="txt_pre_PC" alignment="0" pref="63" max="32767" attributes="0"/>
-                      <Component id="txt_pre_CG" alignment="1" pref="63" max="32767" attributes="0"/>
-                      <Component id="txt_pre_FP" alignment="1" pref="63" max="32767" attributes="0"/>
+                      <Component id="txt_pre_FMEA" alignment="1" pref="59" max="32767" attributes="0"/>
+                      <Component id="txt_pre_PR" alignment="1" pref="59" max="32767" attributes="0"/>
+                      <Component id="txt_pre_PF" alignment="1" pref="59" max="32767" attributes="0"/>
+                      <Component id="txt_pre_RM" alignment="1" pref="59" max="32767" attributes="0"/>
+                      <Component id="txt_pre_PC" alignment="0" pref="59" max="32767" attributes="0"/>
+                      <Component id="txt_pre_CG" alignment="1" pref="59" max="32767" attributes="0"/>
+                      <Component id="txt_pre_FP" alignment="1" pref="59" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -301,7 +314,7 @@
                       <Component id="combo_pre_FP" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_pre_FP" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -587,34 +600,79 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_diagrama">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_FMEA">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_PR">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_PF">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_RM">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_PC">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_CG">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_FP">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_calificacion">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_HFM">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_especificacion">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_test">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_protocolo">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_materiales">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_pre_DP">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -622,6 +680,29 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cargar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel17">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Numero Registro :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txt_registro_principal">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
