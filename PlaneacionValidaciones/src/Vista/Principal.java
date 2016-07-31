@@ -36,7 +36,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         date_fecha_propuesta = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
-        combo_estado = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         combo_maquina = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
@@ -63,6 +62,7 @@ public class Principal extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         txt_fecha_propuesta = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
+        combo_estado1 = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_contenido = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
@@ -73,6 +73,8 @@ public class Principal extends javax.swing.JFrame {
         txt_consulta_lider = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         txt_registro = new javax.swing.JTextField();
+        combo_consulta = new javax.swing.JComboBox();
+        jLabel16 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,17 +104,15 @@ public class Principal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 856, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 844, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 11, 905, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 11, 905, 50));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Informacion Relevante"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -136,14 +136,6 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel4.setText("Planta :");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 50, 20));
-
-        combo_estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Programado", "No Ejecutado", "En Ejecucion", "Pendientes Requisitos", "No cumple IQ", "No cumple OQ", "No cumple PQ", "No cumple Valiacion de Proceso", "Ejecutado sin RR", "Ejecutado con RR", "Otros" }));
-        combo_estado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo_estadoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(combo_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 180, -1));
 
         jLabel5.setText("Maquina :");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 60, 20));
@@ -202,12 +194,15 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 150, 190, -1));
 
         txt_estado_reprogramacion.setEditable(false);
+        txt_estado_reprogramacion.setText("No Reprogramado");
         jPanel2.add(txt_estado_reprogramacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 150, 100, -1));
 
         txt_estado_pre_calificacion.setEditable(false);
+        txt_estado_pre_calificacion.setText("No Ingresado");
         jPanel2.add(txt_estado_pre_calificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 90, 100, -1));
 
         txt_estado_pre_proceso.setEditable(false);
+        txt_estado_pre_proceso.setText("No Ingresado");
         jPanel2.add(txt_estado_pre_proceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 120, 100, -1));
 
         jLabel10.setText("Observaciones :");
@@ -231,6 +226,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(combo_planta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 180, -1));
 
         jButton4.setText("Limpiar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 80, -1));
 
         txt_turnos.addActionListener(new java.awt.event.ActionListener() {
@@ -257,7 +257,20 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(txt_fecha_propuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 120, -1));
 
         jButton7.setText("Actualizar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 80, -1));
+
+        combo_estado1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Programado", "No Ejecutado", "En Ejecucion", "Pendientes Requisitos", "No cumple IQ", "No cumple OQ", "No cumple PQ", "No cumple Valiacion de Proceso", "Ejecutado sin RR", "Ejecutado con RR", "Otros" }));
+        combo_estado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_estado1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(combo_estado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 180, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, 990, 340));
 
@@ -287,16 +300,20 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 420, 80, 30));
 
         date_fecha_inicio.setDateFormatString("yyyy-MM-dd");
+        date_fecha_inicio.setEnabled(false);
         getContentPane().add(date_fecha_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 120, 30));
 
         jLabel14.setText("Fecha Final :");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 70, 30));
 
         date_fecha_final.setDateFormatString("yyyy-MM-dd");
+        date_fecha_final.setEnabled(false);
         getContentPane().add(date_fecha_final, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, 120, 30));
 
-        jLabel15.setText("Lider Tecnico :");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, -1, 20));
+        jLabel15.setText("Seleccionar Filtro :");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, -1, 20));
+
+        txt_consulta_lider.setEditable(false);
         getContentPane().add(txt_consulta_lider, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, 200, -1));
 
         jButton5.setText("Buscar");
@@ -305,7 +322,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 110, -1));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 460, 110, -1));
 
         txt_registro.setEditable(false);
         txt_registro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -313,12 +330,28 @@ public class Principal extends javax.swing.JFrame {
         txt_registro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getContentPane().add(txt_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 10, 70, 50));
 
+        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "LIDER TECNICO" }));
+        combo_consulta.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo_consultaItemStateChanged(evt);
+            }
+        });
+        combo_consulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_consultaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(combo_consulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 200, -1));
+
+        jLabel16.setText("Lider Tecnico :");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, -1, 20));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void combo_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_estadoActionPerformed
+    private void combo_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_consultaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combo_estadoActionPerformed
+    }//GEN-LAST:event_combo_consultaActionPerformed
 
     private void txt_lotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_lotesActionPerformed
         // TODO add your handling code here:
@@ -369,7 +402,7 @@ public class Principal extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat(formato);
         String fecha_ingresada = String.valueOf(sdf.format(date));
 
-        String estado = combo_estado.getSelectedItem().toString();
+        String estado = combo_consulta.getSelectedItem().toString();
         String observaciones = txt_observaciones_proyecto.getText();
 
         boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider.toUpperCase(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "", "");
@@ -399,7 +432,7 @@ public class Principal extends javax.swing.JFrame {
         this.txt_lotes.setText(tabla_contenido.getValueAt(rec, 7).toString());
         this.txt_turnos.setText(tabla_contenido.getValueAt(rec, 8).toString());
         this.txt_fecha_propuesta.setText(tabla_contenido.getValueAt(rec, 9).toString());
-        this.combo_estado.setSelectedItem(tabla_contenido.getValueAt(rec, 10).toString());
+        this.combo_consulta.setSelectedItem(tabla_contenido.getValueAt(rec, 10).toString());
 
     }//GEN-LAST:event_tabla_contenidoMouseClicked
 
@@ -412,19 +445,115 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
-        String formato1 = date_fecha_inicio.getDateFormatString();
-        Date date1 = (Date) date_fecha_inicio.getDate();
-        SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
-        String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
+        int index = combo_consulta.getSelectedIndex();
 
-        String formato2 = date_fecha_final.getDateFormatString();
-        Date date2 = (Date) date_fecha_final.getDate();
-        SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-        String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
+        if (index == 0) {
+            JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
+        } else if (index == 1) {
+            
+            
+            if(this.date_fecha_inicio.getDate() == null){
+                JOptionPane.showMessageDialog(null, "INGRESE FECHA INICIAL");
+            }else if(this.date_fecha_final.getDate() == null){
+                JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
+            }else{
+                String formato1 = date_fecha_inicio.getDateFormatString();
+            Date date1 = (Date) date_fecha_inicio.getDate();
+            SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
+            String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
 
-        consulta_rango_fechas(fecha_ingresada_inicio,fecha_ingresada_final);
+            String formato2 = date_fecha_final.getDateFormatString();
+            Date date2 = (Date) date_fecha_final.getDate();
+            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+            String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
+
+            consulta_rango_fechas(fecha_ingresada_inicio, fecha_ingresada_final);
+            }
+                                    
+        } else {
+            
+            String lider = txt_consulta_lider.getText(); 
+            
+            if(lider.equals("") ){
+                JOptionPane.showMessageDialog(null, "INGRESE LIDER TECNICO");
+            }else{
+                 consulta_lider(lider);
+            }
+            
+                         
+             
+            
+        }
+
 
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        LimpiarCampos();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+
+        if (this.txt_registro.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA");
+        } else if (this.date_fecha_propuesta.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "INGRESE FECHA PROPUESTA");
+        } else {
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
+            String registro = txt_registro.getText();
+            String gcc = txt_GCC.getText();
+            String nombre = txt_proyecto.getText();
+            String tipo = combo_tipo.getSelectedItem().toString();
+            String lider = txt_lider.getText();
+            String planta = combo_planta.getSelectedItem().toString();
+            String maquina = combo_maquina.getSelectedItem().toString();
+            String lote = txt_lotes.getText();
+            String turno = txt_turnos.getText();
+            String estado = combo_consulta.getSelectedItem().toString();
+            String observaciones = txt_observaciones_proyecto.getText();
+
+            String formato = date_fecha_propuesta.getDateFormatString();
+            Date date = (Date) date_fecha_propuesta.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            String fecha_ingresada = String.valueOf(sdf.format(date));
+
+            boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase());
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                LimpiarCampos();
+                cargar_tabla();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                LimpiarCampos();
+            }
+        }
+
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void combo_estado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_estado1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_estado1ActionPerformed
+
+    private void combo_consultaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_consultaItemStateChanged
+
+        int index = combo_consulta.getSelectedIndex();
+
+        if (index == 0) {
+            JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
+        } else if (index == 1) {
+            this.date_fecha_inicio.setEnabled(true);
+            this.date_fecha_final.setEnabled(true);
+            this.txt_consulta_lider.setEditable(false);
+        } else {
+            this.txt_consulta_lider.setEditable(true);
+            this.date_fecha_inicio.setEnabled(false);
+            this.date_fecha_final.setEnabled(false);
+        }
+
+
+    }//GEN-LAST:event_combo_consultaItemStateChanged
     /**
      * @param args the command line arguments
      */
@@ -460,7 +589,8 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox combo_estado;
+    private javax.swing.JComboBox combo_consulta;
+    private javax.swing.JComboBox combo_estado1;
     private javax.swing.JComboBox combo_maquina;
     private javax.swing.JComboBox combo_planta;
     private javax.swing.JComboBox combo_tipo;
@@ -481,6 +611,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -511,6 +642,7 @@ public class Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void LimpiarCampos() {
+        txt_registro.setText("");
         txt_GCC.setText("");
         txt_proyecto.setText("");
         combo_tipo.setSelectedIndex(0);
@@ -520,7 +652,8 @@ public class Principal extends javax.swing.JFrame {
         txt_lotes.setText("");
         txt_turnos.setText("");
         date_fecha_propuesta.setDate(null);
-        combo_estado.setSelectedIndex(0);
+        txt_fecha_propuesta.setText("");
+        combo_consulta.setSelectedIndex(0);
         txt_observaciones_proyecto.setText("");
     }
 
@@ -611,7 +744,6 @@ public class Principal extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "';";
-        System.out.println(query);
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -640,4 +772,61 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
+    void consulta_lider(String lider) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO"};
+        String[] registro = new String[11];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "NUMERO_REGISTRO AS NUM, "
+                + "GCC_APR AS GCC, "
+                + "NOMBRE_PROYECTO AS PROYECTO, "
+                + "TIPO_VALIDACION AS TIPO, "
+                + "LIDER_TECNICO AS LIDER, "
+                + "PLANTA AS PLANTA, "
+                + "MAQUINA AS MAQUINA, "
+                + "LOTE AS LOTE, "
+                + "TURNOS AS TURNO, "
+                + "FECHA_PROPUESTA AS FECHA, "
+                + "ESTADO_PROYECTO AS ESTADO "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE "
+                + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%';";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("NUM");
+                registro[1] = rs.getString("GCC");
+                registro[2] = rs.getString("PROYECTO");
+                registro[3] = rs.getString("TIPO");
+                registro[4] = rs.getString("LIDER");
+                registro[5] = rs.getString("PLANTA");
+                registro[6] = rs.getString("MAQUINA");
+                registro[7] = rs.getString("LOTE");
+                registro[8] = rs.getString("TURNO");
+                registro[9] = rs.getString("FECHA");
+                registro[10] = rs.getString("ESTADO");
+
+                modelo.addRow(registro);
+            }
+            tabla_contenido.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
 }

@@ -6,8 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
 
 public class ConexioSQLite {
 
@@ -33,6 +32,24 @@ public class ConexioSQLite {
             System.err.println(e.getMessage());
             System.out.println("CONECTO MAL ....");
         }
+    }
+
+    //METODO CONECTAR TABLAS
+    public Connection Conectar() {
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        try {
+            conectar = DriverManager.getConnection("jdbc:sqlite:ValidacionesSQLite.db");
+            System.out.println("CONECTO BIEN TABLA ........");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return conectar;
     }
 
 //METODOS DE DESCONEXION
@@ -162,22 +179,52 @@ public class ConexioSQLite {
         }
     }
 
-//METODO 
-  public Connection Conectar() {
+    public boolean upgrade(String REGISTRO,
+            String GCC,            
+            String NOMBRE,
+            String TIPO,
+            String LIDER,
+            String PLANTA,
+            String MAQUINA,
+            String LOTE,
+            String TURNO,
+            String FECHA_PROPUESTA,
+            String ESTADO,
+            String OBSERVACION) {
 
         try {
-            Class.forName("org.sqlite.JDBC");
-        } catch (Exception e) {
+
+            query = "UPDATE"
+                    + " PLANEACIONES_VALIDACION"
+                    + " SET "
+                    + "  GCC_APR = '"+ GCC +"',"
+                    + "  NOMBRE_PROYECTO = '"+ NOMBRE +"',"
+                    + "  TIPO_VALIDACION = '"+ TIPO +"',"
+                    + "  LIDER_TECNICO = '"+ LIDER +"',"
+                    + "  PLANTA = '"+ PLANTA +"',"
+                    + "  MAQUINA = '"+ MAQUINA +"',"
+                    + "  LOTE = '"+ LOTE +"',"
+                    + "  TURNOS = '"+ TURNO +"',"
+                    + "  FECHA_PROPUESTA = '"+ FECHA_PROPUESTA +"',"
+                    + "  ESTADO_PROYECTO = '"+ ESTADO +"',"
+                    + "  OBSERVACIONES_VALIDACION = '"+ OBSERVACION +"'"
+                    + " WHERE"
+                    + "  NUMERO_REGISTRO = "+ REGISTRO +";";
+
+            System.out.println(query);
+
+            sentencia.executeUpdate(query);
+            System.out.println("ACTUALIZADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
             System.err.println(e.getMessage());
-        }
-        
-        try {
-            conectar = DriverManager.getConnection("jdbc:sqlite:ValidacionesSQLite.db");
-            System.out.println("CONECTO BIEN TABLA ........");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return conectar;
+            System.out.println("NO ACTUALIZADO ...");
+            return false;
 
+        }
     }
+
 }
