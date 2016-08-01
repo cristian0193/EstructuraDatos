@@ -109,6 +109,8 @@ public class Reprogramacion extends javax.swing.JFrame {
 
         txt_palabra_clave_consulta.setEnabled(false);
 
+        jButton1.setBackground(new java.awt.Color(102, 255, 255));
+        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
