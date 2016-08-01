@@ -81,6 +81,8 @@ public class Principal extends javax.swing.JFrame {
         txt_registro = new javax.swing.JTextField();
         combo_consulta = new javax.swing.JComboBox();
         jLabel16 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        txt_consulta_registro = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -353,7 +355,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(date_fecha_final, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, 120, 30));
 
         jLabel15.setText("Seleccionar Filtro :");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, -1, 20));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, -1, 20));
 
         txt_consulta_lider.setEditable(false);
         getContentPane().add(txt_consulta_lider, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, 200, -1));
@@ -364,7 +366,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 460, 110, -1));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 460, 110, -1));
 
         txt_registro.setEditable(false);
         txt_registro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -372,7 +374,7 @@ public class Principal extends javax.swing.JFrame {
         txt_registro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getContentPane().add(txt_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 10, 70, 50));
 
-        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "LIDER TECNICO" }));
+        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "LIDER TECNICO", "REGISTRO" }));
         combo_consulta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combo_consultaItemStateChanged(evt);
@@ -383,10 +385,16 @@ public class Principal extends javax.swing.JFrame {
                 combo_consultaActionPerformed(evt);
             }
         });
-        getContentPane().add(combo_consulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 200, -1));
+        getContentPane().add(combo_consulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, 200, -1));
 
         jLabel16.setText("Lider Tecnico :");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, -1, 20));
+
+        jLabel25.setText("Registro :");
+        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, 60, 20));
+
+        txt_consulta_registro.setEditable(false);
+        getContentPane().add(txt_consulta_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 90, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -410,7 +418,7 @@ public class Principal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         PrerequisitoCalificacion calificacion = new PrerequisitoCalificacion();
         calificacion.setVisible(true);
-        
+
         calificacion.txt_registro_principal.setText(txt_registro.getText());
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -418,7 +426,7 @@ public class Principal extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         PrerequisitoProceso proceso = new PrerequisitoProceso();
         proceso.setVisible(true);
-        
+
         proceso.txt_registro_principal.setText(txt_registro.getText());
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -433,50 +441,50 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
-        if (txt_GCC.getText().equals("") || txt_proyecto.getText().equals("") || combo_tipo.getSelectedIndex() == 0 || txt_lider.getText().equals("") ||
-            combo_planta.getSelectedIndex() == 0 || combo_maquina.getSelectedIndex() == 0  || date_fecha_propuesta.getDate() == null || 
-            combo_estado1.getSelectedIndex() == 0) {
+        if (txt_GCC.getText().equals("") || txt_proyecto.getText().equals("") || combo_tipo.getSelectedIndex() == 0 || txt_lider.getText().equals("")
+                || combo_planta.getSelectedIndex() == 0 || combo_maquina.getSelectedIndex() == 0 || date_fecha_propuesta.getDate() == null
+                || combo_estado1.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS OBLIGATORIOS (*)");
         } else {
-            
+
             String lotes = txt_lotes.getText();
             String turnos = txt_turnos.getText();
-                                                
-            if(!isNumeric(lotes)){
-                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
-            }else if(!isNumeric(turnos)){
-                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
-            }else{
-            conexion = new ConexioSQLite();
-            conexion.coneccionbase();
-            String gcc = txt_GCC.getText();
-            String nombre = txt_proyecto.getText();
-            String tipo = combo_tipo.getSelectedItem().toString();
-            String lider = txt_lider.getText();
-            String planta = combo_planta.getSelectedItem().toString();
-            String maquina = combo_maquina.getSelectedItem().toString();
-            String lote = txt_lotes.getText();
-            String turno = txt_turnos.getText();
 
-            String formato = date_fecha_propuesta.getDateFormatString();
-            Date date = (Date) date_fecha_propuesta.getDate();
-            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-            String fecha_ingresada = String.valueOf(sdf.format(date));
-
-            String estado = combo_estado1.getSelectedItem().toString();
-            String observaciones = txt_observaciones_proyecto.getText();
-
-            boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider.toUpperCase(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "", "");
-
-            if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
-                LimpiarCampos();
-                cargar_tabla();
+            if (!isNumeric(lotes)) {
+                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
+            } else if (!isNumeric(turnos)) {
+                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                LimpiarCampos();
+                conexion = new ConexioSQLite();
+                conexion.coneccionbase();
+                String gcc = txt_GCC.getText();
+                String nombre = txt_proyecto.getText();
+                String tipo = combo_tipo.getSelectedItem().toString();
+                String lider = txt_lider.getText();
+                String planta = combo_planta.getSelectedItem().toString();
+                String maquina = combo_maquina.getSelectedItem().toString();
+                String lote = txt_lotes.getText();
+                String turno = txt_turnos.getText();
+
+                String formato = date_fecha_propuesta.getDateFormatString();
+                Date date = (Date) date_fecha_propuesta.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                String estado = combo_estado1.getSelectedItem().toString();
+                String observaciones = txt_observaciones_proyecto.getText();
+
+                boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider.toUpperCase(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "", "");
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
+                    LimpiarCampos();
+                    cargar_tabla();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                    LimpiarCampos();
+                }
             }
-            }                        
         }
 
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -532,7 +540,7 @@ public class Principal extends javax.swing.JFrame {
                 consulta_rango_fechas(fecha_ingresada_inicio, fecha_ingresada_final);
             }
 
-        } else {
+        } else if (index == 2) {
 
             String lider = txt_consulta_lider.getText();
 
@@ -542,6 +550,14 @@ public class Principal extends javax.swing.JFrame {
                 consulta_lider(lider);
             }
 
+        } else {
+             String registro = txt_consulta_registro.getText();
+
+            if (registro.equals("")) {
+                JOptionPane.showMessageDialog(null, "INGRESE REGISTRO NUMERICO");
+            } else {
+                consulta_registro(registro);
+            }   
         }
 
 
@@ -558,46 +574,46 @@ public class Principal extends javax.swing.JFrame {
         } else if (this.date_fecha_propuesta.getDate() == null) {
             JOptionPane.showMessageDialog(null, "INGRESE FECHA PROPUESTA");
         } else {
-            
+
             String lotes = txt_lotes.getText();
             String turnos = txt_turnos.getText();
-            
-            if(!isNumeric(lotes)){
-                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
-            }else if(!isNumeric(turnos)){
-                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
-            }else{
-            conexion = new ConexioSQLite();
-            conexion.coneccionbase();
-            String registro = txt_registro.getText();
-            String gcc = txt_GCC.getText();
-            String nombre = txt_proyecto.getText();
-            String tipo = combo_tipo.getSelectedItem().toString();
-            String lider = txt_lider.getText();
-            String planta = combo_planta.getSelectedItem().toString();
-            String maquina = combo_maquina.getSelectedItem().toString();
-            String lote = txt_lotes.getText();
-            String turno = txt_turnos.getText();
-            String estado = combo_consulta.getSelectedItem().toString();
-            String observaciones = txt_observaciones_proyecto.getText();
 
-            String formato = date_fecha_propuesta.getDateFormatString();
-            Date date = (Date) date_fecha_propuesta.getDate();
-            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-            String fecha_ingresada = String.valueOf(sdf.format(date));
-
-            boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase());
-
-            if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                LimpiarCampos();
-                cargar_tabla();
+            if (!isNumeric(lotes)) {
+                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
+            } else if (!isNumeric(turnos)) {
+                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                LimpiarCampos();
+                conexion = new ConexioSQLite();
+                conexion.coneccionbase();
+                String registro = txt_registro.getText();
+                String gcc = txt_GCC.getText();
+                String nombre = txt_proyecto.getText();
+                String tipo = combo_tipo.getSelectedItem().toString();
+                String lider = txt_lider.getText();
+                String planta = combo_planta.getSelectedItem().toString();
+                String maquina = combo_maquina.getSelectedItem().toString();
+                String lote = txt_lotes.getText();
+                String turno = txt_turnos.getText();
+                String estado = combo_consulta.getSelectedItem().toString();
+                String observaciones = txt_observaciones_proyecto.getText();
+
+                String formato = date_fecha_propuesta.getDateFormatString();
+                Date date = (Date) date_fecha_propuesta.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase());
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                    LimpiarCampos();
+                    cargar_tabla();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                    LimpiarCampos();
+                }
             }
-            }            
-            
+
         }
 
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -616,8 +632,13 @@ public class Principal extends javax.swing.JFrame {
             this.date_fecha_inicio.setEnabled(true);
             this.date_fecha_final.setEnabled(true);
             this.txt_consulta_lider.setEditable(false);
-        } else {
+        } else if (index == 2) {
             this.txt_consulta_lider.setEditable(true);
+            this.date_fecha_inicio.setEnabled(false);
+            this.date_fecha_final.setEnabled(false);
+        } else {
+            this.txt_consulta_registro.setEditable(true);
+            this.txt_consulta_lider.setEditable(false);
             this.date_fecha_inicio.setEnabled(false);
             this.date_fecha_final.setEnabled(false);
         }
@@ -691,6 +712,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -707,6 +729,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable tabla_contenido;
     private javax.swing.JTextField txt_GCC;
     private javax.swing.JTextField txt_consulta_lider;
+    private javax.swing.JTextField txt_consulta_registro;
     private javax.swing.JTextField txt_fecha_propuesta;
     private javax.swing.JTextField txt_lider;
     private javax.swing.JTextField txt_lotes;
@@ -732,15 +755,15 @@ public class Principal extends javax.swing.JFrame {
         txt_observaciones_proyecto.setText("");
     }
 
-    private boolean isNumeric(String cadena){
-	try {
-		Double.parseDouble(cadena);
-		return true;
-	} catch (NumberFormatException nfe){
-		return false;
-	}
-}
-    
+    private boolean isNumeric(String cadena) {
+        try {
+            Double.parseDouble(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
     void cargar_tabla() {
 
         conexion = new ConexioSQLite();
@@ -915,7 +938,64 @@ public class Principal extends javax.swing.JFrame {
 
         }
     }
-    
-    
+
+    void consulta_registro(String registro) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO"};
+        String[] registros = new String[11];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "NUMERO_REGISTRO AS NUM, "
+                + "GCC_APR AS GCC, "
+                + "NOMBRE_PROYECTO AS PROYECTO, "
+                + "TIPO_VALIDACION AS TIPO, "
+                + "LIDER_TECNICO AS LIDER, "
+                + "PLANTA AS PLANTA, "
+                + "MAQUINA AS MAQUINA, "
+                + "LOTE AS LOTE, "
+                + "TURNOS AS TURNO, "
+                + "FECHA_PROPUESTA AS FECHA, "
+                + "ESTADO_PROYECTO AS ESTADO "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE "
+                + " NUMERO_REGISTRO = " + registro + ";";
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registros[0] = rs.getString("NUM");
+                registros[1] = rs.getString("GCC");
+                registros[2] = rs.getString("PROYECTO");
+                registros[3] = rs.getString("TIPO");
+                registros[4] = rs.getString("LIDER");
+                registros[5] = rs.getString("PLANTA");
+                registros[6] = rs.getString("MAQUINA");
+                registros[7] = rs.getString("LOTE");
+                registros[8] = rs.getString("TURNO");
+                registros[9] = rs.getString("FECHA");
+                registros[10] = rs.getString("ESTADO");
+
+                modelo.addRow(registros);
+            }
+            tabla_contenido.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
     
 }
