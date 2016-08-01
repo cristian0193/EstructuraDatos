@@ -52,6 +52,8 @@ public class Reprogramacion extends javax.swing.JFrame {
         date_fecha_nueva = new javax.swing.JTextField();
         txt_fecha_propuesta2 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(910, 590));
@@ -203,7 +205,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         txt_registro_repro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txt_registro_repro.setForeground(new java.awt.Color(255, 0, 0));
         txt_registro_repro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(txt_registro_repro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 120, -1));
+        getContentPane().add(txt_registro_repro, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 120, -1));
 
         jButton2.setBackground(new java.awt.Color(102, 255, 102));
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -213,7 +215,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 120, 50));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 120, 50));
 
         date_fecha_nueva.setEditable(false);
         date_fecha_nueva.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -226,34 +228,55 @@ public class Reprogramacion extends javax.swing.JFrame {
         jLabel8.setText("Nueva Fecha :");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 120, 20));
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("*");
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 20, 20));
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("*");
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 50, 20, 20));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        conexion = new ConexioSQLite();
-        conexion.coneccionbase();
-
-        String registro = txt_registro_repro.getText();
-
-        String formato = date_nueva_fecha.getDateFormatString();
-        Date date = (Date) date_nueva_fecha.getDate();
-        SimpleDateFormat sdf = new SimpleDateFormat(formato);
-        String fecha_ingresada = String.valueOf(sdf.format(date));
-
-        String observaciones = txt_observaciones_reprogramacion.getText();
-
-        boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones);
-
-        if (resultado == true) {
-            JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-            LimpiarCampos();
-            cargar_tabla_reprogramaciones();
-            conexion.cerrar();
+                
+        if(txt_registro_repro.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE LA TABLA");
+        }else if (this.date_nueva_fecha.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "INGRESE NUEVA FECHA");
+        } else if (txt_observaciones_reprogramacion.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE JUSTIFICACION DE REPROGRAMACION");
         } else {
-            JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-            LimpiarCampos();
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
+
+            String registro = txt_registro_repro.getText();
+
+            String formato = date_nueva_fecha.getDateFormatString();
+            Date date = (Date) date_nueva_fecha.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            String fecha_ingresada = String.valueOf(sdf.format(date));
+
+            String observaciones = txt_observaciones_reprogramacion.getText();
+
+            boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones);
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                LimpiarCampos();
+                cargar_tabla_reprogramaciones();
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                LimpiarCampos();
+            }
         }
+
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -305,7 +328,7 @@ public class Reprogramacion extends javax.swing.JFrame {
     }//GEN-LAST:event_combo_consultaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+
         int index = combo_consulta.getSelectedIndex();
 
         if (index == 0) {
@@ -332,7 +355,7 @@ public class Reprogramacion extends javax.swing.JFrame {
             }
 
         } else if (index == 2) {
-            
+
             if (this.txt_fecha_inicio.getDate() == null) {
                 JOptionPane.showMessageDialog(null, "INGRESE FECHA INICIAL");
             } else if (this.txt_fecha_final.getDate() == null) {
@@ -351,8 +374,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 consulta_rango_fechas_reprogramada(fecha_ingresada_inicio, fecha_ingresada_final);
                 conexion.cerrar();
             }
-            
-        }else if(index == 3){   
+
+        } else if (index == 3) {
 
             String lider = txt_lider_consulta.getText();
 
@@ -364,17 +387,17 @@ public class Reprogramacion extends javax.swing.JFrame {
             }
 
         } else {
-             String registro = txt_palabra_clave_consulta.getText();
+            String registro = txt_palabra_clave_consulta.getText();
 
             if (registro.equals("")) {
                 JOptionPane.showMessageDialog(null, "INGRESE REGISTRO NUMERICO");
             } else {
                 consulta_palabra_clave(registro);
                 conexion.cerrar();
-            }   
+            }
         }
 
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -387,6 +410,8 @@ public class Reprogramacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -403,7 +428,7 @@ public class Reprogramacion extends javax.swing.JFrame {
     private javax.swing.JTextField txt_lider_consulta;
     private javax.swing.JTextArea txt_observaciones_reprogramacion;
     private javax.swing.JTextField txt_palabra_clave_consulta;
-    private javax.swing.JTextField txt_registro_repro;
+    public static javax.swing.JTextField txt_registro_repro;
     // End of variables declaration//GEN-END:variables
 
     public void LimpiarCampos() {
@@ -515,7 +540,7 @@ public class Reprogramacion extends javax.swing.JFrame {
 
         }
     }
-    
+
     void consulta_rango_fechas_reprogramada(String fecha_inicio, String fecha_final) {
 
         conexion = new ConexioSQLite();
@@ -618,7 +643,7 @@ public class Reprogramacion extends javax.swing.JFrame {
 
         }
     }
-    
+
     void consulta_palabra_clave(String palabra) {
 
         conexion = new ConexioSQLite();
@@ -669,5 +694,5 @@ public class Reprogramacion extends javax.swing.JFrame {
 
         }
     }
-    
+
 }

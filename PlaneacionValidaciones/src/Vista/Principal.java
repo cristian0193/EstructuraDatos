@@ -355,9 +355,10 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(date_fecha_final, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, 120, 30));
 
         jLabel15.setText("Seleccionar Filtro :");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, -1, 20));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, 120, 20));
 
         txt_consulta_lider.setEditable(false);
+        txt_consulta_lider.setEnabled(false);
         getContentPane().add(txt_consulta_lider, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, 200, -1));
 
         jButton5.setText("Buscar");
@@ -385,7 +386,7 @@ public class Principal extends javax.swing.JFrame {
                 combo_consultaActionPerformed(evt);
             }
         });
-        getContentPane().add(combo_consulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, 200, -1));
+        getContentPane().add(combo_consulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 420, 200, -1));
 
         jLabel16.setText("Lider Tecnico :");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, -1, 20));
@@ -394,6 +395,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, 60, 20));
 
         txt_consulta_registro.setEditable(false);
+        txt_consulta_registro.setEnabled(false);
         getContentPane().add(txt_consulta_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 90, -1));
 
         pack();
@@ -431,8 +433,10 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Reprogramacion reprogramacion = new Reprogramacion();
+         Reprogramacion reprogramacion = new Reprogramacion();
         reprogramacion.setVisible(true);
+
+        reprogramacion.txt_registro_repro.setText(txt_registro.getText());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txt_turnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_turnosActionPerformed
@@ -505,7 +509,8 @@ public class Principal extends javax.swing.JFrame {
         this.txt_turnos.setText(tabla_contenido.getValueAt(rec, 8).toString());
         this.txt_fecha_propuesta.setText(tabla_contenido.getValueAt(rec, 9).toString());
         this.combo_consulta.setSelectedItem(tabla_contenido.getValueAt(rec, 10).toString());
-
+        this.txt_observaciones_proyecto.setText(tabla_contenido.getValueAt(rec, 11).toString());
+        
     }//GEN-LAST:event_tabla_contenidoMouseClicked
 
     private void tabla_contenidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabla_contenidoKeyPressed
@@ -554,14 +559,14 @@ public class Principal extends javax.swing.JFrame {
             }
 
         } else {
-             String registro = txt_consulta_registro.getText();
+            String registro = txt_consulta_registro.getText();
 
             if (registro.equals("")) {
                 JOptionPane.showMessageDialog(null, "INGRESE REGISTRO NUMERICO");
             } else {
                 consulta_registro(registro);
                 conexion.cerrar();
-            }   
+            }
         }
 
 
@@ -637,13 +642,17 @@ public class Principal extends javax.swing.JFrame {
             this.date_fecha_inicio.setEnabled(true);
             this.date_fecha_final.setEnabled(true);
             this.txt_consulta_lider.setEditable(false);
+            this.txt_consulta_lider.setEnabled(false);
         } else if (index == 2) {
             this.txt_consulta_lider.setEditable(true);
+            this.txt_consulta_lider.setEnabled(true);
             this.date_fecha_inicio.setEnabled(false);
             this.date_fecha_final.setEnabled(false);
+            this.txt_consulta_registro.setEnabled(false);
         } else {
             this.txt_consulta_registro.setEditable(true);
-            this.txt_consulta_lider.setEditable(false);
+            this.txt_consulta_registro.setEnabled(true);
+            this.txt_consulta_lider.setEnabled(false);
             this.date_fecha_inicio.setEnabled(false);
             this.date_fecha_final.setEnabled(false);
         }
@@ -774,8 +783,8 @@ public class Principal extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO"};
-        String[] registro = new String[11];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO", "OBSERVA"};
+        String[] registro = new String[12];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -794,7 +803,8 @@ public class Principal extends javax.swing.JFrame {
                 + "LOTE AS LOTE, "
                 + "TURNOS AS TURNO, "
                 + "FECHA_PROPUESTA AS FECHA, "
-                + "ESTADO_PROYECTO AS ESTADO "
+                + "ESTADO_PROYECTO AS ESTADO, "
+                + "OBSERVACIONES_VALIDACION AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "ORDER BY FECHA_PROPUESTA DESC;";
@@ -815,6 +825,7 @@ public class Principal extends javax.swing.JFrame {
                 registro[8] = rs.getString("TURNO");
                 registro[9] = rs.getString("FECHA");
                 registro[10] = rs.getString("ESTADO");
+                registro[11] = rs.getString("OBSERVACION");
 
                 modelo.addRow(registro);
             }
@@ -832,8 +843,8 @@ public class Principal extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO"};
-        String[] registro = new String[11];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO", "OBSERVA"};
+        String[] registro = new String[12];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -852,7 +863,8 @@ public class Principal extends javax.swing.JFrame {
                 + "LOTE AS LOTE, "
                 + "TURNOS AS TURNO, "
                 + "FECHA_PROPUESTA AS FECHA, "
-                + "ESTADO_PROYECTO AS ESTADO "
+                + "ESTADO_PROYECTO AS ESTADO, "
+                + "OBSERVACIONES_VALIDACION AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
@@ -874,6 +886,7 @@ public class Principal extends javax.swing.JFrame {
                 registro[8] = rs.getString("TURNO");
                 registro[9] = rs.getString("FECHA");
                 registro[10] = rs.getString("ESTADO");
+                registro[11] = rs.getString("OBSERVACION");
 
                 modelo.addRow(registro);
             }
@@ -891,8 +904,8 @@ public class Principal extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO"};
-        String[] registro = new String[11];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO", "OBSERVA"};
+        String[] registro = new String[12];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -911,7 +924,8 @@ public class Principal extends javax.swing.JFrame {
                 + "LOTE AS LOTE, "
                 + "TURNOS AS TURNO, "
                 + "FECHA_PROPUESTA AS FECHA, "
-                + "ESTADO_PROYECTO AS ESTADO "
+                + "ESTADO_PROYECTO AS ESTADO, "
+                + "OBSERVACIONES_VALIDACION AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
@@ -932,6 +946,7 @@ public class Principal extends javax.swing.JFrame {
                 registro[8] = rs.getString("TURNO");
                 registro[9] = rs.getString("FECHA");
                 registro[10] = rs.getString("ESTADO");
+                registro[11] = rs.getString("OBSERVACION");
 
                 modelo.addRow(registro);
             }
@@ -949,8 +964,8 @@ public class Principal extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO"};
-        String[] registros = new String[11];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO", "OBSERVA"};
+        String[] registros = new String[12];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -969,7 +984,8 @@ public class Principal extends javax.swing.JFrame {
                 + "LOTE AS LOTE, "
                 + "TURNOS AS TURNO, "
                 + "FECHA_PROPUESTA AS FECHA, "
-                + "ESTADO_PROYECTO AS ESTADO "
+                + "ESTADO_PROYECTO AS ESTADO, "
+                + "OBSERVACIONES_VALIDACION AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
@@ -991,6 +1007,7 @@ public class Principal extends javax.swing.JFrame {
                 registros[8] = rs.getString("TURNO");
                 registros[9] = rs.getString("FECHA");
                 registros[10] = rs.getString("ESTADO");
+                registros[11] = rs.getString("OBSERVACION");
 
                 modelo.addRow(registros);
             }
@@ -1002,5 +1019,5 @@ public class Principal extends javax.swing.JFrame {
 
         }
     }
-    
+
 }
