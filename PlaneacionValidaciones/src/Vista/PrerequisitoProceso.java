@@ -555,8 +555,11 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        conexion = new ConexioSQLite();
+
+        if(txt_registro_principal.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA");
+        }else{
+            conexion = new ConexioSQLite();
         conexion.coneccionbase();
         
         String registro = txt_registro_principal.getText();
@@ -585,6 +588,9 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
                 consulta_pre_proceso(registro);
             }
+        }
+        
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

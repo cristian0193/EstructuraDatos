@@ -546,7 +546,10 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        conexion = new ConexioSQLite();
+        if(txt_registro_principal.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA");
+        }else{
+             conexion = new ConexioSQLite();
         conexion.coneccionbase();
         
         String registro = txt_registro_principal.getText();
@@ -574,6 +577,10 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
                 consulta_pre_calificacion(registro);
             }
+        }
+        
+        
+       
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
