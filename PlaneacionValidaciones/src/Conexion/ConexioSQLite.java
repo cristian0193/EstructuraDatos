@@ -338,4 +338,37 @@ public class ConexioSQLite {
 
         }
     }
+    
+    
+         //METODO DE ACTUALIZAR REPROGRAMACION
+    public boolean upgrade_reprogramacion(String REGISTRO,
+            String FECHA,
+            String OBSERVACIONES) {
+
+        try {
+
+            query = "UPDATE"
+                    + " PLANEACIONES_VALIDACION"
+                    + " SET "
+                    + "  FECHA_REPROGRAMACION = '" + FECHA + "',"
+                    + "  OBSERVACION_REPROGRAMACION = '" + OBSERVACIONES + "'"
+                    + " WHERE"
+                    + "  NUMERO_REGISTRO = " + REGISTRO + ";";
+
+            System.out.println(query);
+
+            sentencia.executeUpdate(query);
+            System.out.println("ACTUALIZADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ACTUALIZADO ...");
+            return false;
+
+        }
+    }
+    
 }

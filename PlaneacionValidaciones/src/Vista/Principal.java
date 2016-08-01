@@ -97,7 +97,7 @@ public class Principal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1030, 670));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -480,6 +480,7 @@ public class Principal extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
                     LimpiarCampos();
                     cargar_tabla();
+                    conexion.cerrar();
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
                     LimpiarCampos();
@@ -538,6 +539,7 @@ public class Principal extends javax.swing.JFrame {
                 String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
 
                 consulta_rango_fechas(fecha_ingresada_inicio, fecha_ingresada_final);
+                conexion.cerrar();
             }
 
         } else if (index == 2) {
@@ -548,6 +550,7 @@ public class Principal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INGRESE LIDER TECNICO");
             } else {
                 consulta_lider(lider);
+                conexion.cerrar();
             }
 
         } else {
@@ -557,6 +560,7 @@ public class Principal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INGRESE REGISTRO NUMERICO");
             } else {
                 consulta_registro(registro);
+                conexion.cerrar();
             }   
         }
 
@@ -608,6 +612,7 @@ public class Principal extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
                     LimpiarCampos();
                     cargar_tabla();
+                    conexion.cerrar();
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
                     LimpiarCampos();
