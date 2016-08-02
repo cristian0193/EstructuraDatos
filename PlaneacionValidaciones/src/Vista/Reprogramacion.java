@@ -1,7 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Principal.conexion;
 import static Vista.Principal.txt_registro;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -54,6 +53,9 @@ public class Reprogramacion extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
+        combo_motivo = new javax.swing.JComboBox();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(910, 590));
@@ -89,7 +91,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_proyectos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 258, 880, 290));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 278, 970, 270));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos para Consultar"));
 
@@ -159,15 +161,12 @@ public class Reprogramacion extends javax.swing.JFrame {
                     .addComponent(txt_palabra_clave_consulta)
                     .addComponent(txt_lider_consulta, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                        .addGap(186, 186, 186))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(12, 12, 12)
-                        .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(jLabel15)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(combo_consulta, 0, 200, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,13 +194,13 @@ public class Reprogramacion extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 890, 110));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 980, 110));
 
         txt_observaciones_reprogramacion.setColumns(20);
         txt_observaciones_reprogramacion.setRows(5);
         jScrollPane2.setViewportView(txt_observaciones_reprogramacion);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 450, 80));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 500, 70));
 
         txt_registro_repro.setEditable(false);
         txt_registro_repro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -227,20 +226,32 @@ public class Reprogramacion extends javax.swing.JFrame {
         txt_fecha_propuesta2.setEditable(false);
         getContentPane().add(txt_fecha_propuesta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 120, -1));
 
-        jLabel8.setText("Nueva Fecha :");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 120, 20));
+        jLabel8.setText("Motivo :");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 70, 20));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 0, 0));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("*");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 20, 20));
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, 20, 20));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 0, 0));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("*");
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 50, 20, 20));
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 80, 20, 20));
+
+        combo_motivo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Cancelado", "Reprogramado", "Prerequisitos No Listos", "No Cumplimiento" }));
+        getContentPane().add(combo_motivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 180, -1));
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("*");
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 20, 20));
+
+        jLabel9.setText("Nueva Fecha :");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 120, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -251,6 +262,8 @@ public class Reprogramacion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE LA TABLA");
         }else if (this.date_nueva_fecha.getDate() == null) {
             JOptionPane.showMessageDialog(null, "INGRESE NUEVA FECHA");
+        } else if (combo_motivo.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "INGRESE MOTIVO");
         } else if (txt_observaciones_reprogramacion.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE JUSTIFICACION DE REPROGRAMACION");
         } else {
@@ -264,9 +277,11 @@ public class Reprogramacion extends javax.swing.JFrame {
             SimpleDateFormat sdf = new SimpleDateFormat(formato);
             String fecha_ingresada = String.valueOf(sdf.format(date));
 
+            String motivo = combo_motivo.getSelectedItem().toString();
+            
             String observaciones = txt_observaciones_reprogramacion.getText();
 
-            boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones);
+            boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones,motivo);
 
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
@@ -288,8 +303,8 @@ public class Reprogramacion extends javax.swing.JFrame {
         this.txt_registro_repro.setText(tabla_proyectos.getValueAt(rec, 0).toString());
         this.txt_fecha_propuesta2.setText(tabla_proyectos.getValueAt(rec, 4).toString());
         this.date_fecha_nueva.setText(tabla_proyectos.getValueAt(rec, 5).toString());
-        this.txt_observaciones_reprogramacion.setText(tabla_proyectos.getValueAt(rec, 6).toString());
-
+        this.txt_observaciones_reprogramacion.setText(tabla_proyectos.getValueAt(rec, 7).toString());
+        this.combo_motivo.setSelectedItem(tabla_proyectos.getValueAt(rec, 6).toString());
 
     }//GEN-LAST:event_tabla_proyectosMouseClicked
 
@@ -405,6 +420,7 @@ public class Reprogramacion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox combo_consulta;
+    private javax.swing.JComboBox combo_motivo;
     private javax.swing.JTextField date_fecha_nueva;
     private com.toedter.calendar.JDateChooser date_nueva_fecha;
     private javax.swing.JButton jButton1;
@@ -414,12 +430,14 @@ public class Reprogramacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -438,6 +456,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         date_nueva_fecha.setDate(null);
         date_fecha_nueva.setText("");
         txt_observaciones_reprogramacion.setText("");
+        combo_motivo.setSelectedIndex(0);
     }
 
     void cargar_tabla_reprogramaciones() {
@@ -445,8 +464,8 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "OBSERVACIONES"};
-        String[] registro = new String[7];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] registro = new String[8];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -461,7 +480,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
-                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
+                + "MOTIVO_REPROGRAMACION AS MOTIVO, "
+                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "                
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "ORDER BY FECHA_REPROGRAMACION DESC;";
@@ -477,7 +497,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = rs.getString("MOTIVO");
+                registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -496,8 +517,8 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "OBSERVACIONES"};
-        String[] registro = new String[7];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] registro = new String[8];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -512,6 +533,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
+                + "MOTIVO_REPROGRAMACION AS MOTIVO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -529,7 +551,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = rs.getString("MOTIVO");
+                registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -548,8 +571,8 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "OBSERVACIONES"};
-        String[] registro = new String[7];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] registro = new String[8];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -564,6 +587,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
+                + "MOTIVO_REPROGRAMACION AS MOTIVO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -581,7 +605,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = rs.getString("MOTIVO");
+                registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -600,8 +625,8 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "OBSERVACIONES"};
-        String[] registro = new String[7];
+         String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] registro = new String[8];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -616,6 +641,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
+                + "MOTIVO_REPROGRAMACION AS MOTIVO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -632,7 +658,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = rs.getString("MOTIVO");
+                registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -651,8 +678,8 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "OBSERVACIONES"};
-        String[] registro = new String[7];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] registro = new String[8];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -667,6 +694,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
+                + "MOTIVO_REPROGRAMACION AS MOTIVO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -683,8 +711,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("OBSERVACIONES");
-
+                registro[6] = rs.getString("MOTIVO");
+                registro[7] = rs.getString("OBSERVACIONES");
                 modelo.addRow(registro);
             }
             tabla_proyectos.setModel(modelo);

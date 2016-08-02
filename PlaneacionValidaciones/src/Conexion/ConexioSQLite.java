@@ -343,7 +343,8 @@ public class ConexioSQLite {
          //METODO DE ACTUALIZAR REPROGRAMACION
     public boolean upgrade_reprogramacion(String REGISTRO,
             String FECHA,
-            String OBSERVACIONES) {
+            String OBSERVACIONES,
+            String MOTIVO) {
 
         try {
 
@@ -351,6 +352,7 @@ public class ConexioSQLite {
                     + " PLANEACIONES_VALIDACION"
                     + " SET "
                     + "  FECHA_REPROGRAMACION = '" + FECHA + "',"
+                    + "  MOTIVO_REPROGRAMACION = '" + MOTIVO + "',"
                     + "  OBSERVACION_REPROGRAMACION = '" + OBSERVACIONES + "'"
                     + " WHERE"
                     + "  NUMERO_REGISTRO = " + REGISTRO + ";";
