@@ -211,8 +211,6 @@ public class ConexioSQLite {
                     + " WHERE"
                     + "  NUMERO_REGISTRO = " + REGISTRO + ";";
 
-            System.out.println(query);
-
             sentencia.executeUpdate(query);
             System.out.println("ACTUALIZADO ...");
 
