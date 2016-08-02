@@ -60,7 +60,7 @@ public class Principal extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         txt_fecha_propuesta = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
-        combo_estado1 = new javax.swing.JComboBox();
+        combo_estado = new javax.swing.JComboBox();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -69,6 +69,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_contenido = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
@@ -112,7 +114,7 @@ public class Principal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 844, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 983, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,7 +139,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txt_lotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 137, -1));
-        jPanel2.add(txt_proyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 58, 830, -1));
+        jPanel2.add(txt_proyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 58, 990, -1));
 
         jLabel3.setText("Nombre Proyecto : ");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 58, 110, 20));
@@ -186,7 +188,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 190, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 90, 190, -1));
 
         jButton2.setText("Prerequisitos de Proceso");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +196,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 190, -1));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 120, 190, -1));
 
         jButton3.setText("Reprogramacion");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -202,16 +204,16 @@ public class Principal extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, 190, -1));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 150, 190, -1));
 
         jLabel10.setText("Observaciones :");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, -1, 20));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, -1, 20));
 
         txt_observaciones_proyecto.setColumns(20);
         txt_observaciones_proyecto.setRows(5);
         jScrollPane3.setViewportView(txt_observaciones_proyecto);
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 620, 90));
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 620, 90));
 
         jLabel12.setText("Estado del Proyecto :");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 120, 20));
@@ -232,7 +234,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 80, 30));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 80, 30));
 
         txt_turnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,7 +251,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 80, 30));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 80, 30));
 
         txt_fecha_propuesta.setEditable(false);
         txt_fecha_propuesta.addActionListener(new java.awt.event.ActionListener() {
@@ -267,15 +269,15 @@ public class Principal extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 90, 30));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 90, 30));
 
-        combo_estado1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Programado", "No Ejecutado", "En Ejecucion", "Pendientes Requisitos", "No cumple IQ", "No cumple OQ", "No cumple PQ", "No cumple Valiacion de Proceso", "Ejecutado sin RR", "Ejecutado con RR", "Otros" }));
-        combo_estado1.addActionListener(new java.awt.event.ActionListener() {
+        combo_estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Programado", "No Ejecutado", "En Ejecucion", "Pendientes Requisitos", "No cumple IQ", "No cumple OQ", "No cumple PQ", "No cumple Valiacion de Proceso", "Ejecutado sin RR", "Ejecutado con RR", "Otros" }));
+        combo_estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo_estado1ActionPerformed(evt);
+                combo_estadoActionPerformed(evt);
             }
         });
-        jPanel2.add(combo_estado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 180, -1));
+        jPanel2.add(combo_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 180, -1));
 
         jLabel17.setText("Lotes :");
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, 20));
@@ -290,7 +292,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(255, 0, 0));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("*");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 60, -1, 20));
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 60, -1, 20));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 0, 0));
@@ -314,7 +316,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel23.setForeground(new java.awt.Color(255, 0, 0));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("*");
-        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 20, 20));
+        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, 20, 20));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 0, 0));
@@ -322,7 +324,19 @@ public class Principal extends javax.swing.JFrame {
         jLabel24.setText("*");
         jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 20, 20));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, 1000, 340));
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setText("*");
+        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 20, 20));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setText("*");
+        jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 20, 20));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, 1150, 340));
 
         tabla_contenido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -344,7 +358,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabla_contenido);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 990, 130));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 1150, 130));
 
         jLabel13.setText("Fecha Inicial :");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 420, 80, 30));
@@ -375,13 +389,13 @@ public class Principal extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 460, 100, 30));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 460, 200, 30));
 
         txt_registro.setEditable(false);
         txt_registro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txt_registro.setForeground(new java.awt.Color(255, 0, 0));
         txt_registro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(txt_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 10, 70, 50));
+        getContentPane().add(txt_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 10, 70, 50));
 
         combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "LIDER TECNICO", "REGISTRO" }));
         combo_consulta.addItemListener(new java.awt.event.ItemListener() {
@@ -455,7 +469,7 @@ public class Principal extends javax.swing.JFrame {
 
         if (txt_GCC.getText().equals("") || txt_proyecto.getText().equals("") || combo_tipo.getSelectedIndex() == 0 || txt_lider.getText().equals("")
                 || combo_planta.getSelectedIndex() == 0 || combo_maquina.getSelectedIndex() == 0 || date_fecha_propuesta.getDate() == null
-                || combo_estado1.getSelectedIndex() == 0) {
+                || combo_estado.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS OBLIGATORIOS (*)");
         } else {
 
@@ -483,7 +497,7 @@ public class Principal extends javax.swing.JFrame {
                 SimpleDateFormat sdf = new SimpleDateFormat(formato);
                 String fecha_ingresada = String.valueOf(sdf.format(date));
 
-                String estado = combo_estado1.getSelectedItem().toString();
+                String estado = combo_estado.getSelectedItem().toString();
                 String observaciones = txt_observaciones_proyecto.getText();
 
                 boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider.toUpperCase(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "", "");
@@ -516,7 +530,7 @@ public class Principal extends javax.swing.JFrame {
         this.txt_lotes.setText(tabla_contenido.getValueAt(rec, 7).toString());
         this.txt_turnos.setText(tabla_contenido.getValueAt(rec, 8).toString());
         this.txt_fecha_propuesta.setText(tabla_contenido.getValueAt(rec, 9).toString());
-        this.combo_consulta.setSelectedItem(tabla_contenido.getValueAt(rec, 10).toString());
+        this.combo_estado.setSelectedItem(tabla_contenido.getValueAt(rec, 10).toString());
         this.txt_observaciones_proyecto.setText(tabla_contenido.getValueAt(rec, 11).toString());
         
     }//GEN-LAST:event_tabla_contenidoMouseClicked
@@ -636,9 +650,9 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void combo_estado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_estado1ActionPerformed
+    private void combo_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_estadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combo_estado1ActionPerformed
+    }//GEN-LAST:event_combo_estadoActionPerformed
 
     private void combo_consultaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_consultaItemStateChanged
 
@@ -703,7 +717,7 @@ public class Principal extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox combo_consulta;
-    private javax.swing.JComboBox combo_estado1;
+    private javax.swing.JComboBox combo_estado;
     private javax.swing.JComboBox combo_maquina;
     private javax.swing.JComboBox combo_planta;
     private javax.swing.JComboBox combo_tipo;
@@ -735,6 +749,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
