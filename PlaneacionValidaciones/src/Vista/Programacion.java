@@ -29,7 +29,6 @@ public class Programacion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        date_nueva_fecha = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_proyectos = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -51,11 +50,6 @@ public class Programacion extends javax.swing.JFrame {
         date_fecha_nueva = new javax.swing.JTextField();
         txt_fecha_propuesta2 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        combo_motivo = new javax.swing.JComboBox();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(910, 590));
@@ -64,17 +58,14 @@ public class Programacion extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("RE-PROGRAMACION DE VALIDACION Ó CALIFICACION");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 30));
+        jLabel1.setText("PROGRAMACION DE VALIDACION Ó CALIFICACION");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 30));
 
-        jLabel6.setText("Fecha Propuesta :");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 130, 20));
+        jLabel6.setText("Numero Registro :");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 120, 20));
 
         jLabel7.setText("Fecha Reprogramada :");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 140, 20));
-
-        date_nueva_fecha.setDateFormatString("yyyy-MM-dd");
-        getContentPane().add(date_nueva_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 120, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 140, 20));
 
         tabla_proyectos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -200,13 +191,13 @@ public class Programacion extends javax.swing.JFrame {
         txt_observaciones_reprogramacion.setRows(5);
         jScrollPane2.setViewportView(txt_observaciones_reprogramacion);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 500, 70));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 500, 80));
 
         txt_registro_repro.setEditable(false);
         txt_registro_repro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txt_registro_repro.setForeground(new java.awt.Color(255, 0, 0));
         txt_registro_repro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(txt_registro_repro, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 120, -1));
+        getContentPane().add(txt_registro_repro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 120, -1));
 
         jButton2.setBackground(new java.awt.Color(102, 255, 102));
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -221,78 +212,54 @@ public class Programacion extends javax.swing.JFrame {
         date_fecha_nueva.setEditable(false);
         date_fecha_nueva.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         date_fecha_nueva.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(date_fecha_nueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 120, -1));
+        getContentPane().add(date_fecha_nueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 120, -1));
 
         txt_fecha_propuesta2.setEditable(false);
-        getContentPane().add(txt_fecha_propuesta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 120, -1));
+        getContentPane().add(txt_fecha_propuesta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 120, -1));
 
-        jLabel8.setText("Motivo :");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 70, 20));
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setText("*");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, 20, 20));
-
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("*");
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 80, 20, 20));
-
-        combo_motivo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Cancelado", "Reprogramado", "Prerequisitos No Listos", "No Cumplimiento" }));
-        getContentPane().add(combo_motivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 180, -1));
-
-        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("*");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 20, 20));
-
-        jLabel9.setText("Nueva Fecha :");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 120, 20));
+        jLabel8.setText("Fecha Propuesta :");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 120, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
                 
-        if(txt_registro_repro.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE LA TABLA");
-        }else if (this.date_nueva_fecha.getDate() == null) {
-            JOptionPane.showMessageDialog(null, "INGRESE NUEVA FECHA");
-        } else if (combo_motivo.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "INGRESE MOTIVO");
-        } else if (txt_observaciones_reprogramacion.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "INGRESE JUSTIFICACION DE REPROGRAMACION");
-        } else {
-            conexion = new ConexioSQLite();
-            conexion.coneccionbase();
-
-            String registro = txt_registro_repro.getText();
-
-            String formato = date_nueva_fecha.getDateFormatString();
-            Date date = (Date) date_nueva_fecha.getDate();
-            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-            String fecha_ingresada = String.valueOf(sdf.format(date));
-
-            String motivo = combo_motivo.getSelectedItem().toString();
-            
-            String observaciones = txt_observaciones_reprogramacion.getText();
-
-            boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones,motivo);
-
-            if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                LimpiarCampos();
-                cargar_tabla_reprogramaciones();
-                conexion.cerrar();
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                LimpiarCampos();
-            }
-        }
+//        if(txt_registro_repro.getText().equals("")){
+//            JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE LA TABLA");
+//        }else if (this.date_nueva_fecha.getDate() == null) {
+//            JOptionPane.showMessageDialog(null, "INGRESE NUEVA FECHA");
+//        } else if (combo_motivo.getSelectedIndex() == 0) {
+//            JOptionPane.showMessageDialog(null, "INGRESE MOTIVO");
+//        } else if (txt_observaciones_reprogramacion.getText().equals("")) {
+//            JOptionPane.showMessageDialog(null, "INGRESE JUSTIFICACION DE REPROGRAMACION");
+//        } else {
+//            conexion = new ConexioSQLite();
+//            conexion.coneccionbase();
+//
+//            String registro = txt_registro_repro.getText();
+//
+//            String formato = date_nueva_fecha.getDateFormatString();
+//            Date date = (Date) date_nueva_fecha.getDate();
+//            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+//            String fecha_ingresada = String.valueOf(sdf.format(date));
+//
+//            String motivo = combo_motivo.getSelectedItem().toString();
+//            
+//            String observaciones = txt_observaciones_reprogramacion.getText();
+//
+//            boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones,motivo);
+//
+//            if (resultado == true) {
+//                JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+//                LimpiarCampos();
+//                cargar_tabla_reprogramaciones();
+//                conexion.cerrar();
+//            } else {
+//                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+//                LimpiarCampos();
+//            }
+//        }
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -304,7 +271,7 @@ public class Programacion extends javax.swing.JFrame {
         this.txt_fecha_propuesta2.setText(tabla_proyectos.getValueAt(rec, 4).toString());
         this.date_fecha_nueva.setText(tabla_proyectos.getValueAt(rec, 5).toString());
         this.txt_observaciones_reprogramacion.setText(tabla_proyectos.getValueAt(rec, 7).toString());
-        this.combo_motivo.setSelectedItem(tabla_proyectos.getValueAt(rec, 6).toString());
+       // this.combo_motivo.setSelectedItem(tabla_proyectos.getValueAt(rec, 6).toString());
 
     }//GEN-LAST:event_tabla_proyectosMouseClicked
 
@@ -420,24 +387,18 @@ public class Programacion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox combo_consulta;
-    private javax.swing.JComboBox combo_motivo;
     private javax.swing.JTextField date_fecha_nueva;
-    private com.toedter.calendar.JDateChooser date_nueva_fecha;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -453,10 +414,10 @@ public class Programacion extends javax.swing.JFrame {
 
     public void LimpiarCampos() {
         txt_registro.setText("");
-        date_nueva_fecha.setDate(null);
+       // date_nueva_fecha.setDate(null);
         date_fecha_nueva.setText("");
         txt_observaciones_reprogramacion.setText("");
-        combo_motivo.setSelectedIndex(0);
+       // combo_motivo.setSelectedIndex(0);
     }
 
     void cargar_tabla_reprogramaciones() {
