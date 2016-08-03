@@ -13,6 +13,11 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu4 = new javax.swing.JMenu();
+        menu_tipo_validacion = new javax.swing.JMenuItem();
+        menu_lider_tecnico = new javax.swing.JMenuItem();
+        menu_planta = new javax.swing.JMenuItem();
+        menu_maquina = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -28,6 +33,52 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+
+        jMenu4.setText("Administracion");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
+
+        menu_tipo_validacion.setText("Ingresar Tipo Validacion");
+        menu_tipo_validacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_tipo_validacionActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menu_tipo_validacion);
+
+        menu_lider_tecnico.setText("Ingresar Lider Tecnico");
+        menu_lider_tecnico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_lider_tecnicoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menu_lider_tecnico);
+
+        menu_planta.setText("Ingresar Planta");
+        menu_planta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_plantaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menu_planta);
+
+        menu_maquina.setText("Ingresar Maquina");
+        menu_maquina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_maquinaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menu_maquina);
+
+        jMenuBar1.add(jMenu4);
 
         jMenu1.setText("Registro de Validacion");
 
@@ -92,7 +143,7 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 533, Short.MAX_VALUE)
+            .addGap(0, 585, Short.MAX_VALUE)
         );
 
         pack();
@@ -103,6 +154,7 @@ public class Menu extends javax.swing.JFrame {
         Principal principal = new Principal();
         principal.setVisible(true);
         principal.btn_actualizar.setEnabled(false);
+
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -122,11 +174,40 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       
+
         ClaveAdminProgramar clave = new ClaveAdminProgramar();
         clave.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+
+
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+
+    }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void menu_tipo_validacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tipo_validacionActionPerformed
+        TipoValidacion tipo = new TipoValidacion();
+        tipo.setVisible(true);
+    }//GEN-LAST:event_menu_tipo_validacionActionPerformed
+
+    private void menu_lider_tecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_lider_tecnicoActionPerformed
+        LiderTecnico lider = new LiderTecnico();
+        lider.setVisible(true);
+    }//GEN-LAST:event_menu_lider_tecnicoActionPerformed
+
+    private void menu_plantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_plantaActionPerformed
+       Plantas planta = new Plantas();
+        planta.setVisible(true);
+    }//GEN-LAST:event_menu_plantaActionPerformed
+
+    private void menu_maquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_maquinaActionPerformed
+        Maquinas maquina = new Maquinas();
+        maquina.setVisible(true);
+    }//GEN-LAST:event_menu_maquinaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,6 +248,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -176,5 +258,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    public javax.swing.JMenuItem menu_lider_tecnico;
+    public javax.swing.JMenuItem menu_maquina;
+    public javax.swing.JMenuItem menu_planta;
+    public javax.swing.JMenuItem menu_tipo_validacion;
     // End of variables declaration//GEN-END:variables
 }

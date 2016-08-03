@@ -237,7 +237,7 @@ public class ConexioSQLite {
             String RUTINA,
             String CERTIFICADO,
             String PLANOS,
-            String MANUALES,     
+            String MANUALES,
             String MATERIALES,
             String RECURSOS,
             String ENTRENAMIENTO) {
@@ -280,7 +280,7 @@ public class ConexioSQLite {
         }
     }
 
-     //METODO DE ACTUALIZAR PREREQUISITOS PROCESO
+    //METODO DE ACTUALIZAR PREREQUISITOS PROCESO
     public boolean upgrade_pre_proceso(String REGISTRO,
             String CALIFICACION,
             String HFM,
@@ -292,7 +292,7 @@ public class ConexioSQLite {
             String DIAGRAMA,
             String FMEA,
             String PR,
-            String PF,     
+            String PF,
             String RM,
             String PC,
             String CG,
@@ -336,9 +336,8 @@ public class ConexioSQLite {
 
         }
     }
-    
-    
-         //METODO DE ACTUALIZAR REPROGRAMACION
+
+    //METODO DE ACTUALIZAR REPROGRAMACION
     public boolean upgrade_reprogramacion(String REGISTRO,
             String FECHA,
             String OBSERVACIONES,
@@ -370,7 +369,7 @@ public class ConexioSQLite {
 
         }
     }
-    
+
     //METODO PARA PROGRAMAR VALIDACION
     public boolean upgrade_programacion(String REGISTRO,
             String ESTADO,
@@ -399,5 +398,58 @@ public class ConexioSQLite {
 
         }
     }
+
+    //METODO PARA INSERTAR TIPO VALIDACION
+    public boolean insert_tipo(
+            String NOMBRE) {
+
+        try {
+            query = "INSERT INTO TIPO "
+                    + "(ID_TIPO, NOMBRE_TIPO )"
+                    + " VALUES "
+                    + " (NULL,'" + NOMBRE + "')";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+
+    }
     
+    
+    //METODO PARA ACTUALIZAR TIPO VALIDACION
+    public boolean upgrade_tipo(String ID,
+            String NOMBRE) {
+
+        try {
+            query = "UPDATE"
+                    + " TIPO"
+                    + " SET "
+                    + "  NOMBRE = '" + NOMBRE + "'"
+                    + " WHERE"
+                    + "  ID_TIPO = " + ID + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+
+    }
+
 }
