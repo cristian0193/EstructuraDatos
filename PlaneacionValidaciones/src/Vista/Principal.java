@@ -1053,9 +1053,9 @@ public class Principal extends javax.swing.JFrame {
 
     public static int numeroSemanas() {
         Calendar calendar = Calendar.getInstance();
-        calendar.setFirstDayOfWeek(calendar.MONDAY);
-        calendar.setMinimalDaysInFirstWeek(7);
-        return calendar.get(Calendar.WEEK_OF_YEAR) + 1;
+//        calendar.setFirstDayOfWeek(calendar.SATURDAY);
+//        calendar.setMinimalDaysInFirstWeek(7);
+        return calendar.get(Calendar.WEEK_OF_YEAR);
     }
 
 

@@ -18,6 +18,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -61,6 +62,9 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem6);
+
+        jMenuItem8.setText("Cierre Validacion");
+        jMenu1.add(jMenuItem8);
 
         jMenuBar1.add(jMenu1);
 
@@ -171,5 +175,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
 }
