@@ -1,7 +1,5 @@
 package Vista;
 
-import javax.swing.JOptionPane;
-
 public class Menu extends javax.swing.JFrame {
 
     public Menu() {

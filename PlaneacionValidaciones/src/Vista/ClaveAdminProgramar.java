@@ -93,9 +93,9 @@ public class ClaveAdminProgramar extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         if (txt_clave.getText().equals("1234")) {
-//            Programacion programacion = new Programacion();
-//            programacion.setVisible(true);
-//            this.hide();
+            Programacion programacion = new Programacion();
+            programacion.setVisible(true);
+            this.hide();
         } else {
             JOptionPane.showMessageDialog(null, "CONTRASEÑA INCORRECTA");
         }

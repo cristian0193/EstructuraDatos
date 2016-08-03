@@ -15,7 +15,9 @@ public class Principal extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     DefaultTableModel modelo;
-
+    public static int validacion_pendiente_cal;
+    public static int validacion_pendiente_pro;
+    
     public Principal() {
         initComponents();
         PrerequisitoCalificacion calificacion = new PrerequisitoCalificacion();
@@ -23,6 +25,10 @@ public class Principal extends javax.swing.JFrame {
         cargar_tabla();
         int semana = numeroSemanas();
         System.out.println("SEMANA : " + semana);
+        int numero = Validar_Prerequisitos_Calificacion("2");
+        int numero2 = Validar_Prerequisitos_Proceso("2");
+        System.out.println("CALIFICACION : " + numero);
+        System.out.println("PROCESO : " + numero2);
     }
 
     @SuppressWarnings("unchecked")
@@ -251,7 +257,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel2.add(txt_fecha_propuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 120, -1));
 
-        btn_actualizar.setBackground(new java.awt.Color(255, 204, 0));
+        btn_actualizar.setBackground(new java.awt.Color(255, 102, 102));
         btn_actualizar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btn_actualizar.setText("Actualizar");
         btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -475,6 +481,7 @@ public class Principal extends javax.swing.JFrame {
             } else if (!isNumeric(turnos)) {
                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
             } else {
+                                             
                 conexion = new ConexioSQLite();
                 conexion.coneccionbase();
                 String gcc = txt_GCC.getText();
@@ -594,7 +601,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btn_refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refrescarActionPerformed
-        cargar_tabla(); 
+        cargar_tabla();
         conexion.cerrar();
     }//GEN-LAST:event_btn_refrescarActionPerformed
 
@@ -1053,6 +1060,147 @@ public class Principal extends javax.swing.JFrame {
         calendar.setFirstDayOfWeek(calendar.MONDAY);
         calendar.setMinimalDaysInFirstWeek(7);
         return calendar.get(Calendar.WEEK_OF_YEAR) + 1;
+    }
+
+    public static int Validar_Prerequisitos_Calificacion(String numero) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] registro = new String[14];
+        String query = "";
+        
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "PRE_CAL_ESPECIFICACION_EQUIPO AS ESPECIFICACION, "
+                + "PRE_CAL_PROTOCOLOS AS PROTOCOLO, "
+                + "PRE_CAL_RU_NO_GXP AS NO_GXP, "
+                + "PRE_CAL_LIBRO_PARAMETROS AS LIBRO, "
+                + "PRE_CAL_BR_ACTUALIZADO AS BR, "
+                + "PRE_CAL_SOP AS SOP, "
+                + "PRE_CAL_HOJA_VIDA AS HOJA, "
+                + "PRE_CAL_RUTINA_MANTENIMIENTO AS RUTINA, "
+                + "PRE_CAL_CERTIFICADO_MATERIALES AS CERTIFICADO, "
+                + "PRE_CAL_PLANOS AS PLANO, "
+                + "PRE_CAL_MANUALES AS MANUALES, "
+                + "PRE_CAL_MATERIALES AS MATERIAL, "
+                + "PRE_CAL_RECURSOS AS RECURSOS, "
+                + "PRE_CAL_ENTRENAMIENTOS AS ENTRENAMIENTO "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE NUMERO_REGISTRO = "+ numero +"";
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ESPECIFICACION");
+                registro[1] = rs.getString("PROTOCOLO");
+                registro[2] = rs.getString("NO_GXP");
+                registro[3] = rs.getString("LIBRO");
+                registro[4] = rs.getString("BR");
+                registro[5] = rs.getString("SOP");
+                registro[6] = rs.getString("HOJA");
+                registro[7] = rs.getString("RUTINA");
+                registro[8] = rs.getString("CERTIFICADO");
+                registro[9] = rs.getString("PLANO");
+                registro[10] = rs.getString("MANUALES");
+                registro[11] = rs.getString("MATERIAL");
+                registro[12] = rs.getString("RECURSOS");
+                registro[13] = rs.getString("ENTRENAMIENTO");
+            }
+            
+            for (int i = 0; i < registro.length; i++) {
+                
+                String estado = registro[i];
+                                
+                if(estado.equals("Pendiente")){
+                    validacion_pendiente_cal += 1;                    
+                }else{
+                    validacion_pendiente_cal += 0;
+                }                                
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return validacion_pendiente_cal;
+    
+    }
+    
+    
+    public static int Validar_Prerequisitos_Proceso(String numero) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] registro = new String[15];
+        String query = "";
+        
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "PRE_PRO_CALIFICACION_IQOQPQ AS CALIFICACION, "
+                + "PRE_PRO_ENTRENAMIENTO_HFM AS ENTRENAMIENTO, "
+                + "PRE_PRO_ENTRENAMIENTO_ESPECIFICACION AS ESPECIFICACION, "
+                + "PRE_PRO_ENTRENAMIENTO_TEST AS TEST, "
+                + "PRE_PRO_ENTRENAMIENTO_PROTOCOLO AS PROTOCOLO, "
+                + "PRE_PRO_MATERIALES AS MATERIAL, "
+                + "PRE_PRO_DP AS DP, "
+                + "PRE_PRO_DIAGRAMA AS DIAGRAMA, "
+                + "PRE_PRO_FMEA AS FMEA, "
+                + "PRE_PRO_PR AS PR, "
+                + "PRE_PRO_PF AS PF, "
+                + "PRE_PRO_RM AS RM, "
+                + "PRE_PRO_PC AS PC, "
+                + "PRE_PRO_CG AS CG, "
+                + "PRE_PRO_FP AS FP "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE NUMERO_REGISTRO = "+ numero +"";
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("CALIFICACION");
+                registro[1] = rs.getString("ENTRENAMIENTO");
+                registro[2] = rs.getString("ESPECIFICACION");
+                registro[3] = rs.getString("TEST");
+                registro[4] = rs.getString("PROTOCOLO");
+                registro[5] = rs.getString("MATERIAL");
+                registro[6] = rs.getString("DP");
+                registro[7] = rs.getString("DIAGRAMA");
+                registro[8] = rs.getString("FMEA");
+                registro[9] = rs.getString("PR");
+                registro[10] = rs.getString("PF");
+                registro[11] = rs.getString("RM");
+                registro[12] = rs.getString("PC");
+                registro[13] = rs.getString("CG");
+                registro[14] = rs.getString("FP");                
+            }
+            
+            for (int i = 0; i < registro.length; i++) {
+                
+                String estado = registro[i];
+                                
+                if(estado.equals("Pendiente")){
+                    validacion_pendiente_pro += 1;                    
+                }else{
+                    validacion_pendiente_pro += 0;
+                }                                
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return validacion_pendiente_pro;
+    
     }
 
 }
