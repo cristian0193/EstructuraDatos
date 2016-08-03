@@ -371,4 +371,33 @@ public class ConexioSQLite {
         }
     }
     
+    //METODO PARA PROGRAMAR VALIDACION
+    public boolean upgrade_programacion(String REGISTRO,
+            String ESTADO,
+            String OBSERVACION) {
+
+        try {
+
+            query = "UPDATE"
+                    + " PLANEACIONES_VALIDACION"
+                    + " SET "
+                    + "  ESTADO_PROYECTO = '" + ESTADO + "',"
+                    + "  OBSERVACIONES_VALIDACION = '" + OBSERVACION + "'"
+                    + " WHERE"
+                    + "  NUMERO_REGISTRO = " + REGISTRO + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println("ACTUALIZADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ACTUALIZADO ...");
+            return false;
+
+        }
+    }
+    
 }

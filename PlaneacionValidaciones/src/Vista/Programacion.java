@@ -15,11 +15,13 @@ public class Programacion extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     DefaultTableModel modelo;
+    public static int validacion_pendiente_cal = 0;
+    public static int validacion_pendiente_pro = 0;
 
     public Programacion() {
         initComponents();
         this.setLocationRelativeTo(null);
-        cargar_tabla_reprogramaciones();
+        cargar_tabla_programaciones();
     }
 
     @SuppressWarnings("unchecked")
@@ -44,11 +46,11 @@ public class Programacion extends javax.swing.JFrame {
         combo_consulta = new javax.swing.JComboBox();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txt_observaciones_reprogramacion = new javax.swing.JTextArea();
-        txt_registro_repro = new javax.swing.JTextField();
+        txt_observaciones_programacion = new javax.swing.JTextArea();
+        txt_registro_pro = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         date_fecha_nueva = new javax.swing.JTextField();
-        txt_fecha_propuesta2 = new javax.swing.JTextField();
+        txt_fecha_propuesta = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -187,17 +189,17 @@ public class Programacion extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 980, 110));
 
-        txt_observaciones_reprogramacion.setColumns(20);
-        txt_observaciones_reprogramacion.setRows(5);
-        jScrollPane2.setViewportView(txt_observaciones_reprogramacion);
+        txt_observaciones_programacion.setColumns(20);
+        txt_observaciones_programacion.setRows(5);
+        jScrollPane2.setViewportView(txt_observaciones_programacion);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 500, 80));
 
-        txt_registro_repro.setEditable(false);
-        txt_registro_repro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txt_registro_repro.setForeground(new java.awt.Color(255, 0, 0));
-        txt_registro_repro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(txt_registro_repro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 120, -1));
+        txt_registro_pro.setEditable(false);
+        txt_registro_pro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txt_registro_pro.setForeground(new java.awt.Color(255, 0, 0));
+        txt_registro_pro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(txt_registro_pro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 120, -1));
 
         jButton2.setBackground(new java.awt.Color(102, 255, 102));
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -207,15 +209,15 @@ public class Programacion extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 120, 50));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 120, 80));
 
         date_fecha_nueva.setEditable(false);
         date_fecha_nueva.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         date_fecha_nueva.setForeground(new java.awt.Color(255, 0, 0));
         getContentPane().add(date_fecha_nueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 120, -1));
 
-        txt_fecha_propuesta2.setEditable(false);
-        getContentPane().add(txt_fecha_propuesta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 120, -1));
+        txt_fecha_propuesta.setEditable(false);
+        getContentPane().add(txt_fecha_propuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 120, -1));
 
         jLabel8.setText("Fecha Propuesta :");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 120, 20));
@@ -224,14 +226,48 @@ public class Programacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        String registro = txt_registro_pro.getText();
+
+        if (txt_registro_pro.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, " SELECCIONE UN REGISTRO DE LA TABLA");
+        } else {
+            validacion_pendiente_cal = 0;
+            validacion_pendiente_pro = 0;
+
+            int Validacion_cal = Validar_Prerequisitos_Calificacion(registro);
+            int Validacion_pro = Validar_Prerequisitos_Proceso(registro);
+
+            if (Validacion_cal > 0) {
+                JOptionPane.showMessageDialog(null, " TIENE : " + Validacion_cal + " PENDIENTES PREREQUISITOS DE CALIFICACION ");
+            } else if (Validacion_pro > 0) {
+                JOptionPane.showMessageDialog(null, " TIENE : " + Validacion_pro + " PENDIENTES PREREQUISITOS DE PROCESO ");
+            } else {
+                String registro_pro = txt_registro_pro.getText();
+                String observacion = txt_observaciones_programacion.getText();
                 
+                boolean resultado = conexion.upgrade_programacion(registro_pro,"Programado",observacion);
+                
+                if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                LimpiarCampos();
+                cargar_tabla_programaciones();
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                LimpiarCampos();
+            }
+                
+            }
+        }
+
 //        if(txt_registro_repro.getText().equals("")){
 //            JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE LA TABLA");
 //        }else if (this.date_nueva_fecha.getDate() == null) {
 //            JOptionPane.showMessageDialog(null, "INGRESE NUEVA FECHA");
 //        } else if (combo_motivo.getSelectedIndex() == 0) {
 //            JOptionPane.showMessageDialog(null, "INGRESE MOTIVO");
-//        } else if (txt_observaciones_reprogramacion.getText().equals("")) {
+//        } else if (txt_observaciones_programacion.getText().equals("")) {
 //            JOptionPane.showMessageDialog(null, "INGRESE JUSTIFICACION DE REPROGRAMACION");
 //        } else {
 //            conexion = new ConexioSQLite();
@@ -246,7 +282,7 @@ public class Programacion extends javax.swing.JFrame {
 //
 //            String motivo = combo_motivo.getSelectedItem().toString();
 //            
-//            String observaciones = txt_observaciones_reprogramacion.getText();
+//            String observaciones = txt_observaciones_programacion.getText();
 //
 //            boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones,motivo);
 //
@@ -261,17 +297,15 @@ public class Programacion extends javax.swing.JFrame {
 //            }
 //        }
 
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tabla_proyectosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_proyectosMouseClicked
         int rec = this.tabla_proyectos.getSelectedRow();
 
-        this.txt_registro_repro.setText(tabla_proyectos.getValueAt(rec, 0).toString());
-        this.txt_fecha_propuesta2.setText(tabla_proyectos.getValueAt(rec, 4).toString());
+        this.txt_registro_pro.setText(tabla_proyectos.getValueAt(rec, 0).toString());
+        this.txt_fecha_propuesta.setText(tabla_proyectos.getValueAt(rec, 4).toString());
         this.date_fecha_nueva.setText(tabla_proyectos.getValueAt(rec, 5).toString());
-        this.txt_observaciones_reprogramacion.setText(tabla_proyectos.getValueAt(rec, 7).toString());
-       // this.combo_motivo.setSelectedItem(tabla_proyectos.getValueAt(rec, 6).toString());
+        this.txt_observaciones_programacion.setText(tabla_proyectos.getValueAt(rec, 7).toString());
 
     }//GEN-LAST:event_tabla_proyectosMouseClicked
 
@@ -405,28 +439,28 @@ public class Programacion extends javax.swing.JFrame {
     private javax.swing.JTable tabla_proyectos;
     private com.toedter.calendar.JDateChooser txt_fecha_final;
     private com.toedter.calendar.JDateChooser txt_fecha_inicio;
-    private javax.swing.JTextField txt_fecha_propuesta2;
+    private javax.swing.JTextField txt_fecha_propuesta;
     private javax.swing.JTextField txt_lider_consulta;
-    private javax.swing.JTextArea txt_observaciones_reprogramacion;
+    private javax.swing.JTextArea txt_observaciones_programacion;
     private javax.swing.JTextField txt_palabra_clave_consulta;
-    public static javax.swing.JTextField txt_registro_repro;
+    public static javax.swing.JTextField txt_registro_pro;
     // End of variables declaration//GEN-END:variables
 
     public void LimpiarCampos() {
         txt_registro.setText("");
-       // date_nueva_fecha.setDate(null);
         date_fecha_nueva.setText("");
-        txt_observaciones_reprogramacion.setText("");
-       // combo_motivo.setSelectedIndex(0);
+        txt_fecha_propuesta.setText("");
+        txt_observaciones_programacion.setText("");
+        // combo_motivo.setSelectedIndex(0);
     }
 
-    void cargar_tabla_reprogramaciones() {
+    void cargar_tabla_programaciones() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "OBSERVACIONES"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -440,13 +474,12 @@ public class Programacion extends javax.swing.JFrame {
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
-                + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
-                + "MOTIVO_REPROGRAMACION AS MOTIVO, "
-                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "                
+                + "ESTADO_PROYECTO AS ESTADO, "
+                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'Programado' "
-                + "ORDER BY FECHA_REPROGRAMACION DESC;";
+                + "WHERE ESTADO_PROYECTO = 'En Creacion' "
+                + "ORDER BY FECHA_PROPUESTA DESC;";
 
         try {
             Statement st = cn.createStatement();
@@ -458,9 +491,8 @@ public class Programacion extends javax.swing.JFrame {
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("MOTIVO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[5] = rs.getString("ESTADO");
+                registro[6] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -479,7 +511,7 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -533,7 +565,7 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -587,7 +619,7 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-         String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -640,7 +672,7 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -685,6 +717,146 @@ public class Programacion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
 
         }
+    }
+
+    public static int Validar_Prerequisitos_Calificacion(String numero) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] registro = new String[14];
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "PRE_CAL_ESPECIFICACION_EQUIPO AS ESPECIFICACION, "
+                + "PRE_CAL_PROTOCOLOS AS PROTOCOLO, "
+                + "PRE_CAL_RU_NO_GXP AS NO_GXP, "
+                + "PRE_CAL_LIBRO_PARAMETROS AS LIBRO, "
+                + "PRE_CAL_BR_ACTUALIZADO AS BR, "
+                + "PRE_CAL_SOP AS SOP, "
+                + "PRE_CAL_HOJA_VIDA AS HOJA, "
+                + "PRE_CAL_RUTINA_MANTENIMIENTO AS RUTINA, "
+                + "PRE_CAL_CERTIFICADO_MATERIALES AS CERTIFICADO, "
+                + "PRE_CAL_PLANOS AS PLANO, "
+                + "PRE_CAL_MANUALES AS MANUALES, "
+                + "PRE_CAL_MATERIALES AS MATERIAL, "
+                + "PRE_CAL_RECURSOS AS RECURSOS, "
+                + "PRE_CAL_ENTRENAMIENTOS AS ENTRENAMIENTO "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE NUMERO_REGISTRO = " + numero + "";
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ESPECIFICACION");
+                registro[1] = rs.getString("PROTOCOLO");
+                registro[2] = rs.getString("NO_GXP");
+                registro[3] = rs.getString("LIBRO");
+                registro[4] = rs.getString("BR");
+                registro[5] = rs.getString("SOP");
+                registro[6] = rs.getString("HOJA");
+                registro[7] = rs.getString("RUTINA");
+                registro[8] = rs.getString("CERTIFICADO");
+                registro[9] = rs.getString("PLANO");
+                registro[10] = rs.getString("MANUALES");
+                registro[11] = rs.getString("MATERIAL");
+                registro[12] = rs.getString("RECURSOS");
+                registro[13] = rs.getString("ENTRENAMIENTO");
+            }
+
+            for (int i = 0; i < registro.length; i++) {
+
+                String estado = registro[i];
+
+                if (estado.equals("Pendiente")) {
+                    validacion_pendiente_cal += 1;
+                } else {
+                    validacion_pendiente_cal += 0;
+                }
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return validacion_pendiente_cal;
+
+    }
+
+    public static int Validar_Prerequisitos_Proceso(String numero) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] registro = new String[15];
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "PRE_PRO_CALIFICACION_IQOQPQ AS CALIFICACION, "
+                + "PRE_PRO_ENTRENAMIENTO_HFM AS ENTRENAMIENTO, "
+                + "PRE_PRO_ENTRENAMIENTO_ESPECIFICACION AS ESPECIFICACION, "
+                + "PRE_PRO_ENTRENAMIENTO_TEST AS TEST, "
+                + "PRE_PRO_ENTRENAMIENTO_PROTOCOLO AS PROTOCOLO, "
+                + "PRE_PRO_MATERIALES AS MATERIAL, "
+                + "PRE_PRO_DP AS DP, "
+                + "PRE_PRO_DIAGRAMA AS DIAGRAMA, "
+                + "PRE_PRO_FMEA AS FMEA, "
+                + "PRE_PRO_PR AS PR, "
+                + "PRE_PRO_PF AS PF, "
+                + "PRE_PRO_RM AS RM, "
+                + "PRE_PRO_PC AS PC, "
+                + "PRE_PRO_CG AS CG, "
+                + "PRE_PRO_FP AS FP "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE NUMERO_REGISTRO = " + numero + "";
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("CALIFICACION");
+                registro[1] = rs.getString("ENTRENAMIENTO");
+                registro[2] = rs.getString("ESPECIFICACION");
+                registro[3] = rs.getString("TEST");
+                registro[4] = rs.getString("PROTOCOLO");
+                registro[5] = rs.getString("MATERIAL");
+                registro[6] = rs.getString("DP");
+                registro[7] = rs.getString("DIAGRAMA");
+                registro[8] = rs.getString("FMEA");
+                registro[9] = rs.getString("PR");
+                registro[10] = rs.getString("PF");
+                registro[11] = rs.getString("RM");
+                registro[12] = rs.getString("PC");
+                registro[13] = rs.getString("CG");
+                registro[14] = rs.getString("FP");
+            }
+
+            for (int i = 0; i < registro.length; i++) {
+
+                String estado = registro[i];
+
+                if (estado.equals("Pendiente")) {
+                    validacion_pendiente_pro += 1;
+                } else {
+                    validacion_pendiente_pro += 0;
+                }
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return validacion_pendiente_pro;
+
     }
 
 }
