@@ -407,7 +407,7 @@ public class ConexioSQLite {
             query = "INSERT INTO TIPO "
                     + "(ID_TIPO, NOMBRE_TIPO )"
                     + " VALUES "
-                    + " (NULL,'" + NOMBRE + "')";
+                    + " (NULL,'" + NOMBRE.toUpperCase() + "')";
 
             sentencia.executeUpdate(query);
             System.out.println("INSERTADO ...");

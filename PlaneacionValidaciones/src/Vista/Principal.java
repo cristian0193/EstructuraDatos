@@ -15,16 +15,20 @@ public class Principal extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     DefaultTableModel modelo;
-  
-    
+
     public Principal() {
         initComponents();
         PrerequisitoCalificacion calificacion = new PrerequisitoCalificacion();
         this.setLocationRelativeTo(null);
         cargar_tabla();
+        cargar_lista_tipo();
+        cargar_lista_lider();
+        cargar_lista_planta();
+        cargar_lista_maquina();
+
         int semana = numeroSemanas();
         System.out.println("SEMANA : " + semana);
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -158,7 +162,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel5.setText("Maquina :");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 60, 20));
 
-        combo_lider_tecnico.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Lina Hernandez", "Wilson Ruge", "Mauricio Serrano", "Edinson Zapata", "Carla Rivera" }));
+        combo_lider_tecnico.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
         jPanel2.add(combo_lider_tecnico, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 200, -1));
 
         jLabel6.setText("Fecha Propuesta :");
@@ -167,7 +171,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setText("Tipo Validacion :");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 92, 90, -1));
 
-        combo_tipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Equipo", "CSV", "Proceso", "L&S", "No GxP" }));
+        combo_tipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
         jPanel2.add(combo_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 178, -1));
 
         jLabel8.setText("Lider Tecnico :");
@@ -210,7 +214,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel12.setText("Estado del Proyecto :");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 120, 20));
 
-        combo_planta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Jabon", "Talco", "Pañitos Humedos", "Sanpro", "Liquidos", "General", "Laboratorios" }));
+        combo_planta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
         combo_planta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_plantaActionPerformed(evt);
@@ -320,7 +324,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel27.setText("*");
         jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 20, 20));
 
-        combo_maquina.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Tanque Preparacion", "Kalish 1", "Kalish 2", "Kalish 4", "Linea 3", "Linea 5", "Linea 6", "Linea 7", "Volpack", "Comadis", "Tonazzi", "21.1", "21.2", "21.3", "21.4", "38.1", "38.2", "Nativa 1", "Nativa 2", "Jabon", "Talco", "Pañitos Humedos", "General" }));
+        combo_maquina.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionarl" }));
         jPanel2.add(combo_maquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 200, -1));
 
         txt_estado_proyecto.setEditable(false);
@@ -477,7 +481,7 @@ public class Principal extends javax.swing.JFrame {
             } else if (!isNumeric(turnos)) {
                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
             } else {
-                                             
+
                 conexion = new ConexioSQLite();
                 conexion.coneccionbase();
                 String gcc = txt_GCC.getText();
@@ -784,6 +788,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField txt_turnos;
     // End of variables declaration//GEN-END:variables
 
+//METODO PARA LIMPIAR LOS CAMPOS 
     public void LimpiarCampos() {
         txt_registro.setText("");
         txt_GCC.setText("");
@@ -800,6 +805,7 @@ public class Principal extends javax.swing.JFrame {
         txt_observaciones_proyecto.setText("");
     }
 
+//METODO PARA VALIDAR DATO NUMERICO O NO NUMERICO
     private boolean isNumeric(String cadena) {
         try {
             Double.parseDouble(cadena);
@@ -809,6 +815,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
+// METODO PARA CARGAR TABLA PRINCIPAL
     void cargar_tabla() {
 
         conexion = new ConexioSQLite();
@@ -869,6 +876,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
+// METODO PARA CONSULTAR RANGO DE FECHAS
     void consulta_rango_fechas(String fecha_inicio, String fecha_final) {
 
         conexion = new ConexioSQLite();
@@ -930,6 +938,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
+// METODO PARA CONSULTAR LIDER
     void consulta_lider(String lider) {
 
         conexion = new ConexioSQLite();
@@ -990,6 +999,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
+// METODO PARA CONSULTAR REGISTROS
     void consulta_registro(String registro) {
 
         conexion = new ConexioSQLite();
@@ -1043,7 +1053,6 @@ public class Principal extends javax.swing.JFrame {
                 modelo.addRow(registros);
             }
             tabla_contenido.setModel(modelo);
-
         } catch (SQLException ex) {
 
             JOptionPane.showMessageDialog(null, ex);
@@ -1058,6 +1067,112 @@ public class Principal extends javax.swing.JFrame {
         return calendar.get(Calendar.WEEK_OF_YEAR);
     }
 
+// METODO PARA CARGAR JCOMBOBOX TIPO
+    void cargar_lista_tipo() {
 
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT * FROM TIPO ";
+
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                combo_tipo.addItem(rs.getString("NOMBRE_TIPO"));
+            }
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    // METODO PARA CARGAR JCOMBOBOX LIDER
+    void cargar_lista_lider() {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT * FROM LIDER ";
+
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                combo_lider_tecnico.addItem(rs.getString("NOMBRE_LIDER"));
+            }
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+// METODO PARA CARGAR JCOMBOBOX PLANTA
+    void cargar_lista_planta() {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT * FROM PLANTA ";
+
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                combo_planta.addItem(rs.getString("NOMBRE_PLANTA"));
+            }
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+// METODO PARA CARGAR JCOMBOBOX MAQUINA
+    void cargar_lista_maquina() {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT * FROM MAQUINA ";
+
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                combo_maquina.addItem(rs.getString("NOMBRE_MAQUINA"));
+            }
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
 
 }

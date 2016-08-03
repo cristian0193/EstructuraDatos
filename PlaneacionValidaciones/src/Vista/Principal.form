@@ -182,13 +182,8 @@
         <Component class="javax.swing.JComboBox" name="combo_lider_tecnico">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="6">
+              <StringArray count="1">
                 <StringItem index="0" value="Seleccionar"/>
-                <StringItem index="1" value="Lina Hernandez"/>
-                <StringItem index="2" value="Wilson Ruge"/>
-                <StringItem index="3" value="Mauricio Serrano"/>
-                <StringItem index="4" value="Edinson Zapata"/>
-                <StringItem index="5" value="Carla Rivera"/>
               </StringArray>
             </Property>
           </Properties>
@@ -221,13 +216,8 @@
         <Component class="javax.swing.JComboBox" name="combo_tipo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="6">
+              <StringArray count="1">
                 <StringItem index="0" value="Seleccionar"/>
-                <StringItem index="1" value="Equipo"/>
-                <StringItem index="2" value="CSV"/>
-                <StringItem index="3" value="Proceso"/>
-                <StringItem index="4" value="L&amp;S"/>
-                <StringItem index="5" value="No GxP"/>
               </StringArray>
             </Property>
           </Properties>
@@ -349,15 +339,8 @@
         <Component class="javax.swing.JComboBox" name="combo_planta">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="8">
+              <StringArray count="1">
                 <StringItem index="0" value="Seleccionar"/>
-                <StringItem index="1" value="Jabon"/>
-                <StringItem index="2" value="Talco"/>
-                <StringItem index="3" value="Pa&#xf1;itos Humedos"/>
-                <StringItem index="4" value="Sanpro"/>
-                <StringItem index="5" value="Liquidos"/>
-                <StringItem index="6" value="General"/>
-                <StringItem index="7" value="Laboratorios"/>
               </StringArray>
             </Property>
           </Properties>
@@ -622,31 +605,8 @@
         <Component class="javax.swing.JComboBox" name="combo_maquina">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="24">
-                <StringItem index="0" value="Seleccionar"/>
-                <StringItem index="1" value="Tanque Preparacion"/>
-                <StringItem index="2" value="Kalish 1"/>
-                <StringItem index="3" value="Kalish 2"/>
-                <StringItem index="4" value="Kalish 4"/>
-                <StringItem index="5" value="Linea 3"/>
-                <StringItem index="6" value="Linea 5"/>
-                <StringItem index="7" value="Linea 6"/>
-                <StringItem index="8" value="Linea 7"/>
-                <StringItem index="9" value="Volpack"/>
-                <StringItem index="10" value="Comadis"/>
-                <StringItem index="11" value="Tonazzi"/>
-                <StringItem index="12" value="21.1"/>
-                <StringItem index="13" value="21.2"/>
-                <StringItem index="14" value="21.3"/>
-                <StringItem index="15" value="21.4"/>
-                <StringItem index="16" value="38.1"/>
-                <StringItem index="17" value="38.2"/>
-                <StringItem index="18" value="Nativa 1"/>
-                <StringItem index="19" value="Nativa 2"/>
-                <StringItem index="20" value="Jabon"/>
-                <StringItem index="21" value="Talco"/>
-                <StringItem index="22" value="Pa&#xf1;itos Humedos"/>
-                <StringItem index="23" value="General"/>
+              <StringArray count="1">
+                <StringItem index="0" value="Seleccionarl"/>
               </StringArray>
             </Property>
           </Properties>

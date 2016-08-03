@@ -38,7 +38,7 @@ public class Maquinas extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TIPO VALIDACION");
+        jLabel1.setText("MAQUINAS");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
