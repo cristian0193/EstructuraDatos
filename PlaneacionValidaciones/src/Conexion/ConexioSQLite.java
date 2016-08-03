@@ -431,9 +431,9 @@ public class ConexioSQLite {
 
         try {
             query = "UPDATE"
-                    + " TIPO"
+                    + " TIPO "
                     + " SET "
-                    + "  NOMBRE = '" + NOMBRE + "'"
+                    + "  NOMBRE_TIPO = '" + NOMBRE + "'"
                     + " WHERE"
                     + "  ID_TIPO = " + ID + ";";
 

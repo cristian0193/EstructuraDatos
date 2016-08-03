@@ -193,8 +193,10 @@ public class TipoValidacion extends javax.swing.JFrame {
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
 
+            String id = txt_id_tipo.getText();
             String nombre = txt_nombre_tipo.getText();
-            boolean resultado = conexion.insert_tipo(nombre);
+            
+            boolean resultado = conexion.upgrade_tipo(id,nombre);
 
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "TIPO ACTUALIZADO");
