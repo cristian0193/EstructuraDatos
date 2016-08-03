@@ -452,4 +452,162 @@ public class ConexioSQLite {
 
     }
 
+    
+    //METODO PARA INSERTAR LIDER TECNICO
+    public boolean insert_lider(
+            String NOMBRE) {
+
+        try {
+            query = "INSERT INTO LIDER "
+                    + "(ID_LIDER, NOMBRE_LIDER )"
+                    + " VALUES "
+                    + " (NULL,'" + NOMBRE + "')";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+
+    }   
+    
+    //METODO PARA ACTUALIZAR LIDER TECNICO
+    public boolean upgrade_lider(String ID,
+            String NOMBRE) {
+
+        try {
+            query = "UPDATE"
+                    + " LIDER "
+                    + " SET "
+                    + "  NOMBRE_LIDER = '" + NOMBRE.toUpperCase() + "'"
+                    + " WHERE"
+                    + "  ID_LIDER = " + ID + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+
+    }
+         
+    //METODO PARA INSERTAR PLANTAS
+    public boolean insert_planta(
+            String NOMBRE) {
+
+        try {
+            query = "INSERT INTO PLANTA "
+                    + "(ID_PLANTA, NOMBRE_PLANTA )"
+                    + " VALUES "
+                    + " (NULL,'" + NOMBRE + "')";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+
+    }   
+    
+    //METODO PARA ACTUALIZAR PLANTAS
+    public boolean upgrade_planta(String ID,
+            String NOMBRE) {
+
+        try {
+            query = "UPDATE"
+                    + " PLANTA "
+                    + " SET "
+                    + "  NOMBRE_PLANTA = '" + NOMBRE.toUpperCase() + "'"
+                    + " WHERE"
+                    + "  ID_PLANTA = " + ID + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+
+    }
+        
+    //METODO PARA INSERTAR MAQUINA
+    public boolean insert_maquina(
+            String NOMBRE) {
+
+        try {
+            query = "INSERT INTO MAQUINA "
+                    + "(ID_MAQUINA, NOMBRE_MAQUINA )"
+                    + " VALUES "
+                    + " (NULL,'" + NOMBRE + "')";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+
+    }   
+    
+    //METODO PARA ACTUALIZAR MAQUINA
+    public boolean upgrade_maquina(String ID,
+            String NOMBRE) {
+
+        try {
+            query = "UPDATE"
+                    + " MAQUINA "
+                    + " SET "
+                    + "  NOMBRE_MAQUINA = '" + NOMBRE.toUpperCase() + "'"
+                    + " WHERE"
+                    + "  ID_MAQUINA = " + ID + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+
+    }
+    
+    
 }

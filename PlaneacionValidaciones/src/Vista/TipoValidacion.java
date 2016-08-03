@@ -161,7 +161,7 @@ public class TipoValidacion extends javax.swing.JFrame {
             conexion.coneccionbase();
 
             String nombre = txt_nombre_tipo.getText();
-            boolean resultado = conexion.insert_tipo(nombre);
+            boolean resultado = conexion.insert_tipo(nombre.toUpperCase());
 
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "TIPO INSERTADO");
@@ -187,8 +187,8 @@ public class TipoValidacion extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-        if (txt_nombre_tipo.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "NOMBRE OBLIGATORIO");
+        if (txt_id_tipo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
         } else {
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
@@ -236,7 +236,7 @@ public class TipoValidacion extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         String[] titulos = {"ID", "NOMBRE"};
-        String[] registro = new String[1];
+        String[] registro = new String[2];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
