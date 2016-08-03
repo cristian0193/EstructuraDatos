@@ -104,7 +104,8 @@ public class ConexioSQLite {
             String PRE_PRO_CG,
             String PRE_PRO_FP,
             String FECHA_REPROGRAMACION,
-            String OBSERVACION_REPROGRAMACION) {
+            String OBSERVACION_REPROGRAMACION,
+            int SEMANA) {
 
         try {
 
@@ -161,7 +162,7 @@ public class ConexioSQLite {
                     + "'" + PRE_PRO_ENTRENAMIENTO_PROTOCOLO + "', '" + PRE_PRO_MATERIALES + "', '" + PRE_PRO_DP + "',"
                     + "'" + PRE_PRO_DIAGRAMA + "', '" + PRE_PRO_FMEA + "', '" + PRE_PRO_PR + "', '" + PRE_PRO_PF + "', "
                     + "'" + PRE_PRO_RM + "', '" + PRE_PRO_PC + "', '" + PRE_PRO_CG + "', '" + PRE_PRO_FP + "', "
-                    + "'" + FECHA_REPROGRAMACION + "', '" + OBSERVACION_REPROGRAMACION + "')";
+                    + "'" + FECHA_REPROGRAMACION + "', '" + OBSERVACION_REPROGRAMACION + "'," + SEMANA + ")";
             System.out.println(query);
 
             sentencia.executeUpdate(query);

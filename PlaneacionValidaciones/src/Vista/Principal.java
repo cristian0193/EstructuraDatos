@@ -24,11 +24,7 @@ public class Principal extends javax.swing.JFrame {
         cargar_lista_tipo();
         cargar_lista_lider();
         cargar_lista_planta();
-        cargar_lista_maquina();
-
-        int semana = numeroSemanas();
-        System.out.println("SEMANA : " + semana);
-
+        cargar_lista_maquina();       
     }
 
     @SuppressWarnings("unchecked")
@@ -80,6 +76,8 @@ public class Principal extends javax.swing.JFrame {
         combo_maquina = new javax.swing.JComboBox();
         txt_estado_proyecto = new javax.swing.JTextField();
         btn_limpiar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        txt_semana = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_contenido = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
@@ -347,6 +345,15 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel2.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 90, 30));
 
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 240, 30, -1));
+        jPanel2.add(txt_semana, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, 50, -1));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, 1150, 340));
 
         tabla_contenido.setModel(new javax.swing.table.DefaultTableModel(
@@ -498,6 +505,8 @@ public class Principal extends javax.swing.JFrame {
                 SimpleDateFormat sdf = new SimpleDateFormat(formato);
                 String fecha_ingresada = String.valueOf(sdf.format(date));
 
+                int semana = numeroSemanas(date);
+                
                 String estado = txt_estado_proyecto.getText();
                 String observaciones = txt_observaciones_proyecto.getText();
 
@@ -506,7 +515,7 @@ public class Principal extends javax.swing.JFrame {
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "");
+                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "",semana);
 
                 if (resultado == true) {
                     JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
@@ -682,7 +691,6 @@ public class Principal extends javax.swing.JFrame {
             this.date_fecha_final.setEnabled(false);
         }
 
-
     }//GEN-LAST:event_combo_consultaItemStateChanged
 
     private void txt_estado_proyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_estado_proyectoActionPerformed
@@ -692,6 +700,14 @@ public class Principal extends javax.swing.JFrame {
     private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
         LimpiarCampos();
     }//GEN-LAST:event_btn_limpiarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        Date date = (Date) date_fecha_propuesta.getDate();
+        int semana = numeroSemanas(date);        
+        txt_semana.setText(""+semana);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -741,6 +757,7 @@ public class Principal extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser date_fecha_propuesta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -785,6 +802,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextArea txt_observaciones_proyecto;
     private javax.swing.JTextField txt_proyecto;
     public static javax.swing.JTextField txt_registro;
+    private javax.swing.JTextField txt_semana;
     private javax.swing.JTextField txt_turnos;
     // End of variables declaration//GEN-END:variables
 
@@ -815,8 +833,17 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
+//METODO PARA OBTENER SEMANA   
+    public static int numeroSemanas(Date fecha) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setFirstDayOfWeek(calendar.MONDAY);
+        calendar.setMinimalDaysInFirstWeek(7);
+        calendar.setTime(fecha);
+        return calendar.get(Calendar.WEEK_OF_YEAR)+1;
+    }
+    
 // METODO PARA CARGAR TABLA PRINCIPAL
-    void cargar_tabla() {
+    public void cargar_tabla() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -877,7 +904,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
 // METODO PARA CONSULTAR RANGO DE FECHAS
-    void consulta_rango_fechas(String fecha_inicio, String fecha_final) {
+    public void consulta_rango_fechas(String fecha_inicio, String fecha_final) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -939,7 +966,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
 // METODO PARA CONSULTAR LIDER
-    void consulta_lider(String lider) {
+   public void consulta_lider(String lider) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -1000,7 +1027,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
 // METODO PARA CONSULTAR REGISTROS
-    void consulta_registro(String registro) {
+   public void consulta_registro(String registro) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -1060,15 +1087,8 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    public static int numeroSemanas() {
-        Calendar calendar = Calendar.getInstance();
-//        calendar.setFirstDayOfWeek(calendar.SATURDAY);
-//        calendar.setMinimalDaysInFirstWeek(7);
-        return calendar.get(Calendar.WEEK_OF_YEAR);
-    }
-
 // METODO PARA CARGAR JCOMBOBOX TIPO
-    void cargar_lista_tipo() {
+   public void cargar_lista_tipo() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -1095,7 +1115,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // METODO PARA CARGAR JCOMBOBOX LIDER
-    void cargar_lista_lider() {
+   public void cargar_lista_lider() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -1122,7 +1142,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
 // METODO PARA CARGAR JCOMBOBOX PLANTA
-    void cargar_lista_planta() {
+   public void cargar_lista_planta() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -1149,7 +1169,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
 // METODO PARA CARGAR JCOMBOBOX MAQUINA
-    void cargar_lista_maquina() {
+   public void cargar_lista_maquina() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
