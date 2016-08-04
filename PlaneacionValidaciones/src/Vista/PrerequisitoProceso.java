@@ -24,7 +24,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_actualizar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         combo_pre_calificacion = new javax.swing.JComboBox();
@@ -71,7 +71,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         txt_pre_protocolo = new javax.swing.JTextField();
         txt_pre_materiales = new javax.swing.JTextField();
         txt_pre_DP = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btn_cargar = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         txt_registro_principal = new javax.swing.JTextField();
 
@@ -82,12 +82,13 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PRE-REQUISITOS DE PROCESO");
 
-        jButton1.setBackground(new java.awt.Color(102, 255, 0));
-        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton1.setText("Actualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_actualizar.setBackground(new java.awt.Color(102, 255, 0));
+        btn_actualizar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btn_actualizar.setText("Actualizar");
+        btn_actualizar.setEnabled(false);
+        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_actualizarActionPerformed(evt);
             }
         });
 
@@ -430,12 +431,12 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton2.setBackground(new java.awt.Color(51, 102, 255));
-        jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setText("Cargar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_cargar.setBackground(new java.awt.Color(51, 102, 255));
+        btn_cargar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btn_cargar.setText("Cargar");
+        btn_cargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_cargarActionPerformed(evt);
             }
         });
 
@@ -452,10 +453,10 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(194, 194, 194))
+                .addComponent(btn_cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(191, 191, 191))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -480,8 +481,8 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -540,7 +541,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_pre_FPActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cargarActionPerformed
        
           if (!txt_registro_principal.getText().equals("")) {
 
@@ -548,6 +549,8 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
 
             if (consulta_pre_proceso(pre_proceso)) {
                 coloresCampos();
+                btn_actualizar.setEnabled(true);
+                btn_cargar.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "INFORMACION CARGADA");
             } else {
                 JOptionPane.showMessageDialog(null, "INFORMACION NO CARGADA");
@@ -556,9 +559,9 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA");
         }
                 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_cargarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
 
         if(txt_registro_principal.getText().equals("")){
             JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA");
@@ -596,11 +599,13 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_actualizarActionPerformed
 
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_cargar;
     private javax.swing.JComboBox combo_pre_CG;
     private javax.swing.JComboBox combo_pre_DP;
     private javax.swing.JComboBox combo_pre_FMEA;
@@ -616,8 +621,6 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
     private javax.swing.JComboBox combo_pre_materiales;
     private javax.swing.JComboBox combo_pre_protocolo;
     private javax.swing.JComboBox combo_pre_test;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

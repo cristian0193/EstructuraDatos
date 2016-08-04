@@ -30,9 +30,10 @@ public class Menu extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -161,13 +162,25 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
+        jMenuBar1.add(jMenu1);
+
+        jMenu5.setText("Verificacion Semanal");
+
+        jMenuItem8.setText("Estado de Validaciones (Admin)");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem8);
+
         jMenuItem5.setText("Programar Validacion (Admin)");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        jMenu5.add(jMenuItem5);
 
         jMenuItem6.setText("Reprogramar Validacion (Admin)");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -175,17 +188,9 @@ public class Menu extends javax.swing.JFrame {
                 jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem6);
+        jMenu5.add(jMenuItem6);
 
-        jMenuItem8.setText("Cierre Validacion (Admin)");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem8);
-
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenu5);
 
         jMenu3.setText("Reporte de Semana");
 
@@ -312,7 +317,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         
-        EstadoCierre cierre = new EstadoCierre();
+        EstadoValidaciones cierre = new EstadoValidaciones();
         cierre.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem9ActionPerformed
@@ -377,6 +382,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;

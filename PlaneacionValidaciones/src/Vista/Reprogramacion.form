@@ -399,12 +399,11 @@
     <Component class="javax.swing.JComboBox" name="combo_motivo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
+          <StringArray count="4">
             <StringItem index="0" value="Seleccionar"/>
             <StringItem index="1" value="Cancelado"/>
-            <StringItem index="2" value="Reprogramado"/>
-            <StringItem index="3" value="Prerequisitos No Listos"/>
-            <StringItem index="4" value="No Cumplimiento"/>
+            <StringItem index="2" value="Prerequisitos No Listos"/>
+            <StringItem index="3" value="No Cumplimiento de RU"/>
           </StringArray>
         </Property>
       </Properties>

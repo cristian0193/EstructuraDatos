@@ -243,7 +243,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         jLabel22.setText("*");
         getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 80, 20, 20));
 
-        combo_motivo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Cancelado", "Reprogramado", "Prerequisitos No Listos", "No Cumplimiento" }));
+        combo_motivo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Cancelado", "Prerequisitos No Listos", "No Cumplimiento de RU" }));
         getContentPane().add(combo_motivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 180, -1));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -500,7 +500,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'Programado' "
+                + "WHERE ESTADO_PROYECTO = 'Reprogramado' "
                 + "ORDER BY FECHA_REPROGRAMACION DESC;";
 
         try {

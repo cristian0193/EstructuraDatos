@@ -123,7 +123,7 @@ public class CierreProyecto extends javax.swing.JFrame {
 
         jLabel15.setText("Seleccionar Filtro :");
 
-        combo_estado_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "Programado" }));
+        combo_estado_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "No Ejecutada", "Programado" }));
         combo_estado_consulta.setEnabled(false);
 
         jLabel7.setText("Estado :");
@@ -210,7 +210,7 @@ public class CierreProyecto extends javax.swing.JFrame {
         jLabel8.setText("Cambio de Estado :");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 120, 20));
 
-        combo_estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "Cerrada" }));
+        combo_estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "No Ejecutada", "Cerrada" }));
         getContentPane().add(combo_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 170, -1));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -411,9 +411,13 @@ public class CierreProyecto extends javax.swing.JFrame {
                 + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'Ejecutada' OR ESTADO_PROYECTO = 'Programado'  "
+                + "WHERE ESTADO_PROYECTO = 'Programado' "
+                + "OR ESTADO_PROYECTO = 'Reprogramado' "
+                + "OR ESTADO_PROYECTO = 'Ejecutado' "
                 + "ORDER BY ESTADO_PROYECTO DESC;";
 
+        System.out.println(query);
+        
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);

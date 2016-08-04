@@ -353,6 +353,7 @@ public class ConexioSQLite {
                     + " SET "
                     + "  FECHA_REPROGRAMACION = '" + FECHA + "',"
                     + "  MOTIVO_REPROGRAMACION = '" + MOTIVO + "',"
+                    + "  ESTADO_PROYECTO = 'Reprogramado',"
                     + "  OBSERVACION_REPROGRAMACION = '" + OBSERVACIONES + "',"
                     + "  SEMANA = '" + SEMANA + "'"
                     + " WHERE"
