@@ -273,10 +273,10 @@ public class Reprogramacion extends javax.swing.JFrame {
             Date fecha = date_nueva_fecha.getDate();
             int semana = numeroSemanas(fecha);
             int rec = this.tabla_proyectos.getSelectedRow();
-            String tipo_validacion = tabla_proyectos.getValueAt(rec, 0).toString();
+            String tipo_validacion = tabla_proyectos.getValueAt(rec, 3).toString();
             int contador = contadorSemana(semana, tipo_validacion);
 
-            if (contador >= 3) {
+            if (contador >= 3 ) {
                 JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                         + "\n CALIFICACIONES DE TIPO : " + tipo_validacion);
             } else {
@@ -297,10 +297,10 @@ public class Reprogramacion extends javax.swing.JFrame {
                 boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones, motivo,semana_fecha);
 
                 if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                    JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");                          
                     LimpiarCampos();
                     cargar_tabla_reprogramaciones();
-                    conexion.cerrar();
+                                       
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
                     LimpiarCampos();
@@ -467,11 +467,12 @@ public class Reprogramacion extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void LimpiarCampos() {
-        txt_registro.setText("");
+        txt_registro_repro.setText("");
         date_nueva_fecha.setDate(null);
         txt_fecha_reprogramda.setText("");
         txt_observaciones_reprogramacion.setText("");
         combo_motivo.setSelectedIndex(0);
+        txt_fecha_propuesta2.setText("");
     }
 
     void cargar_tabla_reprogramaciones() {
@@ -519,7 +520,6 @@ public class Reprogramacion extends javax.swing.JFrame {
                 modelo.addRow(registro);
             }
             tabla_proyectos.setModel(modelo);
-            conexion.cerrar();
 
         } catch (SQLException ex) {
 

@@ -354,7 +354,7 @@ public class ConexioSQLite {
                     + "  FECHA_REPROGRAMACION = '" + FECHA + "',"
                     + "  MOTIVO_REPROGRAMACION = '" + MOTIVO + "',"
                     + "  OBSERVACION_REPROGRAMACION = '" + OBSERVACIONES + "',"
-                    + "  SEMANA = '" + SEMANA + "',"
+                    + "  SEMANA = '" + SEMANA + "'"
                     + " WHERE"
                     + "  NUMERO_REGISTRO = " + REGISTRO + ";";
 

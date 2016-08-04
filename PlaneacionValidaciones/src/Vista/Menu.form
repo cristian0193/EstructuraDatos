@@ -20,7 +20,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menu_tipo_validacion">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ingresar Tipo Validacion"/>
+                <Property name="text" type="java.lang.String" value="Ingresar Tipo Validacion (Admin)"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_tipo_validacionActionPerformed"/>
@@ -31,7 +31,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menu_lider_tecnico">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ingresar Lider Tecnico"/>
+                <Property name="text" type="java.lang.String" value="Ingresar Lider Tecnico (Todos)"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_lider_tecnicoActionPerformed"/>
@@ -42,7 +42,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menu_planta">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ingresar Planta"/>
+                <Property name="text" type="java.lang.String" value="Ingresar Planta (Admin)"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_plantaActionPerformed"/>
@@ -53,7 +53,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menu_maquina">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ingresar Maquina"/>
+                <Property name="text" type="java.lang.String" value="Ingresar Maquina (Admin)"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_maquinaActionPerformed"/>

@@ -1,10 +1,20 @@
 package Vista;
 
+import Conexion.ConexioSQLite;
+import static Vista.Reprogramacion.conexion;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class ProgramacionSemanal extends javax.swing.JFrame {
 
+    public static ConexioSQLite conexion;
+    DefaultTableModel modelo;
+    
     public ProgramacionSemanal() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -45,6 +55,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
 
             }
         ));
+        tabla_programadas.setEnabled(false);
         jScrollPane2.setViewportView(tabla_programadas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -74,6 +85,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
 
             }
         ));
+        tabla_reprogramadas.setEnabled(false);
         jScrollPane1.setViewportView(tabla_reprogramadas);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -150,7 +162,9 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
         if(index == 0){
             JOptionPane.showMessageDialog(null, "SELECCIONAR UNA OPCION");
         }else{
-            
+            String semana = combo_semana.getSelectedItem().toString();
+            cargar_tabla_programadas(semana);
+            cargar_tabla_reprogramadas(semana);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -167,4 +181,121 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
     private javax.swing.JTable tabla_programadas;
     private javax.swing.JTable tabla_reprogramadas;
     // End of variables declaration//GEN-END:variables
+
+void cargar_tabla_programadas(String SEMANA) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
+        String[] registro = new String[10];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "GCC_APR AS GCC, "
+                + "NOMBRE_PROYECTO AS PROYECTO, "
+                + "TIPO_VALIDACION AS TIPO, "
+                + "LIDER_TECNICO AS LIDER, "
+                + "PLANTA AS PLANTA, "                
+                + "MAQUINA AS MAQUINA, "
+                + "LOTE AS LOTE, "
+                + "TURNOS AS TURNO, "
+                + "ESTADO_PROYECTO AS ESTADO, "               
+                + "FECHA_PROPUESTA AS FECHA_ACTUAL "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE ESTADO_PROYECTO = 'Programado' "
+                + "AND SEMANA = " + SEMANA + " "               
+                + "ORDER BY FECHA_PROPUESTA ASC;";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("GCC");
+                registro[1] = rs.getString("PROYECTO");
+                registro[2] = rs.getString("TIPO");
+                registro[3] = rs.getString("LIDER");
+                registro[4] = rs.getString("PLANTA");
+                registro[5] = rs.getString("MAQUINA");
+                registro[6] = rs.getString("LOTE");
+                registro[7] = rs.getString("TURNO");
+                registro[8] = rs.getString("ESTADO");
+                registro[9] = rs.getString("FECHA_ACTUAL");
+
+                modelo.addRow(registro);
+            }
+            tabla_programadas.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+void cargar_tabla_reprogramadas(String SEMANA) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
+        String[] registro = new String[10];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "GCC_APR AS GCC, "
+                + "NOMBRE_PROYECTO AS PROYECTO, "
+                + "TIPO_VALIDACION AS TIPO, "
+                + "LIDER_TECNICO AS LIDER, "
+                + "PLANTA AS PLANTA, "                
+                + "MAQUINA AS MAQUINA, "
+                + "LOTE AS LOTE, "
+                + "TURNOS AS TURNO, "
+                + "MOTIVO_REPROGRAMACION AS MOTIVO, "               
+                + "FECHA_REPROGRAMACION AS FECHA "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE MOTIVO_REPROGRAMACION = 'Reprogramado' "
+                + "AND SEMANA = " + SEMANA + " "               
+                + "ORDER BY FECHA_REPROGRAMACION ASC;";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("GCC");
+                registro[1] = rs.getString("PROYECTO");
+                registro[2] = rs.getString("TIPO");
+                registro[3] = rs.getString("LIDER");
+                registro[4] = rs.getString("PLANTA");
+                registro[5] = rs.getString("MAQUINA");
+                registro[6] = rs.getString("LOTE");
+                registro[7] = rs.getString("TURNO");
+                registro[8] = rs.getString("MOTIVO");
+                registro[9] = rs.getString("FECHA");
+
+                modelo.addRow(registro);
+            }
+            tabla_reprogramadas.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
 }

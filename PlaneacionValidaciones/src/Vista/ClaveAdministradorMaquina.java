@@ -1,8 +1,10 @@
 package Vista;
 
-public class ClaveAdministrador extends javax.swing.JFrame {
+import javax.swing.JOptionPane;
 
-    public ClaveAdministrador() {
+public class ClaveAdministradorMaquina extends javax.swing.JFrame {
+
+    public ClaveAdministradorMaquina() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -18,6 +20,7 @@ public class ClaveAdministrador extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -89,7 +92,13 @@ public class ClaveAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                       
+        if (txt_clave.getText().equals("1234")) {
+            Maquinas maquina = new Maquinas();
+            maquina.setVisible(true);
+            this.hide();
+        } else {
+            JOptionPane.showMessageDialog(null, "CONTRASEÑA INCORRECTA");
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -2,9 +2,9 @@ package Vista;
 
 import javax.swing.JOptionPane;
 
-public class ClaveAdminReprogramar extends javax.swing.JFrame {
+public class ClaveAdministradorTipo extends javax.swing.JFrame {
 
-    public ClaveAdminReprogramar() {
+    public ClaveAdministradorTipo() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -92,10 +92,9 @@ public class ClaveAdminReprogramar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         if (txt_clave.getText().equals("1234")) {
-            Reprogramacion reprogramacion = new Reprogramacion();
-            reprogramacion.setVisible(true);
+            TipoValidacion tipo = new TipoValidacion();
+            tipo.setVisible(true);
             this.hide();
         } else {
             JOptionPane.showMessageDialog(null, "CONTRASEÑA INCORRECTA");

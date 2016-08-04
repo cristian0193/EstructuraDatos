@@ -46,7 +46,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        menu_tipo_validacion.setText("Ingresar Tipo Validacion");
+        menu_tipo_validacion.setText("Ingresar Tipo Validacion (Admin)");
         menu_tipo_validacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_tipo_validacionActionPerformed(evt);
@@ -54,7 +54,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(menu_tipo_validacion);
 
-        menu_lider_tecnico.setText("Ingresar Lider Tecnico");
+        menu_lider_tecnico.setText("Ingresar Lider Tecnico (Todos)");
         menu_lider_tecnico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_lider_tecnicoActionPerformed(evt);
@@ -62,7 +62,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(menu_lider_tecnico);
 
-        menu_planta.setText("Ingresar Planta");
+        menu_planta.setText("Ingresar Planta (Admin)");
         menu_planta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_plantaActionPerformed(evt);
@@ -70,7 +70,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(menu_planta);
 
-        menu_maquina.setText("Ingresar Maquina");
+        menu_maquina.setText("Ingresar Maquina (Admin)");
         menu_maquina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_maquinaActionPerformed(evt);
@@ -195,8 +195,10 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void menu_tipo_validacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tipo_validacionActionPerformed
-        TipoValidacion tipo = new TipoValidacion();
+               
+        ClaveAdministradorTipo tipo = new ClaveAdministradorTipo();
         tipo.setVisible(true);
+
     }//GEN-LAST:event_menu_tipo_validacionActionPerformed
 
     private void menu_lider_tecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_lider_tecnicoActionPerformed
@@ -205,12 +207,13 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_lider_tecnicoActionPerformed
 
     private void menu_plantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_plantaActionPerformed
-       Plantas planta = new Plantas();
+        ClaveAdministradorPlanta planta = new ClaveAdministradorPlanta();
         planta.setVisible(true);
+        
     }//GEN-LAST:event_menu_plantaActionPerformed
 
     private void menu_maquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_maquinaActionPerformed
-        Maquinas maquina = new Maquinas();
+        ClaveAdministradorMaquina maquina = new ClaveAdministradorMaquina();
         maquina.setVisible(true);
     }//GEN-LAST:event_menu_maquinaActionPerformed
 
