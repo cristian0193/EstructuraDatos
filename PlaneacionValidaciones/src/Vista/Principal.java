@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -622,36 +623,88 @@ public class Principal extends javax.swing.JFrame {
             } else if (!isNumeric(turnos)) {
                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
             } else {
-                conexion = new ConexioSQLite();
-                conexion.coneccionbase();
-                String registro = txt_registro.getText();
-                String gcc = txt_GCC.getText();
-                String nombre = txt_proyecto.getText();
-                String tipo = combo_tipo.getSelectedItem().toString();
-                String lider = combo_lider_tecnico.getSelectedItem().toString();
-                String planta = combo_planta.getSelectedItem().toString();
-                String maquina = combo_maquina.getSelectedItem().toString();
-                String lote = txt_lotes.getText();
-                String turno = txt_turnos.getText();
-                String estado = combo_consulta.getSelectedItem().toString();
-                String observaciones = txt_observaciones_proyecto.getText();
 
-                String formato = date_fecha_propuesta.getDateFormatString();
-                Date date = (Date) date_fecha_propuesta.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String fecha_ingresada = String.valueOf(sdf.format(date));
+                DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = (Date) date_fecha_propuesta.getDate();
+                String fecha_ingresada_convertido = fechaHora.format(fecha);
 
-                boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase());
+                String fecha_actual = txt_fecha_propuesta.getText();
 
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                    LimpiarCampos();
-                    cargar_tabla();
-                    conexion.cerrar();
+                if (fecha_actual.equals(fecha_ingresada_convertido)) {
+                    conexion = new ConexioSQLite();
+                    conexion.coneccionbase();
+                    String registro = txt_registro.getText();
+                    String gcc = txt_GCC.getText();
+                    String nombre = txt_proyecto.getText();
+                    String tipo = combo_tipo.getSelectedItem().toString();
+                    String lider = combo_lider_tecnico.getSelectedItem().toString();
+                    String planta = combo_planta.getSelectedItem().toString();
+                    String maquina = combo_maquina.getSelectedItem().toString();
+                    String lote = txt_lotes.getText();
+                    String turno = txt_turnos.getText();
+                    String estado = txt_estado_proyecto.getText();
+                    String observaciones = txt_observaciones_proyecto.getText();
+
+                    String formato = date_fecha_propuesta.getDateFormatString();
+                    Date date = (Date) date_fecha_propuesta.getDate();
+                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                    String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                    boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase());
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                        LimpiarCampos();
+                        cargar_tabla();
+                        conexion.cerrar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                        LimpiarCampos();
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                    LimpiarCampos();
+                    Date fecha_calendario = (Date) date_fecha_propuesta.getDate();
+                    int semana = numeroSemanas(fecha_calendario);
+                    String tipo_validacion = combo_tipo.getSelectedItem().toString();
+                    int contador = contadorSemana(semana, tipo_validacion);
+
+                    if (contador >= 3) {
+                        JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                                + "\n CALIFICACIONES DE TIPO : " + tipo_validacion);
+                    } else {
+                        conexion = new ConexioSQLite();
+                        conexion.coneccionbase();
+                        String registro = txt_registro.getText();
+                        String gcc = txt_GCC.getText();
+                        String nombre = txt_proyecto.getText();
+                        String tipo = combo_tipo.getSelectedItem().toString();
+                        String lider = combo_lider_tecnico.getSelectedItem().toString();
+                        String planta = combo_planta.getSelectedItem().toString();
+                        String maquina = combo_maquina.getSelectedItem().toString();
+                        String lote = txt_lotes.getText();
+                        String turno = txt_turnos.getText();
+                        String estado = txt_estado_proyecto.getText();
+                        String observaciones = txt_observaciones_proyecto.getText();
+
+                        String formato = date_fecha_propuesta.getDateFormatString();
+                        Date date = (Date) date_fecha_propuesta.getDate();
+                        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                        String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                        boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase());
+
+                        if (resultado == true) {
+                            JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                            LimpiarCampos();
+                            cargar_tabla();
+                            conexion.cerrar();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                            LimpiarCampos();
+                        }
+                    }
+
                 }
+
             }
 
         }

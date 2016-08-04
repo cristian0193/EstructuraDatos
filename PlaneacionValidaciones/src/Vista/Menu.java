@@ -167,6 +167,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu1.add(jMenuItem6);
 
         jMenuItem8.setText("Cierre Validacion (Admin)");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem8);
 
         jMenuBar1.add(jMenu1);
@@ -275,6 +280,11 @@ public class Menu extends javax.swing.JFrame {
         programacion.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        ClaveAdministradorCierre cierre = new ClaveAdministradorCierre();
+        cierre.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
