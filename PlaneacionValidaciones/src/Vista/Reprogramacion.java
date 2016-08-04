@@ -735,7 +735,6 @@ public class Reprogramacion extends javax.swing.JFrame {
             conexion.cerrar();
 
         } catch (SQLException ex) {
-
             JOptionPane.showMessageDialog(null, ex);
 
         }

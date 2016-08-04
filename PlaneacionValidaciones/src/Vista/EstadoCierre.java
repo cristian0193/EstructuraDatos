@@ -10,12 +10,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class ProgramacionSemanal extends javax.swing.JFrame {
+public class EstadoCierre extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     DefaultTableModel modelo;
     
-    public ProgramacionSemanal() {
+    public EstadoCierre() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -41,11 +41,11 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("PROGRAMACION SEMANAL");
+        jLabel1.setText("ESTADO DE PROYECTO DE VALIDACION");
 
         combo_semana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53" }));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Programadas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ejecutadas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
         tabla_programadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,7 +75,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reprogramadas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cerradas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
         tabla_reprogramadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -163,8 +163,8 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "SELECCIONAR UNA OPCION");
         }else{
             String semana = combo_semana.getSelectedItem().toString();
-            cargar_tabla_programadas(semana);
-            cargar_tabla_reprogramadas(semana);
+            cargar_tabla_ejecutadas(semana);
+            cargar_tabla_cerradas(semana);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -182,7 +182,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
     private javax.swing.JTable tabla_reprogramadas;
     // End of variables declaration//GEN-END:variables
 
-void cargar_tabla_programadas(String SEMANA) {
+void cargar_tabla_ejecutadas(String SEMANA) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -209,7 +209,7 @@ void cargar_tabla_programadas(String SEMANA) {
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'Programado' "
+                + "WHERE ESTADO_PROYECTO = 'Ejecutada' "
                 + "AND SEMANA = " + SEMANA + " "               
                 + "ORDER BY FECHA_PROPUESTA ASC;";
 
@@ -240,7 +240,7 @@ void cargar_tabla_programadas(String SEMANA) {
         }
     }
 
-void cargar_tabla_reprogramadas(String SEMANA) {
+void cargar_tabla_cerradas(String SEMANA) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -263,14 +263,11 @@ void cargar_tabla_reprogramadas(String SEMANA) {
                 + "MAQUINA AS MAQUINA, "
                 + "LOTE AS LOTE, "
                 + "TURNOS AS TURNO, "
-                + "MOTIVO_REPROGRAMACION AS MOTIVO, "               
-                + "FECHA_REPROGRAMACION AS FECHA "
+                + "ESTADO_PROYECTO AS ESTADO, "               
+                + "FECHA_PROPUESTA AS FECHA_ACTUAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE MOTIVO_REPROGRAMACION = 'Reprogramado' "
-                + "OR MOTIVO_REPROGRAMACION = 'Cancelado' "
-                + "OR MOTIVO_REPROGRAMACION = 'Prerequisitos No Listos' "
-                + "OR MOTIVO_REPROGRAMACION = 'No Cumplimiento' "
+                + "WHERE ESTADO_PROYECTO = 'Cerrada' "
                 + "AND SEMANA = " + SEMANA + " "               
                 + "ORDER BY FECHA_REPROGRAMACION ASC;";
 
@@ -287,8 +284,8 @@ void cargar_tabla_reprogramadas(String SEMANA) {
                 registro[5] = rs.getString("MAQUINA");
                 registro[6] = rs.getString("LOTE");
                 registro[7] = rs.getString("TURNO");
-                registro[8] = rs.getString("MOTIVO");
-                registro[9] = rs.getString("FECHA");
+                registro[8] = rs.getString("ESTADO");
+                registro[9] = rs.getString("FECHA_ACTUAL");
 
                 modelo.addRow(registro);
             }
