@@ -343,7 +343,8 @@ public class ConexioSQLite {
     public boolean upgrade_reprogramacion(String REGISTRO,
             String FECHA,
             String OBSERVACIONES,
-            String MOTIVO) {
+            String MOTIVO,
+            int SEMANA) {
 
         try {
 
@@ -352,7 +353,8 @@ public class ConexioSQLite {
                     + " SET "
                     + "  FECHA_REPROGRAMACION = '" + FECHA + "',"
                     + "  MOTIVO_REPROGRAMACION = '" + MOTIVO + "',"
-                    + "  OBSERVACION_REPROGRAMACION = '" + OBSERVACIONES + "'"
+                    + "  OBSERVACION_REPROGRAMACION = '" + OBSERVACIONES + "',"
+                    + "  SEMANA = '" + SEMANA + "',"
                     + " WHERE"
                     + "  NUMERO_REGISTRO = " + REGISTRO + ";";
 

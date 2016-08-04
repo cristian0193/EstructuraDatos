@@ -326,7 +326,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="date_fecha_nueva">
+    <Component class="javax.swing.JTextField" name="txt_fecha_reprogramda">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

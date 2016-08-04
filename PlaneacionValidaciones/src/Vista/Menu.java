@@ -122,6 +122,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu3.setText("Reporte de Semana");
 
         jMenuItem7.setText("Programacion Semanal");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem7);
 
         jMenuBar1.add(jMenu3);
@@ -208,6 +213,13 @@ public class Menu extends javax.swing.JFrame {
         Maquinas maquina = new Maquinas();
         maquina.setVisible(true);
     }//GEN-LAST:event_menu_maquinaActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        
+        ProgramacionSemanal programacion = new ProgramacionSemanal();
+        programacion.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments

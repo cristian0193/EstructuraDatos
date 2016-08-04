@@ -1,6 +1,8 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
+import static Vista.Principal.contadorSemana;
+import static Vista.Principal.numeroSemanas;
 import static Vista.Principal.txt_registro;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -48,7 +50,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         txt_observaciones_reprogramacion = new javax.swing.JTextArea();
         txt_registro_repro = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        date_fecha_nueva = new javax.swing.JTextField();
+        txt_fecha_reprogramda = new javax.swing.JTextField();
         txt_fecha_propuesta2 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -218,10 +220,10 @@ public class Reprogramacion extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 120, 50));
 
-        date_fecha_nueva.setEditable(false);
-        date_fecha_nueva.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        date_fecha_nueva.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(date_fecha_nueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 120, -1));
+        txt_fecha_reprogramda.setEditable(false);
+        txt_fecha_reprogramda.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        txt_fecha_reprogramda.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(txt_fecha_reprogramda, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 120, -1));
 
         txt_fecha_propuesta2.setEditable(false);
         getContentPane().add(txt_fecha_propuesta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 120, -1));
@@ -257,41 +259,54 @@ public class Reprogramacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                
-        if(txt_registro_repro.getText().equals("")){
+
+        if (txt_registro_repro.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE LA TABLA");
-        }else if (this.date_nueva_fecha.getDate() == null) {
+        } else if (this.date_nueva_fecha.getDate() == null) {
             JOptionPane.showMessageDialog(null, "INGRESE NUEVA FECHA");
         } else if (combo_motivo.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "INGRESE MOTIVO");
         } else if (txt_observaciones_reprogramacion.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE JUSTIFICACION DE REPROGRAMACION");
         } else {
-            conexion = new ConexioSQLite();
-            conexion.coneccionbase();
 
-            String registro = txt_registro_repro.getText();
+            Date fecha = date_nueva_fecha.getDate();
+            int semana = numeroSemanas(fecha);
+            int rec = this.tabla_proyectos.getSelectedRow();
+            String tipo_validacion = tabla_proyectos.getValueAt(rec, 0).toString();
+            int contador = contadorSemana(semana, tipo_validacion);
 
-            String formato = date_nueva_fecha.getDateFormatString();
-            Date date = (Date) date_nueva_fecha.getDate();
-            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-            String fecha_ingresada = String.valueOf(sdf.format(date));
-
-            String motivo = combo_motivo.getSelectedItem().toString();
-            
-            String observaciones = txt_observaciones_reprogramacion.getText();
-
-            boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones,motivo);
-
-            if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                LimpiarCampos();
-                cargar_tabla_reprogramaciones();
-                conexion.cerrar();
+            if (contador >= 3) {
+                JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                        + "\n CALIFICACIONES DE TIPO : " + tipo_validacion);
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                LimpiarCampos();
+                conexion = new ConexioSQLite();
+                conexion.coneccionbase();
+
+                String registro = txt_registro_repro.getText();
+
+                String formato = date_nueva_fecha.getDateFormatString();
+                Date date = (Date) date_nueva_fecha.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                String motivo = combo_motivo.getSelectedItem().toString();
+                String observaciones = txt_observaciones_reprogramacion.getText();
+                int semana_fecha = numeroSemanas(date);
+                
+                boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones, motivo,semana_fecha);
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                    LimpiarCampos();
+                    cargar_tabla_reprogramaciones();
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                    LimpiarCampos();
+                }
             }
+
         }
 
 
@@ -302,7 +317,7 @@ public class Reprogramacion extends javax.swing.JFrame {
 
         this.txt_registro_repro.setText(tabla_proyectos.getValueAt(rec, 0).toString());
         this.txt_fecha_propuesta2.setText(tabla_proyectos.getValueAt(rec, 4).toString());
-        this.date_fecha_nueva.setText(tabla_proyectos.getValueAt(rec, 5).toString());
+        this.txt_fecha_reprogramda.setText(tabla_proyectos.getValueAt(rec, 5).toString());
         this.txt_observaciones_reprogramacion.setText(tabla_proyectos.getValueAt(rec, 7).toString());
         this.combo_motivo.setSelectedItem(tabla_proyectos.getValueAt(rec, 6).toString());
 
@@ -421,7 +436,6 @@ public class Reprogramacion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox combo_consulta;
     private javax.swing.JComboBox combo_motivo;
-    private javax.swing.JTextField date_fecha_nueva;
     private com.toedter.calendar.JDateChooser date_nueva_fecha;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -445,6 +459,7 @@ public class Reprogramacion extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser txt_fecha_final;
     private com.toedter.calendar.JDateChooser txt_fecha_inicio;
     private javax.swing.JTextField txt_fecha_propuesta2;
+    private javax.swing.JTextField txt_fecha_reprogramda;
     private javax.swing.JTextField txt_lider_consulta;
     private javax.swing.JTextArea txt_observaciones_reprogramacion;
     private javax.swing.JTextField txt_palabra_clave_consulta;
@@ -454,7 +469,7 @@ public class Reprogramacion extends javax.swing.JFrame {
     public void LimpiarCampos() {
         txt_registro.setText("");
         date_nueva_fecha.setDate(null);
-        date_fecha_nueva.setText("");
+        txt_fecha_reprogramda.setText("");
         txt_observaciones_reprogramacion.setText("");
         combo_motivo.setSelectedIndex(0);
     }
@@ -464,7 +479,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -477,11 +492,11 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "NUMERO_REGISTRO AS NUM, "
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
-                + "LIDER_TECNICO AS LIDER, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
                 + "MOTIVO_REPROGRAMACION AS MOTIVO, "
-                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "                
+                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE ESTADO_PROYECTO = 'Programado' "
@@ -495,7 +510,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
-                registro[3] = rs.getString("LIDER");
+                registro[3] = rs.getString("TIPO");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
                 registro[6] = rs.getString("MOTIVO");
@@ -518,7 +533,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -572,7 +587,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -626,7 +641,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-         String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -679,7 +694,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO","MOTIVO", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 

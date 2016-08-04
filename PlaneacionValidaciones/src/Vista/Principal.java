@@ -24,7 +24,7 @@ public class Principal extends javax.swing.JFrame {
         cargar_lista_tipo();
         cargar_lista_lider();
         cargar_lista_planta();
-        cargar_lista_maquina();       
+        cargar_lista_maquina();
     }
 
     @SuppressWarnings("unchecked")
@@ -76,8 +76,6 @@ public class Principal extends javax.swing.JFrame {
         combo_maquina = new javax.swing.JComboBox();
         txt_estado_proyecto = new javax.swing.JTextField();
         btn_limpiar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        txt_semana = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_contenido = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
@@ -322,7 +320,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel27.setText("*");
         jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 20, 20));
 
-        combo_maquina.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionarl" }));
+        combo_maquina.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
         jPanel2.add(combo_maquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 200, -1));
 
         txt_estado_proyecto.setEditable(false);
@@ -344,15 +342,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 90, 30));
-
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 240, 30, -1));
-        jPanel2.add(txt_semana, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, 50, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, 1150, 340));
 
@@ -490,56 +479,53 @@ public class Principal extends javax.swing.JFrame {
             } else {
 
                 Date date = (Date) date_fecha_propuesta.getDate();
-                int semana = numeroSemanas(date);    
+                int semana = numeroSemanas(date);
                 String tipo_validacion = combo_tipo.getSelectedItem().toString();
-                int contador = contadorSemana(semana,tipo_validacion);
-                
+                int contador = contadorSemana(semana, tipo_validacion);
+
                 if (contador >= 3) {
                     JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                                                   + "\n CALIFICACIONES DE TIPO : " + tipo_validacion);
+                            + "\n CALIFICACIONES DE TIPO : " + tipo_validacion);
                 } else {
-                    
+                    conexion = new ConexioSQLite();
+                    conexion.coneccionbase();
+                    String gcc = txt_GCC.getText();
+                    String nombre = txt_proyecto.getText();
+                    String tipo = combo_tipo.getSelectedItem().toString();
+                    String lider = combo_lider_tecnico.getSelectedItem().toString();
+                    String planta = combo_planta.getSelectedItem().toString();
+                    String maquina = combo_maquina.getSelectedItem().toString();
+                    String lote = txt_lotes.getText();
+                    String turno = txt_turnos.getText();
+
+                    String formato = date_fecha_propuesta.getDateFormatString();
+                    Date date_ingresada = (Date) date_fecha_propuesta.getDate();
+                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                    String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                    int semanaObtenida = numeroSemanas(date_ingresada);
+
+                    String estado = txt_estado_proyecto.getText();
+                    String observaciones = txt_observaciones_proyecto.getText();
+
+                    boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones,
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida);
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
+                        LimpiarCampos();
+                        cargar_tabla();
+                        conexion.cerrar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                        LimpiarCampos();
+                    }
                 }
-                
-                
-                
-                conexion = new ConexioSQLite();
-                conexion.coneccionbase();
-                String gcc = txt_GCC.getText();
-                String nombre = txt_proyecto.getText();
-                String tipo = combo_tipo.getSelectedItem().toString();
-                String lider = combo_lider_tecnico.getSelectedItem().toString();
-                String planta = combo_planta.getSelectedItem().toString();
-                String maquina = combo_maquina.getSelectedItem().toString();
-                String lote = txt_lotes.getText();
-                String turno = txt_turnos.getText();
 
-                String formato = date_fecha_propuesta.getDateFormatString();
-                Date date_ingresada = (Date) date_fecha_propuesta.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String fecha_ingresada = String.valueOf(sdf.format(date));
-
-                int semanaObtenida = numeroSemanas(date_ingresada);
-                
-                String estado = txt_estado_proyecto.getText();
-                String observaciones = txt_observaciones_proyecto.getText();
-
-                boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones,
-                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "",semanaObtenida);
-
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
-                    LimpiarCampos();
-                    cargar_tabla();
-                    conexion.cerrar();
-                } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                    LimpiarCampos();
-                }
             }
         }
 
@@ -713,14 +699,6 @@ public class Principal extends javax.swing.JFrame {
     private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
         LimpiarCampos();
     }//GEN-LAST:event_btn_limpiarActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
-        Date date = (Date) date_fecha_propuesta.getDate();
-        int semana = numeroSemanas(date);        
-        txt_semana.setText(""+semana);
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -770,7 +748,6 @@ public class Principal extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser date_fecha_propuesta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -815,7 +792,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextArea txt_observaciones_proyecto;
     private javax.swing.JTextField txt_proyecto;
     public static javax.swing.JTextField txt_registro;
-    private javax.swing.JTextField txt_semana;
     private javax.swing.JTextField txt_turnos;
     // End of variables declaration//GEN-END:variables
 
@@ -852,9 +828,9 @@ public class Principal extends javax.swing.JFrame {
         calendar.setFirstDayOfWeek(calendar.MONDAY);
         calendar.setMinimalDaysInFirstWeek(7);
         calendar.setTime(fecha);
-        return calendar.get(Calendar.WEEK_OF_YEAR)+1;
+        return calendar.get(Calendar.WEEK_OF_YEAR) + 1;
     }
-    
+
 // METODO PARA CARGAR TABLA PRINCIPAL
     public void cargar_tabla() {
 
@@ -979,7 +955,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
 // METODO PARA CONSULTAR LIDER
-   public void consulta_lider(String lider) {
+    public void consulta_lider(String lider) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -1040,7 +1016,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
 // METODO PARA CONSULTAR REGISTROS
-   public void consulta_registro(String registro) {
+    public void consulta_registro(String registro) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -1101,7 +1077,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
 // METODO PARA CARGAR JCOMBOBOX TIPO
-   public void cargar_lista_tipo() {
+    public void cargar_lista_tipo() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -1128,7 +1104,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // METODO PARA CARGAR JCOMBOBOX LIDER
-   public void cargar_lista_lider() {
+    public void cargar_lista_lider() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -1155,7 +1131,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
 // METODO PARA CARGAR JCOMBOBOX PLANTA
-   public void cargar_lista_planta() {
+    public void cargar_lista_planta() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -1182,7 +1158,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
 // METODO PARA CARGAR JCOMBOBOX MAQUINA
-   public void cargar_lista_maquina() {
+    public void cargar_lista_maquina() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -1208,31 +1184,30 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-   
- // METODO PARA VALIDAR CANTIDAD DE VALIDACIONES EN SEMANA
-   public static int contadorSemana(int semana,String tipo) {
+    // METODO PARA VALIDAR CANTIDAD DE VALIDACIONES EN SEMANA
+    public static int contadorSemana(int semana, String tipo) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
         int contadorSemana = 0;
-        
+
         String query = "";
 
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
         query = "SELECT COUNT(SEMANA) AS SEMANA_CONTADA FROM PLANEACIONES_VALIDACION "
-              + "WHERE SEMANA = " + semana + " "
-              + "AND TIPO_VALIDACION = '" + tipo + "'";
+                + "WHERE SEMANA = " + semana + " "
+                + "AND TIPO_VALIDACION = '" + tipo + "'";
 
         System.out.println(query);
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
 
-                contadorSemana = Integer.parseInt(rs.getString("SEMANA_CONTADA"));                
+            contadorSemana = Integer.parseInt(rs.getString("SEMANA_CONTADA"));
             conexion.cerrar();
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
