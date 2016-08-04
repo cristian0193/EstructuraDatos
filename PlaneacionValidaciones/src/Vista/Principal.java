@@ -489,6 +489,20 @@ public class Principal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
             } else {
 
+                Date date = (Date) date_fecha_propuesta.getDate();
+                int semana = numeroSemanas(date);    
+                String tipo_validacion = combo_tipo.getSelectedItem().toString();
+                int contador = contadorSemana(semana,tipo_validacion);
+                
+                if (contador >= 3) {
+                    JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                                                   + "\n CALIFICACIONES DE TIPO : " + tipo_validacion);
+                } else {
+                    
+                }
+                
+                
+                
                 conexion = new ConexioSQLite();
                 conexion.coneccionbase();
                 String gcc = txt_GCC.getText();
@@ -501,11 +515,11 @@ public class Principal extends javax.swing.JFrame {
                 String turno = txt_turnos.getText();
 
                 String formato = date_fecha_propuesta.getDateFormatString();
-                Date date = (Date) date_fecha_propuesta.getDate();
+                Date date_ingresada = (Date) date_fecha_propuesta.getDate();
                 SimpleDateFormat sdf = new SimpleDateFormat(formato);
                 String fecha_ingresada = String.valueOf(sdf.format(date));
 
-                int semana = numeroSemanas(date);
+                int semanaObtenida = numeroSemanas(date_ingresada);
                 
                 String estado = txt_estado_proyecto.getText();
                 String observaciones = txt_observaciones_proyecto.getText();
@@ -515,7 +529,7 @@ public class Principal extends javax.swing.JFrame {
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "",semana);
+                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "",semanaObtenida);
 
                 if (resultado == true) {
                     JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
@@ -605,7 +619,6 @@ public class Principal extends javax.swing.JFrame {
                 conexion.cerrar();
             }
         }
-
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -1195,4 +1208,34 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
+   
+ // METODO PARA VALIDAR CANTIDAD DE VALIDACIONES EN SEMANA
+   public static int contadorSemana(int semana,String tipo) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+        int contadorSemana = 0;
+        
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT COUNT(SEMANA) AS SEMANA_CONTADA FROM PLANEACIONES_VALIDACION "
+              + "WHERE SEMANA = " + semana + " "
+              + "AND TIPO_VALIDACION = '" + tipo + "'";
+
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+                contadorSemana = Integer.parseInt(rs.getString("SEMANA_CONTADA"));                
+            conexion.cerrar();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return contadorSemana;
+    }
 }
