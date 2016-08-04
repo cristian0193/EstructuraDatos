@@ -70,7 +70,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         combo_maquina = new javax.swing.JComboBox();
@@ -301,12 +300,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("*");
         jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, 20, 20));
-
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setText("*");
-        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 20, 20));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(255, 0, 0));
@@ -765,7 +758,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -861,6 +853,7 @@ public class Principal extends javax.swing.JFrame {
                 + "OBSERVACIONES_VALIDACION AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
+                + "WHERE ESTADO_PROYECTO = 'En Creacion' "
                 + "ORDER BY FECHA_PROPUESTA DESC;";
 
         try {
@@ -923,7 +916,8 @@ public class Principal extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "ESTADO_PROYECTO = 'En Creacion' "
+                + "AND FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
                 + "ORDER BY FECHA_PROPUESTA DESC";
         try {
             Statement st = cn.createStatement();
@@ -985,6 +979,7 @@ public class Principal extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
+                + "ESTADO_PROYECTO = 'En Creacion' AND "
                 + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%';";
         try {
             Statement st = cn.createStatement();
@@ -1046,7 +1041,8 @@ public class Principal extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + " NUMERO_REGISTRO = " + registro + ";";
+                + "ESTADO_PROYECTO = 'En Creacion' AND "
+                + "NUMERO_REGISTRO = " + registro + ";";
         System.out.println(query);
         try {
             Statement st = cn.createStatement();
