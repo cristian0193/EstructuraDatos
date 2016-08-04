@@ -37,7 +37,7 @@ public class EstadoValidaciones extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tabla_reprogramadas1 = new javax.swing.JTable();
+        tabla_cerradas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -122,7 +122,7 @@ public class EstadoValidaciones extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cerradas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
-        tabla_reprogramadas1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_cerradas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -130,8 +130,8 @@ public class EstadoValidaciones extends javax.swing.JFrame {
 
             }
         ));
-        tabla_reprogramadas1.setEnabled(false);
-        jScrollPane3.setViewportView(tabla_reprogramadas1);
+        tabla_cerradas.setEnabled(false);
+        jScrollPane3.setViewportView(tabla_cerradas);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -221,9 +221,9 @@ public class EstadoValidaciones extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable tabla_cerradas;
     private javax.swing.JTable tabla_no_ejecutada;
     private javax.swing.JTable tabla_programadas;
-    private javax.swing.JTable tabla_reprogramadas1;
     // End of variables declaration//GEN-END:variables
 
 void cargar_tabla_ejecutadas(String SEMANA) {
@@ -333,7 +333,7 @@ void cargar_tabla_no_ejecutadas(String SEMANA) {
 
                 modelo.addRow(registro);
             }
-            tabla_programadas.setModel(modelo);
+            tabla_no_ejecutada.setModel(modelo);
 
         } catch (SQLException ex) {
 
@@ -391,7 +391,7 @@ void cargar_tabla_cerradas(String SEMANA) {
 
                 modelo.addRow(registro);
             }
-            tabla_no_ejecutada.setModel(modelo);
+            tabla_cerradas.setModel(modelo);
 
         } catch (SQLException ex) {
 

@@ -22,11 +22,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
-        menu_tipo_validacion = new javax.swing.JMenuItem();
-        menu_lider_tecnico = new javax.swing.JMenuItem();
-        menu_planta = new javax.swing.JMenuItem();
-        menu_maquina = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -39,6 +34,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        menu_tipo_validacion = new javax.swing.JMenuItem();
+        menu_lider_tecnico = new javax.swing.JMenuItem();
+        menu_planta = new javax.swing.JMenuItem();
+        menu_maquina = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -97,52 +97,6 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jMenu4.setText("Administracion");
-        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu4MouseClicked(evt);
-            }
-        });
-        jMenu4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu4ActionPerformed(evt);
-            }
-        });
-
-        menu_tipo_validacion.setText("Ingresar Tipo Validacion (Admin)");
-        menu_tipo_validacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_tipo_validacionActionPerformed(evt);
-            }
-        });
-        jMenu4.add(menu_tipo_validacion);
-
-        menu_lider_tecnico.setText("Ingresar Lider Tecnico (Todos)");
-        menu_lider_tecnico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_lider_tecnicoActionPerformed(evt);
-            }
-        });
-        jMenu4.add(menu_lider_tecnico);
-
-        menu_planta.setText("Ingresar Planta (Admin)");
-        menu_planta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_plantaActionPerformed(evt);
-            }
-        });
-        jMenu4.add(menu_planta);
-
-        menu_maquina.setText("Ingresar Maquina (Admin)");
-        menu_maquina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_maquinaActionPerformed(evt);
-            }
-        });
-        jMenu4.add(menu_maquina);
-
-        jMenuBar1.add(jMenu4);
 
         jMenu1.setText("Registro de Validacion");
 
@@ -223,6 +177,52 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
+
+        jMenu4.setText("Administracion");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
+
+        menu_tipo_validacion.setText("Ingresar Tipo Validacion (Admin)");
+        menu_tipo_validacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_tipo_validacionActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menu_tipo_validacion);
+
+        menu_lider_tecnico.setText("Ingresar Lider Tecnico (Todos)");
+        menu_lider_tecnico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_lider_tecnicoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menu_lider_tecnico);
+
+        menu_planta.setText("Ingresar Planta (Admin)");
+        menu_planta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_plantaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menu_planta);
+
+        menu_maquina.setText("Ingresar Maquina (Admin)");
+        menu_maquina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_maquinaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menu_maquina);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 

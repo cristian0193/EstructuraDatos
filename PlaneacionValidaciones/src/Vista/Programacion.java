@@ -66,8 +66,8 @@ public class Programacion extends javax.swing.JFrame {
         jLabel6.setText("Numero Registro :");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 120, 20));
 
-        jLabel7.setText("Fecha Reprogramada :");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 140, 20));
+        jLabel7.setText("Estado Proyecto :");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 130, 20));
 
         tabla_proyectos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -305,7 +305,7 @@ public class Programacion extends javax.swing.JFrame {
         this.txt_registro_pro.setText(tabla_proyectos.getValueAt(rec, 0).toString());
         this.txt_fecha_propuesta.setText(tabla_proyectos.getValueAt(rec, 4).toString());
         this.date_fecha_nueva.setText(tabla_proyectos.getValueAt(rec, 5).toString());
-        this.txt_observaciones_programacion.setText(tabla_proyectos.getValueAt(rec, 7).toString());
+        this.txt_observaciones_programacion.setText(tabla_proyectos.getValueAt(rec, 6).toString());
 
     }//GEN-LAST:event_tabla_proyectosMouseClicked
 
@@ -447,7 +447,7 @@ public class Programacion extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void LimpiarCampos() {
-        txt_registro.setText("");
+        txt_registro_pro.setText("");
         date_fecha_nueva.setText("");
         txt_fecha_propuesta.setText("");
         txt_observaciones_programacion.setText("");

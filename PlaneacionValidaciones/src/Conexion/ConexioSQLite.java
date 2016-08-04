@@ -643,7 +643,90 @@ public class ConexioSQLite {
             return false;
 
         }
+    }    
+    
+    //METODO PARA ELIMINAR TIPO VALIDACION
+    public boolean delete_lider(String REGISTRO) {
+
+        try {
+
+            query = "DELETE FROM LIDER WHERE NUMERO_REGISTRO = " + REGISTRO + "";
+
+            sentencia.executeUpdate(query);
+            System.out.println("ELIMINADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ELIMINADO ...");
+            return false;
+
+        }
+    }
+        
+    //METODO PARA ELIMINAR TIPO VALIDACION
+    public boolean delete_maquinas(String REGISTRO) {
+
+        try {
+
+            query = "DELETE FROM MAQUINA WHERE NUMERO_REGISTRO = " + REGISTRO + "";
+
+            sentencia.executeUpdate(query);
+            System.out.println("ELIMINADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ELIMINADO ...");
+            return false;
+
+        }
     }
     
+    //METODO PARA ELIMINAR TIPO VALIDACION
+    public boolean delete_planta(String REGISTRO) {
+
+        try {
+
+            query = "DELETE FROM PLANTA WHERE NUMERO_REGISTRO = " + REGISTRO + "";
+
+            sentencia.executeUpdate(query);
+            System.out.println("ELIMINADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ELIMINADO ...");
+            return false;
+
+        }
+    }
+    
+    //METODO PARA ELIMINAR TIPO VALIDACION
+    public boolean delete_tipo(String REGISTRO) {
+
+        try {
+
+            query = "DELETE FROM TIPO WHERE NUMERO_REGISTRO = " + REGISTRO + "";
+
+            sentencia.executeUpdate(query);
+            System.out.println("ELIMINADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ELIMINADO ...");
+            return false;
+
+        }
+    }
     
 }

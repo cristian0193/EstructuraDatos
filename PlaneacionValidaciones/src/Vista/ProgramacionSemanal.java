@@ -263,14 +263,11 @@ void cargar_tabla_reprogramadas(String SEMANA) {
                 + "MAQUINA AS MAQUINA, "
                 + "LOTE AS LOTE, "
                 + "TURNOS AS TURNO, "
-                + "MOTIVO_REPROGRAMACION AS MOTIVO, "               
+                + "ESTADO_PROYECTO AS ESTADO, "               
                 + "FECHA_REPROGRAMACION AS FECHA "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE MOTIVO_REPROGRAMACION = 'Reprogramado' "
-                + "OR MOTIVO_REPROGRAMACION = 'Cancelado' "
-                + "OR MOTIVO_REPROGRAMACION = 'Prerequisitos No Listos' "
-                + "OR MOTIVO_REPROGRAMACION = 'No Cumplimiento' "
+                + "WHERE ESTADO_PROYECTO = 'Reprogramado' "
                 + "AND SEMANA = " + SEMANA + " "               
                 + "ORDER BY FECHA_REPROGRAMACION ASC;";
 
@@ -287,7 +284,7 @@ void cargar_tabla_reprogramadas(String SEMANA) {
                 registro[5] = rs.getString("MAQUINA");
                 registro[6] = rs.getString("LOTE");
                 registro[7] = rs.getString("TURNO");
-                registro[8] = rs.getString("MOTIVO");
+                registro[8] = rs.getString("ESTADO");
                 registro[9] = rs.getString("FECHA");
 
                 modelo.addRow(registro);

@@ -500,7 +500,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'Reprogramado' "
+                + "WHERE ESTADO_PROYECTO = 'No Ejecutada' "
                 + "ORDER BY FECHA_REPROGRAMACION DESC;";
 
         try {
