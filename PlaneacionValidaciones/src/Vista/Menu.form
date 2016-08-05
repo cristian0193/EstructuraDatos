@@ -163,7 +163,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menu_maquina1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Exportar a Excel .CSV"/>
+                <Property name="text" type="java.lang.String" value="Exportar a Excel .XLS"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_maquina1ActionPerformed"/>

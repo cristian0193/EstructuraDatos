@@ -223,7 +223,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(menu_maquina);
 
-        menu_maquina1.setText("Exportar a Excel .CSV");
+        menu_maquina1.setText("Exportar a Excel .XLS");
         menu_maquina1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_maquina1ActionPerformed(evt);

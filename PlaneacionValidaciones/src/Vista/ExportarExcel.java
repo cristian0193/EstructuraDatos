@@ -24,13 +24,12 @@ import jxl.read.biff.BiffException;
 
 public class ExportarExcel extends javax.swing.JDialog {
 
-    
     DefaultTableModel modelo;
     private JFileChooser FileChooser = new JFileChooser();
     public JDialog jDialog = new JDialog();
     Vector columna = new Vector();
     Vector filas = new Vector();
-    
+
     public ExportarExcel(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -39,7 +38,7 @@ public class ExportarExcel extends javax.swing.JDialog {
     }
 
     ExportarExcel() {
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -62,6 +61,7 @@ public class ExportarExcel extends javax.swing.JDialog {
 
         jLabel2.setText("Ruta :");
 
+        btn_cargar.setBackground(new java.awt.Color(153, 255, 51));
         btn_cargar.setText("Cargar");
         btn_cargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +69,9 @@ public class ExportarExcel extends javax.swing.JDialog {
             }
         });
 
+        btn_exportar.setBackground(new java.awt.Color(255, 153, 51));
         btn_exportar.setText("Exportar");
+        btn_exportar.setEnabled(false);
         btn_exportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_exportarActionPerformed(evt);
@@ -84,6 +86,7 @@ public class ExportarExcel extends javax.swing.JDialog {
 
             }
         ));
+        tabla_datos.setEnabled(false);
         jScrollPane1.setViewportView(tabla_datos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,13 +115,14 @@ public class ExportarExcel extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ubic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(btn_cargar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_exportar))
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ubic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(btn_exportar))
+                    .addComponent(btn_cargar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                 .addGap(36, 36, 36))
         );
 
@@ -126,34 +130,39 @@ public class ExportarExcel extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cargarActionPerformed
-         // TODO add your handling code here:
+        // TODO add your handling code here:
         JFileChooser dialog = new JFileChooser();
         int opcion = dialog.showSaveDialog(this);
 
-        if(opcion == JFileChooser.APPROVE_OPTION){
+        if (opcion == JFileChooser.APPROVE_OPTION) {
 
             File dir = dialog.getSelectedFile();
             String fl = dir.toString();
 
             ubic.setText(fl);
+            this.btn_exportar.setEnabled(true);
         }
     }//GEN-LAST:event_btn_cargarActionPerformed
 
     private void btn_exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exportarActionPerformed
         // TODO add your handling code here:
-         try {      	 
-           List<JTable> tb = new ArrayList<JTable>();
-           tb.add(tabla_datos);
-           //-------------------
-           export_excel excelExporter = new export_excel(tb, new File(ubic.getText()+".xls"));
-           if (excelExporter.export()) {
-               JOptionPane.showMessageDialog(null, "TABLAS EXPORTADOS CON EXITOS!");
-           }
-       } catch (Exception ex) {
-           ex.printStackTrace();
-       }
-         llama_excel();
-   
+        if (ubic.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "SELECCIONE LA RUTA DESTINO");
+        } else {
+            try {
+                List<JTable> tb = new ArrayList<JTable>();
+                tb.add(tabla_datos);
+                //-------------------
+                export_excel excelExporter = new export_excel(tb, new File(ubic.getText() + ".xls"));
+                if (excelExporter.export()) {
+                    JOptionPane.showMessageDialog(null, "TABLAS EXPORTADOS CON EXITOS!");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            llama_excel();
+        }
+
     }//GEN-LAST:event_btn_exportarActionPerformed
 
     public void llama_excel() {
@@ -209,12 +218,12 @@ public class ExportarExcel extends javax.swing.JDialog {
     private javax.swing.JTextField ubic;
     // End of variables declaration//GEN-END:variables
 
-void cargar_tabla_general() {
+    void cargar_tabla_general() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUMERO_REGISTRO", "GCC_APR","NOMBRE_PROYECTO","TIPO_VALIDACION","LIDER_TECNICO","PLANTA","MAQUINA","LOTE","TURNOS","FECHA_PROPUESTA","ESTADO_PROYECTO","OBSERVACIONES_VALIDACION","FECHA_REPROGRAMACION","OBSERVACION_REPROGRAMACION","MOTIVO_REPROGRAMACION","SEMANA"};
+        String[] titulos = {"NUMERO_REGISTRO", "GCC_APR", "NOMBRE_PROYECTO", "TIPO_VALIDACION", "LIDER_TECNICO", "PLANTA", "MAQUINA", "LOTE", "TURNOS", "FECHA_PROPUESTA", "ESTADO_PROYECTO", "OBSERVACIONES_VALIDACION", "FECHA_REPROGRAMACION", "OBSERVACION_REPROGRAMACION", "MOTIVO_REPROGRAMACION", "SEMANA"};
         String[] registro = new String[16];
         String query = "";
 
@@ -226,7 +235,7 @@ void cargar_tabla_general() {
         query = "SELECT NUMERO_REGISTRO, GCC_APR, NOMBRE_PROYECTO, TIPO_VALIDACION, LIDER_TECNICO, PLANTA, MAQUINA, LOTE, TURNOS, FECHA_PROPUESTA, ESTADO_PROYECTO, OBSERVACIONES_VALIDACION, FECHA_REPROGRAMACION, OBSERVACION_REPROGRAMACION, MOTIVO_REPROGRAMACION, SEMANA "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "ORDER BY NUMERO_REGISTRO DESC";
+                + "ORDER BY NUMERO_REGISTRO ASC";
 
         try {
             Statement st = cn.createStatement();
@@ -249,7 +258,6 @@ void cargar_tabla_general() {
                 registro[13] = rs.getString("OBSERVACION_REPROGRAMACION");
                 registro[14] = rs.getString("MOTIVO_REPROGRAMACION");
                 registro[15] = rs.getString("SEMANA");
-
 
                 modelo.addRow(registro);
             }
