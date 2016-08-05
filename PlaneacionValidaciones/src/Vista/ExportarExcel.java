@@ -86,7 +86,6 @@ public class ExportarExcel extends javax.swing.JDialog {
 
             }
         ));
-        tabla_datos.setEnabled(false);
         jScrollPane1.setViewportView(tabla_datos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

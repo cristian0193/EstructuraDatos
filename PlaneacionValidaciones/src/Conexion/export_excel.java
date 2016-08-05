@@ -35,8 +35,8 @@ public class export_excel {
 	              
 	                  WritableSheet s = w.getSheet(0);
 	                  
-	                for (int i = 0; i < table.getColumnCount(); i++) {
-	                    for (int j = 0; j < table.getRowCount(); j++) {
+	                for (int i = 0; i < table.getColumnCount(); i++) {//filas
+	                    for (int j = 0; j < table.getRowCount(); j++) {//columnas
 	                        Object objeto = table.getValueAt(j, i);
 	                        
 	                        createColumna(s,table.getColumnName(i),i);//crea la columna
@@ -57,7 +57,8 @@ public class export_excel {
 	        }
 	        return false;
 	    }
-	    private void createColumna(WritableSheet sheet,String columna,int number_columna)throws WriteException {
+	    
+            private void createColumna(WritableSheet sheet,String columna,int number_columna)throws WriteException {
 			//creamos el tipo de letra
 			WritableFont times10pt = new WritableFont(WritableFont.TAHOMA, 14);
 			// definimos el formato d ela celda
@@ -78,7 +79,7 @@ public class export_excel {
 			// escribimos las columnas
 			addColumna(sheet, number_columna, 0, columna,fomato_columna);//numero de columna , 0 es la fila
 		}
-	    /****************************************/
+
 	    private void createFilas(WritableSheet sheet,int number_columna,int filas,String name_filas)throws WriteException {
 			//creamos el tipo de letra
 			WritableFont times10pt = new WritableFont(WritableFont.ARIAL, 12);
@@ -101,15 +102,14 @@ public class export_excel {
 			// escribimos las columnas
 			addFilas(sheet, number_columna, filas, name_filas,fomato_fila);
 		}
-	   
-	    
-	    /***********************************/
+	   	   
 	    private void addColumna(WritableSheet sheet, int column, int row, String s,WritableCellFormat format)throws RowsExceededException, WriteException {
 			Label label;
 			label = new Label(column, row, s, format);
 			sheet.addCell(label);
 		}
-	    private void addFilas(WritableSheet sheet, int column, int row, String s,WritableCellFormat format)throws WriteException, RowsExceededException {
+	   
+            private void addFilas(WritableSheet sheet, int column, int row, String s,WritableCellFormat format)throws WriteException, RowsExceededException {
 			Label label;
 			label = new Label(column, row, s, format);
 			sheet.addCell(label);
