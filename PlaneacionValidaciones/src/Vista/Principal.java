@@ -38,7 +38,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txt_lotes = new javax.swing.JTextField();
         txt_proyecto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         date_fecha_propuesta = new com.toedter.calendar.JDateChooser();
@@ -76,6 +75,7 @@ public class Principal extends javax.swing.JFrame {
         combo_maquina = new javax.swing.JComboBox();
         txt_estado_proyecto = new javax.swing.JTextField();
         btn_limpiar = new javax.swing.JButton();
+        combo_lote = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_contenido = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
@@ -137,13 +137,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("*");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 20, 20));
-
-        txt_lotes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_lotesActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txt_lotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 137, -1));
         jPanel2.add(txt_proyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 58, 990, -1));
 
         jLabel3.setText("Nombre Proyecto : ");
@@ -337,6 +330,9 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel2.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 90, 30));
 
+        combo_lote.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "0", "1", "2", "3" }));
+        jPanel2.add(combo_lote, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 140, -1));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, 1150, 340));
 
         tabla_contenido.setModel(new javax.swing.table.DefaultTableModel(
@@ -428,10 +424,6 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_consultaActionPerformed
 
-    private void txt_lotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_lotesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_lotesActionPerformed
-
     private void combo_plantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_plantaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_plantaActionPerformed
@@ -458,13 +450,14 @@ public class Principal extends javax.swing.JFrame {
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
 
         if (txt_GCC.getText().equals("") || txt_proyecto.getText().equals("") || combo_tipo.getSelectedIndex() == 0 || combo_lider_tecnico.getSelectedIndex() == 0
-                || combo_planta.getSelectedIndex() == 0 || combo_maquina.getSelectedIndex() == 0 || date_fecha_propuesta.getDate() == null
-                || txt_estado_proyecto.getText().equals("")) {
+                || combo_planta.getSelectedIndex() == 0 || combo_maquina.getSelectedIndex() == 0 || date_fecha_propuesta.getDate() == null 
+                || txt_estado_proyecto.getText().equals("") || combo_lote.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS OBLIGATORIOS (*)");
         } else {
 
-            String lotes = txt_lotes.getText();
+            String lotes = combo_lote.getSelectedItem().toString();
             String turnos = txt_turnos.getText();
+            
 
             if (!isNumeric(lotes)) {
                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
@@ -472,12 +465,17 @@ public class Principal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
             } else {
 
+                String tipo_validacion = "";
+                int contadorSemanas = 0;
+                int contadorLote = 0;
+                int lotesIngresados = 0;
+                
                 Date date = (Date) date_fecha_propuesta.getDate();
                 int semana = numeroSemanas(date);
-                String tipo_validacion = combo_tipo.getSelectedItem().toString();
-                int contadorSemanas = contadorSemana(semana, tipo_validacion);
-                int contadorLote = contadorLotes(semana, tipo_validacion);
-                int lotesIngresados = Integer.parseInt(txt_lotes.getText());
+                tipo_validacion = combo_tipo.getSelectedItem().toString();
+                contadorSemanas = contadorSemana(semana, tipo_validacion);
+                contadorLote = contadorLotes(semana, tipo_validacion);
+                lotesIngresados = Integer.parseInt(combo_lote.getSelectedItem().toString());
                
                 int resultadoTotalLotes = contadorLote + lotesIngresados;
 
@@ -496,7 +494,7 @@ public class Principal extends javax.swing.JFrame {
                         String lider = combo_lider_tecnico.getSelectedItem().toString();
                         String planta = combo_planta.getSelectedItem().toString();
                         String maquina = combo_maquina.getSelectedItem().toString();
-                        String lote = txt_lotes.getText();
+                        String lote = combo_lote.getSelectedItem().toString();
                         String turno = txt_turnos.getText();
 
                         String formato = date_fecha_propuesta.getDateFormatString();
@@ -518,6 +516,9 @@ public class Principal extends javax.swing.JFrame {
 
                         if (resultado == true) {
                             JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
+                            JOptionPane.showMessageDialog(null, "NO OLVIDE ACTUALIZAR LOS PRE-REQUISITOS DE : "
+                                                           + "\n 1. CALIFICACION "
+                                                            + "\n 2. PROCESO","Advertencia",JOptionPane.INFORMATION_MESSAGE);
                             LimpiarCampos();
                             cargar_tabla();
                             conexion.cerrar();
@@ -543,7 +544,7 @@ public class Principal extends javax.swing.JFrame {
         this.combo_lider_tecnico.setSelectedItem(tabla_contenido.getValueAt(rec, 4).toString());
         this.combo_planta.setSelectedItem(tabla_contenido.getValueAt(rec, 5).toString());
         this.combo_maquina.setSelectedItem(tabla_contenido.getValueAt(rec, 6).toString());
-        this.txt_lotes.setText(tabla_contenido.getValueAt(rec, 7).toString());
+        this.combo_lote.setSelectedItem(tabla_contenido.getValueAt(rec, 7).toString());
         this.txt_turnos.setText(tabla_contenido.getValueAt(rec, 8).toString());
         this.txt_fecha_propuesta.setText(tabla_contenido.getValueAt(rec, 9).toString());
         this.txt_estado_proyecto.setText(tabla_contenido.getValueAt(rec, 10).toString());
@@ -622,7 +623,7 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "INGRESE FECHA PROPUESTA");
         } else {
 
-            String lotes = txt_lotes.getText();
+            String lotes = combo_lote.getSelectedItem().toString();
             String turnos = txt_turnos.getText();
 
             if (!isNumeric(lotes)) {
@@ -647,7 +648,7 @@ public class Principal extends javax.swing.JFrame {
                     String lider = combo_lider_tecnico.getSelectedItem().toString();
                     String planta = combo_planta.getSelectedItem().toString();
                     String maquina = combo_maquina.getSelectedItem().toString();
-                    String lote = txt_lotes.getText();
+                    String lote = combo_lote.getSelectedItem().toString();
                     String turno = txt_turnos.getText();
                     String estado = txt_estado_proyecto.getText();
                     String observaciones = txt_observaciones_proyecto.getText();
@@ -675,7 +676,7 @@ public class Principal extends javax.swing.JFrame {
                     int contadorSemanas = contadorSemana(semana, tipo_validacion);
                     int contadorLote = contadorLotes(semana, tipo_validacion);
 
-                    int lotesIngresados = Integer.parseInt(txt_lotes.getText());
+                    int lotesIngresados = Integer.parseInt(combo_lote.getSelectedItem().toString());
 
                     int resultadoTotalLotes = contadorLote + lotesIngresados;
 
@@ -695,7 +696,7 @@ public class Principal extends javax.swing.JFrame {
                         String lider = combo_lider_tecnico.getSelectedItem().toString();
                         String planta = combo_planta.getSelectedItem().toString();
                         String maquina = combo_maquina.getSelectedItem().toString();
-                        String lote = txt_lotes.getText();
+                        String lote = combo_lote.getSelectedItem().toString();
                         String turno = txt_turnos.getText();
                         String estado = txt_estado_proyecto.getText();
                         String observaciones = txt_observaciones_proyecto.getText();
@@ -801,6 +802,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_refrescar;
     private javax.swing.JComboBox combo_consulta;
     private javax.swing.JComboBox combo_lider_tecnico;
+    private javax.swing.JComboBox combo_lote;
     private javax.swing.JComboBox combo_maquina;
     private javax.swing.JComboBox combo_planta;
     private javax.swing.JComboBox combo_tipo;
@@ -848,7 +850,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField txt_consulta_registro;
     private javax.swing.JTextField txt_estado_proyecto;
     private javax.swing.JTextField txt_fecha_propuesta;
-    private javax.swing.JTextField txt_lotes;
     private javax.swing.JTextArea txt_observaciones_proyecto;
     private javax.swing.JTextField txt_proyecto;
     public static javax.swing.JTextField txt_registro;
@@ -864,7 +865,7 @@ public class Principal extends javax.swing.JFrame {
         combo_lider_tecnico.setSelectedIndex(0);
         combo_planta.setSelectedIndex(0);
         combo_maquina.setSelectedIndex(0);
-        txt_lotes.setText("");
+        combo_lote.setSelectedIndex(0);
         txt_turnos.setText("");
         date_fecha_propuesta.setDate(null);
         txt_fecha_propuesta.setText("");
@@ -1284,6 +1285,8 @@ public class Principal extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
         int contadorSemana = 0;
+        String resultados = null;
+        
 
         String query = "";
 
@@ -1299,7 +1302,15 @@ public class Principal extends javax.swing.JFrame {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
 
-            contadorSemana = Integer.parseInt(rs.getString("LOTES_CONTADOS"));
+            resultados = rs.getString("LOTES_CONTADOS");
+            
+            if(resultados == null){
+                contadorSemana = 0;
+            }else{
+                contadorSemana = Integer.parseInt(resultados);
+            }
+             
+            
             conexion.cerrar();
 
         } catch (SQLException ex) {

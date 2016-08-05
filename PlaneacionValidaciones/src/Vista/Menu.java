@@ -39,6 +39,7 @@ public class Menu extends javax.swing.JFrame {
         menu_lider_tecnico = new javax.swing.JMenuItem();
         menu_planta = new javax.swing.JMenuItem();
         menu_maquina = new javax.swing.JMenuItem();
+        menu_maquina1 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -222,6 +223,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(menu_maquina);
 
+        menu_maquina1.setText("Exportar a Excel .CSV");
+        menu_maquina1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_maquina1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menu_maquina1);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -281,7 +290,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void menu_tipo_validacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tipo_validacionActionPerformed
-               
+
         ClaveAdministradorTipo tipo = new ClaveAdministradorTipo();
         tipo.setVisible(true);
 
@@ -295,7 +304,7 @@ public class Menu extends javax.swing.JFrame {
     private void menu_plantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_plantaActionPerformed
         ClaveAdministradorPlanta planta = new ClaveAdministradorPlanta();
         planta.setVisible(true);
-        
+
     }//GEN-LAST:event_menu_plantaActionPerformed
 
     private void menu_maquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_maquinaActionPerformed
@@ -304,10 +313,10 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_maquinaActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        
+
         ProgramacionSemanal programacion = new ProgramacionSemanal();
         programacion.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -316,26 +325,29 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        
+
         EstadoValidaciones cierre = new EstadoValidaciones();
         cierre.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        
-        try
-       {
-        String sep = File.separator;
-       String Documento="C:"+sep+"Program Files"+sep+"Microsoft Office"+sep+"Office15"+sep+"POWERPNT.EXE Ejemplo.pptx";
-       Process proceso = Runtime.getRuntime().exec(Documento);
-       }
-        catch(Exception e)
-                 {
-                   JOptionPane.showMessageDialog( null,"Error al intentar abrir archivo " +e.toString(),"Error", JOptionPane.ERROR_MESSAGE );
-                 }
-        
+
+        try {
+            String sep = File.separator;
+            String Documento = "C:" + sep + "Program Files (x86)" + sep + "Microsoft Office" + sep + "Office14" + sep + "POWERPNT.EXE Normas.pptx";
+            Process proceso = Runtime.getRuntime().exec(Documento);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al intentar abrir archivo " + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void menu_maquina1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_maquina1ActionPerformed
+
+        new ExportarExcel( this, true).setVisible(true);
+        
+    }//GEN-LAST:event_menu_maquina1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -396,7 +408,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     public javax.swing.JMenuItem menu_lider_tecnico;
     public javax.swing.JMenuItem menu_maquina;
+    public javax.swing.JMenuItem menu_maquina1;
     public javax.swing.JMenuItem menu_planta;
     public javax.swing.JMenuItem menu_tipo_validacion;
     // End of variables declaration//GEN-END:variables
+
+
+
 }
