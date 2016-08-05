@@ -227,18 +227,17 @@ public class LiderTecnico extends javax.swing.JFrame {
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
 
-            String id = txt_id_tipo.getText();
-            String nombre = txt_nombre_tipo.getText();
+            String id = txt_id_tipo.getText();            
             
             boolean resultado = conexion.delete_lider(id);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "TIPO ACTUALIZADO");
+                JOptionPane.showMessageDialog(null, "TIPO ELIMINADO");
                 LimpiarCampos();
                 cargar_tabla_tipo();
                 conexion.cerrar();
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                JOptionPane.showMessageDialog(null, "ERROR AL ELIMINADO");
                 LimpiarCampos();
             }
         }

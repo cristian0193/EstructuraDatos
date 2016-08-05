@@ -428,8 +428,7 @@ public class ConexioSQLite {
         }
 
     }
-    
-    
+        
     //METODO PARA ACTUALIZAR TIPO VALIDACION
     public boolean upgrade_tipo(String ID,
             String NOMBRE) {
@@ -456,7 +455,6 @@ public class ConexioSQLite {
         }
 
     }
-
     
     //METODO PARA INSERTAR LIDER TECNICO
     public boolean insert_lider(
@@ -650,7 +648,7 @@ public class ConexioSQLite {
 
         try {
 
-            query = "DELETE FROM LIDER WHERE NUMERO_REGISTRO = " + REGISTRO + "";
+            query = "DELETE FROM LIDER WHERE ID_LIDER = " + REGISTRO + "";
 
             sentencia.executeUpdate(query);
             System.out.println("ELIMINADO ...");
@@ -671,7 +669,7 @@ public class ConexioSQLite {
 
         try {
 
-            query = "DELETE FROM MAQUINA WHERE NUMERO_REGISTRO = " + REGISTRO + "";
+            query = "DELETE FROM MAQUINA WHERE ID_MAQUINA = " + REGISTRO + "";
 
             sentencia.executeUpdate(query);
             System.out.println("ELIMINADO ...");
@@ -692,7 +690,7 @@ public class ConexioSQLite {
 
         try {
 
-            query = "DELETE FROM PLANTA WHERE NUMERO_REGISTRO = " + REGISTRO + "";
+            query = "DELETE FROM PLANTA WHERE ID_PLANTA = " + REGISTRO + "";
 
             sentencia.executeUpdate(query);
             System.out.println("ELIMINADO ...");
@@ -713,7 +711,7 @@ public class ConexioSQLite {
 
         try {
 
-            query = "DELETE FROM TIPO WHERE NUMERO_REGISTRO = " + REGISTRO + "";
+            query = "DELETE FROM TIPO WHERE ID_TIPO = " + REGISTRO + "";
 
             sentencia.executeUpdate(query);
             System.out.println("ELIMINADO ...");
