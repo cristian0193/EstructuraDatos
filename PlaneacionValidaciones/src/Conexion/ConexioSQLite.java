@@ -192,7 +192,8 @@ public class ConexioSQLite {
             String TURNO,
             String FECHA_PROPUESTA,
             String ESTADO,
-            String OBSERVACION) {
+            String OBSERVACION,
+            int SEMANA) {
 
         try {
 
@@ -209,7 +210,8 @@ public class ConexioSQLite {
                     + "  TURNOS = '" + TURNO + "',"
                     + "  FECHA_PROPUESTA = '" + FECHA_PROPUESTA + "',"
                     + "  ESTADO_PROYECTO = '" + ESTADO + "',"
-                    + "  OBSERVACIONES_VALIDACION = '" + OBSERVACION + "'"
+                    + "  OBSERVACIONES_VALIDACION = '" + OBSERVACION + "',"
+                    + "  SEMANA = '" + SEMANA + "'"
                     + " WHERE"
                     + "  NUMERO_REGISTRO = " + REGISTRO + ";";
 
