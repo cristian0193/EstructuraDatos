@@ -123,7 +123,7 @@ public class CierreProyecto extends javax.swing.JFrame {
 
         jLabel15.setText("Seleccionar Filtro :");
 
-        combo_estado_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "No Ejecutada", "Programado" }));
+        combo_estado_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "Programado" }));
         combo_estado_consulta.setEnabled(false);
 
         jLabel7.setText("Estado :");
@@ -413,7 +413,7 @@ public class CierreProyecto extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE ESTADO_PROYECTO = 'Programado' "
                 + "OR ESTADO_PROYECTO = 'Reprogramado' "
-                + "OR ESTADO_PROYECTO = 'Ejecutado' "
+                + "OR ESTADO_PROYECTO = 'Ejecutada' "
                 + "ORDER BY ESTADO_PROYECTO DESC;";
 
         System.out.println(query);
@@ -468,62 +468,10 @@ public class CierreProyecto extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "ESTADO_PROYECTO = 'Ejecutada' OR ESTADO_PROYECTO = 'Programado' "
-                + "AND FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' "
+                + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' AND"
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','No Programada','Cerrada')) "
                 + "ORDER BY ESTADO_PROYECTO DESC";
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-
-                registro[0] = rs.getString("NUM");
-                registro[1] = rs.getString("GCC");
-                registro[2] = rs.getString("PROYECTO");
-                registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("OBSERVACIONES");
-
-                modelo.addRow(registro);
-            }
-            tabla_proyectos.setModel(modelo);
-            conexion.cerrar();
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(null, ex);
-
-        }
-    }
-
-    void consulta_rango_fechas_reprogramada(String fecha_inicio, String fecha_final) {
-
-        conexion = new ConexioSQLite();
-        conexion.coneccionbase();
-
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[7];
-        String query = "";
-
-        modelo = new DefaultTableModel(null, titulos);
-
-        ConexioSQLite con = new ConexioSQLite();
-        Connection cn = con.Conectar();
-
-        query = "SELECT "
-                + "NUMERO_REGISTRO AS NUM, "
-                + "GCC_APR AS GCC, "
-                + "NOMBRE_PROYECTO AS PROYECTO, "
-                + "LIDER_TECNICO AS LIDER, "
-                + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
-                + "ESTADO_PROYECTO AS ESTADO, "
-                + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
-                + "FROM "
-                + "PLANEACIONES_VALIDACION "
-                + "WHERE "
-                + "ESTADO_PROYECTO = 'Ejecutada' OR ESTADO_PROYECTO = 'Programado' AND "
-                + "FECHA_REPROGRAMACION BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
-                + "ORDER BY FECHA_REPROGRAMACION DESC";
+        System.out.println(query);
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -574,8 +522,10 @@ public class CierreProyecto extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "ESTADO_PROYECTO = 'Ejecutada' OR ESTADO_PROYECTO = 'Programado' AND "
-                + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%';";
+                + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' AND "
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','No Programada','Cerrada'))";
+              
+                
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -627,6 +577,8 @@ public class CierreProyecto extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "ESTADO_PROYECTO = '" + estado + "';";
+        
+        
         System.out.println("" + query);
         try {
             Statement st = cn.createStatement();

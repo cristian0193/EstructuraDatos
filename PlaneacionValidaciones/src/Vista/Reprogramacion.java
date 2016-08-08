@@ -554,7 +554,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' AND"
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado')) "
                 + "ORDER BY FECHA_PROPUESTA DESC";
         try {
             Statement st = cn.createStatement();
@@ -608,7 +609,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "FECHA_REPROGRAMACION BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "FECHA_REPROGRAMACION BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' AND"
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado')) "
                 + "ORDER BY FECHA_REPROGRAMACION DESC";
         try {
             Statement st = cn.createStatement();
@@ -662,7 +664,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%';";
+                + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' AND "
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado')) ";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -715,6 +718,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
+                + "ESTADO_PROYECTO = 'No Ejecutada' AND "
                 + "NOMBRE_PROYECTO LIKE '%" + palabra + "%';";
         try {
             Statement st = cn.createStatement();
