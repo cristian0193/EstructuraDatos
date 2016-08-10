@@ -1265,16 +1265,12 @@ public class Principal extends javax.swing.JFrame {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
-        query = "SELECT COUNT(SEMANA) AS SEMANA_CONTADA "
+        query = "SELECT COUNT(FECHA_PROPUESTA) AS FECHA "
                 + " FROM PLANEACIONES_VALIDACION "
-                + " WHERE SEMANA = " + semana
-                + " AND TIPO_VALIDACION = '" + tipo + "' "
+                + " WHERE SEMANA = " + semana + ""
+                + " AND TIPO_VALIDACION = '" + tipo + "'"
                 + " AND ESTADO_PROYECTO = 'En Creacion' "
-                + " AND (SELECT strftime('%Y',FECHA_PROPUESTA) AS FECHA "
-                + " FROM  PLANEACIONES_VALIDACION "
-                + " WHERE SEMANA = " + semana + " "
-                + " AND TIPO_VALIDACION = '" + tipo + "' "
-                + " AND ESTADO_PROYECTO = 'En Creacion') = '" + año + "'";
+                + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
 
         System.out.println(query);
         try {
