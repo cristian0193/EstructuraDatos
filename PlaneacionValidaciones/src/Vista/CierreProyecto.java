@@ -325,7 +325,7 @@ public class CierreProyecto extends javax.swing.JFrame {
 
                 consulta_rango_fechas_propuesta(fecha_ingresada_inicio, fecha_ingresada_final);
                 conexion.cerrar();
-            }       
+            }
 
         } else if (index == 2) {
 
@@ -347,7 +347,7 @@ public class CierreProyecto extends javax.swing.JFrame {
                 String registros = combo_estado_consulta.getSelectedItem().toString();
                 consulta_estado(registros);
                 conexion.cerrar();
-            } 
+            }
         }
 
 
@@ -392,8 +392,8 @@ public class CierreProyecto extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[7];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
+        String[] registro = new String[8];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -407,6 +407,7 @@ public class CierreProyecto extends javax.swing.JFrame {
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
+                + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
                 + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
                 + "FROM "
@@ -417,7 +418,7 @@ public class CierreProyecto extends javax.swing.JFrame {
                 + "ORDER BY ESTADO_PROYECTO DESC;";
 
         System.out.println(query);
-        
+
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -428,8 +429,9 @@ public class CierreProyecto extends javax.swing.JFrame {
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[5] = rs.getString("REPROGRAMA");
+                registro[6] = rs.getString("ESTADO");
+                registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -448,8 +450,8 @@ public class CierreProyecto extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[7];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
+        String[] registro = new String[8];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -463,6 +465,7 @@ public class CierreProyecto extends javax.swing.JFrame {
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
+                + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
                 + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
                 + "FROM "
@@ -482,8 +485,9 @@ public class CierreProyecto extends javax.swing.JFrame {
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[5] = rs.getString("REPROGRAMA");
+                registro[6] = rs.getString("ESTADO");
+                registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -502,8 +506,8 @@ public class CierreProyecto extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[7];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
+        String[] registro = new String[8];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -517,6 +521,7 @@ public class CierreProyecto extends javax.swing.JFrame {
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
+                + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
                 + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
                 + "FROM "
@@ -524,8 +529,7 @@ public class CierreProyecto extends javax.swing.JFrame {
                 + "WHERE "
                 + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' AND "
                 + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','No Programada','Cerrada'))";
-              
-                
+
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -536,8 +540,9 @@ public class CierreProyecto extends javax.swing.JFrame {
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[5] = rs.getString("REPROGRAMA");
+                registro[6] = rs.getString("ESTADO");
+                registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -556,8 +561,8 @@ public class CierreProyecto extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[7];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
+        String[] registro = new String[8];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -571,14 +576,14 @@ public class CierreProyecto extends javax.swing.JFrame {
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
+                + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
                 + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "ESTADO_PROYECTO = '" + estado + "';";
-        
-        
+
         System.out.println("" + query);
         try {
             Statement st = cn.createStatement();
@@ -590,8 +595,9 @@ public class CierreProyecto extends javax.swing.JFrame {
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[5] = rs.getString("REPROGRAMA");
+                registro[6] = rs.getString("ESTADO");
+                registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }

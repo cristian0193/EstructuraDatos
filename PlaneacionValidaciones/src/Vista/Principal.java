@@ -450,14 +450,13 @@ public class Principal extends javax.swing.JFrame {
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
 
         if (txt_GCC.getText().equals("") || txt_proyecto.getText().equals("") || combo_tipo.getSelectedIndex() == 0 || combo_lider_tecnico.getSelectedIndex() == 0
-                || combo_planta.getSelectedIndex() == 0 || combo_maquina.getSelectedIndex() == 0 || date_fecha_propuesta.getDate() == null 
+                || combo_planta.getSelectedIndex() == 0 || combo_maquina.getSelectedIndex() == 0 || date_fecha_propuesta.getDate() == null
                 || txt_estado_proyecto.getText().equals("") || combo_lote.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS OBLIGATORIOS (*)");
         } else {
 
             String lotes = combo_lote.getSelectedItem().toString();
             String turnos = txt_turnos.getText();
-            
 
             if (!isNumeric(lotes)) {
                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
@@ -469,67 +468,70 @@ public class Principal extends javax.swing.JFrame {
                 int contadorSemanas = 0;
                 int contadorLote = 0;
                 int lotesIngresados = 0;
-                
+
                 Date date = (Date) date_fecha_propuesta.getDate();
                 int semana = numeroSemanas(date);
                 tipo_validacion = combo_tipo.getSelectedItem().toString();
-                contadorSemanas = contadorSemana(semana, tipo_validacion);
+                DateFormat formatoFecha = new SimpleDateFormat("YYYY");
+                int año = Integer.parseInt(formatoFecha.format(date));
+
+                contadorSemanas = contadorSemana(semana, tipo_validacion, año);
                 contadorLote = contadorLotes(semana, tipo_validacion);
                 lotesIngresados = Integer.parseInt(combo_lote.getSelectedItem().toString());
-               
+
                 int resultadoTotalLotes = contadorLote + lotesIngresados;
 
                 if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
                     JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                             + "\n VALIDACIONES DE PROCESO \n CANTIDAD DE LOTES COMPLETOS");
                 } else if (!tipo_validacion.equals("PROCESO") && contadorSemanas >= 3) {
-                        JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                                + "\n CALIFICACIONES DE TIPO : " + tipo_validacion);
+                    JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                            + "\n CALIFICACIONES DE TIPO : " + tipo_validacion);
+                } else {
+                    conexion = new ConexioSQLite();
+                    conexion.coneccionbase();
+                    String gcc = txt_GCC.getText();
+                    String nombre = txt_proyecto.getText();
+                    String tipo = combo_tipo.getSelectedItem().toString();
+                    String lider = combo_lider_tecnico.getSelectedItem().toString();
+                    String planta = combo_planta.getSelectedItem().toString();
+                    String maquina = combo_maquina.getSelectedItem().toString();
+                    String lote = combo_lote.getSelectedItem().toString();
+                    String turno = txt_turnos.getText();
+
+                    String formato = date_fecha_propuesta.getDateFormatString();
+                    Date date_ingresada = (Date) date_fecha_propuesta.getDate();
+                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                    String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                    int semanaObtenida = numeroSemanas(date_ingresada);
+
+                    String estado = txt_estado_proyecto.getText();
+                    String observaciones = txt_observaciones_proyecto.getText();
+
+                    boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones,
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida);
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
+                        JOptionPane.showMessageDialog(null, "NO OLVIDE ACTUALIZAR LOS PRE-REQUISITOS DE : "
+                                + "\n 1. CALIFICACION "
+                                + "\n 2. PROCESO", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                        LimpiarCampos();
+                        cargar_tabla();
+                        conexion.cerrar();
                     } else {
-                        conexion = new ConexioSQLite();
-                        conexion.coneccionbase();
-                        String gcc = txt_GCC.getText();
-                        String nombre = txt_proyecto.getText();
-                        String tipo = combo_tipo.getSelectedItem().toString();
-                        String lider = combo_lider_tecnico.getSelectedItem().toString();
-                        String planta = combo_planta.getSelectedItem().toString();
-                        String maquina = combo_maquina.getSelectedItem().toString();
-                        String lote = combo_lote.getSelectedItem().toString();
-                        String turno = txt_turnos.getText();
-
-                        String formato = date_fecha_propuesta.getDateFormatString();
-                        Date date_ingresada = (Date) date_fecha_propuesta.getDate();
-                        SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                        String fecha_ingresada = String.valueOf(sdf.format(date));
-
-                        int semanaObtenida = numeroSemanas(date_ingresada);
-
-                        String estado = txt_estado_proyecto.getText();
-                        String observaciones = txt_observaciones_proyecto.getText();
-
-                        boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones,
-                                "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                                "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                                "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                                "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                                "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida);
-
-                        if (resultado == true) {
-                            JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
-                            JOptionPane.showMessageDialog(null, "NO OLVIDE ACTUALIZAR LOS PRE-REQUISITOS DE : "
-                                                           + "\n 1. CALIFICACION "
-                                                            + "\n 2. PROCESO","Advertencia",JOptionPane.INFORMATION_MESSAGE);
-                            LimpiarCampos();
-                            cargar_tabla();
-                            conexion.cerrar();
-                        } else {
-                            JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                            LimpiarCampos();
-                        }
+                        JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                        LimpiarCampos();
                     }
-
                 }
+
             }
+        }
 
     }//GEN-LAST:event_btn_guardarActionPerformed
 
@@ -658,7 +660,7 @@ public class Principal extends javax.swing.JFrame {
                     SimpleDateFormat sdf = new SimpleDateFormat(formato);
                     String fecha_ingresada = String.valueOf(sdf.format(date));
 
-                    boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(),semana);
+                    boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana);
 
                     if (resultado == true) {
                         JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
@@ -673,7 +675,9 @@ public class Principal extends javax.swing.JFrame {
                     Date fecha_calendario = (Date) date_fecha_propuesta.getDate();
                     int semana2 = numeroSemanas(fecha_calendario);
                     String tipo_validacion = combo_tipo.getSelectedItem().toString();
-                    int contadorSemanas = contadorSemana(semana2, tipo_validacion);
+                    DateFormat formatoFecha = new SimpleDateFormat("YYYY");
+                    int año = Integer.parseInt(formatoFecha.format(fecha_calendario));
+                    int contadorSemanas = contadorSemana(semana2, tipo_validacion, año);
                     int contadorLote = contadorLotes(semana2, tipo_validacion);
 
                     int lotesIngresados = Integer.parseInt(combo_lote.getSelectedItem().toString());
@@ -706,7 +710,7 @@ public class Principal extends javax.swing.JFrame {
                         SimpleDateFormat sdf = new SimpleDateFormat(formato);
                         String fecha_ingresada = String.valueOf(sdf.format(date));
 
-                        boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(),semana2);
+                        boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana2);
 
                         if (resultado == true) {
                             JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
@@ -1250,7 +1254,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // METODO PARA VALIDAR CANTIDAD DE VALIDACIONES EN SEMANA
-    public static int contadorSemana(int semana, String tipo) {
+    public static int contadorSemana(int semana, String tipo, int año) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -1261,10 +1265,16 @@ public class Principal extends javax.swing.JFrame {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
-        query = "SELECT COUNT(SEMANA) AS SEMANA_CONTADA FROM PLANEACIONES_VALIDACION "
-                + "WHERE SEMANA = " + semana + " "
-                + "AND TIPO_VALIDACION = '" + tipo + "' "
-                + "AND ESTADO_PROYECTO = 'En Creacion'";
+        query = "SELECT COUNT(SEMANA) AS SEMANA_CONTADA "
+                + " FROM PLANEACIONES_VALIDACION "
+                + " WHERE SEMANA = " + semana
+                + " AND TIPO_VALIDACION = '" + tipo + "' "
+                + " AND ESTADO_PROYECTO = 'En Creacion' "
+                + " AND (SELECT strftime('%Y',FECHA_PROPUESTA) AS FECHA "
+                + " FROM  PLANEACIONES_VALIDACION "
+                + " WHERE SEMANA = " + semana + " "
+                + " AND TIPO_VALIDACION = '" + tipo + "' "
+                + " AND ESTADO_PROYECTO = 'En Creacion') = '" + año + "'";
 
         System.out.println(query);
         try {
@@ -1287,7 +1297,6 @@ public class Principal extends javax.swing.JFrame {
         conexion.coneccionbase();
         int contadorSemana = 0;
         String resultados = null;
-        
 
         String query = "";
 
@@ -1305,14 +1314,13 @@ public class Principal extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
 
             resultados = rs.getString("LOTES_CONTADOS");
-            
-            if(resultados == null){
+
+            if (resultados == null) {
                 contadorSemana = 0;
-            }else{
+            } else {
                 contadorSemana = Integer.parseInt(resultados);
             }
-             
-            
+
             conexion.cerrar();
 
         } catch (SQLException ex) {

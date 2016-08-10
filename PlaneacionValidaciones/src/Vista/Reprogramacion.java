@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -274,9 +275,11 @@ public class Reprogramacion extends javax.swing.JFrame {
             int semana = numeroSemanas(fecha);
             int rec = this.tabla_proyectos.getSelectedRow();
             String tipo_validacion = tabla_proyectos.getValueAt(rec, 3).toString();
-            int contador = contadorSemana(semana, tipo_validacion);
+            DateFormat formatoFecha = new SimpleDateFormat("YYYY");
+            int año = Integer.parseInt(formatoFecha.format(fecha));
+            int contador = contadorSemana(semana, tipo_validacion, año);
 
-            if (contador >= 3 ) {
+            if (contador >= 3) {
                 JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                         + "\n CALIFICACIONES DE TIPO : " + tipo_validacion);
             } else {
@@ -293,14 +296,14 @@ public class Reprogramacion extends javax.swing.JFrame {
                 String motivo = combo_motivo.getSelectedItem().toString();
                 String observaciones = txt_observaciones_reprogramacion.getText();
                 int semana_fecha = numeroSemanas(date);
-                
-                boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones, motivo,semana_fecha);
+
+                boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones, motivo, semana_fecha);
 
                 if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");                          
+                    JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
                     LimpiarCampos();
                     cargar_tabla_reprogramaciones();
-                                       
+
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
                     LimpiarCampos();
