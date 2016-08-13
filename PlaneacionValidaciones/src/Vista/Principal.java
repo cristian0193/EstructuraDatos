@@ -444,7 +444,9 @@ public class Principal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "RECUERDE QUE SE DEBEN HACER ACUERDOS PREVIOS CON EL AREA DE CALIDAD "
                 + "\n DE LO CONTRARIO SE PROCEDE A LA NO PROGRAMACION DE LA CALIFICACION ", "Informativo", JOptionPane.INFORMATION_MESSAGE);
 
-        new AcuerdoCalidad(this, true).setVisible(true);
+        AcuerdoCalidad acuerdo = new AcuerdoCalidad();
+        acuerdo.setVisible(true);
+        this.hide();
     }//GEN-LAST:event_btn_excepcionesActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -906,7 +908,6 @@ public class Principal extends javax.swing.JFrame {
         date_fecha_propuesta.setDate(null);
         txt_fecha_propuesta.setText("");
         combo_consulta.setSelectedIndex(0);
-        txt_observaciones_proyecto.setText("");
     }
 
 //METODO PARA VALIDAR DATO NUMERICO O NO NUMERICO

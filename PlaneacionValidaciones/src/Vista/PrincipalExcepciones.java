@@ -176,7 +176,7 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
         jPanel2.add(txt_GCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 210, -1));
 
         jLabel11.setText("Respuesta:");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 60, 30));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 80, 30));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("Prerequisitos de Calificacion");
@@ -199,6 +199,7 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
         jLabel10.setText("Observaciones :");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 210, -1, 20));
 
+        txt_observaciones_proyecto.setEditable(false);
         txt_observaciones_proyecto.setColumns(20);
         txt_observaciones_proyecto.setRows(5);
         jScrollPane3.setViewportView(txt_observaciones_proyecto);
@@ -341,18 +342,16 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
         jLabel24.setText("Turnos : ");
         jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 50, 20));
 
-        txt_respuesta.setBackground(new java.awt.Color(240, 240, 240));
+        txt_respuesta.setEditable(false);
         txt_respuesta.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txt_respuesta.setForeground(new java.awt.Color(255, 0, 0));
         txt_respuesta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_respuesta.setEnabled(false);
         jPanel2.add(txt_respuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 150, 30));
 
         jLabel28.setText("Autorizado :");
-        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, 60, 20));
+        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 80, 20));
 
         txt_autorizacion.setEditable(false);
-        txt_autorizacion.setEnabled(false);
         jPanel2.add(txt_autorizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 180, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, 1150, 340));
