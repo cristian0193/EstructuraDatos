@@ -491,7 +491,8 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida);
+                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida,
+                        "''","''","''");
 
                 if (resultado == true) {
                     JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
