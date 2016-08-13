@@ -90,9 +90,11 @@ public class CierreProyecto extends javax.swing.JFrame {
 
         jLabel3.setText("Fecha Final :");
 
+        txt_fecha_inicio.setToolTipText("Fecha de Inicio de consulta");
         txt_fecha_inicio.setDateFormatString("yyyy-MM-dd");
         txt_fecha_inicio.setEnabled(false);
 
+        txt_fecha_final.setToolTipText("Fecha de Fin de consulta");
         txt_fecha_final.setDateFormatString("yyyy-MM-dd");
         txt_fecha_final.setEnabled(false);
 
@@ -101,15 +103,18 @@ public class CierreProyecto extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(102, 255, 255));
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.setToolTipText("Permite realizar la consulta segun la seleccion del filtro");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        txt_lider_consulta.setToolTipText("Lider encargado de la ejecucion del proyecto");
         txt_lider_consulta.setEnabled(false);
 
         combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "FECHA PROPUESTA", "LIDER TECNICO", "ESTADO" }));
+        combo_consulta.setToolTipText("Permite Seleccioar el Filtro con el que se realiara la consulta");
         combo_consulta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combo_consultaItemStateChanged(evt);
@@ -124,6 +129,7 @@ public class CierreProyecto extends javax.swing.JFrame {
         jLabel15.setText("Seleccionar Filtro :");
 
         combo_estado_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "Programado" }));
+        combo_estado_consulta.setToolTipText("Filtro para verificacion por estado");
         combo_estado_consulta.setEnabled(false);
 
         jLabel7.setText("Estado :");
@@ -187,6 +193,7 @@ public class CierreProyecto extends javax.swing.JFrame {
 
         txt_observaciones_programacion.setColumns(20);
         txt_observaciones_programacion.setRows(5);
+        txt_observaciones_programacion.setToolTipText("Campo para observaciones del Proyecto");
         jScrollPane2.setViewportView(txt_observaciones_programacion);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, 500, 80));
@@ -195,11 +202,13 @@ public class CierreProyecto extends javax.swing.JFrame {
         txt_registro_pro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txt_registro_pro.setForeground(new java.awt.Color(255, 0, 0));
         txt_registro_pro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_registro_pro.setToolTipText("Numero del Registro del Proyecto");
         getContentPane().add(txt_registro_pro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 120, -1));
 
         jButton2.setBackground(new java.awt.Color(102, 255, 102));
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setText("Actualizar");
+        jButton2.setToolTipText("Permite Realizar la actualizacion del estado del proyecto");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -211,6 +220,7 @@ public class CierreProyecto extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 120, 20));
 
         combo_estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "No Ejecutada", "Cerrada" }));
+        combo_estado.setToolTipText("Seleccion de Estado para Cambio en la validacion");
         getContentPane().add(combo_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 170, -1));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

@@ -59,10 +59,13 @@ public class ExportarExcel extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("EXPORTAR A EXCEL");
 
+        ubic.setToolTipText("Ruta donde se guardara la informacion en EXCEL");
+
         jLabel2.setText("Ruta :");
 
         btn_cargar.setBackground(new java.awt.Color(153, 255, 51));
         btn_cargar.setText("Cargar");
+        btn_cargar.setToolTipText("Permite realizar el cargue de la ruta donde se exportará la informacion");
         btn_cargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cargarActionPerformed(evt);
@@ -71,6 +74,7 @@ public class ExportarExcel extends javax.swing.JDialog {
 
         btn_exportar.setBackground(new java.awt.Color(255, 153, 51));
         btn_exportar.setText("Exportar");
+        btn_exportar.setToolTipText("Permite Exportar archivo a Excel");
         btn_exportar.setEnabled(false);
         btn_exportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

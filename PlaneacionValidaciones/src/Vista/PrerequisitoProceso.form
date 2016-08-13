@@ -87,6 +87,7 @@
           <Font name="Arial" size="12" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Actualizar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Permite actualizar la documentacion a estado (Pendiente, Completo, No aplica)"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -695,6 +696,7 @@
           <Font name="Arial" size="12" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cargar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Permite Cargar la informacion Obtenida de Base de Datos"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cargarActionPerformed"/>

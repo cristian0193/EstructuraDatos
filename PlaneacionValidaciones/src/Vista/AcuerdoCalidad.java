@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 
 
 public class AcuerdoCalidad extends javax.swing.JFrame {
-
   
     public AcuerdoCalidad() {
         initComponents();
@@ -59,6 +58,7 @@ public class AcuerdoCalidad extends javax.swing.JFrame {
         combo_respuesta.setToolTipText("Respuesta del Acuerdo con el Area de Calidad");
 
         combo_acordado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "JIMENA BOLAÑOS", "MARGARITA AGUIRRE" }));
+        combo_acordado.setToolTipText("Persona del Area de Calidad \nque Apruebo el Acuerdo");
 
         jLabel3.setText("Acordado :");
 
@@ -181,7 +181,6 @@ public class AcuerdoCalidad extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

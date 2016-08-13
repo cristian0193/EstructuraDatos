@@ -76,6 +76,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         jLabel7.setText("Fecha Reprogramada :");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 140, 20));
 
+        date_nueva_fecha.setToolTipText("");
         date_nueva_fecha.setDateFormatString("yyyy-MM-dd");
         getContentPane().add(date_nueva_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 120, -1));
 
@@ -201,6 +202,7 @@ public class Reprogramacion extends javax.swing.JFrame {
 
         txt_observaciones_reprogramacion.setColumns(20);
         txt_observaciones_reprogramacion.setRows(5);
+        txt_observaciones_reprogramacion.setToolTipText("Justificacion Oblicagatoria de Reprogramacion");
         jScrollPane2.setViewportView(txt_observaciones_reprogramacion);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 500, 70));
@@ -214,6 +216,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(102, 255, 102));
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setText("Reprogramar");
+        jButton2.setToolTipText("Permite Reprogramar las calificaciones con estado No Ejecutadas.");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -224,9 +227,11 @@ public class Reprogramacion extends javax.swing.JFrame {
         txt_fecha_reprogramda.setEditable(false);
         txt_fecha_reprogramda.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         txt_fecha_reprogramda.setForeground(new java.awt.Color(255, 0, 0));
+        txt_fecha_reprogramda.setToolTipText("Fecha en caso de que ya se encuentre como reprogramada o No ejecutada");
         getContentPane().add(txt_fecha_reprogramda, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 120, -1));
 
         txt_fecha_propuesta2.setEditable(false);
+        txt_fecha_propuesta2.setToolTipText("Fecha Actual de validacion para el Proyecto");
         getContentPane().add(txt_fecha_propuesta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 120, -1));
 
         jLabel8.setText("Motivo :");
@@ -245,6 +250,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 80, 20, 20));
 
         combo_motivo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Cancelado", "Prerequisitos No Listos", "No Cumplimiento de RU" }));
+        combo_motivo.setToolTipText("Seleccionador de Filtro segun motivo de reprogramacion");
         getContentPane().add(combo_motivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 180, -1));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

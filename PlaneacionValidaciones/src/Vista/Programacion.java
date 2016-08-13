@@ -199,11 +199,13 @@ public class Programacion extends javax.swing.JFrame {
         txt_registro_pro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txt_registro_pro.setForeground(new java.awt.Color(255, 0, 0));
         txt_registro_pro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_registro_pro.setToolTipText("Numero de Registro del Proyecto");
         getContentPane().add(txt_registro_pro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 120, -1));
 
         jButton2.setBackground(new java.awt.Color(102, 255, 102));
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setText("Programar");
+        jButton2.setToolTipText("Permite programar un validacion en estado En Creacion");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -214,9 +216,11 @@ public class Programacion extends javax.swing.JFrame {
         date_fecha_nueva.setEditable(false);
         date_fecha_nueva.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         date_fecha_nueva.setForeground(new java.awt.Color(255, 0, 0));
+        date_fecha_nueva.setToolTipText("Estado actual de la validacion programada");
         getContentPane().add(date_fecha_nueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 120, -1));
 
         txt_fecha_propuesta.setEditable(false);
+        txt_fecha_propuesta.setToolTipText("Fecha Propuesta del Proyecto");
         getContentPane().add(txt_fecha_propuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 120, -1));
 
         jLabel8.setText("Fecha Propuesta :");

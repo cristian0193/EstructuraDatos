@@ -201,6 +201,7 @@
                 <StringItem index="2" value="MARGARITA AGUIRRE"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Persona del Area de Calidad &#xa;que Apruebo el Acuerdo"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">

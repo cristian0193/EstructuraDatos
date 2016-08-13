@@ -138,6 +138,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("*");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 20, 20));
+
+        txt_proyecto.setToolTipText("Nombre Completo del Proyecto");
         jPanel2.add(txt_proyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 58, 990, -1));
 
         jLabel3.setText("Nombre Proyecto : ");
@@ -153,6 +155,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 60, 20));
 
         combo_lider_tecnico.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
+        combo_lider_tecnico.setToolTipText("Lider Tecnico del Proyecto (Persona encargada de ejecucion del Proyecto)");
         jPanel2.add(combo_lider_tecnico, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 200, -1));
 
         jLabel6.setText("Fecha Propuesta :");
@@ -162,6 +165,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 92, 90, -1));
 
         combo_tipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
+        combo_tipo.setToolTipText("Tipo de Calificacion a ejecutar");
         jPanel2.add(combo_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 178, -1));
 
         jLabel8.setText("Lider Tecnico :");
@@ -169,6 +173,8 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel9.setText("Numero GCC / APR :");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 30, 120, 17));
+
+        txt_GCC.setToolTipText("Numero de Control de Cambio, CAPTA o APR");
         jPanel2.add(txt_GCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 240, -1));
 
         jLabel11.setText("Turnos : ");
@@ -199,6 +205,7 @@ public class Principal extends javax.swing.JFrame {
 
         txt_observaciones_proyecto.setColumns(20);
         txt_observaciones_proyecto.setRows(5);
+        txt_observaciones_proyecto.setToolTipText("Observaciones del Proyecto");
         jScrollPane3.setViewportView(txt_observaciones_proyecto);
 
         jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 620, 90));
@@ -207,6 +214,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 120, 20));
 
         combo_planta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
+        combo_planta.setToolTipText("Planta donde se ejecutara el proyecto");
         combo_planta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_plantaActionPerformed(evt);
@@ -217,6 +225,7 @@ public class Principal extends javax.swing.JFrame {
         btn_refrescar.setBackground(new java.awt.Color(255, 255, 51));
         btn_refrescar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btn_refrescar.setText("Refrescar");
+        btn_refrescar.setToolTipText("Permite Refrescar los datos de la tabla.");
         btn_refrescar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_refrescarActionPerformed(evt);
@@ -224,6 +233,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel2.add(btn_refrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 90, 30));
 
+        txt_turnos.setToolTipText("Turnos para la realizacion de la calificacion");
         txt_turnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_turnosActionPerformed(evt);
@@ -234,6 +244,7 @@ public class Principal extends javax.swing.JFrame {
         btn_guardar.setBackground(new java.awt.Color(0, 255, 0));
         btn_guardar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btn_guardar.setText("Guardar");
+        btn_guardar.setToolTipText("Permite Guardar el proyecto en Base de Datos");
         btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_guardarActionPerformed(evt);
@@ -242,6 +253,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 90, 30));
 
         txt_fecha_propuesta.setEditable(false);
+        txt_fecha_propuesta.setToolTipText("Fecha Propuesta cargada de Base de Datos");
         txt_fecha_propuesta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_fecha_propuestaActionPerformed(evt);
@@ -252,6 +264,7 @@ public class Principal extends javax.swing.JFrame {
         btn_actualizar.setBackground(new java.awt.Color(255, 102, 102));
         btn_actualizar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btn_actualizar.setText("Actualizar");
+        btn_actualizar.setToolTipText("Permite Actualizar el proyecto en Base de Datos");
         btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_actualizarActionPerformed(evt);
@@ -311,11 +324,13 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 20, 20));
 
         combo_maquina.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
+        combo_maquina.setToolTipText("Maquina donde se ejecutara el proyecto");
         jPanel2.add(combo_maquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 200, -1));
 
         txt_estado_proyecto.setEditable(false);
         txt_estado_proyecto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         txt_estado_proyecto.setText("En Creacion");
+        txt_estado_proyecto.setToolTipText("Estado de Inicio del Proyecto");
         txt_estado_proyecto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_estado_proyectoActionPerformed(evt);
@@ -326,6 +341,7 @@ public class Principal extends javax.swing.JFrame {
         btn_limpiar.setBackground(new java.awt.Color(0, 153, 255));
         btn_limpiar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btn_limpiar.setText("Limpiar");
+        btn_limpiar.setToolTipText("Permite Limpiar los cambios");
         btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_limpiarActionPerformed(evt);
@@ -334,6 +350,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 90, 30));
 
         combo_lote.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "0", "1", "2", "3" }));
+        combo_lote.setToolTipText("Lotes a Fabricar durante la calificacion.");
         jPanel2.add(combo_lote, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 140, -1));
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -372,6 +389,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel13.setText("Fecha Inicial :");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 420, 80, 30));
 
+        date_fecha_inicio.setToolTipText("Filtro de Fecha de inicio del proyecto");
         date_fecha_inicio.setDateFormatString("yyyy-MM-dd");
         date_fecha_inicio.setEnabled(false);
         getContentPane().add(date_fecha_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 120, 30));
@@ -379,6 +397,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel14.setText("Fecha Final :");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 70, 30));
 
+        date_fecha_final.setToolTipText("Filtro de Fecha de fin del proyecto");
         date_fecha_final.setDateFormatString("yyyy-MM-dd");
         date_fecha_final.setEnabled(false);
         getContentPane().add(date_fecha_final, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, 120, 30));
@@ -387,12 +406,14 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, 120, 20));
 
         txt_consulta_lider.setEditable(false);
+        txt_consulta_lider.setToolTipText("");
         txt_consulta_lider.setEnabled(false);
         getContentPane().add(txt_consulta_lider, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, 200, -1));
 
         jButton5.setBackground(new java.awt.Color(102, 255, 255));
         jButton5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton5.setText("Buscar");
+        jButton5.setToolTipText("Permite Buscar la informacion seleccioda en el filtro");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -407,6 +428,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(txt_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 10, 70, 50));
 
         combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "LIDER TECNICO", "REGISTRO" }));
+        combo_consulta.setToolTipText("Permite seleccionar el Filtro para la consulta de informacion");
         combo_consulta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combo_consultaItemStateChanged(evt);
@@ -426,6 +448,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, 60, 20));
 
         txt_consulta_registro.setEditable(false);
+        txt_consulta_registro.setToolTipText("Numero de Registro del proyecto");
         txt_consulta_registro.setEnabled(false);
         getContentPane().add(txt_consulta_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 90, -1));
 

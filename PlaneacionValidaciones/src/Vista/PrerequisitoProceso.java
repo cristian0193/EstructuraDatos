@@ -85,6 +85,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         btn_actualizar.setBackground(new java.awt.Color(102, 255, 0));
         btn_actualizar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btn_actualizar.setText("Actualizar");
+        btn_actualizar.setToolTipText("Permite actualizar la documentacion a estado (Pendiente, Completo, No aplica)");
         btn_actualizar.setEnabled(false);
         btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -434,6 +435,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         btn_cargar.setBackground(new java.awt.Color(51, 102, 255));
         btn_cargar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btn_cargar.setText("Cargar");
+        btn_cargar.setToolTipText("Permite Cargar la informacion Obtenida de Base de Datos");
         btn_cargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cargarActionPerformed(evt);

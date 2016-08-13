@@ -123,6 +123,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_proyecto">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Nombre Completo del Proyecto"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="128" y="58" width="990" height="-1"/>
@@ -176,6 +179,7 @@
                 <StringItem index="0" value="Seleccionar"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Lider Tecnico del Proyecto (Persona encargada de ejecucion del Proyecto)"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -210,6 +214,7 @@
                 <StringItem index="0" value="Seleccionar"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Tipo de Calificacion a ejecutar"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -238,6 +243,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_GCC">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Numero de Control de Cambio, CAPTA o APR"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="130" y="30" width="240" height="-1"/>
@@ -316,6 +324,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="toolTipText" type="java.lang.String" value="Observaciones del Proyecto"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -337,6 +346,7 @@
                 <StringItem index="0" value="Seleccionar"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Planta donde se ejecutara el proyecto"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="combo_plantaActionPerformed"/>
@@ -356,6 +366,7 @@
               <Font name="Arial" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Refrescar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Permite Refrescar los datos de la tabla."/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_refrescarActionPerformed"/>
@@ -367,6 +378,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_turnos">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Turnos para la realizacion de la calificacion"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_turnosActionPerformed"/>
           </Events>
@@ -385,6 +399,7 @@
               <Font name="Arial" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Permite Guardar el proyecto en Base de Datos"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_guardarActionPerformed"/>
@@ -401,6 +416,7 @@
         <Component class="javax.swing.JTextField" name="txt_fecha_propuesta">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Fecha Propuesta cargada de Base de Datos"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_fecha_propuestaActionPerformed"/>
@@ -420,6 +436,7 @@
               <Font name="Arial" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Actualizar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Permite Actualizar el proyecto en Base de Datos"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_actualizarActionPerformed"/>
@@ -586,6 +603,7 @@
                 <StringItem index="0" value="Seleccionar"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Maquina donde se ejecutara el proyecto"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -600,6 +618,7 @@
               <Font name="Arial" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="En Creacion"/>
+            <Property name="toolTipText" type="java.lang.String" value="Estado de Inicio del Proyecto"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_estado_proyectoActionPerformed"/>
@@ -619,6 +638,7 @@
               <Font name="Arial" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Limpiar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Permite Limpiar los cambios"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_limpiarActionPerformed"/>
@@ -640,6 +660,7 @@
                 <StringItem index="4" value="3"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Lotes a Fabricar durante la calificacion."/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -708,6 +729,7 @@
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="date_fecha_inicio">
       <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Filtro de Fecha de inicio del proyecto"/>
         <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -729,6 +751,7 @@
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="date_fecha_final">
       <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Filtro de Fecha de fin del proyecto"/>
         <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -751,6 +774,7 @@
     <Component class="javax.swing.JTextField" name="txt_consulta_lider">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Constraints>
@@ -768,6 +792,7 @@
           <Font name="Arial" size="12" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Buscar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Permite Buscar la informacion seleccioda en el filtro"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
@@ -808,6 +833,7 @@
             <StringItem index="3" value="REGISTRO"/>
           </StringArray>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Permite seleccionar el Filtro para la consulta de informacion"/>
       </Properties>
       <Events>
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="combo_consultaItemStateChanged"/>
@@ -842,6 +868,7 @@
     <Component class="javax.swing.JTextField" name="txt_consulta_registro">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="toolTipText" type="java.lang.String" value="Numero de Registro del proyecto"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Constraints>

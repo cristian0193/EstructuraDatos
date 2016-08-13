@@ -47,6 +47,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
         jLabel1.setText("PROGRAMACION SEMANAL");
 
         combo_semana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53" }));
+        combo_semana.setToolTipText("Seleccion de Semana para verificacion de reporte");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Programadas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
@@ -114,6 +115,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(102, 255, 0));
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton1.setText("Refrescar");
+        jButton1.setToolTipText("Realiza la consulta segun la semana seleccionada");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -216,16 +218,13 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable tabla_no_programada;
     private javax.swing.JTable tabla_programadas;
     private javax.swing.JTable tabla_reprogramadas;
-    private javax.swing.JTable tabla_reprogramadas1;
     // End of variables declaration//GEN-END:variables
 
 void cargar_tabla_programadas(String SEMANA) {
