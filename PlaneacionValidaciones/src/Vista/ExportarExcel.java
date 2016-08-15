@@ -226,8 +226,8 @@ public class ExportarExcel extends javax.swing.JDialog {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUMERO_REGISTRO", "GCC_APR", "NOMBRE_PROYECTO", "TIPO_VALIDACION", "LIDER_TECNICO", "PLANTA", "MAQUINA", "LOTE", "TURNOS", "FECHA_PROPUESTA", "ESTADO_PROYECTO", "OBSERVACIONES_VALIDACION", "FECHA_REPROGRAMACION", "OBSERVACION_REPROGRAMACION", "MOTIVO_REPROGRAMACION", "SEMANA"};
-        String[] registro = new String[16];
+        String[] titulos = {"NUMERO_REGISTRO", "GCC_APR", "NOMBRE_PROYECTO", "TIPO_VALIDACION", "LIDER_TECNICO", "PLANTA", "MAQUINA", "LOTE", "TURNOS", "FECHA_PROPUESTA", "ESTADO_PROYECTO", "OBSERVACIONES_VALIDACION", "FECHA_REPROGRAMACION", "OBSERVACION_REPROGRAMACION", "MOTIVO_REPROGRAMACION", "SEMANA","RESPUESTA","AUTORIZADO","OBSERVACION_EXCEPCIONES"};
+        String[] registro = new String[19];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -235,7 +235,7 @@ public class ExportarExcel extends javax.swing.JDialog {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
-        query = "SELECT NUMERO_REGISTRO, GCC_APR, NOMBRE_PROYECTO, TIPO_VALIDACION, LIDER_TECNICO, PLANTA, MAQUINA, LOTE, TURNOS, FECHA_PROPUESTA, ESTADO_PROYECTO, OBSERVACIONES_VALIDACION, FECHA_REPROGRAMACION, OBSERVACION_REPROGRAMACION, MOTIVO_REPROGRAMACION, SEMANA "
+        query = "SELECT NUMERO_REGISTRO, GCC_APR, NOMBRE_PROYECTO, TIPO_VALIDACION, LIDER_TECNICO, PLANTA, MAQUINA, LOTE, TURNOS, FECHA_PROPUESTA, ESTADO_PROYECTO, OBSERVACIONES_VALIDACION, FECHA_REPROGRAMACION, OBSERVACION_REPROGRAMACION, MOTIVO_REPROGRAMACION, SEMANA, RESPUESTA, AUTORIZADO, OBSERVACION_EXCEPCIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "ORDER BY NUMERO_REGISTRO ASC";
@@ -261,6 +261,9 @@ public class ExportarExcel extends javax.swing.JDialog {
                 registro[13] = rs.getString("OBSERVACION_REPROGRAMACION");
                 registro[14] = rs.getString("MOTIVO_REPROGRAMACION");
                 registro[15] = rs.getString("SEMANA");
+                registro[16] = rs.getString("RESPUESTA");
+                registro[17] = rs.getString("AUTORIZADO");
+                registro[18] = rs.getString("OBSERVACION_EXCEPCIONES");
 
                 modelo.addRow(registro);
             }

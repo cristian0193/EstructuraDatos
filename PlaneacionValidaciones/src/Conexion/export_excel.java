@@ -28,7 +28,7 @@ public class export_excel {
 	        try {
 	            DataOutputStream out = new DataOutputStream(new FileOutputStream(archi));
 	            WritableWorkbook w = Workbook.createWorkbook(out);
-	            w.createSheet("Toulouse", 0);
+	            w.createSheet("Validaciones", 0);
 	           
 	            for (int index=0;index<tabla.size();index++) {
 	                JTable table=tabla.get(index);
