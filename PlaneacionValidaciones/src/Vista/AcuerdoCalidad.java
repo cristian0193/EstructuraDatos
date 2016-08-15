@@ -1,17 +1,14 @@
-
 package Vista;
 
 import javax.swing.JOptionPane;
 
-
 public class AcuerdoCalidad extends javax.swing.JFrame {
-  
+
     public AcuerdoCalidad() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -172,12 +169,18 @@ public class AcuerdoCalidad extends javax.swing.JFrame {
         } else if (txt_observaciones_expciones.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE UNA JUSTIFICACION DE LA PROGRAMACION CON EXCEPCIONES");
         } else {
-            PrincipalExcepciones excepciones = new PrincipalExcepciones();
-            excepciones.txt_respuesta.setText(combo_respuesta.getSelectedItem().toString());
-            excepciones.txt_autorizacion.setText(combo_acordado.getSelectedItem().toString());
-            excepciones.txt_observaciones_proyecto.setText(txt_observaciones_expciones.getText());
-            this.hide();
-            excepciones.setVisible(true);
+
+            if (combo_respuesta.getSelectedItem().equals("NO")) {
+                JOptionPane.showMessageDialog(null, "POR FAVOR REALICE UN ACUERDO DE CALIDAD PREVIO");
+            } else {
+                PrincipalExcepciones excepciones = new PrincipalExcepciones();
+                excepciones.txt_respuesta.setText(combo_respuesta.getSelectedItem().toString());
+                excepciones.txt_autorizacion.setText(combo_acordado.getSelectedItem().toString());
+                excepciones.txt_observaciones_proyecto.setText(txt_observaciones_expciones.getText());
+                this.hide();
+                excepciones.setVisible(true);
+            }
+
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

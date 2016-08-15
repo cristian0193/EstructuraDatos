@@ -318,7 +318,7 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
 
         txt_estado_proyecto.setEditable(false);
         txt_estado_proyecto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        txt_estado_proyecto.setText("En Creacion con Excepcion");
+        txt_estado_proyecto.setText("Con Excepcion");
         txt_estado_proyecto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_estado_proyectoActionPerformed(evt);
@@ -343,6 +343,7 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
         jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 50, 20));
 
         txt_respuesta.setEditable(false);
+        txt_respuesta.setBackground(new java.awt.Color(255, 255, 255));
         txt_respuesta.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txt_respuesta.setForeground(new java.awt.Color(255, 0, 0));
         txt_respuesta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -352,6 +353,7 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
         jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 80, 20));
 
         txt_autorizacion.setEditable(false);
+        txt_autorizacion.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.add(txt_autorizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 180, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, 1150, 340));
@@ -508,15 +510,14 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
                 String respuesta = txt_respuesta.getText();
                 String autorizacion = txt_autorizacion.getText();
                 String observaciones_proyecto = txt_observaciones_proyecto.getText();
-                
-                
+
                 boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones,
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida,
-                        respuesta,autorizacion,observaciones_proyecto);
+                        respuesta, autorizacion, observaciones_proyecto);
 
                 if (resultado == true) {
                     JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
@@ -551,7 +552,9 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
         this.txt_turnos.setText(tabla_contenido.getValueAt(rec, 8).toString());
         this.txt_fecha_propuesta.setText(tabla_contenido.getValueAt(rec, 9).toString());
         this.txt_estado_proyecto.setText(tabla_contenido.getValueAt(rec, 10).toString());
-        this.txt_observaciones_proyecto.setText(tabla_contenido.getValueAt(rec, 11).toString());
+        this.txt_respuesta.setText(tabla_contenido.getValueAt(rec, 11).toString());
+        this.txt_autorizacion.setText(tabla_contenido.getValueAt(rec, 12).toString());
+        this.txt_observaciones_proyecto.setText(tabla_contenido.getValueAt(rec, 13).toString());
 
     }//GEN-LAST:event_tabla_contenidoMouseClicked
 
@@ -639,7 +642,7 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
                 Date fecha = (Date) date_fecha_propuesta.getDate();
                 String fecha_ingresada_convertido = fechaHora.format(fecha);
                 int semana = numeroSemanas(fecha);
-                
+
                 String fecha_actual = txt_fecha_propuesta.getText();
 
                 if (fecha_actual.equals(fecha_ingresada_convertido)) {
@@ -662,7 +665,7 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
                     SimpleDateFormat sdf = new SimpleDateFormat(formato);
                     String fecha_ingresada = String.valueOf(sdf.format(date));
 
-                    boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(),semana);
+                    boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana);
 
                     if (resultado == true) {
                         JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
@@ -696,7 +699,7 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
                     SimpleDateFormat sdf = new SimpleDateFormat(formato);
                     String fecha_ingresada = String.valueOf(sdf.format(date));
 
-                    boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(),semana2);
+                    boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana2);
 
                     if (resultado == true) {
                         JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
@@ -858,8 +861,8 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO", "OBSERVA"};
-        String[] registro = new String[12];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO", "RESPUESTA", "QA", "OBSERVA"};
+        String[] registro = new String[14];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -879,10 +882,12 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
                 + "TURNOS AS TURNO, "
                 + "FECHA_PROPUESTA AS FECHA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
-                + "OBSERVACIONES_VALIDACION AS OBSERVACION "
+                + "RESPUESTA AS RESPUESTAS, "
+                + "AUTORIZADO AS AUTORIZACION, "
+                + "OBSERVACION_EXCEPCIONES AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'No Programada' "
+                + "WHERE ESTADO_PROYECTO = 'Con Excepcion' "
                 + "ORDER BY FECHA_PROPUESTA DESC;";
 
         try {
@@ -901,7 +906,9 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
                 registro[8] = rs.getString("TURNO");
                 registro[9] = rs.getString("FECHA");
                 registro[10] = rs.getString("ESTADO");
-                registro[11] = rs.getString("OBSERVACION");
+                registro[11] = rs.getString("RESPUESTAS");
+                registro[12] = rs.getString("AUTORIZACION");
+                registro[13] = rs.getString("OBSERVACION");
 
                 modelo.addRow(registro);
             }
@@ -1208,6 +1215,5 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-
 
 }
