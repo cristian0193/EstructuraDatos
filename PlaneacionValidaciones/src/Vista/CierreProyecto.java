@@ -45,6 +45,7 @@ public class CierreProyecto extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         combo_estado_consulta = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_observaciones_programacion = new javax.swing.JTextArea();
         txt_registro_pro = new javax.swing.JTextField();
@@ -134,6 +135,15 @@ public class CierreProyecto extends javax.swing.JFrame {
 
         jLabel7.setText("Estado :");
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 0));
+        jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton3.setText("Refrescar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -159,9 +169,12 @@ public class CierreProyecto extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(combo_consulta, 0, 200, Short.MAX_VALUE))
-                .addContainerGap(128, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3))
+                    .addComponent(combo_consulta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,7 +195,8 @@ public class CierreProyecto extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1)
                         .addComponent(combo_estado_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7))
+                        .addComponent(jLabel7)
+                        .addComponent(jButton3))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txt_fecha_final, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -275,7 +289,7 @@ public class CierreProyecto extends javax.swing.JFrame {
         int rec = this.tabla_proyectos.getSelectedRow();
 
         this.txt_registro_pro.setText(tabla_proyectos.getValueAt(rec, 0).toString());
-        this.txt_observaciones_programacion.setText(tabla_proyectos.getValueAt(rec, 6).toString());
+        this.txt_observaciones_programacion.setText(tabla_proyectos.getValueAt(rec, 8).toString());
 
     }//GEN-LAST:event_tabla_proyectosMouseClicked
 
@@ -363,6 +377,10 @@ public class CierreProyecto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        cargar_tabla_estados();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox combo_consulta;
@@ -370,6 +388,7 @@ public class CierreProyecto extends javax.swing.JFrame {
     private javax.swing.JComboBox combo_estado_consulta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel18;
@@ -460,7 +479,7 @@ public class CierreProyecto extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO","OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -498,6 +517,7 @@ public class CierreProyecto extends javax.swing.JFrame {
                 registro[5] = rs.getString("REPROGRAMA");
                 registro[6] = rs.getString("ESTADO");
                 registro[7] = rs.getString("OBSERVACIONES");
+
 
                 modelo.addRow(registro);
             }
@@ -554,6 +574,7 @@ public class CierreProyecto extends javax.swing.JFrame {
                 registro[6] = rs.getString("ESTADO");
                 registro[7] = rs.getString("OBSERVACIONES");
 
+
                 modelo.addRow(registro);
             }
             tabla_proyectos.setModel(modelo);
@@ -574,14 +595,14 @@ public class CierreProyecto extends javax.swing.JFrame {
         String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
-
+        
         modelo = new DefaultTableModel(null, titulos);
 
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
         query = "SELECT "
-                + "NUMERO_REGISTRO AS NUM, "
+                 + "NUMERO_REGISTRO AS NUM, "
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "

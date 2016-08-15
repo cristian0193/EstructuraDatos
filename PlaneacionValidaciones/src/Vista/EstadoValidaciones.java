@@ -122,7 +122,7 @@ public class EstadoValidaciones extends javax.swing.JFrame {
             }
         });
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cerradas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Con Excepciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
         tabla_cerradas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -206,7 +206,7 @@ public class EstadoValidaciones extends javax.swing.JFrame {
             String semana = combo_semana.getSelectedItem().toString();
             cargar_tabla_ejecutadas(semana);
             cargar_tabla_no_ejecutadas(semana);
-            cargar_tabla_cerradas(semana);
+            cargar_tabla_con_excepciones(semana);
             
         }
         
@@ -344,7 +344,7 @@ void cargar_tabla_no_ejecutadas(String SEMANA) {
         }
     }
 
-void cargar_tabla_cerradas(String SEMANA) {
+void cargar_tabla_con_excepciones(String SEMANA) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -371,7 +371,7 @@ void cargar_tabla_cerradas(String SEMANA) {
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'Cerrada' "
+                + "WHERE ESTADO_PROYECTO = 'Con Excepcion' "
                 + "AND SEMANA = " + SEMANA + " "               
                 + "ORDER BY FECHA_REPROGRAMACION ASC;";
 

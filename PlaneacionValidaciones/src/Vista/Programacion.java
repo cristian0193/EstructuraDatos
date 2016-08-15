@@ -45,6 +45,7 @@ public class Programacion extends javax.swing.JFrame {
         txt_lider_consulta = new javax.swing.JTextField();
         combo_consulta = new javax.swing.JComboBox();
         jLabel15 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_observaciones_programacion = new javax.swing.JTextArea();
         txt_registro_pro = new javax.swing.JTextField();
@@ -129,6 +130,15 @@ public class Programacion extends javax.swing.JFrame {
 
         jLabel15.setText("Seleccionar Filtro :");
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 0));
+        jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton3.setText("Refrescar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -157,9 +167,12 @@ public class Programacion extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(combo_consulta, 0, 200, Short.MAX_VALUE))
-                .addContainerGap(128, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3))
+                    .addComponent(combo_consulta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +190,9 @@ public class Programacion extends javax.swing.JFrame {
                         .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(jButton3))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txt_fecha_final, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -275,7 +290,7 @@ public class Programacion extends javax.swing.JFrame {
         this.txt_registro_pro.setText(tabla_proyectos.getValueAt(rec, 0).toString());
         this.txt_fecha_propuesta.setText(tabla_proyectos.getValueAt(rec, 4).toString());
         this.date_fecha_nueva.setText(tabla_proyectos.getValueAt(rec, 5).toString());
-        this.txt_observaciones_programacion.setText(tabla_proyectos.getValueAt(rec, 6).toString());
+        this.txt_observaciones_programacion.setText(tabla_proyectos.getValueAt(rec, 7).toString());
 
     }//GEN-LAST:event_tabla_proyectosMouseClicked
 
@@ -361,12 +376,17 @@ public class Programacion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        cargar_tabla_programaciones();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox combo_consulta;
     private javax.swing.JTextField date_fecha_nueva;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
@@ -402,8 +422,8 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[7];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO","AUTORIZA", "OBSERVACIONES"};
+        String[] registro = new String[8];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -418,10 +438,12 @@ public class Programacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "ESTADO_PROYECTO AS ESTADO, "
+                + "RESPUESTA AS AUTORIZA, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE ESTADO_PROYECTO = 'En Creacion' "
+                + "OR ESTADO_PROYECTO = 'Con Excepcion' "
                 + "ORDER BY FECHA_PROPUESTA DESC;";
 
         try {
@@ -435,7 +457,8 @@ public class Programacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = rs.getString("AUTORIZA");
+                registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -454,8 +477,8 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[7];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO","AUTORIZA", "OBSERVACIONES"};
+        String[] registro = new String[8];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -470,10 +493,12 @@ public class Programacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "ESTADO_PROYECTO AS ESTADO, "
+                + "RESPUESTA AS AUTORIZA, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'En Creacion' AND "
+                + "WHERE ESTADO_PROYECTO = 'En Creacion'  "
+                + "OR ESTADO_PROYECTO = 'Con Excepcion' AND "
                 + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' "
                 + "ORDER BY FECHA_PROPUESTA DESC";
         try {
@@ -487,59 +512,8 @@ public class Programacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("OBSERVACIONES");
-
-                modelo.addRow(registro);
-            }
-            tabla_proyectos.setModel(modelo);
-            conexion.cerrar();
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(null, ex);
-
-        }
-    }
-
-    void consulta_rango_fechas_reprogramada(String fecha_inicio, String fecha_final) {
-
-        conexion = new ConexioSQLite();
-        conexion.coneccionbase();
-
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[7];
-        String query = "";
-
-        modelo = new DefaultTableModel(null, titulos);
-
-        ConexioSQLite con = new ConexioSQLite();
-        Connection cn = con.Conectar();
-
-        query = "SELECT "
-                + "NUMERO_REGISTRO AS NUM, "
-                + "GCC_APR AS GCC, "
-                + "NOMBRE_PROYECTO AS PROYECTO, "
-                + "LIDER_TECNICO AS LIDER, "
-                + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
-                + "ESTADO_PROYECTO AS ESTADO, "
-                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
-                + "FROM "
-                + "PLANEACIONES_VALIDACION "
-                + "WHERE "
-                + "FECHA_REPROGRAMACION BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
-                + "ORDER BY FECHA_REPROGRAMACION DESC";
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-
-                registro[0] = rs.getString("NUM");
-                registro[1] = rs.getString("GCC");
-                registro[2] = rs.getString("PROYECTO");
-                registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = rs.getString("AUTORIZA");
+                registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -558,8 +532,8 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[7];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO","AUTORIZA", "OBSERVACIONES"};
+        String[] registro = new String[8];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -574,6 +548,7 @@ public class Programacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "ESTADO_PROYECTO AS ESTADO, "
+                + "RESPUESTA AS AUTORIZA, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -591,7 +566,8 @@ public class Programacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = rs.getString("AUTORIZA");
+                registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -610,10 +586,10 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[7];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO","AUTORIZA", "OBSERVACIONES"};
+        String[] registro = new String[8];
         String query = "";
-
+        
         modelo = new DefaultTableModel(null, titulos);
 
         ConexioSQLite con = new ConexioSQLite();
@@ -626,11 +602,13 @@ public class Programacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "ESTADO_PROYECTO AS ESTADO, "
+                + "RESPUESTA AS AUTORIZA, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "ESTADO_PROYECTO = 'En Creacion' AND "
+                + "ESTADO_PROYECTO = 'En Creacion' "
+                + "OR ESTADO_PROYECTO = 'Con Excepcion' AND "
                 + "NOMBRE_PROYECTO LIKE '%" + palabra + "%' ";
 
         try {
@@ -644,7 +622,8 @@ public class Programacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = rs.getString("AUTORIZA");
+                registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
