@@ -464,8 +464,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_combo_plantaActionPerformed
 
     private void btn_excepcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excepcionesActionPerformed
-        JOptionPane.showMessageDialog(null, "RECUERDE QUE SE DEBEN HACER ACUERDOS PREVIOS CON EL AREA DE CALIDAD "
-                + "\n DE LO CONTRARIO SE PROCEDE A LA NO PROGRAMACION DE LA CALIFICACION ", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "RECUERDE QUE SE DEBEN HACER ACUERDOS PREVIOS "
+                + "\n CON EL AREA ENCARGA DE EJECUTAR LA VALIDACION O CALIFICACION "
+                + "\n DE LO CONTRARIO SE PROCEDE A LA NO PROGRAMACION. ", "Informativo", JOptionPane.INFORMATION_MESSAGE);
 
         AcuerdoCalidad acuerdo = new AcuerdoCalidad();
         acuerdo.setVisible(true);
@@ -522,7 +523,9 @@ public class Principal extends javax.swing.JFrame {
                             + "\n VALIDACIONES DE PROCESO \n CANTIDAD DE LOTES COMPLETOS", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
                     JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                            + "\n SE HABILITO INGRESE LA INFORMACION  \n SI TIENE ACUERDOS CON EL AREA DE CALIDAD", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                            + "\n SE HABILITO INGRESE LA INFORMACION "
+                            + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                            + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
 
                     btn_excepciones.setEnabled(true);
 
@@ -531,7 +534,9 @@ public class Principal extends javax.swing.JFrame {
                             + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
                     JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                            + "\n SE HABILITO INGRESE LA INFORMACION  \n SI TIENE ACUERDOS CON EL AREA DE CALIDAD", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                            + "\n SE HABILITO INGRESE LA INFORMACION "
+                            + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                            + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
 
                     btn_excepciones.setEnabled(true);
 
@@ -738,8 +743,9 @@ public class Principal extends javax.swing.JFrame {
                                 + "\n VALIDACIONES DE PROCESO \n CANTIDAD DE LOTES COMPLETOS", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
                         JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                                + "\n SE HABILITO INGRESE LA INFORMACION  \n SI TIENE ACUERDOS CON EL AREA DE CALIDAD", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-
+                                + "\n SE HABILITO INGRESE LA INFORMACION "
+                                + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                                + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
                         btn_excepciones.setEnabled(true);
 
                     } else if (!tipo_validacion.equals("PROCESO") && contadorSemanas >= 3) {
@@ -747,8 +753,9 @@ public class Principal extends javax.swing.JFrame {
                                 + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
                         JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                                + "\n SE HABILITO INGRESE LA INFORMACION  \n SI TIENE ACUERDOS CON EL AREA DE CALIDAD", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-
+                            + "\n SE HABILITO INGRESE LA INFORMACION "
+                            + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                            + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
                         btn_excepciones.setEnabled(true);
                     } else {
                         conexion = new ConexioSQLite();
