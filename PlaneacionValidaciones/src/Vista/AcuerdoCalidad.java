@@ -1,5 +1,11 @@
 package Vista;
 
+import Conexion.ConexioSQLite;
+import static Vista.Principal.conexion;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class AcuerdoCalidad extends javax.swing.JFrame {
@@ -7,6 +13,7 @@ public class AcuerdoCalidad extends javax.swing.JFrame {
     public AcuerdoCalidad() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cargar_lista_autorizado();
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +39,7 @@ public class AcuerdoCalidad extends javax.swing.JFrame {
         txt_observaciones_expciones.setColumns(20);
         txt_observaciones_expciones.setRows(5);
         txt_observaciones_expciones.setText("Fecha de Acuerdo : (DD/MMM/YYYY)\nConclusion Acuerdo:");
+        txt_observaciones_expciones.setToolTipText("Ejemplo\nFecha de Acuerdo : (01/ENE/2016)\nConclusion Acuerdo: Se debe dar prioridad debido a que esta semana\ndebe quedar validado por vencimiento del control de cambio GCC-XXXXX.");
         jScrollPane1.setViewportView(txt_observaciones_expciones);
 
         jButton1.setText("Aceptar");
@@ -54,8 +62,13 @@ public class AcuerdoCalidad extends javax.swing.JFrame {
         combo_respuesta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "SI", "NO" }));
         combo_respuesta.setToolTipText("Respuesta del Acuerdo con el Area de Calidad");
 
-        combo_acordado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "JIMENA BOLAÑOS", "MARGARITA AGUIRRE" }));
+        combo_acordado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
         combo_acordado.setToolTipText("Persona del Area de Calidad \nque Apruebo el Acuerdo");
+        combo_acordado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_acordadoActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Acordado :");
 
@@ -154,7 +167,7 @@ public class AcuerdoCalidad extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -185,6 +198,10 @@ public class AcuerdoCalidad extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void combo_acordadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_acordadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_acordadoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox combo_acordado;
@@ -201,4 +218,31 @@ public class AcuerdoCalidad extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txt_observaciones_expciones;
     // End of variables declaration//GEN-END:variables
+
+// METODO PARA CARGAR JCOMBOBOX TIPO
+    public void cargar_lista_autorizado() {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT * FROM AUTORIZADOS_EXCEPCIONES ";
+
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                combo_acordado.addItem(rs.getString("NOMBRE_AUTORIZADO"));
+            }
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
 }

@@ -563,7 +563,7 @@ public class Principal extends javax.swing.JFrame {
                             "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                             "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                             "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida,
-                            "''","''","''");
+                            "''", "''", "''");
 
                     if (resultado == true) {
                         JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
@@ -735,10 +735,21 @@ public class Principal extends javax.swing.JFrame {
 
                     if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
                         JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                                + "\n VALIDACIONES DE PROCESO \n CANTIDAD DE LOES COMPLETOS");
+                                + "\n VALIDACIONES DE PROCESO \n CANTIDAD DE LOTES COMPLETOS", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                        JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
+                                + "\n SE HABILITO INGRESE LA INFORMACION  \n SI TIENE ACUERDOS CON EL AREA DE CALIDAD", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+
+                        btn_excepciones.setEnabled(true);
+
                     } else if (!tipo_validacion.equals("PROCESO") && contadorSemanas >= 3) {
                         JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                                + "\n CALIFICACIONES DE TIPO : " + tipo_validacion);
+                                + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                        JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
+                                + "\n SE HABILITO INGRESE LA INFORMACION  \n SI TIENE ACUERDOS CON EL AREA DE CALIDAD", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+
+                        btn_excepciones.setEnabled(true);
                     } else {
                         conexion = new ConexioSQLite();
                         conexion.coneccionbase();

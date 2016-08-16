@@ -66,7 +66,7 @@
               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" pref="37" max="-2" attributes="0"/>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -84,6 +84,7 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
             <Property name="text" type="java.lang.String" value="Fecha de Acuerdo : (DD/MMM/YYYY)&#xa;Conclusion Acuerdo:"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ejemplo&#xa;Fecha de Acuerdo : (01/ENE/2016)&#xa;Conclusion Acuerdo: Se debe dar prioridad debido a que esta semana&#xa;debe quedar validado por vencimiento del control de cambio GCC-XXXXX."/>
           </Properties>
         </Component>
       </SubComponents>
@@ -195,14 +196,15 @@
         <Component class="javax.swing.JComboBox" name="combo_acordado">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
+              <StringArray count="1">
                 <StringItem index="0" value="Seleccionar"/>
-                <StringItem index="1" value="JIMENA BOLA&#xd1;OS"/>
-                <StringItem index="2" value="MARGARITA AGUIRRE"/>
               </StringArray>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Persona del Area de Calidad &#xa;que Apruebo el Acuerdo"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="combo_acordadoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
