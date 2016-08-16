@@ -2,9 +2,9 @@ package Vista;
 
 import javax.swing.JOptionPane;
 
-public class ClaveAdminNoProgramada extends javax.swing.JFrame {
+public class ClaveAdminExcepciones extends javax.swing.JFrame {
 
-    public ClaveAdminNoProgramada() {
+    public ClaveAdminExcepciones() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -93,9 +93,9 @@ public class ClaveAdminNoProgramada extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if (txt_clave.getText().equals("IngenieriaQA1")) {                    
-            PrincipalNoProgramadas  noprogramadas = new PrincipalNoProgramadas();
-            noprogramadas.setVisible(true);
+        if (txt_clave.getText().equals("IngenieriaQA1!")) {                    
+            AcuerdosExcepciones  excepciones = new AcuerdosExcepciones();
+            excepciones.setVisible(true);
             this.hide();
         } else {
             JOptionPane.showMessageDialog(null, "CONTRASEÑA INCORRECTA");

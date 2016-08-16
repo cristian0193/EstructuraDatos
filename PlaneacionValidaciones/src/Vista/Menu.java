@@ -40,6 +40,7 @@ public class Menu extends javax.swing.JFrame {
         menu_lider_tecnico = new javax.swing.JMenuItem();
         menu_planta = new javax.swing.JMenuItem();
         menu_maquina = new javax.swing.JMenuItem();
+        menu_maquina2 = new javax.swing.JMenuItem();
         menu_maquina1 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
@@ -228,6 +229,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(menu_maquina);
 
+        menu_maquina2.setText("Ingresar Autorizado (Admin)");
+        menu_maquina2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_maquina2ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menu_maquina2);
+
         menu_maquina1.setText("Exportar a Excel .XLS");
         menu_maquina1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -361,6 +370,13 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void menu_maquina2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_maquina2ActionPerformed
+        
+        ClaveAdminExcepciones excepciones = new ClaveAdminExcepciones();
+        excepciones.setVisible(true);
+        
+    }//GEN-LAST:event_menu_maquina2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -422,6 +438,7 @@ public class Menu extends javax.swing.JFrame {
     public javax.swing.JMenuItem menu_lider_tecnico;
     public javax.swing.JMenuItem menu_maquina;
     public javax.swing.JMenuItem menu_maquina1;
+    public javax.swing.JMenuItem menu_maquina2;
     public javax.swing.JMenuItem menu_planta;
     public javax.swing.JMenuItem menu_tipo_validacion;
     // End of variables declaration//GEN-END:variables

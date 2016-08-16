@@ -652,6 +652,59 @@ public class ConexioSQLite {
         }
     }    
     
+        //METODO PARA INSERTAR AUTORIZADO
+    public boolean insert_autorizado(
+            String NOMBRE) {
+
+        try {
+            query = "INSERT INTO AUTORIZADOS_EXCEPCIONES "
+                    + "(ID_AUTORIZADO, NOMBRE_AUTORIZADO )"
+                    + " VALUES "
+                    + " (NULL,'" + NOMBRE + "')";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+
+    }   
+    
+    //METODO PARA ACTUALIZAR AUTORIZADO
+    public boolean upgrade_autorizado(String ID,
+            String NOMBRE) {
+
+        try {
+            query = "UPDATE"
+                    + " AUTORIZADOS_EXCEPCIONES "
+                    + " SET "
+                    + "  NOMBRE_AUTORIZADO = '" + NOMBRE.toUpperCase() + "'"
+                    + " WHERE"
+                    + "  ID_AUTORIZADO = " + ID + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+
+    }
+    
+    
     //METODO PARA ELIMINAR TIPO VALIDACION
     public boolean delete_lider(String REGISTRO) {
 
@@ -721,6 +774,27 @@ public class ConexioSQLite {
         try {
 
             query = "DELETE FROM TIPO WHERE ID_TIPO = " + REGISTRO + "";
+
+            sentencia.executeUpdate(query);
+            System.out.println("ELIMINADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ELIMINADO ...");
+            return false;
+
+        }
+    }
+    
+     //METODO PARA ELIMINAR AUTORIZADO
+    public boolean delete_autorizado(String REGISTRO) {
+
+        try {
+
+            query = "DELETE FROM AUTORIZADOS_EXCEPCIONES WHERE ID_AUTORIZADO = " + REGISTRO + "";
 
             sentencia.executeUpdate(query);
             System.out.println("ELIMINADO ...");

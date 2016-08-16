@@ -92,7 +92,7 @@ public class ClaveAdministradorPlanta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (txt_clave.getText().equals("1234")) {
+        if (txt_clave.getText().equals("IngenieriaQA1")) {
             Plantas planta = new Plantas();
             planta.setVisible(true);
             this.hide();
