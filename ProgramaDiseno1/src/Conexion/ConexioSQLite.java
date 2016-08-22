@@ -91,7 +91,7 @@ public class ConexioSQLite {
         }
     }
     
-    //METODO DE INSERTAR PROFESOR
+    //METODO DE INSERTAR CURSO
     public boolean insert_curso(Curso curso) {
 
         try {
@@ -100,9 +100,10 @@ public class ConexioSQLite {
                     + "(ID_CURSO, "
                     + "NUMERO_CREDITOS, "
                     + "ACTIVIDAD_CURSO,"
-                    + "ID_PROFESOR ) "
+                    + "ID_PROFESOR, "
+                    + "NOMBRE_CURSO ) "
                     + "VALUES "
-                    + "(" + curso.getIdCurso() + " ,'" + curso.getNumeroCreditos() + "', '" + curso.getActividadesCurso() + "', " + curso.getProfesor().getIdProfesor() + "); ";
+                    + "(" + curso.getIdCurso() + " ,'" + curso.getNumeroCreditos() + "', '" + curso.getActividadesCurso() + "', " + curso.getProfesor().getIdProfesor() + ", '" + curso.getNombreCurso() + "'); ";
             System.out.println(query);
 
             sentencia.executeUpdate(query);
@@ -118,4 +119,35 @@ public class ConexioSQLite {
 
         }
     }
+
+
+    //METODO DE INSERTAR PROFESOR
+    public boolean insert_estudiante(Estudiante estudiante) {
+
+        try {
+
+            query = "INSERT INTO ESTUDIANTE "
+                    + "(ID_ESTUDIANTE, "
+                    + "NOMBRE_ESTUDIANTE, "
+                    + "APELLIDO_ESTUDIANTE,"
+                    + "ID_CURSO) "
+                    + "VALUES "
+                    + "(" + estudiante.getIdEstudiante() + " ,'" + estudiante.getNombreEstudiante() + "', '" + estudiante.getApellidoEstudiante()+ "', " + estudiante.getCurso().getIdCurso() + "); ";
+            System.out.println(query);
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+    }
+
+
 }

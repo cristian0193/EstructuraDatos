@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import jxl.biff.formula.ParseContext;
+
 /**
  *
  * @author Usuario
@@ -41,8 +41,9 @@ public class AsignarCursosProfesor extends javax.swing.JFrame {
         txt_numero_creditos = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         combo_profe_asignado = new javax.swing.JComboBox();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txt_actividades = new javax.swing.JTextArea();
+        txt_actividades = new javax.swing.JTextField();
+        txt_nombre_curso = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -62,71 +63,29 @@ public class AsignarCursosProfesor extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txt_tabla_cursos);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("ID_CURSO :");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         jLabel3.setText("NUMERO_CREDITOS :");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 86, -1, -1));
 
         jLabel4.setText("ACTIVIDADES_CURSO :");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 117, -1, -1));
+        jPanel1.add(txt_id_curso, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 13, 152, -1));
+        jPanel1.add(txt_numero_creditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 62, -1));
 
         jLabel5.setText("PROFESOR ASIGNADO:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 155, 152, -1));
 
         combo_profe_asignado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
+        jPanel1.add(combo_profe_asignado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 280, -1));
+        jPanel1.add(txt_actividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 280, -1));
+        jPanel1.add(txt_nombre_curso, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 45, 280, -1));
 
-        txt_actividades.setColumns(20);
-        txt_actividades.setRows(5);
-        jScrollPane2.setViewportView(txt_actividades);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel3))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_id_curso, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_numero_creditos, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(combo_profe_asignado, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_id_curso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_numero_creditos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(combo_profe_asignado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
-        );
+        jLabel6.setText("NOMBRE CURSO :");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -140,25 +99,24 @@ public class AsignarCursosProfesor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(182, 182, 182))))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(325, 325, 325))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,34 +127,46 @@ public class AsignarCursosProfesor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+
         if (txt_id_curso.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE ID CURSO ");
         } else if (txt_numero_creditos.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE NOMBRE PROFESOR ");
         } else if (txt_actividades.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE APELLIDO PROFESOR ");
-        } else if (combo_profe_asignado.getSelectedIndex() == 0){
+        } else if (combo_profe_asignado.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "SELECCIONE EL PROFESOR ");
-        }else{
-            
+        } else {
 
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
             int id = Integer.parseInt(txt_id_curso.getText());
+            String nombre = txt_nombre_curso.getText();
             int numero = Integer.parseInt(txt_numero_creditos.getText());
-            String apellido = txt_actividades.getText();
+            String actividad = txt_actividades.getText();
             int profesor = Integer.parseInt(combo_profe_asignado.getSelectedItem().toString());
-            
+
             Profesor objprofesor1 = new Profesor(profesor, "", "");
-            
-            
-            Curso curso = new Curso(id, numero, apellido,objprofesor1);
+
+            Curso curso = new Curso(id, nombre.toUpperCase(), numero, actividad.toUpperCase(), objprofesor1);
             boolean resultado = conexion.insert_curso(curso);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "PROFESOR INSERTADO CORRECTAMENTE");
-                LimpiarCampos();
+                JOptionPane.showMessageDialog(null, "CURSO INSERTADO CORRECTAMENTE");
+
+                int resp = JOptionPane.showConfirmDialog(null, "¿ Desea ingresar Otro Profesor al mismo Curso ?", "Informativo", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+                if (resp == 0) {
+                    combo_profe_asignado.setEnabled(false);
+                    txt_id_curso.setText("");
+                    txt_nombre_curso.setText("");
+                    txt_numero_creditos.setText("");
+                    txt_actividades.setText("");
+                } else {
+                    combo_profe_asignado.setEnabled(true);
+                    LimpiarCampos();
+                }
+
                 cargar_tabla_curso();
                 conexion.cerrar();
             } else {
@@ -205,7 +175,7 @@ public class AsignarCursosProfesor extends javax.swing.JFrame {
             }
 
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -217,23 +187,25 @@ public class AsignarCursosProfesor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea txt_actividades;
+    private javax.swing.JTextField txt_actividades;
     private javax.swing.JTextField txt_id_curso;
+    private javax.swing.JTextField txt_nombre_curso;
     private javax.swing.JTextField txt_numero_creditos;
     private javax.swing.JTable txt_tabla_cursos;
     // End of variables declaration//GEN-END:variables
 
-     public void LimpiarCampos() {
+    public void LimpiarCampos() {
         txt_id_curso.setText("");
+        txt_nombre_curso.setText("");
         txt_numero_creditos.setText("");
         txt_actividades.setText("");
         combo_profe_asignado.setSelectedIndex(0);
     }
-    
-// METODO PARA CARGAR JCOMBOBOX TIPO
+
+// METODO PARA CARGAR JCOMBOBOX PROFESOR
     public void cargar_lista_profesor() {
 
         conexion = new ConexioSQLite();
@@ -259,14 +231,14 @@ public class AsignarCursosProfesor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    
+
     void cargar_tabla_curso() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"ID", "CREDITOS", "ACTIVIDAD", "PROFESOR"};
-        String[] registro = new String[4];
+        String[] titulos = {"ID", "NOMBRE", "CREDITOS", "ACTIVIDAD", "PROFESOR"};
+        String[] registro = new String[5];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -274,7 +246,7 @@ public class AsignarCursosProfesor extends javax.swing.JFrame {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
-        query = "SELECT C.ID_CURSO, C.NUMERO_CREDITOS, C.ACTIVIDAD_CURSO, P.NOMBRE_PROFESOR "
+        query = "SELECT C.ID_CURSO,C.NOMBRE_CURSO, C.NUMERO_CREDITOS, C.ACTIVIDAD_CURSO, P.NOMBRE_PROFESOR "
                 + "FROM "
                 + "PROFESOR P, CURSO C "
                 + "WHERE P.ID_PROFESOR = C.ID_PROFESOR ";
@@ -286,9 +258,10 @@ public class AsignarCursosProfesor extends javax.swing.JFrame {
             while (rs.next()) {
 
                 registro[0] = rs.getString("ID_CURSO");
-                registro[1] = rs.getString("NUMERO_CREDITOS");
-                registro[2] = rs.getString("ACTIVIDAD_CURSO");
-                registro[3] = rs.getString("NOMBRE_PROFESOR");
+                registro[1] = rs.getString("NOMBRE_CURSO");
+                registro[2] = rs.getString("NUMERO_CREDITOS");
+                registro[3] = rs.getString("ACTIVIDAD_CURSO");
+                registro[4] = rs.getString("NOMBRE_PROFESOR");
 
                 modelo.addRow(registro);
             }

@@ -23,8 +23,8 @@ public class Menu extends javax.swing.JFrame {
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu9 = new javax.swing.JMenu();
-        jMenu10 = new javax.swing.JMenu();
+        jCheckBoxMenuItem3 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem4 = new javax.swing.JCheckBoxMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
         jMenu11 = new javax.swing.JMenu();
@@ -62,11 +62,23 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu2.setText("Matricula");
 
-        jMenu9.setText("Matricular Estudiante");
-        jMenu2.add(jMenu9);
+        jCheckBoxMenuItem3.setSelected(true);
+        jCheckBoxMenuItem3.setText("Matricular Estudiante");
+        jCheckBoxMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jCheckBoxMenuItem3);
 
-        jMenu10.setText("Asignar Notas a Estudiante");
-        jMenu2.add(jMenu10);
+        jCheckBoxMenuItem4.setSelected(true);
+        jCheckBoxMenuItem4.setText("Asignar Notas a Estudiante");
+        jCheckBoxMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jCheckBoxMenuItem4);
 
         jMenuBar1.add(jMenu2);
 
@@ -89,7 +101,7 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
+            .addGap(0, 848, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,6 +124,17 @@ public class Menu extends javax.swing.JFrame {
         curso.setVisible(true);
         
     }//GEN-LAST:event_jCheckBoxMenuItem2ActionPerformed
+
+    private void jCheckBoxMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem3ActionPerformed
+       
+        AsigarEstudiantesCursosProfesor matricular = new AsigarEstudiantesCursosProfesor();
+        matricular.setVisible(true);
+        
+    }//GEN-LAST:event_jCheckBoxMenuItem3ActionPerformed
+
+    private void jCheckBoxMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxMenuItem4ActionPerformed
 
     
     public static void main(String args[]) {
@@ -149,8 +172,9 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu2;
@@ -158,7 +182,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     // End of variables declaration//GEN-END:variables

@@ -8,12 +8,14 @@ public class Curso {
     
     
     private int idCurso;
+    private String nombreCurso;
     private int numeroCreditos;
     private String actividadesCurso;
     private Profesor profesor;
 
-    public Curso(int idCurso, int numeroCreditos, String actividadesCurso, Profesor profesor) {
+    public Curso(int idCurso, String nombreCurso,int numeroCreditos, String actividadesCurso, Profesor profesor) {
         this.idCurso = idCurso;
+        this.nombreCurso = nombreCurso;
         this.numeroCreditos = numeroCreditos;
         this.actividadesCurso = actividadesCurso;
         this.profesor = profesor;
@@ -51,6 +53,15 @@ public class Curso {
         this.profesor = profesor;
     }
 
+    public String getNombreCurso() {
+        return nombreCurso;
+    }
+
+    public void setNombreCurso(String nombreCurso) {
+        this.nombreCurso = nombreCurso;
+    }
+    
+    
     @Override
     public String toString() {
         return "Curso{" + "idCurso=" + idCurso + ", numeroCreditos=" + numeroCreditos + ", actividadesCurso=" + actividadesCurso + ", profesor=" + profesor + '}';
