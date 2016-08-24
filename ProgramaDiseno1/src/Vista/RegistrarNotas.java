@@ -22,12 +22,12 @@ public class RegistrarNotas extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     DefaultTableModel modelo;
+    public static int contador = 0;
 
     public RegistrarNotas() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_lista_curso();
-        cargar_lista_estudiante();
         cargar_tabla_notas();
     }
 
@@ -53,8 +53,9 @@ public class RegistrarNotas extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txt_nota_final = new javax.swing.JTextField();
         txt_resultado = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -78,12 +79,15 @@ public class RegistrarNotas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txt_tabla_notas);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("NOTA 1");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 80, 60, 20));
 
         jLabel4.setText("ID ESTUDIANTE :");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, 20));
 
         txt_nota_1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txt_nota_1.setForeground(new java.awt.Color(255, 0, 0));
@@ -93,16 +97,32 @@ public class RegistrarNotas extends javax.swing.JFrame {
                 txt_nota_1ActionPerformed(evt);
             }
         });
+        jPanel1.add(txt_nota_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 106, 60, 30));
 
         combo_estudiante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
+        combo_estudiante.setEnabled(false);
+        combo_estudiante.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo_estudianteItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(combo_estudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 240, -1));
 
         combo_curso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
+        combo_curso.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo_cursoItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(combo_curso, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 240, -1));
 
         jLabel5.setText("CURSO : ");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, 20));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("NOTA 2");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 80, 60, 20));
 
         txt_nota_2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txt_nota_2.setForeground(new java.awt.Color(255, 0, 0));
@@ -112,10 +132,12 @@ public class RegistrarNotas extends javax.swing.JFrame {
                 txt_nota_2ActionPerformed(evt);
             }
         });
+        jPanel1.add(txt_nota_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 106, 60, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("NOTA 3");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 80, 60, 20));
 
         txt_nota_3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txt_nota_3.setForeground(new java.awt.Color(255, 0, 0));
@@ -125,8 +147,10 @@ public class RegistrarNotas extends javax.swing.JFrame {
                 txt_nota_3ActionPerformed(evt);
             }
         });
+        jPanel1.add(txt_nota_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 106, 60, 30));
 
         jLabel8.setText("NOTA FINAL:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 159, 83, 20));
 
         txt_nota_final.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txt_nota_final.setForeground(new java.awt.Color(255, 0, 0));
@@ -136,6 +160,7 @@ public class RegistrarNotas extends javax.swing.JFrame {
                 txt_nota_finalActionPerformed(evt);
             }
         });
+        jPanel1.add(txt_nota_final, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 154, 60, 30));
 
         txt_resultado.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txt_resultado.setForeground(new java.awt.Color(255, 0, 0));
@@ -145,74 +170,14 @@ public class RegistrarNotas extends javax.swing.JFrame {
                 txt_resultadoActionPerformed(evt);
             }
         });
+        jPanel1.add(txt_resultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 154, 139, 30));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel5)
-                        .addGap(15, 15, 15)
-                        .addComponent(combo_curso, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(txt_nota_1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_nota_2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_nota_3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(combo_estudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txt_nota_final, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txt_resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_curso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_estudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_nota_3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_nota_2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_nota_1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_nota_final, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
+        jButton2.setText("Limpiar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,26 +185,30 @@ public class RegistrarNotas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(225, 225, 225)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(258, 258, 258)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -290,9 +259,10 @@ public class RegistrarNotas extends javax.swing.JFrame {
                 Notas nota = new Notas(0, nota_1, nota_2, nota_3, estudiante, curso);
                 boolean resultado = conexion.insert_nota(nota);
 
+                notaFinal(nota_1, nota_2, nota_3);
+
                 if (resultado == true) {
                     JOptionPane.showMessageDialog(null, "NOTAS INSERTADAS CORRECTAMENTE");
-                    LimpiarCampos();
                     cargar_tabla_notas();
                     conexion.cerrar();
                 } else {
@@ -326,11 +296,33 @@ public class RegistrarNotas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_resultadoActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        LimpiarCampos();
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void combo_estudianteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_estudianteItemStateChanged
+
+
+    }//GEN-LAST:event_combo_estudianteItemStateChanged
+
+    private void combo_cursoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_cursoItemStateChanged
+
+        combo_estudiante.setEnabled(true);
+        int id_curso = Integer.parseInt(combo_curso.getSelectedItem().toString());
+
+        cargar_lista_estudiante(id_curso);
+
+
+    }//GEN-LAST:event_combo_cursoItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox combo_curso;
     private javax.swing.JComboBox combo_estudiante;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -355,7 +347,8 @@ public class RegistrarNotas extends javax.swing.JFrame {
         txt_nota_1.setText("");
         txt_nota_2.setText("");
         txt_nota_3.setText("");
-
+        txt_nota_final.setText("");
+        txt_resultado.setText("");
     }
 
     //METODO PARA VALIDAR DATO NUMERICO O NO NUMERICO
@@ -378,7 +371,7 @@ public class RegistrarNotas extends javax.swing.JFrame {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
-        query = "SELECT ID_CURSO FROM CURSO ";
+        query = "SELECT ID_CURSO FROM CURSO";
 
         System.out.println(query);
         try {
@@ -394,7 +387,7 @@ public class RegistrarNotas extends javax.swing.JFrame {
         }
     }
 
-    public void cargar_lista_estudiante() {
+    public void cargar_lista_estudiante(int curso) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -404,7 +397,7 @@ public class RegistrarNotas extends javax.swing.JFrame {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
-        query = "SELECT ID_ESTUDIANTE FROM ESTUDIANTE ";
+        query = "SELECT ID_ESTUDIANTE FROM ESTUDIANTE WHERE ID_CURSO = " + curso;
 
         System.out.println(query);
         try {
@@ -460,6 +453,20 @@ public class RegistrarNotas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
 
         }
+    }
+
+    public void notaFinal(double nota1, double nota2, double nota3) {
+
+        double notaFinal = (nota1 + nota2 + nota3) / 3;
+        double redondear = Math.rint(notaFinal * 100) / 100;
+        txt_nota_final.setText("" + redondear);
+
+        if (notaFinal >= 3.0) {
+            txt_resultado.setText("APROBO");
+        } else {
+            txt_resultado.setText("REPROBO");
+        }
+
     }
 
 }
