@@ -120,7 +120,6 @@ public class ConexioSQLite {
         }
     }
 
-
     //METODO DE INSERTAR PROFESOR
     public boolean insert_estudiante(Estudiante estudiante) {
 
@@ -149,5 +148,34 @@ public class ConexioSQLite {
         }
     }
 
+     //METODO DE INSERTAR PROFESOR
+    public boolean insert_nota(Notas notas) {
 
+        try {
+
+            query = "INSERT INTO NOTAS "
+                    + "(ID_NOTA, "
+                    + "NOTA_1, "
+                    + "NOTA_2, "
+                    + "NOTA_3, "
+                    + "ID_CURSO, "
+                    + "ID_ESTUDIANTE) "
+                    + "VALUES "
+                    + "(NULL ," + notas.getNota1()+ ", " + notas.getNota1()+ ", " + notas.getNota1() + ", " + notas.getCurso().getIdCurso()+ ", " + notas.getEstudiante().getIdEstudiante()+ "); ";
+            System.out.println(query);
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+    }
+    
 }
