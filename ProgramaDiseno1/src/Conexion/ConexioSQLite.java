@@ -161,7 +161,7 @@ public class ConexioSQLite {
                     + "ID_CURSO, "
                     + "ID_ESTUDIANTE) "
                     + "VALUES "
-                    + "(NULL ," + notas.getNota1()+ ", " + notas.getNota1()+ ", " + notas.getNota1() + ", " + notas.getCurso().getIdCurso()+ ", " + notas.getEstudiante().getIdEstudiante()+ "); ";
+                    + "(NULL ," + notas.getNota1()+ ", " + notas.getNota2()+ ", " + notas.getNota3() + ", " + notas.getCurso().getIdCurso()+ ", " + notas.getEstudiante().getIdEstudiante()+ "); ";
             System.out.println(query);
 
             sentencia.executeUpdate(query);

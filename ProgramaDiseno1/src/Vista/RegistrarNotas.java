@@ -7,6 +7,7 @@ import Datos.Notas;
 import Datos.Profesor;
 import static Vista.AsignarCursosProfesor.conexion;
 import static Vista.CrearProfesores.conexion;
+import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -101,11 +102,6 @@ public class RegistrarNotas extends javax.swing.JFrame {
 
         combo_estudiante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
         combo_estudiante.setEnabled(false);
-        combo_estudiante.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                combo_estudianteItemStateChanged(evt);
-            }
-        });
         jPanel1.add(combo_estudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 240, -1));
 
         combo_curso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
@@ -170,7 +166,7 @@ public class RegistrarNotas extends javax.swing.JFrame {
                 txt_resultadoActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_resultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 154, 139, 30));
+        jPanel1.add(txt_resultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 139, 30));
 
         jButton2.setText("Limpiar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -221,8 +217,6 @@ public class RegistrarNotas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "SELECCIONE ID CURSO ");
         } else if (combo_estudiante.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "SELECCIONE ID ESTUDIANTE ");
-        } else if (txt_nota_1.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "INGRESE APELLIDO PROFESOR ");
         } else if (txt_nota_1.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE NOTA 1 ");
         } else if (txt_nota_2.getText().equals("")) {
@@ -302,18 +296,15 @@ public class RegistrarNotas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void combo_estudianteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_estudianteItemStateChanged
-
-
-    }//GEN-LAST:event_combo_estudianteItemStateChanged
-
     private void combo_cursoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_cursoItemStateChanged
 
-        combo_estudiante.setEnabled(true);
-        int id_curso = Integer.parseInt(combo_curso.getSelectedItem().toString());
-
-        cargar_lista_estudiante(id_curso);
-
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            combo_estudiante.setEnabled(true);
+            combo_estudiante.removeAllItems();
+            combo_estudiante.addItem("Seleccionar");
+            int id_curso = Integer.parseInt(combo_curso.getSelectedItem().toString());
+            cargar_lista_estudiante(id_curso);
+        }
 
     }//GEN-LAST:event_combo_cursoItemStateChanged
 
