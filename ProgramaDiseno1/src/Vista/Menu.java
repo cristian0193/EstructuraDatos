@@ -113,7 +113,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu7.add(jCheckBoxMenuItem7);
 
         jCheckBoxMenuItem5.setSelected(true);
-        jCheckBoxMenuItem5.setText("Consultar Estudiantes x Cursos");
+        jCheckBoxMenuItem5.setText("Consultar Curso x Estudiantes");
         jCheckBoxMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxMenuItem5ActionPerformed(evt);
@@ -122,7 +122,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu7.add(jCheckBoxMenuItem5);
 
         jCheckBoxMenuItem6.setSelected(true);
-        jCheckBoxMenuItem6.setText("Consultar Cursos x Profesores");
+        jCheckBoxMenuItem6.setText("Consultar Cursos x Estudiantes");
         jCheckBoxMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxMenuItem6ActionPerformed(evt);
@@ -177,7 +177,10 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxMenuItem4ActionPerformed
 
     private void jCheckBoxMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem5ActionPerformed
-        // TODO add your handling code here:
+        
+         ConsultarEstudiantesCurso consultarCursos = new ConsultarEstudiantesCurso();
+        consultarCursos.setVisible(true);
+        
     }//GEN-LAST:event_jCheckBoxMenuItem5ActionPerformed
 
     private void jCheckBoxMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem6ActionPerformed
@@ -186,9 +189,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void jCheckBoxMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem7ActionPerformed
        
-        ConsultarProfesorCursos consultarCursos = new ConsultarProfesorCursos();
-        consultarCursos.setVisible(true);
-        
+        ConsultarCursosProfesor cursosProfesor = new ConsultarCursosProfesor();
+        cursosProfesor.setVisible(true);
+                       
     }//GEN-LAST:event_jCheckBoxMenuItem7ActionPerformed
 
     
