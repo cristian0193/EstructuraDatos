@@ -1,6 +1,8 @@
-
 package Vista;
-
+/**
+ *
+ * @author Christian Rodriguez
+ */
 public class Menu extends javax.swing.JFrame {
 
   

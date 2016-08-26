@@ -5,8 +5,6 @@ import Datos.Curso;
 import Datos.Estudiante;
 import Datos.Notas;
 import Datos.Profesor;
-import static Vista.AsignarCursosProfesor.conexion;
-import static Vista.CrearProfesores.conexion;
 import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Usuario
+ * @author Christian Rodriguez
  */
 public class RegistrarNotas extends javax.swing.JFrame {
 
@@ -28,8 +26,8 @@ public class RegistrarNotas extends javax.swing.JFrame {
     public RegistrarNotas() {
         initComponents();
         this.setLocationRelativeTo(null);
-        cargar_lista_curso();
-        cargar_tabla_notas();
+        cargar_lista_curso(); //INICIO CARGANDO EL JCOMBOBOX DE CURSOS
+        cargar_tabla_notas();//INICIO CARGANDO EL JCOMBOBOX DE NOTAS
     }
 
     @SuppressWarnings("unchecked")
@@ -352,6 +350,7 @@ public class RegistrarNotas extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA CARGAR JCOMBOBOX CURSOS
     public void cargar_lista_curso() {
 
         conexion = new ConexioSQLite();
@@ -378,6 +377,7 @@ public class RegistrarNotas extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA CARGAR JCOMBOBOX CON ESTUDIANTES
     public void cargar_lista_estudiante(int curso) {
 
         conexion = new ConexioSQLite();
@@ -404,6 +404,7 @@ public class RegistrarNotas extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA CARGAR JTABLE DE NOTAS DEL ESTUDIANTE
     void cargar_tabla_notas() {
 
         conexion = new ConexioSQLite();
@@ -446,6 +447,7 @@ public class RegistrarNotas extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA DEFINIR NOTA FINAL DEL ESTUDIANTE
     public void notaFinal(double nota1, double nota2, double nota3) {
 
         double notaFinal = (nota1 + nota2 + nota3) / 3;

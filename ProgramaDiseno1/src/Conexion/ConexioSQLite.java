@@ -34,7 +34,7 @@ public class ConexioSQLite {
         }
     }
 
-    //METODO CONECTAR TABLAS
+//METODO CONECTAR TABLAS
     public Connection Conectar() {
 
         try {
@@ -63,8 +63,7 @@ public class ConexioSQLite {
         }
     }
 
-
-    //METODO DE INSERTAR PROFESOR
+ //METODO DE INSERTAR PROFESOR
     public boolean insert_profesor(Profesor profesor) {
 
         try {
@@ -91,7 +90,7 @@ public class ConexioSQLite {
         }
     }
     
-    //METODO DE INSERTAR CURSO
+//METODO DE INSERTAR CURSO
     public boolean insert_curso(Curso curso) {
 
         try {
@@ -120,7 +119,7 @@ public class ConexioSQLite {
         }
     }
 
-    //METODO DE INSERTAR PROFESOR
+//METODO DE INSERTAR ESTUDIANTE
     public boolean insert_estudiante(Estudiante estudiante) {
 
         try {
@@ -148,7 +147,7 @@ public class ConexioSQLite {
         }
     }
 
-     //METODO DE INSERTAR PROFESOR
+//METODO DE INSERTAR NOTAS
     public boolean insert_nota(Notas notas) {
 
         try {

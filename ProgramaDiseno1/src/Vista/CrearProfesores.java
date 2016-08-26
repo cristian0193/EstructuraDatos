@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Usuario
+ * @author Christian Rodriguez
  */
 public class CrearProfesores extends javax.swing.JFrame {
 
@@ -21,7 +21,7 @@ public class CrearProfesores extends javax.swing.JFrame {
     public CrearProfesores() {
         initComponents();
         this.setLocationRelativeTo(null);
-        cargar_tabla_profesor();
+        cargar_tabla_profesor(); // INICIAMOS CARGANDO EL JCOMBOX DE PROFESOR
     }
 
     @SuppressWarnings("unchecked")
@@ -138,10 +138,7 @@ public class CrearProfesores extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR");
                 LimpiarCampos();
             }
-
         }
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -159,12 +156,14 @@ public class CrearProfesores extends javax.swing.JFrame {
     private javax.swing.JTable txt_tabla_profesor;
     // End of variables declaration//GEN-END:variables
 
+    //METODO PARA LIMPIAR LOS CAMPOS
     public void LimpiarCampos() {
         txt_id_profesor.setText("");
         txt_nombre_profesor.setText("");
         txt_apellido_profesor.setText("");
     }
 
+    // METODO PARA CARGAR JTABLE DE PROFESOR
     void cargar_tabla_profesor() {
 
         conexion = new ConexioSQLite();

@@ -2,7 +2,6 @@ package Vista;
 
 import Conexion.ConexioSQLite;
 import Datos.*;
-import static Vista.CrearProfesores.conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Usuario
+ * @author Christian Rodriguez
  */
 public class AsignarCursosProfesor extends javax.swing.JFrame {
 

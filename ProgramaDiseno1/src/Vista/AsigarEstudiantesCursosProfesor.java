@@ -4,7 +4,6 @@ import Conexion.ConexioSQLite;
 import Datos.Curso;
 import Datos.Estudiante;
 import Datos.Profesor;
-import static Vista.AsignarCursosProfesor.conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -225,6 +224,7 @@ public class AsigarEstudiantesCursosProfesor extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nombre_estudiante;
     // End of variables declaration//GEN-END:variables
 
+    // METODO PARA LIMPIAR LOS CAMPOS
     public void LimpiarCampos() {
         txt_id_estudiante.setText("");
         txt_nombre_estudiante.setText("");
@@ -232,7 +232,7 @@ public class AsigarEstudiantesCursosProfesor extends javax.swing.JFrame {
         combo_cursos.setSelectedIndex(0);
     }
 
-// METODO PARA CARGAR JCOMBOBOX MATRICULA
+    // METODO PARA CARGAR JCOMBOBOX MATRICULA
     public void cargar_lista_matricula() {
 
         conexion = new ConexioSQLite();
@@ -259,6 +259,7 @@ public class AsigarEstudiantesCursosProfesor extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA CARGAR JTABLE DE MATRICULA
     void cargar_tabla_matricula() {
 
         conexion = new ConexioSQLite();
