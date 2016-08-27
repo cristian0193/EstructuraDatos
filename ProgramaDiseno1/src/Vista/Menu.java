@@ -122,7 +122,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu7.add(jCheckBoxMenuItem5);
 
         jCheckBoxMenuItem6.setSelected(true);
-        jCheckBoxMenuItem6.setText("Consultar Cursos x Estudiantes");
+        jCheckBoxMenuItem6.setText("Consultar Estudiante x Cursos");
         jCheckBoxMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxMenuItem6ActionPerformed(evt);
@@ -184,7 +184,10 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxMenuItem5ActionPerformed
 
     private void jCheckBoxMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem6ActionPerformed
-        // TODO add your handling code here:
+
+        ConsultarCursoEstudiante Estudiante = new ConsultarCursoEstudiante();
+        Estudiante.setVisible(true);
+        
     }//GEN-LAST:event_jCheckBoxMenuItem6ActionPerformed
 
     private void jCheckBoxMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem7ActionPerformed
