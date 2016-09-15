@@ -177,7 +177,7 @@ public class LiderTecnico extends javax.swing.JFrame {
                 cargar_tabla_tipo();
                 conexion.cerrar();
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR");
                 LimpiarCampos();
             }
         }
