@@ -67,6 +67,20 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_registro = new javax.swing.JTable();
+        jLabel18 = new javax.swing.JLabel();
+        txt_consulta_lider1 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        txt_consulta_lider2 = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        txt_consulta_lider = new javax.swing.JTextField();
+        txt_consulta_registro = new javax.swing.JTextField();
+        txt_consulta_registro1 = new javax.swing.JTextField();
+        txt_consulta_lider3 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        combo_consulta = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1240, 630));
@@ -161,7 +175,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
         jLabel11.setText("SALE :");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 200, 50, 21));
 
-        combo_marca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "X" }));
+        combo_marca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "SI" }));
         combo_marca.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combo_marcaItemStateChanged(evt);
@@ -262,6 +276,59 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_registro);
 
+        jLabel18.setText("Fecha Inicial :");
+
+        txt_consulta_lider1.setEditable(false);
+        txt_consulta_lider1.setText("0000-00-00 00:00:00");
+        txt_consulta_lider1.setToolTipText("");
+        txt_consulta_lider1.setEnabled(false);
+
+        jLabel19.setText("Fecha Final :");
+
+        txt_consulta_lider2.setEditable(false);
+        txt_consulta_lider2.setText("0000-00-00 00:00:00");
+        txt_consulta_lider2.setToolTipText("");
+        txt_consulta_lider2.setEnabled(false);
+
+        jLabel25.setText("Cedula :");
+
+        jLabel20.setText("Placa :");
+
+        txt_consulta_lider.setEditable(false);
+        txt_consulta_lider.setToolTipText("");
+        txt_consulta_lider.setEnabled(false);
+
+        txt_consulta_registro.setEditable(false);
+        txt_consulta_registro.setToolTipText("Numero de Registro del proyecto");
+        txt_consulta_registro.setEnabled(false);
+
+        txt_consulta_registro1.setEditable(false);
+        txt_consulta_registro1.setToolTipText("Numero de Registro del proyecto");
+        txt_consulta_registro1.setEnabled(false);
+
+        txt_consulta_lider3.setEditable(false);
+        txt_consulta_lider3.setToolTipText("");
+        txt_consulta_lider3.setEnabled(false);
+
+        jLabel22.setText("Autorizo :");
+
+        jLabel26.setText("Guarda :");
+
+        jLabel21.setText("Seleccionar Filtro :");
+
+        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "PLACA", "CEDULA" }));
+        combo_consulta.setToolTipText("Permite seleccionar el Filtro para la consulta de informacion");
+        combo_consulta.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo_consultaItemStateChanged(evt);
+            }
+        });
+        combo_consulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_consultaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -269,17 +336,72 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1232, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_consulta_lider1)
+                            .addComponent(txt_consulta_lider2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_consulta_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_consulta_lider, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_consulta_lider3, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(txt_consulta_registro1))
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(28, 28, 28)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_consulta_lider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_consulta_lider)
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_consulta_registro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_consulta_lider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_consulta_lider3)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_consulta_registro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -304,7 +426,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
         if (this.txt_n_registro.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA");
         } else if(this.combo_marca.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(null, "MARQUE (X) DESEA SALIR");
+            JOptionPane.showMessageDialog(null, "MARQUE (SI) DESEA SALIR");
         }else{
             
             conexion.cerrar();
@@ -403,6 +525,36 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
 
     }//GEN-LAST:event_combo_marcaItemStateChanged
 
+    private void combo_consultaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_consultaItemStateChanged
+
+        //        int index = combo_consulta.getSelectedIndex();
+        //
+        //        if (index == 0) {
+            //            JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
+            //        } else if (index == 1) {
+            //            this.date_fecha_inicio.setEnabled(true);
+            //            this.date_fecha_final.setEnabled(true);
+            //            this.txt_consulta_lider.setEditable(false);
+            //            this.txt_consulta_lider.setEnabled(false);
+            //        } else if (index == 2) {
+            //            this.txt_consulta_lider.setEditable(true);
+            //            this.txt_consulta_lider.setEnabled(true);
+            //            this.date_fecha_inicio.setEnabled(false);
+            //            this.date_fecha_final.setEnabled(false);
+            //            this.txt_consulta_registro.setEnabled(false);
+            //        } else {
+            //            this.txt_consulta_registro.setEditable(true);
+            //            this.txt_consulta_registro.setEnabled(true);
+            //            this.txt_consulta_lider.setEnabled(false);
+            //            this.date_fecha_inicio.setEnabled(false);
+            //            this.date_fecha_final.setEnabled(false);
+            //        }
+    }//GEN-LAST:event_combo_consultaItemStateChanged
+
+    private void combo_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_consultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_consultaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_actualizar;
@@ -410,6 +562,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
     private javax.swing.JButton btn_refrescar;
     private javax.swing.JComboBox combo_autorizo;
     private javax.swing.JComboBox combo_conductor;
+    private javax.swing.JComboBox combo_consulta;
     private javax.swing.JComboBox combo_guarda;
     private javax.swing.JComboBox combo_marca;
     private javax.swing.JLabel jLabel1;
@@ -419,7 +572,14 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -431,6 +591,12 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabla_registro;
+    private javax.swing.JTextField txt_consulta_lider;
+    private javax.swing.JTextField txt_consulta_lider1;
+    private javax.swing.JTextField txt_consulta_lider2;
+    private javax.swing.JTextField txt_consulta_lider3;
+    private javax.swing.JTextField txt_consulta_registro;
+    private javax.swing.JTextField txt_consulta_registro1;
     private javax.swing.JTextField txt_empresa;
     private javax.swing.JTextField txt_estado;
     private javax.swing.JTextField txt_fecha_ingreso;
@@ -490,7 +656,6 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 + "OBSERVACIONES AS OBSERVACION "
                 + "FROM "
                 + "REGISTRO_SEGURIDAD "
-                + "WHERE ESTADO = 'INGRESO' "
                 + "ORDER BY FECHA_ENTRADA DESC;";
 
         try {
@@ -553,8 +718,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 + "FROM "
                 + "REGISTRO_SEGURIDAD "
                 + "WHERE "
-                + "ESTADO = 'INGRESO' "
-                + "AND FECHA_ENTRADA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "FECHA_ENTRADA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
                 + "ORDER BY FECHA_ENTRADA DESC";
         try {
             Statement st = cn.createStatement();
