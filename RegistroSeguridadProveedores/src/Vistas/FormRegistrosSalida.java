@@ -22,11 +22,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
     public FormRegistrosSalida() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.txt_n_registro.setVisible(false);
         cargar_tabla();
-        cargar_lista_conductor();
-        cargar_tabla_autorizo();
-        cargar_tabla_guarda();
     }
 
     @SuppressWarnings("unchecked")
@@ -34,39 +30,6 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        combo_conductor = new javax.swing.JComboBox();
-        txt_ficha = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txt_numero_cedula = new javax.swing.JTextField();
-        txt_empresa = new javax.swing.JTextField();
-        txt_placa = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        txt_fecha_ingreso = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txt_fecha_salida = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        combo_autorizo = new javax.swing.JComboBox();
-        combo_guarda = new javax.swing.JComboBox();
-        jLabel11 = new javax.swing.JLabel();
-        combo_marca = new javax.swing.JComboBox();
-        jLabel12 = new javax.swing.JLabel();
-        txt_estado = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txt_observaciones = new javax.swing.JTextArea();
-        btn_actualizar = new javax.swing.JButton();
-        btn_limpiar = new javax.swing.JButton();
-        btn_refrescar = new javax.swing.JButton();
-        txt_n_registro = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        txt_estado_color = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_registro = new javax.swing.JTable();
         jLabel18 = new javax.swing.JLabel();
@@ -84,6 +47,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         combo_consulta = new javax.swing.JComboBox();
         jButton5 = new javax.swing.JButton();
+        btn_refrescar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1240, 630));
@@ -92,188 +56,6 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTRO DE SALIDA DE PROVEEDORES");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de Registro"));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1184, 320));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1191, 320));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setText("NOMBRE CONDUCTOR :");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 180, -1));
-
-        jLabel3.setText("NUMERO FICHA :");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, 130, 44));
-
-        combo_conductor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
-        combo_conductor.setEnabled(false);
-        combo_conductor.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                combo_conductorItemStateChanged(evt);
-            }
-        });
-        jPanel1.add(combo_conductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 274, -1));
-
-        txt_ficha.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txt_ficha.setForeground(new java.awt.Color(255, 0, 0));
-        txt_ficha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_ficha.setEnabled(false);
-        txt_ficha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_fichaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_ficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 30, 63, 47));
-
-        jLabel4.setText("NUMERO CEDULA :");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 170, -1));
-
-        jLabel5.setText("EMPRESA :");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 160, -1));
-
-        jLabel6.setText("PLACA VEHICULO :");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 160, 20));
-
-        txt_numero_cedula.setEditable(false);
-        jPanel1.add(txt_numero_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 210, -1));
-
-        txt_empresa.setEditable(false);
-        jPanel1.add(txt_empresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 272, -1));
-
-        txt_placa.setEditable(false);
-        jPanel1.add(txt_placa, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 132, -1));
-
-        jLabel7.setText("FECHA Y HORA DE INGRESO :");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 180, 16));
-
-        txt_fecha_ingreso.setEditable(false);
-        txt_fecha_ingreso.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jPanel1.add(txt_fecha_ingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 205, -1));
-
-        jLabel8.setText("FECHA Y HORA DE SALIDA :");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 167, 20));
-
-        txt_fecha_salida.setEditable(false);
-        txt_fecha_salida.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txt_fecha_salida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_fecha_salidaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_fecha_salida, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 150, 197, -1));
-
-        jLabel9.setText("PERSONA QUE AUTORIZA :");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 159, -1));
-
-        jLabel10.setText("GUARDA TURNO :");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 166, 21));
-
-        combo_autorizo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
-        combo_autorizo.setEnabled(false);
-        jPanel1.add(combo_autorizo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, 230, -1));
-
-        combo_guarda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
-        combo_guarda.setEnabled(false);
-        jPanel1.add(combo_guarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, 230, -1));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel11.setText("SALE :");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 200, 50, 21));
-
-        combo_marca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "SI" }));
-        combo_marca.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                combo_marcaItemStateChanged(evt);
-            }
-        });
-        jPanel1.add(combo_marca, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 110, -1));
-
-        jLabel12.setText("ESTADO :");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, 140, 20));
-
-        txt_estado.setEditable(false);
-        txt_estado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txt_estado.setForeground(new java.awt.Color(255, 0, 0));
-        txt_estado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_estadoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, 100, -1));
-
-        jLabel13.setText("OBSERVACIONES :");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 210, 178, 82));
-
-        txt_observaciones.setColumns(20);
-        txt_observaciones.setRows(5);
-        jScrollPane2.setViewportView(txt_observaciones);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 220, 439, 80));
-
-        btn_actualizar.setBackground(new java.awt.Color(255, 102, 102));
-        btn_actualizar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btn_actualizar.setText("Actualizar");
-        btn_actualizar.setToolTipText("Permite Actualizar el proyecto en Base de Datos");
-        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_actualizarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 90, 30));
-
-        btn_limpiar.setBackground(new java.awt.Color(0, 153, 255));
-        btn_limpiar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btn_limpiar.setText("Limpiar");
-        btn_limpiar.setToolTipText("Permite Limpiar los cambios");
-        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_limpiarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 90, 30));
-
-        btn_refrescar.setBackground(new java.awt.Color(255, 255, 51));
-        btn_refrescar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btn_refrescar.setText("Refrescar");
-        btn_refrescar.setToolTipText("Permite Refrescar los datos de la tabla.");
-        btn_refrescar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_refrescarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_refrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 90, 30));
-
-        txt_n_registro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txt_n_registro.setForeground(new java.awt.Color(255, 0, 0));
-        txt_n_registro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_n_registro.setEnabled(false);
-        txt_n_registro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_n_registroActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_n_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 30, 63, 47));
-
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("(*)");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 20, 20));
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("(*)");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 20, 20));
-
-        txt_estado_color.setEditable(false);
-        txt_estado_color.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txt_estado_color.setForeground(new java.awt.Color(255, 0, 0));
-        txt_estado_color.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_estado_colorActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_estado_color, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 90, -1));
 
         tabla_registro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -313,11 +95,11 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
         txt_consulta_placa.setEnabled(false);
 
         txt_consulta_cedula.setEditable(false);
-        txt_consulta_cedula.setToolTipText("Numero de Registro del proyecto");
+        txt_consulta_cedula.setToolTipText("");
         txt_consulta_cedula.setEnabled(false);
 
         txt_consulta_guarda.setEditable(false);
-        txt_consulta_guarda.setToolTipText("Numero de Registro del proyecto");
+        txt_consulta_guarda.setToolTipText("");
         txt_consulta_guarda.setEnabled(false);
 
         txt_consulta_autorizo.setEditable(false);
@@ -353,6 +135,16 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
             }
         });
 
+        btn_refrescar.setBackground(new java.awt.Color(255, 255, 51));
+        btn_refrescar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btn_refrescar.setText("Refrescar");
+        btn_refrescar.setToolTipText("Permite Refrescar los datos de la tabla.");
+        btn_refrescar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_refrescarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -361,10 +153,8 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -386,22 +176,25 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                             .addComponent(jLabel22))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_consulta_autorizo, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                            .addComponent(txt_consulta_guarda))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txt_consulta_autorizo)
+                            .addComponent(txt_consulta_guarda, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(68, 68, 68)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(btn_refrescar, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(combo_consulta, 0, 200, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(14, 14, 14))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -410,7 +203,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_consulta_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,7 +211,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                                 .addComponent(txt_consulta_placa)
                                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txt_consulta_guarda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -427,134 +220,21 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                                 .addComponent(txt_consulta_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txt_consulta_final, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton5))
+                                .addComponent(jButton5)
+                                .addComponent(btn_refrescar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 22, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_fecha_salidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_fecha_salidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_fecha_salidaActionPerformed
-
-    private void txt_fichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_fichaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_fichaActionPerformed
-
-    private void txt_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_estadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_estadoActionPerformed
-
-    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
-
-        if (this.txt_n_registro.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA");
-        } else if(this.combo_marca.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(null, "MARQUE (SI) DESEA SALIR");
-        }else{
-            
-            conexion.cerrar();
-            conexion = new ConexioSQLite();
-            conexion.coneccionbase();
-
-            String registro = txt_n_registro.getText();
-            String conductor = combo_conductor.getSelectedItem().toString();
-            String cedula = txt_numero_cedula.getText();
-            String empresa = txt_empresa.getText();
-            String placa = txt_placa.getText();
-            String fecha_ingreso = txt_fecha_ingreso.getText();
-            String ficha = txt_ficha.getText();
-            String autoriza = combo_autorizo.getSelectedItem().toString();
-            String guarda = combo_guarda.getSelectedItem().toString();
-            String fecha_salida = txt_fecha_salida.getText();
-            String estado = txt_estado.getText();
-            String observaciones = txt_observaciones.getText();
-
-            boolean resultado = conexion.upgrade_registro(registro, fecha_ingreso, fecha_salida, ficha, conductor, empresa, cedula, placa, autoriza, guarda, estado, observaciones);
-
-            if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "INGRESO ACTUALIZADO");
-                LimpiarCampos();
-                cargar_tabla();
-                conexion.cerrar();
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                LimpiarCampos();
-            }
-
-        }
-
-
-    }//GEN-LAST:event_btn_actualizarActionPerformed
-
-    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
-        LimpiarCampos();
-    }//GEN-LAST:event_btn_limpiarActionPerformed
-
-    private void btn_refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refrescarActionPerformed
-        cargar_tabla();
-        conexion.cerrar();
-    }//GEN-LAST:event_btn_refrescarActionPerformed
-
-    private void txt_n_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_n_registroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_n_registroActionPerformed
-
-    private void combo_conductorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_conductorItemStateChanged
-
-    }//GEN-LAST:event_combo_conductorItemStateChanged
-
     private void tabla_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_registroMouseClicked
 
-        int rec = this.tabla_registro.getSelectedRow();
-
-        this.txt_n_registro.setText(tabla_registro.getValueAt(rec, 0).toString());
-        this.txt_fecha_ingreso.setText(tabla_registro.getValueAt(rec, 1).toString());
-        this.txt_fecha_salida.setText(tabla_registro.getValueAt(rec, 2).toString());
-        this.txt_ficha.setText(tabla_registro.getValueAt(rec, 3).toString());
-        this.combo_conductor.setSelectedItem(tabla_registro.getValueAt(rec, 4).toString());
-        this.txt_numero_cedula.setText(tabla_registro.getValueAt(rec, 5).toString());
-        this.txt_empresa.setText(tabla_registro.getValueAt(rec, 6).toString());
-        this.txt_placa.setText(tabla_registro.getValueAt(rec, 7).toString());
-        this.combo_autorizo.setSelectedItem(tabla_registro.getValueAt(rec, 8).toString());
-        this.combo_guarda.setSelectedItem(tabla_registro.getValueAt(rec, 9).toString());
-        this.txt_estado.setText(tabla_registro.getValueAt(rec, 10).toString());
-        this.txt_observaciones.setText(tabla_registro.getValueAt(rec, 11).toString());
-
-
+      
     }//GEN-LAST:event_tabla_registroMouseClicked
-
-    private void combo_marcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_marcaItemStateChanged
-
-        int opcion = combo_marca.getSelectedIndex();
-        if (opcion == 0) {
-            this.txt_fecha_salida.setText("");
-            this.txt_estado.setText("");
-            this.txt_estado_color.setBackground(Color.WHITE);
-        } else {
-            Calendar calendario = Calendar.getInstance();
-            int dia, mes, año, hora, minutos, segundos;
-
-            dia = calendario.get(Calendar.DAY_OF_MONTH);
-            mes = calendario.get(Calendar.MONTH);
-            año = calendario.get(Calendar.YEAR);
-
-            hora = calendario.get(Calendar.HOUR_OF_DAY);
-            minutos = calendario.get(Calendar.MINUTE);
-            segundos = calendario.get(Calendar.SECOND);
-
-            this.txt_fecha_salida.setText("" + año + "-" + mes + "-" + dia + " " + hora + ":" + minutos + ":" + segundos);
-            this.txt_estado.setText("SALIDA");
-            this.txt_estado_color.setBackground(Color.RED);
-            
-        }
-
-
-    }//GEN-LAST:event_combo_marcaItemStateChanged
 
     private void combo_consultaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_consultaItemStateChanged
 
@@ -679,46 +359,25 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void txt_estado_colorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_estado_colorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_estado_colorActionPerformed
+    private void btn_refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refrescarActionPerformed
+        cargar_tabla();
+        conexion.cerrar();
+    }//GEN-LAST:event_btn_refrescarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btn_actualizar;
-    private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton btn_refrescar;
-    private javax.swing.JComboBox combo_autorizo;
-    private javax.swing.JComboBox combo_conductor;
     private javax.swing.JComboBox combo_consulta;
-    private javax.swing.JComboBox combo_guarda;
-    private javax.swing.JComboBox combo_marca;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabla_registro;
     private javax.swing.JTextField txt_consulta_autorizo;
     private javax.swing.JTextField txt_consulta_cedula;
@@ -726,35 +385,11 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
     private javax.swing.JTextField txt_consulta_guarda;
     private javax.swing.JTextField txt_consulta_inicial;
     private javax.swing.JTextField txt_consulta_placa;
-    private javax.swing.JTextField txt_empresa;
-    private javax.swing.JTextField txt_estado;
-    private javax.swing.JTextField txt_estado_color;
-    private javax.swing.JTextField txt_fecha_ingreso;
-    private javax.swing.JTextField txt_fecha_salida;
-    private javax.swing.JTextField txt_ficha;
-    private javax.swing.JTextField txt_n_registro;
-    private javax.swing.JTextField txt_numero_cedula;
-    private javax.swing.JTextArea txt_observaciones;
-    private javax.swing.JTextField txt_placa;
     // End of variables declaration//GEN-END:variables
 
     public void LimpiarCampos() {
 
-        combo_conductor.setSelectedIndex(0);
-        combo_marca.setSelectedIndex(0);
-        combo_guarda.setSelectedIndex(0);
-        combo_autorizo.setSelectedIndex(0);
-
-        txt_empresa.setText("");
-        txt_estado.setText("");
-        txt_ficha.setText("");
-        txt_fecha_ingreso.setText("");
-        txt_fecha_salida.setText("");
-        txt_numero_cedula.setText("");
-        txt_observaciones.setText("");
-        txt_placa.setText("");
-
-    }
+        }
 
 // METODO PARA CARGAR TABLA DE REGISTRO
     public void cargar_tabla() {
@@ -786,8 +421,9 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 + "OBSERVACIONES AS OBSERVACION "
                 + "FROM "
                 + "REGISTRO_SEGURIDAD "
+                + "WHERE ESTADO = 'SALIDA' "
                 + "ORDER BY FECHA_ENTRADA DESC;";
-
+        System.out.println(query);
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -849,6 +485,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 + "FROM "
                 + "REGISTRO_SEGURIDAD "
                 + "WHERE "
+                + "ESTADO = 'SALIDA' AND "
                 + "FECHA_ENTRADA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
                 + "ORDER BY FECHA_ENTRADA DESC";
         try {
@@ -911,6 +548,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 + "FROM "
                 + "REGISTRO_SEGURIDAD "
                 + "WHERE "
+                + "ESTADO = 'SALIDA' AND "
                 + "PLACA LIKE '%" + placa +"%' "
                 + "ORDER BY FECHA_ENTRADA DESC";
         System.out.println(query);
@@ -974,6 +612,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 + "FROM "
                 + "REGISTRO_SEGURIDAD "
                 + "WHERE "
+                + "ESTADO = 'SALIDA' AND "
                 + "CEDULA LIKE '%" + cedula +"%' "
                 + "ORDER BY FECHA_ENTRADA DESC";
         try {
@@ -1036,6 +675,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 + "FROM "
                 + "REGISTRO_SEGURIDAD "
                 + "WHERE "
+                + "ESTADO = 'SALIDA' AND "
                 + "AUTORIZADO LIKE '%" + autorizo +"%' "
                 + "ORDER BY FECHA_ENTRADA DESC";
         try {
@@ -1098,6 +738,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 + "FROM "
                 + "REGISTRO_SEGURIDAD "
                 + "WHERE "
+                + "ESTADO = 'SALIDA' AND "
                 + "GUARDA LIKE '%" + guarda +"%' "
                 + "ORDER BY FECHA_ENTRADA DESC";
         try {
@@ -1129,85 +770,5 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
         }
     }        
     
-    // METODO PARA CARGAR JCOMBOBOX CONDUCTORES
-    public void cargar_lista_conductor() {
-
-        conexion = new ConexioSQLite();
-        conexion.coneccionbase();
-
-        String query = "";
-
-        ConexioSQLite con = new ConexioSQLite();
-        Connection cn = con.Conectar();
-
-        query = "SELECT * FROM CONDUCTORES ";
-
-        System.out.println(query);
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
-            while (rs.next()) {
-                combo_conductor.addItem(rs.getString("NOMBRE_CONDUCTOR"));
-            }
-            conexion.cerrar();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-
-    // METODO PARA CARGAR JCOMBOBOX AUTORIZADO
-    public void cargar_tabla_autorizo() {
-
-        conexion = new ConexioSQLite();
-        conexion.coneccionbase();
-
-        String query = "";
-
-        ConexioSQLite con = new ConexioSQLite();
-        Connection cn = con.Conectar();
-
-        query = "SELECT * FROM AUTORIZACION ";
-
-        System.out.println(query);
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
-            while (rs.next()) {
-                combo_autorizo.addItem(rs.getString("NOMBRE_COMPLETO"));
-            }
-            conexion.cerrar();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-
-    // METODO PARA CARGAR JCOMBOBOX GUARDA
-    public void cargar_tabla_guarda() {
-
-        conexion = new ConexioSQLite();
-        conexion.coneccionbase();
-
-        String query = "";
-
-        ConexioSQLite con = new ConexioSQLite();
-        Connection cn = con.Conectar();
-
-        query = "SELECT * FROM GUARDAS ";
-
-        System.out.println(query);
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
-            while (rs.next()) {
-                combo_guarda.addItem(rs.getString("NOMBRE_COMPLETO"));
-            }
-            conexion.cerrar();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
 
 }

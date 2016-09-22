@@ -28,6 +28,7 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         cargar_lista_conductor();
         cargar_tabla_autorizo();
         cargar_tabla_guarda();
+        this.btn_actualizar.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -69,6 +70,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         txt_estado = new javax.swing.JTextField();
+        combo_marca = new javax.swing.JComboBox();
+        jLabel11 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_registro = new javax.swing.JTable();
         jLabel18 = new javax.swing.JLabel();
@@ -93,7 +96,7 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("REGISTRO DE INGRESO DE PROVEEDORES");
+        jLabel1.setText("REGISTRO DE INGRESO Y SALIDA DE PROVEEDORES");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de Registro"));
         jPanel1.setMinimumSize(new java.awt.Dimension(1184, 320));
@@ -285,6 +288,18 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         });
         jPanel1.add(txt_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, 100, -1));
 
+        combo_marca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "SI" }));
+        combo_marca.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo_marcaItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(combo_marca, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 110, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setText("SALE :");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 200, 50, 21));
+
         tabla_registro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -400,7 +415,7 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(combo_consulta, 0, 200, Short.MAX_VALUE))
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1203, Short.MAX_VALUE)
@@ -468,15 +483,15 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 
         if (combo_conductor.getSelectedIndex() == 0 || txt_numero_cedula.getText().equals("")
                 || txt_empresa.getText().equals("") || txt_empresa.getText().equals("") || txt_placa.getText().equals("")
-                || txt_fecha_ingreso.getText().equals("") || txt_ficha.getText().equals("")) {
-//              || combo_autorizo.getSelectedIndex() == 0 || combo_guarda.getSelectedIndex() == 0 ) {
+                || txt_fecha_ingreso.getText().equals("") || txt_ficha.getText().equals("")
+                || combo_autorizo.getSelectedIndex() == 0 || combo_guarda.getSelectedIndex() == 0) {
 
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS OBLIGATORIOS (*)");
         } else {
 
             String ficha = txt_ficha.getText();
             int numero = validacion_ficha_repetida(ficha);
-            
+
             if (numero > 0) {
                 JOptionPane.showMessageDialog(null, "LA FICHA : " + ficha + " SE ENCUENTRA SIENDO USADA");
             } else {
@@ -514,8 +529,10 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
 
-        if (this.txt_ficha.getText().equals("")) {
+        if (this.txt_n_registro.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA");
+        } else if (this.combo_marca.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "SELECCIONE (SI) DESEA SALIR");
         } else {
             conexion.cerrar();
             conexion = new ConexioSQLite();
@@ -531,7 +548,7 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
             String autoriza = combo_autorizo.getSelectedItem().toString();
             String guarda = combo_guarda.getSelectedItem().toString();
             String fecha_salida = txt_fecha_salida.getText();
-            String estado = txt_estado_color.getText();
+            String estado = txt_estado.getText();
             String observaciones = txt_observaciones.getText();
 
             boolean resultado = conexion.upgrade_registro(registro, fecha_ingreso, fecha_salida, ficha, conductor, empresa, cedula, placa, autoriza, guarda, estado, observaciones);
@@ -641,8 +658,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         this.txt_fecha_salida.setText(tabla_registro.getValueAt(rec, 2).toString());
         this.txt_ficha.setText(tabla_registro.getValueAt(rec, 3).toString());
         this.combo_conductor.setSelectedItem(tabla_registro.getValueAt(rec, 4).toString());
-        this.txt_numero_cedula.setText(tabla_registro.getValueAt(rec, 5).toString());
-        this.txt_empresa.setText(tabla_registro.getValueAt(rec, 6).toString());
+        this.txt_empresa.setText(tabla_registro.getValueAt(rec, 5).toString());
+        this.txt_numero_cedula.setText(tabla_registro.getValueAt(rec, 6).toString());
         this.txt_placa.setText(tabla_registro.getValueAt(rec, 7).toString());
         this.combo_autorizo.setSelectedItem(tabla_registro.getValueAt(rec, 8).toString());
         this.combo_guarda.setSelectedItem(tabla_registro.getValueAt(rec, 9).toString());
@@ -778,6 +795,37 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_estadoActionPerformed
 
+    private void combo_marcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_marcaItemStateChanged
+
+        int opcion = combo_marca.getSelectedIndex();
+        if (opcion == 0) {
+            this.txt_fecha_salida.setText("");
+            this.txt_estado.setText("");
+            this.txt_estado_color.setBackground(Color.WHITE);
+            this.btn_actualizar.setEnabled(false);
+            this.btn_guardar.setEnabled(true);
+        } else {
+            Calendar calendario = Calendar.getInstance();
+            int dia, mes, año, hora, minutos, segundos;
+
+            dia = calendario.get(Calendar.DAY_OF_MONTH);
+            mes = calendario.get(Calendar.MONTH);
+            año = calendario.get(Calendar.YEAR);
+
+            hora = calendario.get(Calendar.HOUR_OF_DAY);
+            minutos = calendario.get(Calendar.MINUTE);
+            segundos = calendario.get(Calendar.SECOND);
+
+            this.txt_fecha_salida.setText("" + año + "-" + mes + "-" + dia + " " + hora + ":" + minutos + ":" + segundos);
+            this.txt_estado.setText("SALIDA");
+            this.txt_estado_color.setBackground(Color.RED);
+            this.btn_actualizar.setEnabled(true);
+            this.btn_guardar.setEnabled(false);
+
+        }
+
+    }//GEN-LAST:event_combo_marcaItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_actualizar;
@@ -788,9 +836,11 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
     private javax.swing.JComboBox combo_conductor;
     private javax.swing.JComboBox combo_consulta;
     private javax.swing.JComboBox combo_guarda;
+    private javax.swing.JComboBox combo_marca;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
