@@ -126,13 +126,16 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
        
-        FormRegistrosIngreso registro = new FormRegistrosIngreso();
-        registro.setVisible(true);
+        FormRegistrosIngreso ingreso = new FormRegistrosIngreso();
+        ingreso.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
+      
+        FormRegistrosSalida salida = new FormRegistrosSalida();
+        salida.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**

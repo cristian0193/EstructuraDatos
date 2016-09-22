@@ -53,8 +53,6 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         combo_autorizo = new javax.swing.JComboBox();
         combo_guarda = new javax.swing.JComboBox();
-        jLabel11 = new javax.swing.JLabel();
-        combo_marca = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
         txt_estado = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -157,13 +155,6 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 
         combo_guarda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
         jPanel1.add(combo_guarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, 197, -1));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel11.setText("SALE :");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, 21));
-
-        combo_marca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "X" }));
-        jPanel1.add(combo_marca, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, -1));
 
         jLabel12.setText("ESTADO :");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, 140, 20));
@@ -502,10 +493,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
     private javax.swing.JComboBox combo_autorizo;
     private javax.swing.JComboBox combo_conductor;
     private javax.swing.JComboBox combo_guarda;
-    private javax.swing.JComboBox combo_marca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -538,7 +527,6 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
     public void LimpiarCampos() {
 
         combo_conductor.setSelectedIndex(0);
-        combo_marca.setSelectedIndex(0);
         combo_guarda.setSelectedIndex(0);
         combo_autorizo.setSelectedIndex(0);
 
