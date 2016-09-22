@@ -1,10 +1,12 @@
 package Vistas;
 
 import Conexion.ConexioSQLite;
+import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +23,7 @@ public class FormRegistros extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.txt_n_registro.setVisible(false);
+        cargar_lista_conductor();
     }
 
     @SuppressWarnings("unchecked")
@@ -82,6 +85,11 @@ public class FormRegistros extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, 130, 44));
 
         combo_conductor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
+        combo_conductor.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo_conductorItemStateChanged(evt);
+            }
+        });
         jPanel1.add(combo_conductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 274, -1));
 
         txt_ficha.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -368,6 +376,63 @@ public class FormRegistros extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_n_registroActionPerformed
 
+    private void combo_conductorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_conductorItemStateChanged
+
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+
+            String nombre = combo_conductor.getSelectedItem().toString();
+            this.txt_ficha.setEnabled(true);
+            
+            
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
+
+            String query = "";
+
+            ConexioSQLite con = new ConexioSQLite();
+            Connection cn = con.Conectar();
+
+            query = "SELECT "
+                    + "CEDULA AS CEDULA, "
+                    + "EMPRESA AS EMPRESA, "
+                    + "PLACA_VEHICULO AS PLACA "
+                    + "FROM "
+                    + "CONDUCTORES "
+                    + "WHERE NOMBRE_CONDUCTOR = '" + nombre + "';";
+
+            try {
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(query);
+
+                String cedula = rs.getString("CEDULA");
+                String empresa = rs.getString("EMPRESA");
+                String placa = rs.getString("PLACA");
+
+                this.txt_numero_cedula.setText(cedula);
+                this.txt_empresa.setText(empresa);
+                this.txt_placa.setText(placa);
+
+            } catch (SQLException ex) {
+
+            }
+
+            Calendar calendario = Calendar.getInstance();
+            int dia, mes, año, hora, minutos, segundos;
+
+            dia = calendario.get(Calendar.DAY_OF_MONTH);
+            mes = calendario.get(Calendar.MONTH);
+            año = calendario.get(Calendar.YEAR);
+
+            hora = calendario.get(Calendar.HOUR_OF_DAY);
+            minutos = calendario.get(Calendar.MINUTE);
+            segundos = calendario.get(Calendar.SECOND);
+
+            this.txt_fecha_ingreso.setText("" + año + "-" + mes + "-" + dia + " " + hora + ":" + minutos + ":" + segundos);
+
+        }
+
+    }//GEN-LAST:event_combo_conductorItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_actualizar;
@@ -546,6 +611,33 @@ public class FormRegistros extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, ex);
 
+        }
+    }
+
+    // METODO PARA CARGAR JCOMBOBOX CONDUCTORES
+    public void cargar_lista_conductor() {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT * FROM CONDUCTORES ";
+
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                combo_conductor.addItem(rs.getString("NOMBRE_CONDUCTOR"));
+            }
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
     }
 

@@ -80,7 +80,7 @@ public class ConexioSQLite {
 
             query = "INSERT INTO REGISTRO_SEGURIDAD "
                     + "(ID_REGISTRO, "
-                    + "FECHA_INGRESO, "
+                    + "FECHA_ENTRADA, "
                     + "FECHA_SALIDA, "
                     + "N_FICHA, "
                     + "NOMBRE_CONDUCTOR,"
@@ -93,7 +93,7 @@ public class ConexioSQLite {
                     + "OBSERVACIONES ) "
                     + "VALUES "
                     + "(NULL,'" + FECHA_INGRESO + "' ,'" + FECHA_SALIDA + "', '" + NUMERO_FICHA + "', '" + NOMBRE_CONDUCTOR + "', '" + EMPRESA + "', '" + CEDULA + "',"
-                    + "" + PLACA + ", " + AUTORIZADO + ",'" + GUARDA + "' , '" + ESTADO + "', '" + OBSERVACIONES + "') ";
+                    + "'" + PLACA + "', '" + AUTORIZADO + "','" + GUARDA + "' , '" + ESTADO + "', '" + OBSERVACIONES + "') ";
             System.out.println(query);
 
             sentencia.executeUpdate(query);
@@ -129,7 +129,7 @@ public class ConexioSQLite {
             query = "UPDATE"
                     + " REGISTRO_SEGURIDAD"
                     + " SET "
-                    + "  FECHA_INGRESO = '" + FECHA_INGRESO + "',"
+                    + "  FECHA_ENTRADA = '" + FECHA_INGRESO + "',"
                     + "  FECHA_SALIDA = '" + FECHA_SALIDA + "',"
                     + "  N_FICHA = '" + NUMERO_FICHA + "',"
                     + "  NOMBRE_CONDUCTOR = '" + NOMBRE_CONDUCTOR + "',"
@@ -390,5 +390,7 @@ public class ConexioSQLite {
     }
     
 
+    
+    
     
 }
