@@ -14,16 +14,19 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Usuario
  */
-public class FormRegistros extends javax.swing.JFrame {
+public class FormRegistrosSalida extends javax.swing.JFrame {
 
     DefaultTableModel modelo;
     ConexioSQLite conexion;
 
-    public FormRegistros() {
+    public FormRegistrosSalida() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.txt_n_registro.setVisible(false);
+        cargar_tabla();
         cargar_lista_conductor();
+        cargar_tabla_autorizo();
+        cargar_tabla_guarda();
     }
 
     @SuppressWarnings("unchecked")
@@ -62,16 +65,19 @@ public class FormRegistros extends javax.swing.JFrame {
         btn_limpiar = new javax.swing.JButton();
         btn_refrescar = new javax.swing.JButton();
         txt_n_registro = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_registro = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1240, 630));
-        setPreferredSize(new java.awt.Dimension(1240, 630));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("REGISTRO DE ENTRADA DE PROVEEDORES");
+        jLabel1.setText("REGISTRO DE INGRESO DE PROVEEDORES");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de Registro"));
         jPanel1.setMinimumSize(new java.awt.Dimension(1184, 320));
@@ -235,7 +241,31 @@ public class FormRegistros extends javax.swing.JFrame {
                 txt_n_registroActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_n_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, 63, 47));
+        jPanel1.add(txt_n_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 30, 63, 47));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("(*)");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 20, 20));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("(*)");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 120, 20, 20));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("(*)");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 20, 20));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("(*)");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 90, 20, 20));
 
         tabla_registro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -245,6 +275,11 @@ public class FormRegistros extends javax.swing.JFrame {
 
             }
         ));
+        tabla_registro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_registroMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla_registro);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -266,7 +301,7 @@ public class FormRegistros extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
+                .addContainerGap())
         );
 
         pack();
@@ -289,10 +324,12 @@ public class FormRegistros extends javax.swing.JFrame {
         if (combo_conductor.getSelectedIndex() == 0 || txt_numero_cedula.getText().equals("")
                 || txt_empresa.getText().equals("") || txt_empresa.getText().equals("") || txt_placa.getText().equals("")
                 || txt_fecha_ingreso.getText().equals("") || txt_ficha.getText().equals("")) {
+//              || combo_autorizo.getSelectedIndex() == 0 || combo_guarda.getSelectedIndex() == 0 ) {
 
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS OBLIGATORIOS (*)");
         } else {
 
+            conexion.cerrar();
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
 
@@ -309,7 +346,7 @@ public class FormRegistros extends javax.swing.JFrame {
             String estado = txt_estado.getText();
             String observaciones = txt_observaciones.getText();
 
-            boolean resultado = conexion.insert_registro(fecha_ingreso, "", ficha, conductor, empresa, cedula, placa, "", "", estado, observaciones);
+            boolean resultado = conexion.insert_registro(fecha_ingreso, fecha_salida, ficha, conductor, empresa, cedula, placa, autoriza, guarda, estado, observaciones);
 
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "INGRESO REGISTRADO");
@@ -329,7 +366,7 @@ public class FormRegistros extends javax.swing.JFrame {
         if (this.txt_ficha.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA");
         } else {
-
+            conexion.cerrar();
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
 
@@ -349,12 +386,12 @@ public class FormRegistros extends javax.swing.JFrame {
             boolean resultado = conexion.upgrade_registro(registro, fecha_ingreso, fecha_salida, ficha, conductor, empresa, cedula, placa, autoriza, guarda, estado, observaciones);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "INGRESO REGISTRADO");
+                JOptionPane.showMessageDialog(null, "INGRESO ACTUALIZADO");
                 LimpiarCampos();
                 cargar_tabla();
                 conexion.cerrar();
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
                 LimpiarCampos();
             }
 
@@ -378,60 +415,83 @@ public class FormRegistros extends javax.swing.JFrame {
 
     private void combo_conductorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_conductorItemStateChanged
 
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
+//        if (evt.getStateChange() == ItemEvent.SELECTED) {
+//            txt_empresa.setText("");
+//            txt_numero_cedula.setText("");
+//            txt_placa.setText("");
+        String nombre = combo_conductor.getSelectedItem().toString();
+        this.txt_ficha.setEnabled(true);
 
-            String nombre = combo_conductor.getSelectedItem().toString();
-            this.txt_ficha.setEnabled(true);
-            
-            
-            conexion = new ConexioSQLite();
-            conexion.coneccionbase();
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
 
-            String query = "";
+        String query = "";
 
-            ConexioSQLite con = new ConexioSQLite();
-            Connection cn = con.Conectar();
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
 
-            query = "SELECT "
-                    + "CEDULA AS CEDULA, "
-                    + "EMPRESA AS EMPRESA, "
-                    + "PLACA_VEHICULO AS PLACA "
-                    + "FROM "
-                    + "CONDUCTORES "
-                    + "WHERE NOMBRE_CONDUCTOR = '" + nombre + "';";
+        query = "SELECT "
+                + "CEDULA AS CEDULA, "
+                + "EMPRESA AS EMPRESA, "
+                + "PLACA_VEHICULO AS PLACA "
+                + "FROM "
+                + "CONDUCTORES "
+                + "WHERE NOMBRE_CONDUCTOR = '" + nombre + "';";
 
-            try {
-                Statement st = cn.createStatement();
-                ResultSet rs = st.executeQuery(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
 
-                String cedula = rs.getString("CEDULA");
-                String empresa = rs.getString("EMPRESA");
-                String placa = rs.getString("PLACA");
+            String cedula = rs.getString("CEDULA");
+            String empresa = rs.getString("EMPRESA");
+            String placa = rs.getString("PLACA");
 
-                this.txt_numero_cedula.setText(cedula);
-                this.txt_empresa.setText(empresa);
-                this.txt_placa.setText(placa);
+            this.txt_numero_cedula.setText(cedula);
+            this.txt_empresa.setText(empresa);
+            this.txt_placa.setText(placa);
 
-            } catch (SQLException ex) {
+            conexion.cerrar();
 
-            }
-
-            Calendar calendario = Calendar.getInstance();
-            int dia, mes, año, hora, minutos, segundos;
-
-            dia = calendario.get(Calendar.DAY_OF_MONTH);
-            mes = calendario.get(Calendar.MONTH);
-            año = calendario.get(Calendar.YEAR);
-
-            hora = calendario.get(Calendar.HOUR_OF_DAY);
-            minutos = calendario.get(Calendar.MINUTE);
-            segundos = calendario.get(Calendar.SECOND);
-
-            this.txt_fecha_ingreso.setText("" + año + "-" + mes + "-" + dia + " " + hora + ":" + minutos + ":" + segundos);
-
+        } catch (SQLException ex) {
+//
         }
 
+        Calendar calendario = Calendar.getInstance();
+        int dia, mes, año, hora, minutos, segundos;
+
+        dia = calendario.get(Calendar.DAY_OF_MONTH);
+        mes = calendario.get(Calendar.MONTH);
+        año = calendario.get(Calendar.YEAR);
+
+        hora = calendario.get(Calendar.HOUR_OF_DAY);
+        minutos = calendario.get(Calendar.MINUTE);
+        segundos = calendario.get(Calendar.SECOND);
+
+        this.txt_fecha_ingreso.setText("" + año + "-" + mes + "-" + dia + " " + hora + ":" + minutos + ":" + segundos);
+
+//        }
+
     }//GEN-LAST:event_combo_conductorItemStateChanged
+
+    private void tabla_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_registroMouseClicked
+
+        int rec = this.tabla_registro.getSelectedRow();
+
+        this.txt_n_registro.setText(tabla_registro.getValueAt(rec, 0).toString());
+        this.txt_fecha_ingreso.setText(tabla_registro.getValueAt(rec, 1).toString());
+        this.txt_fecha_salida.setText(tabla_registro.getValueAt(rec, 2).toString());
+        this.txt_ficha.setText(tabla_registro.getValueAt(rec, 3).toString());
+        this.combo_conductor.setSelectedItem(tabla_registro.getValueAt(rec, 4).toString());
+        this.txt_numero_cedula.setText(tabla_registro.getValueAt(rec, 5).toString());
+        this.txt_empresa.setText(tabla_registro.getValueAt(rec, 6).toString());
+        this.txt_placa.setText(tabla_registro.getValueAt(rec, 7).toString());
+        this.combo_autorizo.setSelectedItem(tabla_registro.getValueAt(rec, 8).toString());
+        this.combo_guarda.setSelectedItem(tabla_registro.getValueAt(rec, 9).toString());
+        this.txt_estado.setText(tabla_registro.getValueAt(rec, 10).toString());
+        this.txt_observaciones.setText(tabla_registro.getValueAt(rec, 11).toString());
+
+
+    }//GEN-LAST:event_tabla_registroMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -448,6 +508,10 @@ public class FormRegistros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -520,7 +584,7 @@ public class FormRegistros extends javax.swing.JFrame {
                 + "FROM "
                 + "REGISTRO_SEGURIDAD "
                 + "WHERE ESTADO = 'INGRESO' "
-                + "ORDER BY FECHA_INGRESO DESC;";
+                + "ORDER BY FECHA_ENTRADA DESC;";
 
         try {
             Statement st = cn.createStatement();
@@ -583,8 +647,8 @@ public class FormRegistros extends javax.swing.JFrame {
                 + "REGISTRO_SEGURIDAD "
                 + "WHERE "
                 + "ESTADO = 'INGRESO' "
-                + "AND FECHA_INGRESO BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
-                + "ORDER BY FECHA_INGRESO DESC";
+                + "AND FECHA_ENTRADA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "ORDER BY FECHA_ENTRADA DESC";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -641,4 +705,58 @@ public class FormRegistros extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA CARGAR JCOMBOBOX AUTORIZADO
+    public void cargar_tabla_autorizo() {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT * FROM AUTORIZACION ";
+
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                combo_autorizo.addItem(rs.getString("NOMBRE_COMPLETO"));
+            }
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    
+    // METODO PARA CARGAR JCOMBOBOX GUARDA
+    public void cargar_tabla_guarda() {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT * FROM GUARDAS ";
+
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                combo_guarda.addItem(rs.getString("NOMBRE_COMPLETO"));
+            }
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    
 }

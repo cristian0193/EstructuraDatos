@@ -17,6 +17,7 @@ public class Conductores extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla_conductor();
+
     }
 
     @SuppressWarnings("unchecked")

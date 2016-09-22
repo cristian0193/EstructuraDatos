@@ -76,8 +76,8 @@ public class ConexioSQLite {
             String ESTADO,
             String OBSERVACIONES) {
 
-        try {
-
+        try {        
+                                                         
             query = "INSERT INTO REGISTRO_SEGURIDAD "
                     + "(ID_REGISTRO, "
                     + "FECHA_ENTRADA, "
@@ -92,7 +92,7 @@ public class ConexioSQLite {
                     + "ESTADO, "
                     + "OBSERVACIONES ) "
                     + "VALUES "
-                    + "(NULL,'" + FECHA_INGRESO + "' ,'" + FECHA_SALIDA + "', '" + NUMERO_FICHA + "', '" + NOMBRE_CONDUCTOR + "', '" + EMPRESA + "', '" + CEDULA + "',"
+                    + "(NULL,'" + FECHA_INGRESO + "' ,'" + FECHA_SALIDA + "', " + NUMERO_FICHA + ", '" + NOMBRE_CONDUCTOR + "', '" + EMPRESA + "', " + CEDULA + ","
                     + "'" + PLACA + "', '" + AUTORIZADO + "','" + GUARDA + "' , '" + ESTADO + "', '" + OBSERVACIONES + "') ";
             System.out.println(query);
 
@@ -143,9 +143,13 @@ public class ConexioSQLite {
                     + " WHERE"
                     + "  ID_REGISTRO = " + ID + ";";
 
+            System.out.println(query);
+            
             sentencia.executeUpdate(query);
             System.out.println("ACTUALIZADO ...");
 
+           
+            
             return true;
 
         } catch (SQLException e) {

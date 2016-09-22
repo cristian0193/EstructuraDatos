@@ -126,7 +126,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
        
-        FormRegistros registro = new FormRegistros();
+        FormRegistrosIngreso registro = new FormRegistrosIngreso();
         registro.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
