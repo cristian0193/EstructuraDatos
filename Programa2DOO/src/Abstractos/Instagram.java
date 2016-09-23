@@ -11,17 +11,17 @@ public class Instagram extends RedSocial{
 
     @Override
     public String Compatir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "COMPARTIENDO DESDE INSTAGRAM ....";
     }
 
     @Override
     public String Navegar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "NAVEGANDO DESDE INSTAGRAM ....";
     }
 
     @Override
     public String Buscar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "BUSCANDO DESDE INSTAGRAM ....";
     }
     
 }

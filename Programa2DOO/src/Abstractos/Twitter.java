@@ -17,17 +17,17 @@ public class Twitter extends RedSocial{
 
     @Override
     public String Compatir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "COMPARTIENDO DESDE TWITTER ....";
     }
 
     @Override
     public String Navegar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "NAVEGANDO DESDE TWITTER ....";
     }
 
     @Override
     public String Buscar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "BUSCANDO DESDE TWITTER ....";
     }
     
 }

@@ -1,5 +1,4 @@
 package Abstractos;
-
 /**
  *
  * @author Christian Rodriguez
@@ -9,13 +8,13 @@ public abstract class RedSocial {
     String nombre_Red;
     String URL;
     String fundador;
-    String tipologia;
+    String precio;
 
-    public RedSocial(String nombre_Red, String URL, String fundador, String tipologia) {
+    public RedSocial(String nombre_Red, String URL, String fundador, String precio) {
         this.nombre_Red = nombre_Red;
         this.URL = URL;
         this.fundador = fundador;
-        this.tipologia = tipologia;
+        this.precio = precio;
     }
 
     public String getNombre_Red() {
@@ -42,17 +41,17 @@ public abstract class RedSocial {
         this.fundador = fundador;
     }
 
-    public String getTipologia() {
-        return tipologia;
+    public String getPrecio() {
+        return precio;
     }
 
-    public void setTipologia(String tipologia) {
-        this.tipologia = tipologia;
+    public void setPrecio(String precio) {
+        this.precio = precio;
     }
 
     @Override
     public String toString() {
-        return "RedSocial : " +"\n"+ " nombre_Red=" + nombre_Red + "\n URL=" + URL + "\n fundador=" + fundador + "\n tipologia=" + tipologia;
+        return "RedSocial : " +"\n"+ " nombre_Red=" + nombre_Red + "\n URL=" + URL + "\n fundador=" + fundador + "\n precio=" + precio;
     }
     
     public abstract String Compatir();

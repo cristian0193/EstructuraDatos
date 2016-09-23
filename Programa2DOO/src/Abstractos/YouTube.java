@@ -9,19 +9,19 @@ public class YouTube extends RedSocial{
         super(nombre_Red, URL, fundador, tipologia);
     }
 
-    @Override
+   @Override
     public String Compatir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "COMPARTIENDO DESDE YOUTUBE ....";
     }
 
     @Override
     public String Navegar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "NAVEGANDO DESDE YOUTUBE ....";
     }
 
     @Override
     public String Buscar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "BUSCANDO DESDE YOTUBE ....";
     }
     
 }
