@@ -17,7 +17,7 @@ public class HoraExtraDiurno implements PagoHoraExtra{
     }
     
     public double Redondear(double numero) {
-        return Math.rint(numero * 1000) / 1000;
+        return Math.rint(numero * 1) / 1;
     }
     
 }
