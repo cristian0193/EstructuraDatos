@@ -1,11 +1,13 @@
-
 package Vista;
 
-
-import java.sql.Connection;
+import Control.CRUD_Cursos;
+import Control.CRUD_Estudiantes;
+import Control.CRUD_Profesores;
+import Control.ConexionMySQL;
+import Modelo.Estudiantes;
+import Modelo.Cursos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,15 +16,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ConsultarEstudiantesCurso extends javax.swing.JFrame {
 
-//     public static ConexioSQLite conexion;
     DefaultTableModel modelo;
-    
+
     public ConsultarEstudiantesCurso() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_lista_curso();//INICIO CARGANDO EL JCOMBOBOX DE CURSOS
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -62,7 +62,7 @@ public class ConsultarEstudiantesCurso extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(combo_id_curso, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -101,18 +101,17 @@ public class ConsultarEstudiantesCurso extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         int opcion = Integer.parseInt(combo_id_curso.getSelectedItem().toString());
-        
-        if(opcion == 0){
-            JOptionPane.showMessageDialog(null,"SELECCIONAR UN CODIGO DE PROFESOR");
-        }else{
+
+        if (opcion == 0) {
+            JOptionPane.showMessageDialog(null, "SELECCIONAR UN CODIGO DE PROFESOR");
+        } else {
             cargar_tabla_estudiantes(opcion);
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox combo_id_curso;
     private javax.swing.JButton jButton1;
@@ -126,71 +125,45 @@ public class ConsultarEstudiantesCurso extends javax.swing.JFrame {
     // METODO PARA CARGAR JCOMBOBOX CURSOS
     public void cargar_lista_curso() {
 
-//        conexion = new ConexioSQLite();
-//        conexion.coneccionbase();
-//
-//        String query = "";
-//
-//        ConexioSQLite con = new ConexioSQLite();
-//        Connection cn = con.Conectar();
-//
-//        query = "SELECT ID_CURSO FROM CURSO ";
-//
-//        System.out.println(query);
-//        try {
-//            Statement st = cn.createStatement();
-//            ResultSet rs = st.executeQuery(query);
-//
-//            while (rs.next()) {
-//                combo_id_curso.addItem(rs.getString("ID_CURSO"));
-//            }
-//            conexion.cerrar();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, ex);
-//        }
+        ResultSet rs = CRUD_Cursos.Consultar_Cursos_Lista();
+
+        try {
+
+            while (rs.next()) {
+                combo_id_curso.addItem(rs.getString("ID_CURSOS"));
+            }
+
+            ConexionMySQL.cerrar();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }
-        
+
     //INICIO CARGANDO LA JTABLE DE LOS ESTUDIANTES
     void cargar_tabla_estudiantes(int id_profesor) {
 
-//        conexion = new ConexioSQLite();
-//        conexion.coneccionbase();
-//
-//        String[] titulos = {"CEDULA", "NOMBRE", "APELLIDO"};
-//        String[] registro = new String[3];
-//        String query = "";
-//
-//        modelo = new DefaultTableModel(null, titulos);
-//
-//        ConexioSQLite con = new ConexioSQLite();
-//        Connection cn = con.Conectar();
-//
-//        query = "SELECT E.ID_ESTUDIANTE, E.NOMBRE_ESTUDIANTE, E.APELLIDO_ESTUDIANTE " +
-//                "FROM ESTUDIANTE E, CURSO C " +
-//                "WHERE E.ID_CURSO = C.ID_CURSO " +
-//                "AND C.ID_CURSO = " + id_profesor;
-//
-//        System.out.println(query);
-//        try {
-//            Statement st = cn.createStatement();
-//            ResultSet rs = st.executeQuery(query);
-//            while (rs.next()) {
-//
-//                registro[0] = rs.getString("ID_ESTUDIANTE");
-//                registro[1] = rs.getString("NOMBRE_ESTUDIANTE");
-//                registro[2] = rs.getString("APELLIDO_ESTUDIANTE");
-//
-//
-//                modelo.addRow(registro);
-//            }
-//            tablas_estudiantes.setModel(modelo);
-//
-//        } catch (SQLException ex) {
-//
-//            JOptionPane.showMessageDialog(null, ex);
-//
-//        }
-    }
+        String[] titulos = {"CEDULA", "NOMBRE", "APELLIDO"};
+        String[] registro = new String[3];
 
+        modelo = new DefaultTableModel(null, titulos);
+
+        try {
+            ResultSet rs = CRUD_Estudiantes.Consultar_Estudiante(id_profesor);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID_ESTUDIANTE");
+                registro[1] = rs.getString("NOMBRE_ESTUDIANTE");
+                registro[2] = rs.getString("APELLIDO_ESTUDIANTE");
+
+                modelo.addRow(registro);
+            }
+            tablas_estudiantes.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
 
 }

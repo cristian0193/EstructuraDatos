@@ -2,7 +2,7 @@ package Modelo;
 
 public class Cursos {
 
-    private Integer idCursos;
+    private int idCursos;
     private String nombreCurso;
     private int numeroCreditos;
     private String actividadCursos;
@@ -11,22 +11,23 @@ public class Cursos {
     public Cursos() {
     }
 
-    public Cursos(Integer idCursos) {
+    public Cursos(int idCursos) {
         this.idCursos = idCursos;
     }
 
-    public Cursos(Integer idCursos, String nombreCurso, int numeroCreditos, String actividadCursos) {
+    public Cursos(int idCursos, String nombreCurso, int numeroCreditos, String actividadCursos,Profesores idProfesor) {
         this.idCursos = idCursos;
         this.nombreCurso = nombreCurso;
         this.numeroCreditos = numeroCreditos;
         this.actividadCursos = actividadCursos;
+        this.idProfesor = idProfesor;
     }
 
-    public Integer getIdCursos() {
+    public int getIdCursos() {
         return idCursos;
     }
 
-    public void setIdCursos(Integer idCursos) {
+    public void setIdCursos(int idCursos) {
         this.idCursos = idCursos;
     }
 
@@ -60,26 +61,6 @@ public class Cursos {
 
     public void setIdProfesor(Profesores idProfesor) {
         this.idProfesor = idProfesor;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idCursos != null ? idCursos.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cursos)) {
-            return false;
-        }
-        Cursos other = (Cursos) object;
-        if ((this.idCursos == null && other.idCursos != null) || (this.idCursos != null && !this.idCursos.equals(other.idCursos))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

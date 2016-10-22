@@ -1,9 +1,6 @@
 package Vista;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -92,7 +89,7 @@ public class AsigarEstudiantesCursosProfesor extends javax.swing.JFrame {
                     .addComponent(txt_id_estudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_apellido_estudiante, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                     .addComponent(txt_nombre_estudiante))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(307, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
