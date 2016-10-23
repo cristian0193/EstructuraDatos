@@ -1,6 +1,5 @@
 package Vista;
 
-
 import Control.CRUD_Cursos;
 import Control.CRUD_Estudiantes;
 import Control.ConexionMySQL;
@@ -11,10 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-/**
- *
- * @author Usuario
+/*
+ * @author Christian Rodriguez
  */
 public class AsigarEstudiantesCursosProfesor extends javax.swing.JFrame {
 
@@ -214,7 +211,7 @@ public class AsigarEstudiantesCursosProfesor extends javax.swing.JFrame {
         try {
             ResultSet rs = CRUD_Cursos.Consultar_Cursos_Lista();
             while (rs.next()) {
-                combo_cursos.addItem(rs.getString("ID_CURSO"));
+                combo_cursos.addItem(rs.getString("ID_CURSOS"));
             }
             ConexionMySQL.cerrar();
         } catch (SQLException ex) {

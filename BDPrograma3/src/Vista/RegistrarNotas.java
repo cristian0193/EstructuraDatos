@@ -1,6 +1,14 @@
 package Vista;
 
-
+import Control.CRUD_Cursos;
+import Control.CRUD_Estudiantes;
+import Control.CRUD_Notas;
+import Control.ConexionMySQL;
+import Interfaces.CalculoNota;
+import Modelo.Cursos;
+import Modelo.Estudiantes;
+import Modelo.Notas;
+import Modelo.Profesores;
 import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,24 +17,22 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
+/*
  * @author Christian Rodriguez
  */
-public class RegistrarNotas extends javax.swing.JFrame {
+public class RegistrarNotas extends javax.swing.JFrame implements CalculoNota {
 
-//    public static ConexioSQLite conexion;
-//    DefaultTableModel modelo;
-//    public static int contador = 0;
-//
-//    public RegistrarNotas() {
-//        initComponents();
-//        this.setLocationRelativeTo(null);
-//        cargar_lista_curso(); //INICIO CARGANDO EL JCOMBOBOX DE CURSOS
-//        cargar_tabla_notas();//INICIO CARGANDO EL JCOMBOBOX DE NOTAS
-//    }
-//
-//    @SuppressWarnings("unchecked")
+    DefaultTableModel modelo;
+    public static int contador = 0;
+
+    public RegistrarNotas() {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        cargar_lista_curso(); //INICIO CARGANDO EL JCOMBOBOX DE CURSOS
+        cargar_tabla_notas();//INICIO CARGANDO EL JCOMBOBOX DE NOTAS
+    }
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -206,33 +212,31 @@ public class RegistrarNotas extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN NOTA 3");
             } else {
 
-//                conexion = new ConexioSQLite();
-//                conexion.coneccionbase();
-//                int id_curso = Integer.parseInt(combo_curso.getSelectedItem().toString());
-//                int id_estudiante = Integer.parseInt(combo_estudiante.getSelectedItem().toString());
-//
-//                double nota_1 = Double.parseDouble(txt_nota_1.getText());
-//                double nota_2 = Double.parseDouble(txt_nota_2.getText());
-//                double nota_3 = Double.parseDouble(txt_nota_3.getText());
-//
-//                Profesor profesor = new Profesor(0, "", "");
-//                Curso curso = new Curso(id_curso, "", 0, "", profesor);
-//                Estudiante estudiante = new Estudiante(id_estudiante, "", "", curso);
-//
-//                Notas nota = new Notas(0, nota_1, nota_2, nota_3, estudiante, curso);
-//                boolean resultado = conexion.insert_nota(nota);
-//
-//                notaFinal(nota_1, nota_2, nota_3);
-//
-//                if (resultado == true) {
-//                    JOptionPane.showMessageDialog(null, "NOTAS INSERTADAS CORRECTAMENTE");
-//                    cargar_tabla_notas();
-//                    conexion.cerrar();
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR");
-//                    LimpiarCampos();
-//                }
+                int id_curso = Integer.parseInt(combo_curso.getSelectedItem().toString());
+                int id_estudiante = Integer.parseInt(combo_estudiante.getSelectedItem().toString());
 
+                double nota_1 = Double.parseDouble(txt_nota_1.getText());
+                double nota_2 = Double.parseDouble(txt_nota_2.getText());
+                double nota_3 = Double.parseDouble(txt_nota_3.getText());
+
+                Profesores profesor = new Profesores(0, "", "");
+                Cursos curso = new Cursos(id_curso, "", 0, "", profesor);
+                Estudiantes estudiante = new Estudiantes(id_estudiante, "", "", curso);
+
+                Notas nota = new Notas(0, nota_1, nota_2, nota_3, estudiante, curso);                
+                
+                boolean resultado = CRUD_Notas.insert_notas(nota);
+
+                getCalculoNota(nota_1, nota_2, nota_3);
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "NOTAS INSERTADAS CORRECTAMENTE");
+                    cargar_tabla_notas();
+                    ConexionMySQL.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR");
+                    LimpiarCampos();
+                }
             }
 
         }
@@ -272,7 +276,7 @@ public class RegistrarNotas extends javax.swing.JFrame {
             combo_estudiante.removeAllItems();
             combo_estudiante.addItem("Seleccionar");
             int id_curso = Integer.parseInt(combo_curso.getSelectedItem().toString());
-//            cargar_lista_estudiante(id_curso);
+            cargar_lista_estudiante(id_curso);
         }
 
     }//GEN-LAST:event_combo_cursoItemStateChanged
@@ -322,106 +326,70 @@ public class RegistrarNotas extends javax.swing.JFrame {
     }
 
     // METODO PARA CARGAR JCOMBOBOX CURSOS
-//    public void cargar_lista_curso() {
-//
-//        conexion = new ConexioSQLite();
-//        conexion.coneccionbase();
-//
-//        String query = "";
-//
-//        ConexioSQLite con = new ConexioSQLite();
-//        Connection cn = con.Conectar();
-//
-//        query = "SELECT ID_CURSO FROM CURSO";
-//
-//        System.out.println(query);
-//        try {
-//            Statement st = cn.createStatement();
-//            ResultSet rs = st.executeQuery(query);
-//
-//            while (rs.next()) {
-//                combo_curso.addItem(rs.getString("ID_CURSO"));
-//            }
-//            conexion.cerrar();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, ex);
-//        }
-//    }
+    public void cargar_lista_curso() {
+
+        try {
+            ResultSet rs = CRUD_Cursos.Consultar_Cursos_Lista();
+
+            while (rs.next()) {
+                combo_curso.addItem(rs.getString("ID_CURSOS"));
+            }
+            ConexionMySQL.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
 
     // METODO PARA CARGAR JCOMBOBOX CON ESTUDIANTES
-//    public void cargar_lista_estudiante(int curso) {
-//
-//        conexion = new ConexioSQLite();
-//        conexion.coneccionbase();
-//
-//        String query = "";
-//
-//        ConexioSQLite con = new ConexioSQLite();
-//        Connection cn = con.Conectar();
-//
-//        query = "SELECT ID_ESTUDIANTE FROM ESTUDIANTE WHERE ID_CURSO = " + curso;
-//
-//        System.out.println(query);
-//        try {
-//            Statement st = cn.createStatement();
-//            ResultSet rs = st.executeQuery(query);
-//
-//            while (rs.next()) {
-//                combo_estudiante.addItem(rs.getString("ID_ESTUDIANTE"));
-//            }
-//            conexion.cerrar();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, ex);
-//        }
-//    }
+    public void cargar_lista_estudiante(int curso) {
+
+        try {
+            ResultSet rs = CRUD_Estudiantes.Consultar_Estudiante_Curso(curso);
+
+            while (rs.next()) {
+                combo_estudiante.addItem(rs.getString("ID_ESTUDIANTE"));
+            }
+            ConexionMySQL.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
 
     // METODO PARA CARGAR JTABLE DE NOTAS DEL ESTUDIANTE
-//    void cargar_tabla_notas() {
-//
-//        conexion = new ConexioSQLite();
-//        conexion.coneccionbase();
-//
-//        String[] titulos = {"ESTUDIANTE", "CURSO", "NOTA 1", "NOTA 2", "NOTA 3"};
-//        String[] registro = new String[5];
-//        String query = "";
-//
-//        modelo = new DefaultTableModel(null, titulos);
-//
-//        ConexioSQLite con = new ConexioSQLite();
-//        Connection cn = con.Conectar();
-//
-//        query = "SELECT (E.NOMBRE_ESTUDIANTE||\"  \"|| E.APELLIDO_ESTUDIANTE) AS NOMBRE ,C.NOMBRE_CURSO,N.NOTA_1,N.NOTA_2, N.NOTA_3 "
-//                + "FROM NOTAS N, CURSO C , ESTUDIANTE E "
-//                + "WHERE N.ID_ESTUDIANTE = E.ID_ESTUDIANTE "
-//                + "AND N.ID_CURSO = C.ID_CURSO; ";
-//
-//        System.out.println(query);
-//        try {
-//            Statement st = cn.createStatement();
-//            ResultSet rs = st.executeQuery(query);
-//            while (rs.next()) {
-//
-//                registro[0] = rs.getString("NOMBRE");
-//                registro[1] = rs.getString("NOMBRE_CURSO");
-//                registro[2] = rs.getString("NOTA_1");
-//                registro[3] = rs.getString("NOTA_2");
-//                registro[4] = rs.getString("NOTA_3");
-//
-//                modelo.addRow(registro);
-//            }
-//            txt_tabla_notas.setModel(modelo);
-//
-//        } catch (SQLException ex) {
-//
-//            JOptionPane.showMessageDialog(null, ex);
-//
-//        }
-//    }
+    void cargar_tabla_notas() {
+
+        String[] titulos = {"ESTUDIANTE", "CURSO", "NOTA 1", "NOTA 2", "NOTA 3"};
+        String[] registro = new String[5];
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        try {
+
+            ResultSet rs = CRUD_Notas.Consultar_Notas_Registradas();
+
+            while (rs.next()) {
+
+                registro[0] = rs.getString("NOMBRE");
+                registro[1] = rs.getString("NOMBRE_CURSO");
+                registro[2] = rs.getString("NOTA_1");
+                registro[3] = rs.getString("NOTA_2");
+                registro[4] = rs.getString("NOTA_3");
+
+                modelo.addRow(registro);
+            }
+            txt_tabla_notas.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
 
     // METODO PARA DEFINIR NOTA FINAL DEL ESTUDIANTE
-    public void notaFinal(double nota1, double nota2, double nota3) {
-
-        double notaFinal = ((nota1*0.30) + (nota2*0.30) + (nota3*0.40));
+    @Override
+    public void getCalculoNota(double nota1, double nota2, double nota3) {
+        double notaFinal = ((nota1 * 0.30) + (nota2 * 0.30) + (nota3 * 0.40));
         double redondear = Math.rint(notaFinal * 100) / 100;
         txt_nota_final.setText("" + redondear);
 
@@ -430,7 +398,6 @@ public class RegistrarNotas extends javax.swing.JFrame {
         } else {
             txt_resultado.setText("REPROBO");
         }
-
     }
 
 }

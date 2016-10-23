@@ -11,11 +11,11 @@ public class CRUD_Estudiantes {
     public static boolean insert_estudiante(Estudiantes estudiante) {
         String query = "";
         try {
-            query = "INSERT INTO ESTUDIANTE "
+            query = "INSERT INTO ESTUDIANTES "
                     + "(ID_ESTUDIANTE, "
                     + "NOMBRE_ESTUDIANTE, "
                     + "APELLIDO_ESTUDIANTE,"
-                    + "ID_CURSO) "
+                    + "ID_CURSOS) "
                     + "VALUES "
                     + "(" + estudiante.getIdEstudiante() + " ,'" + estudiante.getNombreEstudiante() + "', '" + estudiante.getApellidoEstudiante()+ "', " + estudiante.getIdCursos().getIdCursos()+ "); ";
             System.out.println(query);            
@@ -61,8 +61,29 @@ public class CRUD_Estudiantes {
         try {
             query = "SELECT E.ID_ESTUDIANTE, E.NOMBRE_ESTUDIANTE, E.APELLIDO_ESTUDIANTE, C.NOMBRE_CURSO "
                 + "FROM "
-                + "ESTUDIANTE E, CURSO C "
-                + "WHERE E.ID_CURSO = C.ID_CURSO ";
+                + "ESTUDIANTES E, CURSOS C "
+                + "WHERE E.ID_CURSOS = C.ID_CURSOS ";
+
+            System.out.println(query);
+            ConexionMySQL conexion = new ConexionMySQL();
+            conexion.MySQLConnection();
+            resultado = ConexionMySQL.select(query);
+            System.out.println("CONSULTADO ...");
+            return resultado;
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            System.out.println("NO SE CONSULTO...");
+            return null;
+        }
+
+    }
+    
+    public static ResultSet Consultar_Estudiante_Curso(int id_curso) {
+        String query = "";
+        ResultSet resultado;
+        try {
+            query = "SELECT ID_ESTUDIANTE FROM ESTUDIANTES WHERE ID_CURSOS = " + id_curso;
 
             System.out.println(query);
             ConexionMySQL conexion = new ConexionMySQL();

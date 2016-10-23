@@ -1,26 +1,35 @@
 package Modelo;
 
 public class Notas{
-
-    private Integer idNota;
+  
+    private int idNota;
     private Double nota1;
     private Double nota2;
     private Double nota3;
-    private Profesores idProfesor;
+    private Cursos idCurso;
     private Estudiantes idEstudiante;
 
     public Notas() {
     }
 
-    public Notas(Integer idNota) {
+    public Notas(int idNota) {
         this.idNota = idNota;
     }
 
-    public Integer getIdNota() {
+    public int getIdNota() {
         return idNota;
     }
 
-    public void setIdNota(Integer idNota) {
+      public Notas(int idNota, Double nota1, Double nota2, Double nota3, Estudiantes idEstudiante,Cursos idCurso) {
+        this.idNota = idNota;
+        this.nota1 = nota1;
+        this.nota2 = nota2;
+        this.nota3 = nota3;
+        this.idEstudiante = idEstudiante;
+        this.idCurso = idCurso;
+    }
+    
+    public void setIdNota(int idNota) {
         this.idNota = idNota;
     }
 
@@ -48,12 +57,12 @@ public class Notas{
         this.nota3 = nota3;
     }
 
-    public Profesores getIdProfesor() {
-        return idProfesor;
+    public Cursos getIdCursos() {
+        return idCurso;
     }
 
-    public void setIdProfesor(Profesores idProfesor) {
-        this.idProfesor = idProfesor;
+    public void setIdCursos(Cursos idCurso) {
+        this.idCurso = idCurso;
     }
 
     public Estudiantes getIdEstudiante() {
@@ -62,26 +71,6 @@ public class Notas{
 
     public void setIdEstudiante(Estudiantes idEstudiante) {
         this.idEstudiante = idEstudiante;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idNota != null ? idNota.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Notas)) {
-            return false;
-        }
-        Notas other = (Notas) object;
-        if ((this.idNota == null && other.idNota != null) || (this.idNota != null && !this.idNota.equals(other.idNota))) {
-            return false;
-        }
-        return true;
     }
 
     @Override
