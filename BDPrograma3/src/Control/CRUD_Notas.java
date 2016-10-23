@@ -41,7 +41,7 @@ public class CRUD_Notas {
                     + "NOTA_1, "
                     + "NOTA_2, "
                     + "NOTA_3, "
-                    + "ID_CURSO, "
+                    + "ID_CURSOS, "
                     + "ID_ESTUDIANTE) "
                     + "VALUES "
                     + "(NULL ," + notas.getNota1()+ ", " + notas.getNota2()+ ", " + notas.getNota3() + ", " + notas.getIdCursos().getIdCursos()+ ", " + notas.getIdEstudiante().getIdEstudiante()+ "); ";
