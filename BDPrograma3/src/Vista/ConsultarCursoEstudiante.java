@@ -1,5 +1,8 @@
 package Vista;
 
+import Control.CRUD_Cursos;
+import Control.CRUD_Estudiantes;
+import Control.ConexionMySQL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -59,7 +62,7 @@ public class ConsultarCursoEstudiante extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(combo_id_curso, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,70 +124,44 @@ public class ConsultarCursoEstudiante extends javax.swing.JFrame {
     // METODO PARA CARGAR JCOMBOBOX ESTUDIANTE
     public void cargar_lista_estudiantes() {
 
-//        conexion = new ConexioSQLite();
-//        conexion.coneccionbase();
-//
-//        String query = "";
-//
-//        ConexioSQLite con = new ConexioSQLite();
-//        Connection cn = con.Conectar();
-//
-//        query = "SELECT ID_ESTUDIANTE FROM ESTUDIANTE ";
-//
-//        System.out.println(query);
-//        try {
-//            Statement st = cn.createStatement();
-//            ResultSet rs = st.executeQuery(query);
-//
-//            while (rs.next()) {
-//                combo_id_curso.addItem(rs.getString("ID_ESTUDIANTE"));
-//            }
-//            conexion.cerrar();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, ex);
-//        }
+        try {
+            ResultSet rs = CRUD_Estudiantes.Consultar_Estudiantes();
+            while (rs.next()) {
+                combo_id_curso.addItem(rs.getString("ID_ESTUDIANTE"));
+            }
+             ConexionMySQL.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }
         
     //INICIO CARGANDO LA JTABLE DE LOS ESTUDIANTES
     void cargar_tabla_cursos(int id_estudiante) {
 
-//        conexion = new ConexioSQLite();
-//        conexion.coneccionbase();
-//
-//        String[] titulos = {"ID", "NOMBRE", "CREDITOS","ACTIVIDAD"};
-//        String[] registro = new String[4];
-//        String query = "";
-//
-//        modelo = new DefaultTableModel(null, titulos);
-//
-//        ConexioSQLite con = new ConexioSQLite();
-//        Connection cn = con.Conectar();
-//
-//        query = "SELECT C.ID_CURSO, C.NOMBRE_CURSO, C.NUMERO_CREDITOS, C.ACTIVIDAD_CURSO " +
-//                "FROM ESTUDIANTE E, CURSO C " +
-//                "WHERE E.ID_CURSO = C.ID_CURSO " +
-//                "AND E.ID_ESTUDIANTE = " + id_estudiante;
-//
-//        System.out.println(query);
-//        try {
-//            Statement st = cn.createStatement();
-//            ResultSet rs = st.executeQuery(query);
-//            while (rs.next()) {
-//
-//                registro[0] = rs.getString("ID_CURSO");
-//                registro[1] = rs.getString("NOMBRE_CURSO");
-//                registro[2] = rs.getString("NUMERO_CREDITOS");
-//                registro[3] = rs.getString("ACTIVIDAD_CURSO");
-//
-//                modelo.addRow(registro);
-//            }
-//            tablas_estudiantes.setModel(modelo);
-//
-//        } catch (SQLException ex) {
-//
-//            JOptionPane.showMessageDialog(null, ex);
-//
-//        }
+        String[] titulos = {"ID", "NOMBRE", "CREDITOS","ACTIVIDAD"};
+        String[] registro = new String[4];
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        try {
+
+            ResultSet rs = CRUD_Cursos.Consultar_Cursos_Estudiante(id_estudiante);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID_CURSOS");
+                registro[1] = rs.getString("NOMBRE_CURSO");
+                registro[2] = rs.getString("NUMERO_CREDITOS");
+                registro[3] = rs.getString("ACTIVIDAD_CURSO");
+
+                modelo.addRow(registro);
+            }
+            tablas_estudiantes.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
     }
 
 

@@ -31,7 +31,7 @@ public class CRUD_Estudiantes {
         }
     } 
     
-    public static ResultSet Consultar_Estudiante(int id_profesor) {
+    public static ResultSet Consultar_Estudiante_Profesor(int id_profesor) {
         String query = "";
         ResultSet resultado;
         try {
@@ -84,6 +84,27 @@ public class CRUD_Estudiantes {
         ResultSet resultado;
         try {
             query = "SELECT ID_ESTUDIANTE FROM ESTUDIANTES WHERE ID_CURSOS = " + id_curso;
+
+            System.out.println(query);
+            ConexionMySQL conexion = new ConexionMySQL();
+            conexion.MySQLConnection();
+            resultado = ConexionMySQL.select(query);
+            System.out.println("CONSULTADO ...");
+            return resultado;
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            System.out.println("NO SE CONSULTO...");
+            return null;
+        }
+
+    }
+    
+    public static ResultSet Consultar_Estudiantes() {
+        String query = "";
+        ResultSet resultado;
+        try {
+            query = "SELECT ID_ESTUDIANTE FROM ESTUDIANTES ";
 
             System.out.println(query);
             ConexionMySQL conexion = new ConexionMySQL();

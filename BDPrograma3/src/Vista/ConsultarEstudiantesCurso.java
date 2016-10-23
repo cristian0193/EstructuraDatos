@@ -2,10 +2,7 @@ package Vista;
 
 import Control.CRUD_Cursos;
 import Control.CRUD_Estudiantes;
-import Control.CRUD_Profesores;
 import Control.ConexionMySQL;
-import Modelo.Estudiantes;
-import Modelo.Cursos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -148,7 +145,7 @@ public class ConsultarEstudiantesCurso extends javax.swing.JFrame {
         modelo = new DefaultTableModel(null, titulos);
 
         try {
-            ResultSet rs = CRUD_Estudiantes.Consultar_Estudiante(id_profesor);
+            ResultSet rs = CRUD_Estudiantes.Consultar_Estudiante_Profesor(id_profesor);
             while (rs.next()) {
 
                 registro[0] = rs.getString("ID_ESTUDIANTE");

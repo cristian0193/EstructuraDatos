@@ -79,4 +79,57 @@ public class CRUD_Cursos {
         }
     }    
     
+//METODO DE CONSULTAR CURSOS DE PROFESOR
+    public static ResultSet Consultar_Curso_Profesor(int id_profesor) {
+        String query = "";
+        ResultSet resultado;
+        try {
+            query = "SELECT C.ID_CURSOS,C.NOMBRE_CURSO, C.NUMERO_CREDITOS, C.ACTIVIDAD_CURSO "
+                + "FROM "
+                + "PROFESORES P, CURSOS C "
+                + "WHERE P.ID_PROFESOR = C.ID_PROFESOR "
+                + "AND C.ID_PROFESOR = " + id_profesor;
+
+            System.out.println(query);
+            
+            ConexionMySQL conexion = new ConexionMySQL();
+            conexion.MySQLConnection();
+            resultado = ConexionMySQL.select(query);
+            System.out.println("CONSULTADO ...");
+            return resultado;
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            System.out.println("NO SE CONSULTO...");
+            return null;
+        }
+
+    }    
+    
+    //METODO DE CONSULTAR CURSOS TABLA ESTUDIANTES
+    public static ResultSet Consultar_Cursos_Estudiante(int id_estudiante) {
+        
+        String query = "";
+        ResultSet resultado;
+        try {
+            query = "SELECT C.ID_CURSOS, C.NOMBRE_CURSO, C.NUMERO_CREDITOS, C.ACTIVIDAD_CURSO " +
+                "FROM ESTUDIANTES E, CURSOS C " +
+                "WHERE E.ID_CURSOS = C.ID_CURSOS " +
+                "AND E.ID_ESTUDIANTE = " + id_estudiante;
+
+            System.out.println(query);
+            
+            ConexionMySQL conexion = new ConexionMySQL();
+            conexion.MySQLConnection();
+            resultado = ConexionMySQL.select(query);
+            System.out.println("CONSULTADO ...");
+            return resultado;
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            System.out.println("NO SE CONSULTO...");
+            return null;
+        }
+
+    }
 }

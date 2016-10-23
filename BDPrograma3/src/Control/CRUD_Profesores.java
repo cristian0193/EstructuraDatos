@@ -54,7 +54,31 @@ public class CRUD_Profesores {
         
     }
 
-    
+    //METODO DE CONSULTAR PROFESORES
+    public static ResultSet Consultar_Profesor(){
+        String query = "";
+        ResultSet resultado;
+        try {
+            query = "SELECT * "
+                + "FROM "
+                + "PROFESORES "
+                + "ORDER BY ID_PROFESOR ASC";
+            
+            System.out.println(query);                        
+            ConexionMySQL conexion = new ConexionMySQL();
+            conexion.MySQLConnection();
+            resultado = ConexionMySQL.select(query);                        
+            System.out.println("CONSULTADO ...");
+            return resultado;
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            System.out.println("NO SE CONSULTO...");
+            return null;
+        }
+        
+        
+    }
     
     
 }
