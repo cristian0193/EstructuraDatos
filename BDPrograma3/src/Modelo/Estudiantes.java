@@ -14,10 +14,11 @@ public class Estudiantes {
         this.idEstudiante = idEstudiante;
     }
 
-    public Estudiantes(Integer idEstudiante, String nombreEstudiante, String apellidoEstudiante) {
+    public Estudiantes(Integer idEstudiante, String nombreEstudiante, String apellidoEstudiante, Cursos idCursos) {
         this.idEstudiante = idEstudiante;
         this.nombreEstudiante = nombreEstudiante;
         this.apellidoEstudiante = apellidoEstudiante;
+        this.idCursos = idCursos;
     }
 
     public Integer getIdEstudiante() {
@@ -50,26 +51,6 @@ public class Estudiantes {
 
     public void setIdCursos(Cursos idCursos) {
         this.idCursos = idCursos;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idEstudiante != null ? idEstudiante.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Estudiantes)) {
-            return false;
-        }
-        Estudiantes other = (Estudiantes) object;
-        if ((this.idEstudiante == null && other.idEstudiante != null) || (this.idEstudiante != null && !this.idEstudiante.equals(other.idEstudiante))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

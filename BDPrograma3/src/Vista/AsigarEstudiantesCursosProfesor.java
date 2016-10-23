@@ -1,6 +1,14 @@
 package Vista;
 
 
+import Control.CRUD_Cursos;
+import Control.CRUD_Estudiantes;
+import Control.ConexionMySQL;
+import Modelo.Cursos;
+import Modelo.Estudiantes;
+import Modelo.Profesores;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -10,7 +18,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AsigarEstudiantesCursosProfesor extends javax.swing.JFrame {
 
-//    public static ConexioSQLite conexion;
     DefaultTableModel modelo;
 
     public AsigarEstudiantesCursosProfesor() {
@@ -138,40 +145,38 @@ public class AsigarEstudiantesCursosProfesor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "SELECCIONE EL ESTUDIANTE ");
         } else {
 
-//            conexion = new ConexioSQLite();
-//            conexion.coneccionbase();
-//
-//            int id = Integer.parseInt(txt_id_estudiante.getText());
-//            String nombre = txt_nombre_estudiante.getText();
-//            String apellido = txt_apellido_estudiante.getText();
-//            int curso = Integer.parseInt(combo_cursos.getSelectedItem().toString());
-//            Profesor profesor = null;
-//            Curso objcurso = new Curso(curso, "", 0, "", profesor);
-//
-//            Estudiante estudiante = new Estudiante(id, nombre.toUpperCase(), apellido.toUpperCase(), objcurso);
-//            boolean resultado = conexion.insert_estudiante(estudiante);
-//
-//            if (resultado == true) {
-//                JOptionPane.showMessageDialog(null, "CURSO INSERTADO CORRECTAMENTE");
-//
-//                int resp = JOptionPane.showConfirmDialog(null, "¿ Desea ingresar Otro curso al mismo estudiante ?", "Informativo", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-//
-//                if (resp == 0) {
-//                    combo_cursos.setEnabled(false);
-//                    txt_id_estudiante.setText("");
-//                    txt_nombre_estudiante.setText("");
-//                    txt_apellido_estudiante.setText("");
-//                } else {
-//                    combo_cursos.setEnabled(true);
-//                    LimpiarCampos();
-//                }
-//
-//                cargar_tabla_matricula();
-//                conexion.cerrar();
-//            } else {
-//                JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR");
-//                LimpiarCampos();
-//            }
+            int id = Integer.parseInt(txt_id_estudiante.getText());
+            String nombre = txt_nombre_estudiante.getText();
+            String apellido = txt_apellido_estudiante.getText();
+            int curso = Integer.parseInt(combo_cursos.getSelectedItem().toString());
+            Profesores profesor = null;
+            Cursos objcurso = new Cursos(curso, "", 0, "", profesor);
+
+            Estudiantes estudiante = new Estudiantes(id, nombre.toUpperCase(), apellido.toUpperCase(), objcurso);
+            
+            boolean resultado = CRUD_Estudiantes.insert_estudiante(estudiante);
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "CURSO INSERTADO CORRECTAMENTE");
+
+                int resp = JOptionPane.showConfirmDialog(null, "¿ Desea ingresar Otro curso al mismo estudiante ?", "Informativo", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+                if (resp == 0) {
+                    combo_cursos.setEnabled(false);
+                    txt_id_estudiante.setText("");
+                    txt_nombre_estudiante.setText("");
+                    txt_apellido_estudiante.setText("");
+                } else {
+                    combo_cursos.setEnabled(true);
+                    LimpiarCampos();
+                }
+
+                cargar_tabla_matricula();
+                ConexionMySQL.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR");
+                LimpiarCampos();
+            }
 
         }
 
@@ -206,69 +211,42 @@ public class AsigarEstudiantesCursosProfesor extends javax.swing.JFrame {
     // METODO PARA CARGAR JCOMBOBOX MATRICULA
     public void cargar_lista_matricula() {
 
-//        conexion = new ConexioSQLite();
-//        conexion.coneccionbase();
-//
-//        String query = "";
-//
-//        ConexioSQLite con = new ConexioSQLite();
-//        Connection cn = con.Conectar();
-//
-//        query = "SELECT ID_CURSO FROM CURSO ";
-//
-//        System.out.println(query);
-//        try {
-//            Statement st = cn.createStatement();
-//            ResultSet rs = st.executeQuery(query);
-//
-//            while (rs.next()) {
-//                combo_cursos.addItem(rs.getString("ID_CURSO"));
-//            }
-//            conexion.cerrar();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, ex);
-//        }
+        try {
+            ResultSet rs = CRUD_Cursos.Consultar_Cursos_Lista();
+            while (rs.next()) {
+                combo_cursos.addItem(rs.getString("ID_CURSO"));
+            }
+            ConexionMySQL.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }
 
     // METODO PARA CARGAR JTABLE DE MATRICULA
     void cargar_tabla_matricula() {
 
-//        conexion = new ConexioSQLite();
-//        conexion.coneccionbase();
-//
-//        String[] titulos = {"ID", "NOMBRE", "APELLIDO", "CURSO"};
-//        String[] registro = new String[4];
-//        String query = "";
-//
-//        modelo = new DefaultTableModel(null, titulos);
-//
-//        ConexioSQLite con = new ConexioSQLite();
-//        Connection cn = con.Conectar();
-//
-//        query = "SELECT E.ID_ESTUDIANTE, E.NOMBRE_ESTUDIANTE, E.APELLIDO_ESTUDIANTE, C.NOMBRE_CURSO "
-//                + "FROM "
-//                + "ESTUDIANTE E, CURSO C "
-//                + "WHERE E.ID_CURSO = C.ID_CURSO ";
-//
-//        System.out.println(query);
-//        try {
-//            Statement st = cn.createStatement();
-//            ResultSet rs = st.executeQuery(query);
-//            while (rs.next()) {
-//
-//                registro[0] = rs.getString("ID_ESTUDIANTE");
-//                registro[1] = rs.getString("NOMBRE_ESTUDIANTE");
-//                registro[2] = rs.getString("APELLIDO_ESTUDIANTE");
-//                registro[3] = rs.getString("NOMBRE_CURSO");
-//
-//                modelo.addRow(registro);
-//            }
-//            tabla_matriculados.setModel(modelo);
-//
-//        } catch (SQLException ex) {
-//
-//            JOptionPane.showMessageDialog(null, ex);
-//
-//        }
+        String[] titulos = {"ID", "NOMBRE", "APELLIDO", "CURSO"};
+        String[] registro = new String[4];
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        try {
+            ResultSet rs = CRUD_Estudiantes.Consultar_Estudiante_Matriculado();
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID_ESTUDIANTE");
+                registro[1] = rs.getString("NOMBRE_ESTUDIANTE");
+                registro[2] = rs.getString("APELLIDO_ESTUDIANTE");
+                registro[3] = rs.getString("NOMBRE_CURSO");
+
+                modelo.addRow(registro);
+            }
+            tabla_matriculados.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
     }
 }
