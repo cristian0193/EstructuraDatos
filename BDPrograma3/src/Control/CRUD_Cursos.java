@@ -84,7 +84,7 @@ public class CRUD_Cursos {
         String query = "";
         ResultSet resultado;
         try {
-            query = "SELECT C.ID_CURSOS,C.NOMBRE_CURSO, C.NUMERO_CREDITOS, C.ACTIVIDAD_CURSO "
+            query = "SELECT C.ID_CURSOS,C.NOMBRE_CURSO, C.NUMERO_CREDITOS, C.ACTIVIDAD_CURSOS "
                 + "FROM "
                 + "PROFESORES P, CURSOS C "
                 + "WHERE P.ID_PROFESOR = C.ID_PROFESOR "
@@ -112,7 +112,7 @@ public class CRUD_Cursos {
         String query = "";
         ResultSet resultado;
         try {
-            query = "SELECT C.ID_CURSOS, C.NOMBRE_CURSO, C.NUMERO_CREDITOS, C.ACTIVIDAD_CURSO " +
+            query = "SELECT C.ID_CURSOS, C.NOMBRE_CURSO, C.NUMERO_CREDITOS, C.ACTIVIDAD_CURSOS " +
                 "FROM ESTUDIANTES E, CURSOS C " +
                 "WHERE E.ID_CURSOS = C.ID_CURSOS " +
                 "AND E.ID_ESTUDIANTE = " + id_estudiante;

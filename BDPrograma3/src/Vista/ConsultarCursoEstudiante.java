@@ -151,7 +151,7 @@ public class ConsultarCursoEstudiante extends javax.swing.JFrame {
                 registro[0] = rs.getString("ID_CURSOS");
                 registro[1] = rs.getString("NOMBRE_CURSO");
                 registro[2] = rs.getString("NUMERO_CREDITOS");
-                registro[3] = rs.getString("ACTIVIDAD_CURSO");
+                registro[3] = rs.getString("ACTIVIDAD_CURSOS");
 
                 modelo.addRow(registro);
             }
