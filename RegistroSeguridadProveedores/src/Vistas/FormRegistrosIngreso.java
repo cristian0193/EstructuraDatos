@@ -633,7 +633,7 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
             int dia, mes, año, hora, minutos, segundos;
 
             dia = calendario.get(Calendar.DAY_OF_MONTH);
-            mes = calendario.get(Calendar.MONTH);
+            mes = calendario.get(Calendar.MONTH) + 1;
             año = calendario.get(Calendar.YEAR);
 
             hora = calendario.get(Calendar.HOUR_OF_DAY);
@@ -655,16 +655,16 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 
         this.txt_n_registro.setText(tabla_registro.getValueAt(rec, 0).toString());
         this.txt_fecha_ingreso.setText(tabla_registro.getValueAt(rec, 1).toString());
-        this.txt_fecha_salida.setText(tabla_registro.getValueAt(rec, 2).toString());
-        this.txt_ficha.setText(tabla_registro.getValueAt(rec, 3).toString());
-        this.combo_conductor.setSelectedItem(tabla_registro.getValueAt(rec, 4).toString());
-        this.txt_empresa.setText(tabla_registro.getValueAt(rec, 5).toString());
-        this.txt_numero_cedula.setText(tabla_registro.getValueAt(rec, 6).toString());
-        this.txt_placa.setText(tabla_registro.getValueAt(rec, 7).toString());
-        this.combo_autorizo.setSelectedItem(tabla_registro.getValueAt(rec, 8).toString());
-        this.combo_guarda.setSelectedItem(tabla_registro.getValueAt(rec, 9).toString());
-        this.txt_estado.setText(tabla_registro.getValueAt(rec, 10).toString());
-        this.txt_observaciones.setText(tabla_registro.getValueAt(rec, 11).toString());
+        this.txt_ficha.setText(tabla_registro.getValueAt(rec, 2).toString());
+
+        this.combo_conductor.setSelectedItem(tabla_registro.getValueAt(rec, 3).toString());
+        this.txt_empresa.setText(tabla_registro.getValueAt(rec, 4).toString());
+        this.txt_numero_cedula.setText(tabla_registro.getValueAt(rec, 5).toString());
+        this.txt_placa.setText(tabla_registro.getValueAt(rec, 6).toString());
+        this.combo_autorizo.setSelectedItem(tabla_registro.getValueAt(rec, 7).toString());
+        this.combo_guarda.setSelectedItem(tabla_registro.getValueAt(rec, 8).toString());
+        this.txt_estado.setText(tabla_registro.getValueAt(rec, 9).toString());
+        this.txt_observaciones.setText(tabla_registro.getValueAt(rec, 10).toString());
 
 
     }//GEN-LAST:event_tabla_registroMouseClicked
@@ -809,7 +809,7 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
             int dia, mes, año, hora, minutos, segundos;
 
             dia = calendario.get(Calendar.DAY_OF_MONTH);
-            mes = calendario.get(Calendar.MONTH);
+            mes = calendario.get(Calendar.MONTH) + 1;
             año = calendario.get(Calendar.YEAR);
 
             hora = calendario.get(Calendar.HOUR_OF_DAY);
@@ -907,8 +907,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
-        String[] registro = new String[12];
+        String[] titulos = {"ID", "INGRESO", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
+        String[] registro = new String[11];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -919,7 +919,6 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         query = "SELECT "
                 + "ID_REGISTRO AS ID, "
                 + "FECHA_ENTRADA AS ENTRADA, "
-                + "FECHA_SALIDA AS SALIDA, "
                 + "N_FICHA AS FICHA, "
                 + "NOMBRE_CONDUCTOR AS NOMBRE, "
                 + "EMPRESA AS EMPRESA, "
@@ -941,16 +940,15 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("ENTRADA");
-                registro[2] = rs.getString("SALIDA");
-                registro[3] = rs.getString("FICHA");
-                registro[4] = rs.getString("NOMBRE");
-                registro[5] = rs.getString("EMPRESA");
-                registro[6] = rs.getString("CEDULA");
-                registro[7] = rs.getString("PLACA");
-                registro[8] = rs.getString("AUTORIZADO");
-                registro[9] = rs.getString("GUARDA");
-                registro[10] = rs.getString("ESTADOS");
-                registro[11] = rs.getString("OBSERVACION");
+                registro[2] = rs.getString("FICHA");
+                registro[3] = rs.getString("NOMBRE");
+                registro[4] = rs.getString("EMPRESA");
+                registro[5] = rs.getString("CEDULA");
+                registro[6] = rs.getString("PLACA");
+                registro[7] = rs.getString("AUTORIZADO");
+                registro[8] = rs.getString("GUARDA");
+                registro[9] = rs.getString("ESTADOS");
+                registro[10] = rs.getString("OBSERVACION");
 
                 modelo.addRow(registro);
             }
@@ -969,8 +967,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
-        String[] registro = new String[12];
+        String[] titulos = {"ID", "INGRESO", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
+        String[] registro = new String[11];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -981,7 +979,6 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         query = "SELECT "
                 + "ID_REGISTRO AS ID, "
                 + "FECHA_ENTRADA AS ENTRADA, "
-                + "FECHA_SALIDA AS SALIDA, "
                 + "N_FICHA AS FICHA, "
                 + "NOMBRE_CONDUCTOR AS NOMBRE, "
                 + "EMPRESA AS EMPRESA, "
@@ -1004,16 +1001,15 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("ENTRADA");
-                registro[2] = rs.getString("SALIDA");
-                registro[3] = rs.getString("FICHA");
-                registro[4] = rs.getString("NOMBRE");
-                registro[5] = rs.getString("EMPRESA");
-                registro[6] = rs.getString("CEDULA");
-                registro[7] = rs.getString("PLACA");
-                registro[8] = rs.getString("AUTORIZADO");
-                registro[9] = rs.getString("GUARDA");
-                registro[10] = rs.getString("ESTADOS");
-                registro[11] = rs.getString("OBSERVACION");
+                registro[2] = rs.getString("FICHA");
+                registro[3] = rs.getString("NOMBRE");
+                registro[4] = rs.getString("EMPRESA");
+                registro[5] = rs.getString("CEDULA");
+                registro[6] = rs.getString("PLACA");
+                registro[7] = rs.getString("AUTORIZADO");
+                registro[8] = rs.getString("GUARDA");
+                registro[9] = rs.getString("ESTADOS");
+                registro[10] = rs.getString("OBSERVACION");
 
                 modelo.addRow(registro);
             }
@@ -1032,8 +1028,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
-        String[] registro = new String[12];
+        String[] titulos = {"ID", "INGRESO", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
+        String[] registro = new String[11];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -1044,7 +1040,6 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         query = "SELECT "
                 + "ID_REGISTRO AS ID, "
                 + "FECHA_ENTRADA AS ENTRADA, "
-                + "FECHA_SALIDA AS SALIDA, "
                 + "N_FICHA AS FICHA, "
                 + "NOMBRE_CONDUCTOR AS NOMBRE, "
                 + "EMPRESA AS EMPRESA, "
@@ -1068,16 +1063,15 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("ENTRADA");
-                registro[2] = rs.getString("SALIDA");
-                registro[3] = rs.getString("FICHA");
-                registro[4] = rs.getString("NOMBRE");
-                registro[5] = rs.getString("EMPRESA");
-                registro[6] = rs.getString("CEDULA");
-                registro[7] = rs.getString("PLACA");
-                registro[8] = rs.getString("AUTORIZADO");
-                registro[9] = rs.getString("GUARDA");
-                registro[10] = rs.getString("ESTADOS");
-                registro[11] = rs.getString("OBSERVACION");
+                registro[2] = rs.getString("FICHA");
+                registro[3] = rs.getString("NOMBRE");
+                registro[4] = rs.getString("EMPRESA");
+                registro[5] = rs.getString("CEDULA");
+                registro[6] = rs.getString("PLACA");
+                registro[7] = rs.getString("AUTORIZADO");
+                registro[8] = rs.getString("GUARDA");
+                registro[9] = rs.getString("ESTADOS");
+                registro[10] = rs.getString("OBSERVACION");
 
                 modelo.addRow(registro);
             }
@@ -1096,8 +1090,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
-        String[] registro = new String[12];
+        String[] titulos = {"ID", "INGRESO", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
+        String[] registro = new String[11];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -1108,7 +1102,6 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         query = "SELECT "
                 + "ID_REGISTRO AS ID, "
                 + "FECHA_ENTRADA AS ENTRADA, "
-                + "FECHA_SALIDA AS SALIDA, "
                 + "N_FICHA AS FICHA, "
                 + "NOMBRE_CONDUCTOR AS NOMBRE, "
                 + "EMPRESA AS EMPRESA, "
@@ -1131,16 +1124,15 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("ENTRADA");
-                registro[2] = rs.getString("SALIDA");
-                registro[3] = rs.getString("FICHA");
-                registro[4] = rs.getString("NOMBRE");
-                registro[5] = rs.getString("EMPRESA");
-                registro[6] = rs.getString("CEDULA");
-                registro[7] = rs.getString("PLACA");
-                registro[8] = rs.getString("AUTORIZADO");
-                registro[9] = rs.getString("GUARDA");
-                registro[10] = rs.getString("ESTADOS");
-                registro[11] = rs.getString("OBSERVACION");
+                registro[2] = rs.getString("FICHA");
+                registro[3] = rs.getString("NOMBRE");
+                registro[4] = rs.getString("EMPRESA");
+                registro[5] = rs.getString("CEDULA");
+                registro[6] = rs.getString("PLACA");
+                registro[7] = rs.getString("AUTORIZADO");
+                registro[8] = rs.getString("GUARDA");
+                registro[9] = rs.getString("ESTADOS");
+                registro[10] = rs.getString("OBSERVACION");
 
                 modelo.addRow(registro);
             }
@@ -1159,8 +1151,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
-        String[] registro = new String[12];
+        String[] titulos = {"ID", "INGRESO", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
+        String[] registro = new String[11];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -1171,7 +1163,6 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         query = "SELECT "
                 + "ID_REGISTRO AS ID, "
                 + "FECHA_ENTRADA AS ENTRADA, "
-                + "FECHA_SALIDA AS SALIDA, "
                 + "N_FICHA AS FICHA, "
                 + "NOMBRE_CONDUCTOR AS NOMBRE, "
                 + "EMPRESA AS EMPRESA, "
@@ -1194,16 +1185,15 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("ENTRADA");
-                registro[2] = rs.getString("SALIDA");
-                registro[3] = rs.getString("FICHA");
-                registro[4] = rs.getString("NOMBRE");
-                registro[5] = rs.getString("EMPRESA");
-                registro[6] = rs.getString("CEDULA");
-                registro[7] = rs.getString("PLACA");
-                registro[8] = rs.getString("AUTORIZADO");
-                registro[9] = rs.getString("GUARDA");
-                registro[10] = rs.getString("ESTADOS");
-                registro[11] = rs.getString("OBSERVACION");
+                registro[2] = rs.getString("FICHA");
+                registro[3] = rs.getString("NOMBRE");
+                registro[4] = rs.getString("EMPRESA");
+                registro[5] = rs.getString("CEDULA");
+                registro[6] = rs.getString("PLACA");
+                registro[7] = rs.getString("AUTORIZADO");
+                registro[8] = rs.getString("GUARDA");
+                registro[9] = rs.getString("ESTADOS");
+                registro[10] = rs.getString("OBSERVACION");
 
                 modelo.addRow(registro);
             }
@@ -1222,8 +1212,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
-        String[] registro = new String[12];
+        String[] titulos = {"ID", "INGRESO", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
+        String[] registro = new String[11];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -1234,7 +1224,6 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         query = "SELECT "
                 + "ID_REGISTRO AS ID, "
                 + "FECHA_ENTRADA AS ENTRADA, "
-                + "FECHA_SALIDA AS SALIDA, "
                 + "N_FICHA AS FICHA, "
                 + "NOMBRE_CONDUCTOR AS NOMBRE, "
                 + "EMPRESA AS EMPRESA, "
@@ -1257,16 +1246,15 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("ENTRADA");
-                registro[2] = rs.getString("SALIDA");
-                registro[3] = rs.getString("FICHA");
-                registro[4] = rs.getString("NOMBRE");
-                registro[5] = rs.getString("EMPRESA");
-                registro[6] = rs.getString("CEDULA");
-                registro[7] = rs.getString("PLACA");
-                registro[8] = rs.getString("AUTORIZADO");
-                registro[9] = rs.getString("GUARDA");
-                registro[10] = rs.getString("ESTADOS");
-                registro[11] = rs.getString("OBSERVACION");
+                registro[2] = rs.getString("FICHA");
+                registro[3] = rs.getString("NOMBRE");
+                registro[4] = rs.getString("EMPRESA");
+                registro[5] = rs.getString("CEDULA");
+                registro[6] = rs.getString("PLACA");
+                registro[7] = rs.getString("AUTORIZADO");
+                registro[8] = rs.getString("GUARDA");
+                registro[9] = rs.getString("ESTADOS");
+                registro[10] = rs.getString("OBSERVACION");
 
                 modelo.addRow(registro);
             }
