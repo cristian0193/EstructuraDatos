@@ -2,12 +2,14 @@ package Vistas;
 
 import Conexion.ConexioSQLite;
 import java.awt.Color;
-import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -629,20 +631,29 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "ERROR EN CONSULTA");
             }
 
-            Calendar calendario = Calendar.getInstance();
-            int dia, mes, año, hora, minutos, segundos;
-
-            dia = calendario.get(Calendar.DAY_OF_MONTH);
-            mes = calendario.get(Calendar.MONTH) + 1;
-            año = calendario.get(Calendar.YEAR);
-
-            hora = calendario.get(Calendar.HOUR_OF_DAY);
-            minutos = calendario.get(Calendar.MINUTE);
-            segundos = calendario.get(Calendar.SECOND);
-
-            this.txt_fecha_ingreso.setText("" + año + "-" + mes + "-" + dia + " " + hora + ":" + minutos + ":" + segundos);
+            Date fecha = new Date();
+            
+            DateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
+            DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+            
+            this.txt_fecha_ingreso.setText("" + formatoFecha.format(fecha) + " " + formatoHora.format(fecha) + "");
             this.txt_estado.setText("INGRESO");
             this.txt_estado_color.setBackground(Color.GREEN);
+            
+//            Calendar calendario = Calendar.getInstance();
+//            int dia, mes, año, hora, minutos, segundos;
+//
+//            dia = calendario.get(Calendar.DAY_OF_MONTH);
+//            mes = calendario.get(Calendar.MONTH) + 1;
+//            año = calendario.get(Calendar.YEAR);
+//
+//            hora = calendario.get(Calendar.HOUR_OF_DAY);
+//            minutos = calendario.get(Calendar.MINUTE);
+//            segundos = calendario.get(Calendar.SECOND);
+//
+//            this.txt_fecha_ingreso.setText("" + año + "-" + mes + "-" + dia + " " + hora + ":" + minutos + ":" + segundos);
+//            this.txt_estado.setText("INGRESO");
+//            this.txt_estado_color.setBackground(Color.GREEN);
         }
 
 //        }
@@ -805,18 +816,13 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
             this.btn_actualizar.setEnabled(false);
             this.btn_guardar.setEnabled(true);
         } else {
-            Calendar calendario = Calendar.getInstance();
-            int dia, mes, año, hora, minutos, segundos;
 
-            dia = calendario.get(Calendar.DAY_OF_MONTH);
-            mes = calendario.get(Calendar.MONTH) + 1;
-            año = calendario.get(Calendar.YEAR);
-
-            hora = calendario.get(Calendar.HOUR_OF_DAY);
-            minutos = calendario.get(Calendar.MINUTE);
-            segundos = calendario.get(Calendar.SECOND);
-
-            this.txt_fecha_salida.setText("" + año + "-" + mes + "-" + dia + " " + hora + ":" + minutos + ":" + segundos);
+            Date fecha = new Date();
+            
+            DateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
+            DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+            
+            this.txt_fecha_salida.setText("" + formatoFecha.format(fecha) + " " + formatoHora.format(fecha) + "");                    
             this.txt_estado.setText("SALIDA");
             this.txt_estado_color.setBackground(Color.RED);
             this.btn_actualizar.setEnabled(true);

@@ -241,8 +241,8 @@ public class ExportarExcel extends javax.swing.JDialog {
                 + "FECHA_SALIDA AS SALIDA, "
                 + "N_FICHA AS FICHA, "
                 + "NOMBRE_CONDUCTOR AS NOMBRE, "
-                + "EMPRESA AS EMPRESA, "
-                + "CEDULA AS CEDULA, "
+                + "CEDULA AS CEDULA, " 
+                + "EMPRESA AS EMPRESA, "                 
                 + "PLACA AS PLACA, "
                 + "AUTORIZADO AS AUTORIZADO, "
                 + "GUARDA AS GUARDA, "
@@ -250,7 +250,7 @@ public class ExportarExcel extends javax.swing.JDialog {
                 + "OBSERVACIONES AS OBSERVACION "
                 + "FROM "
                 + "REGISTRO_SEGURIDAD "
-                + "ORDER BY FECHA_ENTRADA DESC;";
+                + "ORDER BY ID_REGISTRO ASC;";
 
         try {
             Statement st = cn.createStatement();
@@ -262,8 +262,8 @@ public class ExportarExcel extends javax.swing.JDialog {
                 registro[2] = rs.getString("SALIDA");
                 registro[3] = rs.getString("FICHA");
                 registro[4] = rs.getString("NOMBRE");
-                registro[5] = rs.getString("EMPRESA");
-                registro[6] = rs.getString("CEDULA");
+                registro[5] = rs.getString("CEDULA");
+                registro[6] = rs.getString("EMPRESA");
                 registro[7] = rs.getString("PLACA");
                 registro[8] = rs.getString("AUTORIZADO");
                 registro[9] = rs.getString("GUARDA");
