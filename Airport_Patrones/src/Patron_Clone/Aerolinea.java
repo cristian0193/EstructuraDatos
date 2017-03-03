@@ -2,13 +2,16 @@ package Patron_Clone;
 
 public class Aerolinea {
 
-    public Aerolinea() {
-    }
-
     public String nit;
     public String nombre;
     public String ciudad;
 
+    public Aerolinea(String nit, String nombre, String ciudad) {
+        this.nit = nit;
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+    } 
+    
     public String getNit() {
         return nit;
     }

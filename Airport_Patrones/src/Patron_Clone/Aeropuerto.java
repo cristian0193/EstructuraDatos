@@ -2,14 +2,19 @@ package Patron_Clone;
 
 public class Aeropuerto {
 
-    public void Aeropuerto(){        
-    }
-    
     public String nit;
     public String nombre;
     public String capacidad;
-    public Avion avion = new Avion(){};
-    public Puerta_Embarque puerta = new Puerta_Embarque();        
+    public Avion avion;
+    public Puerta_Embarque puerta;
+
+    public Aeropuerto(String nit, String nombre, String capacidad, Avion avion, Puerta_Embarque puerta) {
+        this.nit = nit;
+        this.nombre = nombre;
+        this.capacidad = capacidad;
+        this.avion = avion;
+        this.puerta = puerta;
+    }
 
     public String getNit() {
         return nit;
@@ -50,6 +55,5 @@ public class Aeropuerto {
     public void setPuerta(Puerta_Embarque puerta) {
         this.puerta = puerta;
     }
-        
-    
+
 }

@@ -2,18 +2,25 @@ package Patron_Clone;
 
 public class Vuelo {
 
-    public Vuelo() {
-    }
-
     private String id;
     protected String origen;
     protected String destino;
     protected String hora_salida;
     protected String hora_destino;
     protected String fecha_salida;
-    public Pasajero pasajero = new Pasajero() {
-    };
+    public Pasajero pasajero;
 
+    public Vuelo(String id, String origen, String destino, String hora_salida, String hora_destino, String fecha_salida, Pasajero pasajero) {
+        this.id = id;
+        this.origen = origen;
+        this.destino = destino;
+        this.hora_salida = hora_salida;
+        this.hora_destino = hora_destino;
+        this.fecha_salida = fecha_salida;
+        this.pasajero = pasajero;
+    }
+
+        
     public String getId() {
         return id;
     }

@@ -1,15 +1,13 @@
 package Patron_Clone;
 
 public abstract class Pasajero implements Cloneable {
-
-    public Pasajero() {
-    }
     
     private String identificacion;
     protected String nombre;
     protected String apellido;
     protected String edad;   
     
+   
     public String getIdentificacion() {
         return identificacion;
     }
