@@ -8,6 +8,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     @SuppressWarnings("unchecked")
@@ -48,6 +49,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

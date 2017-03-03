@@ -56,11 +56,35 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", " ESTADO", "FECHA_ACTUAL"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true, true, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabla_programadas.setEnabled(false);
+        tabla_programadas.setRowHeight(25);
+        tabla_programadas.setRowMargin(2);
         jScrollPane2.setViewportView(tabla_programadas);
+        if (tabla_programadas.getColumnModel().getColumnCount() > 0) {
+            tabla_programadas.getColumnModel().getColumn(0).setMinWidth(90);
+            tabla_programadas.getColumnModel().getColumn(0).setPreferredWidth(90);
+            tabla_programadas.getColumnModel().getColumn(0).setMaxWidth(90);
+            tabla_programadas.getColumnModel().getColumn(1).setMinWidth(200);
+            tabla_programadas.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tabla_programadas.getColumnModel().getColumn(1).setMaxWidth(200);
+            tabla_programadas.getColumnModel().getColumn(6).setMinWidth(45);
+            tabla_programadas.getColumnModel().getColumn(6).setPreferredWidth(45);
+            tabla_programadas.getColumnModel().getColumn(6).setMaxWidth(45);
+            tabla_programadas.getColumnModel().getColumn(7).setMinWidth(53);
+            tabla_programadas.getColumnModel().getColumn(7).setPreferredWidth(53);
+            tabla_programadas.getColumnModel().getColumn(7).setMaxWidth(53);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -274,7 +298,7 @@ void cargar_tabla_programadas(String SEMANA) {
                 registro[8] = rs.getString("ESTADO");
                 registro[9] = rs.getString("FECHA_ACTUAL");
 
-                modelo.addRow(registro);
+                modelo.addRow(registro);                  
             }
             tabla_programadas.setModel(modelo);
 
@@ -352,7 +376,7 @@ void cargar_tabla_noprogramadas(String SEMANA) {
         String[] registro = new String[10];
         String query = "";
 
-        modelo = new DefaultTableModel(null, titulos);
+        modelo = new DefaultTableModel();
 
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();

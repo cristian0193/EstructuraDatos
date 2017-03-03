@@ -107,6 +107,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1030, 670));
+        setPreferredSize(new java.awt.Dimension(1170, 730));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -125,7 +126,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 11, 905, 50));
@@ -344,6 +345,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
 
             }
         ));
+        tabla_contenido.setRowHeight(25);
         tabla_contenido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_contenidoMouseClicked(evt);
@@ -356,7 +358,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabla_contenido);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 1150, 130));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 1150, 190));
 
         jLabel13.setText("Fecha Inicial :");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 420, 80, 30));
