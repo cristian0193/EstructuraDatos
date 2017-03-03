@@ -26,7 +26,7 @@ public class AvionCache {
       avionMap.put(avion_bieng_a747.getId(),avion_bieng_a747);
    
       Avion_Bieng_777 avion_bieng_a777 = new Avion_Bieng_777();
-      avion_bieng_a777.setId("1");
+      avion_bieng_a777.setId("4");
       avionMap.put(avion_bieng_a777.getId(),avion_bieng_a777);
       
    }
