@@ -12,7 +12,7 @@ public class PantallaCargandoMain {
     }
 
     private void inicioPantalla() {
-        ImageIcon myImage = new ImageIcon("C:\\Users\\CRODRIGUEZ\\Documents\\NetBeansProjects\\PlaneacionProyectos\\src\\Imagen\\java.gif");
+        ImageIcon myImage = new ImageIcon("src\\Imagen\\java.gif");
         screen = new PantallaCargando(myImage);
         screen.setLocationRelativeTo(null);
         screen.setProgresoMax(100);

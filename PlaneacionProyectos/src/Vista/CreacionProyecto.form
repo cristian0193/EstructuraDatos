@@ -232,12 +232,13 @@
         <Component class="javax.swing.JTable" name="tabla_creacion_proyecto">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="0">
+              <Table columnCount="6" rowCount="0">
                 <Column editable="true" title="ID" type="java.lang.Object"/>
                 <Column editable="true" title="NOMBRE PROYECTO" type="java.lang.Object"/>
                 <Column editable="true" title="CAPEX INGRESADO" type="java.lang.Object"/>
                 <Column editable="true" title="CAPEX ACTUAL" type="java.lang.Object"/>
                 <Column editable="true" title="DIFERENCIA" type="java.lang.Object"/>
+                <Column editable="true" title="ESTADO" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -247,7 +248,7 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="570" minWidth="570" prefWidth="570" resizable="true">
+                <Column maxWidth="480" minWidth="480" prefWidth="480" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -258,6 +259,11 @@
                   <Renderer/>
                 </Column>
                 <Column maxWidth="170" minWidth="170" prefWidth="170" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="150" minWidth="150" prefWidth="150" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>

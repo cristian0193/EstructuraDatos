@@ -146,7 +146,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "NOMBRE PROYECTO", "CAPEX INGRESADO", "CAPEX ACTUAL", "DIFERENCIA"
+                "ID", "NOMBRE PROYECTO", "CAPEX INGRESADO", "CAPEX ACTUAL", "DIFERENCIA", "ESTADO"
             }
         ));
         tabla_creacion_proyecto.setRowHeight(25);
@@ -155,18 +155,21 @@ public class CreacionProyecto extends javax.swing.JDialog {
             tabla_creacion_proyecto.getColumnModel().getColumn(0).setMinWidth(50);
             tabla_creacion_proyecto.getColumnModel().getColumn(0).setPreferredWidth(50);
             tabla_creacion_proyecto.getColumnModel().getColumn(0).setMaxWidth(50);
-            tabla_creacion_proyecto.getColumnModel().getColumn(1).setMinWidth(570);
-            tabla_creacion_proyecto.getColumnModel().getColumn(1).setPreferredWidth(570);
-            tabla_creacion_proyecto.getColumnModel().getColumn(1).setMaxWidth(570);
+            tabla_creacion_proyecto.getColumnModel().getColumn(1).setMinWidth(480);
+            tabla_creacion_proyecto.getColumnModel().getColumn(1).setPreferredWidth(480);
+            tabla_creacion_proyecto.getColumnModel().getColumn(1).setMaxWidth(480);
             tabla_creacion_proyecto.getColumnModel().getColumn(2).setMinWidth(170);
             tabla_creacion_proyecto.getColumnModel().getColumn(2).setPreferredWidth(170);
             tabla_creacion_proyecto.getColumnModel().getColumn(2).setMaxWidth(170);
             tabla_creacion_proyecto.getColumnModel().getColumn(3).setMinWidth(170);
             tabla_creacion_proyecto.getColumnModel().getColumn(3).setPreferredWidth(170);
             tabla_creacion_proyecto.getColumnModel().getColumn(3).setMaxWidth(170);
-            tabla_creacion_proyecto.getColumnModel().getColumn(4).setMinWidth(170);
-            tabla_creacion_proyecto.getColumnModel().getColumn(4).setPreferredWidth(170);
-            tabla_creacion_proyecto.getColumnModel().getColumn(4).setMaxWidth(170);
+            tabla_creacion_proyecto.getColumnModel().getColumn(4).setMinWidth(150);
+            tabla_creacion_proyecto.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tabla_creacion_proyecto.getColumnModel().getColumn(4).setMaxWidth(150);
+            tabla_creacion_proyecto.getColumnModel().getColumn(5).setMinWidth(170);
+            tabla_creacion_proyecto.getColumnModel().getColumn(5).setPreferredWidth(170);
+            tabla_creacion_proyecto.getColumnModel().getColumn(5).setMaxWidth(170);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
