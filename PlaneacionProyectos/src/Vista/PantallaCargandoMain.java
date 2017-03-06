@@ -1,5 +1,6 @@
 package Vista;
 
+import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class PantallaCargandoMain {
@@ -8,7 +9,7 @@ public class PantallaCargandoMain {
 
     public PantallaCargandoMain() {
         inicioPantalla();
-        screen.velocidadDeCarga();        
+        screen.velocidadDeCarga();
     }
 
     private void inicioPantalla() {
@@ -21,7 +22,7 @@ public class PantallaCargandoMain {
 
     public static void main(String[] args) {
         new PantallaCargandoMain();
-                
+
         Menu menu = new Menu();
         menu.setVisible(true);
     }
