@@ -146,7 +146,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "NOMBRE PROYECTO", "CAPEX INGRESADO", "CAPEX ACTUAL", "DIFERENCIA", "ESTADO"
+                "ID", "NOMBRE PROYECTO", "CAPEX INGRESADO", "CAPEX UTILIZADO", "DIFERENCIA", "ESTADO"
             }
         ));
         tabla_creacion_proyecto.setRowHeight(25);

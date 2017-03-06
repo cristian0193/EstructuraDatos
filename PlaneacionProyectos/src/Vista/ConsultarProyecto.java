@@ -148,7 +148,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
                 {"456", "PROYECTO 2", "20.000.000", "1.000.000", "19.000.000"}
             },
             new String [] {
-                "ID", "NOMBRE PROYECTO", "CAPEX INGRESADO", "CAPEX ACTUAL", "DIFERENCIA"
+                "ID", "NOMBRE PROYECTO", "CAPEX INGRESADO", "CAPEX UTILIZADO", "DIFERENCIA"
             }
         ));
         tb_consulta_proyecto.setComponentPopupMenu(jPopupMenu1);

@@ -63,7 +63,7 @@ public static String valor;
 
         jLabel2.setText("ITEM :");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "TOMA CORRIENTE", "ILUMINACION", "CONEXION DE EQUIPOS", "DESCONEXION EQUIPOS", "TABLEROS", "TRAJE", "PLANOS ELECTRICOS" }));
 
         jLabel4.setText("Cotizacion :");
 
@@ -120,7 +120,7 @@ public static String valor;
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "OK", "PENDIENTE", "DENEGADA" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -229,7 +229,7 @@ public static String valor;
 
         jLabel3.setText("Tipo de Trabajo :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "ELECTRICO", "CIVIL", "DATOS" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

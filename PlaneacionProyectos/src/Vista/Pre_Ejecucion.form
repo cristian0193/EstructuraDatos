@@ -207,11 +207,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBox2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="8">
+                <StringItem index="0" value="Seleccionar"/>
+                <StringItem index="1" value="TOMA CORRIENTE"/>
+                <StringItem index="2" value="ILUMINACION"/>
+                <StringItem index="3" value="CONEXION DE EQUIPOS"/>
+                <StringItem index="4" value="DESCONEXION EQUIPOS"/>
+                <StringItem index="5" value="TABLEROS"/>
+                <StringItem index="6" value="TRAJE"/>
+                <StringItem index="7" value="PLANOS ELECTRICOS"/>
               </StringArray>
             </Property>
           </Properties>
@@ -344,10 +348,10 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+                <StringItem index="0" value="Seleccionar"/>
+                <StringItem index="1" value="OK"/>
+                <StringItem index="2" value="PENDIENTE"/>
+                <StringItem index="3" value="DENEGADA"/>
               </StringArray>
             </Property>
           </Properties>
@@ -452,10 +456,10 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+            <StringItem index="0" value="Seleccionar"/>
+            <StringItem index="1" value="ELECTRICO"/>
+            <StringItem index="2" value="CIVIL"/>
+            <StringItem index="3" value="DATOS"/>
           </StringArray>
         </Property>
       </Properties>

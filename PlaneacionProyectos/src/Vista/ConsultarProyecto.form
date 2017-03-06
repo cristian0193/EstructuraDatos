@@ -278,7 +278,7 @@
                   <Data value="10.000.000.000"/>
                   <Data value="20.000.000"/>
                 </Column>
-                <Column editable="true" title="CAPEX ACTUAL" type="java.lang.Object">
+                <Column editable="true" title="CAPEX UTILIZADO" type="java.lang.Object">
                   <Data value="10.000.000"/>
                   <Data value="1.000.000"/>
                 </Column>
