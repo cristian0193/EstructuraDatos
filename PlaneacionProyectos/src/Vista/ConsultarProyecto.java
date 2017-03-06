@@ -52,7 +52,6 @@ public class ConsultarProyecto extends javax.swing.JDialog {
         jPopupMenu1.add(menu_tabla2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1148, 594));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -145,8 +144,8 @@ public class ConsultarProyecto extends javax.swing.JDialog {
 
         tb_consulta_proyecto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"123", "qwe", null, null, null},
-                {"456", null, null, null, null}
+                {"123", "PROYECTO 1", "10.000.000.000", "10.000.000", "9.990.000.000"},
+                {"456", "PROYECTO 2", "20.000.000", "1.000.000", "19.000.000"}
             },
             new String [] {
                 "ID", "NOMBRE PROYECTO", "CAPEX INGRESADO", "CAPEX ACTUAL", "DIFERENCIA"

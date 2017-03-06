@@ -46,6 +46,11 @@ public class PrerequsitosProyectos extends javax.swing.JDialog {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton2.setText("Kick-Off");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton3.setText("Requerimientos");
@@ -57,6 +62,11 @@ public class PrerequsitosProyectos extends javax.swing.JDialog {
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton4.setText("Control de Cambios");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton5.setText("Ejecución");
@@ -68,6 +78,11 @@ public class PrerequsitosProyectos extends javax.swing.JDialog {
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton6.setText("Validación");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton7.setText("Entrega");
@@ -161,7 +176,8 @@ public class PrerequsitosProyectos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        String valor = txt_id_proyecto_pre.getText();          
+        new Pre_RUs(null, true,valor).setVisible(true); 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txt_id_proyecto_preActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id_proyecto_preActionPerformed
@@ -182,6 +198,21 @@ public class PrerequsitosProyectos extends javax.swing.JDialog {
         new Pre_Prework(null, true,valor).setVisible(true); 
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       String valor = txt_id_proyecto_pre.getText();          
+        new Pre_Kickoff(null, true,valor).setVisible(true); 
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String valor = txt_id_proyecto_pre.getText();          
+        new Pre_Control_Cambios(null, true,valor).setVisible(true); 
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        String valor = txt_id_proyecto_pre.getText();          
+        new Pre_Validacion(null, true,valor).setVisible(true); 
+    }//GEN-LAST:event_jButton6ActionPerformed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
