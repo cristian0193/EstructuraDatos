@@ -86,9 +86,19 @@ public class PrerequsitosProyectos extends javax.swing.JDialog {
 
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton7.setText("Entrega");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton8.setText("Capitalización");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -213,6 +223,16 @@ public class PrerequsitosProyectos extends javax.swing.JDialog {
         String valor = txt_id_proyecto_pre.getText();          
         new Pre_Validacion(null, true,valor).setVisible(true); 
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        String valor = txt_id_proyecto_pre.getText();          
+        new Pre_Entrega(null, true,valor).setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        String valor = txt_id_proyecto_pre.getText();          
+        new Pre_Capitalizacion(null, true,valor).setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */

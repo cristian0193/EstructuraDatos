@@ -35,7 +35,7 @@ public class Pre_Kickoff extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jCheckBox1.setText("UR'S");
+        jCheckBox1.setText("RU'S");
 
         jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jCheckBox2.setText("CORE TEAM");
