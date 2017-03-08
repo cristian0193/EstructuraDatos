@@ -97,6 +97,7 @@ public class ClaveAdminProgramar extends javax.swing.JFrame {
             Programacion programacion = new Programacion();
             programacion.setVisible(true);
             this.hide();
+            System.out.println("");
         } else {
             JOptionPane.showMessageDialog(null, "CONTRASEÑA INCORRECTA");
         }
