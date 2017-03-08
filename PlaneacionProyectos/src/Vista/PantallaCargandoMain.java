@@ -1,15 +1,19 @@
 package Vista;
 
+import Conexion.ConexioSQLite;
 import java.awt.Image;
+import java.sql.Connection;
 import javax.swing.ImageIcon;
 
 public class PantallaCargandoMain {
 
+    public static ConexioSQLite conexion;
     PantallaCargando screen;
 
     public PantallaCargandoMain() {
         inicioPantalla();
         screen.velocidadDeCarga();
+        
     }
 
     private void inicioPantalla() {
@@ -25,5 +29,9 @@ public class PantallaCargandoMain {
 
         Menu menu = new Menu();
         menu.setVisible(true);
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
     }
 }

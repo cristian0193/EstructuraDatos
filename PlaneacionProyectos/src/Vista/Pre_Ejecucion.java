@@ -90,7 +90,7 @@ public static String valor;
         jCheckBox6.setText("C");
 
         jCheckBox7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jCheckBox7.setText("N/A");
+        jCheckBox7.setText("N/C");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
