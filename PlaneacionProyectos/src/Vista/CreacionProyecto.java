@@ -1,13 +1,24 @@
 package Vista;
 
+import Conexion.ConexioSQLite;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class CreacionProyecto extends javax.swing.JDialog {
+
+    public static ConexioSQLite conexion;
+    public static DefaultTableModel modelo;
 
     public CreacionProyecto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);        
+        this.setLocationRelativeTo(null);
+        cargar_tabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -17,7 +28,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_nombre_proyecto = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txt_capex_total = new javax.swing.JTextField();
         txt_capex_diferencia = new javax.swing.JTextField();
@@ -25,7 +36,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         txt_capex_ingresado = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        txt_id_proyecto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_creacion_proyecto = new javax.swing.JTable();
 
@@ -43,9 +54,11 @@ public class CreacionProyecto extends javax.swing.JDialog {
 
         txt_capex_total.setEditable(false);
         txt_capex_total.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        txt_capex_total.setText("0");
 
         txt_capex_diferencia.setEditable(false);
         txt_capex_diferencia.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        txt_capex_diferencia.setText("0");
 
         jLabel5.setText("Diferencia :");
 
@@ -81,6 +94,11 @@ public class CreacionProyecto extends javax.swing.JDialog {
         jButton1.setBackground(new java.awt.Color(51, 255, 204));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Guardar Registro");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,7 +124,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1)))
+                        .addComponent(txt_nombre_proyecto)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -115,7 +133,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_nombre_proyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -131,13 +149,13 @@ public class CreacionProyecto extends javax.swing.JDialog {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jTextField2.setEditable(false);
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 51, 51));
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_id_proyecto.setEditable(false);
+        txt_id_proyecto.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        txt_id_proyecto.setForeground(new java.awt.Color(255, 51, 51));
+        txt_id_proyecto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_id_proyecto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txt_id_proyectoActionPerformed(evt);
             }
         });
 
@@ -182,7 +200,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
                         .addGap(150, 150, 150)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 838, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_id_proyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +214,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_id_proyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,9 +226,9 @@ public class CreacionProyecto extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_id_proyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id_proyectoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_id_proyectoActionPerformed
 
     private void txt_capex_ingresadoInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txt_capex_ingresadoInputMethodTextChanged
 //        this.txt_capex_total.setText("hola cambie");
@@ -224,7 +242,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
 
         if (txt_capex_ingresado.getText().equals("")) {
 //            JOptionPane.showMessageDialog(null, "estoy afuera");
-        } else {            
+        } else {
             double valor = Double.parseDouble(txt_capex_ingresado.getText());
             DecimalFormat formatear = new DecimalFormat("###,###,###,###,###,###,###.##");
             this.txt_capex_ingresado.setText(formatear.format(valor));
@@ -238,14 +256,50 @@ public class CreacionProyecto extends javax.swing.JDialog {
     private void txt_capex_ingresadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_capex_ingresadoMouseEntered
         if (txt_capex_ingresado.getText().equals("")) {
 //            JOptionPane.showMessageDialog(null, "estoy afuera");
-        } else {    
+        } else {
             String valor = "", numero = "";
-            
+
             valor = txt_capex_ingresado.getText();
-            numero = valor.replaceAll("\\.","");                        
-            this.txt_capex_ingresado.setText(""+numero);
+            numero = valor.replaceAll("\\.", "");
+            this.txt_capex_ingresado.setText("" + numero);
         }
     }//GEN-LAST:event_txt_capex_ingresadoMouseEntered
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if (txt_nombre_proyecto.getText().equals("") || txt_capex_ingresado.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS OBLIGATORIOS");
+        } else {
+            String numero = "";
+
+            String descripcion = txt_nombre_proyecto.getText();
+            String capex = txt_capex_ingresado.getText();
+            String capex_actual = txt_capex_total.getText();
+            String diferencia = txt_capex_diferencia.getText();
+
+            numero = capex.replaceAll("\\.", "");
+
+            if (isNumeric(numero)) {
+                boolean resultado = conexion.insert_proyecto(descripcion, numero, capex_actual, diferencia);
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
+                    LimpiarCampos();
+                    cargar_tabla();
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                    LimpiarCampos();
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO");
+            }
+
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -295,11 +349,86 @@ public class CreacionProyecto extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable tabla_creacion_proyecto;
     private javax.swing.JTextField txt_capex_diferencia;
     private javax.swing.JTextField txt_capex_ingresado;
     private javax.swing.JTextField txt_capex_total;
+    private javax.swing.JTextField txt_id_proyecto;
+    private javax.swing.JTextField txt_nombre_proyecto;
     // End of variables declaration//GEN-END:variables
+
+    public void LimpiarCampos() {
+        txt_nombre_proyecto.setText("");
+        txt_capex_ingresado.setText("");
+        txt_capex_total.setText("0");
+        txt_capex_diferencia.setText("0");
+        txt_id_proyecto.setText("");
+    }
+
+    //METODO PARA VALIDAR DATO NUMERICO O NO NUMERICO
+    private boolean isNumeric(String cadena) {
+        try {
+            Double.parseDouble(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    public String convertirValor(String numero) {
+        String convertido = "";
+        double valor = Double.parseDouble(numero);
+        DecimalFormat formatear = new DecimalFormat("###,###,###,###,###,###,###.##");
+        convertido = formatear.format(valor);
+
+        return convertido;
+    }
+
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public void cargar_tabla() {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ID", "DESCRIPCION", "CAPEX", "CAPEX ACTUAL", "DIFERENCIA", "ESTADO"};
+        String[] registro = new String[6];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "ID, "
+                + "DESCRIPCION, "
+                + "CAPEX, "
+                + "CAPEX_ACTUAL, "
+                + "DIFERENCIA, "
+                + "ESTADO "
+                + "FROM "
+                + "PROYECTOS;";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID");
+                registro[1] = rs.getString("DESCRIPCION");
+                registro[2] = convertirValor(rs.getString("CAPEX"));
+                registro[3] = rs.getString("CAPEX_ACTUAL");
+                registro[4] = rs.getString("DIFERENCIA");
+                registro[5] = rs.getString("ESTADO");
+
+                modelo.addRow(registro);
+            }
+            tabla_creacion_proyecto.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
 }
