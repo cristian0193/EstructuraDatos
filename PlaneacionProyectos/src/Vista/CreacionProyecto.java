@@ -168,6 +168,11 @@ public class CreacionProyecto extends javax.swing.JDialog {
             }
         ));
         tabla_creacion_proyecto.setRowHeight(25);
+        tabla_creacion_proyecto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_creacion_proyectoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla_creacion_proyecto);
         if (tabla_creacion_proyecto.getColumnModel().getColumnCount() > 0) {
             tabla_creacion_proyecto.getColumnModel().getColumn(0).setMinWidth(50);
@@ -270,36 +275,79 @@ public class CreacionProyecto extends javax.swing.JDialog {
         if (txt_nombre_proyecto.getText().equals("") || txt_capex_ingresado.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS OBLIGATORIOS");
         } else {
-            String numero = "";
 
-            String descripcion = txt_nombre_proyecto.getText();
-            String capex = txt_capex_ingresado.getText();
-            String capex_actual = txt_capex_total.getText();
-            String diferencia = txt_capex_diferencia.getText();
+            if (txt_id_proyecto.getText().equals("")) {
+                String numero = "";
 
-            numero = capex.replaceAll("\\.", "");
+                String descripcion = txt_nombre_proyecto.getText();
+                String capex = txt_capex_ingresado.getText();
+                String capex_actual = txt_capex_total.getText();
+                String diferencia = txt_capex_diferencia.getText();
 
-            if (isNumeric(numero)) {
-                boolean resultado = conexion.insert_proyecto(descripcion, numero, capex_actual, diferencia);
+                numero = capex.replaceAll("\\.", "");
 
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
-                    LimpiarCampos();
-                    cargar_tabla();
-                    conexion.cerrar();
+                if (isNumeric(numero)) {
+                    boolean resultado = conexion.insert_proyecto(descripcion, numero, capex_actual, diferencia);
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
+                        LimpiarCampos();
+                        cargar_tabla();
+                        conexion.cerrar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                        LimpiarCampos();
+                    }
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                    LimpiarCampos();
+                    JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO");
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO");
+                
+                String numero = "";
+
+                String id = txt_id_proyecto.getText();
+                String descripcion = txt_nombre_proyecto.getText();
+                String capex = txt_capex_ingresado.getText();
+
+                numero = capex.replaceAll("\\.", "");
+                
+                if (isNumeric(numero)) {
+                    boolean resultado = conexion.upgrade_proyecto(id, descripcion, numero );
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                        LimpiarCampos();
+                        cargar_tabla();
+                        conexion.cerrar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZADO");
+                        LimpiarCampos();
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO");
+                }
+                
             }
 
         }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tabla_creacion_proyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_creacion_proyectoMouseClicked
+
+        int rec = this.tabla_creacion_proyecto.getSelectedRow();
+
+        this.txt_id_proyecto.setText(tabla_creacion_proyecto.getValueAt(rec, 0).toString());
+        this.txt_nombre_proyecto.setText(tabla_creacion_proyecto.getValueAt(rec, 1).toString());
+        this.txt_capex_ingresado.setText(tabla_creacion_proyecto.getValueAt(rec, 2).toString());
+        this.txt_capex_total.setText(tabla_creacion_proyecto.getValueAt(rec, 3).toString());
+        this.txt_capex_diferencia.setText(tabla_creacion_proyecto.getValueAt(rec, 4).toString());
+
+    }//GEN-LAST:event_tabla_creacion_proyectoMouseClicked
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */

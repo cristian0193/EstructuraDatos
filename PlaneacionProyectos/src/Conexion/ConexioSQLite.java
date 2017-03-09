@@ -95,54 +95,35 @@ public class ConexioSQLite {
         }
     }
 
-    //METODO DE ACTUALIZAR REGISTROS
-//    public boolean upgrade(String REGISTRO,
-//            String GCC,
-//            String NOMBRE,
-//            String TIPO,
-//            String LIDER,
-//            String PLANTA,
-//            String MAQUINA,
-//            String LOTE,
-//            String TURNO,
-//            String FECHA_PROPUESTA,
-//            String ESTADO,
-//            String OBSERVACION,
-//            int SEMANA) {
-//
-//        try {
-//
-//            query = "UPDATE"
-//                    + " PLANEACIONES_VALIDACION"
-//                    + " SET "
-//                    + "  GCC_APR = '" + GCC + "',"
-//                    + "  NOMBRE_PROYECTO = '" + NOMBRE + "',"
-//                    + "  TIPO_VALIDACION = '" + TIPO + "',"
-//                    + "  LIDER_TECNICO = '" + LIDER + "',"
-//                    + "  PLANTA = '" + PLANTA + "',"
-//                    + "  MAQUINA = '" + MAQUINA + "',"
-//                    + "  LOTE = '" + LOTE + "',"
-//                    + "  TURNOS = '" + TURNO + "',"
-//                    + "  FECHA_PROPUESTA = '" + FECHA_PROPUESTA + "',"
-//                    + "  ESTADO_PROYECTO = '" + ESTADO + "',"
-//                    + "  OBSERVACIONES_VALIDACION = '" + OBSERVACION + "',"
-//                    + "  SEMANA = '" + SEMANA + "'"
-//                    + " WHERE"
-//                    + "  NUMERO_REGISTRO = " + REGISTRO + ";";
-//
-//            sentencia.executeUpdate(query);
-//            System.out.println("ACTUALIZADO ...");
-//
-//            return true;
-//
-//        } catch (SQLException e) {
-//
-//            System.err.println(e.getMessage());
-//            System.out.println("NO ACTUALIZADO ...");
-//            return false;
-//
-//        }
-//    }
+   // METODO DE ACTUALIZAR PROYECTOS
+    public boolean upgrade_proyecto(String ID,
+            String DESCRIPCION,
+            String CAPEX) {
+
+        try {
+
+            query = "UPDATE"
+                    + " PROYECTOS"
+                    + " SET "
+                    + "  DESCRIPCION = '" + DESCRIPCION + "',"
+                    + "  CAPEX = '" + CAPEX + "' "
+                    + " WHERE"
+                    + "  ID = " + ID + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println(query);
+            System.out.println("ACTUALIZADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ACTUALIZADO ...");
+            return false;
+
+        }
+    }
     
     //METODO PARA ELIMINAR 
 //    public boolean delete_tipo(String REGISTRO) {
