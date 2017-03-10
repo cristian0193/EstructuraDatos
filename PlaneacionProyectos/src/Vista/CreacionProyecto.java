@@ -498,7 +498,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
         }
     }
 
-    // METODO PARA CARGAR TABLA PROYECTOS
+    // METODO PARA CREAR PREREQUISITOS
     public void creacion_prerequisitos(String nombre) {
 
         conexion = new ConexioSQLite();
