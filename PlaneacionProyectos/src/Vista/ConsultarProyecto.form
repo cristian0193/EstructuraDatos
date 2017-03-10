@@ -137,20 +137,20 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTextField3" min="-2" pref="278" max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" pref="119" max="-2" attributes="0"/>
+                      <Component id="txt_palabra_clave" min="-2" pref="278" max="-2" attributes="0"/>
+                      <Component id="txt_codigo_proyecto" min="-2" pref="119" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField5" min="-2" pref="143" max="-2" attributes="0"/>
+                          <Component id="txt_valor_mayor" min="-2" pref="143" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField4" min="-2" pref="143" max="-2" attributes="0"/>
+                          <Component id="txt_valor_menor" min="-2" pref="143" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
@@ -158,7 +158,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jButton1" min="-2" pref="211" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" min="-2" pref="211" max="-2" attributes="0"/>
+                      <Component id="combo_filtro" min="-2" pref="211" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -170,22 +170,22 @@
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_codigo_proyecto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_valor_menor" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="combo_filtro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_valor_mayor" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_palabra_clave" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -199,9 +199,15 @@
             <Property name="text" type="java.lang.String" value="Codigo Proyecto :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="txt_codigo_proyecto">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="txt_palabra_clave">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -213,14 +219,20 @@
             <Property name="text" type="java.lang.String" value="Valor Menor :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="javax.swing.JTextField" name="txt_valor_menor">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Valor Mayor :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField5">
+        <Component class="javax.swing.JTextField" name="txt_valor_mayor">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -237,8 +249,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Consultar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="combo_filtro">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -249,6 +264,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="combo_filtroItemStateChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
           </AuxValues>
@@ -265,27 +283,12 @@
         <Component class="javax.swing.JTable" name="tb_consulta_proyecto">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="2">
-                <Column editable="true" title="ID" type="java.lang.Object">
-                  <Data value="123"/>
-                  <Data value="456"/>
-                </Column>
-                <Column editable="true" title="NOMBRE PROYECTO" type="java.lang.Object">
-                  <Data value="PROYECTO 1"/>
-                  <Data value="PROYECTO 2"/>
-                </Column>
-                <Column editable="true" title="CAPEX INGRESADO" type="java.lang.Object">
-                  <Data value="10.000.000.000"/>
-                  <Data value="20.000.000"/>
-                </Column>
-                <Column editable="true" title="CAPEX UTILIZADO" type="java.lang.Object">
-                  <Data value="10.000.000"/>
-                  <Data value="1.000.000"/>
-                </Column>
-                <Column editable="true" title="DIFERENCIA" type="java.lang.Object">
-                  <Data value="9.990.000.000"/>
-                  <Data value="19.000.000"/>
-                </Column>
+              <Table columnCount="5" rowCount="0">
+                <Column editable="true" title="ID" type="java.lang.Object"/>
+                <Column editable="true" title="NOMBRE PROYECTO" type="java.lang.Object"/>
+                <Column editable="true" title="CAPEX INGRESADO" type="java.lang.Object"/>
+                <Column editable="true" title="CAPEX UTILIZADO" type="java.lang.Object"/>
+                <Column editable="true" title="DIFERENCIA" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

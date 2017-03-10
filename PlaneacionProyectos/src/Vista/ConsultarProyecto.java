@@ -1,12 +1,24 @@
 package Vista;
 
+import Conexion.ConexioSQLite;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class ConsultarProyecto extends javax.swing.JDialog {
 
-  
+    public static ConexioSQLite conexion;
+    public static DefaultTableModel modelo;
+
     public ConsultarProyecto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        cargar_tabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -20,16 +32,16 @@ public class ConsultarProyecto extends javax.swing.JDialog {
         txt_id_proyecto = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txt_codigo_proyecto = new javax.swing.JTextField();
+        txt_palabra_clave = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txt_valor_menor = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txt_valor_mayor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        combo_filtro = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_consulta_proyecto = new javax.swing.JTable();
 
@@ -71,19 +83,37 @@ public class ConsultarProyecto extends javax.swing.JDialog {
 
         jLabel2.setText("Codigo Proyecto :");
 
+        txt_codigo_proyecto.setEditable(false);
+
+        txt_palabra_clave.setEditable(false);
+
         jLabel3.setText("Palabra Clave :");
 
         jLabel4.setText("Valor Menor :");
 
+        txt_valor_menor.setEditable(false);
+
         jLabel5.setText("Valor Mayor :");
+
+        txt_valor_mayor.setEditable(false);
 
         jLabel6.setText("Filtro :");
 
         jButton1.setBackground(new java.awt.Color(51, 255, 51));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Consultar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "CODIGO", "PALABRA CLAVE", "RANGO" }));
+        combo_filtro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "CODIGO", "PALABRA CLAVE", "RANGO" }));
+        combo_filtro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo_filtroItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,24 +129,24 @@ public class ConsultarProyecto extends javax.swing.JDialog {
                         .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_palabra_clave, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_codigo_proyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_valor_mayor, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_valor_menor, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(53, 53, 53)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combo_filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -125,27 +155,26 @@ public class ConsultarProyecto extends javax.swing.JDialog {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_codigo_proyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_valor_menor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combo_filtro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_valor_mayor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_palabra_clave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tb_consulta_proyecto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"123", "PROYECTO 1", "10.000.000.000", "10.000.000", "9.990.000.000"},
-                {"456", "PROYECTO 2", "20.000.000", "1.000.000", "19.000.000"}
+
             },
             new String [] {
                 "ID", "NOMBRE PROYECTO", "CAPEX INGRESADO", "CAPEX UTILIZADO", "DIFERENCIA"
@@ -219,21 +248,100 @@ public class ConsultarProyecto extends javax.swing.JDialog {
 
     private void tb_consulta_proyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_consulta_proyectoMouseClicked
 
-        int rec = this.tb_consulta_proyecto.getSelectedRow();        
-        String valor = tb_consulta_proyecto.getValueAt(rec, 0).toString();  
+        int rec = this.tb_consulta_proyecto.getSelectedRow();
+        String valor = tb_consulta_proyecto.getValueAt(rec, 0).toString();
         txt_id_proyecto.setText(valor);
     }//GEN-LAST:event_tb_consulta_proyectoMouseClicked
 
     private void menu_tablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tablaActionPerformed
-            
-        int rec = this.tb_consulta_proyecto.getSelectedRow();        
-        String valor = tb_consulta_proyecto.getValueAt(rec, 0).toString();          
-         new PrerequsitosProyectos(null, true,valor).setVisible(true);   
+
+        int rec = this.tb_consulta_proyecto.getSelectedRow();
+        String valor = tb_consulta_proyecto.getValueAt(rec, 0).toString();
+        new PrerequsitosProyectos(null, true, valor).setVisible(true);
     }//GEN-LAST:event_menu_tablaActionPerformed
 
     private void menu_tabla2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tabla2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menu_tabla2ActionPerformed
+
+    private void combo_filtroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_filtroItemStateChanged
+
+//        Seleccionar 
+//        CODIGO
+//        PALABRA CLAVE
+//        RANGO
+        int opcion = combo_filtro.getSelectedIndex();
+
+        if (opcion == 1) {
+            txt_codigo_proyecto.setEditable(true);
+            txt_palabra_clave.setEditable(false);
+            txt_valor_menor.setEditable(false);
+            txt_valor_mayor.setEditable(false);
+        } else if (opcion == 2) {
+            txt_codigo_proyecto.setEditable(false);
+            txt_palabra_clave.setEditable(true);
+            txt_valor_menor.setEditable(false);
+            txt_valor_mayor.setEditable(false);
+        } else if (opcion == 3) {
+            txt_codigo_proyecto.setEditable(false);
+            txt_palabra_clave.setEditable(false);
+            txt_valor_menor.setEditable(true);
+            txt_valor_mayor.setEditable(true);
+        } 
+        
+
+
+    }//GEN-LAST:event_combo_filtroItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      
+        int index = combo_filtro.getSelectedIndex();
+        
+          if (index == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione una Opcion");
+        } else if (index == 1) {
+           
+            String codigo = txt_codigo_proyecto.getText();            
+            
+            if(isNumeric(codigo) == false){
+                JOptionPane.showMessageDialog(null, "INGRESE UN VALOR NUMERICO");
+            }else if(codigo.equals("")){
+                JOptionPane.showMessageDialog(null, "INGRESE EL CODIGO");
+            }else{
+                consuta_tabla_id(codigo);
+            }
+                        
+        } else if (index == 2) {
+            
+            String palabra = txt_palabra_clave.getText();                
+            
+            if(palabra.equals("")){
+                JOptionPane.showMessageDialog(null, "INGRESE PALABRA CLAVE");
+            }else{
+                consuta_tabla_palabra(palabra);
+            }
+            
+            
+            
+        } else if (index == 3) {
+            
+            String minimo = txt_valor_menor.getText();
+            String maximo = txt_valor_mayor.getText();
+            
+            if(isNumeric(minimo) == false || isNumeric(maximo) == false){
+                JOptionPane.showMessageDialog(null, "INGRESE UN VALOR NUMERICO");
+            }else if(minimo.equals("")){
+                JOptionPane.showMessageDialog(null, "INGRESE EL VALOR MINIMO");
+            }else if(maximo.equals("")){
+                JOptionPane.showMessageDialog(null, "INGRESE EL VALOR MAXIMO");
+            }else{
+                consuta_tabla_rango(minimo,maximo);
+            }
+                                   
+        } 
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 //    
 //    public static void main(String args[]) {
@@ -276,8 +384,8 @@ public class ConsultarProyecto extends javax.swing.JDialog {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox combo_filtro;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -287,13 +395,232 @@ public class ConsultarProyecto extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JMenuItem menu_tabla;
     private javax.swing.JMenuItem menu_tabla2;
     private javax.swing.JTable tb_consulta_proyecto;
+    private javax.swing.JTextField txt_codigo_proyecto;
     private javax.swing.JTextField txt_id_proyecto;
+    private javax.swing.JTextField txt_palabra_clave;
+    private javax.swing.JTextField txt_valor_mayor;
+    private javax.swing.JTextField txt_valor_menor;
     // End of variables declaration//GEN-END:variables
+
+       //METODO PARA VALIDAR DATO NUMERICO O NO NUMERICO
+    private boolean isNumeric(String cadena) {
+        try {
+            Double.parseDouble(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+    
+    public String convertirValor(String numero) {
+        String convertido = "";
+        double valor = Double.parseDouble(numero);
+        DecimalFormat formatear = new DecimalFormat("###,###,###,###,###,###,###.##");
+        convertido = formatear.format(valor);
+
+        return convertido;
+    }
+
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public void cargar_tabla() {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ID", "DESCRIPCION", "CAPEX", "CAPEX ACTUAL", "DIFERENCIA", "ESTADO"};
+        String[] registro = new String[6];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "ID, "
+                + "DESCRIPCION, "
+                + "CAPEX, "
+                + "CAPEX_ACTUAL, "
+                + "DIFERENCIA, "
+                + "ESTADO "
+                + "FROM "
+                + "PROYECTOS;";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID");
+                registro[1] = rs.getString("DESCRIPCION");
+                registro[2] = convertirValor(rs.getString("CAPEX"));
+                registro[3] = rs.getString("CAPEX_ACTUAL");
+                registro[4] = rs.getString("DIFERENCIA");
+                registro[5] = rs.getString("ESTADO");
+
+                modelo.addRow(registro);
+            }
+            tb_consulta_proyecto.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    
+        // METODO PARA CONSULTAR TABLA POR ID
+    public void consuta_tabla_id(String numero) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ID", "DESCRIPCION", "CAPEX", "CAPEX ACTUAL", "DIFERENCIA", "ESTADO"};
+        String[] registro = new String[6];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "ID, "
+                + "DESCRIPCION, "
+                + "CAPEX, "
+                + "CAPEX_ACTUAL, "
+                + "DIFERENCIA, "
+                + "ESTADO "
+                + "FROM "
+                + "PROYECTOS "
+                + "WHERE "
+                + "ID = " + numero;
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID");
+                registro[1] = rs.getString("DESCRIPCION");
+                registro[2] = convertirValor(rs.getString("CAPEX"));
+                registro[3] = rs.getString("CAPEX_ACTUAL");
+                registro[4] = rs.getString("DIFERENCIA");
+                registro[5] = rs.getString("ESTADO");
+
+                modelo.addRow(registro);
+            }
+            tb_consulta_proyecto.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+    
+    
+         // METODO PARA CONSULTAR TABLA POR ID
+    public void consuta_tabla_palabra(String palabra) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ID", "DESCRIPCION", "CAPEX", "CAPEX ACTUAL", "DIFERENCIA", "ESTADO"};
+        String[] registro = new String[6];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "ID, "
+                + "DESCRIPCION, "
+                + "CAPEX, "
+                + "CAPEX_ACTUAL, "
+                + "DIFERENCIA, "
+                + "ESTADO "
+                + "FROM "
+                + "PROYECTOS "
+                + "WHERE "
+                + "DESCRIPCION LIKE '%" + palabra + "%'";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID");
+                registro[1] = rs.getString("DESCRIPCION");
+                registro[2] = convertirValor(rs.getString("CAPEX"));
+                registro[3] = rs.getString("CAPEX_ACTUAL");
+                registro[4] = rs.getString("DIFERENCIA");
+                registro[5] = rs.getString("ESTADO");
+
+                modelo.addRow(registro);
+            }
+            tb_consulta_proyecto.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+    
+    
+      // METODO PARA CONSULTAR TABLA POR ID
+    public void consuta_tabla_rango(String rangoMin, String rangoMax) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ID", "DESCRIPCION", "CAPEX", "CAPEX ACTUAL", "DIFERENCIA", "ESTADO"};
+        String[] registro = new String[6];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "ID, "
+                + "DESCRIPCION, "
+                + "CAPEX, "
+                + "CAPEX_ACTUAL, "
+                + "DIFERENCIA, "
+                + "ESTADO "
+                + "FROM "
+                + "PROYECTOS "
+                + "WHERE "
+                + "CAPEX >= " + rangoMin + " "
+                + "AND "
+                + "CAPEX <= " + rangoMax + " ";
+                
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID");
+                registro[1] = rs.getString("DESCRIPCION");
+                registro[2] = convertirValor(rs.getString("CAPEX"));
+                registro[3] = rs.getString("CAPEX_ACTUAL");
+                registro[4] = rs.getString("DIFERENCIA");
+                registro[5] = rs.getString("ESTADO");
+
+                modelo.addRow(registro);
+            }
+            tb_consulta_proyecto.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
 }
