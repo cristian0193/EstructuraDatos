@@ -125,17 +125,19 @@ public class ConexioSQLite {
         }
     }
 
-    // METODO DE CONSULTAR PROYECTOS
-    public boolean select_proyecto(String ID) {
+
+    // METODO DE ACTUALIZAR PROYECTOS
+    public boolean upgrade_prework(String ID,
+            String DESCRIPCION,
+            String CAPEX) {
+
         try {
 
-            query = "SELECT"
-                    + " ID"
-                    + " DESCRIPCION, "
-                    + " CAPEX, "
-                    + " CAPEX_ACTUAL, "
-                    + " DIFERENCIA, "
-                    + " ESTADO "
+            query = "UPDATE"
+                    + " PROYECTOS"
+                    + " SET "
+                    + "  DESCRIPCION = '" + DESCRIPCION + "',"
+                    + "  CAPEX = '" + CAPEX + "' "
                     + " WHERE"
                     + "  ID = " + ID + ";";
 
@@ -153,25 +155,4 @@ public class ConexioSQLite {
 
         }
     }
-
-    //METODO PARA ELIMINAR 
-//    public boolean delete_tipo(String REGISTRO) {
-//
-//        try {
-//
-//            query = "DELETE FROM TIPO WHERE ID_TIPO = " + REGISTRO + "";
-//
-//            sentencia.executeUpdate(query);
-//            System.out.println("ELIMINADO ...");
-//
-//            return true;
-//
-//        } catch (SQLException e) {
-//
-//            System.err.println(e.getMessage());
-//            System.out.println("NO ELIMINADO ...");
-//            return false;
-//
-//        }
-//    }
 }

@@ -300,12 +300,13 @@ public class CreacionProyecto extends javax.swing.JDialog {
                 numero = capex.replaceAll("\\.", "");
 
                 if (isNumeric(numero)) {
-                    boolean resultado = conexion.insert_proyecto(descripcion, numero, capex_actual, diferencia);
+                    boolean resultado = conexion.insert_proyecto(descripcion.toUpperCase(), numero, capex_actual, diferencia);
 
                     if (resultado == true) {
                         JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
                         LimpiarCampos();
                         cargar_tabla();
+                        creacion_prerequisitos(descripcion);
                         conexion.cerrar();
                     } else {
                         JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
@@ -317,7 +318,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
                 }
 
             } else {
-                
+
                 String numero = "";
 
                 String id = txt_id_proyecto.getText();
@@ -325,9 +326,9 @@ public class CreacionProyecto extends javax.swing.JDialog {
                 String capex = txt_capex_ingresado.getText();
 
                 numero = capex.replaceAll("\\.", "");
-                
+
                 if (isNumeric(numero)) {
-                    boolean resultado = conexion.upgrade_proyecto(id, descripcion, numero );
+                    boolean resultado = conexion.upgrade_proyecto(id, descripcion, numero);
 
                     if (resultado == true) {
                         JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
@@ -342,7 +343,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO");
                 }
-                
+
             }
 
         }
@@ -489,6 +490,146 @@ public class CreacionProyecto extends javax.swing.JDialog {
                 modelo.addRow(registro);
             }
             tabla_creacion_proyecto.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public void creacion_prerequisitos(String nombre) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String registroSelect = "";
+
+        String querySelect = "";
+        String queryInsert = "";
+        String queryInsert2 = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        querySelect = "SELECT "
+                + "ID "
+                + "FROM "
+                + "PROYECTOS "
+                + "WHERE "
+                + "DESCRIPCION "
+                + "LIKE '%" + nombre + "%'";
+        System.out.println(querySelect);
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(querySelect);
+
+            while (rs.next()) {
+                registroSelect = rs.getString("ID");
+            }
+
+            queryInsert = "INSERT INTO PREREQUISITOS (ID,"
+                    + "PRE_FECHA,"
+                    + "PRE_PROYECTO,"
+                    + "PRE_CORE,"
+                    + "PRE_DISENO,"
+                    + "KICK_FECHA,"
+                    + "KICK_RU,"
+                    + "KICK_CORE,"
+                    + "RU_FECHA,"
+                    + "RU_MANUFACTURA,"
+                    + "RU_MTTO,"
+                    + "RU_CALIDAD,"
+                    + "RU_EHS,"
+                    + "RU_FACILITIES,"
+                    + "RU_IT,"
+                    + "RU_INGENIERIA,"
+                    + "RU_OTROS,"
+                    + "CC_FECHA,"
+                    + "CC_CAPTA,"
+                    + "CC_GCC,"
+                    + "VAL_FECHA,"
+                    + "VAL_RU,"
+                    + "VAL_AGENDAR,"
+                    + "VAL_PRE_VALIDACION,"
+                    + "EN_FECHA,"
+                    + "EN_OBSERVACIONES,"
+                    + "CAP_ITEM,"
+                    + "CAP_ACTIVO,"
+                    + "CAP_FECHA,"
+                    + "ID_PROYECTO )"
+                    + "VALUES("
+                    + "NULL,"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + " '',"
+                    + "" + registroSelect + ");";
+            System.out.println(queryInsert);
+
+            Statement stInsert = cn.createStatement();
+            int rsInsert = stInsert.executeUpdate(queryInsert);
+
+            queryInsert = "INSERT INTO PROYECTO_DETALLADO ("
+                    + "ID,"
+                    + "COTIZACION,"
+                    + "PROVEEDOR,"
+                    + "COSTOS,"
+                    + "LICITACION,"
+                    + "PR,"
+                    + "BLOQUEO_S,"
+                    + "BLOQUEO_F,"
+                    + "BLOQUEO_C,"
+                    + "BLOQUEO_NC,"
+                    + "REMISIONES,"
+                    + "COMENTARIOS,"
+                    + "ID_ITEM,"
+                    + "ID_PROYECTO)"
+                    + "VALUES ("
+                    + "NULL,"
+                    + "'',"
+                    + "'',"
+                    + "'',"
+                    + "'',"
+                    + "'',"
+                    + "'',"
+                    + "'',"
+                    + "'',"
+                    + "'',"
+                    + "'',"
+                    + "'',"
+                    + "0,"
+                    + "" + registroSelect + ");";
+            System.out.println(queryInsert);
+
+            Statement stInsert2 = cn.createStatement();
+            int rsInsert2 = stInsert2.executeUpdate(queryInsert);
 
         } catch (SQLException ex) {
 

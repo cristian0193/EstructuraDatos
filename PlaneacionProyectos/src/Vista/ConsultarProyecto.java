@@ -108,7 +108,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
             }
         });
 
-        combo_filtro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "CODIGO", "PALABRA CLAVE", "RANGO" }));
+        combo_filtro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "CODIGO", "PALABRA CLAVE", "RANGO", "TODOS" }));
         combo_filtro.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combo_filtroItemStateChanged(evt);
@@ -249,8 +249,15 @@ public class ConsultarProyecto extends javax.swing.JDialog {
     private void tb_consulta_proyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_consulta_proyectoMouseClicked
 
         int rec = this.tb_consulta_proyecto.getSelectedRow();
-        String valor = tb_consulta_proyecto.getValueAt(rec, 0).toString();
-        txt_id_proyecto.setText(valor);
+
+        if (rec == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione una Fila");
+        } else {
+            String valor = tb_consulta_proyecto.getValueAt(rec, 0).toString();
+            txt_id_proyecto.setText(valor);
+        }
+
+
     }//GEN-LAST:event_tb_consulta_proyectoMouseClicked
 
     private void menu_tablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tablaActionPerformed
@@ -287,60 +294,63 @@ public class ConsultarProyecto extends javax.swing.JDialog {
             txt_palabra_clave.setEditable(false);
             txt_valor_menor.setEditable(true);
             txt_valor_mayor.setEditable(true);
-        } 
-        
+        }
 
 
     }//GEN-LAST:event_combo_filtroItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      
+
         int index = combo_filtro.getSelectedIndex();
-        
-          if (index == 0) {
+
+        if (index == 0) {
             JOptionPane.showMessageDialog(null, "Seleccione una Opcion");
         } else if (index == 1) {
-           
-            String codigo = txt_codigo_proyecto.getText();            
-            
-            if(isNumeric(codigo) == false){
+
+            String codigo = txt_codigo_proyecto.getText();
+
+            if (isNumeric(codigo) == false) {
                 JOptionPane.showMessageDialog(null, "INGRESE UN VALOR NUMERICO");
-            }else if(codigo.equals("")){
+            } else if (codigo.equals("")) {
                 JOptionPane.showMessageDialog(null, "INGRESE EL CODIGO");
-            }else{
+            } else {
                 consuta_tabla_id(codigo);
             }
-                        
+
         } else if (index == 2) {
-            
-            String palabra = txt_palabra_clave.getText();                
-            
-            if(palabra.equals("")){
+
+            String palabra = txt_palabra_clave.getText();
+
+            if (palabra.equals("")) {
                 JOptionPane.showMessageDialog(null, "INGRESE PALABRA CLAVE");
-            }else{
+            } else {
                 consuta_tabla_palabra(palabra);
             }
-            
-            
-            
+
         } else if (index == 3) {
-            
+
             String minimo = txt_valor_menor.getText();
             String maximo = txt_valor_mayor.getText();
-            
-            if(isNumeric(minimo) == false || isNumeric(maximo) == false){
+
+            if (isNumeric(minimo) == false || isNumeric(maximo) == false) {
                 JOptionPane.showMessageDialog(null, "INGRESE UN VALOR NUMERICO");
-            }else if(minimo.equals("")){
+            } else if (minimo.equals("")) {
                 JOptionPane.showMessageDialog(null, "INGRESE EL VALOR MINIMO");
-            }else if(maximo.equals("")){
+            } else if (maximo.equals("")) {
                 JOptionPane.showMessageDialog(null, "INGRESE EL VALOR MAXIMO");
-            }else{
-                consuta_tabla_rango(minimo,maximo);
+            } else {
+                consuta_tabla_rango(minimo, maximo);
             }
-                                   
-        } 
-        
-        
+
+        } else {
+            txt_codigo_proyecto.setEditable(false);
+            txt_palabra_clave.setEditable(false);
+            txt_valor_mayor.setEditable(false);
+            txt_valor_menor.setEditable(false);
+            cargar_tabla();
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 //    
@@ -405,7 +415,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
     private javax.swing.JTextField txt_valor_menor;
     // End of variables declaration//GEN-END:variables
 
-       //METODO PARA VALIDAR DATO NUMERICO O NO NUMERICO
+    //METODO PARA VALIDAR DATO NUMERICO O NO NUMERICO
     private boolean isNumeric(String cadena) {
         try {
             Double.parseDouble(cadena);
@@ -414,7 +424,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
             return false;
         }
     }
-    
+
     public String convertirValor(String numero) {
         String convertido = "";
         double valor = Double.parseDouble(numero);
@@ -471,8 +481,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
         }
     }
 
-    
-        // METODO PARA CONSULTAR TABLA POR ID
+    // METODO PARA CONSULTAR TABLA POR ID
     public void consuta_tabla_id(String numero) {
 
         conexion = new ConexioSQLite();
@@ -520,9 +529,8 @@ public class ConsultarProyecto extends javax.swing.JDialog {
 
         }
     }
-    
-    
-         // METODO PARA CONSULTAR TABLA POR ID
+
+    // METODO PARA CONSULTAR TABLA POR ID
     public void consuta_tabla_palabra(String palabra) {
 
         conexion = new ConexioSQLite();
@@ -570,9 +578,8 @@ public class ConsultarProyecto extends javax.swing.JDialog {
 
         }
     }
-    
-    
-      // METODO PARA CONSULTAR TABLA POR ID
+
+    // METODO PARA CONSULTAR TABLA POR ID
     public void consuta_tabla_rango(String rangoMin, String rangoMax) {
 
         conexion = new ConexioSQLite();
@@ -600,7 +607,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
                 + "CAPEX >= " + rangoMin + " "
                 + "AND "
                 + "CAPEX <= " + rangoMax + " ";
-                
+
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
