@@ -125,34 +125,4 @@ public class ConexioSQLite {
         }
     }
 
-
-    // METODO DE ACTUALIZAR PROYECTOS
-    public boolean upgrade_prework(String ID,
-            String DESCRIPCION,
-            String CAPEX) {
-
-        try {
-
-            query = "UPDATE"
-                    + " PROYECTOS"
-                    + " SET "
-                    + "  DESCRIPCION = '" + DESCRIPCION + "',"
-                    + "  CAPEX = '" + CAPEX + "' "
-                    + " WHERE"
-                    + "  ID = " + ID + ";";
-
-            sentencia.executeUpdate(query);
-            System.out.println(query);
-            System.out.println("ACTUALIZADO ...");
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e.getMessage());
-            System.out.println("NO ACTUALIZADO ...");
-            return false;
-
-        }
-    }
 }
