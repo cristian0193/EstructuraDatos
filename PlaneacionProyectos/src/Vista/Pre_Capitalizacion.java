@@ -334,7 +334,7 @@ public static DefaultTableModel modelo;
         conexion.coneccionbase();
 
         String[] titulos = {"ID", "ITEM", "# ACTIVO", "FECHA"};
-        String[] registro = new String[3];
+        String[] registro = new String[4];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -351,6 +351,7 @@ public static DefaultTableModel modelo;
                 + "CAPITALIZACION "
                 + "WHERE "
                 + "  ID_PROYECTO = " + id_proyecto + ";";
+        System.out.println(""+query);
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
