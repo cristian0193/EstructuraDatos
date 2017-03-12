@@ -43,7 +43,11 @@ public class ConsultarProyecto extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         combo_filtro = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb_consulta_proyecto = new javax.swing.JTable();
+        tb_consulta_proyecto = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false; //Disallow the editing of any cell
+            }
+        };
 
         menu_tabla.setText("Ingresar Detalle");
         menu_tabla.setToolTipText("");

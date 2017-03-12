@@ -1,10 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.ConsultarProyecto.conexion;
-import static Vista.ConsultarProyecto.modelo;
-import static Vista.CreacionProyecto.conexion;
-import static Vista.Pre_Prework.conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +12,7 @@ public class Pre_Capitalizacion extends javax.swing.JDialog {
 
 public static String valor; 
 public static ConexioSQLite conexion;
+public static DefaultTableModel modelo;
     
     public Pre_Capitalizacion(java.awt.Frame parent, boolean modal,String numero) {
         super(parent, modal);
@@ -39,7 +36,11 @@ public static ConexioSQLite conexion;
         jLabel14 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla_capitalizacion = new javax.swing.JTable();
+        tabla_capitalizacion = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false; //Disallow the editing of any cell
+            }
+        };
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -103,11 +104,10 @@ public static ConexioSQLite conexion;
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla"));
 
+        tabla_capitalizacion.setAutoCreateColumnsFromModel(false);
         tabla_capitalizacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "ITEM", "# ACTIVO", "FECHA"

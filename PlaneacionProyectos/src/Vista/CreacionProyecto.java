@@ -39,7 +39,11 @@ public class CreacionProyecto extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         txt_id_proyecto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla_creacion_proyecto = new javax.swing.JTable();
+        tabla_creacion_proyecto = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false; //Disallow the editing of any cell
+            }
+        };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -556,15 +560,9 @@ public class CreacionProyecto extends javax.swing.JDialog {
                     + "VAL_PRE_VALIDACION,"
                     + "EN_FECHA,"
                     + "EN_OBSERVACIONES,"
-                    + "CAP_ITEM,"
-                    + "CAP_ACTIVO,"
-                    + "CAP_FECHA,"
                     + "ID_PROYECTO )"
                     + "VALUES("
                     + "NULL,"
-                    + " '',"
-                    + " '',"
-                    + " '',"
                     + " '',"
                     + " '',"
                     + " '',"
@@ -613,9 +611,6 @@ public class CreacionProyecto extends javax.swing.JDialog {
                     + "ID_PROYECTO)"
                     + "VALUES ("
                     + "NULL,"
-                    + "'',"
-                    + "'',"
-                    + "'',"
                     + "'',"
                     + "'',"
                     + "'',"
