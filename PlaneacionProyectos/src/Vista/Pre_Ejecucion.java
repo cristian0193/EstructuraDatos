@@ -1,9 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Pre_Capitalizacion.conexion;
-import static Vista.Pre_Capitalizacion.modelo;
-import static Vista.Pre_Capitalizacion.valor;
 import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class Pre_Ejecucion extends javax.swing.JDialog {
@@ -18,6 +17,7 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
     public static String valor;
     public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
+    public static DefaultTableCellRenderer Alinear;
 
     public Pre_Ejecucion(java.awt.Frame parent, boolean modal, String numero) {
         super(parent, modal);
@@ -25,6 +25,10 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         valor = numero;
         this.txt_id_proyecto_detallada.setText(valor);
+        cargar_tabla_ejecuciones(valor);
+        centrar_datos();
+        ancho_columnas();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -60,6 +64,7 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_informacion_detallada = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         combo_trabajo = new javax.swing.JComboBox();
         btn_grabar = new javax.swing.JButton();
@@ -274,10 +279,31 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
             tabla_informacion_detallada.getColumnModel().getColumn(0).setMinWidth(180);
             tabla_informacion_detallada.getColumnModel().getColumn(0).setPreferredWidth(180);
             tabla_informacion_detallada.getColumnModel().getColumn(0).setMaxWidth(180);
-            tabla_informacion_detallada.getColumnModel().getColumn(1).setMinWidth(320);
-            tabla_informacion_detallada.getColumnModel().getColumn(1).setPreferredWidth(320);
-            tabla_informacion_detallada.getColumnModel().getColumn(1).setMaxWidth(320);
+            tabla_informacion_detallada.getColumnModel().getColumn(1).setMinWidth(420);
+            tabla_informacion_detallada.getColumnModel().getColumn(1).setPreferredWidth(420);
+            tabla_informacion_detallada.getColumnModel().getColumn(1).setMaxWidth(420);
+            tabla_informacion_detallada.getColumnModel().getColumn(2).setMinWidth(60);
+            tabla_informacion_detallada.getColumnModel().getColumn(2).setPreferredWidth(60);
+            tabla_informacion_detallada.getColumnModel().getColumn(2).setMaxWidth(60);
+            tabla_informacion_detallada.getColumnModel().getColumn(3).setMinWidth(60);
+            tabla_informacion_detallada.getColumnModel().getColumn(3).setPreferredWidth(60);
+            tabla_informacion_detallada.getColumnModel().getColumn(3).setMaxWidth(60);
+            tabla_informacion_detallada.getColumnModel().getColumn(4).setMinWidth(60);
+            tabla_informacion_detallada.getColumnModel().getColumn(4).setPreferredWidth(60);
+            tabla_informacion_detallada.getColumnModel().getColumn(4).setMaxWidth(60);
+            tabla_informacion_detallada.getColumnModel().getColumn(5).setMinWidth(60);
+            tabla_informacion_detallada.getColumnModel().getColumn(5).setPreferredWidth(60);
+            tabla_informacion_detallada.getColumnModel().getColumn(5).setMaxWidth(60);
         }
+
+        jButton1.setBackground(new java.awt.Color(255, 204, 102));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setText("Actualizar Datos del Proyecto");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -285,13 +311,17 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -305,6 +335,7 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
         });
 
         btn_grabar.setBackground(new java.awt.Color(51, 255, 204));
+        btn_grabar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_grabar.setText("Grabar Registro");
         btn_grabar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -351,8 +382,9 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
                             .addComponent(combo_trabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_grabar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_grabar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -415,46 +447,57 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
 
             costo_convertido = costo.replaceAll("\\.", "");
 
-            costo_validacion = Double.parseDouble(costo_convertido);
+            if (isNumeric(costo_convertido)) {
 
-            if (costo_validacion > 10000000 && txt_licitacion.equals("")) {
-               String fecha = JOptionPane.showInputDialog(null, "EL COSTO DE LA COTIZACION ES MAYOR A 10.000.000 \n INGRESE LA FECHA");
-               txt_licitacion.setText(fecha);
-                
-            } else if (costo_validacion > 10000000 && !(txt_licitacion.equals(""))){
+                costo_validacion = Long.parseLong(costo_convertido);
 
-                String item_convertido = id_item(item);
+                String licita = txt_licitacion.getText();
 
-                boolean resultado = insertar_ejecucion(item_convertido, cotizacion, proveedor, costo_convertido, licitacion, pr, s, f, c, nc, remision, comentario, valor);
+                if (costo_validacion > Long.parseLong("" + 10000000) && licita.equals("")) {
+                    String fecha = JOptionPane.showInputDialog(null, "EL COSTO DE LA COTIZACION ES MAYOR A 10.000.000 \n INGRESE LA FECHA");
+                    txt_licitacion.setText(fecha);
 
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "EJECUCION INSERTADA");
-                    LimpiarCampos();
-                    conexion.cerrar();
-                    cargar_tabla_capitalizacion(valor);
-                    conexion.cerrar();
+                } else if (costo_validacion > 10000000.0 && !(licita.equals(""))) {
+
+                    String item_convertido = id_item(item);
+
+                    boolean resultado = insertar_ejecucion(item_convertido, cotizacion, proveedor, costo_convertido, licitacion, pr, s, f, c, nc, remision, comentario, valor);
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "EJECUCION INSERTADA");
+                        LimpiarCampos();
+                        conexion.cerrar();
+                        cargar_tabla_ejecuciones(valor);
+                        centrar_datos();
+                        ancho_columnas();
+                        conexion.cerrar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                        LimpiarCampos();
+                    }
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                    LimpiarCampos();
+
+                    String item_convertido = id_item(item);
+
+                    boolean resultado = insertar_ejecucion(item_convertido, cotizacion, proveedor, costo_convertido, licitacion, pr, s, f, c, nc, remision, comentario, valor);
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "EJECUCION INSERTADA");
+                        LimpiarCampos();
+                        cargar_tabla_ejecuciones(valor);
+                        centrar_datos();
+                        ancho_columnas();
+                        conexion.cerrar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                        LimpiarCampos();
+                    }
+
                 }
 
-            }else{
-                
-                String item_convertido = id_item(item);
-
-                boolean resultado = insertar_ejecucion(item_convertido, cotizacion, proveedor, costo_convertido, licitacion, pr, s, f, c, nc, remision, comentario, valor);
-
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "EJECUCION INSERTADA");
-                    LimpiarCampos();
-                    conexion.cerrar();
-                    cargar_tabla_capitalizacion(valor);
-                    conexion.cerrar();
-                } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                    LimpiarCampos();
-                }
-                
+            } else {
+                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN COSTOS");
             }
 
         }
@@ -482,7 +525,6 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
             double valor = Double.parseDouble(txt_costo.getText());
             DecimalFormat formatear = new DecimalFormat("###,###,###,###,###,###,###.##");
             this.txt_costo.setText(formatear.format(valor));
-
         }
 
     }//GEN-LAST:event_txt_costoMouseExited
@@ -499,6 +541,26 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_txt_costoMouseEntered
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        String capex = capex_proyecto(valor);
+        String suma_cotiza = suma_cotizaciones(valor);
+
+        long total_resta = Long.parseLong(capex) - Long.parseLong(suma_cotiza);
+        String calculo_capex_actual = Long.toString(total_resta);
+
+        boolean act_capex = update_capex(calculo_capex_actual, valor);
+        boolean act_diferencia = update_diferente(suma_cotiza, valor);
+
+        if (act_capex == true && act_diferencia == true) {
+            JOptionPane.showMessageDialog(null, "CAPEX DEL PROYECTO : " + valor + " ACTUALIZADO");
+        } else {
+            JOptionPane.showMessageDialog(null, "PROBLEMAS AL ACTUALIZAR CAPEX");
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -549,6 +611,7 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
     private javax.swing.JComboBox combo_item;
     private javax.swing.JComboBox combo_pr;
     private javax.swing.JComboBox combo_trabajo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -590,6 +653,16 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
         check_no_cumple.setSelected(false);
     }
 
+    //METODO PARA VALIDAR DATO NUMERICO O NO NUMERICO
+    private boolean isNumeric(String cadena) {
+        try {
+            Double.parseDouble(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
     // METODO PARA CARGAR TABLA PROYECTOS
     public boolean insertar_ejecucion(
             String ITEM,
@@ -616,11 +689,10 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
         Connection cn = con.Conectar();
 
         query = "INSERT INTO "
-                + " CAPITALIZACION "
-                + " ( ID,ID_ITEM,COTIZACION,PROVEEDOR, COSTOS, LICITACION, PR,BLOQUEO_S,BLOQUEO_F,BLOQUEO_C,BLOQUEO_NC,REMISIONES,COMENTARIOS,ID_PROYECTO ) "
+                + " PROYECTO_DETALLADO "
+                + " ( ID,COTIZACION,PROVEEDOR, COSTOS, LICITACION, PR,BLOQUEO_S,BLOQUEO_F,BLOQUEO_C,BLOQUEO_NC,REMISIONES,COMENTARIOS,ID_ITEM,ID_PROYECTO ) "
                 + " VALUES ( "
                 + " NULL,"
-                + "  " + ITEM + ","
                 + "  '" + COTIZACION + "',"
                 + "  '" + PROVEEDOR + "',"
                 + "  '" + COSTO + "',"
@@ -632,6 +704,7 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
                 + "  '" + NO_CUMPLE + "',"
                 + "  '" + REMISION + "',"
                 + "  '" + OBSERVACION + "',"
+                + "  " + ITEM + ","
                 + "  " + ID_PROYECTO + ");";
 
         query2 = "UPDATE"
@@ -657,7 +730,7 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
     }
 
     // METODO PARA CARGAR TABLA PROYECTOS
-    public void cargar_tabla_capitalizacion(String ID_PROYECTO) {
+    public void cargar_tabla_ejecuciones(String ID_PROYECTO) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -742,7 +815,7 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
 
         try {
 
-            query = "SELECT ID FROM ITEM WHERE DESCRIPCION LIKE '%" + item + "%' ); ";
+            query = "SELECT ID FROM ITEM WHERE DESCRIPCION LIKE '%" + item + "%'; ";
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -755,6 +828,136 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, ex);
             return "";
         }
+    }
+
+    public String capex_proyecto(String id_proyecto) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        try {
+
+            query = "SELECT CAPEX FROM PROYECTOS WHERE ID = " + id_proyecto + "; ";
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            String v_capex = (rs.getString("CAPEX"));
+
+            conexion.cerrar();
+            return v_capex;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            return "";
+        }
+    }
+
+    public String suma_cotizaciones(String id_proyecto) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        try {
+
+            query = "SELECT SUM(COSTOS) AS SUMA FROM PROYECTO_DETALLADO WHERE ID_PROYECTO = " + id_proyecto + "; ";
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            String sum_capex = (rs.getString("SUMA"));
+
+            conexion.cerrar();
+            return sum_capex;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            return "";
+        }
+    }
+
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public boolean update_capex(String CAPEX, String ID) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "UPDATE"
+                + " PROYECTOS"
+                + " SET "
+                + "  CAPEX_ACTUAL = " + CAPEX + ""
+                + " WHERE"
+                + "  ID = " + ID + ";";
+
+        try {
+            Statement st = cn.createStatement();
+            st.executeUpdate(query);
+
+            return true;
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            return false;
+        }
+    }
+
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public boolean update_diferente(String DIFERENCIA, String ID) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "UPDATE"
+                + " PROYECTOS"
+                + " SET "
+                + "  DIFERENCIA = " + DIFERENCIA + ""
+                + " WHERE"
+                + "  ID = " + ID + ";";
+
+        try {
+            Statement st = cn.createStatement();
+            st.executeUpdate(query);
+
+            return true;
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            return false;
+        }
+    }
+
+    public void centrar_datos() {
+        Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+        tabla_informacion_detallada.getColumnModel().getColumn(2).setCellRenderer(Alinear);
+        tabla_informacion_detallada.getColumnModel().getColumn(3).setCellRenderer(Alinear);
+        tabla_informacion_detallada.getColumnModel().getColumn(4).setCellRenderer(Alinear);
+        tabla_informacion_detallada.getColumnModel().getColumn(5).setCellRenderer(Alinear);
+    }
+
+    public void ancho_columnas() {
+        tabla_informacion_detallada.getColumnModel().getColumn(0).setPreferredWidth(180);
+        tabla_informacion_detallada.getColumnModel().getColumn(1).setPreferredWidth(420);
+        tabla_informacion_detallada.getColumnModel().getColumn(2).setPreferredWidth(60);
+        tabla_informacion_detallada.getColumnModel().getColumn(3).setPreferredWidth(60);
+        tabla_informacion_detallada.getColumnModel().getColumn(4).setPreferredWidth(60);
+        tabla_informacion_detallada.getColumnModel().getColumn(5).setPreferredWidth(60);
     }
 
 }
