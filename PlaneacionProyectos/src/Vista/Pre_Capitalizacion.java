@@ -213,11 +213,9 @@ public static DefaultTableModel modelo;
                     } else {
                         JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
                         LimpiarCampos();
-                    }
-                        
+                    }                        
         }
-        
-        
+                
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

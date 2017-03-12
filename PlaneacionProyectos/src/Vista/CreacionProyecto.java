@@ -594,40 +594,40 @@ public class CreacionProyecto extends javax.swing.JDialog {
             Statement stInsert = cn.createStatement();
             int rsInsert = stInsert.executeUpdate(queryInsert);
 
-            queryInsert = "INSERT INTO PROYECTO_DETALLADO ("
-                    + "ID,"
-                    + "COTIZACION,"
-                    + "PROVEEDOR,"
-                    + "COSTOS,"
-                    + "LICITACION,"
-                    + "PR,"
-                    + "BLOQUEO_S,"
-                    + "BLOQUEO_F,"
-                    + "BLOQUEO_C,"
-                    + "BLOQUEO_NC,"
-                    + "REMISIONES,"
-                    + "COMENTARIOS,"
-                    + "ID_ITEM,"
-                    + "ID_PROYECTO)"
-                    + "VALUES ("
-                    + "NULL,"
-                    + "'',"
-                    + "'',"
-                    + "'',"
-                    + "'',"
-                    + "'',"
-                    + "'',"
-                    + "'',"
-                    + "'',"
-                    + "'',"
-                    + "'',"
-                    + "'',"
-                    + "'',"
-                    + "" + registroSelect + ");";
-            System.out.println(queryInsert);
-
-            Statement stInsert2 = cn.createStatement();
-            int rsInsert2 = stInsert2.executeUpdate(queryInsert);
+//            queryInsert = "INSERT INTO PROYECTO_DETALLADO ("
+//                    + "ID,"
+//                    + "COTIZACION,"
+//                    + "PROVEEDOR,"
+//                    + "COSTOS,"
+//                    + "LICITACION,"
+//                    + "PR,"
+//                    + "BLOQUEO_S,"
+//                    + "BLOQUEO_F,"
+//                    + "BLOQUEO_C,"
+//                    + "BLOQUEO_NC,"
+//                    + "REMISIONES,"
+//                    + "COMENTARIOS,"
+//                    + "ID_ITEM,"
+//                    + "ID_PROYECTO)"
+//                    + "VALUES ("
+//                    + "NULL,"
+//                    + "'',"
+//                    + "'',"
+//                    + "'',"
+//                    + "'',"
+//                    + "'',"
+//                    + "'',"
+//                    + "'',"
+//                    + "'',"
+//                    + "'',"
+//                    + "'',"
+//                    + "'',"
+//                    + "'',"
+//                    + "" + registroSelect + ");";
+//            System.out.println(queryInsert);
+//
+//            Statement stInsert2 = cn.createStatement();
+//            int rsInsert2 = stInsert2.executeUpdate(queryInsert);
 
         } catch (SQLException ex) {
 
