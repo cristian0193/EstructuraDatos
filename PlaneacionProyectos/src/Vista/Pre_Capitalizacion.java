@@ -6,21 +6,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class Pre_Capitalizacion extends javax.swing.JDialog {
 
-public static String valor; 
-public static ConexioSQLite conexion;
-public static DefaultTableModel modelo;
-    
-    public Pre_Capitalizacion(java.awt.Frame parent, boolean modal,String numero) {
+    public static String valor;
+    public static ConexioSQLite conexion;
+    public static DefaultTableModel modelo;
+    public static DefaultTableCellRenderer Alinear;
+
+    public Pre_Capitalizacion(java.awt.Frame parent, boolean modal, String numero) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        valor = numero; 
+        valor = numero;
         this.txt_id_proyecto_detallada.setText(valor);
-        cargar_tabla_capitalizacion(valor); 
+        cargar_tabla_capitalizacion(valor);
+        ancho_columnas();
     }
 
     @SuppressWarnings("unchecked")
@@ -120,9 +123,15 @@ public static DefaultTableModel modelo;
             tabla_capitalizacion.getColumnModel().getColumn(0).setMinWidth(40);
             tabla_capitalizacion.getColumnModel().getColumn(0).setPreferredWidth(40);
             tabla_capitalizacion.getColumnModel().getColumn(0).setMaxWidth(40);
-            tabla_capitalizacion.getColumnModel().getColumn(1).setMinWidth(500);
-            tabla_capitalizacion.getColumnModel().getColumn(1).setPreferredWidth(500);
-            tabla_capitalizacion.getColumnModel().getColumn(1).setMaxWidth(500);
+            tabla_capitalizacion.getColumnModel().getColumn(1).setMinWidth(520);
+            tabla_capitalizacion.getColumnModel().getColumn(1).setPreferredWidth(520);
+            tabla_capitalizacion.getColumnModel().getColumn(1).setMaxWidth(520);
+            tabla_capitalizacion.getColumnModel().getColumn(2).setMinWidth(140);
+            tabla_capitalizacion.getColumnModel().getColumn(2).setPreferredWidth(140);
+            tabla_capitalizacion.getColumnModel().getColumn(2).setMaxWidth(140);
+            tabla_capitalizacion.getColumnModel().getColumn(3).setMinWidth(140);
+            tabla_capitalizacion.getColumnModel().getColumn(3).setPreferredWidth(140);
+            tabla_capitalizacion.getColumnModel().getColumn(3).setMaxWidth(140);
         }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -189,35 +198,34 @@ public static DefaultTableModel modelo;
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_id_proyecto_detalladaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id_proyecto_detalladaActionPerformed
-        
+
     }//GEN-LAST:event_txt_id_proyecto_detalladaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+
         String item = txt_item.getText();
         String activo = txt_activo.getText();
         String fecha = txt_fecha_capitalizacion.getText();
-        
-        if(item.equals("")|| activo.equals("") || fecha.equals("")){
-            JOptionPane.showMessageDialog(null,"INGRESE TODOS LOS CAMPOS OBLIGATORIOS");
-        }else{
-                                    
-             boolean resultado = insertar_capitalizacion(item, activo, fecha, valor);
-            
-            if (resultado == true) {
-                        JOptionPane.showMessageDialog(null, "CAPITALIZACION INSERTADA");
-                        LimpiarCampos();
-                        conexion.cerrar();
-                        cargar_tabla_capitalizacion(valor);                        
-                        conexion.cerrar();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                        LimpiarCampos();
-                    }                        
-        }
-                
-    }//GEN-LAST:event_jButton1ActionPerformed
 
+        if (item.equals("") || activo.equals("") || fecha.equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS OBLIGATORIOS");
+        } else {
+
+            boolean resultado = insertar_capitalizacion(item, activo, fecha, valor);
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "CAPITALIZACION INSERTADA");
+                LimpiarCampos();
+                cargar_tabla_capitalizacion(valor);
+                ancho_columnas();
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                LimpiarCampos();
+            }
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -274,13 +282,13 @@ public static DefaultTableModel modelo;
     private javax.swing.JTextField txt_item;
     // End of variables declaration//GEN-END:variables
 
-        public void LimpiarCampos() {
+    public void LimpiarCampos() {
         txt_item.setText("");
         txt_activo.setText("");
         txt_fecha_capitalizacion.setText("");
-        }
-    
- // METODO PARA CARGAR TABLA PROYECTOS
+    }
+
+    // METODO PARA CARGAR TABLA PROYECTOS
     public boolean insertar_capitalizacion(
             String CAP_ITEM,
             String CAP_ACTIVO,
@@ -311,9 +319,9 @@ public static DefaultTableModel modelo;
                 + "  ESTADO = 'EN EJECUCION'"
                 + " WHERE"
                 + "  ID = " + ID_PROYECTO + ";";
-        
-        System.out.println(""+query);
-        
+
+        System.out.println("" + query);
+
         try {
             Statement st = cn.createStatement();
             st.executeUpdate(query);
@@ -322,12 +330,12 @@ public static DefaultTableModel modelo;
             return true;
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "insertar "+ex);
+            JOptionPane.showMessageDialog(null, "insertar " + ex);
             return false;
         }
     }
-    
-        // METODO PARA CARGAR TABLA PROYECTOS
+
+    // METODO PARA CARGAR TABLA PROYECTOS
     public void cargar_tabla_capitalizacion(String ID_PROYECTO) {
 
         conexion = new ConexioSQLite();
@@ -351,7 +359,7 @@ public static DefaultTableModel modelo;
                 + "CAPITALIZACION "
                 + "WHERE "
                 + "  ID_PROYECTO = " + ID_PROYECTO + ";";
-        System.out.println(""+query);
+        System.out.println("" + query);
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -360,7 +368,7 @@ public static DefaultTableModel modelo;
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("CAP_ITEM");
                 registro[2] = rs.getString("CAP_ACTIVO");
-                registro[3] = rs.getString("CAP_FECHA");                
+                registro[3] = rs.getString("CAP_FECHA");
 
                 modelo.addRow(registro);
             }
@@ -368,9 +376,16 @@ public static DefaultTableModel modelo;
 
         } catch (SQLException ex) {
 
-            JOptionPane.showMessageDialog(null, "tabla "+ex);
+            JOptionPane.showMessageDialog(null, "tabla " + ex);
 
         }
+    }
+
+    public void ancho_columnas() {
+        tabla_capitalizacion.getColumnModel().getColumn(0).setPreferredWidth(40);
+        tabla_capitalizacion.getColumnModel().getColumn(1).setPreferredWidth(520);
+        tabla_capitalizacion.getColumnModel().getColumn(2).setPreferredWidth(140);
+        tabla_capitalizacion.getColumnModel().getColumn(3).setPreferredWidth(140);
     }
 
 }

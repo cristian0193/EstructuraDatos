@@ -220,17 +220,17 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="500" minWidth="500" prefWidth="500" resizable="true">
+                    <Column maxWidth="520" minWidth="520" prefWidth="520" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                    <Column maxWidth="140" minWidth="140" prefWidth="140" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                    <Column maxWidth="140" minWidth="140" prefWidth="140" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
