@@ -352,7 +352,7 @@ public class Pre_RUs extends javax.swing.JDialog {
                 + "  RU_FECHA = '" + FECHA + "',"
                 + "  RU_MANUFACTURA = '" + MANUFACTURA + "',"
                 + "  RU_MTTO = '" + MANTENIMIENTO + "',"
-                + "  RU_CALIDAD = '" + CALIDAD + "'"
+                + "  RU_CALIDAD = '" + CALIDAD + "',"
                 + "  RU_EHS = '" + EHS + "',"
                 + "  RU_FACILITIES = '" + FACILITIES + "',"
                 + "  RU_IT = '" + IT + "'"
