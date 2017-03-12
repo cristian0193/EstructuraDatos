@@ -200,8 +200,8 @@ public static DefaultTableModel modelo;
         if(item.equals("")|| activo.equals("") || fecha.equals("")){
             JOptionPane.showMessageDialog(null,"INGRESE TODOS LOS CAMPOS OBLIGATORIOS");
         }else{
-            
-             boolean resultado = conexion.insert_proyecto(item, activo, fecha, valor);
+                                    
+             boolean resultado = insertar_capitalizacion(item, activo, fecha, valor);
             
             if (resultado == true) {
                         JOptionPane.showMessageDialog(null, "CAPITALIZACION INSERTADA");
@@ -282,8 +282,7 @@ public static DefaultTableModel modelo;
         }
     
  // METODO PARA CARGAR TABLA PROYECTOS
-    public boolean insertar_capitalizacion( String FECHA,
-            String CAP_ITEM,
+    public boolean insertar_capitalizacion(String CAP_ITEM,
             String CAP_ACTIVO,
             String CAP_FECHA,
             String ID_PROYECTO) {
