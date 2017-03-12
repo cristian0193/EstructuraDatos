@@ -104,7 +104,6 @@ public static DefaultTableModel modelo;
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla"));
 
-        tabla_capitalizacion.setAutoCreateColumnsFromModel(false);
         tabla_capitalizacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -206,6 +205,7 @@ public static DefaultTableModel modelo;
             if (resultado == true) {
                         JOptionPane.showMessageDialog(null, "CAPITALIZACION INSERTADA");
                         LimpiarCampos();
+                        conexion.cerrar();
                         cargar_tabla_capitalizacion(valor);                        
                         conexion.cerrar();
                     } else {
@@ -297,13 +297,13 @@ public static DefaultTableModel modelo;
         Connection cn = con.Conectar();
 
         query = "INSERT INTO "
-                + " CAPITALIZACION"
+                + " CAPITALIZACION "
                 + " ( ID, CAP_ITEM,CAP_ACTIVO,CAP_FECHA,ID_PROYECTO ) VALUES ( "
                 + "  NULL,"
                 + "  '" + CAP_ITEM + "',"
                 + "  '" + CAP_ACTIVO + "',"
                 + "  '" + CAP_FECHA + "',"
-                + "  " + ID_PROYECTO + "";
+                + "  " + ID_PROYECTO + ");";
 
         query2 = "UPDATE"
                 + " PROYECTOS"
@@ -311,6 +311,8 @@ public static DefaultTableModel modelo;
                 + "  ESTADO = 'EN EJECUCION'"
                 + " WHERE"
                 + "  ID = " + ID_PROYECTO + ";";
+        
+        System.out.println(""+query);
         
         try {
             Statement st = cn.createStatement();
@@ -320,7 +322,7 @@ public static DefaultTableModel modelo;
             return true;
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, "insertar "+ex);
             return false;
         }
     }
@@ -365,7 +367,7 @@ public static DefaultTableModel modelo;
 
         } catch (SQLException ex) {
 
-            JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, "tabla "+ex);
 
         }
     }
