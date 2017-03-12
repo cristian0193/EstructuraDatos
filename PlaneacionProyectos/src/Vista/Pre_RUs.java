@@ -355,7 +355,7 @@ public class Pre_RUs extends javax.swing.JDialog {
                 + "  RU_CALIDAD = '" + CALIDAD + "',"
                 + "  RU_EHS = '" + EHS + "',"
                 + "  RU_FACILITIES = '" + FACILITIES + "',"
-                + "  RU_IT = '" + IT + "'"
+                + "  RU_IT = '" + IT + "',"
                 + "  RU_INGENIERIA = '" + INGENIERIA + "',"
                 + "  RU_OTROS = '" + OTROS + "'"
                 + " WHERE"
