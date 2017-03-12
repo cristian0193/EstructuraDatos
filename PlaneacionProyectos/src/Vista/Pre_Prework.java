@@ -182,9 +182,6 @@ public class Pre_Prework extends javax.swing.JDialog {
 
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "PREWORK ACTUALIZADO");                
-                new Pre_Prework(null, true, valor).setVisible(false);
-                PrerequsitosProyectos prerequisitos = new PrerequsitosProyectos(null, true, valor);
-                prerequisitos.btn_prework.setBackground(Color.GREEN);
                 conexion.cerrar();
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");

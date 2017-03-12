@@ -1,8 +1,17 @@
 package Vista;
 
+import Conexion.ConexioSQLite;
+import static Vista.Pre_Prework.conexion;
+import static Vista.Pre_Prework.valor;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 public class Pre_Entrega extends javax.swing.JDialog {
 
     public static String valor; 
+    public static ConexioSQLite conexion;
     
     public Pre_Entrega(java.awt.Frame parent, boolean modal,String numero) {
         super(parent, modal);
@@ -19,12 +28,12 @@ public class Pre_Entrega extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txt_observaciones = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        fecha_entrega = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -35,9 +44,9 @@ public class Pre_Entrega extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txt_observaciones.setColumns(20);
+        txt_observaciones.setRows(5);
+        jScrollPane1.setViewportView(txt_observaciones);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("OBSERVACIONES :");
@@ -67,6 +76,11 @@ public class Pre_Entrega extends javax.swing.JDialog {
 
         jButton1.setBackground(new java.awt.Color(51, 255, 204));
         jButton1.setText("Guardar Registro");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -83,7 +97,7 @@ public class Pre_Entrega extends javax.swing.JDialog {
                 .addGap(103, 103, 103)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fecha_entrega, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addContainerGap(86, Short.MAX_VALUE))
@@ -94,7 +108,7 @@ public class Pre_Entrega extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fecha_entrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -130,6 +144,31 @@ public class Pre_Entrega extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        String observaciones = "";
+
+        String fecha = fecha_entrega.getText();
+
+        if (fecha.equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE LA FECHA");
+        } else {
+
+            observaciones = txt_observaciones.getText();
+            
+            boolean resultado = update_entrega(valor, fecha, observaciones);
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "ENTREGA ACTUALIZADA");                
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+            }
+
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,6 +213,7 @@ public class Pre_Entrega extends javax.swing.JDialog {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField fecha_entrega;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
@@ -182,7 +222,49 @@ public class Pre_Entrega extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextArea txt_observaciones;
     // End of variables declaration//GEN-END:variables
+
+        // METODO PARA CARGAR TABLA PROYECTOS
+    public boolean update_entrega(String ID,
+            String FECHA,
+            String OBSERVACION) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+        String query2 = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "UPDATE"
+                + " PREREQUISITOS"
+                + " SET "
+                + "  EN_FECHA = '" + FECHA + "',"
+                + "  EN_OBSERVACIONES = '" + OBSERVACION + "'"
+                + " WHERE"
+                + "  ID = " + ID + ";";
+        
+        query2 = "UPDATE"
+                + " PROYECTOS"
+                + " SET "
+                + "  ESTADO = 'EN EJECUCION'"
+                + " WHERE"
+                + "  ID = " + ID + ";";
+        
+        try {
+            Statement st = cn.createStatement();
+            st.executeUpdate(query);
+            st.executeUpdate(query2);
+
+            return true;
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            return false;
+        }
+    }
+
 }

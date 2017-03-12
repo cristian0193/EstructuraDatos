@@ -1,8 +1,17 @@
 package Vista;
 
+import Conexion.ConexioSQLite;
+import static Vista.Pre_Prework.conexion;
+import static Vista.Pre_Prework.valor;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 public class Pre_Control_Cambios extends javax.swing.JDialog {
 
     public static String valor; 
+    public static ConexioSQLite conexion;
     
     public Pre_Control_Cambios(java.awt.Frame parent, boolean modal,String numero) {
         super(parent, modal);
@@ -20,11 +29,11 @@ public class Pre_Control_Cambios extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txt_capta = new javax.swing.JTextField();
+        txt_symphony = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
+        fecha_gcc = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -53,8 +62,8 @@ public class Pre_Control_Cambios extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_capta, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_symphony, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -63,16 +72,21 @@ public class Pre_Control_Cambios extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_capta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_symphony, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton1.setBackground(new java.awt.Color(51, 255, 204));
         jButton1.setText("Guardar Registro");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -89,7 +103,7 @@ public class Pre_Control_Cambios extends javax.swing.JDialog {
                 .addGap(55, 55, 55)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fecha_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -100,7 +114,7 @@ public class Pre_Control_Cambios extends javax.swing.JDialog {
                 .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fecha_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(23, 23, 23))
         );
@@ -136,6 +150,34 @@ public class Pre_Control_Cambios extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                
+        String capta = "";
+        String gcc = "";
+
+        String fecha = fecha_gcc.getText();
+
+        if (fecha.equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE LA FECHA");
+        } else {
+
+            capta = txt_capta.getText();
+            gcc = txt_symphony.getText();
+            
+            boolean resultado = update_control_cambios(valor, fecha, capta, gcc);
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "CONTROL DE CAMBIOS ACTUALIZADO");                
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+            }
+
+        }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,6 +222,7 @@ public class Pre_Control_Cambios extends javax.swing.JDialog {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField fecha_gcc;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -188,8 +231,52 @@ public class Pre_Control_Cambios extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField txt_capta;
+    private javax.swing.JTextField txt_symphony;
     // End of variables declaration//GEN-END:variables
+
+// METODO PARA CARGAR TABLA PROYECTOS
+    public boolean update_control_cambios(String ID,
+            String FECHA,
+            String CAPTA,
+            String SYMPHONY) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+        String query2 = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "UPDATE"
+                + " PREREQUISITOS"
+                + " SET "
+                + "  CC_FECHA = '" + FECHA + "',"
+                + "  CC_CAPTA = '" + CAPTA + "',"
+                + "  CC_GCC = '" + SYMPHONY + "'"
+                + " WHERE"
+                + "  ID = " + ID + ";";
+        
+        query2 = "UPDATE"
+                + " PROYECTOS"
+                + " SET "
+                + "  ESTADO = 'EN EJECUCION'"
+                + " WHERE"
+                + "  ID = " + ID + ";";
+        
+        try {
+            Statement st = cn.createStatement();
+            st.executeUpdate(query);
+            st.executeUpdate(query2);
+
+            return true;
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            return false;
+        }
+    }
+
 }

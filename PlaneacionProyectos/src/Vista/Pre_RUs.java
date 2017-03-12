@@ -1,16 +1,25 @@
 package Vista;
 
+import Conexion.ConexioSQLite;
+import static Vista.Pre_Prework.conexion;
+import static Vista.Pre_Prework.valor;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 public class Pre_RUs extends javax.swing.JDialog {
 
-    public static String valor; 
-    
-    public Pre_RUs(java.awt.Frame parent, boolean modal,String numero) {
+    public static String valor;
+    public static ConexioSQLite conexion;
+
+    public Pre_RUs(java.awt.Frame parent, boolean modal, String numero) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        valor = numero; 
+        valor = numero;
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -18,18 +27,18 @@ public class Pre_RUs extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
+        check_manufactura = new javax.swing.JCheckBox();
+        check_mantenimiento = new javax.swing.JCheckBox();
+        check_ehs = new javax.swing.JCheckBox();
+        check_calidad = new javax.swing.JCheckBox();
+        check_facilities = new javax.swing.JCheckBox();
+        check_it = new javax.swing.JCheckBox();
+        check_ingenieria = new javax.swing.JCheckBox();
+        check_otros = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        fecha_ru = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -40,29 +49,29 @@ public class Pre_RUs extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jCheckBox1.setText("MANUFACTUA");
+        check_manufactura.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        check_manufactura.setText("MANUFACTUA");
 
-        jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jCheckBox2.setText("MANTENIMIENTO");
+        check_mantenimiento.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        check_mantenimiento.setText("MANTENIMIENTO");
 
-        jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jCheckBox3.setText("EHS");
+        check_ehs.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        check_ehs.setText("EHS");
 
-        jCheckBox4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jCheckBox4.setText("CALIDAD");
+        check_calidad.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        check_calidad.setText("CALIDAD");
 
-        jCheckBox5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jCheckBox5.setText("FACILITIES");
+        check_facilities.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        check_facilities.setText("FACILITIES");
 
-        jCheckBox6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jCheckBox6.setText("IT");
+        check_it.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        check_it.setText("IT");
 
-        jCheckBox7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jCheckBox7.setText("INGENIERIA");
+        check_ingenieria.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        check_ingenieria.setText("INGENIERIA");
 
-        jCheckBox8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jCheckBox8.setText("OTROS");
+        check_otros.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        check_otros.setText("OTROS");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -71,16 +80,16 @@ public class Pre_RUs extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox7))
+                    .addComponent(check_manufactura)
+                    .addComponent(check_calidad)
+                    .addComponent(check_facilities)
+                    .addComponent(check_ingenieria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jCheckBox8))
+                    .addComponent(check_mantenimiento)
+                    .addComponent(check_ehs)
+                    .addComponent(check_it)
+                    .addComponent(check_otros))
                 .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
@@ -88,25 +97,30 @@ public class Pre_RUs extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2))
+                    .addComponent(check_manufactura)
+                    .addComponent(check_mantenimiento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox3))
+                    .addComponent(check_calidad)
+                    .addComponent(check_ehs))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox6))
+                    .addComponent(check_facilities)
+                    .addComponent(check_it))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox7)
-                    .addComponent(jCheckBox8))
+                    .addComponent(check_ingenieria)
+                    .addComponent(check_otros))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton1.setBackground(new java.awt.Color(51, 255, 204));
         jButton1.setText("Guardar Registro");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -123,7 +137,7 @@ public class Pre_RUs extends javax.swing.JDialog {
                 .addGap(87, 87, 87)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fecha_ru, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -134,7 +148,7 @@ public class Pre_RUs extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fecha_ru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
@@ -171,9 +185,89 @@ public class Pre_RUs extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        String manufactura = "";
+        String mantenimiento = "";
+        String calidad = "";
+        String ehs = "";
+        String facilities = "";
+        String it = "";
+        String ingeniria = "";
+        String otros = "";        
+
+        String fecha = fecha_ru.getText();
+
+        if (fecha.equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE LA FECHA");
+        } else {
+            
+            if (check_manufactura.isSelected()) {
+                manufactura = "S";
+            } else {
+                manufactura = "N";
+            }
+
+            if (check_mantenimiento.isSelected()) {
+                mantenimiento = "S";
+            } else {
+                mantenimiento = "N";
+            }
+
+            if (check_calidad.isSelected()) {
+                calidad = "S";
+            } else {
+                calidad = "N";
+            }
+
+            if (check_ehs.isSelected()) {
+                ehs = "S";
+            } else {
+                ehs = "N";
+            }
+
+            if (check_facilities.isSelected()) {
+                facilities = "S";
+            } else {
+                facilities = "N";
+            }
+
+            if (check_it.isSelected()) {
+                it = "S";
+            } else {
+                it = "N";
+            }
+            
+            if (check_ingenieria.isSelected()) {
+                ingeniria = "S";
+            } else {
+                ingeniria = "N";
+            }
+
+            if (check_otros.isSelected()) {
+                otros = "S";
+            } else {
+                otros = "N";
+            }
+            
+            boolean resultado = update_ru(valor, fecha, manufactura, mantenimiento, calidad, ehs, facilities, it, ingeniria, otros);
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "REQUERIMIENTOS ACTUALIZADOS");                
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+            }
+
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
-     * @param args the command line arguments
-//     */
+     * @param args the command line arguments //
+     */
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -214,20 +308,77 @@ public class Pre_RUs extends javax.swing.JDialog {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox check_calidad;
+    private javax.swing.JCheckBox check_ehs;
+    private javax.swing.JCheckBox check_facilities;
+    private javax.swing.JCheckBox check_ingenieria;
+    private javax.swing.JCheckBox check_it;
+    private javax.swing.JCheckBox check_mantenimiento;
+    private javax.swing.JCheckBox check_manufactura;
+    private javax.swing.JCheckBox check_otros;
+    private javax.swing.JTextField fecha_ru;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public boolean update_ru(String ID,
+            String FECHA,
+            String MANUFACTURA,
+            String MANTENIMIENTO,
+            String CALIDAD,
+            String EHS,
+            String FACILITIES,
+            String IT,
+            String INGENIERIA,
+            String OTROS) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+        String query2 = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "UPDATE"
+                + " PREREQUISITOS"
+                + " SET "
+                + "  RU_FECHA = '" + FECHA + "',"
+                + "  RU_MANUFACTURA = '" + MANUFACTURA + "',"
+                + "  RU_MTTO = '" + MANTENIMIENTO + "',"
+                + "  RU_CALIDAD = '" + CALIDAD + "'"
+                + "  RU_EHS = '" + EHS + "',"
+                + "  RU_FACILITIES = '" + FACILITIES + "',"
+                + "  RU_IT = '" + IT + "'"
+                + "  RU_INGENIERIA = '" + INGENIERIA + "',"
+                + "  RU_OTROS = '" + OTROS + "'"
+                + " WHERE"
+                + "  ID = " + ID + ";";
+
+        query2 = "UPDATE"
+                + " PROYECTOS"
+                + " SET "
+                + "  ESTADO = 'EN EJECUCION'"
+                + " WHERE"
+                + "  ID = " + ID + ";";
+
+        try {
+            Statement st = cn.createStatement();
+            st.executeUpdate(query);
+            st.executeUpdate(query2);
+
+            return true;
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            return false;
+        }
+    }
+
 }
