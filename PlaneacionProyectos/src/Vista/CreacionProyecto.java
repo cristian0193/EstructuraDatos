@@ -588,6 +588,9 @@ public class CreacionProyecto extends javax.swing.JDialog {
                     + " '',"
                     + " '',"
                     + " '',"
+                     + " '',"
+                    + " '',"
+                    + " '',"
                     + "" + registroSelect + ");";
             System.out.println(queryInsert);
 
