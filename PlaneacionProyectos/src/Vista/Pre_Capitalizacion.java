@@ -20,6 +20,7 @@ public static DefaultTableModel modelo;
         this.setLocationRelativeTo(null);
         valor = numero; 
         this.txt_id_proyecto_detallada.setText(valor);
+        cargar_tabla_capitalizacion(valor); 
     }
 
     @SuppressWarnings("unchecked")
