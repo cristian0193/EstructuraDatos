@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -55,7 +56,6 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
         txt_licitacion = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txt_proveedor = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -90,6 +90,15 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
         jLabel4.setText("Cotizacion :");
 
         jLabel5.setText("Costos :");
+
+        txt_costo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txt_costoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txt_costoMouseExited(evt);
+            }
+        });
 
         jLabel6.setText("PR :");
 
@@ -153,8 +162,6 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
 
         jLabel10.setText("Proveedor :");
 
-        jLabel11.setText("DD/MM/YYYY");
-
         jLabel12.setText("DD/MM/YYYY");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -205,13 +212,8 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(combo_item, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 21, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel11)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,11 +256,6 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel11)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla"));
@@ -369,6 +366,9 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
 
     private void btn_grabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_grabarActionPerformed
 
+        String costo_convertido = "";
+        double costo_validacion = 0;
+
         String trabajo = combo_trabajo.getSelectedItem().toString();
         String item = combo_item.getSelectedItem().toString();
         String cotizacion = combo_cotizacion.getSelectedItem().toString();
@@ -408,25 +408,56 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
         }
 
         if (trabajo.equals("Seleccionar") || item.equals("Seleccionar") || cotizacion.equals("Seleccionar")
-                || proveedor.equals("") || costo.equals("") || licitacion.equals("") || pr.equals("Seleccionar")
-                || remision.equals("") || comentario.equals("")) {
+                || proveedor.equals("") || costo.equals("") || pr.equals("Seleccionar")
+                || remision.equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS OBLIGATORIOS");
         } else {
 
-            boolean resultado = insertar_ejecucion(item, cotizacion, proveedor, costo, licitacion, pr, s, f, c, nc, remision, comentario, valor);
+            costo_convertido = costo.replaceAll("\\.", "");
 
-            if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "CAPITALIZACION INSERTADA");
-                LimpiarCampos();
-                conexion.cerrar();
-                cargar_tabla_capitalizacion(valor);
-                conexion.cerrar();
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                LimpiarCampos();
+            costo_validacion = Double.parseDouble(costo_convertido);
+
+            if (costo_validacion > 10000000 && txt_licitacion.equals("")) {
+               String fecha = JOptionPane.showInputDialog(null, "EL COSTO DE LA COTIZACION ES MAYOR A 10.000.000 \n INGRESE LA FECHA");
+               txt_licitacion.setText(fecha);
+                
+            } else if (costo_validacion > 10000000 && !(txt_licitacion.equals(""))){
+
+                String item_convertido = id_item(item);
+
+                boolean resultado = insertar_ejecucion(item_convertido, cotizacion, proveedor, costo_convertido, licitacion, pr, s, f, c, nc, remision, comentario, valor);
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "EJECUCION INSERTADA");
+                    LimpiarCampos();
+                    conexion.cerrar();
+                    cargar_tabla_capitalizacion(valor);
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                    LimpiarCampos();
+                }
+
+            }else{
+                
+                String item_convertido = id_item(item);
+
+                boolean resultado = insertar_ejecucion(item_convertido, cotizacion, proveedor, costo_convertido, licitacion, pr, s, f, c, nc, remision, comentario, valor);
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "EJECUCION INSERTADA");
+                    LimpiarCampos();
+                    conexion.cerrar();
+                    cargar_tabla_capitalizacion(valor);
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                    LimpiarCampos();
+                }
+                
             }
-        }
 
+        }
 
     }//GEN-LAST:event_btn_grabarActionPerformed
 
@@ -442,6 +473,32 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_combo_trabajoItemStateChanged
+
+    private void txt_costoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_costoMouseExited
+
+        if (txt_costo.getText().equals("")) {
+//            JOptionPane.showMessageDialog(null, "estoy afuera");
+        } else {
+            double valor = Double.parseDouble(txt_costo.getText());
+            DecimalFormat formatear = new DecimalFormat("###,###,###,###,###,###,###.##");
+            this.txt_costo.setText(formatear.format(valor));
+
+        }
+
+    }//GEN-LAST:event_txt_costoMouseExited
+
+    private void txt_costoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_costoMouseEntered
+
+        if (txt_costo.getText().equals("")) {
+        } else {
+            String valor = "", numero = "";
+
+            valor = txt_costo.getText();
+            numero = valor.replaceAll("\\.", "");
+            this.txt_costo.setText("" + numero);
+        }
+
+    }//GEN-LAST:event_txt_costoMouseEntered
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -494,7 +551,6 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
     private javax.swing.JComboBox combo_trabajo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -665,14 +721,40 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
-            
-                while (rs.next()) {
-                    combo_item.addItem(rs.getString("DESCRIPCION"));
-                }
-                conexion.cerrar();
-            }catch (SQLException ex) {
+
+            while (rs.next()) {
+                combo_item.addItem(rs.getString("DESCRIPCION"));
+            }
+            conexion.cerrar();
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
+    }
+
+    public String id_item(String item) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        try {
+
+            query = "SELECT ID FROM ITEM WHERE DESCRIPCION LIKE '%" + item + "%' ); ";
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            String id_item = (rs.getString("ID"));
+
+            conexion.cerrar();
+            return id_item;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            return "";
         }
-    
+    }
+
 }

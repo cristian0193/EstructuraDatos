@@ -277,7 +277,6 @@ public class CreacionProyecto extends javax.swing.JDialog {
 
     private void txt_capex_ingresadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_capex_ingresadoMouseEntered
         if (txt_capex_ingresado.getText().equals("")) {
-//            JOptionPane.showMessageDialog(null, "estoy afuera");
         } else {
             String valor = "", numero = "";
 
