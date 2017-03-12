@@ -18,7 +18,8 @@ public static DefaultTableModel modelo;
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        valor = numero;                 
+        valor = numero; 
+        this.txt_id_proyecto_detallada.setText(valor);
     }
 
     @SuppressWarnings("unchecked")
@@ -212,8 +213,7 @@ public static DefaultTableModel modelo;
                         JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
                         LimpiarCampos();
                     }
-            
-            
+                        
         }
         
         
@@ -282,7 +282,8 @@ public static DefaultTableModel modelo;
         }
     
  // METODO PARA CARGAR TABLA PROYECTOS
-    public boolean insertar_capitalizacion(String CAP_ITEM,
+    public boolean insertar_capitalizacion(
+            String CAP_ITEM,
             String CAP_ACTIVO,
             String CAP_FECHA,
             String ID_PROYECTO) {
@@ -328,7 +329,7 @@ public static DefaultTableModel modelo;
     }
     
         // METODO PARA CARGAR TABLA PROYECTOS
-    public void cargar_tabla_capitalizacion(String id_proyecto) {
+    public void cargar_tabla_capitalizacion(String ID_PROYECTO) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -350,7 +351,7 @@ public static DefaultTableModel modelo;
                 + "FROM "
                 + "CAPITALIZACION "
                 + "WHERE "
-                + "  ID_PROYECTO = " + id_proyecto + ";";
+                + "  ID_PROYECTO = " + ID_PROYECTO + ";";
         System.out.println(""+query);
         try {
             Statement st = cn.createStatement();
