@@ -61,7 +61,8 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1600, 648));
+        setPreferredSize(new java.awt.Dimension(1600, 730));
+        setResizable(false);
 
         txt_id_proyecto_con.setEditable(false);
         txt_id_proyecto_con.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -78,6 +79,8 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         jLabel1.setText("CONSULTA DETALLA DEL PROYECTO");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "KICKOFF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+
+        jTextField2.setEditable(false);
 
         jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox4.setText("PROYECTOS");
@@ -120,6 +123,8 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         jCheckBox3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox3.setText("DISEÑOS");
 
+        jTextField1.setEditable(false);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -148,6 +153,8 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONTROL DE CAMBIOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+
+        jTextField3.setEditable(false);
 
         jLabel2.setText("Capta");
 
@@ -184,6 +191,8 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "REQUERIMIENTOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+
+        jTextField6.setEditable(false);
 
         jCheckBox6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox6.setText("CALIDAD");
@@ -262,6 +271,8 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         jCheckBox16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox16.setText("PRE-VALIDACION");
 
+        jTextField7.setEditable(false);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -323,6 +334,8 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         }
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ENTREGA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+
+        jTextField8.setEditable(false);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -440,7 +453,7 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 59, Short.MAX_VALUE))
+                        .addGap(0, 80, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
