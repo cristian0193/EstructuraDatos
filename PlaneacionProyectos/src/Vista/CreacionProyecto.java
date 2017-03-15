@@ -19,6 +19,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla();
+        ancho_columnas();
     }
 
     @SuppressWarnings("unchecked")
@@ -310,6 +311,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
                         LimpiarCampos();
                         cargar_tabla();
                         creacion_prerequisitos(descripcion);
+                        ancho_columnas();
                         conexion.cerrar();
                     } else {
                         JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
@@ -337,6 +339,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
                         JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
                         LimpiarCampos();
                         cargar_tabla();
+                        ancho_columnas();
                         conexion.cerrar();
                     } else {
                         JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZADO");
@@ -634,5 +637,14 @@ public class CreacionProyecto extends javax.swing.JDialog {
 
         }
     }
+    
+     public void ancho_columnas() {
+        tabla_creacion_proyecto.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tabla_creacion_proyecto.getColumnModel().getColumn(1).setPreferredWidth(500);
+        tabla_creacion_proyecto.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tabla_creacion_proyecto.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tabla_creacion_proyecto.getColumnModel().getColumn(4).setPreferredWidth(150);
+        tabla_creacion_proyecto.getColumnModel().getColumn(5).setPreferredWidth(150);
+     }
 
 }

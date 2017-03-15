@@ -19,6 +19,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla();
+        ancho_columnas();
     }
 
     @SuppressWarnings("unchecked")
@@ -43,7 +44,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         combo_filtro = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb_consulta_proyecto = new javax.swing.JTable(){
+        tabla_consulta_proyecto = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false; //Disallow the editing of any cell
             }
@@ -176,7 +177,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tb_consulta_proyecto.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_consulta_proyecto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -184,30 +185,30 @@ public class ConsultarProyecto extends javax.swing.JDialog {
                 "ID", "NOMBRE PROYECTO", "CAPEX INGRESADO", "CAPEX UTILIZADO", "DIFERENCIA"
             }
         ));
-        tb_consulta_proyecto.setComponentPopupMenu(jPopupMenu1);
-        tb_consulta_proyecto.setRowHeight(25);
-        tb_consulta_proyecto.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabla_consulta_proyecto.setComponentPopupMenu(jPopupMenu1);
+        tabla_consulta_proyecto.setRowHeight(25);
+        tabla_consulta_proyecto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tb_consulta_proyectoMouseClicked(evt);
+                tabla_consulta_proyectoMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tb_consulta_proyecto);
-        if (tb_consulta_proyecto.getColumnModel().getColumnCount() > 0) {
-            tb_consulta_proyecto.getColumnModel().getColumn(0).setMinWidth(50);
-            tb_consulta_proyecto.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tb_consulta_proyecto.getColumnModel().getColumn(0).setMaxWidth(50);
-            tb_consulta_proyecto.getColumnModel().getColumn(1).setMinWidth(570);
-            tb_consulta_proyecto.getColumnModel().getColumn(1).setPreferredWidth(570);
-            tb_consulta_proyecto.getColumnModel().getColumn(1).setMaxWidth(570);
-            tb_consulta_proyecto.getColumnModel().getColumn(2).setMinWidth(170);
-            tb_consulta_proyecto.getColumnModel().getColumn(2).setPreferredWidth(170);
-            tb_consulta_proyecto.getColumnModel().getColumn(2).setMaxWidth(170);
-            tb_consulta_proyecto.getColumnModel().getColumn(3).setMinWidth(170);
-            tb_consulta_proyecto.getColumnModel().getColumn(3).setPreferredWidth(170);
-            tb_consulta_proyecto.getColumnModel().getColumn(3).setMaxWidth(170);
-            tb_consulta_proyecto.getColumnModel().getColumn(4).setMinWidth(170);
-            tb_consulta_proyecto.getColumnModel().getColumn(4).setPreferredWidth(170);
-            tb_consulta_proyecto.getColumnModel().getColumn(4).setMaxWidth(170);
+        jScrollPane1.setViewportView(tabla_consulta_proyecto);
+        if (tabla_consulta_proyecto.getColumnModel().getColumnCount() > 0) {
+            tabla_consulta_proyecto.getColumnModel().getColumn(0).setMinWidth(50);
+            tabla_consulta_proyecto.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tabla_consulta_proyecto.getColumnModel().getColumn(0).setMaxWidth(50);
+            tabla_consulta_proyecto.getColumnModel().getColumn(1).setMinWidth(570);
+            tabla_consulta_proyecto.getColumnModel().getColumn(1).setPreferredWidth(570);
+            tabla_consulta_proyecto.getColumnModel().getColumn(1).setMaxWidth(570);
+            tabla_consulta_proyecto.getColumnModel().getColumn(2).setMinWidth(170);
+            tabla_consulta_proyecto.getColumnModel().getColumn(2).setPreferredWidth(170);
+            tabla_consulta_proyecto.getColumnModel().getColumn(2).setMaxWidth(170);
+            tabla_consulta_proyecto.getColumnModel().getColumn(3).setMinWidth(170);
+            tabla_consulta_proyecto.getColumnModel().getColumn(3).setPreferredWidth(170);
+            tabla_consulta_proyecto.getColumnModel().getColumn(3).setMaxWidth(170);
+            tabla_consulta_proyecto.getColumnModel().getColumn(4).setMinWidth(170);
+            tabla_consulta_proyecto.getColumnModel().getColumn(4).setPreferredWidth(170);
+            tabla_consulta_proyecto.getColumnModel().getColumn(4).setMaxWidth(170);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -250,37 +251,35 @@ public class ConsultarProyecto extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_id_proyectoActionPerformed
 
-    private void tb_consulta_proyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_consulta_proyectoMouseClicked
+    private void tabla_consulta_proyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_consulta_proyectoMouseClicked
 
-        int rec = this.tb_consulta_proyecto.getSelectedRow();
+        int rec = this.tabla_consulta_proyecto.getSelectedRow();
 
         if (rec == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione una Fila");
         } else {
-            String valor = tb_consulta_proyecto.getValueAt(rec, 0).toString();
+            String valor = tabla_consulta_proyecto.getValueAt(rec, 0).toString();
             txt_id_proyecto.setText(valor);
         }
 
 
-    }//GEN-LAST:event_tb_consulta_proyectoMouseClicked
+    }//GEN-LAST:event_tabla_consulta_proyectoMouseClicked
 
     private void menu_tablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tablaActionPerformed
 
-        int rec = this.tb_consulta_proyecto.getSelectedRow();
-        String valor = tb_consulta_proyecto.getValueAt(rec, 0).toString();
+        int rec = this.tabla_consulta_proyecto.getSelectedRow();
+        String valor = tabla_consulta_proyecto.getValueAt(rec, 0).toString();
         new PrerequsitosProyectos(null, true, valor).setVisible(true);
     }//GEN-LAST:event_menu_tablaActionPerformed
 
     private void menu_tabla2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tabla2ActionPerformed
-        // TODO add your handling code here:
+        int rec = this.tabla_consulta_proyecto.getSelectedRow();
+        String valor = tabla_consulta_proyecto.getValueAt(rec, 0).toString();
+        new ConsultaDetalladaProyecto(null, true, valor).setVisible(true);
     }//GEN-LAST:event_menu_tabla2ActionPerformed
 
     private void combo_filtroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_filtroItemStateChanged
 
-//        Seleccionar 
-//        CODIGO
-//        PALABRA CLAVE
-//        RANGO
         int opcion = combo_filtro.getSelectedIndex();
 
         if (opcion == 1) {
@@ -319,6 +318,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "INGRESE EL CODIGO");
             } else {
                 consuta_tabla_id(codigo);
+                ancho_columnas();
             }
 
         } else if (index == 2) {
@@ -344,6 +344,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "INGRESE EL VALOR MAXIMO");
             } else {
                 consuta_tabla_rango(minimo, maximo);
+                ancho_columnas();
             }
 
         } else {
@@ -352,6 +353,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
             txt_valor_mayor.setEditable(false);
             txt_valor_menor.setEditable(false);
             cargar_tabla();
+            ancho_columnas();
         }
 
 
@@ -411,7 +413,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem menu_tabla;
     private javax.swing.JMenuItem menu_tabla2;
-    private javax.swing.JTable tb_consulta_proyecto;
+    private javax.swing.JTable tabla_consulta_proyecto;
     private javax.swing.JTextField txt_codigo_proyecto;
     private javax.swing.JTextField txt_id_proyecto;
     private javax.swing.JTextField txt_palabra_clave;
@@ -476,7 +478,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
 
                 modelo.addRow(registro);
             }
-            tb_consulta_proyecto.setModel(modelo);
+            tabla_consulta_proyecto.setModel(modelo);
 
         } catch (SQLException ex) {
 
@@ -525,7 +527,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
 
                 modelo.addRow(registro);
             }
-            tb_consulta_proyecto.setModel(modelo);
+            tabla_consulta_proyecto.setModel(modelo);
 
         } catch (SQLException ex) {
 
@@ -574,7 +576,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
 
                 modelo.addRow(registro);
             }
-            tb_consulta_proyecto.setModel(modelo);
+            tabla_consulta_proyecto.setModel(modelo);
 
         } catch (SQLException ex) {
 
@@ -626,12 +628,20 @@ public class ConsultarProyecto extends javax.swing.JDialog {
 
                 modelo.addRow(registro);
             }
-            tb_consulta_proyecto.setModel(modelo);
+            tabla_consulta_proyecto.setModel(modelo);
 
         } catch (SQLException ex) {
 
             JOptionPane.showMessageDialog(null, ex);
-
         }
+    }
+
+    public void ancho_columnas() {
+        tabla_consulta_proyecto.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tabla_consulta_proyecto.getColumnModel().getColumn(1).setPreferredWidth(500);
+        tabla_consulta_proyecto.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tabla_consulta_proyecto.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tabla_consulta_proyecto.getColumnModel().getColumn(4).setPreferredWidth(150);
+        tabla_consulta_proyecto.getColumnModel().getColumn(5).setPreferredWidth(150);
     }
 }
