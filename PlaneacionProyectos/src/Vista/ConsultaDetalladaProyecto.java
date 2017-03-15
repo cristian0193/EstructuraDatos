@@ -1,19 +1,37 @@
 package Vista;
 
+import Conexion.ConexioSQLite;
+import static Vista.Pre_Capitalizacion.conexion;
+import static Vista.Pre_Capitalizacion.modelo;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
 public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
 
     public static String valor;
-    
+    public static ConexioSQLite conexion;
+    public static DefaultTableModel modelo;
+    public static DefaultTableCellRenderer Alinear;
+
     public ConsultaDetalladaProyecto(java.awt.Frame parent, boolean modal, String numero) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         valor = numero;
-         this.txt_id_proyecto_con.setText(valor);
-        
+        this.txt_id_proyecto_con.setText(valor);
+        cargar_tabla_ejecuciones(valor);
+        cargar_tabla_capitalizacion(valor);
+        centrar_datos();
+        ancho_columnas();
+
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -21,44 +39,44 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         txt_id_proyecto_con = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        txt_fecha_kick = new javax.swing.JTextField();
+        check_proyectos_kick = new javax.swing.JCheckBox();
+        check_coreteam_kick = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jTextField1 = new javax.swing.JTextField();
+        check_proyectos_pre = new javax.swing.JCheckBox();
+        check_coreteam_pre = new javax.swing.JCheckBox();
+        check_diseno_pre = new javax.swing.JCheckBox();
+        txtx_fecha_prework = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        txt_fecha_gcc = new javax.swing.JTextField();
+        txt_capta_gcc = new javax.swing.JTextField();
+        txt_symphony_gcc = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField6 = new javax.swing.JTextField();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
-        jCheckBox13 = new javax.swing.JCheckBox();
+        txt_fecha_ru = new javax.swing.JTextField();
+        check_calidad_ru = new javax.swing.JCheckBox();
+        check_mantenimiento_ru = new javax.swing.JCheckBox();
+        check_manufactura_ru = new javax.swing.JCheckBox();
+        check_ehs_ru = new javax.swing.JCheckBox();
+        check_facilities_ru = new javax.swing.JCheckBox();
+        check_it_ru = new javax.swing.JCheckBox();
+        check_ingenieria_ru = new javax.swing.JCheckBox();
+        check_otros_ru = new javax.swing.JCheckBox();
         jPanel6 = new javax.swing.JPanel();
-        jCheckBox14 = new javax.swing.JCheckBox();
-        jCheckBox15 = new javax.swing.JCheckBox();
-        jCheckBox16 = new javax.swing.JCheckBox();
-        jTextField7 = new javax.swing.JTextField();
+        check_requerimientos_val = new javax.swing.JCheckBox();
+        check_agendar_val = new javax.swing.JCheckBox();
+        check_prevalidacion_val = new javax.swing.JCheckBox();
+        txt_fecha_validacion = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla_cotizacion = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
-        jTextField8 = new javax.swing.JTextField();
+        txt_fecha_entrega = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabla_capitalizacion = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1360, 730));
@@ -80,13 +98,13 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "KICKOFF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jTextField2.setEditable(false);
+        txt_fecha_kick.setEditable(false);
 
-        jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox4.setText("PROYECTOS");
+        check_proyectos_kick.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_proyectos_kick.setText("PROYECTOS");
 
-        jCheckBox5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox5.setText("CORE TEAM");
+        check_coreteam_kick.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_coreteam_kick.setText("CORE TEAM");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -95,35 +113,35 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(check_coreteam_kick)
+                    .addComponent(check_proyectos_kick)
+                    .addComponent(txt_fecha_kick, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_fecha_kick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox4)
+                .addComponent(check_proyectos_kick)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox5)
+                .addComponent(check_coreteam_kick)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PRE-WORK", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox1.setText("PROYECTOS");
+        check_proyectos_pre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_proyectos_pre.setText("PROYECTOS");
 
-        jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox2.setText("CORE TEAM");
+        check_coreteam_pre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_coreteam_pre.setText("CORE TEAM");
 
-        jCheckBox3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox3.setText("DISEÑOS");
+        check_diseno_pre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_diseno_pre.setText("DISEÑOS");
 
-        jTextField1.setEditable(false);
+        txtx_fecha_prework.setEditable(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -132,29 +150,29 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(check_diseno_pre)
+                    .addComponent(check_coreteam_pre)
+                    .addComponent(check_proyectos_pre)
+                    .addComponent(txtx_fecha_prework, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtx_fecha_prework, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(check_proyectos_pre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox2)
+                .addComponent(check_coreteam_pre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox3)
+                .addComponent(check_diseno_pre)
                 .addContainerGap(68, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONTROL DE CAMBIOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jTextField3.setEditable(false);
+        txt_fecha_gcc.setEditable(false);
 
         jLabel2.setText("Capta");
 
@@ -169,54 +187,54 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_symphony_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_capta_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_fecha_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_fecha_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_capta_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_symphony_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "REQUERIMIENTOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jTextField6.setEditable(false);
+        txt_fecha_ru.setEditable(false);
 
-        jCheckBox6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox6.setText("CALIDAD");
+        check_calidad_ru.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_calidad_ru.setText("CALIDAD");
 
-        jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox7.setText("MANTENIMIENTO");
+        check_mantenimiento_ru.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_mantenimiento_ru.setText("MANTENIMIENTO");
 
-        jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox8.setText("MANUFACTURA");
+        check_manufactura_ru.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_manufactura_ru.setText("MANUFACTURA");
 
-        jCheckBox9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox9.setText("EHS");
+        check_ehs_ru.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_ehs_ru.setText("EHS");
 
-        jCheckBox10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox10.setText("FACILITIES");
+        check_facilities_ru.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_facilities_ru.setText("FACILITIES");
 
-        jCheckBox11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox11.setText("IT");
+        check_it_ru.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_it_ru.setText("IT");
 
-        jCheckBox12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox12.setText("INGENIERIA");
+        check_ingenieria_ru.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_ingenieria_ru.setText("INGENIERIA");
 
-        jCheckBox13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox13.setText("OTROS");
+        check_otros_ru.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_otros_ru.setText("OTROS");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -225,53 +243,53 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox13)
-                    .addComponent(jCheckBox12)
-                    .addComponent(jCheckBox11)
-                    .addComponent(jCheckBox10)
-                    .addComponent(jCheckBox9)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jCheckBox7)
-                    .addComponent(jCheckBox8)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(check_otros_ru)
+                    .addComponent(check_ingenieria_ru)
+                    .addComponent(check_it_ru)
+                    .addComponent(check_facilities_ru)
+                    .addComponent(check_ehs_ru)
+                    .addComponent(check_calidad_ru)
+                    .addComponent(check_mantenimiento_ru)
+                    .addComponent(check_manufactura_ru)
+                    .addComponent(txt_fecha_ru, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_fecha_ru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox8)
+                .addComponent(check_manufactura_ru)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox7)
+                .addComponent(check_mantenimiento_ru)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox6)
+                .addComponent(check_calidad_ru)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox9)
+                .addComponent(check_ehs_ru)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox10)
+                .addComponent(check_facilities_ru)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox11)
+                .addComponent(check_it_ru)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox12)
+                .addComponent(check_ingenieria_ru)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox13)
+                .addComponent(check_otros_ru)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "VALIDACION", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jCheckBox14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox14.setText("REQUERIMIENTOS");
+        check_requerimientos_val.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_requerimientos_val.setText("REQUERIMIENTOS");
 
-        jCheckBox15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox15.setText("AGENDAR");
+        check_agendar_val.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_agendar_val.setText("AGENDAR");
 
-        jCheckBox16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox16.setText("PRE-VALIDACION");
+        check_prevalidacion_val.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_prevalidacion_val.setText("PRE-VALIDACION");
 
-        jTextField7.setEditable(false);
+        txt_fecha_validacion.setEditable(false);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -280,27 +298,27 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox16)
-                    .addComponent(jCheckBox15)
-                    .addComponent(jCheckBox14)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(check_prevalidacion_val)
+                    .addComponent(check_agendar_val)
+                    .addComponent(check_requerimientos_val)
+                    .addComponent(txt_fecha_validacion, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_fecha_validacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox14)
+                .addComponent(check_requerimientos_val)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox15)
+                .addComponent(check_agendar_val)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox16)
+                .addComponent(check_prevalidacion_val)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_cotizacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -308,34 +326,35 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
                 "TRABAJO", "ITEM", "COTIZACION", "COSTO", "PR", "S", "F", "C", "N/C"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(1).setMinWidth(200);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(200);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(140);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(140);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(140);
-            jTable1.getColumnModel().getColumn(4).setMinWidth(110);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(110);
-            jTable1.getColumnModel().getColumn(4).setMaxWidth(110);
-            jTable1.getColumnModel().getColumn(5).setMinWidth(50);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(50);
-            jTable1.getColumnModel().getColumn(6).setMinWidth(50);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(6).setMaxWidth(50);
-            jTable1.getColumnModel().getColumn(7).setMinWidth(50);
-            jTable1.getColumnModel().getColumn(7).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(7).setMaxWidth(50);
-            jTable1.getColumnModel().getColumn(8).setMinWidth(50);
-            jTable1.getColumnModel().getColumn(8).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(8).setMaxWidth(50);
+        tabla_cotizacion.setRowHeight(23);
+        jScrollPane1.setViewportView(tabla_cotizacion);
+        if (tabla_cotizacion.getColumnModel().getColumnCount() > 0) {
+            tabla_cotizacion.getColumnModel().getColumn(1).setMinWidth(200);
+            tabla_cotizacion.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tabla_cotizacion.getColumnModel().getColumn(1).setMaxWidth(200);
+            tabla_cotizacion.getColumnModel().getColumn(2).setMinWidth(140);
+            tabla_cotizacion.getColumnModel().getColumn(2).setPreferredWidth(140);
+            tabla_cotizacion.getColumnModel().getColumn(2).setMaxWidth(140);
+            tabla_cotizacion.getColumnModel().getColumn(4).setMinWidth(110);
+            tabla_cotizacion.getColumnModel().getColumn(4).setPreferredWidth(110);
+            tabla_cotizacion.getColumnModel().getColumn(4).setMaxWidth(110);
+            tabla_cotizacion.getColumnModel().getColumn(5).setMinWidth(50);
+            tabla_cotizacion.getColumnModel().getColumn(5).setPreferredWidth(50);
+            tabla_cotizacion.getColumnModel().getColumn(5).setMaxWidth(50);
+            tabla_cotizacion.getColumnModel().getColumn(6).setMinWidth(50);
+            tabla_cotizacion.getColumnModel().getColumn(6).setPreferredWidth(50);
+            tabla_cotizacion.getColumnModel().getColumn(6).setMaxWidth(50);
+            tabla_cotizacion.getColumnModel().getColumn(7).setMinWidth(50);
+            tabla_cotizacion.getColumnModel().getColumn(7).setPreferredWidth(50);
+            tabla_cotizacion.getColumnModel().getColumn(7).setMaxWidth(50);
+            tabla_cotizacion.getColumnModel().getColumn(8).setMinWidth(50);
+            tabla_cotizacion.getColumnModel().getColumn(8).setPreferredWidth(50);
+            tabla_cotizacion.getColumnModel().getColumn(8).setMaxWidth(50);
         }
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ENTREGA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jTextField8.setEditable(false);
+        txt_fecha_entrega.setEditable(false);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -350,7 +369,7 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_fecha_entrega, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -358,7 +377,7 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_fecha_entrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                 .addContainerGap())
@@ -366,7 +385,7 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CAPITALIZACION", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_capitalizacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -374,14 +393,15 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
                 "ITEM", "ACTIVO", "FECHA"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(1).setMinWidth(140);
-            jTable2.getColumnModel().getColumn(1).setPreferredWidth(140);
-            jTable2.getColumnModel().getColumn(1).setMaxWidth(140);
-            jTable2.getColumnModel().getColumn(2).setMinWidth(100);
-            jTable2.getColumnModel().getColumn(2).setPreferredWidth(100);
-            jTable2.getColumnModel().getColumn(2).setMaxWidth(100);
+        tabla_capitalizacion.setRowHeight(23);
+        jScrollPane3.setViewportView(tabla_capitalizacion);
+        if (tabla_capitalizacion.getColumnModel().getColumnCount() > 0) {
+            tabla_capitalizacion.getColumnModel().getColumn(1).setMinWidth(140);
+            tabla_capitalizacion.getColumnModel().getColumn(1).setPreferredWidth(140);
+            tabla_capitalizacion.getColumnModel().getColumn(1).setMaxWidth(140);
+            tabla_capitalizacion.getColumnModel().getColumn(2).setMinWidth(100);
+            tabla_capitalizacion.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tabla_capitalizacion.getColumnModel().getColumn(2).setMaxWidth(100);
         }
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -514,22 +534,22 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
-    private javax.swing.JCheckBox jCheckBox14;
-    private javax.swing.JCheckBox jCheckBox15;
-    private javax.swing.JCheckBox jCheckBox16;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
+    private javax.swing.JCheckBox check_agendar_val;
+    private javax.swing.JCheckBox check_calidad_ru;
+    private javax.swing.JCheckBox check_coreteam_kick;
+    private javax.swing.JCheckBox check_coreteam_pre;
+    private javax.swing.JCheckBox check_diseno_pre;
+    private javax.swing.JCheckBox check_ehs_ru;
+    private javax.swing.JCheckBox check_facilities_ru;
+    private javax.swing.JCheckBox check_ingenieria_ru;
+    private javax.swing.JCheckBox check_it_ru;
+    private javax.swing.JCheckBox check_mantenimiento_ru;
+    private javax.swing.JCheckBox check_manufactura_ru;
+    private javax.swing.JCheckBox check_otros_ru;
+    private javax.swing.JCheckBox check_prevalidacion_val;
+    private javax.swing.JCheckBox check_proyectos_kick;
+    private javax.swing.JCheckBox check_proyectos_pre;
+    private javax.swing.JCheckBox check_requerimientos_val;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -543,17 +563,138 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTable tabla_capitalizacion;
+    private javax.swing.JTable tabla_cotizacion;
+    private javax.swing.JTextField txt_capta_gcc;
+    private javax.swing.JTextField txt_fecha_entrega;
+    private javax.swing.JTextField txt_fecha_gcc;
+    private javax.swing.JTextField txt_fecha_kick;
+    private javax.swing.JTextField txt_fecha_ru;
+    private javax.swing.JTextField txt_fecha_validacion;
     private javax.swing.JTextField txt_id_proyecto_con;
+    private javax.swing.JTextField txt_symphony_gcc;
+    private javax.swing.JTextField txtx_fecha_prework;
     // End of variables declaration//GEN-END:variables
+
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public void cargar_tabla_ejecuciones(String ID_PROYECTO) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"TRABAJO", "ITEM", "COTIZACION", "COSTOS", "PD", "S", "F", "C", "N/C"};
+        String[] registro = new String[9];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT T.DESCRIPCION AS TRABAJO, I.DESCRIPCION AS ITEM,PD.COTIZACION,PD.COSTOS,PD.PR, PD.BLOQUEO_S AS SEMANA,PD.BLOQUEO_F AS FIN,PD.BLOQUEO_C AS CUMPLE,PD.BLOQUEO_NC AS NO_CUMPLE "
+                + "FROM TRABAJOS T, ITEM I, PROYECTO_DETALLADO PD, PROYECTOS PR "
+                + "WHERE T.ID = I.ID_TRABAJOS "
+                + "AND I.ID = PD.ID_ITEM "
+                + "AND PR.ID = PD.ID_PROYECTO "
+                + "AND PD.ID_PROYECTO = " + ID_PROYECTO + ";";
+
+        System.out.println("" + query);
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("TRABAJO");
+                registro[1] = rs.getString("ITEM");
+                registro[2] = rs.getString("COTIZACION");
+                registro[3] = rs.getString("COSTOS");
+                registro[4] = rs.getString("PR");
+                registro[5] = rs.getString("SEMANA");
+                registro[6] = rs.getString("FIN");
+                registro[7] = rs.getString("CUMPLE");
+                registro[8] = rs.getString("NO_CUMPLE");
+
+                modelo.addRow(registro);
+            }
+            tabla_cotizacion.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, "tabla " + ex);
+
+        }
+    }
+
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public void cargar_tabla_capitalizacion(String ID_PROYECTO) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ITEM", "# ACTIVO", "FECHA"};
+        String[] registro = new String[3];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "CAP_ITEM, "
+                + "CAP_ACTIVO, "
+                + "CAP_FECHA "
+                + "FROM "
+                + "CAPITALIZACION "
+                + "WHERE "
+                + "  ID_PROYECTO = " + ID_PROYECTO + ";";
+        System.out.println("" + query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("CAP_ITEM");
+                registro[1] = rs.getString("CAP_ACTIVO");
+                registro[2] = rs.getString("CAP_FECHA");
+
+                modelo.addRow(registro);
+            }
+            tabla_capitalizacion.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, "tabla " + ex);
+
+        }
+    }
+
+    public void ancho_columnas() {
+
+        tabla_cotizacion.getColumnModel().getColumn(0).setPreferredWidth(150);
+        tabla_cotizacion.getColumnModel().getColumn(1).setPreferredWidth(240);
+        tabla_cotizacion.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tabla_cotizacion.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tabla_cotizacion.getColumnModel().getColumn(4).setPreferredWidth(110);
+        tabla_cotizacion.getColumnModel().getColumn(5).setPreferredWidth(50);
+        tabla_cotizacion.getColumnModel().getColumn(6).setPreferredWidth(50);
+        tabla_cotizacion.getColumnModel().getColumn(7).setPreferredWidth(50);
+        tabla_cotizacion.getColumnModel().getColumn(8).setPreferredWidth(50);
+
+        tabla_capitalizacion.getColumnModel().getColumn(0).setPreferredWidth(140);
+        tabla_capitalizacion.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tabla_capitalizacion.getColumnModel().getColumn(2).setPreferredWidth(100);
+    }
+
+    public void centrar_datos() {
+        Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+        tabla_cotizacion.getColumnModel().getColumn(5).setCellRenderer(Alinear);
+        tabla_cotizacion.getColumnModel().getColumn(6).setCellRenderer(Alinear);
+        tabla_cotizacion.getColumnModel().getColumn(7).setCellRenderer(Alinear);
+        tabla_cotizacion.getColumnModel().getColumn(8).setCellRenderer(Alinear);
+    }
+
 }
