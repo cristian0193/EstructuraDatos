@@ -12,14 +12,14 @@ import javax.swing.table.DefaultTableModel;
 public class ConsultarProyecto extends javax.swing.JDialog {
 
     public static ConexioSQLite conexion;
-    public static DefaultTableModel modelo;
+    public static DefaultTableModel modelo;      
 
     public ConsultarProyecto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla();
-        ancho_columnas();
+        ancho_columnas();             
     }
 
     @SuppressWarnings("unchecked")
@@ -644,4 +644,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
         tabla_consulta_proyecto.getColumnModel().getColumn(4).setPreferredWidth(150);
         tabla_consulta_proyecto.getColumnModel().getColumn(5).setPreferredWidth(150);
     }
+    
+    
+   
 }
