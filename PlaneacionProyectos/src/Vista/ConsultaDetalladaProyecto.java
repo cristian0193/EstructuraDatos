@@ -1,8 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Pre_Capitalizacion.conexion;
-import static Vista.Pre_Capitalizacion.modelo;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,9 +22,10 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         valor = numero;
-        this.txt_id_proyecto_con.setText(valor);
+        this.txt_id_proyectos_con.setText(valor);
         cargar_tabla_ejecuciones(valor);
         cargar_tabla_capitalizacion(valor);
+        cargar_informacion_proyecto(valor);
         centrar_datos();
         ancho_columnas();
 
@@ -36,11 +35,10 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txt_id_proyecto_con = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txt_fecha_kick = new javax.swing.JTextField();
-        check_proyectos_kick = new javax.swing.JCheckBox();
+        check_ru_kick = new javax.swing.JCheckBox();
         check_coreteam_kick = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
         check_proyectos_pre = new javax.swing.JCheckBox();
@@ -73,24 +71,15 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         jPanel7 = new javax.swing.JPanel();
         txt_fecha_entrega = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txt_observacion_en = new javax.swing.JTextArea();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabla_capitalizacion = new javax.swing.JTable();
+        txt_id_proyectos_con = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1360, 730));
         setResizable(false);
-
-        txt_id_proyecto_con.setEditable(false);
-        txt_id_proyecto_con.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        txt_id_proyecto_con.setForeground(new java.awt.Color(255, 51, 51));
-        txt_id_proyecto_con.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_id_proyecto_con.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_id_proyecto_conActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -100,8 +89,8 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
 
         txt_fecha_kick.setEditable(false);
 
-        check_proyectos_kick.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        check_proyectos_kick.setText("PROYECTOS");
+        check_ru_kick.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        check_ru_kick.setText("RU");
 
         check_coreteam_kick.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         check_coreteam_kick.setText("CORE TEAM");
@@ -114,7 +103,7 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(check_coreteam_kick)
-                    .addComponent(check_proyectos_kick)
+                    .addComponent(check_ru_kick)
                     .addComponent(txt_fecha_kick, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -124,7 +113,7 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(txt_fecha_kick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(check_proyectos_kick)
+                .addComponent(check_ru_kick)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(check_coreteam_kick)
                 .addContainerGap(18, Short.MAX_VALUE))
@@ -173,6 +162,12 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONTROL DE CAMBIOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         txt_fecha_gcc.setEditable(false);
+
+        txt_capta_gcc.setEditable(false);
+        txt_capta_gcc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        txt_symphony_gcc.setEditable(false);
+        txt_symphony_gcc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jLabel2.setText("Capta");
 
@@ -356,9 +351,9 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
 
         txt_fecha_entrega.setEditable(false);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        txt_observacion_en.setColumns(20);
+        txt_observacion_en.setRows(5);
+        jScrollPane2.setViewportView(txt_observacion_en);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -420,6 +415,12 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        txt_id_proyectos_con.setEditable(false);
+        txt_id_proyectos_con.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        txt_id_proyectos_con.setForeground(new java.awt.Color(255, 51, 51));
+        txt_id_proyectos_con.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_id_proyectos_con.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -430,9 +431,9 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(141, 141, 141)
-                        .addComponent(txt_id_proyecto_con, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))
+                        .addGap(138, 138, 138)
+                        .addComponent(txt_id_proyectos_con, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -457,8 +458,8 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txt_id_proyecto_con)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txt_id_proyectos_con)
                         .addGap(7, 7, 7)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -487,51 +488,47 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_id_proyecto_conActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id_proyecto_conActionPerformed
-
-    }//GEN-LAST:event_txt_id_proyecto_conActionPerformed
-
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(ConsultaDetalladaProyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(ConsultaDetalladaProyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(ConsultaDetalladaProyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(ConsultaDetalladaProyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                ConsultaDetalladaProyecto dialog = new ConsultaDetalladaProyecto(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+////        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+////        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+////         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+////         */
+////        try {
+////            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+////                if ("Nimbus".equals(info.getName())) {
+////                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+////                    break;
+////                }
+////            }
+////        } catch (ClassNotFoundException ex) {
+////            java.util.logging.Logger.getLogger(ConsultaDetalladaProyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+////        } catch (InstantiationException ex) {
+////            java.util.logging.Logger.getLogger(ConsultaDetalladaProyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+////        } catch (IllegalAccessException ex) {
+////            java.util.logging.Logger.getLogger(ConsultaDetalladaProyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+////        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+////            java.util.logging.Logger.getLogger(ConsultaDetalladaProyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+////        }
+////        //</editor-fold>
+////
+////        /* Create and display the dialog */
+////        java.awt.EventQueue.invokeLater(new Runnable() {
+////            public void run() {
+////                ConsultaDetalladaProyecto dialog = new ConsultaDetalladaProyecto(new javax.swing.JFrame(), true);
+////                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+////                    @Override
+////                    public void windowClosing(java.awt.event.WindowEvent e) {
+////                        System.exit(0);
+////                    }
+////                });
+////                dialog.setVisible(true);
+////            }
+////        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox check_agendar_val;
@@ -547,9 +544,9 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
     private javax.swing.JCheckBox check_manufactura_ru;
     private javax.swing.JCheckBox check_otros_ru;
     private javax.swing.JCheckBox check_prevalidacion_val;
-    private javax.swing.JCheckBox check_proyectos_kick;
     private javax.swing.JCheckBox check_proyectos_pre;
     private javax.swing.JCheckBox check_requerimientos_val;
+    private javax.swing.JCheckBox check_ru_kick;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -563,7 +560,6 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTable tabla_capitalizacion;
     private javax.swing.JTable tabla_cotizacion;
     private javax.swing.JTextField txt_capta_gcc;
@@ -572,11 +568,12 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
     private javax.swing.JTextField txt_fecha_kick;
     private javax.swing.JTextField txt_fecha_ru;
     private javax.swing.JTextField txt_fecha_validacion;
-    private javax.swing.JTextField txt_id_proyecto_con;
+    private javax.swing.JTextField txt_id_proyectos_con;
+    private javax.swing.JTextArea txt_observacion_en;
     private javax.swing.JTextField txt_symphony_gcc;
     private javax.swing.JTextField txtx_fecha_prework;
     // End of variables declaration//GEN-END:variables
-
+        
     // METODO PARA CARGAR TABLA PROYECTOS
     public void cargar_tabla_ejecuciones(String ID_PROYECTO) {
 
@@ -671,6 +668,165 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         }
     }
 
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public void cargar_informacion_proyecto(String ID_PROYECTO) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT PRE_FECHA,"
+                + "       PRE_PROYECTO,"
+                + "       PRE_CORE,"
+                + "       PRE_DISENO,"
+                + "       KICK_FECHA,"
+                + "       KICK_RU,"
+                + "       KICK_CORE,"
+                + "       RU_FECHA,"
+                + "       RU_MANUFACTURA,"
+                + "       RU_MTTO,"
+                + "       RU_CALIDAD,"
+                + "       RU_EHS,"
+                + "       RU_FACILITIES,"
+                + "       RU_IT,"
+                + "       RU_INGENIERIA,"
+                + "       RU_OTROS,"
+                + "       CC_FECHA,"
+                + "       CC_CAPTA,"
+                + "       CC_GCC,"
+                + "       VAL_FECHA,"
+                + "       VAL_RU,"
+                + "       VAL_AGENDAR,"
+                + "       VAL_PRE_VALIDACION,"
+                + "       EN_FECHA,"
+                + "       EN_OBSERVACIONES"
+                + "  FROM PREREQUISITOS"
+                + "  WHERE ID_PROYECTO = " + ID_PROYECTO;
+
+        System.out.println("" + query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                txtx_fecha_prework.setText(rs.getString("PRE_FECHA"));
+
+                if (rs.getString("PRE_PROYECTO").equals("S")) {
+                    check_proyectos_pre.setSelected(true);
+                } else {
+                    check_proyectos_pre.setSelected(false);
+                }
+
+                if (rs.getString("PRE_CORE").equals("S")) {
+                    check_coreteam_pre.setSelected(true);
+                } else {
+                    check_coreteam_pre.setSelected(false);
+                }
+
+                if (rs.getString("PRE_DISENO").equals("S")) {
+                    check_diseno_pre.setSelected(true);
+                } else {
+                    check_diseno_pre.setSelected(false);
+                }
+
+                txt_fecha_kick.setText(rs.getString("KICK_FECHA"));
+
+                if (rs.getString("KICK_RU").equals("S")) {
+                    check_ru_kick.setSelected(true);
+                } else {
+                    check_ru_kick.setSelected(false);
+                }
+
+                if (rs.getString("KICK_CORE").equals("S")) {
+                    check_coreteam_kick.setSelected(true);
+                } else {
+                    check_coreteam_kick.setSelected(false);
+                }
+
+                txt_fecha_ru.setText(rs.getString("RU_FECHA"));
+
+                if (rs.getString("RU_MANUFACTURA").equals("S")) {
+                    check_manufactura_ru.setSelected(true);
+                } else {
+                    check_manufactura_ru.setSelected(false);
+                }
+
+                if (rs.getString("RU_MTTO").equals("S")) {
+                    check_mantenimiento_ru.setSelected(true);
+                } else {
+                    check_mantenimiento_ru.setSelected(false);
+                }
+
+                if (rs.getString("RU_CALIDAD").equals("S")) {
+                    check_calidad_ru.setSelected(true);
+                } else {
+                    check_calidad_ru.setSelected(false);
+                }
+
+                if (rs.getString("RU_EHS").equals("S")) {
+                    check_ehs_ru.setSelected(true);
+                } else {
+                    check_ehs_ru.setSelected(false);
+                }
+
+                if (rs.getString("RU_FACILITIES").equals("S")) {
+                    check_facilities_ru.setSelected(true);
+                } else {
+                    check_facilities_ru.setSelected(false);
+                }
+
+                if (rs.getString("RU_IT").equals("S")) {
+                    check_it_ru.setSelected(true);
+                } else {
+                    check_it_ru.setSelected(false);
+                }
+
+                if (rs.getString("RU_INGENIERIA").equals("S")) {
+                    check_ingenieria_ru.setSelected(true);
+                } else {
+                    check_ingenieria_ru.setSelected(false);
+                }
+
+                if (rs.getString("RU_OTROS").equals("S")) {
+                    check_otros_ru.setSelected(true);
+                } else {
+                    check_otros_ru.setSelected(false);
+                }
+
+                txt_fecha_gcc.setText(rs.getString("CC_FECHA"));
+                txt_capta_gcc.setText(rs.getString("CC_CAPTA"));
+                txt_symphony_gcc.setText(rs.getString("CC_GCC"));
+
+                txt_fecha_validacion.setText(rs.getString("VAL_FECHA"));
+                
+                 if (rs.getString("VAL_RU").equals("S")) {
+                    check_requerimientos_val.setSelected(true);
+                } else {
+                    check_requerimientos_val.setSelected(false);
+                }
+
+                if (rs.getString("VAL_PRE_VALIDACION").equals("S")) {
+                    check_prevalidacion_val.setSelected(true);
+                } else {
+                    check_prevalidacion_val.setSelected(false);
+                }
+                                    
+                txt_fecha_entrega.setText(rs.getString("EN_FECHA"));
+                txt_observacion_en.setText(rs.getString("EN_OBSERVACIONES"));
+                
+            }
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, "tabla " + ex);
+
+        }
+    }
+
     public void ancho_columnas() {
 
         tabla_cotizacion.getColumnModel().getColumn(0).setPreferredWidth(150);
@@ -696,5 +852,7 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         tabla_cotizacion.getColumnModel().getColumn(7).setCellRenderer(Alinear);
         tabla_cotizacion.getColumnModel().getColumn(8).setCellRenderer(Alinear);
     }
-
+    
 }
+
+                
