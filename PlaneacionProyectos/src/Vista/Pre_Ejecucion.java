@@ -1,6 +1,7 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
+import static Vista.AdminItem.conexion;
 import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -28,6 +29,7 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
         cargar_tabla_ejecuciones(valor);
         centrar_datos();
         ancho_columnas();
+        combo_trabajo();
         txt_id_item.setVisible(false);
         conexion.cerrar();
 
@@ -364,7 +366,6 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
 
         jLabel3.setText("Tipo de Trabajo :");
 
-        combo_trabajo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "ELECTRICO", "CIVIL", "DATOS" }));
         combo_trabajo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combo_trabajoItemStateChanged(evt);
@@ -489,7 +490,7 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
         }
 
         String id = txt_id_item.getText();
-        
+
         if (id.equals("")) {
 
             //CONDICION PARA INSERTAR
@@ -662,26 +663,40 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        String capex = capex_proyecto(valor);
-        String suma_cotiza = suma_cotizaciones(valor);
+        int confirmacion = JOptionPane.showConfirmDialog(null,
+                "¿ Esta Seguro que Desea Actualizar el Capex del Proyecto ?",
+                "Confirmacion", JOptionPane.YES_NO_OPTION);
 
-        long total_resta = Long.parseLong(capex) - Long.parseLong(suma_cotiza);
-        String calculo_capex_actual = Long.toString(total_resta);
+        if (confirmacion == JOptionPane.YES_OPTION) {
 
-        boolean act_capex = update_capex(calculo_capex_actual, valor);
-        boolean act_diferencia = update_diferente(suma_cotiza, valor);
+            String capex = capex_proyecto(valor);
+            String suma_cotiza = suma_cotizaciones(valor);
 
-        if (act_capex == true && act_diferencia == true) {
-            JOptionPane.showMessageDialog(null, "CAPEX DEL PROYECTO : " + valor + " ACTUALIZADO");
+            long total_resta = Long.parseLong(capex) - Long.parseLong(suma_cotiza);
+            String calculo_capex_actual = Long.toString(total_resta);
+
+            boolean act_capex = update_capex(calculo_capex_actual, valor);
+            boolean act_diferencia = update_diferente(suma_cotiza, valor);
+
+            if (act_capex == true && act_diferencia == true) {
+                JOptionPane.showMessageDialog(null, "CAPEX DEL PROYECTO : " + valor + " ACTUALIZADO");
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "PROBLEMAS AL ACTUALIZAR CAPEX");
+            }
+
         } else {
-            JOptionPane.showMessageDialog(null, "PROBLEMAS AL ACTUALIZAR CAPEX");
+            cargar_tabla_ejecuciones(valor);
+            centrar_datos();
+            ancho_columnas();
+            conexion.cerrar();
         }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void menu_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_actualizarActionPerformed
-        
+
         LimpiarCampos();
         int rec = this.tabla_informacion_detallada.getSelectedRow();
         String id = tabla_informacion_detallada.getValueAt(rec, 0).toString();
@@ -1224,7 +1239,7 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
             txt_remisiones.setText(rs.getString("REMISIONES"));
             txt_comentarios.setText(rs.getString("COMENTARIOS"));
 
-           // ConexioSQLite.cerrar();
+            // ConexioSQLite.cerrar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -1255,9 +1270,39 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
         }
     }
 
+     public void combo_trabajo() {
+        combo_trabajo.setEnabled(true);
+        combo_trabajo.removeAllItems();
+        combo_trabajo.addItem("Seleccionar");
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        try {
+
+            query = "SELECT DESCRIPCION FROM TRABAJOS ";                    
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                combo_trabajo.addItem(rs.getString("DESCRIPCION"));
+            }
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+    }
+
+    
     public void centrar_datos() {
         Alinear = new DefaultTableCellRenderer();
-        Alinear.setHorizontalAlignment(SwingConstants.CENTER);        
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
         tabla_informacion_detallada.getColumnModel().getColumn(3).setCellRenderer(Alinear);
         tabla_informacion_detallada.getColumnModel().getColumn(4).setCellRenderer(Alinear);
         tabla_informacion_detallada.getColumnModel().getColumn(5).setCellRenderer(Alinear);
