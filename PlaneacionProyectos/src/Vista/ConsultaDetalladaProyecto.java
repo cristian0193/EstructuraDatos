@@ -28,7 +28,7 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         cargar_informacion_proyecto(valor);
         centrar_datos();
         ancho_columnas();
-
+        conexion.cerrar();
     }
 
     @SuppressWarnings("unchecked")

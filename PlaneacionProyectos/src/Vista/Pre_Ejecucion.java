@@ -29,6 +29,7 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
         centrar_datos();
         ancho_columnas();
         txt_id_item.setVisible(false);
+        conexion.cerrar();
 
     }
 
@@ -680,12 +681,12 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void menu_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_actualizarActionPerformed
-
         
         LimpiarCampos();
         int rec = this.tabla_informacion_detallada.getSelectedRow();
         String id = tabla_informacion_detallada.getValueAt(rec, 0).toString();
         consular_informacion(id);
+        conexion.cerrar();
 
 
     }//GEN-LAST:event_menu_actualizarActionPerformed
@@ -994,7 +995,7 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
                 modelo.addRow(registro);
             }
             tabla_informacion_detallada.setModel(modelo);
-
+            ConexioSQLite.cerrar();
         } catch (SQLException ex) {
 
             JOptionPane.showMessageDialog(null, "tabla " + ex);
@@ -1223,9 +1224,8 @@ public class Pre_Ejecucion extends javax.swing.JDialog {
             txt_remisiones.setText(rs.getString("REMISIONES"));
             txt_comentarios.setText(rs.getString("COMENTARIOS"));
 
-            conexion.cerrar();
+           // ConexioSQLite.cerrar();
         } catch (SQLException ex) {
-            conexion.cerrar();
             JOptionPane.showMessageDialog(null, ex);
         }
     }
