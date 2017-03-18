@@ -1,29 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Pre_Ejecucion.conexion;
-import static Vista.Pre_Ejecucion.modelo;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author CRISTIAN-PC
- */
 public class AdminTrabajos extends javax.swing.JDialog {
 
-    /**
-     * Creates new form AdminTrabajos
-     */
+    public static ConexioSQLite conexion;
+    public static DefaultTableModel modelo;
+    public static DefaultTableCellRenderer Alinear;
+
     public AdminTrabajos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -122,10 +113,11 @@ public class AdminTrabajos extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(txt_nombre_trabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2)
+                        .addComponent(jButton3)))
                 .addContainerGap())
         );
 
@@ -196,7 +188,7 @@ public class AdminTrabajos extends javax.swing.JDialog {
                 txt_nombre_trabajo.setText("");
                 conexion.cerrar();
             } else {
-                JOptionPane.showMessageDialog(null, "NO SE INSERTO TRABAJO");
+                JOptionPane.showMessageDialog(null, "NO SE INSERTO ITEM");
                 txt_id_trabajo.setText("");
                 txt_nombre_trabajo.setText("");
                 conexion.cerrar();
@@ -356,6 +348,7 @@ public class AdminTrabajos extends javax.swing.JDialog {
         }
     }
 
+    // METODO PARA CARGAR TABLA PROYECTOS
     public void ancho_columnas() {
         tabla_trabajo.getColumnModel().getColumn(0).setPreferredWidth(50);
         tabla_trabajo.getColumnModel().getColumn(1).setPreferredWidth(600);

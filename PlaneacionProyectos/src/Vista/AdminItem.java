@@ -7,17 +7,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class AdminItem extends javax.swing.JDialog {
 
     public static ConexioSQLite conexion;
-     public static DefaultTableCellRenderer Alinear;
-    
+    public static DefaultTableModel modelo;
+    public static DefaultTableCellRenderer Alinear;
+
     public AdminItem(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         combo_trabajo();
+        cargar_tabla_item();
+        ancho_columnas();
     }
 
     @SuppressWarnings("unchecked")
@@ -36,7 +40,7 @@ public class AdminItem extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         combo_trabajo = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla_trabajo = new javax.swing.JTable();
+        tabla_item = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -51,6 +55,11 @@ public class AdminItem extends javax.swing.JDialog {
         jButton1.setBackground(new java.awt.Color(51, 255, 204));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Guardar Registro");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(255, 153, 51));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -66,6 +75,11 @@ public class AdminItem extends javax.swing.JDialog {
         jButton3.setBackground(new java.awt.Color(102, 153, 255));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton3.setText("Refrescar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Trabajo :");
 
@@ -115,7 +129,7 @@ public class AdminItem extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        tabla_trabajo.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_item.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null}
             },
@@ -123,18 +137,18 @@ public class AdminItem extends javax.swing.JDialog {
                 "ID", "NOMBRE ITEM", "TRABAJO"
             }
         ));
-        tabla_trabajo.setRowHeight(24);
-        jScrollPane1.setViewportView(tabla_trabajo);
-        if (tabla_trabajo.getColumnModel().getColumnCount() > 0) {
-            tabla_trabajo.getColumnModel().getColumn(0).setMinWidth(50);
-            tabla_trabajo.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tabla_trabajo.getColumnModel().getColumn(0).setMaxWidth(50);
-            tabla_trabajo.getColumnModel().getColumn(1).setMinWidth(350);
-            tabla_trabajo.getColumnModel().getColumn(1).setPreferredWidth(350);
-            tabla_trabajo.getColumnModel().getColumn(1).setMaxWidth(350);
-            tabla_trabajo.getColumnModel().getColumn(2).setMinWidth(200);
-            tabla_trabajo.getColumnModel().getColumn(2).setPreferredWidth(200);
-            tabla_trabajo.getColumnModel().getColumn(2).setMaxWidth(200);
+        tabla_item.setRowHeight(24);
+        jScrollPane1.setViewportView(tabla_item);
+        if (tabla_item.getColumnModel().getColumnCount() > 0) {
+            tabla_item.getColumnModel().getColumn(0).setMinWidth(50);
+            tabla_item.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tabla_item.getColumnModel().getColumn(0).setMaxWidth(50);
+            tabla_item.getColumnModel().getColumn(1).setMinWidth(350);
+            tabla_item.getColumnModel().getColumn(1).setPreferredWidth(350);
+            tabla_item.getColumnModel().getColumn(1).setMaxWidth(350);
+            tabla_item.getColumnModel().getColumn(2).setMinWidth(200);
+            tabla_item.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tabla_item.getColumnModel().getColumn(2).setMaxWidth(200);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,6 +178,45 @@ public class AdminItem extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        String descripcion = txt_nombre_ITEM.getText();
+        String trabajo = combo_trabajo.getSelectedItem().toString();
+
+        if (descripcion.equals("") || trabajo.equals("Seleccionar")) {
+            JOptionPane.showMessageDialog(null, "INGRESE LOS CAMPOS OBLIGATORIOS");
+        } else {
+            String id = consultar_id_trabajo(trabajo);
+
+            boolean resultado = insertar_item(descripcion, id);
+
+            if (resultado = true) {
+                JOptionPane.showMessageDialog(null, "ITEM INSERTADO");
+                cargar_tabla_item();
+                ancho_columnas();
+                txt_id_item.setText("");
+                txt_nombre_ITEM.setText("");
+                combo_trabajo.setSelectedIndex(0);
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "NO SE INSERTO TRABAJO");
+                txt_id_item.setText("");
+                txt_nombre_ITEM.setText("");
+                combo_trabajo.setSelectedIndex(0);
+                conexion.cerrar();
+            }
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+ 
+        cargar_tabla_item();
+        ancho_columnas();
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -215,11 +268,86 @@ public class AdminItem extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabla_trabajo;
+    private javax.swing.JTable tabla_item;
     private javax.swing.JTextField txt_id_item;
     private javax.swing.JTextField txt_nombre_ITEM;
     // End of variables declaration//GEN-END:variables
 
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public boolean insertar_item(String DESCRIPCION, String TRABAJO) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "INSERT INTO "
+                + " ITEM "
+                + " ( ID,DESCRIPCION,ID_TRABAJOS ) "
+                + " VALUES ( "
+                + " NULL,"
+                + "  '" + DESCRIPCION.toUpperCase() + "',"
+                + "  '" + TRABAJO + "');";
+
+        System.out.println("" + query);
+
+        try {
+            Statement st = cn.createStatement();
+            st.executeUpdate(query);
+
+            return true;
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "insertar " + ex);
+            return false;
+        }
+    }
+
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public void cargar_tabla_item() {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ID", "DESCRIPCION DEL ITEM", "TRABAJO"};
+        String[] registro = new String[3];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT I.ID, I.DESCRIPCION, T.DESCRIPCION AS TRABAJO "
+                + "FROM TRABAJOS T, ITEM I "
+                + "WHERE T.ID = I.ID_TRABAJOS";
+
+        System.out.println("" + query);
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID");
+                registro[1] = rs.getString("DESCRIPCION");
+                registro[2] = rs.getString("TRABAJO");
+
+                modelo.addRow(registro);
+            }
+            tabla_item.setModel(modelo);
+            ConexioSQLite.cerrar();
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, "tabla " + ex);
+
+        }
+    }
+
+    // METODO PARA CARGAR TABLA PROYECTOS
     public void combo_trabajo() {
         combo_trabajo.setEnabled(true);
         combo_trabajo.removeAllItems();
@@ -234,7 +362,7 @@ public class AdminItem extends javax.swing.JDialog {
 
         try {
 
-            query = "SELECT DESCRIPCION FROM TRABAJOS ";                    
+            query = "SELECT DESCRIPCION FROM TRABAJOS ";
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -249,4 +377,42 @@ public class AdminItem extends javax.swing.JDialog {
 
     }
 
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public String consultar_id_trabajo(String TRABAJO) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+        String id = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "sELECT T.ID "
+                + "FROM TRABAJOS T "
+                + "WHERE T.DESCRIPCION LIKE '%" + TRABAJO + "%'";
+
+        System.out.println("" + query);
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            id = rs.getString("ID");
+            ConexioSQLite.cerrar();
+            return id;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "tabla " + ex);
+            return "";
+        }
+
+    }
+
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public void ancho_columnas() {
+        tabla_item.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tabla_item.getColumnModel().getColumn(1).setPreferredWidth(500);
+        tabla_item.getColumnModel().getColumn(1).setPreferredWidth(150);
+    }
 }
