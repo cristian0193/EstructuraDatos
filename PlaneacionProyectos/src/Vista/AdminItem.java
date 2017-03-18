@@ -138,6 +138,11 @@ public class AdminItem extends javax.swing.JDialog {
             }
         ));
         tabla_item.setRowHeight(24);
+        tabla_item.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_itemMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla_item);
         if (tabla_item.getColumnModel().getColumnCount() > 0) {
             tabla_item.getColumnModel().getColumn(0).setMinWidth(50);
@@ -217,6 +222,25 @@ public class AdminItem extends javax.swing.JDialog {
         ancho_columnas();
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void tabla_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_itemMouseClicked
+        
+         int rec = this.tabla_item.getSelectedRow();
+
+        if (rec == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione una Fila");
+        } else {
+            String valor = tabla_item.getValueAt(rec, 0).toString();
+            String descripcion = tabla_item.getValueAt(rec, 1).toString();
+            String item = tabla_item.getValueAt(rec, 2).toString();
+
+            txt_id_item.setText(valor);
+            txt_nombre_ITEM.setText(descripcion);
+            combo_trabajo.setSelectedItem(item);
+        }
+
+        
+    }//GEN-LAST:event_tabla_itemMouseClicked
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -411,8 +435,8 @@ public class AdminItem extends javax.swing.JDialog {
 
     // METODO PARA CARGAR TABLA PROYECTOS
     public void ancho_columnas() {
-        tabla_item.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tabla_item.getColumnModel().getColumn(1).setPreferredWidth(500);
-        tabla_item.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tabla_item.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tabla_item.getColumnModel().getColumn(1).setPreferredWidth(350);
+        tabla_item.getColumnModel().getColumn(2).setPreferredWidth(200);
     }
 }
