@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -574,6 +575,15 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
     private javax.swing.JTextField txtx_fecha_prework;
     // End of variables declaration//GEN-END:variables
         
+     public String convertirValor(String numero) {
+        String convertido = "";
+        double valor = Double.parseDouble(numero);
+        DecimalFormat formatear = new DecimalFormat("###,###,###,###,###,###,###.##");
+        convertido = formatear.format(valor);
+
+        return convertido;
+    }
+    
     // METODO PARA CARGAR TABLA PROYECTOS
     public void cargar_tabla_ejecuciones(String ID_PROYECTO) {
 
@@ -606,7 +616,7 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
                 registro[0] = rs.getString("TRABAJO");
                 registro[1] = rs.getString("ITEM");
                 registro[2] = rs.getString("COTIZACION");
-                registro[3] = rs.getString("COSTOS");
+                registro[3] = convertirValor(rs.getString("COSTOS"));
                 registro[4] = rs.getString("PR");
                 registro[5] = rs.getString("SEMANA");
                 registro[6] = rs.getString("FIN");
