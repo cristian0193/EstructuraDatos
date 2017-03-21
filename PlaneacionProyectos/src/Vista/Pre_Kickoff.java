@@ -169,9 +169,9 @@ public class Pre_Kickoff extends javax.swing.JDialog {
 
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "KICKOFF ACTUALIZADO");                
-                new Pre_Prework(null, true, valor).setVisible(false);
-                PrerequsitosProyectos prerequisitos = new PrerequsitosProyectos(null, true, valor);
-                prerequisitos.btn_prework.setBackground(Color.GREEN);
+                fecha_kickoff.setText("");
+                check_core.setSelected(false);
+                check_ru.setSelected(false);
                 conexion.cerrar();
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");

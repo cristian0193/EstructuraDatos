@@ -184,7 +184,11 @@ public class Pre_Validacion extends javax.swing.JDialog {
             boolean resultado = update_validacion(valor, fecha, ru, agendar, prevalidacion);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "VALIDACION ACTUALIZADA");                
+                JOptionPane.showMessageDialog(null, "VALIDACION ACTUALIZADA");  
+                fecha_validacion.setText("");
+                check_agenda.setSelected(false);
+                check_pre_validacion.setSelected(false);
+                check_ru.setSelected(false);
                 conexion.cerrar();
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");

@@ -169,6 +169,9 @@ public class Pre_Control_Cambios extends javax.swing.JDialog {
 
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "CONTROL DE CAMBIOS ACTUALIZADO");                
+                fecha_gcc.setText("");
+                txt_capta.setText("");
+                txt_symphony.setText("");
                 conexion.cerrar();
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");

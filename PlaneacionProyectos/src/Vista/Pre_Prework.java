@@ -181,7 +181,11 @@ public class Pre_Prework extends javax.swing.JDialog {
             boolean resultado = update_prework(valor, fecha, proyecto, core, diseno);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "PREWORK ACTUALIZADO");                
+                JOptionPane.showMessageDialog(null, "PREWORK ACTUALIZADO");
+                fecha_prework.setText("");
+                check_core.setSelected(false);
+                check_diseno.setSelected(false);
+                check_proyectos.setSelected(false);
                 conexion.cerrar();
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
@@ -270,14 +274,14 @@ public class Pre_Prework extends javax.swing.JDialog {
                 + "  PRE_DISENO = '" + DISENO + "'"
                 + " WHERE"
                 + "  ID = " + ID + ";";
-        
+
         query2 = "UPDATE"
                 + " PROYECTOS"
                 + " SET "
                 + "  ESTADO = 'EN EJECUCION'"
                 + " WHERE"
                 + "  ID = " + ID + ";";
-        
+
         try {
             Statement st = cn.createStatement();
             st.executeUpdate(query);

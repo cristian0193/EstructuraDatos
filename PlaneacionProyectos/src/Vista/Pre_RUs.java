@@ -253,7 +253,17 @@ public class Pre_RUs extends javax.swing.JDialog {
             boolean resultado = update_ru(valor, fecha, manufactura, mantenimiento, calidad, ehs, facilities, it, ingeniria, otros);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "REQUERIMIENTOS ACTUALIZADOS");                
+                JOptionPane.showMessageDialog(null, "REQUERIMIENTOS ACTUALIZADOS");       
+                fecha_ru.setText("");
+                check_manufactura.setSelected(false);
+                check_mantenimiento.setSelected(false);
+                check_calidad.setSelected(false);
+                check_ehs.setSelected(false);
+                check_facilities.setSelected(false);
+                check_ingenieria.setSelected(false);
+                check_it.setSelected(false);
+                check_otros.setSelected(false);
+                
                 conexion.cerrar();
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");

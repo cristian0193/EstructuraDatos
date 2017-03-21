@@ -160,7 +160,9 @@ public class Pre_Entrega extends javax.swing.JDialog {
             boolean resultado = update_entrega(valor, fecha, observaciones);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "ENTREGA ACTUALIZADA");                
+                JOptionPane.showMessageDialog(null, "ENTREGA ACTUALIZADA");    
+                fecha_entrega.setText("");
+                txt_observaciones.setText("");
                 conexion.cerrar();
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
