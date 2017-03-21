@@ -63,7 +63,12 @@ public class AdminItem extends javax.swing.JDialog {
 
         jButton2.setBackground(new java.awt.Color(255, 153, 51));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Actualizar Registro");
+        jButton2.setText("Limpiar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("ID ITEM :");
 
@@ -95,16 +100,16 @@ public class AdminItem extends javax.swing.JDialog {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_id_item, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2))
+                    .addComponent(txt_id_item, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_nombre_ITEM, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(combo_trabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,14 +129,14 @@ public class AdminItem extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         tabla_item.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+
             },
             new String [] {
                 "ID", "NOMBRE ITEM", "TRABAJO"
@@ -165,7 +170,7 @@ public class AdminItem extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -186,46 +191,89 @@ public class AdminItem extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        String id = txt_id_item.getText();
+
+        if (id.equals("")) {
+
+            String descripcion = txt_nombre_ITEM.getText();
+            String trabajo = combo_trabajo.getSelectedItem().toString();
+
+            if (descripcion.equals("") || trabajo.equals("Seleccionar")) {
+                JOptionPane.showMessageDialog(null, "INGRESE LOS CAMPOS OBLIGATORIOS");
+            } else {
+
+                String id_trabajo = consultar_id_trabajo(trabajo);
+
+                boolean resultado = insertar_item(descripcion, id_trabajo);
+
+                if (resultado = true) {
+                    JOptionPane.showMessageDialog(null, "ITEM INSERTADO");
+                    cargar_tabla_item();
+                    ancho_columnas();
+                    txt_id_item.setText("");
+                    txt_nombre_ITEM.setText("");
+                    combo_trabajo.setSelectedIndex(0);
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE INSERTO TRABAJO");
+                    txt_id_item.setText("");
+                    txt_nombre_ITEM.setText("");
+                    combo_trabajo.setSelectedIndex(0);
+                    conexion.cerrar();
+                }
+            }
+
+        } else {
+
+            String id_item = txt_id_item.getText();
+
+            if (id_item.equals("")) {
+                JOptionPane.showMessageDialog(null, "SELECCIONE UN ITEM DE LA TABLA");
+            } else {
+
+                String id_trabajo = "";
+
+                String item = txt_nombre_ITEM.getText();
+                String combo_traba = combo_trabajo.getSelectedItem().toString();
+                id_trabajo = consultar_id_trabajo(combo_traba);
+
+                boolean resultado = actualizar_item(id_item, item, id_trabajo);
+
+                if (resultado = true) {
+                    JOptionPane.showMessageDialog(null, "ITEM ACTUALIZADO");
+                    cargar_tabla_item();
+                    ancho_columnas();
+                    txt_id_item.setText("");
+                    txt_nombre_ITEM.setText("");
+                    combo_trabajo.setSelectedIndex(0);
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE ACTUALIZO ITEM");
+                    txt_id_item.setText("");
+                    txt_nombre_ITEM.setText("");
+                    combo_trabajo.setSelectedIndex(0);
+                    conexion.cerrar();
+                }
+            }
+
+        }
+
         String descripcion = txt_nombre_ITEM.getText();
         String trabajo = combo_trabajo.getSelectedItem().toString();
-
-        if (descripcion.equals("") || trabajo.equals("Seleccionar")) {
-            JOptionPane.showMessageDialog(null, "INGRESE LOS CAMPOS OBLIGATORIOS");
-        } else {
-            String id = consultar_id_trabajo(trabajo);
-
-            boolean resultado = insertar_item(descripcion, id);
-
-            if (resultado = true) {
-                JOptionPane.showMessageDialog(null, "ITEM INSERTADO");
-                cargar_tabla_item();
-                ancho_columnas();
-                txt_id_item.setText("");
-                txt_nombre_ITEM.setText("");
-                combo_trabajo.setSelectedIndex(0);
-                conexion.cerrar();
-            } else {
-                JOptionPane.showMessageDialog(null, "NO SE INSERTO TRABAJO");
-                txt_id_item.setText("");
-                txt_nombre_ITEM.setText("");
-                combo_trabajo.setSelectedIndex(0);
-                conexion.cerrar();
-            }
-        }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
- 
+
         cargar_tabla_item();
         ancho_columnas();
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void tabla_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_itemMouseClicked
-        
-         int rec = this.tabla_item.getSelectedRow();
+
+        int rec = this.tabla_item.getSelectedRow();
 
         if (rec == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione una Fila");
@@ -239,8 +287,14 @@ public class AdminItem extends javax.swing.JDialog {
             combo_trabajo.setSelectedItem(item);
         }
 
-        
+
     }//GEN-LAST:event_tabla_itemMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        txt_id_item.setText("");
+        txt_nombre_ITEM.setText("");
+        combo_trabajo.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -314,7 +368,7 @@ public class AdminItem extends javax.swing.JDialog {
                 + " VALUES ( "
                 + " NULL,"
                 + "  '" + DESCRIPCION.toUpperCase() + "',"
-                + "  '" + TRABAJO + "');";
+                + "  '" + TRABAJO.toUpperCase() + "');";
 
         System.out.println("" + query);
 
@@ -326,6 +380,40 @@ public class AdminItem extends javax.swing.JDialog {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "insertar " + ex);
+            return false;
+        }
+    }
+
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public boolean actualizar_item(String ID, String DESCRIPCION, String TRABAJO) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "UPDATE"
+                + " ITEM"
+                + " SET "
+                + "  ID = '" + ID + "',"
+                + "  DESCRIPCION = '" + DESCRIPCION + "',"
+                + "  ID_TRABAJOS = '" + TRABAJO + "'"
+                + " WHERE"
+                + "  ID = " + ID + ";";
+
+        System.out.println("" + query);
+
+        try {
+            Statement st = cn.createStatement();
+            st.executeUpdate(query);
+
+            return true;
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "actualizar " + ex);
             return false;
         }
     }

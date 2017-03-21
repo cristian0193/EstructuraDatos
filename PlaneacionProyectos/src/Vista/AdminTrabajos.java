@@ -62,7 +62,12 @@ public class AdminTrabajos extends javax.swing.JDialog {
 
         jButton2.setBackground(new java.awt.Color(255, 153, 51));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Actualizar Registro");
+        jButton2.setText("Limpiar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("ID Trabajo :");
 
@@ -85,26 +90,26 @@ public class AdminTrabajos extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_id_trabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_nombre_trabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txt_nombre_trabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txt_id_trabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -112,18 +117,17 @@ public class AdminTrabajos extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_nombre_trabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2)
-                        .addComponent(jButton3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         tabla_trabajo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null}
+
             },
             new String [] {
                 "ID", "NOMBRE TRABAJO"
@@ -149,13 +153,13 @@ public class AdminTrabajos extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,9 +167,9 @@ public class AdminTrabajos extends javax.swing.JDialog {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -173,27 +177,61 @@ public class AdminTrabajos extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        String descripcion = txt_nombre_trabajo.getText();
+        String id = txt_id_trabajo.getText();
 
-        if (descripcion.equals("")) {
-            JOptionPane.showMessageDialog(null, "INGRESE LA DESCRIPCION");
-        } else {
-            boolean resultado = insertar_trabajo(descripcion);
+        if (id.equals("")) {
 
-            if (resultado = true) {
-                JOptionPane.showMessageDialog(null, "TRABAJO INSERTADO");
-                cargar_tabla_trabajos();
-                ancho_columnas();
-                txt_id_trabajo.setText("");
-                txt_nombre_trabajo.setText("");
-                conexion.cerrar();
+            String descripcion = txt_nombre_trabajo.getText();
+
+            if (descripcion.equals("")) {
+                JOptionPane.showMessageDialog(null, "INGRESE LA DESCRIPCION");
             } else {
-                JOptionPane.showMessageDialog(null, "NO SE INSERTO ITEM");
-                txt_id_trabajo.setText("");
-                txt_nombre_trabajo.setText("");
-                conexion.cerrar();
+                boolean resultado = insertar_trabajo(descripcion);
+
+                if (resultado = true) {
+                    JOptionPane.showMessageDialog(null, "TRABAJO INSERTADO");
+                    cargar_tabla_trabajos();
+                    ancho_columnas();
+                    txt_id_trabajo.setText("");
+                    txt_nombre_trabajo.setText("");
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE INSERTO TRABAJO");
+                    txt_id_trabajo.setText("");
+                    txt_nombre_trabajo.setText("");
+                    conexion.cerrar();
+                }
             }
+
+        } else {
+            String id_trabajo = txt_id_trabajo.getText();
+
+            if (id_trabajo.equals("")) {
+                JOptionPane.showMessageDialog(null, "SELECCIONE UN TRABAJO DE LA TABLA");
+            } else {
+
+                String trabajo = txt_nombre_trabajo.getText();
+
+                boolean resultado = actualizar_trabajo(id_trabajo, trabajo);
+
+                if (resultado = true) {
+                    JOptionPane.showMessageDialog(null, "TRABAJO ACTUALIZADO");
+                    cargar_tabla_trabajos();
+                    ancho_columnas();
+                    txt_id_trabajo.setText("");
+                    txt_nombre_trabajo.setText("");
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE ACTUALIZO TRABAJO");
+                    txt_id_trabajo.setText("");
+                    txt_nombre_trabajo.setText("");
+                    conexion.cerrar();
+                }
+
+            }
+
         }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -220,6 +258,11 @@ public class AdminTrabajos extends javax.swing.JDialog {
         ancho_columnas();
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        txt_id_trabajo.setText("");
+        txt_nombre_trabajo.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -305,6 +348,39 @@ public class AdminTrabajos extends javax.swing.JDialog {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "insertar " + ex);
+            return false;
+        }
+    }
+
+    // METODO PARA CARGAR TABLA PROYECTOS
+    public boolean actualizar_trabajo(String ID, String DESCRIPCION) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "UPDATE"
+                + " TRABAJOS"
+                + " SET "
+                + "  ID = '" + ID + "',"
+                + "  DESCRIPCION = '" + DESCRIPCION + "'"
+                + " WHERE"
+                + "  ID = " + ID + ";";
+
+        System.out.println("" + query);
+
+        try {
+            Statement st = cn.createStatement();
+            st.executeUpdate(query);
+
+            return true;
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "actualizar " + ex);
             return false;
         }
     }
