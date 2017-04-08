@@ -1,4 +1,4 @@
-package app_filiales;
+package app_productos;
 
 import Conexion.ConexioSQLite;
 import java.sql.Connection;
@@ -8,12 +8,12 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class frm_filiales extends javax.swing.JFrame {
+public class frm_productos extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
 
-    public frm_filiales() {
+    public frm_productos() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla();
@@ -27,16 +27,15 @@ public class frm_filiales extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txt_nombre = new javax.swing.JTextField();
+        txt_descripcion = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txt_origen = new javax.swing.JTextField();
-        combo_ubicacion = new javax.swing.JComboBox<>();
+        txt_stock = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txt_actividad = new javax.swing.JTextArea();
+        txt_fabricacion = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txt_vencimiento = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla_filiales = new javax.swing.JTable();
+        tabla_productos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -44,23 +43,17 @@ public class frm_filiales extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("FILIALES");
+        jLabel1.setText("PRODUCTOS");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
-        jLabel2.setText("NOMBRE:");
+        jLabel2.setText("DESCRIPCION:");
 
-        jLabel3.setText("ORIGEN :");
+        jLabel3.setText("STOCK :");
 
-        combo_ubicacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "CALI", "BOGOTA", "MEDELLIN", "BARRANQUILLA", "CARTAGENA", " " }));
+        jLabel4.setText("F.FABRICACION:");
 
-        jLabel4.setText("UBICACION :");
-
-        jLabel5.setText("ACTIVIDAD :");
-
-        txt_actividad.setColumns(20);
-        txt_actividad.setRows(5);
-        jScrollPane2.setViewportView(txt_actividad);
+        jLabel6.setText("F.VENCIMIENTO:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,15 +69,16 @@ public class frm_filiales extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_nombre)
-                            .addComponent(txt_origen, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                            .addComponent(txt_descripcion)
+                            .addComponent(txt_stock, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(combo_ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_fabricacion, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2)))
+                        .addComponent(txt_vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -93,48 +87,48 @@ public class frm_filiales extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txt_origen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(combo_ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(txt_fabricacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txt_vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(152, 152, 152))
         );
 
-        tabla_filiales.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "NOMBRE", "ORIGEN", "UBICACION", "FECHA"
+                "ID", "DESCRIPCION", "STOCK", "F.FABRICACION", "F.VENCIMIENTO"
             }
         ));
-        tabla_filiales.setRowHeight(23);
-        jScrollPane1.setViewportView(tabla_filiales);
-        if (tabla_filiales.getColumnModel().getColumnCount() > 0) {
-            tabla_filiales.getColumnModel().getColumn(0).setMinWidth(30);
-            tabla_filiales.getColumnModel().getColumn(0).setPreferredWidth(30);
-            tabla_filiales.getColumnModel().getColumn(0).setMaxWidth(30);
-            tabla_filiales.getColumnModel().getColumn(1).setMinWidth(300);
-            tabla_filiales.getColumnModel().getColumn(1).setPreferredWidth(300);
-            tabla_filiales.getColumnModel().getColumn(1).setMaxWidth(300);
-            tabla_filiales.getColumnModel().getColumn(2).setMinWidth(150);
-            tabla_filiales.getColumnModel().getColumn(2).setPreferredWidth(150);
-            tabla_filiales.getColumnModel().getColumn(2).setMaxWidth(150);
-            tabla_filiales.getColumnModel().getColumn(3).setMinWidth(130);
-            tabla_filiales.getColumnModel().getColumn(3).setPreferredWidth(130);
-            tabla_filiales.getColumnModel().getColumn(3).setMaxWidth(130);
-            tabla_filiales.getColumnModel().getColumn(4).setMinWidth(100);
-            tabla_filiales.getColumnModel().getColumn(4).setPreferredWidth(100);
-            tabla_filiales.getColumnModel().getColumn(4).setMaxWidth(100);
+        tabla_productos.setRowHeight(23);
+        jScrollPane1.setViewportView(tabla_productos);
+        if (tabla_productos.getColumnModel().getColumnCount() > 0) {
+            tabla_productos.getColumnModel().getColumn(0).setMinWidth(30);
+            tabla_productos.getColumnModel().getColumn(0).setPreferredWidth(30);
+            tabla_productos.getColumnModel().getColumn(0).setMaxWidth(30);
+            tabla_productos.getColumnModel().getColumn(1).setMinWidth(320);
+            tabla_productos.getColumnModel().getColumn(1).setPreferredWidth(320);
+            tabla_productos.getColumnModel().getColumn(1).setMaxWidth(320);
+            tabla_productos.getColumnModel().getColumn(2).setMinWidth(100);
+            tabla_productos.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tabla_productos.getColumnModel().getColumn(2).setMaxWidth(100);
+            tabla_productos.getColumnModel().getColumn(3).setMinWidth(130);
+            tabla_productos.getColumnModel().getColumn(3).setPreferredWidth(130);
+            tabla_productos.getColumnModel().getColumn(3).setMaxWidth(130);
+            tabla_productos.getColumnModel().getColumn(4).setMinWidth(130);
+            tabla_productos.getColumnModel().getColumn(4).setPreferredWidth(130);
+            tabla_productos.getColumnModel().getColumn(4).setMaxWidth(130);
         }
 
         jButton1.setBackground(new java.awt.Color(153, 255, 255));
@@ -168,8 +162,8 @@ public class frm_filiales extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+                        .addGap(62, 62, 62)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -181,7 +175,7 @@ public class frm_filiales extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -194,16 +188,16 @@ public class frm_filiales extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        String nombre = txt_nombre.getText();
-        String origen = txt_origen.getText();
-        String ubicacion = combo_ubicacion.getSelectedItem().toString();
-        String actividad = txt_actividad.getText();
-                
-        FilialesImplentacion implementacion = new FilialesImplentacion();
-        int resultado = implementacion.insertarFiliales(nombre.toUpperCase(), origen.toUpperCase(), ubicacion.toUpperCase(), actividad.toUpperCase(),"NOW()");
+        String descripcion = txt_descripcion.getText();
+        int stock = Integer.parseInt(txt_stock.getText());
+        String fabricacion = txt_fabricacion.getText();
+        String vencimiento = txt_vencimiento.getText();
+
+        ProductosImplementacion implementacion = new ProductosImplementacion();
+        int resultado = implementacion.insertarProductos(descripcion.toUpperCase(), stock, fabricacion.toUpperCase(), vencimiento.toUpperCase(), "NOW()");
 
         if (resultado > 0) {
-            JOptionPane.showMessageDialog(null, "FILIAL INSERTADO");
+            JOptionPane.showMessageDialog(null, "PRODUCTO INSERTADO");
             LimpiarCampos();
             cargar_tabla();
             ancho_columnas();
@@ -233,47 +227,47 @@ public class frm_filiales extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frm_filiales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frm_filiales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frm_filiales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frm_filiales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frm_filiales().setVisible(true);
+                new frm_productos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> combo_ubicacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tabla_filiales;
-    private javax.swing.JTextArea txt_actividad;
-    private javax.swing.JTextField txt_nombre;
-    private javax.swing.JTextField txt_origen;
+    private javax.swing.JTable tabla_productos;
+    private javax.swing.JTextField txt_descripcion;
+    private javax.swing.JTextField txt_fabricacion;
+    private javax.swing.JTextField txt_stock;
+    private javax.swing.JTextField txt_vencimiento;
     // End of variables declaration//GEN-END:variables
 
     public void LimpiarCampos() {
-        txt_nombre.setText("");
-        txt_origen.setText("");
-        txt_actividad.setText("");
-        combo_ubicacion.setSelectedIndex(0);
+        txt_descripcion.setText("");
+        txt_stock.setText("");
+        txt_fabricacion.setText("");
+        txt_vencimiento.setText("");
     }
 
     // METODO PARA CARGAR TABLA FILIALES
@@ -281,38 +275,39 @@ public class frm_filiales extends javax.swing.JFrame {
 
 //        conexion = new ConexioSQLite();
 //        conexion.coneccionbase();
-
-        String[] titulos = {"ID", "NOMBRE", "ORIGEN", "UBICACION", "FECHA_CREACION"};
-        String[] registro = new String[5];
+        String[] titulos = {"ID", "DESCRIPCION", "STOCK", "F.FABRICACION", "F.VENCIMIENTO", "FECHA_CREACION"};
+        String[] registro = new String[6];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
 
         ConexioSQLite con = new ConexioSQLite();
-        Connection cn = con.ConectarFilialesdb();
+        Connection cn = con.ConectarProductosdb();
 
         query = "SELECT "
                 + "ID, "
-                + "NOMBRE, "
-                + "ORIGEN, "
-                + "UBICACION, "
+                + "DESCRIPCION, "
+                + "CANTIDAD_STOCK, "
+                + "FECHA_FABRICACION, "
+                + "FECHA_VENCIMIENTO, "
                 + "FECHA_CREACION "
                 + "FROM "
-                + "tbl_filiales;";
+                + "tbl_productos;";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
                 registro[0] = rs.getString("ID");
-                registro[1] = rs.getString("NOMBRE");
-                registro[2] = rs.getString("ORIGEN");
-                registro[3] = rs.getString("UBICACION");
-                registro[4] = rs.getString("FECHA_CREACION");
+                registro[1] = rs.getString("DESCRIPCION");
+                registro[2] = rs.getString("CANTIDAD_STOCK");
+                registro[3] = rs.getString("FECHA_FABRICACION");
+                registro[4] = rs.getString("FECHA_VENCIMIENTO");
+                registro[5] = rs.getString("FECHA_CREACION");
 
                 modelo.addRow(registro);
             }
-            tabla_filiales.setModel(modelo);
+            tabla_productos.setModel(modelo);
 
         } catch (SQLException ex) {
 
@@ -321,12 +316,13 @@ public class frm_filiales extends javax.swing.JFrame {
         }
     }
 
-     public void ancho_columnas() {
-        tabla_filiales.getColumnModel().getColumn(0).setPreferredWidth(20);
-        tabla_filiales.getColumnModel().getColumn(1).setPreferredWidth(240);
-        tabla_filiales.getColumnModel().getColumn(2).setPreferredWidth(100);
-        tabla_filiales.getColumnModel().getColumn(3).setPreferredWidth(100);
-        tabla_filiales.getColumnModel().getColumn(4).setPreferredWidth(130);        
-     }
-    
+    public void ancho_columnas() {
+        tabla_productos.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tabla_productos.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tabla_productos.getColumnModel().getColumn(2).setPreferredWidth(80);
+        tabla_productos.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tabla_productos.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tabla_productos.getColumnModel().getColumn(5).setPreferredWidth(130);
+    }
+
 }

@@ -13,8 +13,8 @@ public class ConexioSQLite {
     public static ResultSet resultado;
     public static String query = "";
 
-//METODO CONECTAR TABLAS
-    public Connection ConectarFilialesdb() {
+    //METODO CONECTAR TABLAS
+    public Connection ConectarProductosdb() {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -23,15 +23,14 @@ public class ConexioSQLite {
         }
 
         try {
-            conectar = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_filiales_s1", "root", "");
+            conectar = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_productos_s2", "root", "");
             System.out.println("CONECTO BIEN TABLA ........");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return conectar;
     }
-    
-    
+
 //METODOS DE DESCONEXION
     public static void cerrar() {
         try {

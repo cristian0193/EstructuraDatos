@@ -1,4 +1,4 @@
-package app_filiales;
+package app_conductores;
 
 import Conexion.ConexioSQLite;
 import java.sql.Connection;
@@ -8,12 +8,12 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class frm_filiales extends javax.swing.JFrame {
+public class frm_conductores extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
 
-    public frm_filiales() {
+    public frm_conductores() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla();
@@ -29,14 +29,15 @@ public class frm_filiales extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txt_origen = new javax.swing.JTextField();
-        combo_ubicacion = new javax.swing.JComboBox<>();
+        txt_edad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txt_actividad = new javax.swing.JTextArea();
+        txt_direccion = new javax.swing.JTextField();
+        txt_telefono = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txt_experiencia = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla_filiales = new javax.swing.JTable();
+        tabla_conductores = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -44,23 +45,19 @@ public class frm_filiales extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("FILIALES");
+        jLabel1.setText("CONDUCTORES");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
         jLabel2.setText("NOMBRE:");
 
-        jLabel3.setText("ORIGEN :");
+        jLabel3.setText("EDAD:");
 
-        combo_ubicacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "CALI", "BOGOTA", "MEDELLIN", "BARRANQUILLA", "CARTAGENA", " " }));
+        jLabel4.setText("DIRECCION :");
 
-        jLabel4.setText("UBICACION :");
+        jLabel5.setText("TELEFONO :");
 
-        jLabel5.setText("ACTIVIDAD :");
-
-        txt_actividad.setColumns(20);
-        txt_actividad.setRows(5);
-        jScrollPane2.setViewportView(txt_actividad);
+        jLabel6.setText("EXPERIENCIA :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -69,22 +66,22 @@ public class frm_filiales extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_nombre)
+                    .addComponent(txt_direccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_nombre)
-                            .addComponent(txt_origen, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(combo_ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txt_telefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                                .addComponent(txt_experiencia, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(txt_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -97,44 +94,48 @@ public class frm_filiales extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txt_origen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(combo_ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txt_experiencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
-        tabla_filiales.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_conductores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "NOMBRE", "ORIGEN", "UBICACION", "FECHA"
+                "ID", "NOMBRE", "EDAD", "EXPERIENCIA", "FECHA"
             }
         ));
-        tabla_filiales.setRowHeight(23);
-        jScrollPane1.setViewportView(tabla_filiales);
-        if (tabla_filiales.getColumnModel().getColumnCount() > 0) {
-            tabla_filiales.getColumnModel().getColumn(0).setMinWidth(30);
-            tabla_filiales.getColumnModel().getColumn(0).setPreferredWidth(30);
-            tabla_filiales.getColumnModel().getColumn(0).setMaxWidth(30);
-            tabla_filiales.getColumnModel().getColumn(1).setMinWidth(300);
-            tabla_filiales.getColumnModel().getColumn(1).setPreferredWidth(300);
-            tabla_filiales.getColumnModel().getColumn(1).setMaxWidth(300);
-            tabla_filiales.getColumnModel().getColumn(2).setMinWidth(150);
-            tabla_filiales.getColumnModel().getColumn(2).setPreferredWidth(150);
-            tabla_filiales.getColumnModel().getColumn(2).setMaxWidth(150);
-            tabla_filiales.getColumnModel().getColumn(3).setMinWidth(130);
-            tabla_filiales.getColumnModel().getColumn(3).setPreferredWidth(130);
-            tabla_filiales.getColumnModel().getColumn(3).setMaxWidth(130);
-            tabla_filiales.getColumnModel().getColumn(4).setMinWidth(100);
-            tabla_filiales.getColumnModel().getColumn(4).setPreferredWidth(100);
-            tabla_filiales.getColumnModel().getColumn(4).setMaxWidth(100);
+        tabla_conductores.setRowHeight(23);
+        jScrollPane1.setViewportView(tabla_conductores);
+        if (tabla_conductores.getColumnModel().getColumnCount() > 0) {
+            tabla_conductores.getColumnModel().getColumn(0).setMinWidth(30);
+            tabla_conductores.getColumnModel().getColumn(0).setPreferredWidth(30);
+            tabla_conductores.getColumnModel().getColumn(0).setMaxWidth(30);
+            tabla_conductores.getColumnModel().getColumn(1).setMinWidth(300);
+            tabla_conductores.getColumnModel().getColumn(1).setPreferredWidth(300);
+            tabla_conductores.getColumnModel().getColumn(1).setMaxWidth(300);
+            tabla_conductores.getColumnModel().getColumn(2).setMinWidth(100);
+            tabla_conductores.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tabla_conductores.getColumnModel().getColumn(2).setMaxWidth(100);
+            tabla_conductores.getColumnModel().getColumn(3).setMinWidth(130);
+            tabla_conductores.getColumnModel().getColumn(3).setPreferredWidth(130);
+            tabla_conductores.getColumnModel().getColumn(3).setMaxWidth(130);
+            tabla_conductores.getColumnModel().getColumn(4).setMinWidth(150);
+            tabla_conductores.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tabla_conductores.getColumnModel().getColumn(4).setMaxWidth(150);
         }
 
         jButton1.setBackground(new java.awt.Color(153, 255, 255));
@@ -169,7 +170,7 @@ public class frm_filiales extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -195,15 +196,17 @@ public class frm_filiales extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         String nombre = txt_nombre.getText();
-        String origen = txt_origen.getText();
-        String ubicacion = combo_ubicacion.getSelectedItem().toString();
-        String actividad = txt_actividad.getText();
+        int edad = Integer.parseInt(txt_edad.getText());
+        String direccion = txt_direccion.getText();
+        String telefono = txt_telefono.getText();
+        String experiencia = txt_experiencia.getText();
+        
                 
-        FilialesImplentacion implementacion = new FilialesImplentacion();
-        int resultado = implementacion.insertarFiliales(nombre.toUpperCase(), origen.toUpperCase(), ubicacion.toUpperCase(), actividad.toUpperCase(),"NOW()");
+        ConductoresImplementacion implementacion = new ConductoresImplementacion();
+        int resultado = implementacion.insertarConductores(nombre.toUpperCase(), edad, direccion.toUpperCase(), telefono.toUpperCase(),experiencia.toUpperCase(),"NOW()");
 
         if (resultado > 0) {
-            JOptionPane.showMessageDialog(null, "FILIAL INSERTADO");
+            JOptionPane.showMessageDialog(null, "CONDUCTOR INSERTADO");
             LimpiarCampos();
             cargar_tabla();
             ancho_columnas();
@@ -233,26 +236,26 @@ public class frm_filiales extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frm_filiales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frm_filiales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frm_filiales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frm_filiales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frm_filiales().setVisible(true);
+                new frm_conductores().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> combo_ubicacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -260,20 +263,23 @@ public class frm_filiales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tabla_filiales;
-    private javax.swing.JTextArea txt_actividad;
+    private javax.swing.JTable tabla_conductores;
+    private javax.swing.JTextField txt_direccion;
+    private javax.swing.JTextField txt_edad;
+    private javax.swing.JTextField txt_experiencia;
     private javax.swing.JTextField txt_nombre;
-    private javax.swing.JTextField txt_origen;
+    private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
 
     public void LimpiarCampos() {
         txt_nombre.setText("");
-        txt_origen.setText("");
-        txt_actividad.setText("");
-        combo_ubicacion.setSelectedIndex(0);
+        txt_edad.setText("");
+        txt_direccion.setText("");
+        txt_telefono.setText("");
+        txt_experiencia.setText("");
     }
 
     // METODO PARA CARGAR TABLA FILIALES
@@ -282,23 +288,23 @@ public class frm_filiales extends javax.swing.JFrame {
 //        conexion = new ConexioSQLite();
 //        conexion.coneccionbase();
 
-        String[] titulos = {"ID", "NOMBRE", "ORIGEN", "UBICACION", "FECHA_CREACION"};
+        String[] titulos = {"ID", "NOMBRE", "EDAD", "EXPERIENCIA", "FECHA_CREACION"};
         String[] registro = new String[5];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
 
         ConexioSQLite con = new ConexioSQLite();
-        Connection cn = con.ConectarFilialesdb();
+        Connection cn = con.ConectarConductoresdb();
 
         query = "SELECT "
                 + "ID, "
-                + "NOMBRE, "
-                + "ORIGEN, "
-                + "UBICACION, "
+                + "NOMBRE_COMPLETO AS NOMBRE, "
+                + "EDAD, "
+                + "EXPERIENCIA, "
                 + "FECHA_CREACION "
                 + "FROM "
-                + "tbl_filiales;";
+                + "tbl_conductores;";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -306,13 +312,13 @@ public class frm_filiales extends javax.swing.JFrame {
 
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("NOMBRE");
-                registro[2] = rs.getString("ORIGEN");
-                registro[3] = rs.getString("UBICACION");
+                registro[2] = rs.getString("EDAD");
+                registro[3] = rs.getString("EXPERIENCIA");
                 registro[4] = rs.getString("FECHA_CREACION");
 
                 modelo.addRow(registro);
             }
-            tabla_filiales.setModel(modelo);
+            tabla_conductores.setModel(modelo);
 
         } catch (SQLException ex) {
 
@@ -322,11 +328,11 @@ public class frm_filiales extends javax.swing.JFrame {
     }
 
      public void ancho_columnas() {
-        tabla_filiales.getColumnModel().getColumn(0).setPreferredWidth(20);
-        tabla_filiales.getColumnModel().getColumn(1).setPreferredWidth(240);
-        tabla_filiales.getColumnModel().getColumn(2).setPreferredWidth(100);
-        tabla_filiales.getColumnModel().getColumn(3).setPreferredWidth(100);
-        tabla_filiales.getColumnModel().getColumn(4).setPreferredWidth(130);        
+        tabla_conductores.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tabla_conductores.getColumnModel().getColumn(1).setPreferredWidth(240);
+        tabla_conductores.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tabla_conductores.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tabla_conductores.getColumnModel().getColumn(4).setPreferredWidth(130);        
      }
     
 }
