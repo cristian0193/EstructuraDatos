@@ -1,0 +1,21 @@
+module cliente_servidores{
+
+    interface Despachos{ 
+               
+        long insertarDespachos(in long id_filiales, in wstring nombre_filiales, in long id_producto, in wstring descripcion_producto, in long id_conductor, in wstring nombre_conductor, in wstring direccion_despacho, in wstring fecha_salida, in wstring hora_salida, in wstring fecha_llegada, in wstring hora_llegada, in wstring peso_mercancia, in wstring autorizo, in wstring fecha_creacion);
+        long insertarFiliales(in wstring nombre, in wstring origen, in wstring ubicacion, in wstring actividad, in wstring fecha_creacion);
+        long insertarProductos(in wstring descripcion, in long cantidad_stock, in wstring fecha_fabricacion, in wstring fecha_vencimiento, in wstring fecha_creacion);
+        long insertarConductores(in wstring nombre_completo, in long edad, in wstring direccion, in wstring telefono, in wstring experiencia, in wstring fecha_creacion);
+
+        wstring consultaFiliales_id(in wstring id_filial);
+        wstring consultaProductos_id(in wstring id_producto);
+        wstring consultaConductor_id(in wstring id_conductor);
+
+        long validarUsuarioServidor1(in wstring usuario,in wstring contrasena);
+        long validarUsuarioServidor2(in wstring usuario,in wstring contrasena);
+        long validarUsuarioServidor3(in wstring usuario,in wstring contrasena);
+        long validarUsuarioCliente(in wstring usuario,in wstring contrasena);
+
+    }; 
+};
+
