@@ -32,6 +32,61 @@ public class ConexioSQLite {
         return conectar;
     }
     
+      //METODO CONECTAR TABLAS
+    public Connection ConectarConductoresdb() {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        try {
+            conectar = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_conductores_s3", "root", "");
+            System.out.println("CONECTO BIEN TABLA ........");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return conectar;
+    }
+    
+    
+    //METODO CONECTAR TABLAS
+    public Connection ConectarFilialesdb() {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        try {
+            conectar = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_filiales_s1", "root", "");
+            System.out.println("CONECTO BIEN TABLA ........");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return conectar;
+    }
+    
+     //METODO CONECTAR TABLAS
+    public Connection ConectarProductosdb() {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        try {
+            conectar = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_productos_s2", "root", "");
+            System.out.println("CONECTO BIEN TABLA ........");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return conectar;
+    }
+    
 //METODOS DE DESCONEXION
     public static void cerrar() {
         try {
