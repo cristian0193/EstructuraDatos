@@ -1,4 +1,4 @@
-package app_filiales;
+package app_despachos_cliente;
 
 import javax.swing.JOptionPane;
 
@@ -112,12 +112,12 @@ public class frm_login extends javax.swing.JFrame {
         String usuario = txt_usuario.getText();
         String password = txt_password.getText();
         
-        FilialesImplentacion implementacion = new FilialesImplentacion();
-        int retorno = implementacion.validarUsuarioServidor1(usuario, password);
+        DespachoImplementacion implementacion = new DespachoImplementacion();
+        int retorno = implementacion.validarUsuarioCliente(usuario, password);
         
         if (retorno > 0) {
-            frm_filiales filiales = new frm_filiales();
-            filiales.setVisible(true);            
+            frm_despacho despacho = new frm_despacho();
+            despacho.setVisible(true);            
             this.hide();
         } else {
             JOptionPane.showMessageDialog(null, "LOGIN INCORRECTO");
@@ -150,6 +150,8 @@ public class frm_login extends javax.swing.JFrame {
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
 //            java.util.logging.Logger.getLogger(frm_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
+//        //</editor-fold>
+//        //</editor-fold>
 //        //</editor-fold>
 //        //</editor-fold>
 //

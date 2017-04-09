@@ -2,7 +2,6 @@ package app_despachos_cliente;
 
 import cliente_servidores.Despachos;
 import cliente_servidores.DespachosHelper;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 import org.omg.CORBA.ORB;
 import org.omg.CORBA.ORBPackage.InvalidName;
@@ -21,7 +20,6 @@ public static int opcion = 0;
             org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
             NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
             Despachos despacho = DespachosHelper.narrow(ncRef.resolve_str("Despachos"));
-
             
             //PROGRAMACION PARA LAS INCLUIR LOS JFRAME
             
