@@ -1,18 +1,23 @@
 package app_despachos_cliente;
 
 import Conexion.ConexioSQLite;
+import cliente_servidores.Despachos;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import Modelos.Filiales;
+
 
 public class frm_despacho extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
-
+    public static Despachos despacho;
+    public Filiales filial;
+    
     public frm_despacho() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -420,6 +425,7 @@ public class frm_despacho extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
             LimpiarCampos();
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_hora_llegadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_hora_llegadaActionPerformed
@@ -448,30 +454,31 @@ public class frm_despacho extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        String id_filial = txt_id_filial.getText();
-
+        String id_filial = txt_id_filial.getText();        
+                
         if (id_filial.equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE UN CODIGO FILIAL");
         } else {
-            DespachoImplementacion implementacion = new DespachoImplementacion();
+            //DespachoImplementacion implementacion = new DespachoImplementacion();
 
-            if (implementacion.consultaFiliales_id(id_filial).equals("")) {
+            if (despacho.consultaFiliales_id(id_filial).equals("")) {
 
                 int ax = JOptionPane.showConfirmDialog(null, "EL CODIGO DE LA FILIAL NO EXISTE \n ¿DESEA CREA UNA NUEVA FILIAL?");
-                
+
                 if (ax == JOptionPane.YES_OPTION) {
                     frm_filiales filial = new frm_filiales();
                     filial.setVisible(true);
                 } else if (ax == JOptionPane.NO_OPTION) {
-                   txt_id_filial.setText("");
-                   txt_nombre_filial.setText("");
+                    txt_id_filial.setText("");
+                    txt_nombre_filial.setText("");
                 }
             } else {
-                String nombre = implementacion.consultaFiliales_id(id_filial);
-                txt_nombre_filial.setText(nombre);
+//               String nombre = filial.getNombre();
+               String nombre = despacho.consultaFiliales_id(id_filial);
+               txt_nombre_filial.setText(nombre);
             }
-
         }
+
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -485,17 +492,17 @@ public class frm_despacho extends javax.swing.JFrame {
             DespachoImplementacion implementacion = new DespachoImplementacion();
 
             if (implementacion.consultaProductos_id(id_producto).equals("")) {
-                
+
                 int ax = JOptionPane.showConfirmDialog(null, "EL CODIGO DEL PRODUCTO NO EXISTE \n ¿DESEA CREA UNA NUEVO PRODUCTO?");
-                
+
                 if (ax == JOptionPane.YES_OPTION) {
                     frm_productos producto = new frm_productos();
                     producto.setVisible(true);
                 } else if (ax == JOptionPane.NO_OPTION) {
-                   txt_id_producto.setText("");
-                   txt_nombre_producto.setText("");
+                    txt_id_producto.setText("");
+                    txt_nombre_producto.setText("");
                 }
-                
+
             } else {
                 String nombre = implementacion.consultaProductos_id(id_producto);
                 txt_nombre_producto.setText(nombre);
@@ -515,17 +522,17 @@ public class frm_despacho extends javax.swing.JFrame {
             DespachoImplementacion implementacion = new DespachoImplementacion();
 
             if (implementacion.consultaConductor_id(id_conductor).equals("")) {
-                
+
                 int ax = JOptionPane.showConfirmDialog(null, "EL CODIGO DEL CONDUCTOR NO EXISTE \n ¿DESEA CREA UNA NUEVO CONDUCTOR?");
-                
+
                 if (ax == JOptionPane.YES_OPTION) {
                     frm_conductores conductor = new frm_conductores();
                     conductor.setVisible(true);
                 } else if (ax == JOptionPane.NO_OPTION) {
-                   txt_id_conductor.setText("");
-                   txt_nombre_conductor.setText("");
+                    txt_id_conductor.setText("");
+                    txt_nombre_conductor.setText("");
                 }
-                
+
             } else {
                 String nombre = implementacion.consultaConductor_id(id_conductor);
                 txt_nombre_conductor.setText(nombre);
@@ -535,38 +542,40 @@ public class frm_despacho extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new frm_despacho().setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String args[]) {
+
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new frm_despacho().setVisible(true);
+            }
+        });
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
