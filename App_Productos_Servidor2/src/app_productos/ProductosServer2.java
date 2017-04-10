@@ -4,6 +4,7 @@ import cliente_servidores.Despachos;
 import cliente_servidores.DespachosHelper;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.omg.CORBA.ORB;
 import org.omg.CORBA.ORBPackage.InvalidName;
 import org.omg.CosNaming.NameComponent;
@@ -41,11 +42,24 @@ public class ProductosServer2 {
             NameComponent nameComponent[] = rootContext.to_name("Despachos");
             rootContext.rebind(nameComponent, href);
 
-            //listo para recibir peticiones
-            System.out.println("Servidor 2 Listo .......");
-//            prueba ventana = new prueba();
-//            ventana.setVisible(true);
-            orb.run();
+            int opcion = 0;
+            
+            do {
+                opcion = Integer.parseInt(JOptionPane.showInputDialog("1 - Ingresar Modo Ejecucion \n 2 - Ingresar Modo Administrador \n 0 - Salir"));
+
+                if (opcion == 1) {
+                    System.out.println("Servidor 2 Listo .......");
+                    orb.run();                                        
+                } else if (opcion == 2) {
+                    frm_login ventanas = new frm_login();
+                    ventanas.setVisible(true);
+                     System.out.println("Servidor 2 Listo .......");
+                    orb.run();
+                } else {
+                    System.out.println("Servidor 2 Apagado .......");
+                    System.exit(0);
+                }
+            } while (opcion > 3);
 
         } catch (AdapterInactive e) {
             System.err.println("Error: " + e.getMessage());
@@ -65,4 +79,3 @@ public class ProductosServer2 {
 
     }
 }
-

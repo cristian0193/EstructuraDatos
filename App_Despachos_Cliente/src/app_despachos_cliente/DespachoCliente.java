@@ -13,6 +13,7 @@ import org.omg.CosNaming.NamingContextPackage.NotFound;
 public class DespachoCliente {
     
 public static int opcion = 0;
+frm_despacho despacho;
 
     public static void main(String args[]) {
         try {
@@ -20,8 +21,6 @@ public static int opcion = 0;
             org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
             NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
             Despachos despacho = DespachosHelper.narrow(ncRef.resolve_str("Despachos"));
-            
-            //PROGRAMACION PARA LAS INCLUIR LOS JFRAME
             
 
         } catch (InvalidName e) {
