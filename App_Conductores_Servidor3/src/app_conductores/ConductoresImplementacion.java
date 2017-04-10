@@ -65,7 +65,29 @@ public class ConductoresImplementacion extends DespachosPOA{
 
     @Override
     public String consultaConductor_id(String id_conductor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "";
+        int resultado = 0;
+        String nombre = "";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_conductores_s3", "root", "");
+            query = "SELECT nombre_completo FROM tbl_conductores WHERE id = " + id_conductor;
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                nombre = rs.getString("nombre_completo");
+            }
+
+            rs.close();
+            cn.close();
+
+        } catch (Exception ex) {
+            Logger.getLogger(ConductoresImplementacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nombre;
     }
 
     @Override

@@ -60,7 +60,29 @@ public class ProductosImplementacion extends DespachosPOA{
 
     @Override
     public String consultaProductos_id(String id_producto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "";
+        int resultado = 0;
+        String descripcion = "";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_productos_s2", "root", "");
+            query = "SELECT descripcion FROM tbl_productos WHERE id = " + id_producto;
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                descripcion = rs.getString("descripcion");
+            }
+
+            rs.close();
+            cn.close();
+
+        } catch (Exception ex) {
+            Logger.getLogger(ProductosImplementacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return descripcion;
     }
 
     @Override

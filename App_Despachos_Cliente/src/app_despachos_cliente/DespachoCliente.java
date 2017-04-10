@@ -2,7 +2,6 @@ package app_despachos_cliente;
 
 import cliente_servidores.Despachos;
 import cliente_servidores.DespachosHelper;
-import javax.swing.JOptionPane;
 import org.omg.CORBA.ORB;
 import org.omg.CORBA.ORBPackage.InvalidName;
 import org.omg.CosNaming.NamingContextExt;
