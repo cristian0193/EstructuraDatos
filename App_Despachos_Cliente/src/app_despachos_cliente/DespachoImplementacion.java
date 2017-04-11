@@ -54,164 +54,32 @@ public class DespachoImplementacion extends DespachosPOA {
 
     @Override
     public int insertarFiliales(String nombre, String origen, String ubicacion, String actividad, String fecha_creacion) {
-        String query = "";
-        int resultado = 0;
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_filiales_s1", "root", "");
-            query = "INSERT INTO tbl_filiales VALUES (NULL,'" + nombre + "','" + origen + "','" + ubicacion + "','" + actividad + "',NOW())";
-            Statement st = cn.createStatement();
-            int valor = st.executeUpdate(query);
-
-            if (valor > 0) {
-                resultado = valor;
-            } else {
-                resultado = 0;
-            }
-
-            st.close();
-            cn.close();
-
-        } catch (Exception ex) {
-            Logger.getLogger(DespachoImplementacion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return resultado;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates. 
     }
 
     @Override
     public int insertarProductos(String descripcion, int cantidad_stock, String fecha_fabricacion, String fecha_vencimiento, String fecha_creacion) {
-        String query = "";
-        int resultado = 0;
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_productos_s2", "root", "");
-            query = "INSERT INTO tbl_productos VALUES (NULL,'" + descripcion + "'," + cantidad_stock + ",'" + fecha_fabricacion + "','" + fecha_vencimiento + "',NOW())";
-            Statement st = cn.createStatement();
-            int valor = st.executeUpdate(query);
-
-            if (valor > 0) {
-                resultado = valor;
-            } else {
-                resultado = 0;
-            }
-
-            st.close();
-            cn.close();
-
-        } catch (Exception ex) {
-            Logger.getLogger(DespachoImplementacion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return resultado;
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates. 
     }
 
     @Override
     public int insertarConductores(String nombre_completo, int edad, String direccion, String telefono, String experiencia, String fecha_creacion) {
-        String query = "";
-        int resultado = 0;
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_conductores_s3", "root", "");
-            query = "INSERT INTO tbl_conductores VALUES (NULL,'" + nombre_completo + "','" + edad + "','" + direccion + "','" + telefono + "','" + experiencia + "',NOW())";
-            Statement st = cn.createStatement();
-            int valor = st.executeUpdate(query);
-
-            if (valor > 0) {
-                resultado = valor;
-            } else {
-                resultado = 0;
-            }
-
-            st.close();
-            cn.close();
-
-        } catch (Exception ex) {
-            Logger.getLogger(DespachoImplementacion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return resultado;
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.  
     }
 
     @Override
     public String consultaFiliales_id(String id_filial) {
-        String query = "";
-        int resultado = 0;
-        String nombre = "";
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_filiales_s1", "root", "");
-            query = "SELECT nombre FROM tbl_filiales WHERE id = " + id_filial;
-
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
-            while (rs.next()) {
-                nombre = rs.getString("nombre");
-            }
-
-            rs.close();
-            cn.close();
-
-        } catch (Exception ex) {
-            Logger.getLogger(DespachoImplementacion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return nombre;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates. 
     }
 
     @Override
     public String consultaProductos_id(String id_producto) {
-        String query = "";
-        int resultado = 0;
-        String descripcion = "";
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_productos_s2", "root", "");
-            query = "SELECT descripcion FROM tbl_productos WHERE id = " + id_producto;
-
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
-            while (rs.next()) {
-                descripcion = rs.getString("descripcion");
-            }
-
-            rs.close();
-            cn.close();
-
-        } catch (Exception ex) {
-            Logger.getLogger(DespachoImplementacion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return descripcion;
+       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates. 
     }
 
     @Override
     public String consultaConductor_id(String id_conductor) {
-        String query = "";
-        int resultado = 0;
-        String nombre = "";
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_conductores_s3", "root", "");
-            query = "SELECT nombre_completo FROM tbl_conductores WHERE id = " + id_conductor;
-
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
-            while (rs.next()) {
-                nombre = rs.getString("nombre_completo");
-            }
-
-            rs.close();
-            cn.close();
-
-        } catch (Exception ex) {
-            Logger.getLogger(DespachoImplementacion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return nombre;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates. 
     }
 
     @Override

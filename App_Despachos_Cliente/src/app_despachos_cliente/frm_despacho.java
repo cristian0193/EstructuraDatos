@@ -17,12 +17,13 @@ public class frm_despacho extends javax.swing.JFrame {
     public static DefaultTableModel modelo;
     public static Despachos despacho;
     public Filiales filial;
-    
+
     public frm_despacho() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla();
-        ancho_columnas();
+        ancho_columnas();       
+
     }
 
     @SuppressWarnings("unchecked")
@@ -454,31 +455,32 @@ public class frm_despacho extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        String id_filial = txt_id_filial.getText();        
-                
-        if (id_filial.equals("")) {
-            JOptionPane.showMessageDialog(null, "INGRESE UN CODIGO FILIAL");
-        } else {
-            //DespachoImplementacion implementacion = new DespachoImplementacion();
-
-            if (despacho.consultaFiliales_id(id_filial).equals("")) {
-
-                int ax = JOptionPane.showConfirmDialog(null, "EL CODIGO DE LA FILIAL NO EXISTE \n ¿DESEA CREA UNA NUEVA FILIAL?");
-
-                if (ax == JOptionPane.YES_OPTION) {
-                    frm_filiales filial = new frm_filiales();
-                    filial.setVisible(true);
-                } else if (ax == JOptionPane.NO_OPTION) {
-                    txt_id_filial.setText("");
-                    txt_nombre_filial.setText("");
-                }
-            } else {
-//               String nombre = filial.getNombre();
-               String nombre = despacho.consultaFiliales_id(id_filial);
-               txt_nombre_filial.setText(nombre);
-            }
-        }
-
+//        String id_filial = txt_id_filial.getText();
+//                                
+//        if (id_filial.equals("")) {
+//            JOptionPane.showMessageDialog(null, "INGRESE UN CODIGO FILIAL");
+//        } else {
+//            //DespachoImplementacion implementacion = new DespachoImplementacion();
+//
+//            DespachoCliente cliente = new DespachoCliente();
+//
+//            if (cliente.consultFilial("1").equals("")) {
+//
+//                int ax = JOptionPane.showConfirmDialog(null, "EL CODIGO DE LA FILIAL NO EXISTE \n ¿DESEA CREA UNA NUEVA FILIAL?");
+//
+//                if (ax == JOptionPane.YES_OPTION) {
+//                    frm_filiales filial = new frm_filiales();
+//                    filial.setVisible(true);
+//                } else if (ax == JOptionPane.NO_OPTION) {
+//                    txt_id_filial.setText("");
+//                    txt_nombre_filial.setText("");
+//                }
+//            } else {
+////               String nombre = filial.getNombre();
+//               String nombre = _nombre;
+//               txt_nombre_filial.setText(nombre);
+//            }
+//        }
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -571,7 +573,7 @@ public class frm_despacho extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frm_despacho().setVisible(true);
+                new frm_despacho().setVisible(true);                                
             }
         });
 
@@ -682,6 +684,6 @@ public class frm_despacho extends javax.swing.JFrame {
         tabla_despacho.getColumnModel().getColumn(4).setPreferredWidth(100);
         tabla_despacho.getColumnModel().getColumn(5).setPreferredWidth(100);
         tabla_despacho.getColumnModel().getColumn(6).setPreferredWidth(100);
-    }
+    }    
 
 }
