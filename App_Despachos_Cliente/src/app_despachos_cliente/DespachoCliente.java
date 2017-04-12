@@ -1,6 +1,7 @@
 package app_despachos_cliente;
 
 import Conexion.ConexioSQLite;
+import Modelos.Filiales;
 import cliente_servidores.Despachos;
 import cliente_servidores.DespachosHelper;
 import org.omg.CORBA.ORB;
@@ -9,7 +10,6 @@ import org.omg.CosNaming.NamingContextExt;
 import org.omg.CosNaming.NamingContextExtHelper;
 import org.omg.CosNaming.NamingContextPackage.CannotProceed;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
-import Modelos.Filiales;
 import static app_despachos_cliente.frm_despacho.conexion;
 import static app_despachos_cliente.frm_despacho.modelo;
 import java.sql.Connection;
@@ -19,67 +19,18 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class DespachoCliente extends javax.swing.JFrame {
+public class DespachoCliente extends javax.swing.JFrame{
 
     public static int opcion = 0;
     public static Filiales filial;
-    public static String nombre = "";
+    public static String nombre_filial = "";
+    public static String nombre_producto = "";
+    public static String nombre_conductor = "";
+    public static Despachos despacho;
 
     public DespachoCliente() {
         initComponents();
-    }
-
-    
-    
-    public static void main(String args[]) {
-        try {
-            ORB orb = ORB.init(args, null);
-            org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-            NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
-            Despachos despacho = DespachosHelper.narrow(ncRef.resolve_str("Despachos"));
-
-            nombre = despacho.consultaFiliales_id("1");
-            System.out.println("" + nombre);
-
-//            DespachoCliente cliente = new DespachoCliente();
-//            cliente.initComponents();
-
-            try {
-                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                    if ("Nimbus".equals(info.getName())) {
-                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-            } catch (ClassNotFoundException ex) {
-                java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            }
-            //</editor-fold>
-            //</editor-fold>
-
-            /* Create and display the form */
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new frm_despacho().setVisible(true);
-                }
-            });
-
-        } catch (InvalidName e) {
-            System.out.println("Error: " + e);
-        } catch (NotFound e) {
-            System.out.println("Error: " + e);
-        } catch (CannotProceed e) {
-            System.out.println("Error: " + e);
-        } catch (org.omg.CosNaming.NamingContextPackage.InvalidName e) {
-            System.out.println("Error: " + e);
-        }
-
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -450,12 +401,21 @@ public class DespachoCliente extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
 
+      String id = txt_id_filial.getText();
+      String nomb = nombreFili(despacho,id);
+        
+      txt_nombre_filial.setText(nomb);
+       
+      
+      
+      
+
 //        String id_filial = txt_id_filial.getText();
 //                                
 //        if (id_filial.equals("")) {
 //            JOptionPane.showMessageDialog(null, "INGRESE UN CODIGO FILIAL");
 //        } else {
-//            //DespachoImplementacion implementacion = new DespachoImplementacion();
+//            DespachoImplementacion implementacion = new DespachoImplementacion();
 //
 //            DespachoCliente cliente = new DespachoCliente();
 //
@@ -471,9 +431,9 @@ public class DespachoCliente extends javax.swing.JFrame {
 //                    txt_nombre_filial.setText("");
 //                }
 //            } else {
-////               String nombre = filial.getNombre();
-//               String nombre = _nombre;
-//               txt_nombre_filial.setText(nombre);
+//               String nombre_filial = filial.getNombre();
+//               String nombre_filial = _nombre;
+//               txt_nombre_filial.setText(nombre_filial);
 //            }
 //        }
     }
@@ -481,8 +441,11 @@ public class DespachoCliente extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
 
         String id_producto = txt_id_producto.getText();
-
+       
+        
+        
         if (id_producto.equals("")) {
+            JOptionPane.showMessageDialog(null,""+nombre_filial);
             JOptionPane.showMessageDialog(null, "INGRESE UN CODIGO DE PRODUCTO");
         } else {
             DespachoImplementacion implementacion = new DespachoImplementacion();
@@ -540,10 +503,10 @@ public class DespachoCliente extends javax.swing.JFrame {
 
     public void LimpiarCampos() {
         txt_id_filial.setText("");
-        txt_nombre_filial.setText("");;
+        txt_nombre_filial.setText("");
         txt_id_producto.setText("");
         txt_nombre_producto.setText("");
-        txt_id_producto.setText("");
+        txt_id_conductor.setText("");
         txt_nombre_conductor.setText("");
         txt_direccion.setText("");
         txt_peso.setText("");
@@ -609,6 +572,14 @@ public class DespachoCliente extends javax.swing.JFrame {
         tabla_despacho.getColumnModel().getColumn(6).setPreferredWidth(100);
     }
 
+    public String nombreFili(Despachos despa,String id){
+        
+        String nombre = despa.consultaFiliales_id(id);
+        
+        return nombre;
+    }
+    
+    
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -639,7 +610,56 @@ public class DespachoCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txt_id_filial;
     private javax.swing.JTextField txt_id_producto;
     private javax.swing.JTextField txt_nombre_conductor;
-    private javax.swing.JTextField txt_nombre_filial;
+    private static javax.swing.JTextField txt_nombre_filial;
     private javax.swing.JTextField txt_nombre_producto;
     private javax.swing.JTextField txt_peso;
+
+//    public static void main(String args[]) {
+//        try {
+//            ORB orb = ORB.init(args, null);
+//            org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+//            NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
+//            despacho = DespachosHelper.narrow(ncRef.resolve_str("Despachos"));
+//
+//            
+//            try {
+//                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                    if ("Nimbus".equals(info.getName())) {
+//                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                        break;
+//                    }
+//                }
+//            } catch (ClassNotFoundException ex) {
+//                java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            } catch (InstantiationException ex) {
+//                java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            } catch (IllegalAccessException ex) {
+//                java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//                java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            }
+//            //</editor-fold>
+//            //</editor-fold>
+//
+//            /* Create and display the form */
+//            java.awt.EventQueue.invokeLater(new Runnable() {
+//                public void run() {
+//                    new DespachoCliente().setVisible(true);
+//                }
+//            });
+//                                                           
+//        } catch (InvalidName e) {
+//            System.out.println("Error: " + e);
+//        } catch (NotFound e) {
+//            System.out.println("Error: " + e);
+//        } catch (CannotProceed e) {
+//            System.out.println("Error: " + e);
+//        } catch (org.omg.CosNaming.NamingContextPackage.InvalidName e) {
+//            System.out.println("Error: " + e);
+//        }
+//
+//    }
+
+    
+
 }
