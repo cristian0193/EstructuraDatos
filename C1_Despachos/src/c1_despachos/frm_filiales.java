@@ -204,24 +204,34 @@ public class frm_filiales extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        String nombre = txt_nombre.getText();
-        String origen = txt_origen.getText();
-        String ubicacion = combo_ubicacion.getSelectedItem().toString();
-        String actividad = txt_actividad.getText();
+        String nombre = "";
+        String origen = "";
+        String ubicacion = "";
+        String actividad = "";
 
-        DespachoImplementacion filial = new DespachoImplementacion();
-        int resultado = filial.insertarFiliales(nombre.toUpperCase(), origen.toUpperCase(), ubicacion.toUpperCase(), actividad.toUpperCase(), "NOW()");
+        nombre = txt_nombre.getText();
+        origen = txt_origen.getText();
+        ubicacion = combo_ubicacion.getSelectedItem().toString();
+        actividad = txt_actividad.getText();
 
-        if (resultado > 0) {
-            JOptionPane.showMessageDialog(null, "FILIAL INSERTADO");
-            LimpiarCampos();
-            cargar_tabla();
-            ancho_columnas();
-            conexion.cerrar();
+        if (nombre.equals("") || origen.equals("") || ubicacion.equals("") || actividad.equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS");
         } else {
-            JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-            LimpiarCampos();
+            DespachoImplementacion filial = new DespachoImplementacion();
+            int resultado = filial.insertarFiliales(nombre.toUpperCase(), origen.toUpperCase(), ubicacion.toUpperCase(), actividad.toUpperCase(), "NOW()");
+
+            if (resultado > 0) {
+                JOptionPane.showMessageDialog(null, "FILIAL INSERTADO");
+                LimpiarCampos();
+                cargar_tabla();
+                ancho_columnas();
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                LimpiarCampos();
+            }
         }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

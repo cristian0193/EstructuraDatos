@@ -44,7 +44,7 @@ public class ConductoresServer3 {
 
             int opcion = 0;
             
-                opcion = Integer.parseInt(JOptionPane.showInputDialog("1 - Ingresar Modo Ejecucion \n 2 - Ingresar Modo Administrador \n 0 - Salir"));
+                opcion = Integer.parseInt(JOptionPane.showInputDialog("-------- SERVER 3 --------- \n 1 - Ingresar Modo Ejecucion \n 2 - Ingresar Modo Administrador \n 0 - Salir"));
 
                 if (opcion == 1) {
                     System.out.println("Servidor 3 Listo .......");

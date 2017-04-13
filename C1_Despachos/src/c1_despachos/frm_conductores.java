@@ -209,26 +209,39 @@ public class frm_conductores extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        String nombre = txt_nombre.getText();
-        int edad = Integer.parseInt(txt_edad.getText());
-        String direccion = txt_direccion.getText();
-        String telefono = txt_telefono.getText();
-        String experiencia = txt_experiencia.getText();
+        String nombre = "";
+        int edad1 = 0;
+        String edad2 = "";
+        String direccion = "";
+        String telefono = "";
+        String experiencia = "";
 
-        DespachoImplementacion conductor = new DespachoImplementacion();
-        
-        int resultado = conductor.insertarConductores(nombre.toUpperCase(), edad, direccion.toUpperCase(), telefono.toUpperCase(), experiencia.toUpperCase(), "NOW()");
+        nombre = txt_nombre.getText();
+        edad2 = txt_edad.getText();
+        direccion = txt_direccion.getText();
+        telefono = txt_telefono.getText();
+        experiencia = txt_experiencia.getText();
 
-        if (resultado > 0) {
-            JOptionPane.showMessageDialog(null, "CONDUCTOR INSERTADO");
-            LimpiarCampos();
-            cargar_tabla();
-            ancho_columnas();
-            conexion.cerrar();
+        if (nombre.equals("") || edad2.equals("") || direccion.equals("") || telefono.equals("") || experiencia.equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS");
         } else {
-            JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-            LimpiarCampos();
+            edad1 = Integer.parseInt(txt_edad.getText());
+            DespachoImplementacion conductor = new DespachoImplementacion();
+
+            int resultado = conductor.insertarConductores(nombre.toUpperCase(), edad1, direccion.toUpperCase(), telefono.toUpperCase(), experiencia.toUpperCase(), "NOW()");
+
+            if (resultado > 0) {
+                JOptionPane.showMessageDialog(null, "CONDUCTOR INSERTADO");
+                LimpiarCampos();
+                cargar_tabla();
+                ancho_columnas();
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                LimpiarCampos();
+            }
         }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -242,11 +255,11 @@ public class frm_conductores extends javax.swing.JFrame {
 
             ORB orb = ORB.init(args, null);
             org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-            NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);            
+            NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
             despacho_conductor = Despachos_ConductorHelper.narrow(ncRef.resolve_str("Despachos_Conductor"));
-            
+
             System.out.println("interfaces conductor ok");
-            
+
         } catch (InvalidName e) {
             System.out.println("Error Name: " + e);
         } catch (NotFound e) {
@@ -256,7 +269,6 @@ public class frm_conductores extends javax.swing.JFrame {
         } catch (org.omg.CosNaming.NamingContextPackage.InvalidName e) {
             System.out.println("Error org.omg : " + e);
         }
-
 
 //        try {
 //            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -275,7 +287,6 @@ public class frm_conductores extends javax.swing.JFrame {
 //            java.util.logging.Logger.getLogger(frm_conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

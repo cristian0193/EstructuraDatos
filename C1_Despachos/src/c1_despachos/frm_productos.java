@@ -197,24 +197,37 @@ public class frm_productos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        String descripcion = txt_descripcion.getText();
-        int stock = Integer.parseInt(txt_stock.getText());
-        String fabricacion = txt_fabricacion.getText();
-        String vencimiento = txt_vencimiento.getText();
+        String descripcion = "";
+        int stock1 = 0;
+        String stock2 = "";
+        String fabricacion = "";
+        String vencimiento = "";
 
-        DespachoImplementacion producto = new DespachoImplementacion();
-        int resultado = producto.insertarProductos(descripcion.toUpperCase(), stock, fabricacion.toUpperCase(), vencimiento.toUpperCase(), "NOW()");
+        descripcion = txt_descripcion.getText();
+        stock2 = txt_stock.getText();
+        fabricacion = txt_fabricacion.getText();
+        vencimiento = txt_vencimiento.getText();
 
-        if (resultado > 0) {
-            JOptionPane.showMessageDialog(null, "PRODUCTO INSERTADO");
-            LimpiarCampos();
-            cargar_tabla();
-            ancho_columnas();
-            conexion.cerrar();
+        if (descripcion.equals("") || stock2.equals("") || fabricacion.equals("") || vencimiento.equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS");
         } else {
-            JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-            LimpiarCampos();
+            stock1 = Integer.parseInt(txt_stock.getText());
+            DespachoImplementacion producto = new DespachoImplementacion();
+
+            int resultado = producto.insertarProductos(descripcion.toUpperCase(), stock1, fabricacion.toUpperCase(), vencimiento.toUpperCase(), "NOW()");
+
+            if (resultado > 0) {
+                JOptionPane.showMessageDialog(null, "PRODUCTO INSERTADO");
+                LimpiarCampos();
+                cargar_tabla();
+                ancho_columnas();
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                LimpiarCampos();
+            }
         }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -253,8 +266,8 @@ public class frm_productos extends javax.swing.JFrame {
 //                new frm_productos().setVisible(true);
 //            }
 //        });
-   
- try {
+
+        try {
             ORB orb = ORB.init(args, null);
             org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
             NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
@@ -286,8 +299,7 @@ public class frm_productos extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-   
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

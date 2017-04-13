@@ -1,6 +1,18 @@
 package c1_despachos;
 
+import static c1_despachos.frm_despacho.despacho_conductores;
+import static c1_despachos.frm_despacho.despacho_filial;
+import static c1_despachos.frm_despacho.despacho_productos;
+import cliente_servidores1.Despachos_FilialHelper;
+import cliente_servidores2.Despachos_ProductosHelper;
+import cliente_servidores3.Despachos_ConductorHelper;
 import javax.swing.JOptionPane;
+import org.omg.CORBA.ORB;
+import org.omg.CORBA.ORBPackage.InvalidName;
+import org.omg.CosNaming.NamingContextExt;
+import org.omg.CosNaming.NamingContextExtHelper;
+import org.omg.CosNaming.NamingContextPackage.CannotProceed;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 public class frm_login extends javax.swing.JFrame {
     
@@ -129,11 +141,28 @@ public class frm_login extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
+        try {
+
+            ORB orb = ORB.init(args, null);
+            org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+            NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
+            despacho_filial = Despachos_FilialHelper.narrow(ncRef.resolve_str("Despachos_Filial"));
+            despacho_productos = Despachos_ProductosHelper.narrow(ncRef.resolve_str("Despachos_Productos"));
+            despacho_conductores = Despachos_ConductorHelper.narrow(ncRef.resolve_str("Despachos_Conductor"));
+            
+            System.out.println("interfaces ok");
+            
+        } catch (InvalidName e) {
+            System.out.println("Error Name: " + e);
+        } catch (NotFound e) {
+            System.out.println("Error Found 1: " + e);
+        } catch (CannotProceed e) {
+            System.out.println("Error Proceed: " + e);
+        } catch (org.omg.CosNaming.NamingContextPackage.InvalidName e) {
+            System.out.println("Error: " + e);
+        }
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -150,10 +179,7 @@ public class frm_login extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(frm_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

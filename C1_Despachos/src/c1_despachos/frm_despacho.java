@@ -414,22 +414,36 @@ public class frm_despacho extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        int id_filial = Integer.parseInt(txt_id_filial.getText());
-        String nombre_filial = txt_nombre_filial.getText();
-        int id_producto = Integer.parseInt(txt_id_producto.getText());
-        String descripcion_producto = txt_nombre_producto.getText();
-        int id_conductor = Integer.parseInt(txt_id_producto.getText());
-        String nombre_conductor = txt_nombre_conductor.getText();
-        String direccion = txt_direccion.getText();
-        String peso = txt_peso.getText();
-        String autorizo = txt_autorizo.getText();
-        String f_salida = txt_fecha_salida.getText();
-        String h_salida = txt_hora_salida.getText();
-        String f_llegada = txt_fecha_llegada.getText();
-        String h_llegada = txt_hora_llegada.getText();
+        int id_filial = 0;
+        String nombre_filial = "";
+        int id_producto = 0;
+        String descripcion_producto = "";
+        int id_conductor = 0;
+        String nombre_conductor = "";
+        String direccion = "";
+        String peso = "";
+        String autorizo = "";
+        String f_salida = "";
+        String h_salida = "";
+        String f_llegada = "";
+        String h_llegada = "";
+        
+        id_filial = Integer.parseInt(txt_id_filial.getText());
+        nombre_filial = txt_nombre_filial.getText();
+        id_producto = Integer.parseInt(txt_id_producto.getText());
+        descripcion_producto = txt_nombre_producto.getText();
+        id_conductor = Integer.parseInt(txt_id_producto.getText());
+        nombre_conductor = txt_nombre_conductor.getText();
+        direccion = txt_direccion.getText();
+        peso = txt_peso.getText();
+        autorizo = txt_autorizo.getText();
+        f_salida = txt_fecha_salida.getText();
+        h_salida = txt_hora_salida.getText();
+        f_llegada = txt_fecha_llegada.getText();
+        h_llegada = txt_hora_llegada.getText();
 
         DespachoImplementacion implementacion = new DespachoImplementacion();
-        int resultado = implementacion.insertarDespachos(id_filial, nombre_filial, id_producto, descripcion_producto, id_conductor, nombre_conductor, direccion, f_salida, h_salida, f_llegada, h_llegada,peso, autorizo, "NOW()");
+        int resultado = implementacion.insertarDespachos(id_filial, nombre_filial, id_producto, descripcion_producto, id_conductor, nombre_conductor, direccion.toUpperCase(), f_salida, h_salida, f_llegada, h_llegada,peso, autorizo.toUpperCase(), "NOW()");
 
         if (resultado > 0) {
             JOptionPane.showMessageDialog(null, "DESPACHO INSERTADO");
