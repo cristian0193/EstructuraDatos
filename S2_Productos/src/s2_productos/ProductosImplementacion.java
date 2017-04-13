@@ -20,6 +20,7 @@ public class ProductosImplementacion extends Despachos_ProductosPOA{
             Class.forName("com.mysql.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_productos_s2", "root", "");
             query = "INSERT INTO tbl_productos VALUES (NULL,'" + descripcion + "'," + cantidad_stock + ",'" + fecha_fabricacion + "','" + fecha_vencimiento + "',NOW())";
+            System.out.println(query);
             Statement st = cn.createStatement();
             int valor = st.executeUpdate(query);
 
@@ -31,7 +32,7 @@ public class ProductosImplementacion extends Despachos_ProductosPOA{
 
             st.close();
             cn.close();
-
+            System.out.println("VENGO DEL SERVIDOR S2_PRODUCTOS");
         } catch (Exception ex) {
             Logger.getLogger(ProductosImplementacion.class.getName()).log(Level.SEVERE, null, ex);
         }

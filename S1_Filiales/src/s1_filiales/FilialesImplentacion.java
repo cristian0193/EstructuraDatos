@@ -28,6 +28,7 @@ public class FilialesImplentacion extends Despachos_FilialPOA {
             Class.forName("com.mysql.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_filiales_s1", "root", "");
             query = "INSERT INTO tbl_filiales VALUES (NULL,'" + nombre + "','" + origen + "','" + ubicacion + "','" + actividad + "',NOW())";
+            System.out.println(query);
             Statement st = cn.createStatement();
             int valor = st.executeUpdate(query);
 
@@ -39,7 +40,7 @@ public class FilialesImplentacion extends Despachos_FilialPOA {
 
             st.close();
             cn.close();
-
+            System.out.println("VENGO DEL SERVIDOR S1_FILIALES");
         } catch (Exception ex) {
             Logger.getLogger(FilialesImplentacion.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -202,7 +202,8 @@ public class frm_productos extends javax.swing.JFrame {
         String fabricacion = txt_fabricacion.getText();
         String vencimiento = txt_vencimiento.getText();
 
-        int resultado = despacho_productos.insertarProductos(descripcion.toUpperCase(), stock, fabricacion.toUpperCase(), vencimiento.toUpperCase(), "NOW()");
+        DespachoImplementacion producto = new DespachoImplementacion();
+        int resultado = producto.insertarProductos(descripcion.toUpperCase(), stock, fabricacion.toUpperCase(), vencimiento.toUpperCase(), "NOW()");
 
         if (resultado > 0) {
             JOptionPane.showMessageDialog(null, "PRODUCTO INSERTADO");

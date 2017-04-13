@@ -62,7 +62,7 @@ public class frm_filiales extends javax.swing.JFrame {
 
         jLabel3.setText("ORIGEN :");
 
-        combo_ubicacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "CALI", "BOGOTA", "MEDELLIN", "BARRANQUILLA", "CARTAGENA", " " }));
+        combo_ubicacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "CALI", "BOGOTA", "MEDELLIN", "BARRANQUILLA", "CARTAGENA" }));
 
         jLabel4.setText("UBICACION :");
 
@@ -209,7 +209,8 @@ public class frm_filiales extends javax.swing.JFrame {
         String ubicacion = combo_ubicacion.getSelectedItem().toString();
         String actividad = txt_actividad.getText();
 
-        int resultado = despacho_filial.insertarFiliales(nombre.toUpperCase(), origen.toUpperCase(), ubicacion.toUpperCase(), actividad.toUpperCase(), "NOW()");
+        DespachoImplementacion filial = new DespachoImplementacion();
+        int resultado = filial.insertarFiliales(nombre.toUpperCase(), origen.toUpperCase(), ubicacion.toUpperCase(), actividad.toUpperCase(), "NOW()");
 
         if (resultado > 0) {
             JOptionPane.showMessageDialog(null, "FILIAL INSERTADO");

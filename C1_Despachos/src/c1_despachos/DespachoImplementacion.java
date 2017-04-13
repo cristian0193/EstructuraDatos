@@ -49,7 +49,6 @@ public int insertarDespachos(int id_filiales, String nombre_filiales, int id_pro
         }
         return resultado;
     }
-
   
 public int validarUsuarioCliente(String usuario, String contrasena) {
         String query = "";
@@ -81,4 +80,85 @@ public int validarUsuarioCliente(String usuario, String contrasena) {
         return resultado;
     }
 
+public int insertarFiliales(String nombre, String origen, String ubicacion, String actividad, String fecha_creacion) {
+
+        String query = "";
+        int resultado = 0;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_filiales_s1", "root", "");
+            query = "INSERT INTO tbl_filiales VALUES (NULL,'" + nombre + "','" + origen + "','" + ubicacion + "','" + actividad + "',NOW())";
+            System.out.println(query);
+            Statement st = cn.createStatement();
+            int valor = st.executeUpdate(query);
+
+            if (valor > 0) {
+                resultado = valor;
+            } else {
+                resultado = 0;
+            }
+
+            st.close();
+            cn.close();
+            System.out.println("VENGO DEL SERVIDOR S1_FILIALES");
+        } catch (Exception ex) {
+            Logger.getLogger(DespachoImplementacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultado;
+    }
+
+public int insertarProductos(String descripcion, int cantidad_stock, String fecha_fabricacion, String fecha_vencimiento, String fecha_creacion) {
+        String query = "";
+        int resultado = 0;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_productos_s2", "root", "");
+            query = "INSERT INTO tbl_productos VALUES (NULL,'" + descripcion + "'," + cantidad_stock + ",'" + fecha_fabricacion + "','" + fecha_vencimiento + "',NOW())";
+            System.out.println(query);
+            Statement st = cn.createStatement();
+            int valor = st.executeUpdate(query);
+
+            if (valor > 0) {
+                resultado = valor;
+            } else {
+                resultado = 0;
+            }
+
+            st.close();
+            cn.close();
+            System.out.println("VENGO DEL SERVIDOR S2_PRODUCTOS");
+        } catch (Exception ex) {
+            Logger.getLogger(DespachoImplementacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultado;
+    }
+
+public int insertarConductores(String nombre_completo, int edad, String direccion, String telefono, String experiencia, String fecha_creacion) {
+        String query = "";
+        int resultado = 0;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_conductores_s3", "root", "");
+            query = "INSERT INTO tbl_conductores VALUES (NULL,'" + nombre_completo + "','" + edad + "','" + direccion + "','" + telefono + "','" + experiencia + "',NOW())";
+            Statement st = cn.createStatement();
+            int valor = st.executeUpdate(query);
+
+            if (valor > 0) {
+                resultado = valor;
+            } else {
+                resultado = 0;
+            }
+
+            st.close();
+            cn.close();
+            System.out.println("VENGO DEL SERVIDOR S3_CONDUCTORES");   
+        } catch (Exception ex) {
+            Logger.getLogger(DespachoImplementacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultado;
+    }
+        
 }

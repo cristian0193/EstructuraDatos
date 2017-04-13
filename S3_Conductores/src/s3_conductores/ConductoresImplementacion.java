@@ -31,7 +31,7 @@ public class ConductoresImplementacion extends Despachos_ConductorPOA{
 
             st.close();
             cn.close();
-
+            System.out.println("VENGO DEL SERVIDOR S3_CONDUCTORES");   
         } catch (Exception ex) {
             Logger.getLogger(ConductoresImplementacion.class.getName()).log(Level.SEVERE, null, ex);
         }

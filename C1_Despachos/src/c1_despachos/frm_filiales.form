@@ -159,14 +159,13 @@
         <Component class="javax.swing.JComboBox" name="combo_ubicacion">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="7">
+              <StringArray count="6">
                 <StringItem index="0" value="Seleccionar"/>
                 <StringItem index="1" value="CALI"/>
                 <StringItem index="2" value="BOGOTA"/>
                 <StringItem index="3" value="MEDELLIN"/>
                 <StringItem index="4" value="BARRANQUILLA"/>
                 <StringItem index="5" value="CARTAGENA"/>
-                <StringItem index="6" value=" "/>
               </StringArray>
             </Property>
           </Properties>

@@ -474,8 +474,7 @@ public class frm_despacho extends javax.swing.JFrame {
 
         if (id_filial.equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE UN CODIGO FILIAL");
-        } else {
-            //DespachoImplementacion implementacion = new DespachoImplementacion();
+        } else {            
             
             if (despacho_filial.consultaFiliales_id(id_filial).equals("")) {
 

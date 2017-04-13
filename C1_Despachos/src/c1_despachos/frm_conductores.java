@@ -1,8 +1,12 @@
 package c1_despachos;
 
 import Conexion.ConexioSQLite;
-import cliente_servidores3.Despachos_Conductor;
+import static c1_despachos.frm_despacho.despacho_conductores;
+import static c1_despachos.frm_despacho.despacho_filial;
+import static c1_despachos.frm_despacho.despacho_productos;
 import cliente_servidores1.Despachos_FilialHelper;
+import cliente_servidores2.Despachos_ProductosHelper;
+import cliente_servidores3.Despachos_Conductor;
 import cliente_servidores3.Despachos_ConductorHelper;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -211,7 +215,9 @@ public class frm_conductores extends javax.swing.JFrame {
         String telefono = txt_telefono.getText();
         String experiencia = txt_experiencia.getText();
 
-        int resultado = despacho_conductor.insertarConductores(nombre.toUpperCase(), edad, direccion.toUpperCase(), telefono.toUpperCase(), experiencia.toUpperCase(), "NOW()");
+        DespachoImplementacion conductor = new DespachoImplementacion();
+        
+        int resultado = conductor.insertarConductores(nombre.toUpperCase(), edad, direccion.toUpperCase(), telefono.toUpperCase(), experiencia.toUpperCase(), "NOW()");
 
         if (resultado > 0) {
             JOptionPane.showMessageDialog(null, "CONDUCTOR INSERTADO");
@@ -231,52 +237,26 @@ public class frm_conductores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(frm_conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(frm_conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(frm_conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(frm_conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new frm_conductores().setVisible(true);
-//            }
-//        });
 
         try {
+
             ORB orb = ORB.init(args, null);
             org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-            NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
+            NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);            
             despacho_conductor = Despachos_ConductorHelper.narrow(ncRef.resolve_str("Despachos_Conductor"));
-
-       } catch (InvalidName e) {
-            System.out.println("Error InvalidName: " + e);
+            
+            System.out.println("interfaces conductor ok");
+            
+        } catch (InvalidName e) {
+            System.out.println("Error Name: " + e);
         } catch (NotFound e) {
-            System.out.println("Error NotFound: " + e);
+            System.out.println("Error Found 1: " + e);
         } catch (CannotProceed e) {
-            System.out.println("Error CannotProceed: " + e);
+            System.out.println("Error Proceed: " + e);
         } catch (org.omg.CosNaming.NamingContextPackage.InvalidName e) {
             System.out.println("Error org.omg : " + e);
         }
+
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -286,14 +266,22 @@ public class frm_conductores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new frm_conductores().setVisible(true);
+            }
+        });
 
     }
 
