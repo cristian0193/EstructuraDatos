@@ -1,7 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Reprogramacion.conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,35 +55,13 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", " ESTADO", "FECHA_ACTUAL"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, false, false, true, true, true, true, true, true, true
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
+        ));
         tabla_programadas.setEnabled(false);
-        tabla_programadas.setRowHeight(25);
+        tabla_programadas.setRowHeight(22);
         tabla_programadas.setRowMargin(2);
         jScrollPane2.setViewportView(tabla_programadas);
-        if (tabla_programadas.getColumnModel().getColumnCount() > 0) {
-            tabla_programadas.getColumnModel().getColumn(0).setMinWidth(90);
-            tabla_programadas.getColumnModel().getColumn(0).setPreferredWidth(90);
-            tabla_programadas.getColumnModel().getColumn(0).setMaxWidth(90);
-            tabla_programadas.getColumnModel().getColumn(1).setMinWidth(200);
-            tabla_programadas.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tabla_programadas.getColumnModel().getColumn(1).setMaxWidth(200);
-            tabla_programadas.getColumnModel().getColumn(6).setMinWidth(45);
-            tabla_programadas.getColumnModel().getColumn(6).setPreferredWidth(45);
-            tabla_programadas.getColumnModel().getColumn(6).setMaxWidth(45);
-            tabla_programadas.getColumnModel().getColumn(7).setMinWidth(53);
-            tabla_programadas.getColumnModel().getColumn(7).setPreferredWidth(53);
-            tabla_programadas.getColumnModel().getColumn(7).setMaxWidth(53);
-        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -114,6 +91,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
             }
         ));
         tabla_reprogramadas.setEnabled(false);
+        tabla_reprogramadas.setRowHeight(22);
         jScrollPane1.setViewportView(tabla_reprogramadas);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -138,7 +116,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(102, 255, 0));
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton1.setText("Refrescar");
+        jButton1.setText("Consultar");
         jButton1.setToolTipText("Realiza la consulta segun la semana seleccionada");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +135,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
             }
         ));
         tabla_no_programada.setEnabled(false);
+        tabla_no_programada.setRowHeight(22);
         jScrollPane4.setViewportView(tabla_no_programada);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);

@@ -2,7 +2,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Principal.conexion;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,7 +12,8 @@ import javax.swing.JOptionPane;
 
 public class PrerequisitoProceso extends javax.swing.JFrame {
 
-   
+   public static ConexioSQLite conexion;
+    
     public PrerequisitoProceso() {
         initComponents();
         this.setLocationRelativeTo(null);

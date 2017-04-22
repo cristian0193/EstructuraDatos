@@ -1,7 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Principal.conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Plantas extends javax.swing.JFrame {
 
+    public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
     public static DefaultTableCellRenderer Alinear;
 
@@ -169,6 +169,8 @@ public class Plantas extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "PLANTA INSERTADA");
                     LimpiarCampos();
                     cargar_tabla_tipo();
+                    ancho_columnas();
+                    centrar_datos();
                     conexion.cerrar();
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR");
@@ -177,27 +179,26 @@ public class Plantas extends javax.swing.JFrame {
             }
 
         } else {
-            if (txt_id_planta.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
+
+            String id = txt_id_planta.getText();
+            String nombre = txt_nombre_planta.getText();
+
+            boolean resultado = conexion.upgrade_planta(id, nombre);
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "PLANTA ACTUALIZADA");
+                LimpiarCampos();
+                cargar_tabla_tipo();
+                ancho_columnas();
+                centrar_datos();
+                conexion.cerrar();
             } else {
-                conexion = new ConexioSQLite();
-                conexion.coneccionbase();
-
-                String id = txt_id_planta.getText();
-                String nombre = txt_nombre_planta.getText();
-
-                boolean resultado = conexion.upgrade_planta(id, nombre);
-
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "PLANTA ACTUALIZADA");
-                    LimpiarCampos();
-                    cargar_tabla_tipo();
-                    conexion.cerrar();
-                } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                    LimpiarCampos();
-                }
+                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                LimpiarCampos();
             }
+
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -212,7 +213,29 @@ public class Plantas extends javax.swing.JFrame {
     }//GEN-LAST:event_tabla_plantasMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
+
+        if (txt_id_planta.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
+        } else {
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
+
+            String id = txt_id_planta.getText();
+
+            boolean resultado = conexion.delete_planta(id);
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "PLANTA ELIMINADA");
+                LimpiarCampos();
+                cargar_tabla_tipo();
+                ancho_columnas();
+                centrar_datos();
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
+                LimpiarCampos();
+            }
+        }
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -287,5 +310,5 @@ public class Plantas extends javax.swing.JFrame {
         tabla_plantas.getColumnModel().getColumn(1).setCellRenderer(Alinear);
 
     }
-    
+
 }

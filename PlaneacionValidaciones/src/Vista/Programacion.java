@@ -9,12 +9,15 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class Programacion extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
-    DefaultTableModel modelo;
+    public static DefaultTableModel modelo;
+    public static DefaultTableCellRenderer Alinear;
     public static int validacion_pendiente_cal = 0;
     public static int validacion_pendiente_pro = 0;
 
@@ -22,6 +25,8 @@ public class Programacion extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla_programaciones();
+        ancho_columnas();
+        centrar_datos();
     }
 
     @SuppressWarnings("unchecked")
@@ -46,6 +51,8 @@ public class Programacion extends javax.swing.JFrame {
         combo_consulta = new javax.swing.JComboBox();
         jLabel15 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        txt_gcc = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_observaciones_programacion = new javax.swing.JTextArea();
         txt_registro_pro = new javax.swing.JTextField();
@@ -55,7 +62,8 @@ public class Programacion extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(910, 590));
+        setMinimumSize(new java.awt.Dimension(1090, 690));
+        setPreferredSize(new java.awt.Dimension(1090, 690));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -78,6 +86,7 @@ public class Programacion extends javax.swing.JFrame {
 
             }
         ));
+        tabla_proyectos.setRowHeight(22);
         tabla_proyectos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_proyectosMouseClicked(evt);
@@ -85,7 +94,7 @@ public class Programacion extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_proyectos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 278, 970, 270));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 278, 1050, 370));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos para Consultar"));
 
@@ -116,7 +125,7 @@ public class Programacion extends javax.swing.JFrame {
 
         txt_lider_consulta.setEnabled(false);
 
-        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "FECHA PROPUESTA", "LIDER TECNICO", "PALABRA CLAVE" }));
+        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "FECHA PROPUESTA", "LIDER TECNICO", "PALABRA CLAVE", "GCC" }));
         combo_consulta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combo_consultaItemStateChanged(evt);
@@ -139,6 +148,10 @@ public class Programacion extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setText("GCC/APR :");
+
+        txt_gcc.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -152,18 +165,21 @@ public class Programacion extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_fecha_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_fecha_final, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
+                        .addGap(4, 4, 4)
                         .addComponent(jLabel4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txt_palabra_clave_consulta)
-                    .addComponent(txt_lider_consulta, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                .addGap(30, 30, 30)
+                    .addComponent(txt_lider_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -171,44 +187,50 @@ public class Programacion extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3))
-                    .addComponent(combo_consulta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(110, Short.MAX_VALUE))
+                    .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txt_fecha_inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_lider_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(jButton3))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txt_fecha_final, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txt_lider_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(txt_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txt_palabra_clave_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txt_palabra_clave_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_fecha_inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton1)
+                                .addComponent(jButton3))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_fecha_final, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 980, 110));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1060, 110));
 
         txt_observaciones_programacion.setColumns(20);
         txt_observaciones_programacion.setRows(5);
         jScrollPane2.setViewportView(txt_observaciones_programacion);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 500, 80));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 620, 90));
 
         txt_registro_pro.setEditable(false);
         txt_registro_pro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -226,7 +248,7 @@ public class Programacion extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 120, 80));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 120, 90));
 
         date_fecha_nueva.setEditable(false);
         date_fecha_nueva.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -271,6 +293,8 @@ public class Programacion extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
                     LimpiarCampos();
                     cargar_tabla_programaciones();
+                    ancho_columnas();
+                    centrar_datos();
                     conexion.cerrar();
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
@@ -279,7 +303,6 @@ public class Programacion extends javax.swing.JFrame {
 
             }
         }
-
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -305,23 +328,39 @@ public class Programacion extends javax.swing.JFrame {
             this.txt_fecha_final.setEnabled(true);
             this.txt_lider_consulta.setEditable(false);
             this.txt_palabra_clave_consulta.setEditable(false);
+            this.txt_gcc.setEditable(false);
+            this.txt_gcc.setEnabled(false);
         } else if (index == 2) {
             this.txt_lider_consulta.setEditable(true);
             this.txt_lider_consulta.setEnabled(true);
             this.txt_fecha_inicio.setEnabled(false);
             this.txt_fecha_final.setEnabled(false);
             this.txt_palabra_clave_consulta.setEnabled(false);
-        } else {
+            this.txt_gcc.setEditable(false);
+            this.txt_gcc.setEnabled(false);
+        } else if (index == 3) {
             this.txt_palabra_clave_consulta.setEditable(true);
             this.txt_palabra_clave_consulta.setEnabled(true);
             this.txt_lider_consulta.setEnabled(false);
             this.txt_fecha_inicio.setEnabled(false);
             this.txt_fecha_final.setEnabled(false);
+            this.txt_gcc.setEditable(false);
+            this.txt_gcc.setEnabled(false);
+        } else {
+            this.txt_palabra_clave_consulta.setEditable(false);
+            this.txt_palabra_clave_consulta.setEnabled(false);
+            this.txt_lider_consulta.setEnabled(false);
+            this.txt_fecha_inicio.setEnabled(false);
+            this.txt_fecha_final.setEnabled(false);
+            this.txt_gcc.setEditable(true);
+            this.txt_gcc.setEnabled(true);
         }
+
+
     }//GEN-LAST:event_combo_consultaItemStateChanged
 
     private void combo_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_consultaActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_combo_consultaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -348,6 +387,8 @@ public class Programacion extends javax.swing.JFrame {
                 String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
 
                 consulta_rango_fechas_propuesta(fecha_ingresada_inicio, fecha_ingresada_final);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
 
@@ -359,16 +400,31 @@ public class Programacion extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INGRESE LIDER TECNICO");
             } else {
                 consulta_lider(lider);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
 
-        } else {
+        } else if (index == 3) {
             String registro = txt_palabra_clave_consulta.getText();
 
             if (registro.equals("")) {
                 JOptionPane.showMessageDialog(null, "INGRESE REGISTRO NUMERICO");
             } else {
                 consulta_palabra_clave(registro);
+                ancho_columnas();
+                centrar_datos();
+                conexion.cerrar();
+            }
+        } else {
+            String gcc = txt_gcc.getText();
+
+            if (gcc.equals("")) {
+                JOptionPane.showMessageDialog(null, "INGRESE NUMERO DE GCC/APR");
+            } else {
+                consulta_GCC(gcc);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
         }
@@ -396,6 +452,7 @@ public class Programacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -403,6 +460,7 @@ public class Programacion extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser txt_fecha_final;
     private com.toedter.calendar.JDateChooser txt_fecha_inicio;
     private javax.swing.JTextField txt_fecha_propuesta;
+    private javax.swing.JTextField txt_gcc;
     private javax.swing.JTextField txt_lider_consulta;
     private javax.swing.JTextArea txt_observaciones_programacion;
     private javax.swing.JTextField txt_palabra_clave_consulta;
@@ -422,7 +480,7 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO","AUTORIZA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "AUTORIZA", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -477,7 +535,7 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO","AUTORIZA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "AUTORIZA", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -497,8 +555,8 @@ public class Programacion extends javax.swing.JFrame {
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'En Creacion'  "
-                + "OR ESTADO_PROYECTO = 'Con Excepcion' AND "
+                + "WHERE (ESTADO_PROYECTO = 'En Creacion' "
+                + "OR ESTADO_PROYECTO = 'Con Excepcion') AND "
                 + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' "
                 + "ORDER BY FECHA_PROPUESTA DESC";
         try {
@@ -532,7 +590,7 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO","AUTORIZA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "AUTORIZA", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -586,10 +644,10 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO","AUTORIZA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "AUTORIZA", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
-        
+
         modelo = new DefaultTableModel(null, titulos);
 
         ConexioSQLite con = new ConexioSQLite();
@@ -607,9 +665,65 @@ public class Programacion extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "ESTADO_PROYECTO = 'En Creacion' "
-                + "OR ESTADO_PROYECTO = 'Con Excepcion' AND "
-                + "NOMBRE_PROYECTO LIKE '%" + palabra + "%' ";
+                + "(ESTADO_PROYECTO = 'En Creacion' "
+                + "OR ESTADO_PROYECTO = 'Con Excepcion') AND "
+                + "NOMBRE_PROYECTO LIKE '%" + palabra.toUpperCase() + "%' ";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("NUM");
+                registro[1] = rs.getString("GCC");
+                registro[2] = rs.getString("PROYECTO");
+                registro[3] = rs.getString("LIDER");
+                registro[4] = rs.getString("FECHA_ACTUAL");
+                registro[5] = rs.getString("ESTADO");
+                registro[6] = rs.getString("AUTORIZA");
+                registro[7] = rs.getString("OBSERVACIONES");
+
+                modelo.addRow(registro);
+            }
+            tabla_proyectos.setModel(modelo);
+            conexion.cerrar();
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    void consulta_GCC(String gcc) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "AUTORIZA", "OBSERVACIONES"};
+        String[] registro = new String[8];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "NUMERO_REGISTRO AS NUM, "
+                + "GCC_APR AS GCC, "
+                + "NOMBRE_PROYECTO AS PROYECTO, "
+                + "LIDER_TECNICO AS LIDER, "
+                + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
+                + "ESTADO_PROYECTO AS ESTADO, "
+                + "RESPUESTA AS AUTORIZA, "
+                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE "
+                + "(ESTADO_PROYECTO = 'En Creacion' "
+                + "OR ESTADO_PROYECTO = 'Con Excepcion') AND "
+                + "GCC_APR = '" + gcc + "' ";
 
         try {
             Statement st = cn.createStatement();
@@ -775,6 +889,26 @@ public class Programacion extends javax.swing.JFrame {
         }
         return validacion_pendiente_pro;
 
+    }
+
+    public void ancho_columnas() {
+        tabla_proyectos.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tabla_proyectos.getColumnModel().getColumn(1).setPreferredWidth(90);
+        tabla_proyectos.getColumnModel().getColumn(2).setPreferredWidth(200);
+        tabla_proyectos.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tabla_proyectos.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tabla_proyectos.getColumnModel().getColumn(5).setPreferredWidth(80);
+        tabla_proyectos.getColumnModel().getColumn(6).setPreferredWidth(100);
+        tabla_proyectos.getColumnModel().getColumn(7).setPreferredWidth(100);
+    }
+
+    public void centrar_datos() {
+        Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+        tabla_proyectos.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+        tabla_proyectos.getColumnModel().getColumn(4).setCellRenderer(Alinear);
+        tabla_proyectos.getColumnModel().getColumn(5).setCellRenderer(Alinear);
+        tabla_proyectos.getColumnModel().getColumn(6).setCellRenderer(Alinear);
     }
 
 }

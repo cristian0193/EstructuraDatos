@@ -1,28 +1,31 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Principal.contadorSemana;
-import static Vista.Principal.numeroSemanas;
-import static Vista.Principal.txt_registro;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class Reprogramacion extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
-    DefaultTableModel modelo;
+    public static DefaultTableModel modelo;
+    public static DefaultTableCellRenderer Alinear;
 
     public Reprogramacion() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla_reprogramaciones();
+        ancho_columnas();
+        centrar_datos();
     }
 
     @SuppressWarnings("unchecked")
@@ -34,7 +37,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         date_nueva_fecha = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla_proyectos = new javax.swing.JTable();
+        tabla_reprogramaciones = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -47,6 +50,9 @@ public class Reprogramacion extends javax.swing.JFrame {
         txt_lider_consulta = new javax.swing.JTextField();
         combo_consulta = new javax.swing.JComboBox();
         jLabel15 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        txt_gcc = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_observaciones_reprogramacion = new javax.swing.JTextArea();
         txt_registro_repro = new javax.swing.JTextField();
@@ -61,7 +67,8 @@ public class Reprogramacion extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(910, 590));
+        setMinimumSize(new java.awt.Dimension(1100, 660));
+        setPreferredSize(new java.awt.Dimension(1100, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -80,7 +87,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         date_nueva_fecha.setDateFormatString("yyyy-MM-dd");
         getContentPane().add(date_nueva_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 120, -1));
 
-        tabla_proyectos.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_reprogramaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -88,14 +95,15 @@ public class Reprogramacion extends javax.swing.JFrame {
 
             }
         ));
-        tabla_proyectos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabla_reprogramaciones.setRowHeight(22);
+        tabla_reprogramaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabla_proyectosMouseClicked(evt);
+                tabla_reprogramacionesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabla_proyectos);
+        jScrollPane1.setViewportView(tabla_reprogramaciones);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 278, 970, 270));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 278, 1060, 370));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos para Consultar"));
 
@@ -126,7 +134,7 @@ public class Reprogramacion extends javax.swing.JFrame {
 
         txt_lider_consulta.setEnabled(false);
 
-        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "FECHA PROPUESTA", "FECHA REPROGRAMACION", "LIDER TECNICO", "PALABRA CLAVE" }));
+        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "FECHA PROPUESTA", "FECHA REPROGRAMACION", "LIDER TECNICO", "PALABRA CLAVE", "GCC" }));
         combo_consulta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combo_consultaItemStateChanged(evt);
@@ -139,6 +147,19 @@ public class Reprogramacion extends javax.swing.JFrame {
         });
 
         jLabel15.setText("Seleccionar Filtro :");
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 0));
+        jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton3.setText("Refrescar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("GCC/APR :");
+
+        txt_gcc.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,59 +174,74 @@ public class Reprogramacion extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_fecha_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_fecha_final, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
+                        .addGap(4, 4, 4)
                         .addComponent(jLabel4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txt_palabra_clave_consulta)
-                    .addComponent(txt_lider_consulta, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                .addGap(30, 30, 30)
+                    .addComponent(txt_lider_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(combo_consulta, 0, 200, Short.MAX_VALUE))
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)))
+                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txt_fecha_inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_lider_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txt_fecha_final, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txt_lider_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txt_palabra_clave_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txt_palabra_clave_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_fecha_inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel10)
+                                .addComponent(txt_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton1)
+                                .addComponent(jButton3))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_fecha_final, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 980, 110));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1070, 110));
 
         txt_observaciones_reprogramacion.setColumns(20);
         txt_observaciones_reprogramacion.setRows(5);
         txt_observaciones_reprogramacion.setToolTipText("Justificacion Oblicagatoria de Reprogramacion");
         jScrollPane2.setViewportView(txt_observaciones_reprogramacion);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 500, 70));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 590, 70));
 
         txt_registro_repro.setEditable(false);
         txt_registro_repro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -222,7 +258,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 120, 50));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 120, 70));
 
         txt_fecha_reprogramda.setEditable(false);
         txt_fecha_reprogramda.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -241,17 +277,17 @@ public class Reprogramacion extends javax.swing.JFrame {
         jLabel21.setForeground(new java.awt.Color(255, 0, 0));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("*");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, 20, 20));
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 50, 20, 20));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 0, 0));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("*");
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 80, 20, 20));
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 80, 20, 20));
 
-        combo_motivo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Cancelado", "Prerequisitos No Listos", "No Cumplimiento de RU" }));
+        combo_motivo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Cancelado", "Prerequisitos No Listos", "Incumplimiento de RU", "Recursos de Ejecucion", "Prioridad", " " }));
         combo_motivo.setToolTipText("Seleccionador de Filtro segun motivo de reprogramacion");
-        getContentPane().add(combo_motivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 180, -1));
+        getContentPane().add(combo_motivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 220, -1));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 0, 0));
@@ -261,6 +297,8 @@ public class Reprogramacion extends javax.swing.JFrame {
 
         jLabel9.setText("Nueva Fecha :");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 120, 20));
+
+        getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -279,8 +317,8 @@ public class Reprogramacion extends javax.swing.JFrame {
 
             Date fecha = date_nueva_fecha.getDate();
             int semana = numeroSemanas(fecha);
-            int rec = this.tabla_proyectos.getSelectedRow();
-            String tipo_validacion = tabla_proyectos.getValueAt(rec, 3).toString();
+            int rec = this.tabla_reprogramaciones.getSelectedRow();
+            String tipo_validacion = tabla_reprogramaciones.getValueAt(rec, 3).toString();
             DateFormat formatoFecha = new SimpleDateFormat("YYYY");
             int año = Integer.parseInt(formatoFecha.format(fecha));
             int contador = contadorSemana(semana, tipo_validacion, año);
@@ -308,6 +346,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 if (resultado == true) {
                     JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
                     LimpiarCampos();
+                    ancho_columnas();
+                    centrar_datos();
                     cargar_tabla_reprogramaciones();
 
                 } else {
@@ -321,16 +361,21 @@ public class Reprogramacion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void tabla_proyectosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_proyectosMouseClicked
-        int rec = this.tabla_proyectos.getSelectedRow();
+    private void tabla_reprogramacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_reprogramacionesMouseClicked
+        int rec = this.tabla_reprogramaciones.getSelectedRow();
 
-        this.txt_registro_repro.setText(tabla_proyectos.getValueAt(rec, 0).toString());
-        this.txt_fecha_propuesta2.setText(tabla_proyectos.getValueAt(rec, 4).toString());
-        this.txt_fecha_reprogramda.setText(tabla_proyectos.getValueAt(rec, 5).toString());
-        this.txt_observaciones_reprogramacion.setText(tabla_proyectos.getValueAt(rec, 7).toString());
-        this.combo_motivo.setSelectedItem(tabla_proyectos.getValueAt(rec, 6).toString());
+        this.txt_registro_repro.setText(tabla_reprogramaciones.getValueAt(rec, 0).toString());
+        this.txt_fecha_propuesta2.setText(tabla_reprogramaciones.getValueAt(rec, 4).toString());
 
-    }//GEN-LAST:event_tabla_proyectosMouseClicked
+        try {
+            this.txt_fecha_reprogramda.setText(tabla_reprogramaciones.getValueAt(rec, 5).toString());
+        } catch (NullPointerException e) {
+            this.txt_fecha_reprogramda.setText("");
+        }
+
+        this.txt_observaciones_reprogramacion.setText(tabla_reprogramaciones.getValueAt(rec, 6).toString());
+
+    }//GEN-LAST:event_tabla_reprogramacionesMouseClicked
 
     private void combo_consultaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_consultaItemStateChanged
 
@@ -342,24 +387,42 @@ public class Reprogramacion extends javax.swing.JFrame {
             this.txt_fecha_inicio.setEnabled(true);
             this.txt_fecha_final.setEnabled(true);
             this.txt_lider_consulta.setEditable(false);
+            this.txt_lider_consulta.setEnabled(false);
             this.txt_palabra_clave_consulta.setEditable(false);
+            this.txt_palabra_clave_consulta.setEnabled(false);
+            this.txt_gcc.setEditable(false);
+            this.txt_gcc.setEnabled(false);
         } else if (index == 2) {
             this.txt_fecha_inicio.setEnabled(true);
             this.txt_fecha_final.setEnabled(true);
             this.txt_lider_consulta.setEditable(false);
             this.txt_palabra_clave_consulta.setEditable(false);
+            this.txt_gcc.setEditable(false);
+            this.txt_gcc.setEnabled(false);
         } else if (index == 3) {
             this.txt_lider_consulta.setEditable(true);
             this.txt_lider_consulta.setEnabled(true);
             this.txt_fecha_inicio.setEnabled(false);
             this.txt_fecha_final.setEnabled(false);
             this.txt_palabra_clave_consulta.setEnabled(false);
-        } else {
+            this.txt_gcc.setEditable(false);
+            this.txt_gcc.setEnabled(false);
+        } else if (index == 4) {
             this.txt_palabra_clave_consulta.setEditable(true);
             this.txt_palabra_clave_consulta.setEnabled(true);
             this.txt_lider_consulta.setEnabled(false);
             this.txt_fecha_inicio.setEnabled(false);
             this.txt_fecha_final.setEnabled(false);
+            this.txt_gcc.setEditable(false);
+            this.txt_gcc.setEnabled(false);
+        } else {
+            this.txt_palabra_clave_consulta.setEditable(false);
+            this.txt_palabra_clave_consulta.setEnabled(false);
+            this.txt_lider_consulta.setEnabled(false);
+            this.txt_fecha_inicio.setEnabled(false);
+            this.txt_fecha_final.setEnabled(false);
+            this.txt_gcc.setEditable(true);
+            this.txt_gcc.setEnabled(true);
         }
 
     }//GEN-LAST:event_combo_consultaItemStateChanged
@@ -392,6 +455,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
 
                 consulta_rango_fechas_propuesta(fecha_ingresada_inicio, fecha_ingresada_final);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
 
@@ -413,6 +478,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
 
                 consulta_rango_fechas_reprogramada(fecha_ingresada_inicio, fecha_ingresada_final);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
 
@@ -424,22 +491,43 @@ public class Reprogramacion extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INGRESE LIDER TECNICO");
             } else {
                 consulta_lider(lider);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
 
-        } else {
+        } else if (index == 4) {
             String registro = txt_palabra_clave_consulta.getText();
 
             if (registro.equals("")) {
                 JOptionPane.showMessageDialog(null, "INGRESE REGISTRO NUMERICO");
             } else {
                 consulta_palabra_clave(registro);
+                ancho_columnas();
+                centrar_datos();
+                conexion.cerrar();
+            }
+        } else {
+            String gcc = txt_gcc.getText();
+
+            if (gcc.equals("")) {
+                JOptionPane.showMessageDialog(null, "INGRESE REGISTRO NUMERICO");
+            } else {
+                consulta_gcc(gcc);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
         }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        cargar_tabla_reprogramaciones();
+        ancho_columnas();
+        centrar_datos();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -448,7 +536,9 @@ public class Reprogramacion extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser date_nueva_fecha;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
@@ -464,11 +554,12 @@ public class Reprogramacion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tabla_proyectos;
+    private javax.swing.JTable tabla_reprogramaciones;
     private com.toedter.calendar.JDateChooser txt_fecha_final;
     private com.toedter.calendar.JDateChooser txt_fecha_inicio;
     private javax.swing.JTextField txt_fecha_propuesta2;
     private javax.swing.JTextField txt_fecha_reprogramda;
+    private javax.swing.JTextField txt_gcc;
     private javax.swing.JTextField txt_lider_consulta;
     private javax.swing.JTextArea txt_observaciones_reprogramacion;
     private javax.swing.JTextField txt_palabra_clave_consulta;
@@ -484,13 +575,55 @@ public class Reprogramacion extends javax.swing.JFrame {
         txt_fecha_propuesta2.setText("");
     }
 
+    //METODO PARA OBTENER SEMANA   
+    public static int numeroSemanas(Date fecha) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setFirstDayOfWeek(calendar.MONDAY);
+        calendar.setMinimalDaysInFirstWeek(7);
+        calendar.setTime(fecha);
+        return calendar.get(Calendar.WEEK_OF_YEAR) + 1;
+    }
+    
+    // METODO PARA VALIDAR CANTIDAD DE VALIDACIONES EN SEMANA
+    public static int contadorSemana(int semana, String tipo, int año) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+        int contadorSemana = 0;
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT COUNT(FECHA_PROPUESTA) AS SEMANA_CONTADA "
+                + " FROM PLANEACIONES_VALIDACION "
+                + " WHERE SEMANA = " + semana + ""
+                + " AND TIPO_VALIDACION = '" + tipo + "'"
+                + " AND ESTADO_PROYECTO = 'En Creacion' "
+                + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
+
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            contadorSemana = Integer.parseInt(rs.getString("SEMANA_CONTADA"));
+            conexion.cerrar();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return contadorSemana;
+    }
+        
     void cargar_tabla_reprogramaciones() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "FECHA ACTUAL", "FECHA REPRO", "OBSERVACIONES"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -505,7 +638,6 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
-                + "MOTIVO_REPROGRAMACION AS MOTIVO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -523,12 +655,11 @@ public class Reprogramacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("TIPO");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("MOTIVO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[6] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
-            tabla_proyectos.setModel(modelo);
+            tabla_reprogramaciones.setModel(modelo);
 
         } catch (SQLException ex) {
 
@@ -542,8 +673,8 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "FECHA ACTUAL", "FECHA REPRO", "OBSERVACIONES"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -555,10 +686,9 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "NUMERO_REGISTRO AS NUM, "
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
-                + "LIDER_TECNICO AS LIDER, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
-                + "MOTIVO_REPROGRAMACION AS MOTIVO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -574,15 +704,14 @@ public class Reprogramacion extends javax.swing.JFrame {
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
-                registro[3] = rs.getString("LIDER");
+                registro[3] = rs.getString("TIPO");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("MOTIVO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[6] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
-            tabla_proyectos.setModel(modelo);
+            tabla_reprogramaciones.setModel(modelo);
             conexion.cerrar();
 
         } catch (SQLException ex) {
@@ -597,8 +726,8 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "FECHA ACTUAL", "FECHA REPRO", "OBSERVACIONES"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -610,10 +739,9 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "NUMERO_REGISTRO AS NUM, "
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
-                + "LIDER_TECNICO AS LIDER, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
-                + "MOTIVO_REPROGRAMACION AS MOTIVO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -629,15 +757,14 @@ public class Reprogramacion extends javax.swing.JFrame {
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
-                registro[3] = rs.getString("LIDER");
+                registro[3] = rs.getString("TIPO");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("MOTIVO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[6] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
-            tabla_proyectos.setModel(modelo);
+            tabla_reprogramaciones.setModel(modelo);
             conexion.cerrar();
 
         } catch (SQLException ex) {
@@ -652,8 +779,8 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "FECHA ACTUAL", "FECHA REPRO", "OBSERVACIONES"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -665,10 +792,9 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "NUMERO_REGISTRO AS NUM, "
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
-                + "LIDER_TECNICO AS LIDER, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
-                + "MOTIVO_REPROGRAMACION AS MOTIVO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -683,15 +809,14 @@ public class Reprogramacion extends javax.swing.JFrame {
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
-                registro[3] = rs.getString("LIDER");
+                registro[3] = rs.getString("TIPO");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("MOTIVO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[6] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
-            tabla_proyectos.setModel(modelo);
+            tabla_reprogramaciones.setModel(modelo);
             conexion.cerrar();
 
         } catch (SQLException ex) {
@@ -706,8 +831,8 @@ public class Reprogramacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "FECHA REPRO", "MOTIVO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "FECHA ACTUAL", "FECHA REPRO", "OBSERVACIONES"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -719,10 +844,9 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "NUMERO_REGISTRO AS NUM, "
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
-                + "LIDER_TECNICO AS LIDER, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
-                + "MOTIVO_REPROGRAMACION AS MOTIVO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -737,14 +861,14 @@ public class Reprogramacion extends javax.swing.JFrame {
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
-                registro[3] = rs.getString("LIDER");
+                registro[3] = rs.getString("TIPO");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("MOTIVO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[6] = rs.getString("OBSERVACIONES");
+
                 modelo.addRow(registro);
             }
-            tabla_proyectos.setModel(modelo);
+            tabla_reprogramaciones.setModel(modelo);
             conexion.cerrar();
 
         } catch (SQLException ex) {
@@ -753,4 +877,73 @@ public class Reprogramacion extends javax.swing.JFrame {
         }
     }
 
+    void consulta_gcc(String gcc) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "FECHA ACTUAL", "FECHA REPRO", "OBSERVACIONES"};
+        String[] registro = new String[7];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "NUMERO_REGISTRO AS NUM, "
+                + "GCC_APR AS GCC, "
+                + "NOMBRE_PROYECTO AS PROYECTO, "
+                + "TIPO_VALIDACION AS TIPO, "
+                + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
+                + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
+                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE "
+                + "ESTADO_PROYECTO = 'No Ejecutada' AND "
+                + "GCC_APR = '" + gcc + "';";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("NUM");
+                registro[1] = rs.getString("GCC");
+                registro[2] = rs.getString("PROYECTO");
+                registro[3] = rs.getString("TIPO");
+                registro[4] = rs.getString("FECHA_ACTUAL");
+                registro[5] = rs.getString("FECHA_REPRO");
+                registro[6] = rs.getString("OBSERVACIONES");
+
+                modelo.addRow(registro);
+            }
+            tabla_reprogramaciones.setModel(modelo);
+            conexion.cerrar();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    public void ancho_columnas() {
+        tabla_reprogramaciones.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tabla_reprogramaciones.getColumnModel().getColumn(1).setPreferredWidth(60);
+        tabla_reprogramaciones.getColumnModel().getColumn(2).setPreferredWidth(200);
+        tabla_reprogramaciones.getColumnModel().getColumn(3).setPreferredWidth(80);
+        tabla_reprogramaciones.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tabla_reprogramaciones.getColumnModel().getColumn(5).setPreferredWidth(100);
+        tabla_reprogramaciones.getColumnModel().getColumn(6).setPreferredWidth(250);
+    }
+
+    public void centrar_datos() {
+        Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+        tabla_reprogramaciones.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+        tabla_reprogramaciones.getColumnModel().getColumn(3).setCellRenderer(Alinear);
+        tabla_reprogramaciones.getColumnModel().getColumn(4).setCellRenderer(Alinear);
+        tabla_reprogramaciones.getColumnModel().getColumn(5).setCellRenderer(Alinear);
+    }
 }

@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class Principal extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
-    DefaultTableModel modelo;
+    public static DefaultTableModel modelo;
 
     public Principal() {
         initComponents();

@@ -1,7 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Principal.conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class LiderTecnico extends javax.swing.JFrame {
 
+    public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
     public static DefaultTableCellRenderer Alinear;
 
@@ -180,9 +180,7 @@ public class LiderTecnico extends javax.swing.JFrame {
                 }
             }
         } else {
-            if (txt_id_tipo.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
-            } else {
+            
                 conexion = new ConexioSQLite();
                 conexion.coneccionbase();
 
@@ -200,7 +198,7 @@ public class LiderTecnico extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
                     LimpiarCampos();
                 }
-            }
+            
         }
 
 

@@ -1,7 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Principal.conexion;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,6 +10,8 @@ import javax.swing.JOptionPane;
 
 public class PrerequisitoCalificacion extends javax.swing.JFrame {
 
+    public static ConexioSQLite conexion;
+    
     public PrerequisitoCalificacion() {
         initComponents();
         this.setLocationRelativeTo(null);

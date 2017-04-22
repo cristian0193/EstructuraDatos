@@ -1,7 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Reprogramacion.conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,8 +11,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class EstadoValidaciones extends javax.swing.JFrame {
 
-    public static ConexioSQLite conexion;
-    DefaultTableModel modelo;
+    public static ConexioSQLite conexion;    
+    public static DefaultTableModel modelo;
     
     public EstadoValidaciones() {
         initComponents();

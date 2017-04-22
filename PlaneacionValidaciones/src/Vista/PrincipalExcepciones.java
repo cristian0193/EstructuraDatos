@@ -1,8 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Principal.conexion;
-import static Vista.Principal.numeroSemanas;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class PrincipalExcepciones extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
-    DefaultTableModel modelo;
+    public static DefaultTableModel modelo;
 
     public PrincipalExcepciones() {
         initComponents();

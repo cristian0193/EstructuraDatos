@@ -1,8 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Principal.conexion;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Maquinas extends javax.swing.JFrame {
 
+    public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
     public static DefaultTableCellRenderer Alinear;
 
@@ -155,25 +154,52 @@ public class Maquinas extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if (txt_nombre_tipo.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "NOMBRE OBLIGATORIO");
+        if (txt_id_tipo.getText().equals("")) {
+            if (txt_nombre_tipo.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "NOMBRE OBLIGATORIO");
+            } else {
+                conexion = new ConexioSQLite();
+                conexion.coneccionbase();
+
+                String nombre = txt_nombre_tipo.getText();
+                boolean resultado = conexion.insert_maquina(nombre.toUpperCase());
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "MAQUINA INSERTADA");
+                    LimpiarCampos();
+                    cargar_tabla_tipo();
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR");
+                    LimpiarCampos();
+                }
+            }
         } else {
+
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
 
+            String id = txt_id_tipo.getText();
             String nombre = txt_nombre_tipo.getText();
-            boolean resultado = conexion.insert_maquina(nombre.toUpperCase());
+
+            boolean resultado = conexion.upgrade_maquina(id, nombre);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "MAQUINA INSERTADA");
+                JOptionPane.showMessageDialog(null, "MAQUINA ACTUALIZADA");
                 LimpiarCampos();
                 cargar_tabla_tipo();
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR");
+                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
                 LimpiarCampos();
             }
+
         }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -189,51 +215,27 @@ public class Maquinas extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         if (txt_id_tipo.getText().equals("")) {
-            if (txt_id_tipo.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
-            } else {
-                conexion = new ConexioSQLite();
-                conexion.coneccionbase();
-
-                String id = txt_id_tipo.getText();
-
-                boolean resultado = conexion.delete_maquinas(id);
-
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "TIPO ELIMINADO");
-                    LimpiarCampos();
-                    cargar_tabla_tipo();
-                    conexion.cerrar();
-                } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL ELIMINADO");
-                    LimpiarCampos();
-                }
-            }
+            JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
         } else {
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
 
-            if (txt_id_tipo.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
+            String id = txt_id_tipo.getText();
+
+            boolean resultado = conexion.delete_maquinas(id);
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "TIPO ELIMINADO");
+                LimpiarCampos();
+                cargar_tabla_tipo();
+                ancho_columnas();
+                centrar_datos();
+                conexion.cerrar();
             } else {
-                conexion = new ConexioSQLite();
-                conexion.coneccionbase();
-
-                String id = txt_id_tipo.getText();
-                String nombre = txt_nombre_tipo.getText();
-
-                boolean resultado = conexion.upgrade_maquina(id, nombre);
-
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "MAQUINA ACTUALIZADA");
-                    LimpiarCampos();
-                    cargar_tabla_tipo();
-                    conexion.cerrar();
-                } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                    LimpiarCampos();
-                }
+                JOptionPane.showMessageDialog(null, "ERROR AL ELIMINADO");
+                LimpiarCampos();
             }
         }
-
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -294,8 +296,8 @@ public class Maquinas extends javax.swing.JFrame {
 
         }
     }
-    
-     public void ancho_columnas() {
+
+    public void ancho_columnas() {
         tabla_maquinas.getColumnModel().getColumn(0).setPreferredWidth(50);
         tabla_maquinas.getColumnModel().getColumn(1).setPreferredWidth(200);
     }

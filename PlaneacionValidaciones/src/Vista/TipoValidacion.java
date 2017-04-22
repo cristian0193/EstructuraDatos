@@ -7,16 +7,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class TipoValidacion extends javax.swing.JFrame {
 
-    DefaultTableModel modelo;
+    public static ConexioSQLite conexion;
+    public static DefaultTableModel modelo;
+    public static DefaultTableCellRenderer Alinear;
 
     public TipoValidacion() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla_tipo();
+        ancho_columnas();
+        centrar_datos();
     }
 
     @SuppressWarnings("unchecked")
@@ -32,10 +38,10 @@ public class TipoValidacion extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_tipo = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(641, 499));
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -64,8 +70,8 @@ public class TipoValidacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_id_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_nombre_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(txt_nombre_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,14 +110,6 @@ public class TipoValidacion extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 51));
-        jButton2.setText("Actualizar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jButton3.setBackground(new java.awt.Color(102, 255, 0));
         jButton3.setText("Eliminar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -124,37 +122,33 @@ public class TipoValidacion extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 15, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -163,24 +157,51 @@ public class TipoValidacion extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         if (txt_nombre_tipo.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "NOMBRE OBLIGATORIO");
+            if (txt_nombre_tipo.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "NOMBRE OBLIGATORIO");
+            } else {
+                conexion = new ConexioSQLite();
+                conexion.coneccionbase();
+
+                String nombre = txt_nombre_tipo.getText();
+                boolean resultado = conexion.insert_tipo(nombre.toUpperCase());
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "TIPO INSERTADO");
+                    LimpiarCampos();
+                    cargar_tabla_tipo();
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR");
+                    LimpiarCampos();
+                }
+            }
         } else {
+
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
 
+            String id = txt_id_tipo.getText();
             String nombre = txt_nombre_tipo.getText();
-            boolean resultado = conexion.insert_tipo(nombre.toUpperCase());
+
+            boolean resultado = conexion.upgrade_tipo(id, nombre);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "TIPO INSERTADO");
+                JOptionPane.showMessageDialog(null, "TIPO ACTUALIZADO");
                 LimpiarCampos();
                 cargar_tabla_tipo();
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR");
+                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
                 LimpiarCampos();
             }
+
         }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -193,32 +214,6 @@ public class TipoValidacion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tabla_tipoMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        if (txt_id_tipo.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
-        } else {
-            conexion = new ConexioSQLite();
-            conexion.coneccionbase();
-
-            String id = txt_id_tipo.getText();
-            String nombre = txt_nombre_tipo.getText();
-            
-            boolean resultado = conexion.upgrade_tipo(id,nombre);
-
-            if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "TIPO ACTUALIZADO");
-                LimpiarCampos();
-                cargar_tabla_tipo();
-                conexion.cerrar();
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                LimpiarCampos();
-            }
-        }
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         if (txt_id_tipo.getText().equals("")) {
@@ -227,7 +222,7 @@ public class TipoValidacion extends javax.swing.JFrame {
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
 
-            String id = txt_id_tipo.getText();            
+            String id = txt_id_tipo.getText();
 
             boolean resultado = conexion.delete_tipo(id);
 
@@ -235,6 +230,8 @@ public class TipoValidacion extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "TIPO ELIMINADO");
                 LimpiarCampos();
                 cargar_tabla_tipo();
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL ELIMINADO");
@@ -246,7 +243,6 @@ public class TipoValidacion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -301,6 +297,19 @@ public class TipoValidacion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
 
         }
+    }
+
+    public void ancho_columnas() {
+        tabla_tipo.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tabla_tipo.getColumnModel().getColumn(1).setPreferredWidth(200);
+    }
+
+    public void centrar_datos() {
+        Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+        tabla_tipo.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+        tabla_tipo.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+
     }
 
 }
