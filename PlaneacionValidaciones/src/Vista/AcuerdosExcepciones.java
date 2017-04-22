@@ -35,7 +35,7 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
         txt_id_autorizado = new javax.swing.JTextField();
         txt_nombre_autorizado = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla_tipo = new javax.swing.JTable();
+        tabla_aprobadores = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -85,7 +85,7 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tabla_tipo.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_aprobadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -93,13 +93,13 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
 
             }
         ));
-        tabla_tipo.setRowHeight(23);
-        tabla_tipo.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabla_aprobadores.setRowHeight(23);
+        tabla_aprobadores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabla_tipoMouseClicked(evt);
+                tabla_aprobadoresMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabla_tipo);
+        jScrollPane1.setViewportView(tabla_aprobadores);
 
         jButton1.setBackground(new java.awt.Color(102, 255, 255));
         jButton1.setText("Guardar");
@@ -168,6 +168,8 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "AUTORIZADO INSERTADA");
                     LimpiarCampos();
                     cargar_tabla_autorizados();
+                    ancho_columnas();
+                    centrar_datos();
                     conexion.cerrar();
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
@@ -175,43 +177,63 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
                 }
             }
         } else {
-            if (txt_id_autorizado.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
+
+            String id = txt_id_autorizado.getText();
+            String nombre = txt_nombre_autorizado.getText();
+
+            boolean resultado = conexion.upgrade_autorizado(id, nombre);
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "AUTORIZADO ACTUALIZADO");
+                LimpiarCampos();
+                cargar_tabla_autorizados();
+                ancho_columnas();
+                centrar_datos();
+                conexion.cerrar();
             } else {
-                conexion = new ConexioSQLite();
-                conexion.coneccionbase();
-
-                String id = txt_id_autorizado.getText();
-                String nombre = txt_nombre_autorizado.getText();
-
-                boolean resultado = conexion.upgrade_autorizado(id, nombre);
-
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "AUTORIZADO ACTUALIZADO");
-                    LimpiarCampos();
-                    cargar_tabla_autorizados();
-                    conexion.cerrar();
-                } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                    LimpiarCampos();
-                }
+                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                LimpiarCampos();
             }
         }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void tabla_tipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_tipoMouseClicked
+    private void tabla_aprobadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_aprobadoresMouseClicked
 
-        int rec = this.tabla_tipo.getSelectedRow();
+        int rec = this.tabla_aprobadores.getSelectedRow();
 
-        this.txt_id_autorizado.setText(tabla_tipo.getValueAt(rec, 0).toString());
-        this.txt_nombre_autorizado.setText(tabla_tipo.getValueAt(rec, 1).toString());
+        this.txt_id_autorizado.setText(tabla_aprobadores.getValueAt(rec, 0).toString());
+        this.txt_nombre_autorizado.setText(tabla_aprobadores.getValueAt(rec, 1).toString());
 
-    }//GEN-LAST:event_tabla_tipoMouseClicked
+    }//GEN-LAST:event_tabla_aprobadoresMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
+         if (txt_id_autorizado.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
+        } else {
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
+
+            String id = txt_id_autorizado.getText();
+
+            boolean resultado = conexion.delete_autorizado(id);
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "APROBADOR ELIMINADO");
+                LimpiarCampos();
+                cargar_tabla_autorizados();
+                ancho_columnas();
+                centrar_datos();
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
+                LimpiarCampos();
+            }
+        }
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -224,7 +246,7 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabla_tipo;
+    private javax.swing.JTable tabla_aprobadores;
     private javax.swing.JTextField txt_id_autorizado;
     private javax.swing.JTextField txt_nombre_autorizado;
     // End of variables declaration//GEN-END:variables
@@ -265,7 +287,7 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
 
                 modelo.addRow(registro);
             }
-            tabla_tipo.setModel(modelo);
+            tabla_aprobadores.setModel(modelo);
 
         } catch (SQLException ex) {
 
@@ -275,16 +297,15 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
     }
 
     public void ancho_columnas() {
-        tabla_tipo.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tabla_tipo.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tabla_aprobadores.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tabla_aprobadores.getColumnModel().getColumn(1).setPreferredWidth(400);
     }
 
     public void centrar_datos() {
         Alinear = new DefaultTableCellRenderer();
         Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-        tabla_tipo.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-        tabla_tipo.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-
+        tabla_aprobadores.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+        // tabla_tecnico.getColumnModel().getColumn(1).setCellRenderer(Alinear);
     }
 
 }

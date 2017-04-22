@@ -299,14 +299,14 @@ public class Maquinas extends javax.swing.JFrame {
 
     public void ancho_columnas() {
         tabla_maquinas.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tabla_maquinas.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tabla_maquinas.getColumnModel().getColumn(1).setPreferredWidth(400);
     }
 
     public void centrar_datos() {
         Alinear = new DefaultTableCellRenderer();
         Alinear.setHorizontalAlignment(SwingConstants.CENTER);
         tabla_maquinas.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-        tabla_maquinas.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+        // tabla_tecnico.getColumnModel().getColumn(1).setCellRenderer(Alinear);
 
     }
 
