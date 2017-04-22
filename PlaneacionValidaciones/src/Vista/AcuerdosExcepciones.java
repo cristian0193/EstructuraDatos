@@ -7,16 +7,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class AcuerdosExcepciones extends javax.swing.JFrame {
 
-    DefaultTableModel modelo;
+    public static DefaultTableModel modelo;
+    public static DefaultTableCellRenderer Alinear;
 
     public AcuerdosExcepciones() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla_autorizados();
+        ancho_columnas();
+        centrar_datos();
     }
 
     @SuppressWarnings("unchecked")
@@ -32,7 +37,6 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_tipo = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -64,8 +68,8 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_id_autorizado, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_nombre_autorizado, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(txt_nombre_autorizado, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,6 +93,7 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
 
             }
         ));
+        tabla_tipo.setRowHeight(23);
         tabla_tipo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_tipoMouseClicked(evt);
@@ -104,14 +109,6 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 51));
-        jButton2.setText("Actualizar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jButton3.setBackground(new java.awt.Color(102, 255, 0));
         jButton3.setText("Eliminar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -124,24 +121,17 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,15 +140,13 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3)
-                        .addComponent(jButton2)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -166,25 +154,50 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if (txt_nombre_autorizado.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "NOMBRE OBLIGATORIO");
-        } else {
-            conexion = new ConexioSQLite();
-            conexion.coneccionbase();
-
-            String nombre = txt_nombre_autorizado.getText();
-            boolean resultado = conexion.insert_autorizado(nombre.toUpperCase());
-
-            if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "AUTORIZADO INSERTADA");
-                LimpiarCampos();
-                cargar_tabla_autorizados();
-                conexion.cerrar();
+        if (txt_id_autorizado.getText().equals("")) {
+            if (txt_nombre_autorizado.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "NOMBRE OBLIGATORIO");
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                LimpiarCampos();
+                conexion = new ConexioSQLite();
+                conexion.coneccionbase();
+
+                String nombre = txt_nombre_autorizado.getText();
+                boolean resultado = conexion.insert_autorizado(nombre.toUpperCase());
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "AUTORIZADO INSERTADA");
+                    LimpiarCampos();
+                    cargar_tabla_autorizados();
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                    LimpiarCampos();
+                }
+            }
+        } else {
+            if (txt_id_autorizado.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
+            } else {
+                conexion = new ConexioSQLite();
+                conexion.coneccionbase();
+
+                String id = txt_id_autorizado.getText();
+                String nombre = txt_nombre_autorizado.getText();
+
+                boolean resultado = conexion.upgrade_autorizado(id, nombre);
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "AUTORIZADO ACTUALIZADO");
+                    LimpiarCampos();
+                    cargar_tabla_autorizados();
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                    LimpiarCampos();
+                }
             }
         }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -197,60 +210,14 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tabla_tipoMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        if (txt_id_autorizado.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
-        } else {
-            conexion = new ConexioSQLite();
-            conexion.coneccionbase();
-
-            String id = txt_id_autorizado.getText();
-            String nombre = txt_nombre_autorizado.getText();
-            
-            boolean resultado = conexion.upgrade_autorizado(id,nombre);
-
-            if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "AUTORIZADO ACTUALIZADO");
-                LimpiarCampos();
-                cargar_tabla_autorizados();
-                conexion.cerrar();
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                LimpiarCampos();
-            }
-        }
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        if (txt_id_autorizado.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
-        } else {
-            conexion = new ConexioSQLite();
-            conexion.coneccionbase();
 
-            String id = txt_id_autorizado.getText();           
-
-            boolean resultado = conexion.delete_autorizado(id);
-
-            if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "AUTORIZADO ELIMINADO");
-                LimpiarCampos();
-                cargar_tabla_autorizados();
-                conexion.cerrar();
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL ELIMINADO");
-                LimpiarCampos();
-            }
-        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -305,6 +272,19 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
 
         }
+    }
+
+    public void ancho_columnas() {
+        tabla_tipo.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tabla_tipo.getColumnModel().getColumn(1).setPreferredWidth(200);
+    }
+
+    public void centrar_datos() {
+        Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+        tabla_tipo.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+        tabla_tipo.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+
     }
 
 }
