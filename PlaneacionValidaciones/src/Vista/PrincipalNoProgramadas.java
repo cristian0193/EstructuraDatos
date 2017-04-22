@@ -1,6 +1,7 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
+import static Vista.Principal.conexion;
 import static Vista.Principal.numeroSemanas;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -91,6 +92,10 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         txt_consulta_registro = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        txt_consulta_gcc = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        txt_consulta_proyecto = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -345,7 +350,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
 
             }
         ));
-        tabla_contenido.setRowHeight(25);
+        tabla_contenido.setRowHeight(23);
         tabla_contenido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_contenidoMouseClicked(evt);
@@ -358,7 +363,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabla_contenido);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 1150, 190));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 1150, 230));
 
         jLabel13.setText("Fecha Inicial :");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 420, 80, 30));
@@ -375,7 +380,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         getContentPane().add(date_fecha_final, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, 120, 30));
 
         jLabel15.setText("Seleccionar Filtro :");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, 120, 20));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 420, 120, 20));
 
         txt_consulta_lider.setEditable(false);
         txt_consulta_lider.setEnabled(false);
@@ -389,7 +394,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 460, 200, 30));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 200, 30));
 
         txt_registro.setEditable(false);
         txt_registro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -397,7 +402,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         txt_registro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getContentPane().add(txt_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 10, 70, 50));
 
-        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "LIDER TECNICO", "REGISTRO" }));
+        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "LIDER TECNICO", "REGISTRO", "GCC", "PROYECTO" }));
         combo_consulta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combo_consultaItemStateChanged(evt);
@@ -408,7 +413,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 combo_consultaActionPerformed(evt);
             }
         });
-        getContentPane().add(combo_consulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 420, 200, -1));
+        getContentPane().add(combo_consulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 420, 200, -1));
 
         jLabel16.setText("Lider Tecnico :");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, -1, 20));
@@ -419,6 +424,22 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         txt_consulta_registro.setEditable(false);
         txt_consulta_registro.setEnabled(false);
         getContentPane().add(txt_consulta_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 90, -1));
+
+        jLabel24.setText("GCC/APR :");
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 420, -1, 20));
+
+        txt_consulta_gcc.setEditable(false);
+        txt_consulta_gcc.setToolTipText("");
+        txt_consulta_gcc.setEnabled(false);
+        getContentPane().add(txt_consulta_gcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, 140, -1));
+
+        jLabel28.setText("Proyecto :");
+        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 460, -1, 20));
+
+        txt_consulta_proyecto.setEditable(false);
+        txt_consulta_proyecto.setToolTipText("");
+        txt_consulta_proyecto.setEnabled(false);
+        getContentPane().add(txt_consulta_proyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 460, 210, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -542,7 +563,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
-        int index = combo_consulta.getSelectedIndex();
+       int index = combo_consulta.getSelectedIndex();
 
         if (index == 0) {
             JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
@@ -578,7 +599,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 conexion.cerrar();
             }
 
-        } else {
+        } else if (index == 3) {
             String registro = txt_consulta_registro.getText();
 
             if (registro.equals("")) {
@@ -587,7 +608,26 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 consulta_registro(registro);
                 conexion.cerrar();
             }
+        } else if (index == 4) {
+            String registro = txt_consulta_gcc.getText();
+
+            if (registro.equals("")) {
+                JOptionPane.showMessageDialog(null, "INGRESE NUMERO GCC/APR");
+            } else {
+                consulta_gcc(registro);
+                conexion.cerrar();
+            }
+        } else {
+            String registro = txt_consulta_proyecto.getText();
+
+            if (registro.equals("")) {
+                JOptionPane.showMessageDialog(null, "INGRESE NOMBRE PROYECTO");
+            } else {
+                consulta_proyecto(registro);
+                conexion.cerrar();
+            }
         }
+
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -705,18 +745,50 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
             this.date_fecha_final.setEnabled(true);
             this.txt_consulta_lider.setEditable(false);
             this.txt_consulta_lider.setEnabled(false);
+            this.txt_consulta_proyecto.setEditable(false);
+            this.txt_consulta_gcc.setEditable(false);
+            this.txt_consulta_proyecto.setEnabled(false);
+            this.txt_consulta_gcc.setEnabled(false);
         } else if (index == 2) {
             this.txt_consulta_lider.setEditable(true);
             this.txt_consulta_lider.setEnabled(true);
             this.date_fecha_inicio.setEnabled(false);
             this.date_fecha_final.setEnabled(false);
             this.txt_consulta_registro.setEnabled(false);
-        } else {
+           this.txt_consulta_proyecto.setEditable(false);
+            this.txt_consulta_gcc.setEditable(false);
+            this.txt_consulta_proyecto.setEnabled(false);
+            this.txt_consulta_gcc.setEnabled(false);
+        } else if (index == 3) {
             this.txt_consulta_registro.setEditable(true);
             this.txt_consulta_registro.setEnabled(true);
             this.txt_consulta_lider.setEnabled(false);
             this.date_fecha_inicio.setEnabled(false);
             this.date_fecha_final.setEnabled(false);
+            this.txt_consulta_proyecto.setEditable(false);
+            this.txt_consulta_gcc.setEditable(false);
+            this.txt_consulta_proyecto.setEnabled(false);
+            this.txt_consulta_gcc.setEnabled(false);
+        } else if (index == 4) {
+            this.txt_consulta_registro.setEditable(false);
+            this.txt_consulta_registro.setEnabled(false);
+            this.txt_consulta_lider.setEnabled(false);
+            this.date_fecha_inicio.setEnabled(false);
+            this.date_fecha_final.setEnabled(false);
+            this.txt_consulta_proyecto.setEditable(false);
+            this.txt_consulta_gcc.setEditable(true);
+            this.txt_consulta_proyecto.setEnabled(false);
+            this.txt_consulta_gcc.setEnabled(true);
+        } else {
+            this.txt_consulta_registro.setEditable(false);
+            this.txt_consulta_registro.setEnabled(false);
+            this.txt_consulta_lider.setEnabled(false);
+            this.date_fecha_inicio.setEnabled(false);
+            this.date_fecha_final.setEnabled(false);
+            this.txt_consulta_proyecto.setEditable(true);
+            this.txt_consulta_gcc.setEditable(false);
+            this.txt_consulta_proyecto.setEnabled(true);
+            this.txt_consulta_gcc.setEnabled(false);
         }
 
     }//GEN-LAST:event_combo_consultaItemStateChanged
@@ -762,9 +834,11 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -780,7 +854,9 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable tabla_contenido;
     private javax.swing.JTextField txt_GCC;
+    private javax.swing.JTextField txt_consulta_gcc;
     private javax.swing.JTextField txt_consulta_lider;
+    private javax.swing.JTextField txt_consulta_proyecto;
     private javax.swing.JTextField txt_consulta_registro;
     private javax.swing.JTextField txt_estado_proyecto;
     private javax.swing.JTextField txt_fecha_propuesta;
@@ -1075,6 +1151,131 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         }
     }
 
+    
+    // METODO PARA CONSULTAR GCC/APR
+    public void consulta_gcc(String gcc) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO", "OBSERVA"};
+        String[] registros = new String[12];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "NUMERO_REGISTRO AS NUM, "
+                + "GCC_APR AS GCC, "
+                + "NOMBRE_PROYECTO AS PROYECTO, "
+                + "TIPO_VALIDACION AS TIPO, "
+                + "LIDER_TECNICO AS LIDER, "
+                + "PLANTA AS PLANTA, "
+                + "MAQUINA AS MAQUINA, "
+                + "LOTE AS LOTE, "
+                + "TURNOS AS TURNO, "
+                + "FECHA_PROPUESTA AS FECHA, "
+                + "ESTADO_PROYECTO AS ESTADO, "
+                + "OBSERVACIONES_VALIDACION AS OBSERVACION "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE "
+                + "ESTADO_PROYECTO = 'En Creacion' AND "
+                + "GCC_APR = '" + gcc + "';";
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registros[0] = rs.getString("NUM");
+                registros[1] = rs.getString("GCC");
+                registros[2] = rs.getString("PROYECTO");
+                registros[3] = rs.getString("TIPO");
+                registros[4] = rs.getString("LIDER");
+                registros[5] = rs.getString("PLANTA");
+                registros[6] = rs.getString("MAQUINA");
+                registros[7] = rs.getString("LOTE");
+                registros[8] = rs.getString("TURNO");
+                registros[9] = rs.getString("FECHA");
+                registros[10] = rs.getString("ESTADO");
+                registros[11] = rs.getString("OBSERVACION");
+
+                modelo.addRow(registros);
+            }
+            tabla_contenido.setModel(modelo);
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    // METODO PARA CONSULTAR PROYECTO
+    public void consulta_proyecto(String proyecto) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "TIPO", "LIDER", "PLANTA", "MAQUINA", "LOTE", "TURNO", "FECHA", "ESTADO", "OBSERVA"};
+        String[] registros = new String[12];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "NUMERO_REGISTRO AS NUM, "
+                + "GCC_APR AS GCC, "
+                + "NOMBRE_PROYECTO AS PROYECTO, "
+                + "TIPO_VALIDACION AS TIPO, "
+                + "LIDER_TECNICO AS LIDER, "
+                + "PLANTA AS PLANTA, "
+                + "MAQUINA AS MAQUINA, "
+                + "LOTE AS LOTE, "
+                + "TURNOS AS TURNO, "
+                + "FECHA_PROPUESTA AS FECHA, "
+                + "ESTADO_PROYECTO AS ESTADO, "
+                + "OBSERVACIONES_VALIDACION AS OBSERVACION "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE "
+                + "ESTADO_PROYECTO = 'En Creacion' AND "
+                + "NOMBRE_PROYECTO LIKE '%" + proyecto + "%';";
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registros[0] = rs.getString("NUM");
+                registros[1] = rs.getString("GCC");
+                registros[2] = rs.getString("PROYECTO");
+                registros[3] = rs.getString("TIPO");
+                registros[4] = rs.getString("LIDER");
+                registros[5] = rs.getString("PLANTA");
+                registros[6] = rs.getString("MAQUINA");
+                registros[7] = rs.getString("LOTE");
+                registros[8] = rs.getString("TURNO");
+                registros[9] = rs.getString("FECHA");
+                registros[10] = rs.getString("ESTADO");
+                registros[11] = rs.getString("OBSERVACION");
+
+                modelo.addRow(registros);
+            }
+            tabla_contenido.setModel(modelo);
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }        
+    
 // METODO PARA CARGAR JCOMBOBOX TIPO
     public void cargar_lista_tipo() {
 

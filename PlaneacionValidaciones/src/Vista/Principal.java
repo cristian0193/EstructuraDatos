@@ -376,7 +376,7 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
-        tabla_contenido.setRowHeight(25);
+        tabla_contenido.setRowHeight(23);
         tabla_contenido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_contenidoMouseClicked(evt);
