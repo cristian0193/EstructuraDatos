@@ -43,6 +43,8 @@ public class frm_productos extends javax.swing.JFrame {
         txt_fabricacion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txt_vencimiento = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txt_codigo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_productos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -64,6 +66,8 @@ public class frm_productos extends javax.swing.JFrame {
 
         jLabel6.setText("F.VENCIMIENTO:");
 
+        jLabel5.setText("CODIGO:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -72,28 +76,34 @@ public class frm_productos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_codigo)
                             .addComponent(txt_descripcion)
                             .addComponent(txt_stock, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txt_fabricacion, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -109,7 +119,7 @@ public class frm_productos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txt_vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(152, 152, 152))
+                .addGap(121, 121, 121))
         );
 
         tabla_productos.setModel(new javax.swing.table.DefaultTableModel(
@@ -197,24 +207,26 @@ public class frm_productos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        String codigo = "";
         String descripcion = "";
         int stock1 = 0;
         String stock2 = "";
         String fabricacion = "";
         String vencimiento = "";
 
+        codigo = txt_descripcion.getText();
         descripcion = txt_descripcion.getText();
         stock2 = txt_stock.getText();
         fabricacion = txt_fabricacion.getText();
         vencimiento = txt_vencimiento.getText();
 
-        if (descripcion.equals("") || stock2.equals("") || fabricacion.equals("") || vencimiento.equals("")) {
+        if (codigo.equals("") ||descripcion.equals("") || stock2.equals("") || fabricacion.equals("") || vencimiento.equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS");
         } else {
             stock1 = Integer.parseInt(txt_stock.getText());
             DespachoImplementacion producto = new DespachoImplementacion();
 
-            int resultado = producto.insertarProductos(descripcion.toUpperCase(), stock1, fabricacion.toUpperCase(), vencimiento.toUpperCase(), "NOW()");
+            int resultado = producto.insertarProductos(codigo, descripcion.toUpperCase(), stock1, fabricacion.toUpperCase(), vencimiento.toUpperCase(), "NOW()");
 
             if (resultado > 0) {
                 JOptionPane.showMessageDialog(null, "PRODUCTO INSERTADO");
@@ -309,10 +321,12 @@ public class frm_productos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_productos;
+    private javax.swing.JTextField txt_codigo;
     private javax.swing.JTextField txt_descripcion;
     private javax.swing.JTextField txt_fabricacion;
     private javax.swing.JTextField txt_stock;
@@ -320,6 +334,7 @@ public class frm_productos extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void LimpiarCampos() {
+        txt_codigo.setText("");
         txt_descripcion.setText("");
         txt_stock.setText("");
         txt_fabricacion.setText("");
@@ -331,8 +346,8 @@ public class frm_productos extends javax.swing.JFrame {
 
 //        conexion = new ConexioSQLite();
 //        conexion.coneccionbase();
-        String[] titulos = {"ID", "DESCRIPCION", "STOCK", "F.FABRICACION", "F.VENCIMIENTO", "FECHA_CREACION"};
-        String[] registro = new String[6];
+        String[] titulos = {"ID","CODIGO", "DESCRIPCION", "STOCK", "F.FABRICACION", "F.VENCIMIENTO", "FECHA_CREACION"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -342,6 +357,7 @@ public class frm_productos extends javax.swing.JFrame {
 
         query = "SELECT "
                 + "ID, "
+                + "CODIGO, "
                 + "DESCRIPCION, "
                 + "CANTIDAD_STOCK, "
                 + "FECHA_FABRICACION, "
@@ -355,11 +371,12 @@ public class frm_productos extends javax.swing.JFrame {
             while (rs.next()) {
 
                 registro[0] = rs.getString("ID");
-                registro[1] = rs.getString("DESCRIPCION");
-                registro[2] = rs.getString("CANTIDAD_STOCK");
-                registro[3] = rs.getString("FECHA_FABRICACION");
-                registro[4] = rs.getString("FECHA_VENCIMIENTO");
-                registro[5] = rs.getString("FECHA_CREACION");
+                registro[1] = rs.getString("CODIGO");
+                registro[2] = rs.getString("DESCRIPCION");
+                registro[3] = rs.getString("CANTIDAD_STOCK");
+                registro[4] = rs.getString("FECHA_FABRICACION");
+                registro[5] = rs.getString("FECHA_VENCIMIENTO");
+                registro[6] = rs.getString("FECHA_CREACION");
 
                 modelo.addRow(registro);
             }
@@ -374,6 +391,7 @@ public class frm_productos extends javax.swing.JFrame {
 
     public void ancho_columnas() {
         tabla_productos.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tabla_productos.getColumnModel().getColumn(0).setPreferredWidth(50);
         tabla_productos.getColumnModel().getColumn(1).setPreferredWidth(200);
         tabla_productos.getColumnModel().getColumn(2).setPreferredWidth(80);
         tabla_productos.getColumnModel().getColumn(3).setPreferredWidth(100);

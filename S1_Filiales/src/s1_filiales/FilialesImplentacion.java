@@ -17,9 +17,8 @@ public class FilialesImplentacion extends Despachos_FilialPOA {
         this.orb = orb;
     }
 
-
     @Override
-    public int insertarFiliales(String nombre, String origen, String ubicacion, String actividad, String fecha_creacion) {
+    public int insertarFiliales(String codigo, String nombre, String origen, String ubicacion, String actividad, String fecha_creacion) {
 
         String query = "";
         int resultado = 0;
@@ -27,7 +26,7 @@ public class FilialesImplentacion extends Despachos_FilialPOA {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_filiales_s1", "root", "");
-            query = "INSERT INTO tbl_filiales VALUES (NULL,'" + nombre + "','" + origen + "','" + ubicacion + "','" + actividad + "',NOW())";
+            query = "INSERT INTO tbl_filiales VALUES (NULL,'" + codigo + "','" + nombre + "','" + origen + "','" + ubicacion + "','" + actividad + "',NOW())";
             System.out.println(query);
             Statement st = cn.createStatement();
             int valor = st.executeUpdate(query);
@@ -46,7 +45,7 @@ public class FilialesImplentacion extends Despachos_FilialPOA {
         }
         return resultado;
     }
-   
+
     @Override
     public String consultaFiliales_id(String id_filial) {
         String query = "";
@@ -56,7 +55,7 @@ public class FilialesImplentacion extends Despachos_FilialPOA {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_filiales_s1", "root", "");
-            query = "SELECT nombre FROM tbl_filiales WHERE id = " + id_filial;
+            query = "SELECT nombre FROM tbl_filiales WHERE codigo = '" + id_filial + "'";
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -104,6 +103,5 @@ public class FilialesImplentacion extends Despachos_FilialPOA {
         }
         return resultado;
     }
-
 
 }

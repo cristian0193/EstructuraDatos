@@ -35,6 +35,8 @@ public class frm_filiales extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_actividad = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        txt_codigo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_filiales = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -62,6 +64,8 @@ public class frm_filiales extends javax.swing.JFrame {
         txt_actividad.setRows(5);
         jScrollPane2.setViewportView(txt_actividad);
 
+        jLabel6.setText("CODIGO:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -70,31 +74,37 @@ public class frm_filiales extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_codigo)
                             .addComponent(txt_nombre)
                             .addComponent(txt_origen, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(combo_ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txt_origen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -106,7 +116,7 @@ public class frm_filiales extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tabla_filiales.setModel(new javax.swing.table.DefaultTableModel(
@@ -181,7 +191,7 @@ public class frm_filiales extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -194,13 +204,14 @@ public class frm_filiales extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        String codigo = txt_codigo.getText();
         String nombre = txt_nombre.getText();
         String origen = txt_origen.getText();
         String ubicacion = combo_ubicacion.getSelectedItem().toString();
         String actividad = txt_actividad.getText();
                 
         FilialesImplentacion implementacion = new FilialesImplentacion();
-        int resultado = implementacion.insertarFiliales(nombre.toUpperCase(), origen.toUpperCase(), ubicacion.toUpperCase(), actividad.toUpperCase(),"NOW()");
+        int resultado = implementacion.insertarFiliales(codigo,nombre.toUpperCase(), origen.toUpperCase(), ubicacion.toUpperCase(), actividad.toUpperCase(),"NOW()");
 
         if (resultado > 0) {
             JOptionPane.showMessageDialog(null, "FILIAL INSERTADO");
@@ -260,16 +271,19 @@ public class frm_filiales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabla_filiales;
     private javax.swing.JTextArea txt_actividad;
+    private javax.swing.JTextField txt_codigo;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_origen;
     // End of variables declaration//GEN-END:variables
 
     public void LimpiarCampos() {
+        txt_codigo.setText("");
         txt_nombre.setText("");
         txt_origen.setText("");
         txt_actividad.setText("");
@@ -282,8 +296,8 @@ public class frm_filiales extends javax.swing.JFrame {
 //        conexion = new ConexioSQLite();
 //        conexion.coneccionbase();
 
-        String[] titulos = {"ID", "NOMBRE", "ORIGEN", "UBICACION", "FECHA_CREACION"};
-        String[] registro = new String[5];
+        String[] titulos = {"ID","CODIGO", "NOMBRE", "ORIGEN", "UBICACION", "FECHA_CREACION"};
+        String[] registro = new String[6];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -293,6 +307,7 @@ public class frm_filiales extends javax.swing.JFrame {
 
         query = "SELECT "
                 + "ID, "
+                + "CODIGO, "
                 + "NOMBRE, "
                 + "ORIGEN, "
                 + "UBICACION, "
@@ -305,10 +320,11 @@ public class frm_filiales extends javax.swing.JFrame {
             while (rs.next()) {
 
                 registro[0] = rs.getString("ID");
-                registro[1] = rs.getString("NOMBRE");
-                registro[2] = rs.getString("ORIGEN");
-                registro[3] = rs.getString("UBICACION");
-                registro[4] = rs.getString("FECHA_CREACION");
+                registro[1] = rs.getString("CODIGO");
+                registro[2] = rs.getString("NOMBRE");
+                registro[3] = rs.getString("ORIGEN");
+                registro[4] = rs.getString("UBICACION");
+                registro[5] = rs.getString("FECHA_CREACION");
 
                 modelo.addRow(registro);
             }
@@ -323,10 +339,11 @@ public class frm_filiales extends javax.swing.JFrame {
 
      public void ancho_columnas() {
         tabla_filiales.getColumnModel().getColumn(0).setPreferredWidth(20);
-        tabla_filiales.getColumnModel().getColumn(1).setPreferredWidth(240);
-        tabla_filiales.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tabla_filiales.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tabla_filiales.getColumnModel().getColumn(2).setPreferredWidth(240);
         tabla_filiales.getColumnModel().getColumn(3).setPreferredWidth(100);
-        tabla_filiales.getColumnModel().getColumn(4).setPreferredWidth(130);        
+        tabla_filiales.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tabla_filiales.getColumnModel().getColumn(5).setPreferredWidth(130);        
      }
     
 }

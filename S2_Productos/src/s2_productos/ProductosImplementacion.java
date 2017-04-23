@@ -8,18 +8,17 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-public class ProductosImplementacion extends Despachos_ProductosPOA{
+public class ProductosImplementacion extends Despachos_ProductosPOA {
 
     @Override
-    public int insertarProductos(String descripcion, int cantidad_stock, String fecha_fabricacion, String fecha_vencimiento, String fecha_creacion) {
+    public int insertarProductos(String codigo, String descripcion, int cantidad_stock, String fecha_fabricacion, String fecha_vencimiento, String fecha_creacion) {
         String query = "";
         int resultado = 0;
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_productos_s2", "root", "");
-            query = "INSERT INTO tbl_productos VALUES (NULL,'" + descripcion + "'," + cantidad_stock + ",'" + fecha_fabricacion + "','" + fecha_vencimiento + "',NOW())";
+            query = "INSERT INTO tbl_productos VALUES (NULL,'" + codigo + "','" + descripcion + "'," + cantidad_stock + ",'" + fecha_fabricacion + "','" + fecha_vencimiento + "',NOW())";
             System.out.println(query);
             Statement st = cn.createStatement();
             int valor = st.executeUpdate(query);
@@ -48,7 +47,7 @@ public class ProductosImplementacion extends Despachos_ProductosPOA{
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_productos_s2", "root", "");
-            query = "SELECT descripcion FROM tbl_productos WHERE id = " + id_producto;
+            query = "SELECT descripcion FROM tbl_productos WHERE codigo = '" + id_producto + "'";
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -69,15 +68,15 @@ public class ProductosImplementacion extends Despachos_ProductosPOA{
     @Override
     public int validarUsuarioServidor2(String usuario, String contrasena) {
         String query = "";
-        int resultado = 0,valor = 0;
-        
+        int resultado = 0, valor = 0;
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_productos_s2", "root", "");
             query = "SELECT count(id) as resultado FROM tbl_usuario_server2 where usuario = '" + usuario + "' and contrasena = '" + contrasena + "';";
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
-            
+
             if (rs.next()) {
                 valor = Integer.parseInt(rs.getString("resultado"));
             }
@@ -97,5 +96,4 @@ public class ProductosImplementacion extends Despachos_ProductosPOA{
         return resultado;
     }
 
-    
 }

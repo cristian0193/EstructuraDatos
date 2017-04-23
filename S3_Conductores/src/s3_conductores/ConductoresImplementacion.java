@@ -12,14 +12,14 @@ import java.util.logging.Logger;
 public class ConductoresImplementacion extends Despachos_ConductorPOA{
 
     @Override
-    public int insertarConductores(String nombre_completo, int edad, String direccion, String telefono, String experiencia, String fecha_creacion) {
+    public int insertarConductores(String codigo,String nombre_completo, int edad, String direccion, String telefono, String experiencia, String fecha_creacion) {
         String query = "";
         int resultado = 0;
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_conductores_s3", "root", "");
-            query = "INSERT INTO tbl_conductores VALUES (NULL,'" + nombre_completo + "','" + edad + "','" + direccion + "','" + telefono + "','" + experiencia + "',NOW())";
+            query = "INSERT INTO tbl_conductores VALUES (NULL,'" + codigo + "','" + nombre_completo + "','" + edad + "','" + direccion + "','" + telefono + "','" + experiencia + "',NOW())";
             Statement st = cn.createStatement();
             int valor = st.executeUpdate(query);
 
@@ -47,7 +47,7 @@ public class ConductoresImplementacion extends Despachos_ConductorPOA{
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_conductores_s3", "root", "");
-            query = "SELECT nombre_completo FROM tbl_conductores WHERE id = " + id_conductor;
+            query = "SELECT nombre_completo FROM tbl_conductores WHERE codigo = '" + id_conductor + "'";
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);

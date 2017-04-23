@@ -2,7 +2,7 @@ module cliente_servidores2{
 
     interface Despachos_Productos{ 
                                
-        long insertarProductos(in wstring descripcion, in long cantidad_stock, in wstring fecha_fabricacion, in wstring fecha_vencimiento, in wstring fecha_creacion);     
+        long insertarProductos(in wstring codigo_producto, in wstring descripcion, in long cantidad_stock, in wstring fecha_fabricacion, in wstring fecha_vencimiento, in wstring fecha_creacion);     
 
         wstring consultaProductos_id(in wstring id_producto);
 

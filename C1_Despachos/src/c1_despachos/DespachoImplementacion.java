@@ -80,7 +80,7 @@ public int validarUsuarioCliente(String usuario, String contrasena) {
         return resultado;
     }
 
-public int insertarFiliales(String nombre, String origen, String ubicacion, String actividad, String fecha_creacion) {
+public int insertarFiliales(String codigo,String nombre, String origen, String ubicacion, String actividad, String fecha_creacion) {
 
         String query = "";
         int resultado = 0;
@@ -88,7 +88,7 @@ public int insertarFiliales(String nombre, String origen, String ubicacion, Stri
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_filiales_s1", "root", "");
-            query = "INSERT INTO tbl_filiales VALUES (NULL,'" + nombre + "','" + origen + "','" + ubicacion + "','" + actividad + "',NOW())";
+            query = "INSERT INTO tbl_filiales VALUES (NULL,'" + codigo + "','" + nombre + "','" + origen + "','" + ubicacion + "','" + actividad + "',NOW())";
             System.out.println(query);
             Statement st = cn.createStatement();
             int valor = st.executeUpdate(query);
@@ -108,14 +108,14 @@ public int insertarFiliales(String nombre, String origen, String ubicacion, Stri
         return resultado;
     }
 
-public int insertarProductos(String descripcion, int cantidad_stock, String fecha_fabricacion, String fecha_vencimiento, String fecha_creacion) {
+public int insertarProductos(String codigo,String descripcion, int cantidad_stock, String fecha_fabricacion, String fecha_vencimiento, String fecha_creacion) {
         String query = "";
         int resultado = 0;
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_productos_s2", "root", "");
-            query = "INSERT INTO tbl_productos VALUES (NULL,'" + descripcion + "'," + cantidad_stock + ",'" + fecha_fabricacion + "','" + fecha_vencimiento + "',NOW())";
+            query = "INSERT INTO tbl_productos VALUES (NULL,'" + codigo + "','" + descripcion + "'," + cantidad_stock + ",'" + fecha_fabricacion + "','" + fecha_vencimiento + "',NOW())";
             System.out.println(query);
             Statement st = cn.createStatement();
             int valor = st.executeUpdate(query);
@@ -135,14 +135,14 @@ public int insertarProductos(String descripcion, int cantidad_stock, String fech
         return resultado;
     }
 
-public int insertarConductores(String nombre_completo, int edad, String direccion, String telefono, String experiencia, String fecha_creacion) {
+public int insertarConductores(String codigo,String nombre_completo, int edad, String direccion, String telefono, String experiencia, String fecha_creacion) {
         String query = "";
         int resultado = 0;
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_conductores_s3", "root", "");
-            query = "INSERT INTO tbl_conductores VALUES (NULL,'" + nombre_completo + "','" + edad + "','" + direccion + "','" + telefono + "','" + experiencia + "',NOW())";
+            query = "INSERT INTO tbl_conductores VALUES (NULL,'" + codigo + "','" + nombre_completo + "','" + edad + "','" + direccion + "','" + telefono + "','" + experiencia + "',NOW())";
             Statement st = cn.createStatement();
             int valor = st.executeUpdate(query);
 
