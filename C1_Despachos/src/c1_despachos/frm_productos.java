@@ -214,7 +214,7 @@ public class frm_productos extends javax.swing.JFrame {
         String fabricacion = "";
         String vencimiento = "";
 
-        codigo = txt_descripcion.getText();
+        codigo = txt_codigo.getText();
         descripcion = txt_descripcion.getText();
         stock2 = txt_stock.getText();
         fabricacion = txt_fabricacion.getText();

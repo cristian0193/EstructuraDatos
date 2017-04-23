@@ -242,7 +242,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_nombre_filial">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_id_producto">
@@ -257,7 +257,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_nombre_producto">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
@@ -299,7 +299,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_nombre_conductor">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton5">

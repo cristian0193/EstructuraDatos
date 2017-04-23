@@ -99,7 +99,7 @@ public class frm_despacho extends javax.swing.JFrame {
 
         jLabel6.setText("AUTORIZO :");
 
-        txt_nombre_filial.setEditable(false);
+        txt_nombre_filial.setEnabled(false);
 
         txt_id_producto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_id_producto.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +108,7 @@ public class frm_despacho extends javax.swing.JFrame {
             }
         });
 
-        txt_nombre_producto.setEditable(false);
+        txt_nombre_producto.setEnabled(false);
 
         jButton3.setBackground(new java.awt.Color(255, 153, 51));
         jButton3.setText("Consultar");
@@ -135,7 +135,7 @@ public class frm_despacho extends javax.swing.JFrame {
             }
         });
 
-        txt_nombre_conductor.setEditable(false);
+        txt_nombre_conductor.setEnabled(false);
 
         jButton5.setBackground(new java.awt.Color(51, 204, 255));
         jButton5.setText("Consultar");
@@ -600,12 +600,16 @@ public class frm_despacho extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            System.out.println("ClassNotFoundException");
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             System.out.println("InstantiationException");
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            System.out.println("IllegalAccessException");
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(frm_despacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            System.out.println("UnsupportedLookAndFeelException");
         }
 //        //</editor-fold>
 //
