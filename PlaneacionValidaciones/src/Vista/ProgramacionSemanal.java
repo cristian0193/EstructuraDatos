@@ -284,7 +284,6 @@ void cargar_tabla_programadas(String SEMANA, String ANO) {
                 + "AND SEMANA = " + SEMANA + " " 
                 + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
                 + "ORDER BY FECHA_PROPUESTA ASC;";
-
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
