@@ -37,6 +37,8 @@ public class EstadoValidaciones extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabla_cerradas = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        combo_ano = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -154,6 +156,12 @@ public class EstadoValidaciones extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setText("Año :");
+
+        combo_ano.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "2016", "2017", "2018", "2019", "2020" }));
+        combo_ano.setToolTipText("Seleccion de Semana para verificacion de reporte");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,8 +175,12 @@ public class EstadoValidaciones extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(combo_semana, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(combo_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 745, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +197,10 @@ public class EstadoValidaciones extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(combo_semana)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(combo_ano)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -200,25 +215,31 @@ public class EstadoValidaciones extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        int index = combo_semana.getSelectedIndex();
+        int index_semana = combo_semana.getSelectedIndex();
+        int index_ano = combo_ano.getSelectedIndex();
         
-        if(index == 0){
-            JOptionPane.showMessageDialog(null, "SELECCIONAR UNA OPCION");
+        if(index_semana == 0){
+            JOptionPane.showMessageDialog(null, "SELECCIONE UNA SEMANA");
+        }else if (index_ano == 0){
+            JOptionPane.showMessageDialog(null, "SELECCIONE UN AÑO");                
         }else{
             String semana = combo_semana.getSelectedItem().toString();
-            cargar_tabla_ejecutadas(semana);
-            cargar_tabla_no_ejecutadas(semana);
-            cargar_tabla_con_excepciones(semana);
+            String ano = combo_ano.getSelectedItem().toString();
+            cargar_tabla_ejecutadas(semana,ano);
+            cargar_tabla_no_ejecutadas(semana,ano);
+            cargar_tabla_con_excepciones(semana,ano);
             
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox combo_ano;
     private javax.swing.JComboBox combo_semana;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -230,7 +251,7 @@ public class EstadoValidaciones extends javax.swing.JFrame {
     private javax.swing.JTable tabla_programadas;
     // End of variables declaration//GEN-END:variables
 
-void cargar_tabla_ejecutadas(String SEMANA) {
+void cargar_tabla_ejecutadas(String SEMANA,String ANO) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -258,7 +279,8 @@ void cargar_tabla_ejecutadas(String SEMANA) {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE ESTADO_PROYECTO = 'Ejecutada' "
-                + "AND SEMANA = " + SEMANA + " "               
+                + "AND SEMANA = " + SEMANA + " " 
+                + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
                 + "ORDER BY FECHA_PROPUESTA ASC;";
 
         try {
@@ -288,7 +310,7 @@ void cargar_tabla_ejecutadas(String SEMANA) {
         }
     }
 
-void cargar_tabla_no_ejecutadas(String SEMANA) {
+void cargar_tabla_no_ejecutadas(String SEMANA,String ANO) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -316,7 +338,8 @@ void cargar_tabla_no_ejecutadas(String SEMANA) {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE ESTADO_PROYECTO = 'No Ejecutada' "
-                + "AND SEMANA = " + SEMANA + " "               
+                + "AND SEMANA = " + SEMANA + " "
+                + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
                 + "ORDER BY FECHA_PROPUESTA ASC;";
 
         try {
@@ -346,7 +369,7 @@ void cargar_tabla_no_ejecutadas(String SEMANA) {
         }
     }
 
-void cargar_tabla_con_excepciones(String SEMANA) {
+void cargar_tabla_con_excepciones(String SEMANA, String ANO) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -374,7 +397,8 @@ void cargar_tabla_con_excepciones(String SEMANA) {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE ESTADO_PROYECTO = 'Con Excepcion' "
-                + "AND SEMANA = " + SEMANA + " "               
+                + "AND SEMANA = " + SEMANA + " "    
+                + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
                 + "ORDER BY FECHA_REPROGRAMACION ASC;";
 
         try {
