@@ -10,16 +10,15 @@ import javax.swing.JOptionPane;
 
 public class Pre_Entrega extends javax.swing.JDialog {
 
-    public static String valor; 
+    public static String valor;
     public static ConexioSQLite conexion;
-    
-    public Pre_Entrega(java.awt.Frame parent, boolean modal,String numero) {
+
+    public Pre_Entrega(java.awt.Frame parent, boolean modal, String numero) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        valor = numero; 
+        valor = numero;
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -146,35 +145,45 @@ public class Pre_Entrega extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-        String observaciones = "";
 
-        String fecha = fecha_entrega.getText();
+        int confirmacion = JOptionPane.showConfirmDialog(null,
+                "¿ Esta Seguro que Desea Actualizar el Proyecto a estado Cerrado ?",
+                "Confirmacion", JOptionPane.YES_NO_OPTION);
 
-        if (fecha.equals("")) {
-            JOptionPane.showMessageDialog(null, "INGRESE LA FECHA");
-        } else {
+        if (confirmacion == JOptionPane.YES_OPTION) {
 
-            observaciones = txt_observaciones.getText();
-            
-            boolean resultado = update_entrega(valor, fecha, observaciones);
+            String observaciones = "";
 
-            if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "ENTREGA ACTUALIZADA");    
-                fecha_entrega.setText("");
-                txt_observaciones.setText("");
-                conexion.cerrar();
+            String fecha = fecha_entrega.getText();
+
+            if (fecha.equals("")) {
+                JOptionPane.showMessageDialog(null, "INGRESE LA FECHA");
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+
+                observaciones = txt_observaciones.getText();
+
+                boolean resultado = update_entrega(valor, fecha, observaciones);
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "ENTREGA ACTUALIZADA");
+                    fecha_entrega.setText("");
+                    txt_observaciones.setText("");
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                }
             }
 
+        } else {
+            this.hide();
         }
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
-     * @param args the command line arguments
-//     */
+     * @param args the command line arguments //
+     */
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -227,7 +236,7 @@ public class Pre_Entrega extends javax.swing.JDialog {
     private javax.swing.JTextArea txt_observaciones;
     // End of variables declaration//GEN-END:variables
 
-        // METODO PARA CARGAR TABLA PROYECTOS
+    // METODO PARA CARGAR TABLA PROYECTOS
     public boolean update_entrega(String ID,
             String FECHA,
             String OBSERVACION) {
@@ -248,14 +257,14 @@ public class Pre_Entrega extends javax.swing.JDialog {
                 + "  EN_OBSERVACIONES = '" + OBSERVACION + "'"
                 + " WHERE"
                 + "  ID = " + ID + ";";
-        
+
         query2 = "UPDATE"
                 + " PROYECTOS"
                 + " SET "
-                + "  ESTADO = 'EN EJECUCION'"
+                + "  ESTADO = 'CERRADO'"
                 + " WHERE"
                 + "  ID = " + ID + ";";
-        
+
         try {
             Statement st = cn.createStatement();
             st.executeUpdate(query);
