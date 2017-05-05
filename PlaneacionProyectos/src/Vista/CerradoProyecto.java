@@ -523,8 +523,8 @@ public class CerradoProyecto extends javax.swing.JDialog {
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("DESCRIPCION");
                 registro[2] = convertirValor(rs.getString("CAPEX"));
-                registro[3] = rs.getString("CAPEX_ACTUAL");
-                registro[4] = rs.getString("DIFERENCIA");
+                registro[3] = convertirValor(rs.getString("CAPEX_ACTUAL"));
+                registro[4] = convertirValor(rs.getString("DIFERENCIA"));
                 registro[5] = rs.getString("ESTADO");
 
                 modelo.addRow(registro);
@@ -573,8 +573,8 @@ public class CerradoProyecto extends javax.swing.JDialog {
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("DESCRIPCION");
                 registro[2] = convertirValor(rs.getString("CAPEX"));
-                registro[3] = rs.getString("CAPEX_ACTUAL");
-                registro[4] = rs.getString("DIFERENCIA");
+                registro[3] = convertirValor(rs.getString("CAPEX_ACTUAL"));
+                registro[4] = convertirValor(rs.getString("DIFERENCIA"));
                 registro[5] = rs.getString("ESTADO");
 
                 modelo.addRow(registro);
@@ -626,8 +626,8 @@ public class CerradoProyecto extends javax.swing.JDialog {
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("DESCRIPCION");
                 registro[2] = convertirValor(rs.getString("CAPEX"));
-                registro[3] = rs.getString("CAPEX_ACTUAL");
-                registro[4] = rs.getString("DIFERENCIA");
+                registro[3] = convertirValor(rs.getString("CAPEX_ACTUAL"));
+                registro[4] = convertirValor(rs.getString("DIFERENCIA"));
                 registro[5] = rs.getString("ESTADO");
 
                 modelo.addRow(registro);
