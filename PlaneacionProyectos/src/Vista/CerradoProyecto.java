@@ -27,7 +27,6 @@ public class CerradoProyecto extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        menu_tabla = new javax.swing.JMenuItem();
         menu_tabla2 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         txt_id_proyecto = new javax.swing.JTextField();
@@ -49,15 +48,6 @@ public class CerradoProyecto extends javax.swing.JDialog {
                 return false; //Disallow the editing of any cell
             }
         };
-
-        menu_tabla.setText("Ingresar Detalle");
-        menu_tabla.setToolTipText("");
-        menu_tabla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_tablaActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(menu_tabla);
 
         menu_tabla2.setText("Consultar Detalle");
         menu_tabla2.setToolTipText("");
@@ -265,13 +255,6 @@ public class CerradoProyecto extends javax.swing.JDialog {
 
     }//GEN-LAST:event_tabla_consulta_proyectoMouseClicked
 
-    private void menu_tablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tablaActionPerformed
-
-        int rec = this.tabla_consulta_proyecto.getSelectedRow();
-        String valor = tabla_consulta_proyecto.getValueAt(rec, 0).toString();
-        new PrerequsitosProyectos(null, true, valor).setVisible(true);
-    }//GEN-LAST:event_menu_tablaActionPerformed
-
     private void menu_tabla2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tabla2ActionPerformed
         int rec = this.tabla_consulta_proyecto.getSelectedRow();
         String valor = tabla_consulta_proyecto.getValueAt(rec, 0).toString();
@@ -411,7 +394,6 @@ public class CerradoProyecto extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JMenuItem menu_tabla;
     private javax.swing.JMenuItem menu_tabla2;
     private javax.swing.JTable tabla_consulta_proyecto;
     private javax.swing.JTextField txt_codigo_proyecto;
