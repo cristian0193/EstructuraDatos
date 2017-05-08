@@ -71,6 +71,7 @@ public class CreacionProyecto extends javax.swing.JDialog {
         jLabel6.setText("Capex Ingresado :");
 
         txt_capex_ingresado.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        txt_capex_ingresado.setText("0");
         txt_capex_ingresado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 txt_capex_ingresadoMouseEntered(evt);
@@ -472,15 +473,16 @@ public class CreacionProyecto extends javax.swing.JDialog {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
-        query = "SELECT "
-                + "ID, "
-                + "DESCRIPCION, "
-                + "CAPEX, "
-                + "CAPEX_ACTUAL, "
-                + "DIFERENCIA, "
-                + "ESTADO "
-                + "FROM "
-                + "PROYECTOS;";
+        query = "SELECT ID," +
+                "DESCRIPCION, " +
+                "CAPEX, " +
+                "CAPEX_ACTUAL, " +
+                "DIFERENCIA, " +
+                "ESTADO " +
+                "FROM " +
+                "PROYECTOS " +
+                "WHERE ID NOT IN (0) " +
+                "AND ESTADO = 'CREADO'; ";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);

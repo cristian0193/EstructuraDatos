@@ -289,7 +289,16 @@ public class ConsultarProyecto extends javax.swing.JDialog {
     private void menu_tabla2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tabla2ActionPerformed
         int rec = this.tabla_consulta_proyecto.getSelectedRow();
         String valor = tabla_consulta_proyecto.getValueAt(rec, 0).toString();
-        new ConsultaDetalladaProyecto(null, true, valor).setVisible(true);
+        String estado = tabla_consulta_proyecto.getValueAt(rec, 5).toString();
+
+        //String estado = validacionEstado(valor);
+
+        if(estado.equals("CREADO")){
+            JOptionPane.showMessageDialog(null,"EL PROYECTO NO CUENTA CON REGISTROS ACTUALIZADOS");
+        }else{
+            new ConsultaDetalladaProyecto(null, true, valor).setVisible(true);
+        }
+        
     }//GEN-LAST:event_menu_tabla2ActionPerformed
 
     private void combo_filtroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_filtroItemStateChanged
@@ -485,7 +494,7 @@ public class ConsultarProyecto extends javax.swing.JDialog {
                 + "ESTADO "
                 + "FROM "
                 + "PROYECTOS "
-                + "WHERE ESTADO = 'EN EJECUCION';";
+                + "WHERE (ESTADO = 'EN EJECUCION' OR ESTADO = 'CREADO');";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -661,6 +670,36 @@ public class ConsultarProyecto extends javax.swing.JDialog {
         }
     }
 
+    public String validacionEstado(String ID_PROYECTO) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query = "";
+        String estado = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT ESTADO "
+                + "  FROM PROYECTOS"
+                + "  WHERE ID = " + ID_PROYECTO;
+
+        System.out.println("" + query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                estado = rs.getString("ESTADO");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "tabla " + ex);
+        }
+        
+        return estado;
+    }
+    
     public void ancho_columnas() {
         tabla_consulta_proyecto.getColumnModel().getColumn(0).setPreferredWidth(50);
         tabla_consulta_proyecto.getColumnModel().getColumn(1).setPreferredWidth(500);

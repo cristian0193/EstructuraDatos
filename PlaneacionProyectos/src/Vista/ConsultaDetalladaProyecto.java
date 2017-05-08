@@ -628,8 +628,8 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
     private javax.swing.JTextField txt_symphony_gcc;
     private javax.swing.JTextField txtx_fecha_prework;
     // End of variables declaration//GEN-END:variables
-        
-     public String convertirValor(String numero) {
+
+    public String convertirValor(String numero) {
         String convertido = "";
         double valor = Double.parseDouble(numero);
         DecimalFormat formatear = new DecimalFormat("###,###,###,###,###,###,###.##");
@@ -637,7 +637,7 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
 
         return convertido;
     }
-    
+
     // METODO PARA CARGAR TABLA PROYECTOS
     public void cargar_tabla_ejecuciones(String ID_PROYECTO) {
 
@@ -866,8 +866,8 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
                 txt_symphony_gcc.setText(rs.getString("CC_GCC"));
 
                 txt_fecha_validacion.setText(rs.getString("VAL_FECHA"));
-                
-                 if (rs.getString("VAL_RU").equals("S")) {
+
+                if (rs.getString("VAL_RU").equals("S")) {
                     check_requerimientos_val.setSelected(true);
                 } else {
                     check_requerimientos_val.setSelected(false);
@@ -878,10 +878,10 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
                 } else {
                     check_prevalidacion_val.setSelected(false);
                 }
-                                    
+
                 txt_fecha_entrega.setText(rs.getString("EN_FECHA"));
                 txt_observacion_en.setText(rs.getString("EN_OBSERVACIONES"));
-                
+
             }
 
         } catch (SQLException ex) {
@@ -891,7 +891,6 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         }
     }
 
-    
     // METODO PARA CARGAR TABLA PROYECTOS
     public void cargar_capex_proyecto(String ID_PROYECTO) {
 
@@ -915,10 +914,10 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
-                txt_Capex.setText(convertirValor(rs.getString("CAPEX")));                
+                txt_Capex.setText(convertirValor(rs.getString("CAPEX")));
                 txt_capex_actual.setText(convertirValor(rs.getString("CAPEX_ACTUAL")));
                 txt_diferencia.setText(convertirValor(rs.getString("DIFERENCIA")));
-                               
+
             }
 
         } catch (SQLException ex) {
@@ -927,7 +926,7 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
 
         }
     }
-    
+
     public void ancho_columnas() {
 
         tabla_cotizacion.getColumnModel().getColumn(0).setPreferredWidth(150);
@@ -953,7 +952,5 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         tabla_cotizacion.getColumnModel().getColumn(7).setCellRenderer(Alinear);
         tabla_cotizacion.getColumnModel().getColumn(8).setCellRenderer(Alinear);
     }
-    
-}
 
-                
+}
