@@ -66,11 +66,11 @@ public class ConexioSQLite {
         return result;
     }
 
-    public ResultSet consultaMesasxNombre(String nombre_mesa) throws SQLException {
+    public ResultSet consultaMesasxNombre(String nombre_mesa, String idBar) throws SQLException {
 
         ResultSet result = null;
 
-        callStatement = conectar.prepareCall("call prc_mesa_x_nombre('"+nombre_mesa+"')");        
+        callStatement = conectar.prepareCall("call prc_mesa_x_nombre('"+nombre_mesa+"','"+idBar+"')");        
         
         boolean tieneDatos = callStatement.execute();
 

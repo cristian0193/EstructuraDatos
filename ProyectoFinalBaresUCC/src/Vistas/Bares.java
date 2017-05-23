@@ -120,7 +120,7 @@ public class Bares extends javax.swing.JDialog {
             char idBar = barSeleccionado.charAt(0);
             String id = String.valueOf(idBar);
 
-            new Menu(null, true, id).setVisible(true);
+            new Mesas(null, true, id).setVisible(true);
 
         }
 
