@@ -54,13 +54,14 @@ public class Cuenta extends javax.swing.JDialog {
         txt_sub_total = new javax.swing.JTextField();
         txt_total = new javax.swing.JTextField();
         btn_crear_cuenta = new javax.swing.JButton();
-        btn_calcular_total = new javax.swing.JButton();
+        btn_facturar_proctos = new javax.swing.JButton();
         btn_pagar = new javax.swing.JButton();
         btn_anadir_productos = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         txt_debe = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txt_cambio = new javax.swing.JTextField();
+        btn_calcular_total = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 255, 255));
 
@@ -161,13 +162,13 @@ public class Cuenta extends javax.swing.JDialog {
             }
         });
 
-        btn_calcular_total.setBackground(new java.awt.Color(51, 255, 51));
-        btn_calcular_total.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_calcular_total.setText("Facturar Productos");
-        btn_calcular_total.setEnabled(false);
-        btn_calcular_total.addActionListener(new java.awt.event.ActionListener() {
+        btn_facturar_proctos.setBackground(new java.awt.Color(51, 255, 51));
+        btn_facturar_proctos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_facturar_proctos.setText("Facturar Productos");
+        btn_facturar_proctos.setEnabled(false);
+        btn_facturar_proctos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_calcular_totalActionPerformed(evt);
+                btn_facturar_proctosActionPerformed(evt);
             }
         });
 
@@ -211,6 +212,16 @@ public class Cuenta extends javax.swing.JDialog {
             }
         });
 
+        btn_calcular_total.setBackground(new java.awt.Color(255, 255, 51));
+        btn_calcular_total.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_calcular_total.setText("Calcular Total");
+        btn_calcular_total.setEnabled(false);
+        btn_calcular_total.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_calcular_totalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -231,40 +242,41 @@ public class Cuenta extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txt_iva, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txt_sub_total, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(8, 8, 8)
+                                                .addGap(120, 120, 120)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)))
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(txt_iva, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txt_sub_total, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(120, 120, 120)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(btn_calcular_total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(btn_anadir_productos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(btn_pagar, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addComponent(txt_debe, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(btn_facturar_proctos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(btn_anadir_productos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btn_calcular_total, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txt_cambio, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(315, 315, 315)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addComponent(txt_debe, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btn_pagar, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_cambio, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(315, 315, 315)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -287,20 +299,21 @@ public class Cuenta extends javax.swing.JDialog {
                             .addComponent(btn_anadir_productos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_calcular_total, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_facturar_proctos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txt_iva, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btn_pagar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_calcular_total, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_debe, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_debe, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_pagar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,7 +331,7 @@ public class Cuenta extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btn_anadir_productosActionPerformed
 
-    private void btn_calcular_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcular_totalActionPerformed
+    private void btn_facturar_proctosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_facturar_proctosActionPerformed
 
         try {
             conexion = new ConexioSQLite();
@@ -352,7 +365,7 @@ public class Cuenta extends javax.swing.JDialog {
             Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_btn_calcular_totalActionPerformed
+    }//GEN-LAST:event_btn_facturar_proctosActionPerformed
 
     private void btn_crear_cuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crear_cuentaActionPerformed
 
@@ -379,6 +392,7 @@ public class Cuenta extends javax.swing.JDialog {
 
                 if (confirmacion == 1) {
                     btn_anadir_productos.setEnabled(true);
+                    btn_facturar_proctos.setEnabled(true);
                     btn_calcular_total.setEnabled(true);
                     btn_pagar.setEnabled(true);
                     btn_crear_cuenta.setEnabled(false);
@@ -420,7 +434,15 @@ public class Cuenta extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_pagarActionPerformed
 
     private void tabla_cuenta_productosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_cuenta_productosMouseEntered
+        
+    }//GEN-LAST:event_tabla_cuenta_productosMouseEntered
 
+    private void txt_cambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cambioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cambioActionPerformed
+
+    private void btn_calcular_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcular_totalActionPerformed
+        
         double iva = 0.0;
         double total = 0.0;
 
@@ -437,13 +459,8 @@ public class Cuenta extends javax.swing.JDialog {
         txt_sub_total.setText("$ " + sumaProductos);
         txt_iva.setText("$ " + iva);
         txt_total.setText("$ " + total);
-
-
-    }//GEN-LAST:event_tabla_cuenta_productosMouseEntered
-
-    private void txt_cambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cambioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_cambioActionPerformed
+        
+    }//GEN-LAST:event_btn_calcular_totalActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -491,6 +508,7 @@ public class Cuenta extends javax.swing.JDialog {
     private javax.swing.JButton btn_anadir_productos;
     private javax.swing.JButton btn_calcular_total;
     private javax.swing.JButton btn_crear_cuenta;
+    private javax.swing.JButton btn_facturar_proctos;
     private javax.swing.JButton btn_pagar;
     private javax.swing.JComboBox combo_cliente;
     private javax.swing.JComboBox combo_usuario;
