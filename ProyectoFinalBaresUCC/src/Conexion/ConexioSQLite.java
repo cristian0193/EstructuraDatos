@@ -200,4 +200,42 @@ public class ConexioSQLite {
         return result;
     }
     
+    
+    public int ingresarProductos(String cantidad, String idProdcuto, String idMesa, String idCliente, String idUsuario) throws SQLException {
+
+        int result = 0;
+
+        callStatement = conectar.prepareCall("call prc_guardar_detalle_factura("+cantidad+","+idProdcuto+","+idMesa+","+idCliente+","+idUsuario+")");
+
+        boolean tieneDatos = callStatement.execute();
+
+        if(tieneDatos == false){
+            result = 1;
+        }                
+       
+        return result;
+    }
+    
+    public String consultaNumeroCuenta(String idMesa, String idCliente, String idUsuario) throws SQLException {
+
+        ResultSet result = null;
+        String cuenta = "";
+
+        callStatement = conectar.prepareCall("call prc_numero_cuenta("+idMesa+","+idCliente+","+idUsuario+")");
+
+        boolean tieneDatos = callStatement.execute();
+
+        if (tieneDatos) {
+            result = callStatement.getResultSet();
+            
+            while(result.next()){
+                cuenta = result.getString("id");            
+            }                        
+        } else {
+            cuenta = "";
+        }
+        return cuenta;
+    }
+    
+    
 }
