@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import Conexion.ConexioSQLite;
@@ -15,18 +14,16 @@ public class Productos extends javax.swing.JDialog {
     public static DefaultTableModel modelo;
     public static ConexioSQLite conexion;
 
-    
-    public static String valor;           
-    
-    public Productos(java.awt.Frame parent, boolean modal,String idMesa) {
+    public static String valor;
+
+    public Productos(java.awt.Frame parent, boolean modal, String idMesa) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla_productos();
-        valor = idMesa;                
+        valor = idMesa;
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -104,32 +101,43 @@ public class Productos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- 
-       int select = tabla_productos.getSelectedRow();
-       
-       if(select == -1){
-           JOptionPane.showMessageDialog(null,"Seleccione una Fila");
-       }else{
-           
-           String id = "",producto = "";
-           int subtotal=0,precio=0,cantidad=0;
-           
-           id = tabla_productos.getValueAt(select, 0).toString();
-           producto = tabla_productos.getValueAt(select, 1).toString();
-           precio = Integer.parseInt(tabla_productos.getValueAt(select, 2).toString());
-           cantidad = Integer.parseInt(txt_cantidad.getText());
-           subtotal = (precio * cantidad);
-           
-           Object datos[] = {id,producto,precio,cantidad,subtotal};        
-           modeloCuenta.addRow(datos);
-           
-       }
-        
-        
+
+        String id = "", producto = "";
+        int subtotal = 0, precio = 0, cantidad = 0;
+
+        int select = tabla_productos.getSelectedRow();
+
+        if (select == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione una Fila");
+        } else {
+
+            if (txt_cantidad.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Ingrese la Cantidad");
+            } else {
+
+                cantidad = Integer.parseInt(txt_cantidad.getText());
+
+                if (cantidad <= 0) {
+                    JOptionPane.showMessageDialog(null, "La cantidad debe ser mayor a (0) ");
+                } else {
+
+                    id = tabla_productos.getValueAt(select, 0).toString();
+                    producto = tabla_productos.getValueAt(select, 1).toString();
+                    precio = Integer.parseInt(tabla_productos.getValueAt(select, 2).toString());
+
+                    subtotal = (precio * cantidad);
+
+                    Object datos[] = {id, producto, precio, cantidad, subtotal};
+                    modeloCuenta.addRow(datos);
+                }
+
+            }
+
+        }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -157,7 +165,7 @@ public class Productos extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Productos dialog = new Productos(new javax.swing.JFrame(), true,valor);
+                Productos dialog = new Productos(new javax.swing.JFrame(), true, valor);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -182,39 +190,38 @@ public class Productos extends javax.swing.JDialog {
     public void cargar_tabla_productos() {
 
         try {
-            
+
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
-            
+
             String[] titulos = {"ID", "PRODUCTO", "PRECIO"};
             String[] registro = new String[3];
-            
+
             modelo = new DefaultTableModel(null, titulos);
 
             try {
 
                 ResultSet rs = conexion.consultaProductos();
                 while (rs.next()) {
-                    
+
                     registro[0] = rs.getString("ID");
                     registro[1] = rs.getString("DESCRIPCION");
                     registro[2] = rs.getString("PRECIO");
-                    
+
                     modelo.addRow(registro);
                 }
                 tabla_productos.setModel(modelo);
-                
+
             } catch (SQLException ex) {
-                
+
                 JOptionPane.showMessageDialog(null, ex);
-                
+
             }
         } catch (Exception ex) {
 
-            Logger.getLogger(Productos.class.getName()).log(Level.SEVERE,null, ex);
+            Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
 
         }
     }
-
 
 }

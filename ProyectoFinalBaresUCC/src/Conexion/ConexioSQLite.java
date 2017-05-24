@@ -185,4 +185,19 @@ public class ConexioSQLite {
         return result;
     }
 
+    public int crearCuenta(String idMesa, String idCliente, String idUsuario) throws SQLException {
+
+        int result = 0;
+
+        callStatement = conectar.prepareCall("call prc_creacion_cuenta("+idMesa+","+idCliente+","+idUsuario+")");
+
+        boolean tieneDatos = callStatement.execute();
+
+        if(tieneDatos == false){
+            result = 1;
+        }                
+       
+        return result;
+    }
+    
 }
