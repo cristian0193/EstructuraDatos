@@ -35,7 +35,7 @@ public class ConexioSQLite {
             System.out.println("CONECTADO");
             return conectar;
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException e) {
             System.err.println(e.getMessage());
             throw e;
         }
@@ -54,7 +54,7 @@ public class ConexioSQLite {
 
         ResultSet result = null;
 
-        callStatement = conectar.prepareCall("call prc_mesas('"+idBar+"')");
+        callStatement = conectar.prepareCall("call prc_mesas('" + idBar + "')");
 
         boolean tieneDatos = callStatement.execute();
 
@@ -70,8 +70,8 @@ public class ConexioSQLite {
 
         ResultSet result = null;
 
-        callStatement = conectar.prepareCall("call prc_mesa_x_nombre('"+nombre_mesa+"','"+idBar+"')");        
-        
+        callStatement = conectar.prepareCall("call prc_mesa_x_nombre('" + nombre_mesa + "','" + idBar + "')");
+
         boolean tieneDatos = callStatement.execute();
 
         if (tieneDatos) {
@@ -81,13 +81,13 @@ public class ConexioSQLite {
         }
         return result;
     }
-    
+
     public ResultSet consultaBares() throws SQLException {
 
         ResultSet result = null;
 
-        callStatement = conectar.prepareCall("call prc_bares()");        
-        
+        callStatement = conectar.prepareCall("call prc_bares()");
+
         boolean tieneDatos = callStatement.execute();
 
         if (tieneDatos) {
@@ -97,20 +97,20 @@ public class ConexioSQLite {
         }
         return result;
     }
-    
-    public int validacionUser(String usuario, String password,String idRol) throws SQLException {
+
+    public int validacionUser(String usuario, String password, String idRol) throws SQLException {
 
         int result = 0;
-        
+
         ResultSet tieneDatos = null;
 
-        callStatement = conectar.prepareCall("call prc_validacion_login('"+usuario+"','"+password+"',"+idRol+")");        
-        
+        callStatement = conectar.prepareCall("call prc_validacion_login('" + usuario + "','" + password + "'," + idRol + ")");
+
         callStatement.execute();
-        
+
         tieneDatos = callStatement.getResultSet();
         tieneDatos.last();
-        
+
         result = tieneDatos.getRow();
 
         if (result == 0) {
@@ -120,14 +120,13 @@ public class ConexioSQLite {
         }
         return result;
     }
-    
-    
+
     public ResultSet consultaRoles() throws SQLException {
 
         ResultSet result = null;
 
-        callStatement = conectar.prepareCall("call prc_roles()");        
-        
+        callStatement = conectar.prepareCall("call prc_roles()");
+
         boolean tieneDatos = callStatement.execute();
 
         if (tieneDatos) {
@@ -137,5 +136,53 @@ public class ConexioSQLite {
         }
         return result;
     }
-    
+
+    public ResultSet consultaProductos() throws SQLException {
+
+        ResultSet result = null;
+
+        callStatement = conectar.prepareCall("call prc_productos()");
+
+        boolean tieneDatos = callStatement.execute();
+
+        if (tieneDatos) {
+            result = callStatement.getResultSet();
+        } else {
+            result = null;
+        }
+        return result;
+    }
+
+    public ResultSet consultaClientes() throws SQLException {
+
+        ResultSet result = null;
+
+        callStatement = conectar.prepareCall("call prc_clientes()");
+
+        boolean tieneDatos = callStatement.execute();
+
+        if (tieneDatos) {
+            result = callStatement.getResultSet();
+        } else {
+            result = null;
+        }
+        return result;
+    }
+
+    public ResultSet consultaUsuario() throws SQLException {
+
+        ResultSet result = null;
+
+        callStatement = conectar.prepareCall("call prc_usuarios()");
+
+        boolean tieneDatos = callStatement.execute();
+
+        if (tieneDatos) {
+            result = callStatement.getResultSet();
+        } else {
+            result = null;
+        }
+        return result;
+    }
+
 }

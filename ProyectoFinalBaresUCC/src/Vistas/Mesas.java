@@ -261,19 +261,25 @@ public class Mesas extends javax.swing.JDialog implements ActionListener {
 
                 try {
                     String idBar = txt_id_bar.getText();
+                    String mesa = "";
+                    String id = "";
                     conexion = new ConexioSQLite();
                     conexion.coneccionbase();
-                    
                     ResultSet resultado = null;
-                    String nombre = b[i].getText();
+                    mesa = b[i].getText();                    
+                    resultado = conexion.consultaMesasxNombre(mesa, idBar);
                     
-                    resultado = conexion.consultaMesasxNombre(nombre,idBar);
-                    String mesa = resultado.getString(0);
-
-                    JOptionPane.showMessageDialog(null, "" + mesa);
+                    while(resultado.next()){
+                        id = resultado.getString("ID");
+                    }
+                    
+                    new Cuenta(null, true, id).setVisible(true);
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(Mesas.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
+                
             }
         }
 

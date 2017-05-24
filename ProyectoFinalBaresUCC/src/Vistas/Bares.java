@@ -30,7 +30,7 @@ public class Bares extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        combo_bares = new javax.swing.JComboBox<>();
+        combo_bares = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         txt_usuario = new javax.swing.JLabel();
 
@@ -48,7 +48,7 @@ public class Bares extends javax.swing.JDialog {
         jLabel2.setText("Seleccione un Bar:");
 
         combo_bares.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        combo_bares.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        combo_bares.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
         combo_bares.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combo_baresItemStateChanged(evt);
@@ -170,7 +170,7 @@ public class Bares extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> combo_bares;
+    private javax.swing.JComboBox combo_bares;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
