@@ -237,5 +237,52 @@ public class ConexioSQLite {
         return cuenta;
     }
     
+    public ResultSet consultaClientesUsuarioCuenta(String cuenta) throws SQLException {
+
+        ResultSet result = null;
+
+        callStatement = conectar.prepareCall("call prc_cliente_usuario_cuenta('" + cuenta + "')");
+
+        boolean tieneDatos = callStatement.execute();
+
+        if (tieneDatos) {
+            result = callStatement.getResultSet();
+        } else {
+            result = null;
+        }
+        return result;
+    }
+    
+    public ResultSet consultaProductosCuenta(String cuenta) throws SQLException {
+
+        ResultSet result = null;
+
+        callStatement = conectar.prepareCall("call prc_productos_cuenta('" + cuenta + "')");
+
+        boolean tieneDatos = callStatement.execute();
+
+        if (tieneDatos) {
+            result = callStatement.getResultSet();
+        } else {
+            result = null;
+        }
+        return result;
+    }
+    
+    public int realizarPago(String cantidad, String idCuenta) throws SQLException {
+
+        int result = 0;
+
+        callStatement = conectar.prepareCall("call prc_insertar_pago("+cantidad+","+idCuenta+")");
+
+        boolean tieneDatos = callStatement.execute();
+
+        if(tieneDatos == false){
+            result = 1;
+        }                
+       
+        return result;
+    }
+        
     
 }

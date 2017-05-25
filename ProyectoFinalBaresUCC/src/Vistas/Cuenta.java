@@ -11,9 +11,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class Cuenta extends javax.swing.JDialog {
 
-    public static String valor = "", idPrducto = "", descripcion = "",numero_cuenta="";
+    public static String valor = "", idPrducto = "", descripcion = "", numero_cuenta = "";
     public static DefaultTableModel modeloCuenta;
-    public static double sumaProductos = 0.0;
+    public static double sumaProductos = 0.0, iva = 0.0, total = 0.0, adeudado = 0.0, cambio = 0.0;
     public static int confirmacion = 0;
 
     String filas[][] = {};
@@ -54,7 +54,6 @@ public class Cuenta extends javax.swing.JDialog {
         txt_sub_total = new javax.swing.JTextField();
         txt_total = new javax.swing.JTextField();
         btn_crear_cuenta = new javax.swing.JButton();
-        btn_facturar_proctos = new javax.swing.JButton();
         btn_pagar = new javax.swing.JButton();
         btn_anadir_productos = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -162,16 +161,6 @@ public class Cuenta extends javax.swing.JDialog {
             }
         });
 
-        btn_facturar_proctos.setBackground(new java.awt.Color(51, 255, 51));
-        btn_facturar_proctos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_facturar_proctos.setText("Facturar Productos");
-        btn_facturar_proctos.setEnabled(false);
-        btn_facturar_proctos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_facturar_proctosActionPerformed(evt);
-            }
-        });
-
         btn_pagar.setBackground(new java.awt.Color(102, 255, 255));
         btn_pagar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_pagar.setText("Pagar");
@@ -261,17 +250,16 @@ public class Cuenta extends javax.swing.JDialog {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(120, 120, 120)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(btn_facturar_proctos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(btn_anadir_productos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(btn_anadir_productos, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(0, 0, Short.MAX_VALUE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btn_calcular_total, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(btn_calcular_total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(btn_pagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txt_debe, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btn_pagar, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
@@ -298,22 +286,21 @@ public class Cuenta extends javax.swing.JDialog {
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_anadir_productos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_facturar_proctos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txt_iva, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_iva)
+                                .addComponent(btn_calcular_total, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_calcular_total, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_pagar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txt_debe, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btn_pagar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txt_debe, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -330,42 +317,6 @@ public class Cuenta extends javax.swing.JDialog {
         new Productos(null, true, valor).setVisible(true);
 
     }//GEN-LAST:event_btn_anadir_productosActionPerformed
-
-    private void btn_facturar_proctosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_facturar_proctosActionPerformed
-
-        try {
-            conexion = new ConexioSQLite();
-            conexion.coneccionbase();
-
-            confirmacion = 0;
-
-            String idMesa = txt_id_mesa.getText();
-            String clienteSeleccionado = combo_cliente.getSelectedItem().toString();
-            String usuarioSeleccionado = combo_usuario.getSelectedItem().toString();
-
-            char idCliente = clienteSeleccionado.charAt(0);
-            char idUsuario = usuarioSeleccionado.charAt(0);
-
-            String idCli = String.valueOf(idCliente);
-            String idUsu = String.valueOf(idUsuario);
-
-            numero_cuenta = conexion.consultaNumeroCuenta(idMesa, idCli, idUsu);
-            
-            for (int i = 0; i < modeloCuenta.getRowCount(); i++) {
-                String idProducto = modeloCuenta.getValueAt(i, 0).toString();
-                String cantidad = modeloCuenta.getValueAt(i, 3).toString();                
-                confirmacion += conexion.ingresarProductos(cantidad, idProducto, idMesa, idCli, idUsu);
-            }
-
-            if (confirmacion >= 1) {
-                JOptionPane.showMessageDialog(null, "PRODUCTOS FACTURADOS", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_btn_facturar_proctosActionPerformed
 
     private void btn_crear_cuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crear_cuentaActionPerformed
 
@@ -391,8 +342,7 @@ public class Cuenta extends javax.swing.JDialog {
                 confirmacion = conexion.crearCuenta(idMesa, idCli, idUsu);
 
                 if (confirmacion == 1) {
-                    btn_anadir_productos.setEnabled(true);
-                    btn_facturar_proctos.setEnabled(true);
+                    btn_anadir_productos.setEnabled(true);                    
                     btn_calcular_total.setEnabled(true);
                     btn_pagar.setEnabled(true);
                     btn_crear_cuenta.setEnabled(false);
@@ -411,30 +361,77 @@ public class Cuenta extends javax.swing.JDialog {
 
     private void btn_pagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pagarActionPerformed
 
-        double adeudado = 0.0, cambio = 0.0;
-        
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
         double pago = Double.parseDouble(JOptionPane.showInputDialog("Ingrese la cantidad a Pagar :"));
-        double total = Double.parseDouble(txt_total.getText());
-        
-        if(pago < total ){
+
+        if (pago < total) {
             adeudado = pago - total;
-            txt_debe.setText("$ "+adeudado);            
-        }else if (pago > total){
-            cambio = pago - total;
-            txt_cambio.setText("$ "+cambio);
-        }else{
+            txt_debe.setText("$ " + adeudado);
+            txt_cambio.setText("$ " + cambio);
+        } else if (pago > total) {
+            try {
+                cambio = pago - total;
+                adeudado = 0.0;
+                txt_cambio.setText("$ " + cambio);
+                txt_debe.setText("$ " + adeudado);
+                
+                facturar_productos();
+                
+                String cuen1 = "" + numero_cuenta;
+                String sub = "" + sumaProductos;
+                String iv = "" + iva;
+                String tot1 = "" + total;
+                String cam = "" + cambio;
+                
+                int Pago1 = conexion.realizarPago(tot1, cuen1);
+                
+                if (Pago1 == 1) {
+                    JOptionPane.showMessageDialog(null, "PAGO REALIZADO CON EXITO", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                    btn_anadir_productos.setEnabled(false);
+                    btn_pagar.setEnabled(false);
+                }
+                
+                new Factura(null, true, numero_cuenta, sub, iv, tot1, cam).setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-             new Factura(null, true, numero_cuenta).setVisible(true);
+        } else {
+
+            try {
+                adeudado = 0.0;
+                cambio = 0.0;
+                txt_debe.setText("$ " + adeudado);
+                txt_cambio.setText("$ " + cambio);
+
+                facturar_productos();
+                
+                String cuen2 = "" + numero_cuenta;
+                String sub = "" + sumaProductos;
+                String iv = "" + iva;
+                String tot2 = "" + total;
+                String cam = "" + cambio;
+
+                int pago2 = conexion.realizarPago(tot2, cuen2);
+
+                if (pago2 == 1) {
+                    JOptionPane.showMessageDialog(null, "PAGO REALIZADO CON EXITO", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                    btn_anadir_productos.setEnabled(false);
+                    btn_pagar.setEnabled(false);
+                }
+
+                new Factura(null, true, numero_cuenta, sub, iv, tot2, cam).setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
-        
-        
-
 
     }//GEN-LAST:event_btn_pagarActionPerformed
 
     private void tabla_cuenta_productosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_cuenta_productosMouseEntered
-        
+
     }//GEN-LAST:event_tabla_cuenta_productosMouseEntered
 
     private void txt_cambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cambioActionPerformed
@@ -442,9 +439,6 @@ public class Cuenta extends javax.swing.JDialog {
     }//GEN-LAST:event_txt_cambioActionPerformed
 
     private void btn_calcular_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcular_totalActionPerformed
-        
-        double iva = 0.0;
-        double total = 0.0;
 
         int totalRow = tabla_cuenta_productos.getRowCount();
         totalRow -= 1;
@@ -459,7 +453,7 @@ public class Cuenta extends javax.swing.JDialog {
         txt_sub_total.setText("$ " + sumaProductos);
         txt_iva.setText("$ " + iva);
         txt_total.setText("$ " + total);
-        
+
     }//GEN-LAST:event_btn_calcular_totalActionPerformed
 
 //    /**
@@ -508,7 +502,6 @@ public class Cuenta extends javax.swing.JDialog {
     private javax.swing.JButton btn_anadir_productos;
     private javax.swing.JButton btn_calcular_total;
     private javax.swing.JButton btn_crear_cuenta;
-    private javax.swing.JButton btn_facturar_proctos;
     private javax.swing.JButton btn_pagar;
     private javax.swing.JComboBox combo_cliente;
     private javax.swing.JComboBox combo_usuario;
@@ -578,4 +571,41 @@ public class Cuenta extends javax.swing.JDialog {
         }
     }
 
+    public void facturar_productos() {
+      
+         try {
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
+
+            confirmacion = 0;
+
+            String idMesa = txt_id_mesa.getText();
+            String clienteSeleccionado = combo_cliente.getSelectedItem().toString();
+            String usuarioSeleccionado = combo_usuario.getSelectedItem().toString();
+
+            char idCliente = clienteSeleccionado.charAt(0);
+            char idUsuario = usuarioSeleccionado.charAt(0);
+
+            String idCli = String.valueOf(idCliente);
+            String idUsu = String.valueOf(idUsuario);
+
+            numero_cuenta = conexion.consultaNumeroCuenta(idMesa, idCli, idUsu);
+
+            for (int i = 0; i < modeloCuenta.getRowCount(); i++) {
+                String idProducto = modeloCuenta.getValueAt(i, 0).toString();
+                String cantidad = modeloCuenta.getValueAt(i, 3).toString();
+                confirmacion += conexion.ingresarProductos(cantidad, idProducto, idMesa, idCli, idUsu);
+            }
+
+//            if (confirmacion >= 1) {
+//                JOptionPane.showMessageDialog(null, "PRODUCTOS FACTURADOS", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+//            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    
 }
