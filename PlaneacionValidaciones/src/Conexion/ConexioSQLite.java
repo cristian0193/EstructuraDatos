@@ -810,4 +810,25 @@ public class ConexioSQLite {
         }
     }
     
+      //METODO PARA ELIMINAR AUTORIZADO
+    public boolean eliminacion_masiva(String fechaIncial, String fechaFinal) {
+
+        try {
+
+            query = "DELETE FROM PLANEACIONES_VALIDACION  WHERE FECHA_PROPUESTA BETWEEN '"+fechaIncial+"' AND '"+fechaFinal+"'";
+
+            sentencia.executeUpdate(query);
+            System.out.println("ELIMINADO ...");
+            
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ELIMINADO ...");
+            return false;
+
+        }
+    }
+    
 }

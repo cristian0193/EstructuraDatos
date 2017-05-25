@@ -37,19 +37,20 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        menu_maquina1 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         menu_tipo_validacion = new javax.swing.JMenuItem();
         menu_lider_tecnico = new javax.swing.JMenuItem();
         menu_planta = new javax.swing.JMenuItem();
         menu_maquina = new javax.swing.JMenuItem();
         menu_maquina2 = new javax.swing.JMenuItem();
-        menu_maquina1 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -191,15 +192,39 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu2.setText("Reglamento");
+        jMenu2.setText("Utilidades");
 
-        jMenuItem4.setText("Normas");
+        jMenuItem13.setText("Manual de Usuario");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem13);
+
+        jMenuItem4.setText("Modelo de Gobierno");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
             }
         });
         jMenu2.add(jMenuItem4);
+
+        menu_maquina1.setText("Exportar a Excel .XLS");
+        menu_maquina1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_maquina1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menu_maquina1);
+
+        jMenuItem14.setText("Eliminación Masiva de Datos (Admin)");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem14);
 
         jMenuBar1.add(jMenu2);
 
@@ -254,14 +279,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenu4.add(menu_maquina2);
-
-        menu_maquina1.setText("Exportar a Excel .XLS");
-        menu_maquina1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_maquina1ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(menu_maquina1);
 
         jMenuBar1.add(jMenu4);
 
@@ -411,6 +428,25 @@ public class Menu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+
+        try {
+            String sep = File.separator;
+            String Documento = "C:" + sep + "Program Files (x86)" + sep + "Microsoft Office" + sep + "Office14" + sep + "POWERPNT.EXE Normas.pptx";
+            Process proceso = Runtime.getRuntime().exec(Documento);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al intentar abrir archivo " + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+
+       ClaveAdminEliminarDatos eliminacion = new ClaveAdminEliminarDatos();
+       eliminacion.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -462,6 +498,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
