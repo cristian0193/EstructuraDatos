@@ -387,7 +387,7 @@ public class Menu extends javax.swing.JFrame {
         try {
             String sep = File.separator;
             String Documento = "C:" + sep + "Program Files (x86)" + sep + "Microsoft Office" + sep + "Office14" + sep + "POWERPNT.EXE Normas.pptx";
-            Process proceso = Runtime.getRuntime().exec(Documento);
+            Runtime.getRuntime().exec(Documento);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al intentar abrir archivo " + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -433,7 +433,7 @@ public class Menu extends javax.swing.JFrame {
         try {
             String sep = File.separator;
             String Documento = "C:" + sep + "Program Files (x86)" + sep + "Microsoft Office" + sep + "Office14" + sep + "POWERPNT.EXE Normas.pptx";
-            Process proceso = Runtime.getRuntime().exec(Documento);
+            Runtime.getRuntime().exec(Documento);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al intentar abrir archivo " + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
