@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import Conexion.ConexioSQLite;
@@ -9,6 +8,9 @@ import static Vistas.Productos.conexion;
 import static Vistas.Productos.modelo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -16,9 +18,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class Factura extends javax.swing.JDialog {
 
-    public static String cuenta,subtotal,iva,total,cambio;
-    
-    public Factura(java.awt.Frame parent, boolean modal, String _cuenta,String _subtotal, String _iva, String _total, String _cambio) {
+    public static String cuenta, subtotal, iva, total, cambio;
+
+    public Factura(java.awt.Frame parent, boolean modal, String _cuenta, String _subtotal, String _iva, String _total, String _cambio) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -32,11 +34,11 @@ public class Factura extends javax.swing.JDialog {
         txt_iva.setText(iva);
         txt_total.setText(total);
         txt_cambio.setText(cambio);
+        fecha_hora();
         cargar_tabla_productos(cuenta);
         cargar_tabla_cliente_usuario(cuenta);
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -61,7 +63,7 @@ public class Factura extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         txt_cambio = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lb_fecha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -163,9 +165,9 @@ public class Factura extends javax.swing.JDialog {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/sellopagado.jpg"))); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel10.setText("*");
+        lb_fecha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lb_fecha.setForeground(new java.awt.Color(255, 0, 0));
+        lb_fecha.setText("*");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -206,7 +208,7 @@ public class Factura extends javax.swing.JDialog {
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lb_fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txt_cambio, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
@@ -246,7 +248,7 @@ public class Factura extends javax.swing.JDialog {
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_cambio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)
-                        .addComponent(jLabel10))
+                        .addComponent(lb_fecha))
                     .addComponent(jLabel8))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -272,49 +274,48 @@ public class Factura extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Factura dialog = new Factura(new javax.swing.JFrame(), true,cuenta,subtotal,iva,total,cambio);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the dialog */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                Factura dialog = new Factura(new javax.swing.JFrame(), true,cuenta,subtotal,iva,total,cambio);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -326,6 +327,7 @@ public class Factura extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lb_fecha;
     private javax.swing.JTable tabla_productos;
     public javax.swing.JTextField txt_cambio;
     private javax.swing.JTextField txt_cliente;
@@ -336,7 +338,7 @@ public class Factura extends javax.swing.JDialog {
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 
-    // METODO PARA CARGAR TABLA PROYECTOS
+    // METODO PARA CARGAR TABLA PRODUCTOS
     public void cargar_tabla_productos(String idCuenta) {
 
         try {
@@ -344,7 +346,7 @@ public class Factura extends javax.swing.JDialog {
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
 
-            String[] titulos = {"ID","PRODUCTO", "PRECIO","CANTIDAD","TOTAL"};
+            String[] titulos = {"ID", "PRODUCTO", "PRECIO", "CANTIDAD", "TOTAL"};
             String[] registro = new String[5];
 
             modelo = new DefaultTableModel(null, titulos);
@@ -375,8 +377,8 @@ public class Factura extends javax.swing.JDialog {
 
         }
     }
-    
-    // METODO PARA CARGAR TABLA PROYECTOS
+
+    // METODO PARA CARGAR TABLA CLIENTE USUARIOS
     public void cargar_tabla_cliente_usuario(String idCuenta) {
 
         try {
@@ -384,27 +386,37 @@ public class Factura extends javax.swing.JDialog {
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
 
-            String usuario = "", cliente = "";                       
+            String usuario = "", cliente = "";
 
             try {
 
                 ResultSet rs = conexion.consultaClientesUsuarioCuenta(idCuenta);
                 while (rs.next()) {
-                    usuario= rs.getString("USUARIO");
-                    cliente = rs.getString("CLIENTE");                   
+                    usuario = rs.getString("USUARIO");
+                    cliente = rs.getString("CLIENTE");
                 }
-                
+
                 txt_cliente.setText(cliente);
                 txt_usuario.setText(usuario);
 
-
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex);                
+                JOptionPane.showMessageDialog(null, ex);
             }
         } catch (Exception ex) {
             Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    
-    }        
 
+    }
+
+    public String fecha_hora() {
+
+        Calendar cal = Calendar.getInstance();
+        Date fecha = cal.getTime();        
+        DateFormat formatterDate = DateFormat.getDateInstance();
+        DateFormat formatterTime = DateFormat.getTimeInstance();
+        String fechaHora = ""+formatterDate.format(fecha)+" "+formatterTime.format(fecha);
+        lb_fecha.setText(fechaHora);
+
+        return "";
+    }
 }

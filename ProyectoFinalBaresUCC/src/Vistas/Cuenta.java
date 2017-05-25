@@ -389,7 +389,8 @@ public class Cuenta extends javax.swing.JDialog {
                 
                 if (Pago1 == 1) {
                     JOptionPane.showMessageDialog(null, "PAGO REALIZADO CON EXITO", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-                    btn_anadir_productos.setEnabled(false);
+                    conexion.actualizarEstadoCuenta(cuen1);
+                    btn_anadir_productos.setEnabled(false);                    
                     btn_pagar.setEnabled(false);
                 }
                 
@@ -418,6 +419,7 @@ public class Cuenta extends javax.swing.JDialog {
 
                 if (pago2 == 1) {
                     JOptionPane.showMessageDialog(null, "PAGO REALIZADO CON EXITO", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                    conexion.actualizarEstadoCuenta(cuen2);
                     btn_anadir_productos.setEnabled(false);
                     btn_pagar.setEnabled(false);
                 }

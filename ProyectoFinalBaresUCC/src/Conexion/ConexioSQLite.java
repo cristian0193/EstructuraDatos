@@ -284,5 +284,13 @@ public class ConexioSQLite {
         return result;
     }
         
+    public void actualizarEstadoCuenta(String idCuenta) throws SQLException {
+
+        callStatement = conectar.prepareCall("call prc_cambio_estado_cuenta("+idCuenta+")");
+
+        callStatement.execute();             
+       
+   }
+    
     
 }
