@@ -442,6 +442,10 @@ public class Cuenta extends javax.swing.JDialog {
 
     private void btn_calcular_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcular_totalActionPerformed
 
+        sumaProductos = 0.0;
+        iva = 0.0;
+        total = 0.0;
+                
         int totalRow = tabla_cuenta_productos.getRowCount();
         totalRow -= 1;
         for (int i = 0; i <= (totalRow); i++) {
