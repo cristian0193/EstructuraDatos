@@ -434,6 +434,8 @@ public class Programacion extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         cargar_tabla_programaciones();
+        ancho_columnas();
+        centrar_datos();
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

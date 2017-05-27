@@ -34,8 +34,6 @@ public class Menu extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -156,7 +154,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu3.setText("Reporte de Semana");
+        jMenu3.setText("Reportes Semanal");
 
         jMenuItem7.setText("Programacion Semanal (Todos)");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -173,22 +171,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem9);
-
-        jMenuItem11.setText("Indicadores Graficos (Programada x Semana)");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem11);
-
-        jMenuItem12.setText("Indicadores Graficos (Proyecto x Tipo)");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem12);
 
         jMenuBar1.add(jMenu3);
 
@@ -386,8 +368,8 @@ public class Menu extends javax.swing.JFrame {
 
         try {
             String sep = File.separator;
-            String Documento = "C:" + sep + "Program Files (x86)" + sep + "Microsoft Office" + sep + "Office14" + sep + "POWERPNT.EXE Normas.pptx";
-            Runtime.getRuntime().exec(Documento);
+            String Documento = "C:" + sep + "Program Files (x86)" + sep + "Microsoft Office" + sep + "Office14" + sep + "POWERPNT.EXE Modelo de Gobierno.pptx";
+            Process proceso = Runtime.getRuntime().exec(Documento);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al intentar abrir archivo " + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -413,20 +395,6 @@ public class Menu extends javax.swing.JFrame {
         excepciones.setVisible(true);
 
     }//GEN-LAST:event_menu_maquina2ActionPerformed
-
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-
-        Grafica_Programadas_Semana grafica_semana = new Grafica_Programadas_Semana();
-        grafica_semana.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
-
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-
-        Grafica_Proyecto_Tipo grafica_tipo = new Grafica_Proyecto_Tipo();
-        grafica_tipo.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
 
@@ -496,8 +464,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;

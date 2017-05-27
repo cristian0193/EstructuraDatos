@@ -19,10 +19,10 @@ public class LiderTecnico extends javax.swing.JFrame {
     public LiderTecnico() {
         initComponents();
         this.setLocationRelativeTo(null);
-        cargar_tabla_tipo();
+        cargar_tabla_lider();
         ancho_columnas();
         centrar_datos();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -170,9 +170,11 @@ public class LiderTecnico extends javax.swing.JFrame {
                 boolean resultado = conexion.insert_lider(nombre.toUpperCase());
 
                 if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "TIPO INSERTADO");
+                    JOptionPane.showMessageDialog(null, "LIDER INSERTADO");
                     LimpiarCampos();
-                    cargar_tabla_tipo();
+                    cargar_tabla_lider();
+                    ancho_columnas();
+                    centrar_datos();
                     conexion.cerrar();
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR");
@@ -180,25 +182,27 @@ public class LiderTecnico extends javax.swing.JFrame {
                 }
             }
         } else {
-            
-                conexion = new ConexioSQLite();
-                conexion.coneccionbase();
 
-                String id = txt_id_tipo.getText();
-                String nombre = txt_nombre_tipo.getText();
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
 
-                boolean resultado = conexion.upgrade_lider(id, nombre);
+            String id = txt_id_tipo.getText();
+            String nombre = txt_nombre_tipo.getText();
 
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "TIPO ACTUALIZADO");
-                    LimpiarCampos();
-                    cargar_tabla_tipo();
-                    conexion.cerrar();
-                } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                    LimpiarCampos();
-                }
-            
+            boolean resultado = conexion.upgrade_lider(id, nombre);
+
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "LIDER ACTUALIZADO");
+                LimpiarCampos();
+                cargar_tabla_lider();
+                ancho_columnas();
+                centrar_datos();
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                LimpiarCampos();
+            }
+
         }
 
 
@@ -226,9 +230,11 @@ public class LiderTecnico extends javax.swing.JFrame {
             boolean resultado = conexion.delete_lider(id);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "TIPO ELIMINADO");
+                JOptionPane.showMessageDialog(null, "LIDER ELIMINADO");
                 LimpiarCampos();
-                cargar_tabla_tipo();
+                cargar_tabla_lider();
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL ELIMINADO");
@@ -257,7 +263,7 @@ public class LiderTecnico extends javax.swing.JFrame {
         txt_nombre_tipo.setText("");
     }
 
-    void cargar_tabla_tipo() {
+    void cargar_tabla_lider() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -297,7 +303,7 @@ public class LiderTecnico extends javax.swing.JFrame {
         }
     }
 
-     public void ancho_columnas() {
+    public void ancho_columnas() {
         tabla_tecnico.getColumnModel().getColumn(0).setPreferredWidth(50);
         tabla_tecnico.getColumnModel().getColumn(1).setPreferredWidth(400);
     }
@@ -306,7 +312,7 @@ public class LiderTecnico extends javax.swing.JFrame {
         Alinear = new DefaultTableCellRenderer();
         Alinear.setHorizontalAlignment(SwingConstants.CENTER);
         tabla_tecnico.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-       // tabla_tecnico.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+        // tabla_tecnico.getColumnModel().getColumn(1).setCellRenderer(Alinear);
 
     }
 }

@@ -93,7 +93,7 @@ public class ClaveAdministradorCierre extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (txt_clave.getText().equals("IngenieriaQA1")) {
-            CierreProyecto cierre = new CierreProyecto();
+            EstadoProyecto cierre = new EstadoProyecto();
             cierre.setVisible(true);
             this.hide();
         } else {

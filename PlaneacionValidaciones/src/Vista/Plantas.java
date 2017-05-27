@@ -19,7 +19,7 @@ public class Plantas extends javax.swing.JFrame {
     public Plantas() {
         initComponents();
         this.setLocationRelativeTo(null);
-        cargar_tabla_tipo();
+        cargar_tabla_planta();
         ancho_columnas();
         centrar_datos();
     }
@@ -168,7 +168,7 @@ public class Plantas extends javax.swing.JFrame {
                 if (resultado == true) {
                     JOptionPane.showMessageDialog(null, "PLANTA INSERTADA");
                     LimpiarCampos();
-                    cargar_tabla_tipo();
+                    cargar_tabla_planta();
                     ancho_columnas();
                     centrar_datos();
                     conexion.cerrar();
@@ -190,7 +190,7 @@ public class Plantas extends javax.swing.JFrame {
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "PLANTA ACTUALIZADA");
                 LimpiarCampos();
-                cargar_tabla_tipo();
+                cargar_tabla_planta();
                 ancho_columnas();
                 centrar_datos();
                 conexion.cerrar();
@@ -227,7 +227,7 @@ public class Plantas extends javax.swing.JFrame {
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "PLANTA ELIMINADA");
                 LimpiarCampos();
-                cargar_tabla_tipo();
+                cargar_tabla_planta();
                 ancho_columnas();
                 centrar_datos();
                 conexion.cerrar();
@@ -258,7 +258,7 @@ public class Plantas extends javax.swing.JFrame {
         txt_nombre_planta.setText("");
     }
 
-    void cargar_tabla_tipo() {
+    void cargar_tabla_planta() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();

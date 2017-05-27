@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class CierreProyecto extends javax.swing.JFrame {
+public class EstadoProyecto extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
@@ -20,7 +20,7 @@ public class CierreProyecto extends javax.swing.JFrame {
     public static int validacion_pendiente_cal = 0;
     public static int validacion_pendiente_pro = 0;
 
-    public CierreProyecto() {
+    public EstadoProyecto() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla_estados();
@@ -69,7 +69,7 @@ public class CierreProyecto extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ESTADO DE PROYECTO DE VALIDACION Ó CALIFICACION");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 30));
 
         jLabel6.setText("Numero Registro :");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 120, 20));

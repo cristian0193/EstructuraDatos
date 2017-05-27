@@ -82,7 +82,7 @@
               <Font name="Arial" size="24" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="PLANEACI&#xd3;N DE VALIDACIONES CON EXCEPCIONES"/>
+            <Property name="text" type="java.lang.String" value="REGISTRO DE VALIDACI&#xd3;N CON EXCEPCIONES"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -288,7 +288,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Observaciones :"/>
+            <Property name="text" type="java.lang.String" value="Observaciones : ( 4000 Max. Caracteres )"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

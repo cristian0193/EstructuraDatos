@@ -379,7 +379,7 @@ void cargar_tabla_noprogramadas(String SEMANA, String ANO) {
         String[] registro = new String[10];
         String query = "";
 
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(null, titulos);
 
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
@@ -392,14 +392,13 @@ void cargar_tabla_noprogramadas(String SEMANA, String ANO) {
                 + "PLANTA AS PLANTA, "                
                 + "MAQUINA AS MAQUINA, "
                 + "LOTE AS LOTE, "
-                + "TURNOS AS TURNO, "
-                + "ESTADO_PROYECTO AS ESTADO, "               
+                + "TURNOS AS TURNO, "              
                 + "FECHA_REPROGRAMACION AS FECHA "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'No Programada' "
+                + "WHERE (ESTADO_PROYECTO = 'Programado' AND NO_PROGRAMADA = 'No Programada') "
                 + "AND SEMANA = " + SEMANA + " "    
-                + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
+                + "AND (FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31') "
                 + "ORDER BY FECHA_REPROGRAMACION ASC;";
 
         try {
@@ -415,7 +414,7 @@ void cargar_tabla_noprogramadas(String SEMANA, String ANO) {
                 registro[5] = rs.getString("MAQUINA");
                 registro[6] = rs.getString("LOTE");
                 registro[7] = rs.getString("TURNO");
-                registro[8] = rs.getString("ESTADO");
+                registro[8] = "No Programado";
                 registro[9] = rs.getString("FECHA");
 
                 modelo.addRow(registro);

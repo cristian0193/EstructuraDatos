@@ -119,7 +119,7 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("PLANEACIÓN DE VALIDACIONES CON EXCEPCIONES");
+        jLabel1.setText("REGISTRO DE VALIDACIÓN CON EXCEPCIONES");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -199,7 +199,7 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
         });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 140, 220, 40));
 
-        jLabel10.setText("Observaciones :");
+        jLabel10.setText("Observaciones : ( 4000 Max. Caracteres )");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 210, -1, 20));
 
         txt_observaciones_proyecto.setEditable(false);
@@ -926,7 +926,7 @@ public class PrincipalExcepciones extends javax.swing.JFrame {
         calendar.setFirstDayOfWeek(calendar.MONDAY);
         calendar.setMinimalDaysInFirstWeek(7);
         calendar.setTime(fecha);
-        return calendar.get(Calendar.WEEK_OF_YEAR) + 1;
+        return calendar.get(Calendar.WEEK_OF_YEAR);
     }
 
 // METODO PARA CARGAR TABLA PRINCIPAL

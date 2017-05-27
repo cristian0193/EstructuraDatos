@@ -112,13 +112,12 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1030, 670));
-        setPreferredSize(new java.awt.Dimension(1170, 730));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("PLANEACIÓN DE VALIDACIONES NO PROGRAMADAS");
+        jLabel1.setText("REGISTRO DE VALIDACIÓN NO PROGRAMADAS");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,7 +197,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 140, 220, 40));
 
-        jLabel10.setText("Observaciones :");
+        jLabel10.setText("Observaciones : ( 4000 Max. Caracteres )");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, -1, 20));
 
         txt_observaciones_proyecto.setColumns(20);
@@ -509,13 +508,13 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 String estado = txt_estado_proyecto.getText();
                 String observaciones = txt_observaciones_proyecto.getText();
 
-                boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones,
+                boolean resultado = conexion.insertNoprogramadas(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, "En Creacion", observaciones,
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                         "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida,
-                        "''","''","''");
+                        "","","",estado);
 
                 if (resultado == true) {
                     JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
@@ -880,6 +879,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         date_fecha_propuesta.setDate(null);
         txt_fecha_propuesta.setText("");
         combo_consulta.setSelectedIndex(0);
+        txt_estado_proyecto.setText("No Programada");
         txt_observaciones_proyecto.setText("");
     }
 
@@ -899,7 +899,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         calendar.setFirstDayOfWeek(calendar.MONDAY);
         calendar.setMinimalDaysInFirstWeek(7);
         calendar.setTime(fecha);
-        return calendar.get(Calendar.WEEK_OF_YEAR) + 1;
+        return calendar.get(Calendar.WEEK_OF_YEAR);
     }
 
 // METODO PARA CARGAR TABLA PRINCIPAL
@@ -932,7 +932,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "OBSERVACIONES_VALIDACION AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'No Programada' "
+                + "WHERE (ESTADO_PROYECTO = 'En Creacion' AND NO_PROGRAMADA = 'No Programada') "
                 + "ORDER BY FECHA_PROPUESTA DESC;";
 
         try {
