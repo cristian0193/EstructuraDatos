@@ -76,7 +76,7 @@ public class Programacion extends javax.swing.JFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 120, 20));
 
         jLabel7.setText("Estado Proyecto :");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 130, 20));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 110, 20));
 
         tabla_proyectos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -35,8 +35,10 @@
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="date_fecha_final" min="-2" pref="139" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="369" max="-2" attributes="0"/>
-                      <Component id="btn_cargar" min="-2" pref="88" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btn_consultar" min="-2" pref="88" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="271" max="-2" attributes="0"/>
+                      <Component id="btn_eliminar" min="-2" pref="88" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="888" max="-2" attributes="0"/>
               </Group>
@@ -51,11 +53,12 @@
               <Component id="jLabel1" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btn_cargar" alignment="0" max="32767" attributes="0"/>
-                  <Component id="date_fecha_inicio" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="date_fecha_inicio" alignment="0" pref="30" max="32767" attributes="0"/>
                   <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
-                  <Component id="date_fecha_final" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="date_fecha_final" alignment="0" pref="30" max="32767" attributes="0"/>
                   <Component id="jLabel3" alignment="1" max="32767" attributes="0"/>
+                  <Component id="btn_consultar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btn_eliminar" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="425" max="-2" attributes="0"/>
@@ -79,16 +82,17 @@
         <Property name="text" type="java.lang.String" value="Fecha Inicio :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_cargar">
+    <Component class="javax.swing.JButton" name="btn_eliminar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="ff" red="99" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
         <Property name="toolTipText" type="java.lang.String" value="Permite realizar el cargue de la ruta donde se exportar&#xe1; la informacion"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cargarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_eliminarActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -127,6 +131,19 @@
       <Properties>
         <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_consultar">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="66" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Consultar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Permite realizar el cargue de la ruta donde se exportar&#xe1; la informacion"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_consultarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
