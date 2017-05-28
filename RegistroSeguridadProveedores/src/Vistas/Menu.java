@@ -209,11 +209,17 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
+       
+        RegistrosIngresoInterbodegas ingreso = new RegistrosIngresoInterbodegas();
+        ingreso.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
+       
+        RegistrosSalidaInterbodegas salida = new RegistrosSalidaInterbodegas();
+        salida.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
 

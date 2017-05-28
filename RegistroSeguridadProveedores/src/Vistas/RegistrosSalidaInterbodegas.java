@@ -59,7 +59,7 @@ public class RegistrosSalidaInterbodegas extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("REGISTRO DE SALIDA DE PROVEEDORES");
+        jLabel1.setText("REGISTRO DE SALIDA DE INTERBODEGAS");
 
         tabla_registro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

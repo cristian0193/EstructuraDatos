@@ -138,7 +138,7 @@
           <Font name="Tahoma" size="18" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="REGISTRO DE SALIDA DE PROVEEDORES"/>
+        <Property name="text" type="java.lang.String" value="REGISTRO DE SALIDA DE INTERBODEGAS"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

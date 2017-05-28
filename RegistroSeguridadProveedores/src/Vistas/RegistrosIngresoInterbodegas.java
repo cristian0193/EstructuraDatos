@@ -102,7 +102,7 @@ public class RegistrosIngresoInterbodegas extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("REGISTRO DE INGRESO Y SALIDA DE PROVEEDORES");
+        jLabel1.setText("REGISTRO DE INGRESO Y SALIDA DE INTERBODEGAS");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de Registro"));
         jPanel1.setMinimumSize(new java.awt.Dimension(1184, 320));
