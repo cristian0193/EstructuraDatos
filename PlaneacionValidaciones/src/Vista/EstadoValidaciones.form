@@ -87,7 +87,7 @@
           <Font name="Arial" size="24" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="REPORTE DE VALIDACIONES EJECUTAS, NO EJECUTAS Y CERRADAS"/>
+        <Property name="text" type="java.lang.String" value="ESTADO DE PROYECTOS EJECUTADOS"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="combo_semana">

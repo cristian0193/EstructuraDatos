@@ -45,7 +45,7 @@ public class EstadoValidaciones extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("REPORTE DE VALIDACIONES EJECUTAS, NO EJECUTAS Y CERRADAS");
+        jLabel1.setText("ESTADO DE PROYECTOS EJECUTADOS");
 
         combo_semana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53" }));
         combo_semana.setToolTipText("Seleccion de Semana para verificacion de reporte");
@@ -397,7 +397,7 @@ void cargar_tabla_con_excepciones(String SEMANA, String ANO) {
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'Con Excepcion' "
+                + "WHERE (ESTADO_PROYECTO = 'Programado' AND RESPUESTA = 'SI')"
                 + "AND SEMANA = " + SEMANA + " "    
                 + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
                 + "ORDER BY FECHA_REPROGRAMACION ASC;";
