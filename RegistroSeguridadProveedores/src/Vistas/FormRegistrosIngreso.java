@@ -8,9 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,7 +20,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FormRegistrosIngreso extends javax.swing.JFrame {
 
-    DefaultTableModel modelo;
+    public static DefaultTableModel modelo;
+    public static DefaultTableCellRenderer Alinear;
     ConexioSQLite conexion;
 
     public FormRegistrosIngreso() {
@@ -31,6 +33,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         cargar_tabla_autorizo();
         cargar_tabla_guarda();
         this.btn_actualizar.setEnabled(false);
+        ancho_columnas();
+        centrar_datos();
     }
 
     @SuppressWarnings("unchecked")
@@ -310,6 +314,7 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 
             }
         ));
+        tabla_registro.setRowHeight(23);
         tabla_registro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_registroMouseClicked(evt);
@@ -520,9 +525,13 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "INGRESO REGISTRADO");
                     LimpiarCampos();
                     cargar_tabla();
+                    ancho_columnas();
+                    centrar_datos();
                     conexion.cerrar();
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                    ancho_columnas();
+                    centrar_datos();
                     LimpiarCampos();
                 }
             }
@@ -559,9 +568,13 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INGRESO ACTUALIZADO");
                 LimpiarCampos();
                 cargar_tabla();
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                ancho_columnas();
+                centrar_datos();
                 LimpiarCampos();
             }
 
@@ -576,6 +589,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 
     private void btn_refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refrescarActionPerformed
         cargar_tabla();
+        ancho_columnas();
+        centrar_datos();
         conexion.cerrar();
     }//GEN-LAST:event_btn_refrescarActionPerformed
 
@@ -632,14 +647,14 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
             }
 
             Date fecha = new Date();
-            
+
             DateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
             DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-            
+
             this.txt_fecha_ingreso.setText("" + formatoFecha.format(fecha) + " " + formatoHora.format(fecha) + "");
             this.txt_estado.setText("INGRESO");
             this.txt_estado_color.setBackground(Color.GREEN);
-            
+
 //            Calendar calendario = Calendar.getInstance();
 //            int dia, mes, año, hora, minutos, segundos;
 //
@@ -758,6 +773,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
                 String fecha_fin = txt_consulta_final.getText();
 
                 consulta_rango_fechas(fecha_ini, fecha_fin);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
 
@@ -769,6 +786,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INGRESE PLACA");
             } else {
                 consulta_placa(placa);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
 
@@ -779,6 +798,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INGRESE CEDULA");
             } else {
                 consulta_cedula(cedula);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
         } else if (index == 4) {
@@ -788,6 +809,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INGRESE AUTORIZADO");
             } else {
                 consulta_autorizo(autorizo);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
         } else {
@@ -797,6 +820,8 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INGRESE GUARDA");
             } else {
                 consulta_guarda(guarda);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
         }
@@ -818,11 +843,11 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         } else {
 
             Date fecha = new Date();
-            
+
             DateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
             DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-            
-            this.txt_fecha_salida.setText("" + formatoFecha.format(fecha) + " " + formatoHora.format(fecha) + "");                    
+
+            this.txt_fecha_salida.setText("" + formatoFecha.format(fecha) + " " + formatoHora.format(fecha) + "");
             this.txt_estado.setText("SALIDA");
             this.txt_estado_color.setBackground(Color.RED);
             this.btn_actualizar.setEnabled(true);
@@ -831,7 +856,40 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_combo_marcaItemStateChanged
-
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(FormRegistrosIngreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(FormRegistrosIngreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(FormRegistrosIngreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(FormRegistrosIngreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new FormRegistrosIngreso().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_actualizar;
@@ -895,7 +953,6 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         combo_conductor.setSelectedIndex(0);
         combo_guarda.setSelectedIndex(0);
         combo_autorizo.setSelectedIndex(0);
-
         txt_empresa.setText("");
         txt_estado_color.setText("");
         txt_ficha.setText("");
@@ -1382,4 +1439,31 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
         }
         return contador;
     }
+
+    // METODO PARA CARGAR JCOMBOBOX GUARDA
+    public void ancho_columnas() {
+        tabla_registro.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tabla_registro.getColumnModel().getColumn(1).setPreferredWidth(130);
+        tabla_registro.getColumnModel().getColumn(2).setPreferredWidth(40);
+        tabla_registro.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tabla_registro.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tabla_registro.getColumnModel().getColumn(5).setPreferredWidth(70);
+        tabla_registro.getColumnModel().getColumn(6).setPreferredWidth(70);
+        tabla_registro.getColumnModel().getColumn(7).setPreferredWidth(120);
+        tabla_registro.getColumnModel().getColumn(8).setPreferredWidth(120);
+        tabla_registro.getColumnModel().getColumn(9).setPreferredWidth(50);
+        tabla_registro.getColumnModel().getColumn(10).setPreferredWidth(100);
+    }
+
+    // METODO PARA CARGAR JCOMBOBOX GUARDA
+    public void centrar_datos() {
+        Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+        tabla_registro.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+        tabla_registro.getColumnModel().getColumn(2).setCellRenderer(Alinear);
+        tabla_registro.getColumnModel().getColumn(5).setCellRenderer(Alinear);
+        tabla_registro.getColumnModel().getColumn(6).setCellRenderer(Alinear);
+        tabla_registro.getColumnModel().getColumn(9).setCellRenderer(Alinear);
+    }
+
 }

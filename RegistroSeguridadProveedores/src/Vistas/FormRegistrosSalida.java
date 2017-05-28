@@ -65,12 +65,14 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
 
             }
         ));
+        tabla_registro.setRowHeight(25);
         tabla_registro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_registroMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabla_registro);
+        tabla_registro.getAccessibleContext().setAccessibleName("");
 
         jLabel18.setText("Fecha Inicial :");
 
