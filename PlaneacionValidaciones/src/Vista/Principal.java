@@ -16,6 +16,7 @@ public class Principal extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
+    public static int valor = 0;
 
     public Principal() {
         initComponents();
@@ -513,127 +514,134 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS OBLIGATORIOS (*)");
         } else {
 
-            String lotes = combo_lote.getSelectedItem().toString();
-            String turnos = txt_turnos.getText();
+            int resultadoVerificacion = validacionIngresoGCCAPRLimpieza(txt_GCC.getText().toUpperCase());
 
-            if (!isNumeric(lotes)) {
-                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
-            } else if (!isNumeric(turnos)) {
-                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
+            if (resultadoVerificacion == 0) {
+                txt_GCC.setText("");
+                txt_GCC.requestFocus();
             } else {
+                String lotes = combo_lote.getSelectedItem().toString();
+                String turnos = txt_turnos.getText();
 
-                String tipo_validacion = "";
-                int contadorSemanas = 0;
-                int contadorLote = 0;
-                int lotesIngresados = 0;
-
-                Date date = (Date) date_fecha_propuesta.getDate();
-                int semana = numeroSemanas(date);
-                tipo_validacion = combo_tipo.getSelectedItem().toString();
-                DateFormat formatoFecha = new SimpleDateFormat("YYYY");
-                int año = Integer.parseInt(formatoFecha.format(date));
-
-                contadorSemanas = contadorSemana(semana, tipo_validacion, año);
-                contadorLote = contadorLotes(semana, tipo_validacion);
-                lotesIngresados = Integer.parseInt(combo_lote.getSelectedItem().toString());
-
-                int resultadoTotalLotes = contadorLote + lotesIngresados;
-
-                if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
-                    JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                            + "\n VALIDACIONES DE PROCESO \n CANTIDAD DE LOTES COMPLETOS", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
-
-                    JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                            + "\n SE HABILITO INGRESE LA INFORMACION "
-                            + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
-                            + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-
-                    btn_excepciones.setEnabled(true);
-
-                } else if (tipo_validacion.equals("EQUIPOS") && contadorSemanas >= 3) {
-                    JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                            + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
-
-                    JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                            + "\n SE HABILITO INGRESE LA INFORMACION "
-                            + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
-                            + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-                    btn_excepciones.setEnabled(true);
-
-                } else if (tipo_validacion.equals("L&S") && contadorSemanas >= 2) {
-                    JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                            + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
-
-                    JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                            + "\n SE HABILITO INGRESE LA INFORMACION "
-                            + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
-                            + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-                    btn_excepciones.setEnabled(true);
-
-                } else if (tipo_validacion.equals("CSV") && contadorSemanas >= 3) {
-                    JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                            + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
-
-                    JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                            + "\n SE HABILITO INGRESE LA INFORMACION "
-                            + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
-                            + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-                    btn_excepciones.setEnabled(true);
-
-                } else if (tipo_validacion.equals("NO GXP") && contadorSemanas >= 3) {
-                    JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                            + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
-
-                    JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                            + "\n SE HABILITO INGRESE LA INFORMACION "
-                            + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
-                            + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-                    btn_excepciones.setEnabled(true);
-
+                if (!isNumeric(lotes)) {
+                    JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
+                } else if (!isNumeric(turnos)) {
+                    JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
                 } else {
-                    conexion = new ConexioSQLite();
-                    conexion.coneccionbase();
-                    String gcc = txt_GCC.getText();
-                    String nombre = txt_proyecto.getText();
-                    String tipo = combo_tipo.getSelectedItem().toString();
-                    String lider = combo_lider_tecnico.getSelectedItem().toString();
-                    String planta = combo_planta.getSelectedItem().toString();
-                    String maquina = combo_maquina.getSelectedItem().toString();
-                    String lote = combo_lote.getSelectedItem().toString();
-                    String turno = txt_turnos.getText();
 
-                    String formato = date_fecha_propuesta.getDateFormatString();
-                    Date date_ingresada = (Date) date_fecha_propuesta.getDate();
-                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                    String fecha_ingresada = String.valueOf(sdf.format(date));
+                    String tipo_validacion = "";
+                    int contadorSemanas = 0;
+                    int contadorLote = 0;
+                    int lotesIngresados = 0;
 
-                    int semanaObtenida = numeroSemanas(date_ingresada);
+                    Date date = (Date) date_fecha_propuesta.getDate();
+                    int semana = numeroSemanas(date);
+                    tipo_validacion = combo_tipo.getSelectedItem().toString();
+                    DateFormat formatoFecha = new SimpleDateFormat("YYYY");
+                    int año = Integer.parseInt(formatoFecha.format(date));
 
-                    String estado = txt_estado_proyecto.getText();
-                    String observaciones = txt_observaciones_proyecto.getText();
+                    contadorSemanas = contadorSemana(semana, tipo_validacion, año);
+                    contadorLote = contadorLotes(semana, tipo_validacion);
+                    lotesIngresados = Integer.parseInt(combo_lote.getSelectedItem().toString());
 
-                    boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones,
-                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida,
-                            "", "", "");
+                    int resultadoTotalLotes = contadorLote + lotesIngresados;
 
-                    if (resultado == true) {
-                        JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
-                        JOptionPane.showMessageDialog(null, "NO OLVIDE ACTUALIZAR LOS PRE-REQUISITOS DE : "
-                                + "\n 1. CALIFICACION "
-                                + "\n 2. PROCESO", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
-                        LimpiarCampos();
-                        cargar_tabla();
-                        conexion.cerrar();
+                    if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
+                        JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                                + "\n VALIDACIONES DE PROCESO \n CANTIDAD DE LOTES COMPLETOS", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                        JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
+                                + "\n SE HABILITO INGRESE LA INFORMACION "
+                                + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                                + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+
+                        btn_excepciones.setEnabled(true);
+
+                    } else if (tipo_validacion.equals("EQUIPOS") && contadorSemanas >= 3) {
+                        JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                                + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                        JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
+                                + "\n SE HABILITO INGRESE LA INFORMACION "
+                                + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                                + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                        btn_excepciones.setEnabled(true);
+
+                    } else if (tipo_validacion.equals("L&S") && contadorSemanas >= 2) {
+                        JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                                + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                        JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
+                                + "\n SE HABILITO INGRESE LA INFORMACION "
+                                + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                                + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                        btn_excepciones.setEnabled(true);
+
+                    } else if (tipo_validacion.equals("CSV") && contadorSemanas >= 3) {
+                        JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                                + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                        JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
+                                + "\n SE HABILITO INGRESE LA INFORMACION "
+                                + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                                + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                        btn_excepciones.setEnabled(true);
+
+                    } else if (tipo_validacion.equals("NO GXP") && contadorSemanas >= 3) {
+                        JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                                + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                        JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
+                                + "\n SE HABILITO INGRESE LA INFORMACION "
+                                + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                                + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                        btn_excepciones.setEnabled(true);
+
                     } else {
-                        JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                        LimpiarCampos();
-                    }
-                }
+                        conexion = new ConexioSQLite();
+                        conexion.coneccionbase();
+                        String gcc = txt_GCC.getText();
+                        String nombre = txt_proyecto.getText();
+                        String tipo = combo_tipo.getSelectedItem().toString();
+                        String lider = combo_lider_tecnico.getSelectedItem().toString();
+                        String planta = combo_planta.getSelectedItem().toString();
+                        String maquina = combo_maquina.getSelectedItem().toString();
+                        String lote = combo_lote.getSelectedItem().toString();
+                        String turno = txt_turnos.getText();
 
+                        String formato = date_fecha_propuesta.getDateFormatString();
+                        Date date_ingresada = (Date) date_fecha_propuesta.getDate();
+                        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                        String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                        int semanaObtenida = numeroSemanas(date_ingresada);
+
+                        String estado = txt_estado_proyecto.getText();
+                        String observaciones = txt_observaciones_proyecto.getText();
+
+                        boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones,
+                                "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                                "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                                "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                                "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                                "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida,
+                                "", "", "");
+
+                        if (resultado == true) {
+                            JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
+                            JOptionPane.showMessageDialog(null, "NO OLVIDE ACTUALIZAR LOS PRE-REQUISITOS DE : "
+                                    + "\n 1. CALIFICACION "
+                                    + "\n 2. PROCESO", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                            LimpiarCampos();
+                            cargar_tabla();
+                            conexion.cerrar();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                            LimpiarCampos();
+                        }
+                    }
+
+                }
             }
         }
 
@@ -747,114 +755,28 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "INGRESE FECHA PROPUESTA");
         } else {
 
-            String lotes = combo_lote.getSelectedItem().toString();
-            String turnos = txt_turnos.getText();
+            int resultadoVerificacion = validacionIngresoGCCAPRLimpieza(txt_GCC.getText().toUpperCase());
 
-            if (!isNumeric(lotes)) {
-                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
-            } else if (!isNumeric(turnos)) {
-                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
+            if (resultadoVerificacion == 0) {
+                txt_GCC.setText("");
+                txt_GCC.requestFocus();
             } else {
+                String lotes = combo_lote.getSelectedItem().toString();
+                String turnos = txt_turnos.getText();
 
-                DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd");
-                Date fecha = (Date) date_fecha_propuesta.getDate();
-                String fecha_ingresada_convertido = fechaHora.format(fecha);
-                int semana = numeroSemanas(fecha);
-                String fecha_actual = txt_fecha_propuesta.getText();
-
-                if (fecha_actual.equals(fecha_ingresada_convertido)) {
-                    conexion = new ConexioSQLite();
-                    conexion.coneccionbase();
-                    String registro = txt_registro.getText();
-                    String gcc = txt_GCC.getText();
-                    String nombre = txt_proyecto.getText();
-                    String tipo = combo_tipo.getSelectedItem().toString();
-                    String lider = combo_lider_tecnico.getSelectedItem().toString();
-                    String planta = combo_planta.getSelectedItem().toString();
-                    String maquina = combo_maquina.getSelectedItem().toString();
-                    String lote = combo_lote.getSelectedItem().toString();
-                    String turno = txt_turnos.getText();
-                    String estado = txt_estado_proyecto.getText();
-                    String observaciones = txt_observaciones_proyecto.getText();
-
-                    String formato = date_fecha_propuesta.getDateFormatString();
-                    Date date = (Date) date_fecha_propuesta.getDate();
-                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                    String fecha_ingresada = String.valueOf(sdf.format(date));
-
-                    boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana);
-
-                    if (resultado == true) {
-                        JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                        LimpiarCampos();
-                        cargar_tabla();
-                        conexion.cerrar();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                        LimpiarCampos();
-                    }
+                if (!isNumeric(lotes)) {
+                    JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
+                } else if (!isNumeric(turnos)) {
+                    JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
                 } else {
-                    Date fecha_calendario = (Date) date_fecha_propuesta.getDate();
-                    int semana2 = numeroSemanas(fecha_calendario);
-                    String tipo_validacion = combo_tipo.getSelectedItem().toString();
-                    DateFormat formatoFecha = new SimpleDateFormat("YYYY");
-                    int año = Integer.parseInt(formatoFecha.format(fecha_calendario));
-                    int contadorSemanas = contadorSemana(semana2, tipo_validacion, año);
-                    int contadorLote = contadorLotes(semana2, tipo_validacion);
-                    int lotesIngresados = Integer.parseInt(combo_lote.getSelectedItem().toString());
-                    int resultadoTotalLotes = contadorLote + lotesIngresados;
 
-                    if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
-                        JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                                + "\n VALIDACIONES DE PROCESO \n CANTIDAD DE LOTES COMPLETOS", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                    DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd");
+                    Date fecha = (Date) date_fecha_propuesta.getDate();
+                    String fecha_ingresada_convertido = fechaHora.format(fecha);
+                    int semana = numeroSemanas(fecha);
+                    String fecha_actual = txt_fecha_propuesta.getText();
 
-                        JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                                + "\n SE HABILITO INGRESE LA INFORMACION "
-                                + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
-                                + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-                        btn_excepciones.setEnabled(true);
-
-                    } else if (tipo_validacion.equals("EQUIPOS") && contadorSemanas >= 3) {
-                        JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                                + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
-
-                        JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                                + "\n SE HABILITO INGRESE LA INFORMACION "
-                                + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
-                                + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-                        btn_excepciones.setEnabled(true);
-
-                    } else if (tipo_validacion.equals("L&S") && contadorSemanas >= 2) {
-                        JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                                + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
-
-                        JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                                + "\n SE HABILITO INGRESE LA INFORMACION "
-                                + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
-                                + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-                        btn_excepciones.setEnabled(true);
-
-                    } else if (tipo_validacion.equals("CSV") && contadorSemanas >= 3) {
-                        JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                                + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
-
-                        JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                                + "\n SE HABILITO INGRESE LA INFORMACION "
-                                + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
-                                + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-                        btn_excepciones.setEnabled(true);
-
-                    } else if (tipo_validacion.equals("NO GXP") && contadorSemanas >= 3) {
-                        JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                                + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
-
-                        JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
-                                + "\n SE HABILITO INGRESE LA INFORMACION "
-                                + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
-                                + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-                        btn_excepciones.setEnabled(true);
-
-                    } else {
+                    if (fecha_actual.equals(fecha_ingresada_convertido)) {
                         conexion = new ConexioSQLite();
                         conexion.coneccionbase();
                         String registro = txt_registro.getText();
@@ -874,7 +796,7 @@ public class Principal extends javax.swing.JFrame {
                         SimpleDateFormat sdf = new SimpleDateFormat(formato);
                         String fecha_ingresada = String.valueOf(sdf.format(date));
 
-                        boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana2);
+                        boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana);
 
                         if (resultado == true) {
                             JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
@@ -885,12 +807,102 @@ public class Principal extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
                             LimpiarCampos();
                         }
+                    } else {
+                        Date fecha_calendario = (Date) date_fecha_propuesta.getDate();
+                        int semana2 = numeroSemanas(fecha_calendario);
+                        String tipo_validacion = combo_tipo.getSelectedItem().toString();
+                        DateFormat formatoFecha = new SimpleDateFormat("YYYY");
+                        int año = Integer.parseInt(formatoFecha.format(fecha_calendario));
+                        int contadorSemanas = contadorSemana(semana2, tipo_validacion, año);
+                        int contadorLote = contadorLotes(semana2, tipo_validacion);
+                        int lotesIngresados = Integer.parseInt(combo_lote.getSelectedItem().toString());
+                        int resultadoTotalLotes = contadorLote + lotesIngresados;
+
+                        if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
+                            JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                                    + "\n VALIDACIONES DE PROCESO \n CANTIDAD DE LOTES COMPLETOS", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                            JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
+                                    + "\n SE HABILITO INGRESE LA INFORMACION "
+                                    + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                                    + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                            btn_excepciones.setEnabled(true);
+
+                        } else if (tipo_validacion.equals("EQUIPOS") && contadorSemanas >= 3) {
+                            JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                                    + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                            JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
+                                    + "\n SE HABILITO INGRESE LA INFORMACION "
+                                    + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                                    + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                            btn_excepciones.setEnabled(true);
+
+                        } else if (tipo_validacion.equals("L&S") && contadorSemanas >= 2) {
+                            JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                                    + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                            JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
+                                    + "\n SE HABILITO INGRESE LA INFORMACION "
+                                    + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                                    + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                            btn_excepciones.setEnabled(true);
+
+                        } else if (tipo_validacion.equals("CSV") && contadorSemanas >= 3) {
+                            JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                                    + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                            JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
+                                    + "\n SE HABILITO INGRESE LA INFORMACION "
+                                    + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                                    + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                            btn_excepciones.setEnabled(true);
+
+                        } else if (tipo_validacion.equals("NO GXP") && contadorSemanas >= 3) {
+                            JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
+                                    + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                            JOptionPane.showMessageDialog(null, "EL BOTON DE PROGRAMACION DE VALIDACIONES CON EXCEPCION "
+                                    + "\n SE HABILITO INGRESE LA INFORMACION "
+                                    + "\n SI TIENE ACUERDOS CON EL AREA ENCARGADA DE EJECUTAR "
+                                    + "LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+                            btn_excepciones.setEnabled(true);
+
+                        } else {
+                            conexion = new ConexioSQLite();
+                            conexion.coneccionbase();
+                            String registro = txt_registro.getText();
+                            String gcc = txt_GCC.getText();
+                            String nombre = txt_proyecto.getText();
+                            String tipo = combo_tipo.getSelectedItem().toString();
+                            String lider = combo_lider_tecnico.getSelectedItem().toString();
+                            String planta = combo_planta.getSelectedItem().toString();
+                            String maquina = combo_maquina.getSelectedItem().toString();
+                            String lote = combo_lote.getSelectedItem().toString();
+                            String turno = txt_turnos.getText();
+                            String estado = txt_estado_proyecto.getText();
+                            String observaciones = txt_observaciones_proyecto.getText();
+
+                            String formato = date_fecha_propuesta.getDateFormatString();
+                            Date date = (Date) date_fecha_propuesta.getDate();
+                            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                            String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                            boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana2);
+
+                            if (resultado == true) {
+                                JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                                LimpiarCampos();
+                                cargar_tabla();
+                                conexion.cerrar();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                                LimpiarCampos();
+                            }
+                        }
                     }
-
                 }
-
             }
-
         }
 
     }//GEN-LAST:event_btn_actualizarActionPerformed
@@ -1655,6 +1667,51 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
         return contadorSemana;
+    }
+
+    public int validacionIngresoGCCAPRLimpieza(String cadena) {
+
+        String indicativoGCC = "";
+        String NumeroGCC = "";
+        String cadenaDiferente = cadena;
+
+        if (cadenaDiferente.length() > 4) {
+
+            indicativoGCC = cadena.substring(0, 4);
+            NumeroGCC = cadena.substring(4);
+
+            if (indicativoGCC.equals("GCC-") || !cadenaDiferente.equals("")) {
+
+                if (indicativoGCC.equals("GCC-")) {
+
+                    if (isNumeric(NumeroGCC)) {
+                        valor = 1;
+                        return valor;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "RECUERDE QUE EL VALOR DEL GCC DEBE SER NUMERICO \n Ej: GCC-000001");
+                        valor = 0;
+                        return valor;
+                    }
+
+                } else if (!cadenaDiferente.equals("")) {
+                    valor = 1;
+                    return valor;
+                } else {
+                    valor = 0;
+                    return valor;
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "RECUERDE QUE DEBE INICIAR EL INDICATIVO EN (GCC- o APR-)");
+                valor = 0;
+                return valor;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "RECUERDE QUE LOS INDICATIVOS DEBEN SER MAYOR A 3 CARACTERES \n Ej: (GCC- ; LA- ; PMV ; CO-)");
+            valor = 0;
+            return valor;
+        }
+
     }
 
 }

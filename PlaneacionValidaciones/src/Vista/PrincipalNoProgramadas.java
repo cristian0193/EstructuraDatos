@@ -18,6 +18,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     DefaultTableModel modelo;
+    public static int valor = 0;
 
     public PrincipalNoProgramadas() {
         initComponents();
@@ -478,58 +479,66 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS OBLIGATORIOS (*)");
         } else {
 
-            String lotes = combo_lote.getSelectedItem().toString();
-            String turnos = txt_turnos.getText();
+            int resultadoVerificacion = validacionIngresoGCCAPRLimpieza(txt_GCC.getText().toUpperCase());
 
-            if (!isNumeric(lotes)) {
-                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
-            } else if (!isNumeric(turnos)) {
-                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
+            if (resultadoVerificacion == 0) {
+                txt_GCC.setText("");
+                txt_GCC.requestFocus();
             } else {
+                String lotes = combo_lote.getSelectedItem().toString();
+                String turnos = txt_turnos.getText();
 
-                conexion = new ConexioSQLite();
-                conexion.coneccionbase();
-                String gcc = txt_GCC.getText();
-                String nombre = txt_proyecto.getText();
-                String tipo = combo_tipo.getSelectedItem().toString();
-                String lider = combo_lider_tecnico.getSelectedItem().toString();
-                String planta = combo_planta.getSelectedItem().toString();
-                String maquina = combo_maquina.getSelectedItem().toString();
-                String lote = combo_lote.getSelectedItem().toString();
-                String turno = txt_turnos.getText();
-
-                String formato = date_fecha_propuesta.getDateFormatString();
-                Date date_ingresada = (Date) date_fecha_propuesta.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String fecha_ingresada = String.valueOf(sdf.format(date_ingresada));
-
-                int semanaObtenida = numeroSemanas(date_ingresada);
-
-                String estado = txt_estado_proyecto.getText();
-                String observaciones = txt_observaciones_proyecto.getText();
-
-                boolean resultado = conexion.insertNoprogramadas(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, "En Creacion", observaciones,
-                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                        "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida,
-                        "","","",estado);
-
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
-                    JOptionPane.showMessageDialog(null, "NO OLVIDE ACTUALIZAR LOS PRE-REQUISITOS DE : "
-                            + "\n 1. CALIFICACION "
-                            + "\n 2. PROCESO", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
-                    LimpiarCampos();
-                    cargar_tabla();
-                    conexion.cerrar();
+                if (!isNumeric(lotes)) {
+                    JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
+                } else if (!isNumeric(turnos)) {
+                    JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-                    LimpiarCampos();
-                }
 
+                    conexion = new ConexioSQLite();
+                    conexion.coneccionbase();
+                    String gcc = txt_GCC.getText();
+                    String nombre = txt_proyecto.getText();
+                    String tipo = combo_tipo.getSelectedItem().toString();
+                    String lider = combo_lider_tecnico.getSelectedItem().toString();
+                    String planta = combo_planta.getSelectedItem().toString();
+                    String maquina = combo_maquina.getSelectedItem().toString();
+                    String lote = combo_lote.getSelectedItem().toString();
+                    String turno = txt_turnos.getText();
+
+                    String formato = date_fecha_propuesta.getDateFormatString();
+                    Date date_ingresada = (Date) date_fecha_propuesta.getDate();
+                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                    String fecha_ingresada = String.valueOf(sdf.format(date_ingresada));
+
+                    int semanaObtenida = numeroSemanas(date_ingresada);
+
+                    String estado = txt_estado_proyecto.getText();
+                    String observaciones = txt_observaciones_proyecto.getText();
+
+                    boolean resultado = conexion.insertNoprogramadas(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, "En Creacion", observaciones,
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
+                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida,
+                            "", "", "", estado);
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
+                        JOptionPane.showMessageDialog(null, "NO OLVIDE ACTUALIZAR LOS PRE-REQUISITOS DE : "
+                                + "\n 1. CALIFICACION "
+                                + "\n 2. PROCESO", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                        LimpiarCampos();
+                        cargar_tabla();
+                        conexion.cerrar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                        LimpiarCampos();
+                    }
+
+                }
             }
+
         }
 
     }//GEN-LAST:event_btn_guardarActionPerformed
@@ -562,7 +571,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
-       int index = combo_consulta.getSelectedIndex();
+        int index = combo_consulta.getSelectedIndex();
 
         if (index == 0) {
             JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
@@ -643,92 +652,96 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "INGRESE FECHA PROPUESTA");
         } else {
 
-            String lotes = combo_lote.getSelectedItem().toString();
-            String turnos = txt_turnos.getText();
+            int resultadoVerificacion = validacionIngresoGCCAPRLimpieza(txt_GCC.getText().toUpperCase());
 
-            if (!isNumeric(lotes)) {
-                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
-            } else if (!isNumeric(turnos)) {
-                JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
+            if (resultadoVerificacion == 0) {
+                txt_GCC.setText("");
+                txt_GCC.requestFocus();
             } else {
+                String lotes = combo_lote.getSelectedItem().toString();
+                String turnos = txt_turnos.getText();
 
-                DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd");
-                Date fecha = (Date) date_fecha_propuesta.getDate();
-                String fecha_ingresada_convertido = fechaHora.format(fecha);
-                int semana = numeroSemanas(fecha);
-                
-                String fecha_actual = txt_fecha_propuesta.getText();
-
-                if (fecha_actual.equals(fecha_ingresada_convertido)) {
-                    conexion = new ConexioSQLite();
-                    conexion.coneccionbase();
-                    String registro = txt_registro.getText();
-                    String gcc = txt_GCC.getText();
-                    String nombre = txt_proyecto.getText();
-                    String tipo = combo_tipo.getSelectedItem().toString();
-                    String lider = combo_lider_tecnico.getSelectedItem().toString();
-                    String planta = combo_planta.getSelectedItem().toString();
-                    String maquina = combo_maquina.getSelectedItem().toString();
-                    String lote = combo_lote.getSelectedItem().toString();
-                    String turno = txt_turnos.getText();
-                    String estado = txt_estado_proyecto.getText();
-                    String observaciones = txt_observaciones_proyecto.getText();
-
-                    String formato = date_fecha_propuesta.getDateFormatString();
-                    Date date = (Date) date_fecha_propuesta.getDate();
-                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                    String fecha_ingresada = String.valueOf(sdf.format(date));
-
-                    boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(),semana);
-
-                    if (resultado == true) {
-                        JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                        LimpiarCampos();
-                        cargar_tabla();
-                        conexion.cerrar();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                        LimpiarCampos();
-                    }
+                if (!isNumeric(lotes)) {
+                    JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
+                } else if (!isNumeric(turnos)) {
+                    JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
                 } else {
-                    Date fecha_calendario = (Date) date_fecha_propuesta.getDate();
-                    int semana2 = numeroSemanas(fecha_calendario);
 
-                    conexion = new ConexioSQLite();
-                    conexion.coneccionbase();
-                    String registro = txt_registro.getText();
-                    String gcc = txt_GCC.getText();
-                    String nombre = txt_proyecto.getText();
-                    String tipo = combo_tipo.getSelectedItem().toString();
-                    String lider = combo_lider_tecnico.getSelectedItem().toString();
-                    String planta = combo_planta.getSelectedItem().toString();
-                    String maquina = combo_maquina.getSelectedItem().toString();
-                    String lote = combo_lote.getSelectedItem().toString();
-                    String turno = txt_turnos.getText();
-                    String estado = txt_estado_proyecto.getText();
-                    String observaciones = txt_observaciones_proyecto.getText();
+                    DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd");
+                    Date fecha = (Date) date_fecha_propuesta.getDate();
+                    String fecha_ingresada_convertido = fechaHora.format(fecha);
+                    int semana = numeroSemanas(fecha);
 
-                    String formato = date_fecha_propuesta.getDateFormatString();
-                    Date date = (Date) date_fecha_propuesta.getDate();
-                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                    String fecha_ingresada = String.valueOf(sdf.format(date));
+                    String fecha_actual = txt_fecha_propuesta.getText();
 
-                    boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(),semana2);
+                    if (fecha_actual.equals(fecha_ingresada_convertido)) {
+                        conexion = new ConexioSQLite();
+                        conexion.coneccionbase();
+                        String registro = txt_registro.getText();
+                        String gcc = txt_GCC.getText();
+                        String nombre = txt_proyecto.getText();
+                        String tipo = combo_tipo.getSelectedItem().toString();
+                        String lider = combo_lider_tecnico.getSelectedItem().toString();
+                        String planta = combo_planta.getSelectedItem().toString();
+                        String maquina = combo_maquina.getSelectedItem().toString();
+                        String lote = combo_lote.getSelectedItem().toString();
+                        String turno = txt_turnos.getText();
+                        String estado = txt_estado_proyecto.getText();
+                        String observaciones = txt_observaciones_proyecto.getText();
 
-                    if (resultado == true) {
-                        JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                        LimpiarCampos();
-                        cargar_tabla();
-                        conexion.cerrar();
+                        String formato = date_fecha_propuesta.getDateFormatString();
+                        Date date = (Date) date_fecha_propuesta.getDate();
+                        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                        String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                        boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana);
+
+                        if (resultado == true) {
+                            JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                            LimpiarCampos();
+                            cargar_tabla();
+                            conexion.cerrar();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                            LimpiarCampos();
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                        LimpiarCampos();
+                        Date fecha_calendario = (Date) date_fecha_propuesta.getDate();
+                        int semana2 = numeroSemanas(fecha_calendario);
+
+                        conexion = new ConexioSQLite();
+                        conexion.coneccionbase();
+                        String registro = txt_registro.getText();
+                        String gcc = txt_GCC.getText();
+                        String nombre = txt_proyecto.getText();
+                        String tipo = combo_tipo.getSelectedItem().toString();
+                        String lider = combo_lider_tecnico.getSelectedItem().toString();
+                        String planta = combo_planta.getSelectedItem().toString();
+                        String maquina = combo_maquina.getSelectedItem().toString();
+                        String lote = combo_lote.getSelectedItem().toString();
+                        String turno = txt_turnos.getText();
+                        String estado = txt_estado_proyecto.getText();
+                        String observaciones = txt_observaciones_proyecto.getText();
+
+                        String formato = date_fecha_propuesta.getDateFormatString();
+                        Date date = (Date) date_fecha_propuesta.getDate();
+                        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                        String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                        boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana2);
+
+                        if (resultado == true) {
+                            JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                            LimpiarCampos();
+                            cargar_tabla();
+                            conexion.cerrar();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                            LimpiarCampos();
+                        }
                     }
-
                 }
-
             }
-
         }
 
     }//GEN-LAST:event_btn_actualizarActionPerformed
@@ -754,7 +767,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
             this.date_fecha_inicio.setEnabled(false);
             this.date_fecha_final.setEnabled(false);
             this.txt_consulta_registro.setEnabled(false);
-           this.txt_consulta_proyecto.setEditable(false);
+            this.txt_consulta_proyecto.setEditable(false);
             this.txt_consulta_gcc.setEditable(false);
             this.txt_consulta_proyecto.setEnabled(false);
             this.txt_consulta_gcc.setEnabled(false);
@@ -1151,7 +1164,6 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         }
     }
 
-    
     // METODO PARA CONSULTAR GCC/APR
     public void consulta_gcc(String gcc) {
 
@@ -1274,8 +1286,8 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
 
         }
-    }        
-    
+    }
+
 // METODO PARA CARGAR JCOMBOBOX TIPO
     public void cargar_lista_tipo() {
 
@@ -1384,5 +1396,49 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         }
     }
 
+    public int validacionIngresoGCCAPRLimpieza(String cadena) {
+
+        String indicativoGCC = "";
+        String NumeroGCC = "";
+        String cadenaDiferente = cadena;
+
+        if (cadenaDiferente.length() > 4) {
+
+            indicativoGCC = cadena.substring(0, 4);
+            NumeroGCC = cadena.substring(4);
+
+            if (indicativoGCC.equals("GCC-") || !cadenaDiferente.equals("")) {
+
+                if (indicativoGCC.equals("GCC-")) {
+
+                    if (isNumeric(NumeroGCC)) {
+                        valor = 1;
+                        return valor;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "RECUERDE QUE EL VALOR DEL GCC DEBE SER NUMERICO \n Ej: GCC-000001");
+                        valor = 0;
+                        return valor;
+                    }
+
+                } else if (!cadenaDiferente.equals("")) {
+                    valor = 1;
+                    return valor;
+                } else {
+                    valor = 0;
+                    return valor;
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "RECUERDE QUE DEBE INICIAR EL INDICATIVO EN (GCC- o APR-)");
+                valor = 0;
+                return valor;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "RECUERDE QUE LOS INDICATIVOS DEBEN SER MAYOR A 3 CARACTERES \n Ej: (GCC- ; LA- ; PMV ; CO-)");
+            valor = 0;
+            return valor;
+        }
+
+    }
 
 }
