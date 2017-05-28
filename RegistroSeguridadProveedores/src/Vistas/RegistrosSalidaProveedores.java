@@ -8,21 +8,27 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Usuario
  */
-public class FormRegistrosSalida extends javax.swing.JFrame {
+public class RegistrosSalidaProveedores extends javax.swing.JFrame {
 
-    DefaultTableModel modelo;
+    public static DefaultTableCellRenderer Alinear;
+    public static DefaultTableModel modelo;
     ConexioSQLite conexion;
 
-    public FormRegistrosSalida() {
+    public RegistrosSalidaProveedores() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla();
+        ancho_columnas();
+        centrar_datos();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -235,12 +241,12 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
 
     private void tabla_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_registroMouseClicked
 
-      
+
     }//GEN-LAST:event_tabla_registroMouseClicked
 
     private void combo_consultaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_consultaItemStateChanged
 
-              int index = combo_consulta.getSelectedIndex();
+        int index = combo_consulta.getSelectedIndex();
 
         if (index == 0) {
             JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
@@ -251,49 +257,49 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
             this.txt_consulta_cedula.setEnabled(false);
             this.txt_consulta_autorizo.setEnabled(false);
             this.txt_consulta_guarda.setEnabled(false);
-                    
+
             this.txt_consulta_inicial.setEditable(true);
-            this.txt_consulta_final.setEditable(true);        
-                    
-        } else if (index == 2) {            
-             this.txt_consulta_inicial.setEnabled(false);
+            this.txt_consulta_final.setEditable(true);
+
+        } else if (index == 2) {
+            this.txt_consulta_inicial.setEnabled(false);
             this.txt_consulta_final.setEnabled(false);
             this.txt_consulta_placa.setEnabled(true);
             this.txt_consulta_cedula.setEnabled(false);
             this.txt_consulta_autorizo.setEnabled(false);
             this.txt_consulta_guarda.setEnabled(false);
-                    
-            this.txt_consulta_placa.setEditable(true);            
 
-        } else if (index == 3){
-             this.txt_consulta_inicial.setEnabled(false);
+            this.txt_consulta_placa.setEditable(true);
+
+        } else if (index == 3) {
+            this.txt_consulta_inicial.setEnabled(false);
             this.txt_consulta_final.setEnabled(false);
             this.txt_consulta_placa.setEnabled(false);
             this.txt_consulta_cedula.setEnabled(true);
             this.txt_consulta_autorizo.setEnabled(false);
             this.txt_consulta_guarda.setEnabled(false);
-                    
+
             this.txt_consulta_cedula.setEditable(true);
-        }else if(index == 4){
-             this.txt_consulta_inicial.setEnabled(false);
+        } else if (index == 4) {
+            this.txt_consulta_inicial.setEnabled(false);
             this.txt_consulta_final.setEnabled(false);
             this.txt_consulta_placa.setEnabled(false);
             this.txt_consulta_cedula.setEnabled(false);
             this.txt_consulta_autorizo.setEnabled(true);
             this.txt_consulta_guarda.setEnabled(false);
-                    
+
             this.txt_consulta_autorizo.setEditable(true);
-        }else{
+        } else {
             this.txt_consulta_inicial.setEnabled(false);
             this.txt_consulta_final.setEnabled(false);
             this.txt_consulta_placa.setEnabled(false);
             this.txt_consulta_cedula.setEnabled(false);
             this.txt_consulta_autorizo.setEnabled(false);
             this.txt_consulta_guarda.setEnabled(true);
-                    
+
             this.txt_consulta_guarda.setEditable(true);
         }
-        
+
     }//GEN-LAST:event_combo_consultaItemStateChanged
 
     private void combo_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_consultaActionPerformed
@@ -317,6 +323,8 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 String fecha_fin = txt_consulta_final.getText();
 
                 consulta_rango_fechas(fecha_ini, fecha_fin);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
 
@@ -328,34 +336,42 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INGRESE PLACA");
             } else {
                 consulta_placa(placa);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
 
-        } else if (index == 3){
+        } else if (index == 3) {
             String cedula = txt_consulta_cedula.getText();
 
             if (cedula.equals("")) {
                 JOptionPane.showMessageDialog(null, "INGRESE CEDULA");
             } else {
                 consulta_cedula(cedula);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
-        }else if(index == 4){
+        } else if (index == 4) {
             String autorizo = txt_consulta_autorizo.getText();
 
             if (autorizo.equals("")) {
                 JOptionPane.showMessageDialog(null, "INGRESE AUTORIZADO");
             } else {
                 consulta_autorizo(autorizo);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
-        }else {
+        } else {
             String guarda = txt_consulta_guarda.getText();
 
             if (guarda.equals("")) {
                 JOptionPane.showMessageDialog(null, "INGRESE GUARDA");
             } else {
                 consulta_guarda(guarda);
+                ancho_columnas();
+                centrar_datos();
                 conexion.cerrar();
             }
         }
@@ -363,6 +379,8 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
 
     private void btn_refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refrescarActionPerformed
         cargar_tabla();
+        ancho_columnas();
+        centrar_datos();
         conexion.cerrar();
     }//GEN-LAST:event_btn_refrescarActionPerformed
 
@@ -391,7 +409,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
 
     public void LimpiarCampos() {
 
-        }
+    }
 
 // METODO PARA CARGAR TABLA DE REGISTRO
     public void cargar_tabla() {
@@ -399,7 +417,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-         String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
+        String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
         String[] registro = new String[12];
         String query = "";
 
@@ -455,14 +473,13 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
         }
     }
 
-   
     // METODO PARA CONSULTAR RANGO DE FECHAS
     public void consulta_rango_fechas(String fecha_inicio, String fecha_final) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-         String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
+        String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
         String[] registro = new String[12];
         String query = "";
 
@@ -525,7 +542,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-         String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};        
+        String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
         String[] registro = new String[12];
         String query = "";
 
@@ -551,7 +568,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 + "REGISTRO_SEGURIDAD "
                 + "WHERE "
                 + "ESTADO = 'SALIDA' AND "
-                + "PLACA LIKE '%" + placa +"%' "
+                + "PLACA LIKE '%" + placa + "%' "
                 + "ORDER BY FECHA_ENTRADA DESC";
         System.out.println(query);
         try {
@@ -582,14 +599,14 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
 
         }
     }
-    
-        // METODO PARA CONSULTAR CEDULA
+
+    // METODO PARA CONSULTAR CEDULA
     public void consulta_cedula(String cedula) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-         String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
+        String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
         String[] registro = new String[12];
         String query = "";
 
@@ -615,7 +632,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 + "REGISTRO_SEGURIDAD "
                 + "WHERE "
                 + "ESTADO = 'SALIDA' AND "
-                + "CEDULA LIKE '%" + cedula +"%' "
+                + "CEDULA LIKE '%" + cedula + "%' "
                 + "ORDER BY FECHA_ENTRADA DESC";
         try {
             Statement st = cn.createStatement();
@@ -645,8 +662,8 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
 
         }
     }
-    
-           // METODO PARA CONSULTAR AUTORIZADO
+
+    // METODO PARA CONSULTAR AUTORIZADO
     public void consulta_autorizo(String autorizo) {
 
         conexion = new ConexioSQLite();
@@ -678,7 +695,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 + "REGISTRO_SEGURIDAD "
                 + "WHERE "
                 + "ESTADO = 'SALIDA' AND "
-                + "AUTORIZADO LIKE '%" + autorizo +"%' "
+                + "AUTORIZADO LIKE '%" + autorizo + "%' "
                 + "ORDER BY FECHA_ENTRADA DESC";
         try {
             Statement st = cn.createStatement();
@@ -708,14 +725,14 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
 
         }
     }
-    
-             // METODO PARA CONSULTAR GUARDA
+
+    // METODO PARA CONSULTAR GUARDA
     public void consulta_guarda(String guarda) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-         String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
+        String[] titulos = {"ID", "INGRESO", "SALIDA", "FICHA", "CONDUCTOR", "EMPRESA", "CEDULA", "PLACA", "AUTORIZO", "GUARDA", "ESTADO", "OBSERVA"};
         String[] registro = new String[12];
         String query = "";
 
@@ -741,7 +758,7 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
                 + "REGISTRO_SEGURIDAD "
                 + "WHERE "
                 + "ESTADO = 'SALIDA' AND "
-                + "GUARDA LIKE '%" + guarda +"%' "
+                + "GUARDA LIKE '%" + guarda + "%' "
                 + "ORDER BY FECHA_ENTRADA DESC";
         try {
             Statement st = cn.createStatement();
@@ -770,7 +787,33 @@ public class FormRegistrosSalida extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
 
         }
-    }        
-    
+    }
+
+    // METODO PARA CARGAR JCOMBOBOX GUARDA
+    public void ancho_columnas() {
+        tabla_registro.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tabla_registro.getColumnModel().getColumn(1).setPreferredWidth(130);
+        tabla_registro.getColumnModel().getColumn(2).setPreferredWidth(130);
+        tabla_registro.getColumnModel().getColumn(3).setPreferredWidth(40);
+        tabla_registro.getColumnModel().getColumn(4).setPreferredWidth(150);
+        tabla_registro.getColumnModel().getColumn(5).setPreferredWidth(100);
+        tabla_registro.getColumnModel().getColumn(6).setPreferredWidth(70);
+        tabla_registro.getColumnModel().getColumn(7).setPreferredWidth(70);
+        tabla_registro.getColumnModel().getColumn(8).setPreferredWidth(120);
+        tabla_registro.getColumnModel().getColumn(9).setPreferredWidth(120);
+        tabla_registro.getColumnModel().getColumn(10).setPreferredWidth(50);
+        tabla_registro.getColumnModel().getColumn(11).setPreferredWidth(100);
+    }
+
+    // METODO PARA CARGAR JCOMBOBOX GUARDA
+    public void centrar_datos() {
+        Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+        tabla_registro.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+        tabla_registro.getColumnModel().getColumn(3).setCellRenderer(Alinear);
+        tabla_registro.getColumnModel().getColumn(6).setCellRenderer(Alinear);
+        tabla_registro.getColumnModel().getColumn(7).setCellRenderer(Alinear);
+        tabla_registro.getColumnModel().getColumn(10).setCellRenderer(Alinear);
+    }
 
 }

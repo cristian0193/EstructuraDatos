@@ -18,13 +18,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Usuario
  */
-public class FormRegistrosIngreso extends javax.swing.JFrame {
+public class RegistrosIngresoProveedores extends javax.swing.JFrame {
 
     public static DefaultTableModel modelo;
     public static DefaultTableCellRenderer Alinear;
     ConexioSQLite conexion;
 
-    public FormRegistrosIngreso() {
+    public RegistrosIngresoProveedores() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.txt_n_registro.setVisible(false);
@@ -873,20 +873,20 @@ public class FormRegistrosIngreso extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(FormRegistrosIngreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RegistrosIngresoProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(FormRegistrosIngreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RegistrosIngresoProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(FormRegistrosIngreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RegistrosIngresoProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(FormRegistrosIngreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RegistrosIngresoProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new FormRegistrosIngreso().setVisible(true);
+//                new RegistrosIngresoProveedores().setVisible(true);
 //            }
 //        });
 //    }
