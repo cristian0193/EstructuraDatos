@@ -139,7 +139,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Consultar"/>
         <Property name="toolTipText" type="java.lang.String" value="Permite realizar el cargue de la ruta donde se exportar&#xe1; la informacion"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_consultarActionPerformed"/>

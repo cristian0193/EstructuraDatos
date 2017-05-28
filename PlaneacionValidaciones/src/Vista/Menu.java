@@ -1,6 +1,8 @@
 package Vista;
 
+import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class Menu extends javax.swing.JFrame {
@@ -366,12 +368,20 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
 
+//        try {
+//            String sep = File.separator;
+//            String Documento = "C:" + sep + "Program Files" + sep + "Microsoft Office" + sep + "Office15" + sep + "POWERPNT.EXE  Documentos"+ sep +"Modelo de Gobierno.pptx";
+//            System.out.println(""+Documento);
+//            Process proceso = Runtime.getRuntime().exec(Documento);
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "Error al intentar abrir archivo " + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+//        }
         try {
             String sep = File.separator;
-            String Documento = "C:" + sep + "Program Files (x86)" + sep + "Microsoft Office" + sep + "Office14" + sep + "POWERPNT.EXE Modelo de Gobierno.pptx";
-            Process proceso = Runtime.getRuntime().exec(Documento);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al intentar abrir archivo " + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            File path = new File("src"+sep+"Documentos"+sep+"Manual.pdf");
+            Desktop.getDesktop().open(path);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
 
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -398,20 +408,28 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
 
-        try {
+//        try {
+//            String sep = File.separator;
+//            String Documento = "C:" + sep + "Program Files" + sep + "Microsoft Office" + sep + "Office15" + sep + "WINWORD.EXE Manual.docx";
+//            Process proceso = Runtime.getRuntime().exec(Documento);
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "Error al intentar abrir archivo " + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+
+ try {
             String sep = File.separator;
-            String Documento = "C:" + sep + "Program Files (x86)" + sep + "Microsoft Office" + sep + "Office14" + sep + "POWERPNT.EXE Normas.pptx";
-            Runtime.getRuntime().exec(Documento);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al intentar abrir archivo " + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            File path = new File("src"+sep+"Documentos"+sep+"Modelo de Gobierno.pdf");
+            Desktop.getDesktop().open(path);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
 
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
 
-       ClaveAdminEliminarDatos eliminacion = new ClaveAdminEliminarDatos();
-       eliminacion.setVisible(true);
+        ClaveAdminEliminarDatos eliminacion = new ClaveAdminEliminarDatos();
+        eliminacion.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 

@@ -87,7 +87,6 @@ public class EliminacionMasivaDatos extends javax.swing.JDialog {
         btn_consultar.setBackground(new java.awt.Color(102, 255, 255));
         btn_consultar.setText("Consultar");
         btn_consultar.setToolTipText("Permite realizar el cargue de la ruta donde se exportará la informacion");
-        btn_consultar.setEnabled(false);
         btn_consultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_consultarActionPerformed(evt);
@@ -288,7 +287,7 @@ public class EliminacionMasivaDatos extends javax.swing.JDialog {
         query = "SELECT NUMERO_REGISTRO, GCC_APR, NOMBRE_PROYECTO, TIPO_VALIDACION, LIDER_TECNICO, PLANTA, MAQUINA, LOTE, TURNOS, FECHA_PROPUESTA, ESTADO_PROYECTO, OBSERVACIONES_VALIDACION, FECHA_REPROGRAMACION, OBSERVACION_REPROGRAMACION, MOTIVO_REPROGRAMACION, SEMANA, RESPUESTA, AUTORIZADO, OBSERVACION_EXCEPCIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "AND FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' "
+                + "WHERE FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' "
                 + "ORDER BY NUMERO_REGISTRO ASC";
 
         try {
