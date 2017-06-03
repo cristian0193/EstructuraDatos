@@ -946,7 +946,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE (ESTADO_PROYECTO = 'En Creacion' AND NO_PROGRAMADA = 'No Programada') "
-                + "ORDER BY FECHA_PROPUESTA DESC;";
+                + "ORDER BY NUMERO_REGISTRO DESC";
 
         try {
             Statement st = cn.createStatement();
@@ -1010,7 +1010,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "WHERE "
                 + "ESTADO_PROYECTO = 'No Programada' "
                 + "AND FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
-                + "ORDER BY FECHA_PROPUESTA DESC";
+                + "ORDER BY NUMERO_REGISTRO DESC";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -1072,7 +1072,8 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "ESTADO_PROYECTO = 'No Programada' AND "
-                + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%';";
+                + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' "
+                + "ORDER BY NUMERO_REGISTRO DESC";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -1134,7 +1135,8 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "ESTADO_PROYECTO = 'No Programada' AND "
-                + "NUMERO_REGISTRO = " + registro + ";";
+                + "NUMERO_REGISTRO = " + registro + " "
+                + "ORDER BY NUMERO_REGISTRO DESC";
         System.out.println(query);
         try {
             Statement st = cn.createStatement();
@@ -1196,7 +1198,8 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "ESTADO_PROYECTO = 'En Creacion' AND "
-                + "GCC_APR = '" + gcc + "';";
+                + "GCC_APR = '" + gcc + "' "
+                + "ORDER BY NUMERO_REGISTRO DESC";;
         System.out.println(query);
         try {
             Statement st = cn.createStatement();
@@ -1258,7 +1261,8 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "ESTADO_PROYECTO = 'En Creacion' AND "
-                + "NOMBRE_PROYECTO LIKE '%" + proyecto + "%';";
+                + "NOMBRE_PROYECTO LIKE '%" + proyecto + "%' "
+                + "ORDER BY NUMERO_REGISTRO DESC";
         System.out.println(query);
         try {
             Statement st = cn.createStatement();

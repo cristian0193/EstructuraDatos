@@ -504,7 +504,7 @@ public class Programacion extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE ESTADO_PROYECTO = 'En Creacion' "
                 + "OR ESTADO_PROYECTO = 'Con Excepcion' "
-                + "ORDER BY FECHA_PROPUESTA DESC;";
+                + "ORDER BY FECHA_PROPUESTA";
 
         try {
             Statement st = cn.createStatement();
@@ -560,7 +560,7 @@ public class Programacion extends javax.swing.JFrame {
                 + "WHERE (ESTADO_PROYECTO = 'En Creacion' "
                 + "OR ESTADO_PROYECTO = 'Con Excepcion') AND "
                 + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' "
-                + "ORDER BY FECHA_PROPUESTA DESC";
+                + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -614,7 +614,8 @@ public class Programacion extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' AND"
-                + "(ESTADO_PROYECTO NOT IN ('Reprogramado','No Ejecutada','No Programada','Cerrada','Programado','Ejecutada')) ";
+                + "(ESTADO_PROYECTO NOT IN ('Reprogramado','No Ejecutada','No Programada','Cerrada','Programado','Ejecutada')) "
+                + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -669,7 +670,8 @@ public class Programacion extends javax.swing.JFrame {
                 + "WHERE "
                 + "(ESTADO_PROYECTO = 'En Creacion' "
                 + "OR ESTADO_PROYECTO = 'Con Excepcion') AND "
-                + "NOMBRE_PROYECTO LIKE '%" + palabra.toUpperCase() + "%' ";
+                + "NOMBRE_PROYECTO LIKE '%" + palabra.toUpperCase() + "%' "
+                + "ORDER BY FECHA_PROPUESTA";
 
         try {
             Statement st = cn.createStatement();
@@ -725,7 +727,8 @@ public class Programacion extends javax.swing.JFrame {
                 + "WHERE "
                 + "(ESTADO_PROYECTO = 'En Creacion' "
                 + "OR ESTADO_PROYECTO = 'Con Excepcion') AND "
-                + "GCC_APR = '" + gcc + "' ";
+                + "GCC_APR = '" + gcc + "' "
+                + "ORDER BY FECHA_PROPUESTA";
 
         try {
             Statement st = cn.createStatement();

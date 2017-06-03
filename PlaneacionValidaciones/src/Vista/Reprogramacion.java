@@ -642,7 +642,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE ESTADO_PROYECTO = 'No Ejecutada' "
-                + "ORDER BY FECHA_REPROGRAMACION DESC;";
+                + "ORDER BY FECHA_PROPUESTA";
 
         try {
             Statement st = cn.createStatement();
@@ -695,7 +695,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "WHERE "
                 + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' AND"
                 + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado')) "
-                + "ORDER BY FECHA_PROPUESTA DESC";
+                + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -748,7 +748,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "WHERE "
                 + "FECHA_REPROGRAMACION BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' AND"
                 + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado')) "
-                + "ORDER BY FECHA_REPROGRAMACION DESC";
+                + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -800,7 +800,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' AND "
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado')) ";
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado')) "
+                + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -852,7 +853,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "ESTADO_PROYECTO = 'No Ejecutada' AND "
-                + "NOMBRE_PROYECTO LIKE '%" + palabra + "%';";
+                + "NOMBRE_PROYECTO LIKE '%" + palabra + "%' "
+                + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -903,7 +905,8 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "ESTADO_PROYECTO = 'No Ejecutada' AND "
-                + "GCC_APR = '" + gcc + "';";
+                + "GCC_APR = '" + gcc + "' "
+                + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);

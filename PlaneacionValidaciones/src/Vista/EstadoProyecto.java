@@ -513,7 +513,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "WHERE ESTADO_PROYECTO = 'Programado' "
                 + "OR ESTADO_PROYECTO = 'Reprogramado' "
                 + "OR ESTADO_PROYECTO = 'Ejecutada' "
-                + "ORDER BY ESTADO_PROYECTO DESC;";
+                + "ORDER BY FECHA_PROPUESTA";
 
         System.out.println(query);
 
@@ -571,7 +571,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "WHERE "
                 + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' AND"
                 + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','No Programada','Cerrada')) "
-                + "ORDER BY ESTADO_PROYECTO DESC";
+                + "ORDER BY FECHA_PROPUESTA";
         System.out.println(query);
         try {
             Statement st = cn.createStatement();
@@ -626,7 +626,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' AND "
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','No Programada','Cerrada'))";
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','No Programada','Cerrada')) "
+                + "ORDER BY FECHA_PROPUESTA";
 
         try {
             Statement st = cn.createStatement();
@@ -680,7 +681,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "ESTADO_PROYECTO = '" + estado + "';";
+                + "ESTADO_PROYECTO = '" + estado + "' "
+                + "ORDER BY FECHA_PROPUESTA";
 
         System.out.println("" + query);
         try {
@@ -736,7 +738,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "GCC_APR = '" + gcc.toUpperCase().trim() + "' AND "
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','No Programada','Cerrada'))";
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','No Programada','Cerrada')) "
+                + "ORDER BY FECHA_PROPUESTA";
 
         try {
             Statement st = cn.createStatement();
