@@ -375,10 +375,11 @@ public class Menu extends javax.swing.JFrame {
 //            Process proceso = Runtime.getRuntime().exec(Documento);
 //        } catch (Exception e) {
 //            JOptionPane.showMessageDialog(null, "Error al intentar abrir archivo " + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
-//        }
+//        }      
+        
         try {
             String sep = File.separator;
-            File path = new File("src"+sep+"Documentos"+sep+"Manual.pdf");
+            File path = new File("src"+sep+"Documentos"+sep+"Modelo de Gobierno.pdf");
             Desktop.getDesktop().open(path);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -416,13 +417,14 @@ public class Menu extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(null, "Error al intentar abrir archivo " + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
 //        }
 
- try {
+  try {
             String sep = File.separator;
-            File path = new File("src"+sep+"Documentos"+sep+"Modelo de Gobierno.pdf");
+            File path = new File("src"+sep+"Documentos"+sep+"Manual.pdf");
             Desktop.getDesktop().open(path);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+ 
 
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
