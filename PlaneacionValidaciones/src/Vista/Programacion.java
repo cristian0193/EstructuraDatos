@@ -1,7 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Principal.txt_registro;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

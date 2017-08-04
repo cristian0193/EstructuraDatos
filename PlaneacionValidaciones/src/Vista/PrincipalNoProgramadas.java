@@ -1,8 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Principal.conexion;
-import static Vista.Principal.numeroSemanas;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
