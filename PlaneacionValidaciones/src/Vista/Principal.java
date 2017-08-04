@@ -59,7 +59,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txt_GCC = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        btn_excepciones = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -197,17 +196,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel11.setText("Turnos : ");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 50, 20));
 
-        btn_excepciones.setBackground(new java.awt.Color(255, 51, 51));
-        btn_excepciones.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btn_excepciones.setText("Excepciones");
-        btn_excepciones.setEnabled(false);
-        btn_excepciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_excepcionesActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_excepciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 90, 140, 90));
-
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setText("Prerequisitos de Proceso");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +203,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 140, 220, 40));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 140, 220, 40));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel10.setText("Observaciones : ( 4000 Max. Caracteres )");
@@ -378,7 +366,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 90, 220, 40));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 90, 220, 40));
 
         lb_respuesta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lb_respuesta.setText("Respuesta :");
@@ -530,21 +518,12 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_plantaActionPerformed
 
-    private void btn_excepcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excepcionesActionPerformed
-        JOptionPane.showMessageDialog(null, "RECUERDE QUE SE DEBEN HACER ACUERDOS PREVIOS CON EL "
-                + "\n AREA ENCARGA DE EJECUTAR LA VALIDACÓN O CALIFICACIÓN "
-                + "\n DE LO CONTRARIO SE PROCEDE A LA NO PROGRAMACION. ", "Informativo", JOptionPane.INFORMATION_MESSAGE);
-
-        AcuerdoCalidad acuerdo = new AcuerdoCalidad();
-        acuerdo.setVisible(true);
-        this.hide();
-    }//GEN-LAST:event_btn_excepcionesActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         PrerequisitoProceso proceso = new PrerequisitoProceso();
         proceso.setVisible(true);
 
         proceso.txt_registro_principal.setText(txt_registro.getText());
+        proceso.txt_fecha_propuesta.setText(txt_fecha_propuesta.getText());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txt_turnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_turnosActionPerformed
@@ -692,7 +671,7 @@ public class Principal extends javax.swing.JFrame {
                             acuerdo.setVisible(true);
                             this.hide();
 
-                        } else if (tipo_validacion.equals("L&S") && contadorSemanas >= 2) {
+                        } else if (tipo_validacion.equals("L&S") && contadorSemanas >= 1) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                                     + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
@@ -1040,6 +1019,7 @@ public class Principal extends javax.swing.JFrame {
                             String tipo_validacion = combo_tipo.getSelectedItem().toString();
                             DateFormat formatoFecha = new SimpleDateFormat("YYYY");
                             int año = Integer.parseInt(formatoFecha.format(fecha_calendario));
+
                             int contadorSemanas = contadorSemana(semanaFinal, tipo_validacion, año);
                             int contadorLote = contadorLotes(semanaFinal, tipo_validacion);
                             int lotesIngresados = Integer.parseInt(combo_lote.getSelectedItem().toString());
@@ -1343,7 +1323,6 @@ public class Principal extends javax.swing.JFrame {
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_actualizar;
-    private javax.swing.JButton btn_excepciones;
     public javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton btn_refrescar;
@@ -1411,7 +1390,7 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JTextField txt_turnos;
     // End of variables declaration//GEN-END:variables
 
-//METODO PARA LIMPIAR LOS CAMPOS 
+    //METODO PARA LIMPIAR LOS CAMPOS 
     public void LimpiarCampos() {
         txt_registro.setText("");
         txt_GCC.setText("");
@@ -1434,7 +1413,7 @@ public class Principal extends javax.swing.JFrame {
 
     }
 
-//METODO PARA VALIDAR DATO NUMERICO O NO NUMERICO
+    //METODO PARA VALIDAR DATO NUMERICO O NO NUMERICO
     private boolean isNumeric(String cadena) {
         try {
             Double.parseDouble(cadena);
@@ -1444,7 +1423,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-//METODO PARA OBTENER SEMANA   
+    //METODO PARA OBTENER SEMANA   
     public int numeroSemanas(Date fecha) {
 
         int semana = 0;
@@ -1458,7 +1437,7 @@ public class Principal extends javax.swing.JFrame {
         return semana;
     }
 
-// METODO PARA CARGAR TABLA PRINCIPAL
+    // METODO PARA CARGAR TABLA PRINCIPAL
     public void cargar_tabla() {
 
         conexion = new ConexioSQLite();
@@ -1520,7 +1499,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-// METODO PARA CONSULTAR RANGO DE FECHAS
+    // METODO PARA CONSULTAR RANGO DE FECHAS
     public void consulta_rango_fechas(String fecha_inicio, String fecha_final) {
 
         conexion = new ConexioSQLite();
@@ -1583,7 +1562,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-// METODO PARA CONSULTAR LIDER
+    // METODO PARA CONSULTAR LIDER
     public void consulta_lider(String lider) {
 
         conexion = new ConexioSQLite();
@@ -1646,7 +1625,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-// METODO PARA CONSULTAR REGISTROS
+    // METODO PARA CONSULTAR REGISTROS
     public void consulta_registro(String registro) {
 
         conexion = new ConexioSQLite();
@@ -1709,7 +1688,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-// METODO PARA CONSULTAR GCC/APR
+    // METODO PARA CONSULTAR GCC/APR
     public void consulta_gcc(String gcc) {
 
         conexion = new ConexioSQLite();
@@ -1835,7 +1814,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-// METODO PARA CARGAR JCOMBOBOX TIPO
+    // METODO PARA CARGAR JCOMBOBOX TIPO
     public void cargar_lista_tipo() {
 
         conexion = new ConexioSQLite();
@@ -1889,7 +1868,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-// METODO PARA CARGAR JCOMBOBOX PLANTA
+    // METODO PARA CARGAR JCOMBOBOX PLANTA
     public void cargar_lista_planta() {
 
         conexion = new ConexioSQLite();
@@ -1916,7 +1895,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-// METODO PARA CARGAR JCOMBOBOX MAQUINA
+    // METODO PARA CARGAR JCOMBOBOX MAQUINA
     public void cargar_lista_maquina() {
 
         conexion = new ConexioSQLite();
