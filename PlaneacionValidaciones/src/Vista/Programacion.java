@@ -5,8 +5,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -285,19 +290,50 @@ public class Programacion extends javax.swing.JFrame {
             } else {
                 String registro_pro = txt_registro_pro.getText();
                 String observacion = txt_observaciones_programacion.getText();
+                String fecha = txt_fecha_propuesta.getText();
 
-                boolean resultado = conexion.upgrade_programacion(registro_pro, "Programado", observacion);
+                int rec = this.tabla_proyectos.getSelectedRow();
+                String tipo = tabla_proyectos.getValueAt(rec, 6).toString();
 
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                    LimpiarCampos();
-                    cargar_tabla_programaciones();
-                    ancho_columnas();
-                    centrar_datos();
-                    conexion.cerrar();
+                int validacionProgramacion = verificacionSemanas(fecha, tipo);
+
+                if (validacionProgramacion == 1) {
+
+                    int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEMANA YA TIENE LA CAPACIADAD DE VALIDACIONES PROGRAMADAS COMPLETAS "
+                            + "\n PARA TIPO : " + tipo + " \n ¿ desea programar ?", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                    if (JOptionPane.OK_OPTION == confirmado) {
+                        boolean resultado = conexion.upgrade_programacion(registro_pro, "Programado", observacion);
+
+                        if (resultado == true) {
+                            JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                            LimpiarCampos();
+                            cargar_tabla_programaciones();
+                            ancho_columnas();
+                            centrar_datos();
+                            conexion.cerrar();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                            LimpiarCampos();
+                        }
+                    } else {
+
+                    }
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                    LimpiarCampos();
+                    boolean resultado = conexion.upgrade_programacion(registro_pro, "Programado", observacion);
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                        LimpiarCampos();
+                        cargar_tabla_programaciones();
+                        ancho_columnas();
+                        centrar_datos();
+                        conexion.cerrar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                        LimpiarCampos();
+                    }
                 }
 
             }
@@ -481,7 +517,7 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "AUTORIZA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "TIPO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -497,12 +533,12 @@ public class Programacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "ESTADO_PROYECTO AS ESTADO, "
-                + "RESPUESTA AS AUTORIZA, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'En Creacion' "
-                + "OR ESTADO_PROYECTO = 'Con Excepcion' "
+                + "WHERE (ESTADO_PROYECTO = 'En Creacion' "
+                + "OR ESTADO_PROYECTO = 'Con Excepcion') "
                 + "ORDER BY FECHA_PROPUESTA";
 
         try {
@@ -516,7 +552,7 @@ public class Programacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("AUTORIZA");
+                registro[6] = rs.getString("TIPO");
                 registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
@@ -536,7 +572,7 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "AUTORIZA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "TIPO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -552,7 +588,7 @@ public class Programacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "ESTADO_PROYECTO AS ESTADO, "
-                + "RESPUESTA AS AUTORIZA, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -571,7 +607,7 @@ public class Programacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("AUTORIZA");
+                registro[6] = rs.getString("TIPO");
                 registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
@@ -591,7 +627,7 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "AUTORIZA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "TIPO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -607,7 +643,7 @@ public class Programacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "ESTADO_PROYECTO AS ESTADO, "
-                + "RESPUESTA AS AUTORIZA, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -626,7 +662,7 @@ public class Programacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("AUTORIZA");
+                registro[6] = rs.getString("TIPO");
                 registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
@@ -646,7 +682,7 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "AUTORIZA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "TIPO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -662,7 +698,7 @@ public class Programacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "ESTADO_PROYECTO AS ESTADO, "
-                + "RESPUESTA AS AUTORIZA, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -683,7 +719,7 @@ public class Programacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("AUTORIZA");
+                registro[6] = rs.getString("TIPO");
                 registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
@@ -703,7 +739,7 @@ public class Programacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "AUTORIZA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "TIPO", "OBSERVACIONES"};
         String[] registro = new String[8];
         String query = "";
 
@@ -719,7 +755,7 @@ public class Programacion extends javax.swing.JFrame {
                 + "LIDER_TECNICO AS LIDER, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "ESTADO_PROYECTO AS ESTADO, "
-                + "RESPUESTA AS AUTORIZA, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -740,7 +776,7 @@ public class Programacion extends javax.swing.JFrame {
                 registro[3] = rs.getString("LIDER");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("ESTADO");
-                registro[6] = rs.getString("AUTORIZA");
+                registro[6] = rs.getString("TIPO");
                 registro[7] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
@@ -893,6 +929,70 @@ public class Programacion extends javax.swing.JFrame {
         }
         return validacion_pendiente_pro;
 
+    }
+
+    public int verificacionSemanas(String fecha, String tipo) {
+
+        int resultado = 0;
+        int total = 0;
+
+        try {
+            String date = txt_fecha_propuesta.getText();
+            SimpleDateFormat convertifecha = new SimpleDateFormat("yyyy-MM-dd");
+            Date fechafinal = convertifecha.parse(date);
+            int semana = numeroSemanas(fechafinal);
+
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
+
+            String query = "";
+
+            ConexioSQLite con = new ConexioSQLite();
+            Connection cn = con.Conectar();
+
+            query = "SELECT COUNT(*) as TOTAL FROM PLANEACIONES_VALIDACION WHERE SEMANA = '" + semana + "' AND TIPO_VALIDACION = '" + tipo + "' AND ESTADO_PROYECTO = 'Programado';";
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                total = Integer.parseInt(rs.getString("TOTAL"));
+            }
+
+            if ((total >= 3) && tipo.equals("PROCESO")) {
+                resultado = 1;
+            } else if ((total >= 3) && tipo.equals("EQUIPO")) {
+                resultado = 1;
+            } else if ((total >= 1) && tipo.equals("L&S")) {
+                resultado = 1;
+            } else if ((total >= 3) && tipo.equals("CSV")) {
+                resultado = 1;
+            } else if ((total >= 3) && tipo.equals("NO GXP")) {
+                resultado = 1;
+            } else {
+                resultado = 0;
+            }
+
+        } catch (ParseException ex) {
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Programacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return resultado;
+    }
+
+    public int numeroSemanas(Date fecha) {
+
+        int semana = 0;
+        //Calendar calendar = Calendar.getInstance();
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.setFirstDayOfWeek(calendar.MONDAY);
+        calendar.setMinimalDaysInFirstWeek(7);
+        calendar.setTime(fecha);
+        semana = 0;
+        semana = calendar.get(Calendar.WEEK_OF_YEAR);
+        return semana;
     }
 
     public void ancho_columnas() {
