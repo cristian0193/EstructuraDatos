@@ -572,7 +572,7 @@ public class Principal extends javax.swing.JFrame {
                     int resultadoTotalLotes = contadorLote + lotesIngresados;
 
                     //VALIDACION DE FECHA SI LA VALIDACION DE PROCESO YA ESTA PROGRAMADA UN JUEVES, VIERNES O SABADO DE LA SEMANA ANTERIOR (PROCESO)
-                    contadorSemanaAnterior = validacionSemanaProceso((semana - 1), tipo_validacion, año);
+                    contadorSemanaAnterior = validacionSemanaProceso((semana - 1), año);
 
                     if (txt_estado_proyecto.getText().equals("Con Excepcion")) {
                         conexion = new ConexioSQLite();
@@ -1032,7 +1032,7 @@ public class Principal extends javax.swing.JFrame {
                             int resultadoTotalLotes = contadorLote + lotesIngresados;
 
                             //VALIDACION DE FECHA SI LA VALIDACION DE PROCESO YA ESTA PROGRAMADA UN JUEVES, VIERNES O SABADO DE LA SEMANA ANTERIOR (PROCESO)
-                            contadorSemanaAnterior = validacionSemanaProceso((semana - 1), tipo_validacion, año);
+                            contadorSemanaAnterior = validacionSemanaProceso((semana - 1), año);
 
                             if ((tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) || contadorSemanaAnterior > 0) {
                                  JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
@@ -2049,7 +2049,7 @@ public class Principal extends javax.swing.JFrame {
 
     }
 
-    public int validacionSemanaProceso(int semana, String tipo, int año) {
+    public int validacionSemanaProceso(int semana, int año) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -2063,7 +2063,7 @@ public class Principal extends javax.swing.JFrame {
         query = "SELECT FECHA_PROPUESTA "
                 + " FROM PLANEACIONES_VALIDACION "
                 + " WHERE SEMANA = " + semana + ""
-                + " AND TIPO_VALIDACION = '" + tipo + "'"
+                + " AND TIPO_VALIDACION = 'PROCESO'"
                 + " AND (ESTADO_PROYECTO = 'Programado' OR ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion')"
                 + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
 

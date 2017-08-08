@@ -1,7 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Principal.conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -292,7 +291,7 @@ public class Programacion extends javax.swing.JFrame {
             } else {
                 try {
                     int validacionProgramacionSemanaProceso = 0;
-                    String tipo_validacion = "",lote = "";
+                    String tipo = "",lote = "";
                     int contadorSemanas = 0;
                     int contadorLote = 0;
                     int lotesIngresados = 0;
@@ -302,7 +301,7 @@ public class Programacion extends javax.swing.JFrame {
                     String fecha = txt_fecha_propuesta.getText();
 
                     int rec = this.tabla_proyectos.getSelectedRow();
-                    String tipo = tabla_proyectos.getValueAt(rec, 6).toString();
+                    tipo = tabla_proyectos.getValueAt(rec, 6).toString();
 
                     int validacionProgramacion = verificacionSemanas(fecha, tipo);
 
@@ -315,11 +314,11 @@ public class Programacion extends javax.swing.JFrame {
                     int año = Integer.parseInt(formatoFecha.format(date));
 
                     //Validacion de semanas programadas Jueves, Vienes, Sabado y Domingo
-                    validacionProgramacionSemanaProceso = validacionSemanaProceso((semana - 1), tipo, año);
+                    validacionProgramacionSemanaProceso = validacionSemanaProceso((semana - 1), año);
 
                     //Validacion de Lotes Permitidos
-                    contadorSemanas = contadorSemana(semana, tipo_validacion, año);
-                    contadorLote = contadorLotes(semana, tipo_validacion);
+                    contadorSemanas = contadorSemana(semana, tipo, año);
+                    contadorLote = contadorLotes(semana, tipo);
                     lote = Registro_Lote(registro_pro);
                     lotesIngresados = Integer.parseInt(lote);
 
@@ -954,8 +953,7 @@ public class Programacion extends javax.swing.JFrame {
         return validacion_pendiente_pro;
 
     }
-    
-    
+        
     public static String Registro_Lote(String registro) {
 
         conexion = new ConexioSQLite();
@@ -983,8 +981,6 @@ public class Programacion extends javax.swing.JFrame {
 
     }
     
-    
-
     public int verificacionSemanas(String fecha, String tipo) {
 
         int resultado = 0;
@@ -1015,7 +1011,7 @@ public class Programacion extends javax.swing.JFrame {
 
             if ((total >= 3) && tipo.equals("PROCESO")) {
                 resultado = 1;
-            } else if ((total >= 3) && tipo.equals("EQUIPO")) {
+            } else if ((total >= 3) && tipo.equals("EQUIPOS")) {
                 resultado = 1;
             } else if ((total >= 1) && tipo.equals("L&S")) {
                 resultado = 1;
@@ -1049,7 +1045,7 @@ public class Programacion extends javax.swing.JFrame {
         return semana;
     }
 
-    public int validacionSemanaProceso(int semana, String tipo, int año) {
+    public int validacionSemanaProceso(int semana, int año) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -1063,8 +1059,8 @@ public class Programacion extends javax.swing.JFrame {
         query = "SELECT FECHA_PROPUESTA "
                 + " FROM PLANEACIONES_VALIDACION "
                 + " WHERE SEMANA = " + semana + ""
-                + " AND TIPO_VALIDACION = '" + tipo + "'"
-                + " AND (ESTADO_PROYECTO = 'Programado' OR ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion')"
+                + " AND TIPO_VALIDACION = 'PROCESO'"
+                + " AND (ESTADO_PROYECTO = 'Programado')"
                 + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
 
         System.out.println(query);
