@@ -558,7 +558,6 @@ public class Principal extends javax.swing.JFrame {
                     int contadorLote = 0;
                     int lotesIngresados = 0;
                     int contadorSemanaAnterior = 0;
-                    int contadorSemanaActual = 0;
 
                     Date date = (Date) date_fecha_propuesta.getDate();
                     int semana = numeroSemanas(date);
@@ -2065,7 +2064,7 @@ public class Principal extends javax.swing.JFrame {
                 + " FROM PLANEACIONES_VALIDACION "
                 + " WHERE SEMANA = " + semana + ""
                 + " AND TIPO_VALIDACION = '" + tipo + "'"
-                + " AND (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion')"
+                + " AND (ESTADO_PROYECTO = 'Programado' OR ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion')"
                 + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
 
         System.out.println(query);

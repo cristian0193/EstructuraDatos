@@ -797,7 +797,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel18">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fecha Propuesta :"/>
+        <Property name="text" type="java.lang.String" value="Fecha Propuesta de Calificacion:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txt_fecha_propuesta">

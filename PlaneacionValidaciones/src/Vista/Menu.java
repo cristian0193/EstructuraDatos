@@ -27,7 +27,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -64,7 +63,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("PLANEACIÓN DE VALIDACIONES");
+        jLabel4.setText("PLANEACIÓN DE VALIDACIONES Y/O CALIFICACIONES");
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -102,21 +101,13 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu1.setText("Registro de Validacion");
 
-        jMenuItem2.setText("Agregar Validacion (Todos)");
+        jMenuItem2.setText("Agregar/Actualizar Validacion (Todos)");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("Actualizar Validacion (Todos)");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem3);
 
         jMenuItem10.setText("Agregar Validacion No Programada (Admin)");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
@@ -288,7 +279,6 @@ public class Menu extends javax.swing.JFrame {
 
         Principal principal = new Principal();
         principal.setVisible(true);
-        principal.btn_actualizar.setEnabled(false);
 
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -299,14 +289,6 @@ public class Menu extends javax.swing.JFrame {
         clave.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem6ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-
-        Principal principal = new Principal();
-        principal.setVisible(true);
-        principal.btn_guardar.setEnabled(false);
-
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
 
@@ -487,7 +469,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

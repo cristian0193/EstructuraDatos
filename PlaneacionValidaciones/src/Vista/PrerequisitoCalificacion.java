@@ -493,7 +493,7 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
 
         jLabel17.setText("Numero Registro :");
 
-        jLabel18.setText("Fecha Propuesta :");
+        jLabel18.setText("Fecha Propuesta de Calificacion:");
 
         txt_fecha_propuesta.setEditable(false);
         txt_fecha_propuesta.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N

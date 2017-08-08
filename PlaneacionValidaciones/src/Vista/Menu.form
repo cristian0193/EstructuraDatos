@@ -23,18 +23,10 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar Validacion (Todos)"/>
+                <Property name="text" type="java.lang.String" value="Agregar/Actualizar Validacion (Todos)"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Actualizar Validacion (Todos)"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem10">
@@ -309,7 +301,7 @@
               <Font name="Arial" size="24" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="PLANEACI&#xd3;N DE VALIDACIONES"/>
+            <Property name="text" type="java.lang.String" value="PLANEACI&#xd3;N DE VALIDACIONES Y/O CALIFICACIONES"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
