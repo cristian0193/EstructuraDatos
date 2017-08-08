@@ -576,8 +576,8 @@ public class Principal extends javax.swing.JFrame {
                     int resultadoTotalLotes = contadorLote + lotesIngresados;
 
                     //VALIDACION DE FECHA SI LA VALIDACION DE PROCESO YA ESTA PROGRAMADA UN JUEVES, VIERNES O SABADO DE LA SEMANA ANTERIOR (PROCESO)
-                    contadorSemanaAnterior = validacionSemanaProceso((semana-1), tipo_validacion, año);                    
-                    
+                    contadorSemanaAnterior = validacionSemanaProceso((semana - 1), tipo_validacion, año);
+
                     if (txt_estado_proyecto.getText().equals("Con Excepcion")) {
                         conexion = new ConexioSQLite();
                         conexion.coneccionbase();
@@ -651,7 +651,7 @@ public class Principal extends javax.swing.JFrame {
 
                             acuerdo.setVisible(true);
                             this.hide();
-                                                      
+
                         } else if (tipo_validacion.equals("EQUIPOS") && contadorSemanas >= 3) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                                     + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -1028,15 +1028,19 @@ public class Principal extends javax.swing.JFrame {
                             String tipo_validacion = combo_tipo.getSelectedItem().toString();
                             DateFormat formatoFecha = new SimpleDateFormat("YYYY");
                             int año = Integer.parseInt(formatoFecha.format(fecha_calendario));
+                            int contadorSemanaAnterior = 0;
 
                             int contadorSemanas = contadorSemana(semanaFinal, tipo_validacion, año);
                             int contadorLote = contadorLotes(semanaFinal, tipo_validacion);
                             int lotesIngresados = Integer.parseInt(combo_lote.getSelectedItem().toString());
                             int resultadoTotalLotes = contadorLote + lotesIngresados;
 
-                            if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
-                                JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                                        + "\n VALIDACIONES DE PROCESO \n CANTIDAD DE LOTES COMPLETOS", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                            //VALIDACION DE FECHA SI LA VALIDACION DE PROCESO YA ESTA PROGRAMADA UN JUEVES, VIERNES O SABADO DE LA SEMANA ANTERIOR (PROCESO)
+                            contadorSemanaAnterior = validacionSemanaProceso((semana - 1), tipo_validacion, año);
+
+                            if ((tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) || contadorSemanaAnterior > 0) {
+                                JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
+                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABOTARIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
                                 JOptionPane.showMessageDialog(null, "SE ACTIVARA EL REGISTRO CON EXCEPCIONES POR FAVOR JUSTIFIQUE EL INGRESO"
                                         + " DE LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
