@@ -295,7 +295,7 @@ public class Programacion extends javax.swing.JFrame {
                     int contadorSemanas = 0;
                     int contadorLote = 0;
                     int lotesIngresados = 0;
-                    int contadorSemanaAnterior = 0;
+
                     String registro_pro = txt_registro_pro.getText();
                     String observacion = txt_observaciones_programacion.getText();
                     String fecha = txt_fecha_propuesta.getText();
@@ -325,7 +325,7 @@ public class Programacion extends javax.swing.JFrame {
                     //VALIDACION CANTIDAD DE LOTES MAYORES A 3 (PROCESO)
                     int resultadoTotalLotes = contadorLote + lotesIngresados;
 
-                    if (validacionProgramacion == 1 || validacionProgramacionSemanaProceso > 0 || resultadoTotalLotes > 3) {
+                    if (validacionProgramacion >= 1 || validacionProgramacionSemanaProceso > 0 || resultadoTotalLotes >= 3 || contadorSemanas >= 3) {
 
                         int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEMANA YA TIENE LA CAPACIADAD DE VALIDACIONES PROGRAMADAS COMPLETAS "
                                 + "\n PARA TIPO : " + tipo + " \n ¿ desea programar ?", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
