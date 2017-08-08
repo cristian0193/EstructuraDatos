@@ -6,11 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.ParseException;
 import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import sun.util.calendar.Gregorian;
 
@@ -557,6 +560,8 @@ public class Principal extends javax.swing.JFrame {
                     int contadorSemanas = 0;
                     int contadorLote = 0;
                     int lotesIngresados = 0;
+                    int contadorSemanaAnterior = 0;
+                    int contadorSemanaActual = 0;
 
                     Date date = (Date) date_fecha_propuesta.getDate();
                     int semana = numeroSemanas(date);
@@ -567,8 +572,12 @@ public class Principal extends javax.swing.JFrame {
                     contadorLote = contadorLotes(semana, tipo_validacion);
                     lotesIngresados = Integer.parseInt(combo_lote.getSelectedItem().toString());
 
+                    //VALIDACION CANTIDAD DE LOTES MAYORES A 3 (PROCESO)
                     int resultadoTotalLotes = contadorLote + lotesIngresados;
 
+                    //VALIDACION DE FECHA SI LA VALIDACION DE PROCESO YA ESTA PROGRAMADA UN JUEVES, VIERNES O SABADO DE LA SEMANA ANTERIOR (PROCESO)
+                    contadorSemanaAnterior = validacionSemanaProceso((semana-1), tipo_validacion, año);                    
+                    
                     if (txt_estado_proyecto.getText().equals("Con Excepcion")) {
                         conexion = new ConexioSQLite();
                         conexion.coneccionbase();
@@ -615,9 +624,9 @@ public class Principal extends javax.swing.JFrame {
                             LimpiarCampos();
                         }
                     } else {
-                        if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
-                            JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                                    + "\n VALIDACIONES DE PROCESO \n CANTIDAD DE LOTES COMPLETOS", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                        if ((tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) || contadorSemanaAnterior > 0) {
+                            JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
+                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABOTARIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
                             JOptionPane.showMessageDialog(null, "SE ACTIVARA EL REGISTRO CON EXCEPCIONES POR FAVOR JUSTIFIQUE EL INGRESO"
                                     + " DE LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
@@ -642,7 +651,7 @@ public class Principal extends javax.swing.JFrame {
 
                             acuerdo.setVisible(true);
                             this.hide();
-
+                                                      
                         } else if (tipo_validacion.equals("EQUIPOS") && contadorSemanas >= 3) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                                     + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -1278,6 +1287,7 @@ public class Principal extends javax.swing.JFrame {
         calificacion.setVisible(true);
 
         calificacion.txt_registro_principal.setText(txt_registro.getText());
+        calificacion.txt_fecha_propuesta.setText(txt_fecha_propuesta.getText());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txt_respuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_respuestaActionPerformed
@@ -2037,6 +2047,74 @@ public class Principal extends javax.swing.JFrame {
             return valor;
         }
 
+    }
+
+    public int validacionSemanaProceso(int semana, String tipo, int año) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+        int contadorDiaSemana = 0;
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT FECHA_PROPUESTA "
+                + " FROM PLANEACIONES_VALIDACION "
+                + " WHERE SEMANA = " + semana + ""
+                + " AND TIPO_VALIDACION = '" + tipo + "'"
+                + " AND (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion')"
+                + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
+
+        System.out.println(query);
+        try {
+            String dia = "";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+
+                String fecha = rs.getString("FECHA_PROPUESTA");
+                SimpleDateFormat convertifecha = new SimpleDateFormat("yyyy-MM-dd");
+                Date fechafinal = convertifecha.parse(fecha);
+
+                dia = DiaSemana(fechafinal);
+
+                if (dia.equals("Jueves") || dia.equals("Viernes") || dia.equals("Sabado") || dia.equals("Domingo")) {
+                    contadorDiaSemana += 1;
+                } else {
+                    contadorDiaSemana += 0;
+                }
+
+            }
+
+            conexion.cerrar();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return contadorDiaSemana;
+
+    }
+
+    public String DiaSemana(Date fecha) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fecha);
+
+        String[] strDays = new String[]{
+            "Domingo",
+            "Lunes",
+            "Martes",
+            "Miercoles",
+            "Jueves",
+            "Viernes",
+            "Sabado"};
+
+        return strDays[calendar.get(Calendar.DAY_OF_WEEK) - 1];
     }
 
 }

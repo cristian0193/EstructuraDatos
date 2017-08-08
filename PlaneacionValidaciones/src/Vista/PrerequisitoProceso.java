@@ -77,20 +77,11 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         txt_pre_materiales = new javax.swing.JTextField();
         txt_pre_DP = new javax.swing.JTextField();
         txt_fecha_protocolo = new javax.swing.JTextField();
-        txt_fecha_entrenamiento = new javax.swing.JTextField();
         txt_fecha_especificacion = new javax.swing.JTextField();
-        txt_fecha_test = new javax.swing.JTextField();
-        txt_fecha_entre_protocolo = new javax.swing.JTextField();
-        txt_fecha_materiales = new javax.swing.JTextField();
-        txt_DP = new javax.swing.JTextField();
+        txt_fecha_metodo = new javax.swing.JTextField();
         txt_fecha_diagrama_proceso = new javax.swing.JTextField();
         txt_fecha_producto = new javax.swing.JTextField();
-        txt_fecha_PR = new javax.swing.JTextField();
-        txt_fecha_PF = new javax.swing.JTextField();
-        txt_fecha_RM = new javax.swing.JTextField();
-        txt_fecha_PC = new javax.swing.JTextField();
-        txt_fecha_CG = new javax.swing.JTextField();
-        txt_fecha_FP = new javax.swing.JTextField();
+        txt_fecha_hoja_maestra = new javax.swing.JTextField();
         btn_cargar = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         txt_registro_principal = new javax.swing.JTextField();
@@ -121,7 +112,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
 
         combo_pre_calificacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
 
-        jLabel3.setText("Entrenamiento HFM :");
+        jLabel3.setText("Entrenamiento HFM/SOP/TM :");
 
         combo_pre_HFM.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
         combo_pre_HFM.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +121,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Entrenamiento Especificacion :");
+        jLabel4.setText("Especificaciones PR/FP/PF emitidas :");
 
         combo_pre_especificacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
         combo_pre_especificacion.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +130,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Entrenamiento Test Method :");
+        jLabel5.setText("Métodos de Análisis Emitidos :");
 
         combo_pre_test.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
         combo_pre_test.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +139,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Entrenamiento Protocolo :");
+        jLabel6.setText("Calificación IQ/OQ/PQ de Equipos :");
 
         combo_pre_protocolo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
         combo_pre_protocolo.addActionListener(new java.awt.event.ActionListener() {
@@ -164,9 +155,9 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Materiales Disponibles :");
+        jLabel7.setText("Calificación CSV :");
 
-        jLabel8.setText("DP :");
+        jLabel8.setText("Control de Cambios (En Entregables)/ DP aprobado :");
 
         combo_pre_DP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
         combo_pre_DP.addActionListener(new java.awt.event.ActionListener() {
@@ -175,11 +166,11 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setText("Diagrama de Proceso :");
+        jLabel9.setText("Flujograma de proceso oficial :");
 
         combo_pre_diagrama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
 
-        jLabel10.setText("FMEA del Proceso/Producto :");
+        jLabel10.setText("FMEA (Matriz de riesgo) oficial :");
 
         combo_pre_FMEA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
         combo_pre_FMEA.addActionListener(new java.awt.event.ActionListener() {
@@ -188,7 +179,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setText("PR :");
+        jLabel11.setText("Especificaciones de Equipo/Área oficiales :");
 
         combo_pre_PR.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
         combo_pre_PR.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +188,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setText("PF :");
+        jLabel12.setText("Estabilidades de producto/ empaque :");
 
         combo_pre_PF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
         combo_pre_PF.addActionListener(new java.awt.event.ActionListener() {
@@ -206,7 +197,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             }
         });
 
-        jLabel13.setText("RM :");
+        jLabel13.setText("Hoja de Fabricación Maestra (HFM) emitida :");
 
         combo_pre_RM.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
         combo_pre_RM.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +206,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setText("PC :");
+        jLabel14.setText("Procedimientos Operativos Estándar (SOP's) oficiales :");
 
         combo_pre_PC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
         combo_pre_PC.addActionListener(new java.awt.event.ActionListener() {
@@ -224,7 +215,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setText("CG :");
+        jLabel15.setText("  Muestra de referencia de producto terminado :");
 
         combo_pre_CG.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
         combo_pre_CG.addActionListener(new java.awt.event.ActionListener() {
@@ -233,7 +224,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             }
         });
 
-        jLabel16.setText("FP :");
+        jLabel16.setText("Disponibilidad de Materiales :");
 
         combo_pre_FP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
         combo_pre_FP.addActionListener(new java.awt.event.ActionListener() {
@@ -275,23 +266,11 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         txt_fecha_protocolo.setEditable(false);
         txt_fecha_protocolo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        txt_fecha_entrenamiento.setEditable(false);
-        txt_fecha_entrenamiento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-
         txt_fecha_especificacion.setEditable(false);
         txt_fecha_especificacion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        txt_fecha_test.setEditable(false);
-        txt_fecha_test.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-
-        txt_fecha_entre_protocolo.setEditable(false);
-        txt_fecha_entre_protocolo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-
-        txt_fecha_materiales.setEditable(false);
-        txt_fecha_materiales.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-
-        txt_DP.setEditable(false);
-        txt_DP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_fecha_metodo.setEditable(false);
+        txt_fecha_metodo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         txt_fecha_diagrama_proceso.setEditable(false);
         txt_fecha_diagrama_proceso.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -299,23 +278,8 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         txt_fecha_producto.setEditable(false);
         txt_fecha_producto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        txt_fecha_PR.setEditable(false);
-        txt_fecha_PR.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-
-        txt_fecha_PF.setEditable(false);
-        txt_fecha_PF.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-
-        txt_fecha_RM.setEditable(false);
-        txt_fecha_RM.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-
-        txt_fecha_PC.setEditable(false);
-        txt_fecha_PC.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-
-        txt_fecha_CG.setEditable(false);
-        txt_fecha_CG.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-
-        txt_fecha_FP.setEditable(false);
-        txt_fecha_FP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_fecha_hoja_maestra.setEditable(false);
+        txt_fecha_hoja_maestra.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -363,15 +327,10 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                     .addComponent(txt_pre_DP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txt_fecha_entrenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_fecha_protocolo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_fecha_especificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txt_fecha_materiales, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_DP, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txt_fecha_test, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_fecha_entre_protocolo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                    .addComponent(txt_fecha_metodo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -384,7 +343,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(combo_pre_PF, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel15)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(combo_pre_CG, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -406,33 +365,26 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                                 .addComponent(combo_pre_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txt_pre_CG, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                            .addComponent(txt_pre_CG, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_pre_PC, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_pre_PF, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_pre_PR, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_pre_FMEA, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_pre_diagrama, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_pre_RM)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
+                            .addComponent(txt_pre_RM, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(combo_pre_FP, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_pre_FP)))
+                        .addComponent(txt_pre_FP, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_fecha_diagrama_proceso, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(txt_fecha_producto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_fecha_PR, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_fecha_PC, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_fecha_CG, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(txt_fecha_PF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_fecha_RM, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txt_fecha_FP, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84))
+                        .addComponent(txt_fecha_hoja_maestra, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,32 +407,28 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(combo_pre_PR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_pre_PR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_fecha_PR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_pre_PR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
                             .addComponent(combo_pre_PF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_pre_PF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_fecha_PF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_pre_PF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(combo_pre_RM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_pre_RM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_fecha_RM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_fecha_hoja_maestra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
                             .addComponent(combo_pre_PC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_pre_PC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_fecha_PC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_pre_PC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
                             .addComponent(combo_pre_CG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_pre_CG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_fecha_CG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txt_pre_CG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -489,8 +437,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
                                     .addComponent(combo_pre_HFM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_pre_HFM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_fecha_entrenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_pre_HFM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
@@ -502,7 +449,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                                     .addComponent(jLabel5)
                                     .addComponent(combo_pre_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_pre_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_fecha_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txt_fecha_metodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txt_pre_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txt_fecha_protocolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -510,28 +457,24 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_pre_protocolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_fecha_entre_protocolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
                             .addComponent(combo_pre_protocolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_pre_materiales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_fecha_materiales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(combo_pre_materiales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_pre_DP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_DP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
                             .addComponent(combo_pre_DP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(combo_pre_FP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_pre_FP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_fecha_FP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(combo_pre_FP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         btn_cargar.setBackground(new java.awt.Color(51, 102, 255));
@@ -547,7 +490,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         jLabel17.setText("Numero Registro :");
 
         txt_registro_principal.setEditable(false);
-        txt_registro_principal.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        txt_registro_principal.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txt_registro_principal.setForeground(new java.awt.Color(255, 0, 0));
         txt_registro_principal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -562,51 +505,49 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(379, 379, 379))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_registro_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(687, 687, 687)
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_fecha_propuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_registro_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_fecha_propuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 819, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(3, 3, 3))
                             .addComponent(txt_fecha_propuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_registro_principal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txt_registro_principal)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -615,7 +556,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
 
     private void btn_cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cargarActionPerformed
 
-        if (!txt_registro_principal.getText().equals("")) {
+        if (!txt_registro_principal.getText().equals("") || !txt_fecha_propuesta.getText().equals("")) {
 
             String pre_proceso = txt_registro_principal.getText();
 
@@ -629,7 +570,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INFORMACION NO CARGADA");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA");
+            JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE TABLA Y VERIFIQUE QUE TENGA FECHA PROPUESTA");
         }
 
     }//GEN-LAST:event_btn_cargarActionPerformed
@@ -763,22 +704,13 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txt_DP;
-    private javax.swing.JTextField txt_fecha_CG;
-    private javax.swing.JTextField txt_fecha_FP;
-    private javax.swing.JTextField txt_fecha_PC;
-    private javax.swing.JTextField txt_fecha_PF;
-    private javax.swing.JTextField txt_fecha_PR;
-    private javax.swing.JTextField txt_fecha_RM;
     private javax.swing.JTextField txt_fecha_diagrama_proceso;
-    private javax.swing.JTextField txt_fecha_entre_protocolo;
-    private javax.swing.JTextField txt_fecha_entrenamiento;
     private javax.swing.JTextField txt_fecha_especificacion;
-    private javax.swing.JTextField txt_fecha_materiales;
+    private javax.swing.JTextField txt_fecha_hoja_maestra;
+    private javax.swing.JTextField txt_fecha_metodo;
     private javax.swing.JTextField txt_fecha_producto;
     public javax.swing.JTextField txt_fecha_propuesta;
     private javax.swing.JTextField txt_fecha_protocolo;
-    private javax.swing.JTextField txt_fecha_test;
     private javax.swing.JTextField txt_pre_CG;
     private javax.swing.JTextField txt_pre_DP;
     private javax.swing.JTextField txt_pre_FMEA;
@@ -1003,12 +935,21 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             SimpleDateFormat convertifecha = new SimpleDateFormat("yyyy-MM-dd");
             Date fechafinal = convertifecha.parse(fecha_propuesta);
 
-            Date fechaSuma = sumarRestarDiasFecha(fechafinal, 20);
-
+            Date fechaSuma1 = sumarRestarDiasFecha(fechafinal, -15);           
             DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd");
-            String fechaConverida = fechaHora.format(fechaSuma);
-            txt_fecha_protocolo.setText(fechaConverida);
+            String fechaConverida1 = fechaHora.format(fechaSuma1);
+            txt_fecha_protocolo.setText(fechaConverida1);
             
+            Date fechaSuma2 = sumarRestarDiasFecha(fechafinal, -20);           
+            DateFormat fechaHora2 = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaConverida2 = fechaHora2.format(fechaSuma2);            
+            
+            txt_fecha_diagrama_proceso.setText(fechaConverida2);
+            txt_fecha_especificacion.setText(fechaConverida2);
+            txt_fecha_hoja_maestra.setText(fechaConverida2);
+            txt_fecha_metodo.setText(fechaConverida2);
+            txt_fecha_producto.setText(fechaConverida2);
+
         } catch (ParseException ex) {
 
         }

@@ -24,62 +24,60 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="btn_cargar" min="-2" pref="142" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-              <Component id="btn_actualizar" min="-2" pref="142" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="379" max="-2" attributes="0"/>
-          </Group>
           <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jPanel1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txt_registro_principal" min="-2" pref="48" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="687" max="-2" attributes="0"/>
-                      <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txt_fecha_propuesta" min="-2" pref="134" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btn_cargar" min="-2" pref="142" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btn_actualizar" min="-2" pref="142" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txt_registro_principal" min="-2" pref="55" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txt_fecha_propuesta" min="-2" pref="134" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="819" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel18" max="32767" attributes="0"/>
                               <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
                           </Group>
                           <Component id="txt_fecha_propuesta" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txt_registro_principal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="txt_registro_principal" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLabel17" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btn_actualizar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="btn_cargar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btn_cargar" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="btn_actualizar" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -176,19 +174,13 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="txt_fecha_entrenamiento" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                       <Component id="txt_fecha_protocolo" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                       <Component id="txt_fecha_especificacion" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                          <Component id="txt_fecha_materiales" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="txt_DP" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="txt_fecha_test" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
-                      <Component id="txt_fecha_entre_protocolo" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
+                      <Component id="txt_fecha_metodo" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="38" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
@@ -200,8 +192,8 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="combo_pre_PF" min="-2" pref="102" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="combo_pre_CG" min="-2" pref="102" max="-2" attributes="0"/>
@@ -231,40 +223,32 @@
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="txt_pre_CG" alignment="0" pref="65" max="32767" attributes="0"/>
+                              <Component id="txt_pre_CG" alignment="0" max="32767" attributes="0"/>
                               <Component id="txt_pre_PC" alignment="0" max="32767" attributes="0"/>
                               <Component id="txt_pre_PF" alignment="0" max="32767" attributes="0"/>
                               <Component id="txt_pre_PR" alignment="0" max="32767" attributes="0"/>
                               <Component id="txt_pre_FMEA" alignment="0" max="32767" attributes="0"/>
                               <Component id="txt_pre_diagrama" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_pre_RM" max="32767" attributes="0"/>
+                              <Component id="txt_pre_RM" min="-2" pref="65" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="combo_pre_FP" min="-2" pref="102" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txt_pre_FP" max="32767" attributes="0"/>
+                          <Component id="txt_pre_FP" min="-2" pref="67" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txt_fecha_diagrama_proceso" min="-2" pref="120" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                           <Component id="txt_fecha_producto" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="txt_fecha_PR" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="txt_fecha_PC" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                              <Component id="txt_fecha_CG" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="txt_fecha_PF" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="txt_fecha_RM" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="txt_fecha_hoja_maestra" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="txt_fecha_FP" min="-2" pref="120" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -292,35 +276,31 @@
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="combo_pre_PR" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_pre_PR" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_fecha_PR" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="combo_pre_PF" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_pre_PF" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_fecha_PF" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="combo_pre_RM" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_pre_RM" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_fecha_RM" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_fecha_hoja_maestra" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="combo_pre_PC" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_pre_PC" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_fecha_PC" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="combo_pre_CG" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_pre_CG" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_fecha_CG" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
@@ -332,7 +312,6 @@
                                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="combo_pre_HFM" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txt_pre_HFM" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_fecha_entrenamiento" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -346,7 +325,7 @@
                                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="combo_pre_test" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txt_pre_test" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_fecha_test" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_fecha_metodo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
@@ -358,21 +337,18 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txt_pre_protocolo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_fecha_entre_protocolo" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="combo_pre_protocolo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txt_pre_materiales" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_fecha_materiales" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="combo_pre_materiales" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txt_pre_DP" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_DP" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="combo_pre_DP" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -380,12 +356,11 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="combo_pre_FP" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_pre_FP" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_fecha_FP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="combo_pre_FP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="13" max="32767" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -409,7 +384,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Entrenamiento HFM :"/>
+            <Property name="text" type="java.lang.String" value="Entrenamiento HFM/SOP/TM :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_HFM">
@@ -428,7 +403,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Entrenamiento Especificacion :"/>
+            <Property name="text" type="java.lang.String" value="Especificaciones PR/FP/PF emitidas :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_especificacion">
@@ -447,7 +422,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Entrenamiento Test Method :"/>
+            <Property name="text" type="java.lang.String" value="M&#xe9;todos de An&#xe1;lisis Emitidos :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_test">
@@ -466,7 +441,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Entrenamiento Protocolo :"/>
+            <Property name="text" type="java.lang.String" value="Calificaci&#xf3;n IQ/OQ/PQ de Equipos :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_protocolo">
@@ -499,12 +474,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Materiales Disponibles :"/>
+            <Property name="text" type="java.lang.String" value="Calificaci&#xf3;n CSV :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
-            <Property name="text" type="java.lang.String" value="DP :"/>
+            <Property name="text" type="java.lang.String" value="Control de Cambios (En Entregables)/ DP aprobado :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_DP">
@@ -523,7 +498,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Diagrama de Proceso :"/>
+            <Property name="text" type="java.lang.String" value="Flujograma de proceso oficial :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_diagrama">
@@ -539,7 +514,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
-            <Property name="text" type="java.lang.String" value="FMEA del Proceso/Producto :"/>
+            <Property name="text" type="java.lang.String" value="FMEA (Matriz de riesgo) oficial :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_FMEA">
@@ -558,7 +533,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
-            <Property name="text" type="java.lang.String" value="PR :"/>
+            <Property name="text" type="java.lang.String" value="Especificaciones de Equipo/&#xc1;rea oficiales :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_PR">
@@ -577,7 +552,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
-            <Property name="text" type="java.lang.String" value="PF :"/>
+            <Property name="text" type="java.lang.String" value="Estabilidades de producto/ empaque :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_PF">
@@ -596,7 +571,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
-            <Property name="text" type="java.lang.String" value="RM :"/>
+            <Property name="text" type="java.lang.String" value="Hoja de Fabricaci&#xf3;n Maestra (HFM) emitida :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_RM">
@@ -615,7 +590,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel14">
           <Properties>
-            <Property name="text" type="java.lang.String" value="PC :"/>
+            <Property name="text" type="java.lang.String" value="Procedimientos Operativos Est&#xe1;ndar (SOP&apos;s) oficiales :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_PC">
@@ -634,7 +609,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CG :"/>
+            <Property name="text" type="java.lang.String" value="  Muestra de referencia de producto terminado :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_CG">
@@ -653,7 +628,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel16">
           <Properties>
-            <Property name="text" type="java.lang.String" value="FP :"/>
+            <Property name="text" type="java.lang.String" value="Disponibilidad de Materiales :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_FP">
@@ -753,14 +728,6 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_fecha_entrenamiento">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="txt_fecha_especificacion">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
@@ -769,31 +736,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_fecha_test">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txt_fecha_entre_protocolo">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txt_fecha_materiales">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txt_DP">
+        <Component class="javax.swing.JTextField" name="txt_fecha_metodo">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -817,47 +760,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_fecha_PR">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txt_fecha_PF">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txt_fecha_RM">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txt_fecha_PC">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txt_fecha_CG">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txt_fecha_FP">
+        <Component class="javax.swing.JTextField" name="txt_fecha_hoja_maestra">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -891,7 +794,7 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="1"/>
+          <Font name="Arial" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
