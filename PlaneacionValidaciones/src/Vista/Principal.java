@@ -12,10 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import sun.util.calendar.Gregorian;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -626,7 +623,7 @@ public class Principal extends javax.swing.JFrame {
                     } else {
                         if ((tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) || contadorSemanaAnterior > 0) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
-                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABOTARIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
                             JOptionPane.showMessageDialog(null, "SE ACTIVARA EL REGISTRO CON EXCEPCIONES POR FAVOR JUSTIFIQUE EL INGRESO"
                                     + " DE LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
@@ -1039,8 +1036,8 @@ public class Principal extends javax.swing.JFrame {
                             contadorSemanaAnterior = validacionSemanaProceso((semana - 1), tipo_validacion, año);
 
                             if ((tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) || contadorSemanaAnterior > 0) {
-                                JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
-                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABOTARIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                                 JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
+                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
                                 JOptionPane.showMessageDialog(null, "SE ACTIVARA EL REGISTRO CON EXCEPCIONES POR FAVOR JUSTIFIQUE EL INGRESO"
                                         + " DE LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
