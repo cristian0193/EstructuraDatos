@@ -356,18 +356,49 @@ public class Reprogramacion extends javax.swing.JFrame {
             //VALIDACION CANTIDAD DE LOTES MAYORES A 3 (PROCESO)
             int resultadoTotalLotes = contadorLote + lotesIngresados;
 
-            if (validacionProgramacion >= 1 || validacionProgramacionSemanaProceso > 0 || resultadoTotalLotes > 3 || contadorSemanas > 3) {
+            if (tipo_validacion.equals("PROCESO")) {
+                if (validacionProgramacion >= 1 || validacionProgramacionSemanaProceso > 0 || resultadoTotalLotes > 3 || contadorSemanas > 3) {
 
-                int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEMANA YA TIENE LA CAPACIADAD DE VALIDACIONES PROGRAMADAS COMPLETAS "
-                        + "\n PARA TIPO : " + tipo_validacion + " \n ¿ desea reprogramar ?", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                    int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEMANA YA TIENE LA CAPACIADAD DE VALIDACIONES PROGRAMADAS COMPLETAS "
+                            + "\n PARA TIPO : " + tipo_validacion + " \n ¿ desea reprogramar ?", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
-                if (JOptionPane.OK_OPTION == confirmado) {
+                    if (JOptionPane.OK_OPTION == confirmado) {
 
-                    ObservacionReprogramacion justificacion = new ObservacionReprogramacion();
-                    justificacion.setVisible(true);
+                        ObservacionReprogramacion justificacion = new ObservacionReprogramacion();
+                        justificacion.setVisible(true);
 
-                    justificacion.txt_registro_principal.setText(this.txt_registro_repro.getText());
-                    justificacion.txt_fecha.setText(fechaConverida);
+                        justificacion.txt_registro_principal.setText(this.txt_registro_repro.getText());
+                        justificacion.txt_fecha.setText(fechaConverida);
+
+                    } else {
+                        conexion = new ConexioSQLite();
+                        conexion.coneccionbase();
+
+                        String registro = txt_registro_repro.getText();
+
+                        String formato = date_nueva_fecha.getDateFormatString();
+                        Date date = (Date) date_nueva_fecha.getDate();
+                        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                        String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                        String motivo = combo_motivo.getSelectedItem().toString();
+                        String observaciones = txt_observaciones_reprogramacion.getText();
+                        int semana_fecha = numeroSemanas(date);
+
+                        boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones, motivo, semana_fecha);
+
+                        if (resultado == true) {
+                            JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                            LimpiarCampos();
+                            ancho_columnas();
+                            centrar_datos();
+                            cargar_tabla_reprogramaciones();
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                            LimpiarCampos();
+                        }
+                    }
 
                 } else {
                     conexion = new ConexioSQLite();
@@ -383,7 +414,6 @@ public class Reprogramacion extends javax.swing.JFrame {
                     String motivo = combo_motivo.getSelectedItem().toString();
                     String observaciones = txt_observaciones_reprogramacion.getText();
                     int semana_fecha = numeroSemanas(date);
-
                     boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones, motivo, semana_fecha);
 
                     if (resultado == true) {
@@ -398,33 +428,77 @@ public class Reprogramacion extends javax.swing.JFrame {
                         LimpiarCampos();
                     }
                 }
-
             } else {
-                conexion = new ConexioSQLite();
-                conexion.coneccionbase();
+                if (validacionProgramacion >= 1 || contadorSemanas > 3) {
 
-                String registro = txt_registro_repro.getText();
+                    int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEMANA YA TIENE LA CAPACIADAD DE VALIDACIONES PROGRAMADAS COMPLETAS "
+                            + "\n PARA TIPO : " + tipo_validacion + " \n ¿ desea reprogramar ?", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
-                String formato = date_nueva_fecha.getDateFormatString();
-                Date date = (Date) date_nueva_fecha.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String fecha_ingresada = String.valueOf(sdf.format(date));
+                    if (JOptionPane.OK_OPTION == confirmado) {
 
-                String motivo = combo_motivo.getSelectedItem().toString();
-                String observaciones = txt_observaciones_reprogramacion.getText();
-                int semana_fecha = numeroSemanas(date);
-                boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones, motivo, semana_fecha);
+                        ObservacionReprogramacion justificacion = new ObservacionReprogramacion();
+                        justificacion.setVisible(true);
 
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                    LimpiarCampos();
-                    ancho_columnas();
-                    centrar_datos();
-                    cargar_tabla_reprogramaciones();
+                        justificacion.txt_registro_principal.setText(this.txt_registro_repro.getText());
+                        justificacion.txt_fecha.setText(fechaConverida);
+
+                    } else {
+                        conexion = new ConexioSQLite();
+                        conexion.coneccionbase();
+
+                        String registro = txt_registro_repro.getText();
+
+                        String formato = date_nueva_fecha.getDateFormatString();
+                        Date date = (Date) date_nueva_fecha.getDate();
+                        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                        String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                        String motivo = combo_motivo.getSelectedItem().toString();
+                        String observaciones = txt_observaciones_reprogramacion.getText();
+                        int semana_fecha = numeroSemanas(date);
+
+                        boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones, motivo, semana_fecha);
+
+                        if (resultado == true) {
+                            JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                            LimpiarCampos();
+                            ancho_columnas();
+                            centrar_datos();
+                            cargar_tabla_reprogramaciones();
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                            LimpiarCampos();
+                        }
+                    }
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                    LimpiarCampos();
+                    conexion = new ConexioSQLite();
+                    conexion.coneccionbase();
+
+                    String registro = txt_registro_repro.getText();
+
+                    String formato = date_nueva_fecha.getDateFormatString();
+                    Date date = (Date) date_nueva_fecha.getDate();
+                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                    String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                    String motivo = combo_motivo.getSelectedItem().toString();
+                    String observaciones = txt_observaciones_reprogramacion.getText();
+                    int semana_fecha = numeroSemanas(date);
+                    boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones, motivo, semana_fecha);
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                        LimpiarCampos();
+                        ancho_columnas();
+                        centrar_datos();
+                        cargar_tabla_reprogramaciones();
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                        LimpiarCampos();
+                    }
                 }
             }
 
@@ -646,7 +720,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         txt_fecha_propuesta2.setText("");
     }
 
-     public int numeroSemanas(Date fecha) {
+    public int numeroSemanas(Date fecha) {
 
         int semana = 0;
         //Calendar calendar = Calendar.getInstance();
@@ -1077,7 +1151,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + " FROM PLANEACIONES_VALIDACION "
                 + " WHERE SEMANA = " + semana + ""
                 + " AND TIPO_VALIDACION = 'PROCESO'"
-                + " AND (ESTADO_PROYECTO = 'Programado')"
+                + " AND (ESTADO_PROYECTO = 'Programado' OR ESTADO_PROYECTO = 'Ejecutada' OR ESTADO_PROYECTO = 'Cerrada')"
                 + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
 
         System.out.println(query);
@@ -1121,7 +1195,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         try {
 
             SimpleDateFormat convertifecha = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = convertifecha.parse(fecha);                        
+            Date date = convertifecha.parse(fecha);
             int semana = numeroSemanas(date);
 
             conexion = new ConexioSQLite();

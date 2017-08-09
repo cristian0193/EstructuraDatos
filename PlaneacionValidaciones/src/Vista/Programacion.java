@@ -1093,7 +1093,7 @@ public class Programacion extends javax.swing.JFrame {
                 + " FROM PLANEACIONES_VALIDACION "
                 + " WHERE SEMANA = " + semana + ""
                 + " AND TIPO_VALIDACION = 'PROCESO'"
-                + " AND (ESTADO_PROYECTO = 'Programado')"
+                + " AND (ESTADO_PROYECTO = 'Programado' OR ESTADO_PROYECTO = 'Ejecutada' OR ESTADO_PROYECTO = 'Cerrada')"
                 + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
 
         System.out.println(query);
