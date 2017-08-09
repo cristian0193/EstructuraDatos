@@ -332,7 +332,7 @@ public class Programacion extends javax.swing.JFrame {
 
                         if (JOptionPane.OK_OPTION == confirmado) {
 
-                            JustificacionValidaciones justificacion = new JustificacionValidaciones();
+                            ObservacionProgramacion justificacion = new ObservacionProgramacion();
                             justificacion.setVisible(true);
                             justificacion.txt_registro_principal.setText(this.txt_registro_pro.getText());
 

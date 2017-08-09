@@ -3,9 +3,9 @@ package Vista;
 import static Vista.Programacion.conexion;
 import javax.swing.JOptionPane;
 
-public class JustificacionValidaciones extends javax.swing.JFrame {
+public class ObservacionReprogramacion extends javax.swing.JFrame {
    
-    public JustificacionValidaciones() {
+    public ObservacionReprogramacion() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -26,7 +26,7 @@ public class JustificacionValidaciones extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("OBSERVACIONES DE CALIFICACION PROGRAMADA CON EXCEPCION");
+        jLabel1.setText("OBSERVACIÓN DE CALIFICACIONES O VALIDACIONES REPROGRAMAS CON EXCEPCIÓN");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -111,7 +111,7 @@ public class JustificacionValidaciones extends javax.swing.JFrame {
         registro = this.txt_registro_principal.getText();
         observaciones = this.txt_observaciones.getText();
         
-        boolean resultado = conexion.upgrade_programacion(registro, "Programado", observaciones);
+        boolean resultado = conexion.upgrade_reprogramacion(registro, "Programado", observaciones);
         
         if(resultado){
             JOptionPane.showMessageDialog(null, "PROYECTO PROGRAMADO","Informativo", JOptionPane.INFORMATION_MESSAGE);            
@@ -138,20 +138,20 @@ public class JustificacionValidaciones extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(JustificacionValidaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ObservacionProgramacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(JustificacionValidaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ObservacionProgramacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(JustificacionValidaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ObservacionProgramacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(JustificacionValidaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ObservacionProgramacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new JustificacionValidaciones().setVisible(true);
+//                new ObservacionProgramacion().setVisible(true);
 //            }
 //        });
 //    }

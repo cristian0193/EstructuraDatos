@@ -1,14 +1,20 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
+import static Vista.Programacion.Registro_Lote;
+import static Vista.Programacion.conexion;
+import static Vista.Programacion.txt_registro_pro;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -285,7 +291,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         jLabel22.setText("*");
         getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 80, 20, 20));
 
-        combo_motivo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Cancelado", "Prerequisitos No Listos", "Incumplimiento de RU", "Recursos de Ejecucion", "Prioridad", " " }));
+        combo_motivo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Cancelado", "Prerequisitos No Listos", "Incumplimiento de RU", "Recursos de Ejecucion", "Prioridad" }));
         combo_motivo.setToolTipText("Seleccionador de Filtro segun motivo de reprogramacion");
         getContentPane().add(combo_motivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 220, -1));
 
@@ -316,48 +322,79 @@ public class Reprogramacion extends javax.swing.JFrame {
         } else {
 
             Date fecha = date_nueva_fecha.getDate();
+            String registro_pro = txt_registro_pro.getText();
+            String fecha2 = txt_fecha_propuesta2.getText();
             int semana = numeroSemanas(fecha);
             int rec = this.tabla_reprogramaciones.getSelectedRow();
             String tipo_validacion = tabla_reprogramaciones.getValueAt(rec, 3).toString();
             DateFormat formatoFecha = new SimpleDateFormat("YYYY");
             int año = Integer.parseInt(formatoFecha.format(fecha));
-            int contador = contadorSemana(semana, tipo_validacion, año);
 
-            if (contador >= 3) {
-                JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
-                        + "\n CALIFICACIONES DE TIPO : " + tipo_validacion);
-            } else {
-                conexion = new ConexioSQLite();
-                conexion.coneccionbase();
+            int validacionProgramacionSemanaProceso = 0;
+            String lote = "";
+            int contadorSemanas = 0;
+            int contadorLote = 0;
+            int lotesIngresados = 0;
 
-                String registro = txt_registro_repro.getText();
+            int validacionProgramacion = verificacionSemanas(fecha2, tipo_validacion);
 
-                String formato = date_nueva_fecha.getDateFormatString();
-                Date date = (Date) date_nueva_fecha.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String fecha_ingresada = String.valueOf(sdf.format(date));
+            //Validacion de semanas programadas Jueves, Vienes, Sabado y Domingo
+            validacionProgramacionSemanaProceso = validacionSemanaProceso((semana - 1), año);
 
-                String motivo = combo_motivo.getSelectedItem().toString();
-                String observaciones = txt_observaciones_reprogramacion.getText();
-                int semana_fecha = numeroSemanas(date);
+            //Validacion de Lotes Permitidos
+            contadorSemanas = contadorSemana(semana, tipo_validacion, año);
+            contadorLote = contadorLotes(semana, tipo_validacion);
+            lote = Registro_Lote(registro_pro);
+            lotesIngresados = Integer.parseInt(lote);
 
-                boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones, motivo, semana_fecha);
+            //VALIDACION CANTIDAD DE LOTES MAYORES A 3 (PROCESO)
+            int resultadoTotalLotes = contadorLote + lotesIngresados;
 
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                    LimpiarCampos();
-                    ancho_columnas();
-                    centrar_datos();
-                    cargar_tabla_reprogramaciones();
+            if (validacionProgramacion >= 1 || validacionProgramacionSemanaProceso > 0 || resultadoTotalLotes > 3 || contadorSemanas > 3) {
+
+                int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEMANA YA TIENE LA CAPACIADAD DE VALIDACIONES PROGRAMADAS COMPLETAS "
+                        + "\n PARA TIPO : " + tipo_validacion + " \n ¿ desea reprogramar ?", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                if (JOptionPane.OK_OPTION == confirmado) {
+
+                    ObservacionReprogramacion justificacion = new ObservacionReprogramacion();
+                    justificacion.setVisible(true);
+                    
+                    
+                    justificacion.txt_registro_principal.setText(this.txt_registro_repro.getText());
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                    LimpiarCampos();
+                    conexion = new ConexioSQLite();
+                    conexion.coneccionbase();
+
+                    String registro = txt_registro_repro.getText();
+
+                    String formato = date_nueva_fecha.getDateFormatString();
+                    Date date = (Date) date_nueva_fecha.getDate();
+                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                    String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                    String motivo = combo_motivo.getSelectedItem().toString();
+                    String observaciones = txt_observaciones_reprogramacion.getText();
+                    int semana_fecha = numeroSemanas(date);
+
+                    boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones, motivo, semana_fecha);
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                        LimpiarCampos();
+                        ancho_columnas();
+                        centrar_datos();
+                        cargar_tabla_reprogramaciones();
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                        LimpiarCampos();
+                    }
                 }
+
             }
-
         }
-
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -583,40 +620,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         calendar.setTime(fecha);
         return calendar.get(Calendar.WEEK_OF_YEAR) + 1;
     }
-    
-    // METODO PARA VALIDAR CANTIDAD DE VALIDACIONES EN SEMANA
-    public static int contadorSemana(int semana, String tipo, int año) {
 
-        conexion = new ConexioSQLite();
-        conexion.coneccionbase();
-        int contadorSemana = 0;
-
-        String query = "";
-
-        ConexioSQLite con = new ConexioSQLite();
-        Connection cn = con.Conectar();
-
-        query = "SELECT COUNT(FECHA_PROPUESTA) AS SEMANA_CONTADA "
-                + " FROM PLANEACIONES_VALIDACION "
-                + " WHERE SEMANA = " + semana + ""
-                + " AND TIPO_VALIDACION = '" + tipo + "'"
-                + " AND ESTADO_PROYECTO = 'En Creacion' "
-                + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
-
-        System.out.println(query);
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
-            contadorSemana = Integer.parseInt(rs.getString("SEMANA_CONTADA"));
-            conexion.cerrar();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-        return contadorSemana;
-    }
-        
     void cargar_tabla_reprogramaciones() {
 
         conexion = new ConexioSQLite();
@@ -694,7 +698,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' AND"
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado')) "
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado','Con Excepcion')) "
                 + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
@@ -747,7 +751,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "FECHA_REPROGRAMACION BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' AND"
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado')) "
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado','Con Excepcion')) "
                 + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
@@ -800,7 +804,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' AND "
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado')) "
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado','Con Excepcion')) "
                 + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
@@ -929,6 +933,197 @@ public class Reprogramacion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
 
         }
+    }
+
+    // METODO PARA VALIDAR CANTIDAD DE LOTES
+    public static int contadorLotes(int semana, String tipo) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+        int contadorSemana = 0;
+        String resultados = null;
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT SUM(LOTE) AS LOTES_CONTADOS FROM PLANEACIONES_VALIDACION "
+                + "WHERE SEMANA = " + semana + " "
+                + "AND TIPO_VALIDACION = '" + tipo + "' "
+                + " AND (ESTADO_PROYECTO = 'Programado')";
+
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            resultados = rs.getString("LOTES_CONTADOS");
+
+            if (resultados == null) {
+                contadorSemana = 0;
+            } else {
+                contadorSemana = Integer.parseInt(resultados);
+            }
+
+            conexion.cerrar();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return contadorSemana;
+    }
+
+    // METODO PARA VALIDAR CANTIDAD DE VALIDACIONES EN SEMANA
+    public static int contadorSemana(int semana, String tipo, int año) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+        int contadorSemana = 0;
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT COUNT(FECHA_PROPUESTA) AS SEMANA_CONTADA "
+                + " FROM PLANEACIONES_VALIDACION "
+                + " WHERE SEMANA = " + semana + ""
+                + " AND TIPO_VALIDACION = '" + tipo + "'"
+                + " AND (ESTADO_PROYECTO = 'Programado')"
+                + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
+
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            contadorSemana = Integer.parseInt(rs.getString("SEMANA_CONTADA"));
+            conexion.cerrar();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return contadorSemana;
+    }
+
+    public String DiaSemana(Date fecha) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fecha);
+
+        String[] strDays = new String[]{
+            "Domingo",
+            "Lunes",
+            "Martes",
+            "Miercoles",
+            "Jueves",
+            "Viernes",
+            "Sabado"};
+
+        return strDays[calendar.get(Calendar.DAY_OF_WEEK) - 1];
+    }
+
+    public int validacionSemanaProceso(int semana, int año) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+        int contadorDiaSemana = 0;
+
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT FECHA_PROPUESTA "
+                + " FROM PLANEACIONES_VALIDACION "
+                + " WHERE SEMANA = " + semana + ""
+                + " AND TIPO_VALIDACION = 'PROCESO'"
+                + " AND (ESTADO_PROYECTO = 'Programado')"
+                + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
+
+        System.out.println(query);
+        try {
+            String dia = "";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+
+                String fecha = rs.getString("FECHA_PROPUESTA");
+                SimpleDateFormat convertifecha = new SimpleDateFormat("yyyy-MM-dd");
+                Date fechafinal = convertifecha.parse(fecha);
+
+                dia = DiaSemana(fechafinal);
+
+                if (dia.equals("Jueves") || dia.equals("Viernes") || dia.equals("Sabado") || dia.equals("Domingo")) {
+                    contadorDiaSemana += 1;
+                } else {
+                    contadorDiaSemana += 0;
+                }
+
+            }
+
+            conexion.cerrar();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return contadorDiaSemana;
+
+    }
+
+    public int verificacionSemanas(String fecha, String tipo) {
+
+        int resultado = 0;
+        int total = 0;
+
+        try {
+            String date = txt_fecha_propuesta2.getText();
+            SimpleDateFormat convertifecha = new SimpleDateFormat("yyyy-MM-dd");
+            Date fechafinal = convertifecha.parse(date);
+            int semana = numeroSemanas(fechafinal);
+
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
+
+            String query = "";
+
+            ConexioSQLite con = new ConexioSQLite();
+            Connection cn = con.Conectar();
+
+            query = "SELECT COUNT(*) as TOTAL FROM PLANEACIONES_VALIDACION WHERE SEMANA = '" + semana + "' AND TIPO_VALIDACION = '" + tipo + "' AND ESTADO_PROYECTO = 'Programado';";
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                total = Integer.parseInt(rs.getString("TOTAL"));
+            }
+
+            if ((total >= 3) && tipo.equals("PROCESO")) {
+                resultado = 1;
+            } else if ((total >= 3) && tipo.equals("EQUIPOS")) {
+                resultado = 1;
+            } else if ((total >= 1) && tipo.equals("L&S")) {
+                resultado = 1;
+            } else if ((total >= 3) && tipo.equals("CSV")) {
+                resultado = 1;
+            } else if ((total >= 3) && tipo.equals("NO GXP")) {
+                resultado = 1;
+            } else {
+                resultado = 0;
+            }
+
+        } catch (ParseException ex) {
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Programacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return resultado;
     }
 
     public void ancho_columnas() {
