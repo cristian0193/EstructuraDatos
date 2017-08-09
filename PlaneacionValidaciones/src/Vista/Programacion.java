@@ -1,3 +1,5 @@
+
+
 package Vista;
 
 import Conexion.ConexioSQLite;
@@ -987,9 +989,8 @@ public class Programacion extends javax.swing.JFrame {
         int total = 0;
 
         try {
-            String date = txt_fecha_propuesta.getText();
             SimpleDateFormat convertifecha = new SimpleDateFormat("yyyy-MM-dd");
-            Date fechafinal = convertifecha.parse(date);
+            Date fechafinal = convertifecha.parse(fecha);
             int semana = numeroSemanas(fechafinal);
 
             conexion = new ConexioSQLite();

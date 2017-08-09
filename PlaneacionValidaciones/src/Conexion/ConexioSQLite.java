@@ -545,6 +545,7 @@ public class ConexioSQLite {
      //METODO PARA PROGRAMAR VALIDACION
     public boolean upgrade_reprogramacion(String REGISTRO,
             String ESTADO,
+            String FECHA,
             String OBSERVACION) {
 
         try {
@@ -553,6 +554,7 @@ public class ConexioSQLite {
                     + " PLANEACIONES_VALIDACION"
                     + " SET "
                     + "  ESTADO_PROYECTO = '" + ESTADO + "',"
+                    + "  FECHA_REPROGRAMACION = '" + FECHA + "',"
                     + "  OBSERVACION_REPROGRAMACION = '" + OBSERVACION + "'"
                     + " WHERE"
                     + "  NUMERO_REGISTRO = " + REGISTRO + ";";

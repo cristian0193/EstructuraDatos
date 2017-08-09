@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -321,9 +322,10 @@ public class Reprogramacion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "INGRESE JUSTIFICACION DE REPROGRAMACION");
         } else {
 
+            String registro_pro = txt_registro_repro.getText();
+
             Date fecha = date_nueva_fecha.getDate();
-            String registro_pro = txt_registro_pro.getText();
-            String fecha2 = txt_fecha_propuesta2.getText();
+
             int semana = numeroSemanas(fecha);
             int rec = this.tabla_reprogramaciones.getSelectedRow();
             String tipo_validacion = tabla_reprogramaciones.getValueAt(rec, 3).toString();
@@ -336,7 +338,11 @@ public class Reprogramacion extends javax.swing.JFrame {
             int contadorLote = 0;
             int lotesIngresados = 0;
 
-            int validacionProgramacion = verificacionSemanas(fecha2, tipo_validacion);
+            //Conversin de fecha Date a String
+            DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaConverida = fechaHora.format(fecha);
+
+            int validacionProgramacion = verificacionSemanas(fechaConverida, tipo_validacion);
 
             //Validacion de semanas programadas Jueves, Vienes, Sabado y Domingo
             validacionProgramacionSemanaProceso = validacionSemanaProceso((semana - 1), año);
@@ -359,9 +365,9 @@ public class Reprogramacion extends javax.swing.JFrame {
 
                     ObservacionReprogramacion justificacion = new ObservacionReprogramacion();
                     justificacion.setVisible(true);
-                    
-                    
+
                     justificacion.txt_registro_principal.setText(this.txt_registro_repro.getText());
+                    justificacion.txt_fecha.setText(fechaConverida);
 
                 } else {
                     conexion = new ConexioSQLite();
@@ -393,7 +399,35 @@ public class Reprogramacion extends javax.swing.JFrame {
                     }
                 }
 
+            } else {
+                conexion = new ConexioSQLite();
+                conexion.coneccionbase();
+
+                String registro = txt_registro_repro.getText();
+
+                String formato = date_nueva_fecha.getDateFormatString();
+                Date date = (Date) date_nueva_fecha.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                String fecha_ingresada = String.valueOf(sdf.format(date));
+
+                String motivo = combo_motivo.getSelectedItem().toString();
+                String observaciones = txt_observaciones_reprogramacion.getText();
+                int semana_fecha = numeroSemanas(date);
+                boolean resultado = conexion.upgrade_reprogramacion(registro, fecha_ingresada, observaciones, motivo, semana_fecha);
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                    LimpiarCampos();
+                    ancho_columnas();
+                    centrar_datos();
+                    cargar_tabla_reprogramaciones();
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                    LimpiarCampos();
+                }
             }
+
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -612,13 +646,17 @@ public class Reprogramacion extends javax.swing.JFrame {
         txt_fecha_propuesta2.setText("");
     }
 
-    //METODO PARA OBTENER SEMANA   
-    public static int numeroSemanas(Date fecha) {
-        Calendar calendar = Calendar.getInstance();
+     public int numeroSemanas(Date fecha) {
+
+        int semana = 0;
+        //Calendar calendar = Calendar.getInstance();
+        GregorianCalendar calendar = new GregorianCalendar();
         calendar.setFirstDayOfWeek(calendar.MONDAY);
         calendar.setMinimalDaysInFirstWeek(7);
         calendar.setTime(fecha);
-        return calendar.get(Calendar.WEEK_OF_YEAR) + 1;
+        semana = 0;
+        semana = calendar.get(Calendar.WEEK_OF_YEAR);
+        return semana;
     }
 
     void cargar_tabla_reprogramaciones() {
@@ -1081,10 +1119,10 @@ public class Reprogramacion extends javax.swing.JFrame {
         int total = 0;
 
         try {
-            String date = txt_fecha_propuesta2.getText();
+
             SimpleDateFormat convertifecha = new SimpleDateFormat("yyyy-MM-dd");
-            Date fechafinal = convertifecha.parse(date);
-            int semana = numeroSemanas(fechafinal);
+            Date date = convertifecha.parse(fecha);                        
+            int semana = numeroSemanas(date);
 
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
