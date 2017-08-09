@@ -1,5 +1,3 @@
-
-
 package Vista;
 
 import Conexion.ConexioSQLite;
@@ -293,7 +291,7 @@ public class Programacion extends javax.swing.JFrame {
             } else {
                 try {
                     int validacionProgramacionSemanaProceso = 0;
-                    String tipo = "",lote = "";
+                    String tipo = "", lote = "";
                     int contadorSemanas = 0;
                     int contadorLote = 0;
                     int lotesIngresados = 0;
@@ -327,36 +325,70 @@ public class Programacion extends javax.swing.JFrame {
                     //VALIDACION CANTIDAD DE LOTES MAYORES A 3 (PROCESO)
                     int resultadoTotalLotes = contadorLote + lotesIngresados;
 
-                    if (validacionProgramacion >= 1 || validacionProgramacionSemanaProceso > 0 || resultadoTotalLotes > 3 || contadorSemanas > 3) {
+                    if (tipo.equals("PROCESO")) {
+                        if (validacionProgramacion >= 1 || validacionProgramacionSemanaProceso > 0 || resultadoTotalLotes > 3 || contadorSemanas > 3) {
 
-                        int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEMANA YA TIENE LA CAPACIADAD DE VALIDACIONES PROGRAMADAS COMPLETAS "
-                                + "\n PARA TIPO : " + tipo + " \n ¿ desea programar ?", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                            int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEMANA YA TIENE LA CAPACIADAD DE VALIDACIONES PROGRAMADAS COMPLETAS "
+                                    + "\n PARA TIPO : " + tipo + " \n ¿ desea programar ?", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
-                        if (JOptionPane.OK_OPTION == confirmado) {
+                            if (JOptionPane.OK_OPTION == confirmado) {
 
-                            ObservacionProgramacion justificacion = new ObservacionProgramacion();
-                            justificacion.setVisible(true);
-                            justificacion.txt_registro_principal.setText(this.txt_registro_pro.getText());
+                                ObservacionProgramacion justificacion = new ObservacionProgramacion();
+                                justificacion.setVisible(true);
+                                justificacion.txt_registro_principal.setText(this.txt_registro_pro.getText());
+
+                            } else {
+
+                            }
 
                         } else {
+                            boolean resultado = conexion.upgrade_programacion(registro_pro, "Programado", observacion);
 
+                            if (resultado == true) {
+                                JOptionPane.showMessageDialog(null, "PROYECTO PROGRAMADO");
+                                LimpiarCampos();
+                                cargar_tabla_programaciones();
+                                ancho_columnas();
+                                centrar_datos();
+                                conexion.cerrar();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                                LimpiarCampos();
+                            }
                         }
-
                     } else {
-                        boolean resultado = conexion.upgrade_programacion(registro_pro, "Programado", observacion);
+                        if (validacionProgramacion >= 1 || contadorSemanas > 3) {
 
-                        if (resultado == true) {
-                            JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                            LimpiarCampos();
-                            cargar_tabla_programaciones();
-                            ancho_columnas();
-                            centrar_datos();
-                            conexion.cerrar();
+                            int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEMANA YA TIENE LA CAPACIADAD DE VALIDACIONES PROGRAMADAS COMPLETAS "
+                                    + "\n PARA TIPO : " + tipo + " \n ¿ desea programar ?", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                            if (JOptionPane.OK_OPTION == confirmado) {
+
+                                ObservacionProgramacion justificacion = new ObservacionProgramacion();
+                                justificacion.setVisible(true);
+                                justificacion.txt_registro_principal.setText(this.txt_registro_pro.getText());
+
+                            } else {
+
+                            }
+
                         } else {
-                            JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                            LimpiarCampos();
+                            boolean resultado = conexion.upgrade_programacion(registro_pro, "Programado", observacion);
+
+                            if (resultado == true) {
+                                JOptionPane.showMessageDialog(null, "PROYECTO PROGRAMADO");
+                                LimpiarCampos();
+                                cargar_tabla_programaciones();
+                                ancho_columnas();
+                                centrar_datos();
+                                conexion.cerrar();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                                LimpiarCampos();
+                            }
                         }
                     }
+
                 } catch (ParseException ex) {
                     Logger.getLogger(Programacion.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -955,7 +987,7 @@ public class Programacion extends javax.swing.JFrame {
         return validacion_pendiente_pro;
 
     }
-        
+
     public static String Registro_Lote(String registro) {
 
         conexion = new ConexioSQLite();
@@ -968,12 +1000,12 @@ public class Programacion extends javax.swing.JFrame {
         Connection cn = con.Conectar();
 
         query = "SELECT LOTE FROM PLANEACIONES_VALIDACION WHERE NUMERO_REGISTRO = " + registro + "";
-                
+
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-               lote = rs.getString("LOTE");
+                lote = rs.getString("LOTE");
             }
 
         } catch (SQLException ex) {
@@ -982,7 +1014,7 @@ public class Programacion extends javax.swing.JFrame {
         return lote;
 
     }
-    
+
     public int verificacionSemanas(String fecha, String tipo) {
 
         int resultado = 0;
@@ -1152,7 +1184,7 @@ public class Programacion extends javax.swing.JFrame {
         }
         return contadorSemana;
     }
-    
+
     // METODO PARA VALIDAR CANTIDAD DE VALIDACIONES EN SEMANA
     public static int contadorSemana(int semana, String tipo, int año) {
 
@@ -1185,7 +1217,7 @@ public class Programacion extends javax.swing.JFrame {
         }
         return contadorSemana;
     }
-    
+
     public void ancho_columnas() {
         tabla_proyectos.getColumnModel().getColumn(0).setPreferredWidth(50);
         tabla_proyectos.getColumnModel().getColumn(1).setPreferredWidth(90);
