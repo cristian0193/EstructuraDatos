@@ -1420,6 +1420,8 @@ public class Principal extends javax.swing.JFrame {
         lb_aprobador.setVisible(false);
         txt_estado_proyecto.setText("En Creacion");
         txt_observaciones_proyecto.setText("");
+        this.btn_guardar.setVisible(true);
+        this.btn_actualizar.setVisible(true);
 
     }
 
