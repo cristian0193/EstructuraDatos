@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.table.DefaultTableModel;
 
 public class PrincipalNoProgramadas extends javax.swing.JFrame {
@@ -519,7 +520,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                             "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                             "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                             "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida,
-                            "", "", "", estado);
+                            "", "", "", "No Programada");
 
                     if (resultado == true) {
                         JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
@@ -905,12 +906,16 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
     }
 
 //METODO PARA OBTENER SEMANA   
-    public static int numeroSemanas(Date fecha) {
-        Calendar calendar = Calendar.getInstance();
+  public int numeroSemanas(Date fecha) {
+        int semana = 0;
+        //Calendar calendar = Calendar.getInstance();
+        GregorianCalendar calendar = new GregorianCalendar();
         calendar.setFirstDayOfWeek(calendar.MONDAY);
         calendar.setMinimalDaysInFirstWeek(7);
         calendar.setTime(fecha);
-        return calendar.get(Calendar.WEEK_OF_YEAR);
+        semana = 0;
+        semana = calendar.get(Calendar.WEEK_OF_YEAR);
+        return semana;
     }
 
 // METODO PARA CARGAR TABLA PRINCIPAL
