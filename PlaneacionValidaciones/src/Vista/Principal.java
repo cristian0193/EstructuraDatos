@@ -620,7 +620,35 @@ public class Principal extends javax.swing.JFrame {
                             LimpiarCampos();
                         }
                     } else {
-                        if ((tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) || contadorSemanaAnterior > 0) {
+                        if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
+                            JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
+                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                            JOptionPane.showMessageDialog(null, "SE ACTIVARA EL REGISTRO CON EXCEPCIONES POR FAVOR JUSTIFIQUE EL INGRESO"
+                                    + " DE LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+
+                            JOptionPane.showMessageDialog(null, "RECUERDE QUE SE DEBEN HACER ACUERDOS PREVIOS CON EL "
+                                    + "\n AREA ENCARGA DE EJECUTAR LA VALIDACÓN O CALIFICACIÓN "
+                                    + "\n DE LO CONTRARIO SE PROCEDE A LA NO PROGRAMACION. ", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+
+                            AcuerdoCalidad acuerdo = new AcuerdoCalidad();
+
+                            acuerdo.registro.setText(txt_registro.getText());
+                            acuerdo.gcc.setText(txt_GCC.getText());
+                            acuerdo.nombre.setText(txt_proyecto.getText());
+                            acuerdo.tipo.setText(combo_tipo.getSelectedItem().toString());
+                            acuerdo.lider.setText(combo_lider_tecnico.getSelectedItem().toString());
+                            acuerdo.planta.setText(combo_planta.getSelectedItem().toString());
+                            acuerdo.maquina.setText(combo_maquina.getSelectedItem().toString());
+                            acuerdo.lote.setText(combo_lote.getSelectedItem().toString());
+                            acuerdo.turno.setText(txt_turnos.getText());
+                            acuerdo.fecha.setText(txt_fecha_propuesta.getText());
+                            acuerdo.evento.setText("GUARDAR");
+
+                            acuerdo.setVisible(true);
+                            this.hide();
+
+                        } else if (tipo_validacion.equals("PROCESO") && contadorSemanaAnterior > 0) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
                                     + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
@@ -1034,9 +1062,9 @@ public class Principal extends javax.swing.JFrame {
                             //VALIDACION DE FECHA SI LA VALIDACION DE PROCESO YA ESTA PROGRAMADA UN JUEVES, VIERNES O SABADO DE LA SEMANA ANTERIOR (PROCESO)
                             contadorSemanaAnterior = validacionSemanaProceso((semana - 1), año);
 
-                            if ((tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) || contadorSemanaAnterior > 0) {
-                                 JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
-                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                            if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
+                                JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
+                                        + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
                                 JOptionPane.showMessageDialog(null, "SE ACTIVARA EL REGISTRO CON EXCEPCIONES POR FAVOR JUSTIFIQUE EL INGRESO"
                                         + " DE LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
@@ -1062,6 +1090,33 @@ public class Principal extends javax.swing.JFrame {
                                 acuerdo.setVisible(true);
                                 this.hide();
 
+                            } else if (tipo_validacion.equals("PROCESO") && contadorSemanaAnterior > 0) {
+                                JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
+                                        + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+
+                                JOptionPane.showMessageDialog(null, "SE ACTIVARA EL REGISTRO CON EXCEPCIONES POR FAVOR JUSTIFIQUE EL INGRESO"
+                                        + " DE LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+
+                                JOptionPane.showMessageDialog(null, "RECUERDE QUE SE DEBEN HACER ACUERDOS PREVIOS CON EL "
+                                        + "\n AREA ENCARGA DE EJECUTAR LA VALIDACÓN O CALIFICACIÓN "
+                                        + "\n DE LO CONTRARIO SE PROCEDE A LA NO PROGRAMACION. ", "Informativo", JOptionPane.INFORMATION_MESSAGE);
+
+                                AcuerdoCalidad acuerdo = new AcuerdoCalidad();
+
+                                acuerdo.registro.setText(txt_registro.getText());
+                                acuerdo.gcc.setText(txt_GCC.getText());
+                                acuerdo.nombre.setText(txt_proyecto.getText());
+                                acuerdo.tipo.setText(combo_tipo.getSelectedItem().toString());
+                                acuerdo.lider.setText(combo_lider_tecnico.getSelectedItem().toString());
+                                acuerdo.planta.setText(combo_planta.getSelectedItem().toString());
+                                acuerdo.maquina.setText(combo_maquina.getSelectedItem().toString());
+                                acuerdo.lote.setText(combo_lote.getSelectedItem().toString());
+                                acuerdo.turno.setText(txt_turnos.getText());
+                                acuerdo.fecha.setText(txt_fecha_propuesta.getText());
+                                acuerdo.evento.setText("UPDATE");
+
+                                acuerdo.setVisible(true);
+                                this.hide();
                             } else if (tipo_validacion.equals("EQUIPOS") && contadorSemanas >= 3) {
                                 JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                                         + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
