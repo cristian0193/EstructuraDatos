@@ -62,7 +62,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1058, 670));
-        setPreferredSize(new java.awt.Dimension(1058, 663));
+        setPreferredSize(new java.awt.Dimension(1100, 663));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -90,7 +90,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_proyectos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 268, 1020, 360));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 268, 1050, 360));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos para Consultar"));
 
@@ -136,7 +136,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
 
         jLabel15.setText("Seleccionar Filtro :");
 
-        combo_estado_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "Programado" }));
+        combo_estado_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "Programado", "Ejecutada No Programada" }));
         combo_estado_consulta.setToolTipText("Filtro para verificacion por estado");
         combo_estado_consulta.setEnabled(false);
 
@@ -181,17 +181,16 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19))
+                        .addComponent(jButton3)))
+                .addGap(44, 44, 44))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,14 +206,12 @@ public class EstadoProyecto extends javax.swing.JFrame {
                                 .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton1)
-                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txt_fecha_final, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap(21, Short.MAX_VALUE))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -226,11 +223,11 @@ public class EstadoProyecto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(combo_estado_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addContainerGap())))
+                            .addComponent(jLabel7))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 1030, 110));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 1050, 110));
 
         txt_observaciones_programacion.setColumns(20);
         txt_observaciones_programacion.setRows(5);
@@ -513,6 +510,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "WHERE ESTADO_PROYECTO = 'Programado' "
                 + "OR ESTADO_PROYECTO = 'Reprogramado' "
                 + "OR ESTADO_PROYECTO = 'Ejecutada' "
+                + "OR ESTADO_PROYECTO = 'Ejecutada No Programada' "
                 + "ORDER BY FECHA_PROPUESTA";
 
         System.out.println(query);
@@ -570,7 +568,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' AND"
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','No Programada','Cerrada')) "
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','Cerrada','Reprogramada')) "
                 + "ORDER BY FECHA_PROPUESTA";
         System.out.println(query);
         try {
@@ -626,7 +624,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' AND "
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','No Programada','Cerrada')) "
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','Cerrada','Reprogramada')) "
                 + "ORDER BY FECHA_PROPUESTA";
 
         try {
@@ -738,7 +736,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "GCC_APR = '" + gcc.toUpperCase().trim() + "' AND "
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','No Programada','Cerrada')) "
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','Cerrada','Reprogramada')) "
                 + "ORDER BY FECHA_PROPUESTA";
 
         try {

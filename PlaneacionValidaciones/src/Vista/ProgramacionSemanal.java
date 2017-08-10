@@ -126,7 +126,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
             }
         });
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "No Programadas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ejecutada No Programadas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
         tabla_no_programada.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -181,6 +181,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("Prerequisitos de Calificacion");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -190,6 +191,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setText("Prerequisitos de Proceso");
+        jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -318,7 +320,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
 
         txt_estado_proyecto.setEditable(false);
         txt_estado_proyecto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        txt_estado_proyecto.setText("No Programada");
+        txt_estado_proyecto.setText("Ejecutada No Programada");
         txt_estado_proyecto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_estado_proyectoActionPerformed(evt);
@@ -514,13 +516,13 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                     String estado = txt_estado_proyecto.getText();
                     String observaciones = txt_observaciones_proyecto.getText();
 
-                    boolean resultado = conexion.insertNoprogramadas(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, "En Creacion", observaciones,
-                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
-                            "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "", "", semanaObtenida,
-                            "", "", "", "No Programada");
+                    boolean resultado = conexion.insertNoprogramadas(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, "Ejecutada No Programada", observaciones,
+                            "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica",
+                            "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica",
+                            "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica",
+                            "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica",
+                            "No Aplica", "No Aplica", "No Aplica", "No Aplica", "No Aplica", "", "", semanaObtenida,
+                            "", "", "", "Ejecutada No Programada");
 
                     if (resultado == true) {
                         JOptionPane.showMessageDialog(null, "PROYECTO INSERTADO");
@@ -891,7 +893,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         date_fecha_propuesta.setDate(null);
         txt_fecha_propuesta.setText("");
         combo_consulta.setSelectedIndex(0);
-        txt_estado_proyecto.setText("No Programada");
+        txt_estado_proyecto.setText("Ejecutada No Programada");
         txt_observaciones_proyecto.setText("");
     }
 
@@ -948,7 +950,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "OBSERVACIONES_VALIDACION AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE (ESTADO_PROYECTO = 'En Creacion' AND NO_PROGRAMADA = 'No Programada') "
+                + "WHERE (NO_PROGRAMADA = 'Ejecutada No Programada') "
                 + "ORDER BY NUMERO_REGISTRO DESC";
 
         try {
@@ -1011,7 +1013,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "ESTADO_PROYECTO = 'No Programada' "
+                + "NO_PROGRAMADA = 'Ejecutada No Programada' "
                 + "AND FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
                 + "ORDER BY NUMERO_REGISTRO DESC";
         try {
@@ -1074,7 +1076,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "ESTADO_PROYECTO = 'No Programada' AND "
+                + "NO_PROGRAMADA = 'Ejecutada No Programada' AND "
                 + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' "
                 + "ORDER BY NUMERO_REGISTRO DESC";
         try {
@@ -1137,7 +1139,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "ESTADO_PROYECTO = 'No Programada' AND "
+                + "NO_PROGRAMADA = 'Ejecutada No Programada' AND "
                 + "NUMERO_REGISTRO = " + registro + " "
                 + "ORDER BY NUMERO_REGISTRO DESC";
         System.out.println(query);
@@ -1200,7 +1202,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "ESTADO_PROYECTO = 'En Creacion' AND "
+                + "NO_PROGRAMADA = 'Ejecutada No Programada' AND "
                 + "GCC_APR = '" + gcc + "' "
                 + "ORDER BY NUMERO_REGISTRO DESC";;
         System.out.println(query);
@@ -1263,7 +1265,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "ESTADO_PROYECTO = 'En Creacion' AND "
+                + "NO_PROGRAMADA = 'Ejecutada No Programada' AND "
                 + "NOMBRE_PROYECTO LIKE '%" + proyecto + "%' "
                 + "ORDER BY NUMERO_REGISTRO DESC";
         System.out.println(query);

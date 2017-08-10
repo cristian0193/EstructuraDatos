@@ -329,7 +329,7 @@ public class Programacion extends javax.swing.JFrame {
                         if (validacionProgramacion >= 1 || validacionProgramacionSemanaProceso > 0 || resultadoTotalLotes > 3 || contadorSemanas > 3) {
 
                             int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEMANA YA TIENE LA CAPACIADAD DE VALIDACIONES PROGRAMADAS COMPLETAS "
-                                    + "\n PARA TIPO : " + tipo + " \n ¿ desea programar ?", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                                    + "\n PARA TIPO : " + tipo + " \n ¿ desea programar ?", "Capacidad Completa", JOptionPane.QUESTION_MESSAGE);
 
                             if (JOptionPane.OK_OPTION == confirmado) {
 
@@ -360,7 +360,7 @@ public class Programacion extends javax.swing.JFrame {
                         if (validacionProgramacion >= 1 || contadorSemanas > 3) {
 
                             int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEMANA YA TIENE LA CAPACIADAD DE VALIDACIONES PROGRAMADAS COMPLETAS "
-                                    + "\n PARA TIPO : " + tipo + " \n ¿ desea programar ?", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                                    + "\n PARA TIPO : " + tipo + " \n ¿ desea programar ?", "Capacidad Completa", JOptionPane.QUESTION_MESSAGE);
 
                             if (JOptionPane.OK_OPTION == confirmado) {
 
