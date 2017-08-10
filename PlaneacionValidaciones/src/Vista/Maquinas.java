@@ -36,8 +36,8 @@ public class Maquinas extends javax.swing.JFrame {
         txt_nombre_tipo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_maquinas = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_guardar = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -100,19 +100,19 @@ public class Maquinas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_maquinas);
 
-        jButton1.setBackground(new java.awt.Color(102, 255, 255));
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_guardar.setBackground(new java.awt.Color(102, 255, 255));
+        btn_guardar.setText("Guardar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_guardarActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(102, 255, 0));
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_eliminar.setBackground(new java.awt.Color(102, 255, 0));
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_eliminarActionPerformed(evt);
             }
         });
 
@@ -126,9 +126,9 @@ public class Maquinas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE))
                 .addContainerGap())
@@ -142,8 +142,8 @@ public class Maquinas extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_guardar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(btn_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addContainerGap())
@@ -152,7 +152,7 @@ public class Maquinas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
 
         if (txt_id_tipo.getText().equals("")) {
             if (txt_nombre_tipo.getText().equals("")) {
@@ -165,7 +165,7 @@ public class Maquinas extends javax.swing.JFrame {
                 boolean resultado = conexion.insert_maquina(nombre.toUpperCase());
 
                 if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "MAQUINA INSERTADA");
+                    JOptionPane.showMessageDialog(null, "REGISTRO INSERTADO");
                     LimpiarCampos();
                     cargar_tabla_tipo();
                     ancho_columnas();
@@ -187,21 +187,21 @@ public class Maquinas extends javax.swing.JFrame {
             boolean resultado = conexion.upgrade_maquina(id, nombre);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "MAQUINA ACTUALIZADA");
+                JOptionPane.showMessageDialog(null, "REGISTRO ACTUALIZADO");
                 LimpiarCampos();
                 cargar_tabla_tipo();
                 ancho_columnas();
                 centrar_datos();
                 conexion.cerrar();
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
                 LimpiarCampos();
             }
 
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void tabla_maquinasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_maquinasMouseClicked
 
@@ -212,7 +212,7 @@ public class Maquinas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tabla_maquinasMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
 
         if (txt_id_tipo.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
@@ -225,7 +225,7 @@ public class Maquinas extends javax.swing.JFrame {
             boolean resultado = conexion.delete_maquinas(id);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "TIPO ELIMINADO");
+                JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
                 LimpiarCampos();
                 cargar_tabla_tipo();
                 ancho_columnas();
@@ -237,11 +237,11 @@ public class Maquinas extends javax.swing.JFrame {
             }
         }
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_eliminarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btn_eliminar;
+    private javax.swing.JButton btn_guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -252,25 +252,29 @@ public class Maquinas extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nombre_tipo;
     // End of variables declaration//GEN-END:variables
 
+    // METODO PARA LIMPIAR CAMPOS
     public void LimpiarCampos() {
         txt_id_tipo.setText("");
         txt_nombre_tipo.setText("");
     }
 
+    // METODO PARA CARGAR DATOS
     void cargar_tabla_tipo() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
+        // TITULOS DE TABLA DE DATOS
         String[] titulos = {"ID", "NOMBRE"};
         String[] registro = new String[2];
-        String query = "";
+        String query;
 
         modelo = new DefaultTableModel(null, titulos);
 
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
+        // QUERY DE BASE DE DATOS
         query = "SELECT "
                 + "ID_MAQUINA AS ID, "
                 + "NOMBRE_MAQUINA AS NOMBRE "
@@ -281,8 +285,10 @@ public class Maquinas extends javax.swing.JFrame {
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
+            
             while (rs.next()) {
 
+                 // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("NOMBRE");
 
@@ -297,17 +303,17 @@ public class Maquinas extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA ORGANIZAR COLUMNAS
     public void ancho_columnas() {
         tabla_maquinas.getColumnModel().getColumn(0).setPreferredWidth(50);
         tabla_maquinas.getColumnModel().getColumn(1).setPreferredWidth(400);
     }
 
+    // METODO PARA CENTRAR DATOS DE TABLA
     public void centrar_datos() {
         Alinear = new DefaultTableCellRenderer();
         Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-        tabla_maquinas.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-        // tabla_tecnico.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-
+        tabla_maquinas.getColumnModel().getColumn(0).setCellRenderer(Alinear);        
     }
 
 }

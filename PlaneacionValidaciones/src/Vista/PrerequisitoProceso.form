@@ -166,12 +166,12 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="txt_pre_materiales" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_pre_protocolo" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_pre_test" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txt_pre_protocolo_CSV" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txt_pre_protocolo_IQOQPQ" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txt_pre_metodo_analisis" alignment="0" max="32767" attributes="0"/>
                               <Component id="txt_pre_especificacion" alignment="0" max="32767" attributes="0"/>
                               <Component id="txt_pre_HFM" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_pre_calificacion" alignment="0" pref="65" max="32767" attributes="0"/>
+                              <Component id="txt_pre_protocolos" alignment="0" pref="65" max="32767" attributes="0"/>
                               <Component id="txt_pre_DP" max="32767" attributes="0"/>
                               <Component id="jLabel19" max="32767" attributes="0"/>
                           </Group>
@@ -182,10 +182,7 @@
                                   <Component id="txt_fecha_especificacion" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                                   <Component id="txt_fecha_metodo" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel20" min="-2" pref="112" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel20" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -200,7 +197,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="combo_pre_FP" min="-2" pref="102" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txt_pre_FP" min="-2" pref="67" max="-2" attributes="0"/>
+                          <Component id="txt_pre_materiales" min="-2" pref="67" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
@@ -246,13 +243,13 @@
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel21" max="32767" attributes="0"/>
-                              <Component id="txt_pre_CG" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_pre_PC" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_pre_PF" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_pre_PR" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txt_pre_muestras" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txt_pre_SOP" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txt_pre_estabilidad" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txt_pre_esp_equipo" alignment="0" max="32767" attributes="0"/>
                               <Component id="txt_pre_FMEA" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_pre_diagrama" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_pre_RM" alignment="0" pref="65" max="32767" attributes="0"/>
+                              <Component id="txt_pre_flujograma" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txt_pre_HFM_emitida" alignment="0" pref="65" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -285,7 +282,7 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="combo_pre_diagrama" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_pre_diagrama" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_pre_flujograma" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txt_fecha_diagrama_proceso" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
@@ -299,32 +296,32 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="combo_pre_PR" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_pre_PR" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_pre_esp_equipo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="combo_pre_PF" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_pre_PF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_pre_estabilidad" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="combo_pre_RM" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_pre_RM" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_pre_HFM_emitida" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txt_fecha_hoja_maestra" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="combo_pre_PC" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_pre_PC" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_pre_SOP" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="combo_pre_CG" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_pre_CG" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_pre_muestras" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
@@ -347,23 +344,23 @@
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="combo_pre_test" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txt_pre_test" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txt_pre_metodo_analisis" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                          <Component id="txt_pre_calificacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txt_pre_protocolos" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="combo_pre_calificacion" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txt_pre_protocolo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_pre_protocolo_IQOQPQ" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="combo_pre_protocolo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txt_pre_materiales" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_pre_protocolo_CSV" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="combo_pre_materiales" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -377,7 +374,7 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txt_pre_FP" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_pre_materiales" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="combo_pre_FP" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -683,7 +680,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="combo_pre_FPActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pre_diagrama">
+        <Component class="javax.swing.JTextField" name="txt_pre_flujograma">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -693,37 +690,37 @@
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pre_PR">
+        <Component class="javax.swing.JTextField" name="txt_pre_esp_equipo">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pre_PF">
+        <Component class="javax.swing.JTextField" name="txt_pre_estabilidad">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pre_RM">
+        <Component class="javax.swing.JTextField" name="txt_pre_HFM_emitida">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pre_PC">
+        <Component class="javax.swing.JTextField" name="txt_pre_SOP">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pre_CG">
+        <Component class="javax.swing.JTextField" name="txt_pre_muestras">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pre_FP">
+        <Component class="javax.swing.JTextField" name="txt_pre_materiales">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pre_calificacion">
+        <Component class="javax.swing.JTextField" name="txt_pre_protocolos">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -738,17 +735,17 @@
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pre_test">
+        <Component class="javax.swing.JTextField" name="txt_pre_metodo_analisis">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pre_protocolo">
+        <Component class="javax.swing.JTextField" name="txt_pre_protocolo_IQOQPQ">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pre_materiales">
+        <Component class="javax.swing.JTextField" name="txt_pre_protocolo_CSV">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>

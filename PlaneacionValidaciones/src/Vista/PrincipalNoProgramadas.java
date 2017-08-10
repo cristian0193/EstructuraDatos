@@ -574,66 +574,68 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
 
         int index = combo_consulta.getSelectedIndex();
 
-        if (index == 0) {
-            JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
-        } else if (index == 1) {
+        switch (index) {
+            case 0:
+                JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
+                break;
+            case 1:
+                if (this.date_fecha_inicio.getDate() == null) {
+                    JOptionPane.showMessageDialog(null, "INGRESE FECHA INICIAL");
+                } else if (this.date_fecha_final.getDate() == null) {
+                    JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
+                } else {
+                    String formato1 = date_fecha_inicio.getDateFormatString();
+                    Date date1 = (Date) date_fecha_inicio.getDate();
+                    SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
+                    String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
 
-            if (this.date_fecha_inicio.getDate() == null) {
-                JOptionPane.showMessageDialog(null, "INGRESE FECHA INICIAL");
-            } else if (this.date_fecha_final.getDate() == null) {
-                JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
-            } else {
-                String formato1 = date_fecha_inicio.getDateFormatString();
-                Date date1 = (Date) date_fecha_inicio.getDate();
-                SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
-                String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
+                    String formato2 = date_fecha_final.getDateFormatString();
+                    Date date2 = (Date) date_fecha_final.getDate();
+                    SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                    String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
 
-                String formato2 = date_fecha_final.getDateFormatString();
-                Date date2 = (Date) date_fecha_final.getDate();
-                SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-                String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
-
-                consulta_rango_fechas(fecha_ingresada_inicio, fecha_ingresada_final);
-                conexion.cerrar();
+                    consulta_rango_fechas(fecha_ingresada_inicio, fecha_ingresada_final);
+                    conexion.cerrar();
+                }
+                break;
+            case 2:
+                String lider = txt_consulta_lider.getText();
+                if (lider.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE LIDER TECNICO");
+                } else {
+                    consulta_lider(lider);
+                    conexion.cerrar();
+                }
+                break;
+            case 3: {
+                String registro = txt_consulta_registro.getText();
+                if (registro.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE REGISTRO NUMERICO");
+                } else {
+                    consulta_registro(registro);
+                    conexion.cerrar();
+                }
+                break;
             }
-
-        } else if (index == 2) {
-
-            String lider = txt_consulta_lider.getText();
-
-            if (lider.equals("")) {
-                JOptionPane.showMessageDialog(null, "INGRESE LIDER TECNICO");
-            } else {
-                consulta_lider(lider);
-                conexion.cerrar();
+            case 4: {
+                String registro = txt_consulta_gcc.getText();
+                if (registro.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE NUMERO GCC/APR");
+                } else {
+                    consulta_gcc(registro);
+                    conexion.cerrar();
+                }
+                break;
             }
-
-        } else if (index == 3) {
-            String registro = txt_consulta_registro.getText();
-
-            if (registro.equals("")) {
-                JOptionPane.showMessageDialog(null, "INGRESE REGISTRO NUMERICO");
-            } else {
-                consulta_registro(registro);
-                conexion.cerrar();
-            }
-        } else if (index == 4) {
-            String registro = txt_consulta_gcc.getText();
-
-            if (registro.equals("")) {
-                JOptionPane.showMessageDialog(null, "INGRESE NUMERO GCC/APR");
-            } else {
-                consulta_gcc(registro);
-                conexion.cerrar();
-            }
-        } else {
-            String registro = txt_consulta_proyecto.getText();
-
-            if (registro.equals("")) {
-                JOptionPane.showMessageDialog(null, "INGRESE NOMBRE PROYECTO");
-            } else {
-                consulta_proyecto(registro);
-                conexion.cerrar();
+            default: {
+                String registro = txt_consulta_proyecto.getText();
+                if (registro.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE NOMBRE PROYECTO");
+                } else {
+                    consulta_proyecto(registro);
+                    conexion.cerrar();
+                }
+                break;
             }
         }
 
@@ -751,57 +753,64 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
 
         int index = combo_consulta.getSelectedIndex();
 
-        if (index == 0) {
-            JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
-        } else if (index == 1) {
-            this.date_fecha_inicio.setEnabled(true);
-            this.date_fecha_final.setEnabled(true);
-            this.txt_consulta_lider.setEditable(false);
-            this.txt_consulta_lider.setEnabled(false);
-            this.txt_consulta_proyecto.setEditable(false);
-            this.txt_consulta_gcc.setEditable(false);
-            this.txt_consulta_proyecto.setEnabled(false);
-            this.txt_consulta_gcc.setEnabled(false);
-        } else if (index == 2) {
-            this.txt_consulta_lider.setEditable(true);
-            this.txt_consulta_lider.setEnabled(true);
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_registro.setEnabled(false);
-            this.txt_consulta_proyecto.setEditable(false);
-            this.txt_consulta_gcc.setEditable(false);
-            this.txt_consulta_proyecto.setEnabled(false);
-            this.txt_consulta_gcc.setEnabled(false);
-        } else if (index == 3) {
-            this.txt_consulta_registro.setEditable(true);
-            this.txt_consulta_registro.setEnabled(true);
-            this.txt_consulta_lider.setEnabled(false);
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_proyecto.setEditable(false);
-            this.txt_consulta_gcc.setEditable(false);
-            this.txt_consulta_proyecto.setEnabled(false);
-            this.txt_consulta_gcc.setEnabled(false);
-        } else if (index == 4) {
-            this.txt_consulta_registro.setEditable(false);
-            this.txt_consulta_registro.setEnabled(false);
-            this.txt_consulta_lider.setEnabled(false);
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_proyecto.setEditable(false);
-            this.txt_consulta_gcc.setEditable(true);
-            this.txt_consulta_proyecto.setEnabled(false);
-            this.txt_consulta_gcc.setEnabled(true);
-        } else {
-            this.txt_consulta_registro.setEditable(false);
-            this.txt_consulta_registro.setEnabled(false);
-            this.txt_consulta_lider.setEnabled(false);
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_proyecto.setEditable(true);
-            this.txt_consulta_gcc.setEditable(false);
-            this.txt_consulta_proyecto.setEnabled(true);
-            this.txt_consulta_gcc.setEnabled(false);
+        switch (index) {
+            case 0:
+                JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
+                break;
+            case 1:
+                this.date_fecha_inicio.setEnabled(true);
+                this.date_fecha_final.setEnabled(true);
+                this.txt_consulta_lider.setEditable(false);
+                this.txt_consulta_lider.setEnabled(false);
+                this.txt_consulta_proyecto.setEditable(false);
+                this.txt_consulta_gcc.setEditable(false);
+                this.txt_consulta_proyecto.setEnabled(false);
+                this.txt_consulta_gcc.setEnabled(false);
+                break;
+            case 2:
+                this.txt_consulta_lider.setEditable(true);
+                this.txt_consulta_lider.setEnabled(true);
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_registro.setEnabled(false);
+                this.txt_consulta_proyecto.setEditable(false);
+                this.txt_consulta_gcc.setEditable(false);
+                this.txt_consulta_proyecto.setEnabled(false);
+                this.txt_consulta_gcc.setEnabled(false);
+                break;
+            case 3:
+                this.txt_consulta_registro.setEditable(true);
+                this.txt_consulta_registro.setEnabled(true);
+                this.txt_consulta_lider.setEnabled(false);
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_proyecto.setEditable(false);
+                this.txt_consulta_gcc.setEditable(false);
+                this.txt_consulta_proyecto.setEnabled(false);
+                this.txt_consulta_gcc.setEnabled(false);
+                break;
+            case 4:
+                this.txt_consulta_registro.setEditable(false);
+                this.txt_consulta_registro.setEnabled(false);
+                this.txt_consulta_lider.setEnabled(false);
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_proyecto.setEditable(false);
+                this.txt_consulta_gcc.setEditable(true);
+                this.txt_consulta_proyecto.setEnabled(false);
+                this.txt_consulta_gcc.setEnabled(true);
+                break;
+            default:
+                this.txt_consulta_registro.setEditable(false);
+                this.txt_consulta_registro.setEnabled(false);
+                this.txt_consulta_lider.setEnabled(false);
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_proyecto.setEditable(true);
+                this.txt_consulta_gcc.setEditable(false);
+                this.txt_consulta_proyecto.setEnabled(true);
+                this.txt_consulta_gcc.setEnabled(false);
+                break;
         }
 
     }//GEN-LAST:event_combo_consultaItemStateChanged
@@ -879,7 +888,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
     private javax.swing.JTextField txt_turnos;
     // End of variables declaration//GEN-END:variables
 
-//METODO PARA LIMPIAR LOS CAMPOS 
+    //METODO PARA LIMPIAR LOS CAMPOS 
     public void LimpiarCampos() {
         txt_registro.setText("");
         txt_GCC.setText("");
@@ -897,7 +906,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         txt_observaciones_proyecto.setText("");
     }
 
-//METODO PARA VALIDAR DATO NUMERICO O NO NUMERICO
+    //METODO PARA VALIDAR DATO NUMERICO O NO NUMERICO
     private boolean isNumeric(String cadena) {
         try {
             Double.parseDouble(cadena);
@@ -907,8 +916,8 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         }
     }
 
-//METODO PARA OBTENER SEMANA   
-  public int numeroSemanas(Date fecha) {
+    //METODO PARA OBTENER SEMANA   
+    public int numeroSemanas(Date fecha) {
         int semana = 0;
         //Calendar calendar = Calendar.getInstance();
         GregorianCalendar calendar = new GregorianCalendar();
@@ -920,7 +929,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         return semana;
     }
 
-// METODO PARA CARGAR TABLA PRINCIPAL
+    // METODO PARA CARGAR TABLA PRINCIPAL
     public void cargar_tabla() {
 
         conexion = new ConexioSQLite();
@@ -982,7 +991,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         }
     }
 
-// METODO PARA CONSULTAR RANGO DE FECHAS
+    // METODO PARA CONSULTAR RANGO DE FECHAS
     public void consulta_rango_fechas(String fecha_inicio, String fecha_final) {
 
         conexion = new ConexioSQLite();
@@ -1045,7 +1054,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         }
     }
 
-// METODO PARA CONSULTAR LIDER
+    // METODO PARA CONSULTAR LIDER
     public void consulta_lider(String lider) {
 
         conexion = new ConexioSQLite();
@@ -1108,7 +1117,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         }
     }
 
-// METODO PARA CONSULTAR REGISTROS
+    // METODO PARA CONSULTAR REGISTROS
     public void consulta_registro(String registro) {
 
         conexion = new ConexioSQLite();
@@ -1297,7 +1306,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         }
     }
 
-// METODO PARA CARGAR JCOMBOBOX TIPO
+    // METODO PARA CARGAR LISTA TIPO
     public void cargar_lista_tipo() {
 
         conexion = new ConexioSQLite();
@@ -1324,7 +1333,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         }
     }
 
-    // METODO PARA CARGAR JCOMBOBOX LIDER
+    // METODO PARA CARGAR LISTA LIDER
     public void cargar_lista_lider() {
 
         conexion = new ConexioSQLite();
@@ -1351,7 +1360,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         }
     }
 
-// METODO PARA CARGAR JCOMBOBOX PLANTA
+    // METODO PARA CARGAR LISTA PLANTA
     public void cargar_lista_planta() {
 
         conexion = new ConexioSQLite();
@@ -1378,7 +1387,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         }
     }
 
-// METODO PARA CARGAR JCOMBOBOX MAQUINA
+    // METODO PARA CARGAR LISTA MAQUINA
     public void cargar_lista_maquina() {
 
         conexion = new ConexioSQLite();
@@ -1405,6 +1414,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA VALIDAR REGISTRO GCC/APR/PVM ENTRE OTRAS
     public int validacionIngresoGCCAPRLimpieza(String cadena) {
 
         String indicativoGCC = "";

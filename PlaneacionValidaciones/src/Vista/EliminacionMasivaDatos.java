@@ -1,39 +1,25 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import Conexion.export_excel;
 import static Vista.Principal.conexion;
-import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Vector;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class EliminacionMasivaDatos extends javax.swing.JDialog {
 
     DefaultTableModel modelo;
-    private JFileChooser FileChooser = new JFileChooser();
-    public JDialog jDialog = new JDialog();
-    Vector columna = new Vector();
-    Vector filas = new Vector();
 
     public EliminacionMasivaDatos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla_general();
-    }
-
-    EliminacionMasivaDatos() {
-
     }
 
     @SuppressWarnings("unchecked")
@@ -145,19 +131,23 @@ public class EliminacionMasivaDatos extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
         } else {
 
-            int confirmado = JOptionPane.showConfirmDialog(null, "¿Esta Seguro de Eliminar los Datos?");
+            int confirmado = JOptionPane.showConfirmDialog(null, "¿Esta Seguro de Eliminar los Datos?","Mensaje de Confirmacion",JOptionPane.QUESTION_MESSAGE);
 
             if (JOptionPane.OK_OPTION == confirmado) {
+                
+                // CONVERSION DE FECHAS (DATE A STRING)
                 String formato1 = date_fecha_inicio.getDateFormatString();
                 Date date1 = (Date) date_fecha_inicio.getDate();
                 SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
                 String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
 
+                // CONVERSION DE FECHAS (DATE A STRING)
                 String formato2 = date_fecha_final.getDateFormatString();
                 Date date2 = (Date) date_fecha_final.getDate();
                 SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
                 String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
 
+                // EJECUCIÓN DE ELIMINACION A LA BASE DE DATOS
                 boolean resultado = conexion.eliminacion_masiva(fecha_ingresada_inicio, fecha_ingresada_final);
 
                 if (resultado == true) {
@@ -183,17 +173,23 @@ public class EliminacionMasivaDatos extends javax.swing.JDialog {
             } else if (this.date_fecha_final.getDate() == null) {
                 JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
             } else {
+                
+                // CONVERSION DE FECHAS (DATE A STRING)
                 String formato1 = date_fecha_inicio.getDateFormatString();
                 Date date1 = (Date) date_fecha_inicio.getDate();
                 SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
                 String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
 
+                // CONVERSION DE FECHAS (DATE A STRING)
                 String formato2 = date_fecha_final.getDateFormatString();
                 Date date2 = (Date) date_fecha_final.getDate();
                 SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
                 String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
 
+                // EJECUCIÓN DE CONSULTA
                 consulta_rango_fechas(fecha_ingresada_inicio, fecha_ingresada_final);
+                
+                // VISIBILIDAD DE BOTON (VERDADERA)
                 btn_eliminar.setEnabled(true);
                 conexion.cerrar();
             }                
@@ -213,20 +209,23 @@ public class EliminacionMasivaDatos extends javax.swing.JDialog {
     private javax.swing.JTable tabla_datos;
     // End of variables declaration//GEN-END:variables
 
+    // METODO PARA CARGAR TABLA DE DATOS
     void cargar_tabla_general() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
+        // TITULOS DE TABLA DE DATOS
         String[] titulos = {"NUMERO_REGISTRO", "GCC_APR", "NOMBRE_PROYECTO", "TIPO_VALIDACION", "LIDER_TECNICO", "PLANTA", "MAQUINA", "LOTE", "TURNOS", "FECHA_PROPUESTA", "ESTADO_PROYECTO", "OBSERVACIONES_VALIDACION", "FECHA_REPROGRAMACION", "OBSERVACION_REPROGRAMACION", "MOTIVO_REPROGRAMACION", "SEMANA", "RESPUESTA", "AUTORIZADO", "OBSERVACION_EXCEPCIONES"};
         String[] registro = new String[19];
-        String query = "";
+        String query;
 
         modelo = new DefaultTableModel(null, titulos);
 
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
+        // QUERY DE BASE DE DATOS
         query = "SELECT NUMERO_REGISTRO, GCC_APR, NOMBRE_PROYECTO, TIPO_VALIDACION, LIDER_TECNICO, PLANTA, MAQUINA, LOTE, TURNOS, FECHA_PROPUESTA, ESTADO_PROYECTO, OBSERVACIONES_VALIDACION, FECHA_REPROGRAMACION, OBSERVACION_REPROGRAMACION, MOTIVO_REPROGRAMACION, SEMANA, RESPUESTA, AUTORIZADO, OBSERVACION_EXCEPCIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -237,6 +236,7 @@ public class EliminacionMasivaDatos extends javax.swing.JDialog {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("NUMERO_REGISTRO");
                 registro[1] = rs.getString("GCC_APR");
                 registro[2] = rs.getString("NOMBRE_PROYECTO");
@@ -268,13 +268,13 @@ public class EliminacionMasivaDatos extends javax.swing.JDialog {
         }
     }
     
-    
-    
+    // METODO PARA CARGAR CONSULTA DE RANGO DE FECHAS    
     void consulta_rango_fechas(String fecha_inicio, String fecha_final) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
+        // TITULOS DE TABLA DE DATOS
         String[] titulos = {"NUMERO_REGISTRO", "GCC_APR", "NOMBRE_PROYECTO", "TIPO_VALIDACION", "LIDER_TECNICO", "PLANTA", "MAQUINA", "LOTE", "TURNOS", "FECHA_PROPUESTA", "ESTADO_PROYECTO", "OBSERVACIONES_VALIDACION", "FECHA_REPROGRAMACION", "OBSERVACION_REPROGRAMACION", "MOTIVO_REPROGRAMACION", "SEMANA", "RESPUESTA", "AUTORIZADO", "OBSERVACION_EXCEPCIONES"};
         String[] registro = new String[19];
         String query = "";
@@ -284,6 +284,7 @@ public class EliminacionMasivaDatos extends javax.swing.JDialog {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
+        // QUERY DE BASE DE DATOS
         query = "SELECT NUMERO_REGISTRO, GCC_APR, NOMBRE_PROYECTO, TIPO_VALIDACION, LIDER_TECNICO, PLANTA, MAQUINA, LOTE, TURNOS, FECHA_PROPUESTA, ESTADO_PROYECTO, OBSERVACIONES_VALIDACION, FECHA_REPROGRAMACION, OBSERVACION_REPROGRAMACION, MOTIVO_REPROGRAMACION, SEMANA, RESPUESTA, AUTORIZADO, OBSERVACION_EXCEPCIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -295,6 +296,7 @@ public class EliminacionMasivaDatos extends javax.swing.JDialog {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("NUMERO_REGISTRO");
                 registro[1] = rs.getString("GCC_APR");
                 registro[2] = rs.getString("NOMBRE_PROYECTO");

@@ -252,181 +252,184 @@ public class EstadoValidaciones extends javax.swing.JFrame {
     private javax.swing.JTable tabla_programadas;
     // End of variables declaration//GEN-END:variables
 
-void cargar_tabla_ejecutadas(String SEMANA,String ANO) {
+    // METODO PARA CARGAR VALIDACIONES EJECUTADAS 
+    void cargar_tabla_ejecutadas(String SEMANA,String ANO) {
 
-        conexion = new ConexioSQLite();
-        conexion.coneccionbase();
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
 
-        String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
-        String[] registro = new String[10];
-        String query = "";
+            String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
+            String[] registro = new String[10];
+            String query = "";
 
-        modelo = new DefaultTableModel(null, titulos);
+            modelo = new DefaultTableModel(null, titulos);
 
-        ConexioSQLite con = new ConexioSQLite();
-        Connection cn = con.Conectar();
+            ConexioSQLite con = new ConexioSQLite();
+            Connection cn = con.Conectar();
 
-        query = "SELECT "
-                + "GCC_APR AS GCC, "
-                + "NOMBRE_PROYECTO AS PROYECTO, "
-                + "TIPO_VALIDACION AS TIPO, "
-                + "LIDER_TECNICO AS LIDER, "
-                + "PLANTA AS PLANTA, "                
-                + "MAQUINA AS MAQUINA, "
-                + "LOTE AS LOTE, "
-                + "TURNOS AS TURNO, "
-                + "ESTADO_PROYECTO AS ESTADO, "               
-                + "FECHA_PROPUESTA AS FECHA_ACTUAL "
-                + "FROM "
-                + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'Ejecutada' "
-                + "AND SEMANA = " + SEMANA + " " 
-                + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
-                + "ORDER BY FECHA_PROPUESTA ASC;";
+            query = "SELECT "
+                    + "GCC_APR AS GCC, "
+                    + "NOMBRE_PROYECTO AS PROYECTO, "
+                    + "TIPO_VALIDACION AS TIPO, "
+                    + "LIDER_TECNICO AS LIDER, "
+                    + "PLANTA AS PLANTA, "                
+                    + "MAQUINA AS MAQUINA, "
+                    + "LOTE AS LOTE, "
+                    + "TURNOS AS TURNO, "
+                    + "ESTADO_PROYECTO AS ESTADO, "               
+                    + "FECHA_PROPUESTA AS FECHA_ACTUAL "
+                    + "FROM "
+                    + "PLANEACIONES_VALIDACION "
+                    + "WHERE ESTADO_PROYECTO = 'Ejecutada' "
+                    + "AND SEMANA = " + SEMANA + " " 
+                    + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
+                    + "ORDER BY FECHA_PROPUESTA ASC;";
 
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
+            try {
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                while (rs.next()) {
 
-                registro[0] = rs.getString("GCC");
-                registro[1] = rs.getString("PROYECTO");
-                registro[2] = rs.getString("TIPO");
-                registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("PLANTA");
-                registro[5] = rs.getString("MAQUINA");
-                registro[6] = rs.getString("LOTE");
-                registro[7] = rs.getString("TURNO");
-                registro[8] = rs.getString("ESTADO");
-                registro[9] = rs.getString("FECHA_ACTUAL");
+                    registro[0] = rs.getString("GCC");
+                    registro[1] = rs.getString("PROYECTO");
+                    registro[2] = rs.getString("TIPO");
+                    registro[3] = rs.getString("LIDER");
+                    registro[4] = rs.getString("PLANTA");
+                    registro[5] = rs.getString("MAQUINA");
+                    registro[6] = rs.getString("LOTE");
+                    registro[7] = rs.getString("TURNO");
+                    registro[8] = rs.getString("ESTADO");
+                    registro[9] = rs.getString("FECHA_ACTUAL");
 
-                modelo.addRow(registro);
+                    modelo.addRow(registro);
+                }
+                tabla_programadas.setModel(modelo);
+
+            } catch (SQLException ex) {
+
+                JOptionPane.showMessageDialog(null, ex);
+
             }
-            tabla_programadas.setModel(modelo);
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(null, ex);
-
         }
-    }
 
-void cargar_tabla_no_ejecutadas(String SEMANA,String ANO) {
+    // METODO PARA CARGAR VALIDACIONES NO EJECUTADAS 
+    void cargar_tabla_no_ejecutadas(String SEMANA,String ANO) {
 
-        conexion = new ConexioSQLite();
-        conexion.coneccionbase();
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
 
-        String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
-        String[] registro = new String[10];
-        String query = "";
+            String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
+            String[] registro = new String[10];
+            String query = "";
 
-        modelo = new DefaultTableModel(null, titulos);
+            modelo = new DefaultTableModel(null, titulos);
 
-        ConexioSQLite con = new ConexioSQLite();
-        Connection cn = con.Conectar();
+            ConexioSQLite con = new ConexioSQLite();
+            Connection cn = con.Conectar();
 
-        query = "SELECT "
-                + "GCC_APR AS GCC, "
-                + "NOMBRE_PROYECTO AS PROYECTO, "
-                + "TIPO_VALIDACION AS TIPO, "
-                + "LIDER_TECNICO AS LIDER, "
-                + "PLANTA AS PLANTA, "                
-                + "MAQUINA AS MAQUINA, "
-                + "LOTE AS LOTE, "
-                + "TURNOS AS TURNO, "
-                + "ESTADO_PROYECTO AS ESTADO, "               
-                + "FECHA_PROPUESTA AS FECHA_ACTUAL "
-                + "FROM "
-                + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'No Ejecutada' "
-                + "AND SEMANA = " + SEMANA + " "
-                + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
-                + "ORDER BY FECHA_PROPUESTA ASC;";
+            query = "SELECT "
+                    + "GCC_APR AS GCC, "
+                    + "NOMBRE_PROYECTO AS PROYECTO, "
+                    + "TIPO_VALIDACION AS TIPO, "
+                    + "LIDER_TECNICO AS LIDER, "
+                    + "PLANTA AS PLANTA, "                
+                    + "MAQUINA AS MAQUINA, "
+                    + "LOTE AS LOTE, "
+                    + "TURNOS AS TURNO, "
+                    + "ESTADO_PROYECTO AS ESTADO, "               
+                    + "FECHA_PROPUESTA AS FECHA_ACTUAL "
+                    + "FROM "
+                    + "PLANEACIONES_VALIDACION "
+                    + "WHERE ESTADO_PROYECTO = 'No Ejecutada' "
+                    + "AND SEMANA = " + SEMANA + " "
+                    + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
+                    + "ORDER BY FECHA_PROPUESTA ASC;";
 
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
+            try {
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                while (rs.next()) {
 
-                registro[0] = rs.getString("GCC");
-                registro[1] = rs.getString("PROYECTO");
-                registro[2] = rs.getString("TIPO");
-                registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("PLANTA");
-                registro[5] = rs.getString("MAQUINA");
-                registro[6] = rs.getString("LOTE");
-                registro[7] = rs.getString("TURNO");
-                registro[8] = rs.getString("ESTADO");
-                registro[9] = rs.getString("FECHA_ACTUAL");
+                    registro[0] = rs.getString("GCC");
+                    registro[1] = rs.getString("PROYECTO");
+                    registro[2] = rs.getString("TIPO");
+                    registro[3] = rs.getString("LIDER");
+                    registro[4] = rs.getString("PLANTA");
+                    registro[5] = rs.getString("MAQUINA");
+                    registro[6] = rs.getString("LOTE");
+                    registro[7] = rs.getString("TURNO");
+                    registro[8] = rs.getString("ESTADO");
+                    registro[9] = rs.getString("FECHA_ACTUAL");
 
-                modelo.addRow(registro);
+                    modelo.addRow(registro);
+                }
+                tabla_no_ejecutada.setModel(modelo);
+
+            } catch (SQLException ex) {
+
+                JOptionPane.showMessageDialog(null, ex);
+
             }
-            tabla_no_ejecutada.setModel(modelo);
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(null, ex);
-
         }
-    }
 
-void cargar_tabla_con_excepciones(String SEMANA, String ANO) {
+    // METODO PARA CARGAR VALIDACIONES CON EXCEPCION 
+    void cargar_tabla_con_excepciones(String SEMANA, String ANO) {
 
-        conexion = new ConexioSQLite();
-        conexion.coneccionbase();
+            conexion = new ConexioSQLite();
+            conexion.coneccionbase();
 
-        String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
-        String[] registro = new String[10];
-        String query = "";
+            String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
+            String[] registro = new String[10];
+            String query = "";
 
-        modelo = new DefaultTableModel(null, titulos);
+            modelo = new DefaultTableModel(null, titulos);
 
-        ConexioSQLite con = new ConexioSQLite();
-        Connection cn = con.Conectar();
+            ConexioSQLite con = new ConexioSQLite();
+            Connection cn = con.Conectar();
 
-        query = "SELECT "
-                + "GCC_APR AS GCC, "
-                + "NOMBRE_PROYECTO AS PROYECTO, "
-                + "TIPO_VALIDACION AS TIPO, "
-                + "LIDER_TECNICO AS LIDER, "
-                + "PLANTA AS PLANTA, "                
-                + "MAQUINA AS MAQUINA, "
-                + "LOTE AS LOTE, "
-                + "TURNOS AS TURNO, "
-                + "ESTADO_PROYECTO AS ESTADO, "               
-                + "FECHA_PROPUESTA AS FECHA_ACTUAL "
-                + "FROM "
-                + "PLANEACIONES_VALIDACION "
-                + "WHERE (ESTADO_PROYECTO = 'Programado' AND RESPUESTA = 'SI')"
-                + "AND SEMANA = " + SEMANA + " "    
-                + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
-                + "ORDER BY FECHA_REPROGRAMACION ASC;";
+            query = "SELECT "
+                    + "GCC_APR AS GCC, "
+                    + "NOMBRE_PROYECTO AS PROYECTO, "
+                    + "TIPO_VALIDACION AS TIPO, "
+                    + "LIDER_TECNICO AS LIDER, "
+                    + "PLANTA AS PLANTA, "                
+                    + "MAQUINA AS MAQUINA, "
+                    + "LOTE AS LOTE, "
+                    + "TURNOS AS TURNO, "
+                    + "ESTADO_PROYECTO AS ESTADO, "               
+                    + "FECHA_PROPUESTA AS FECHA_ACTUAL "
+                    + "FROM "
+                    + "PLANEACIONES_VALIDACION "
+                    + "WHERE (ESTADO_PROYECTO = 'Programado' AND RESPUESTA = 'SI')"
+                    + "AND SEMANA = " + SEMANA + " "    
+                    + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
+                    + "ORDER BY FECHA_REPROGRAMACION ASC;";
 
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
+            try {
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                while (rs.next()) {
 
-                registro[0] = rs.getString("GCC");
-                registro[1] = rs.getString("PROYECTO");
-                registro[2] = rs.getString("TIPO");
-                registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("PLANTA");
-                registro[5] = rs.getString("MAQUINA");
-                registro[6] = rs.getString("LOTE");
-                registro[7] = rs.getString("TURNO");
-                registro[8] = rs.getString("ESTADO");
-                registro[9] = rs.getString("FECHA_ACTUAL");
+                    registro[0] = rs.getString("GCC");
+                    registro[1] = rs.getString("PROYECTO");
+                    registro[2] = rs.getString("TIPO");
+                    registro[3] = rs.getString("LIDER");
+                    registro[4] = rs.getString("PLANTA");
+                    registro[5] = rs.getString("MAQUINA");
+                    registro[6] = rs.getString("LOTE");
+                    registro[7] = rs.getString("TURNO");
+                    registro[8] = rs.getString("ESTADO");
+                    registro[9] = rs.getString("FECHA_ACTUAL");
 
-                modelo.addRow(registro);
+                    modelo.addRow(registro);
+                }
+                tabla_cerradas.setModel(modelo);
+
+            } catch (SQLException ex) {
+
+                JOptionPane.showMessageDialog(null, ex);
+
             }
-            tabla_cerradas.setModel(modelo);
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(null, ex);
-
         }
-    }
 
 }

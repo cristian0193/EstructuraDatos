@@ -33,7 +33,7 @@ public class ConexioSQLite {
         }
     }
 
-    //METODO CONECTAR TABLAS
+//METODO CONECTAR TABLAS
     public Connection Conectar() {
 
         try {

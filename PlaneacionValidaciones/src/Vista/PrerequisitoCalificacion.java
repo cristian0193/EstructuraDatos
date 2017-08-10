@@ -536,13 +536,13 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
                         .addComponent(txt_fecha_propuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txt_registro_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("");
@@ -727,16 +727,18 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
     public javax.swing.JTextField txt_registro_principal;
     // End of variables declaration//GEN-END:variables
 
+    // METODO PARA CONSULTAR PREREQUISITOS DE CALIFICACION POR REGISTRO
     public boolean consulta_pre_calificacion(String registro) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String query = "";
+        String query;
 
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
+        // QUERY DE BASE DE DATOS
         query = "SELECT "
                 + "PRE_CAL_ESPECIFICACION_EQUIPO AS ESPECIFICACION, "
                 + "PRE_CAL_PROTOCOLOS AS PROTOCOLO, "
@@ -761,6 +763,7 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                // REGISTROS CONSULTADOS
                 combo_pre_especificacion.setSelectedItem(rs.getString("ESPECIFICACION"));
                 combo_pre_protocolos.setSelectedItem(rs.getString("PROTOCOLO"));
                 combo_pre_RU.setSelectedItem(rs.getString("NO_GXP"));
@@ -784,162 +787,222 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
         }
     }
         
+    // METODO PARA VALIDAR COLORES POR REQUISITO
     public void coloresCampos() {
         
         //VALIDACION ESPECIFICACION DE EQUIPO
-        if (combo_pre_especificacion.getSelectedIndex() == 0) {
-            txt_pre_especificacion.setBackground(Color.GRAY);
-        } else if (combo_pre_especificacion.getSelectedIndex() == 1) {
-            txt_pre_especificacion.setBackground(Color.RED);
-        } else {
-            txt_pre_especificacion.setBackground(Color.GREEN);
+        switch (combo_pre_especificacion.getSelectedIndex()) {
+            case 0:
+                txt_pre_especificacion.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_especificacion.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_especificacion.setBackground(Color.GREEN);
+                break;
         }
                 
         //VALIDACION PROTOCOLOS
-        if (combo_pre_protocolos.getSelectedIndex() == 0) {
-            txt_pre_protocolo.setBackground(Color.GRAY);
-        } else if (combo_pre_protocolos.getSelectedIndex() == 1) {
-            txt_pre_protocolo.setBackground(Color.RED);
-        } else {
-            txt_pre_protocolo.setBackground(Color.GREEN);
+        switch (combo_pre_protocolos.getSelectedIndex()) {
+            case 0:
+                txt_pre_protocolo.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_protocolo.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_protocolo.setBackground(Color.GREEN);
+                break;
         }
             
         //VALIDACION RU
-        if (combo_pre_RU.getSelectedIndex() == 0) {
-            txt_pre_RU.setBackground(Color.GRAY);
-        } else if (combo_pre_RU.getSelectedIndex() == 1) {
-            txt_pre_RU.setBackground(Color.RED);
-        } else {
-            txt_pre_RU.setBackground(Color.GREEN);
-        }        
+        switch (combo_pre_RU.getSelectedIndex()) {
+            case 0:
+                txt_pre_RU.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_RU.setBackground(Color.RED);
+                break;        
+            default:
+                txt_pre_RU.setBackground(Color.GREEN);
+                break;
+        }
         
         //VALIDACION LIBRO
-        if (combo_pre_libro.getSelectedIndex() == 0) {
-            txt_pre_libro.setBackground(Color.GRAY);
-        } else if (combo_pre_libro.getSelectedIndex() == 1) {
-            txt_pre_libro.setBackground(Color.RED);
-        } else {
-            txt_pre_libro.setBackground(Color.GREEN);
+        switch (combo_pre_libro.getSelectedIndex()) {
+            case 0:
+                txt_pre_libro.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_libro.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_libro.setBackground(Color.GREEN);
+                break;
         }
                 
         //VALIDACION BR
-        if (combo_pre_BR.getSelectedIndex() == 0) {
-            txt_pre_BR.setBackground(Color.GRAY);
-        } else if (combo_pre_BR.getSelectedIndex() == 1) {
-            txt_pre_BR.setBackground(Color.RED);
-        } else {
-            txt_pre_BR.setBackground(Color.GREEN);
+        switch (combo_pre_BR.getSelectedIndex()) {
+            case 0:
+                txt_pre_BR.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_BR.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_BR.setBackground(Color.GREEN);
+                break;
         }
         
         //VALIDACION SOP
-        if (combo_pre_SOP.getSelectedIndex() == 0) {
-            txt_pre_SOP.setBackground(Color.GRAY);
-        } else if (combo_pre_SOP.getSelectedIndex() == 1) {
-            txt_pre_SOP.setBackground(Color.RED);
-        } else {
-            txt_pre_SOP.setBackground(Color.GREEN);
+        switch (combo_pre_SOP.getSelectedIndex()) {
+            case 0:
+                txt_pre_SOP.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_SOP.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_SOP.setBackground(Color.GREEN);
+                break;
         }
                 
-         //VALIDACION HOJA DE VIDA
-        if (combo_pre_hoja.getSelectedIndex() == 0) {
-            txt_pre_hoja.setBackground(Color.GRAY);
-        } else if (combo_pre_hoja.getSelectedIndex() == 1) {
-            txt_pre_hoja.setBackground(Color.RED);
-        } else {
-            txt_pre_hoja.setBackground(Color.GREEN);
+        //VALIDACION HOJA DE VIDA
+        switch (combo_pre_hoja.getSelectedIndex()) {
+            case 0:
+                txt_pre_hoja.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_hoja.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_hoja.setBackground(Color.GREEN);
+                break;
         }
         
-         //VALIDACION RUTINA DE MANTENIMEINTO
-        if (combo_pre_rutinas.getSelectedIndex() == 0) {
-            txt_pre_rutinas.setBackground(Color.GRAY);
-        } else if (combo_pre_rutinas.getSelectedIndex() == 1) {
-            txt_pre_rutinas.setBackground(Color.RED);
-        } else {
-            txt_pre_rutinas.setBackground(Color.GREEN);
+        //VALIDACION RUTINA DE MANTENIMEINTO
+        switch (combo_pre_rutinas.getSelectedIndex()) {
+            case 0:
+                txt_pre_rutinas.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_rutinas.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_rutinas.setBackground(Color.GREEN);
+                break;
         }
         
-         //VALIDACION CERTIFICADO
-        if (combo_pre_certificado.getSelectedIndex() == 0) {
-            txt_pre_certificado.setBackground(Color.GRAY);
-        } else if (combo_pre_certificado.getSelectedIndex() == 1) {
-            txt_pre_certificado.setBackground(Color.RED);
-        } else {
-            txt_pre_certificado.setBackground(Color.GREEN);
+        //VALIDACION CERTIFICADO
+        switch (combo_pre_certificado.getSelectedIndex()) {
+            case 0:
+                txt_pre_certificado.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_certificado.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_certificado.setBackground(Color.GREEN);
+                break;
         }
         
-         //VALIDACION PLANOS
-        if (combo_pre_planos.getSelectedIndex() == 0) {
-            txt_pre_planos.setBackground(Color.GRAY);
-        } else if (combo_pre_planos.getSelectedIndex() == 1) {
-            txt_pre_planos.setBackground(Color.RED);
-        } else {
-            txt_pre_planos.setBackground(Color.GREEN);
+        //VALIDACION PLANOS
+        switch (combo_pre_planos.getSelectedIndex()) {
+            case 0:
+                txt_pre_planos.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_planos.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_planos.setBackground(Color.GREEN);
+                break;
         }
         
-         //VALIDACION MANUALES
-        if (combo_pre_manual.getSelectedIndex() == 0) {
-            txt_pre_manual.setBackground(Color.GRAY);
-        } else if (combo_pre_manual.getSelectedIndex() == 1) {
-            txt_pre_manual.setBackground(Color.RED);
-        } else {
-            txt_pre_manual.setBackground(Color.GREEN);
+        //VALIDACION MANUALES
+        switch (combo_pre_manual.getSelectedIndex()) {
+            case 0:
+                txt_pre_manual.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_manual.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_manual.setBackground(Color.GREEN);
+                break;
         }
         
-         //VALIDACION MATERIALES
-        if (combo_pre_materiales.getSelectedIndex() == 0) {
-            txt_pre_materiales.setBackground(Color.GRAY);
-        } else if (combo_pre_materiales.getSelectedIndex() == 1) {
-            txt_pre_materiales.setBackground(Color.RED);
-        } else {
-            txt_pre_materiales.setBackground(Color.GREEN);
+        //VALIDACION MATERIALES
+        switch (combo_pre_materiales.getSelectedIndex()) {
+            case 0:
+                txt_pre_materiales.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_materiales.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_materiales.setBackground(Color.GREEN);
+                break;
         }
         
-         //VALIDACION RECURSOS
-        if (combo_pre_recursos.getSelectedIndex() == 0) {
-            txt_pre_recursos.setBackground(Color.GRAY);
-        } else if (combo_pre_recursos.getSelectedIndex() == 1) {
-            txt_pre_recursos.setBackground(Color.RED);
-        } else {
-            txt_pre_recursos.setBackground(Color.GREEN);
+        //VALIDACION RECURSOS
+        switch (combo_pre_recursos.getSelectedIndex()) {
+            case 0:
+                txt_pre_recursos.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_recursos.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_recursos.setBackground(Color.GREEN);
+                break;
         }
         
-         //VALIDACION ENTRENAMIENTO
-        if (combo_pre_entrenamiento.getSelectedIndex() == 0) {
-            txt_pre_entrenamiento.setBackground(Color.GRAY);
-        } else if (combo_pre_entrenamiento.getSelectedIndex() == 1) {
-            txt_pre_entrenamiento.setBackground(Color.RED);
-        } else {
-            txt_pre_entrenamiento.setBackground(Color.GREEN);
+        //VALIDACION ENTRENAMIENTO
+        switch (combo_pre_entrenamiento.getSelectedIndex()) {
+            case 0:
+                txt_pre_entrenamiento.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_entrenamiento.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_entrenamiento.setBackground(Color.GREEN);
+                break;
         }
     }
     
+    // METODO PARA CALCULAR FECHAS ESPERADAS POR DOCUMENTOS PREREQUISITOS
     public void fechasProximas() {
 
         try {
+            // CONVERSION DE FECHA PROPUESTA (STRING A DATE)
             String fecha_propuesta = "";
             fecha_propuesta = txt_fecha_propuesta.getText();
             SimpleDateFormat convertifecha = new SimpleDateFormat("yyyy-MM-dd");
             Date fechafinal = convertifecha.parse(fecha_propuesta);
 
+            // SUMA DE DIAS A FECHA PROPUESTA
             Date fechaSuma1 = sumarRestarDiasFecha(fechafinal, -25);           
             DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd");
             String fechaConverida1 = fechaHora.format(fechaSuma1);
             txt_fecha_especificacion.setText(fechaConverida1);
-            
-            
+                  
+            // SUMA DE DIAS A FECHA PROPUESTA
             Date fechaSuma2 = sumarRestarDiasFecha(fechafinal, -20);           
             DateFormat fechaHora2 = new SimpleDateFormat("yyyy-MM-dd");
             String fechaConverida2 = fechaHora2.format(fechaSuma2);            
             
             txt_fecha_protocolo.setText(fechaConverida2);
-            txt_fecha_sop.setText(fechaConverida2);
-                      
+            txt_fecha_sop.setText(fechaConverida2);                      
             
         } catch (ParseException ex) {
 
         }
     }
 
+    // METODO PARA RESTAR DIAS A FECHA PROPUESTA
     public Date sumarRestarDiasFecha(Date fecha, int dias) {
 
         Calendar calendar = Calendar.getInstance();

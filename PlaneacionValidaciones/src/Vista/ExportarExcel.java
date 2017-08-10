@@ -221,11 +221,13 @@ public class ExportarExcel extends javax.swing.JDialog {
     private javax.swing.JTextField ubic;
     // End of variables declaration//GEN-END:variables
 
+    // METODO PARA CARGAR TABLA DE DATOS
     void cargar_tabla_general() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
+        // TITULOS DE TABLA DE DATOS
         String[] titulos = {"NUMERO_REGISTRO", "GCC_APR", "NOMBRE_PROYECTO", "TIPO_VALIDACION", "LIDER_TECNICO", "PLANTA", "MAQUINA", "LOTE", "TURNOS", "FECHA_PROPUESTA", "ESTADO_PROYECTO", "OBSERVACIONES_VALIDACION", "FECHA_REPROGRAMACION", "OBSERVACION_REPROGRAMACION", "MOTIVO_REPROGRAMACION", "SEMANA","RESPUESTA","AUTORIZADO","OBSERVACION_EXCEPCIONES"};
         String[] registro = new String[19];
         String query = "";
@@ -235,6 +237,7 @@ public class ExportarExcel extends javax.swing.JDialog {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
+        // QUERY DE BASE DE DATOS
         query = "SELECT NUMERO_REGISTRO, GCC_APR, NOMBRE_PROYECTO, TIPO_VALIDACION, LIDER_TECNICO, PLANTA, MAQUINA, LOTE, TURNOS, FECHA_PROPUESTA, ESTADO_PROYECTO, OBSERVACIONES_VALIDACION, FECHA_REPROGRAMACION, OBSERVACION_REPROGRAMACION, MOTIVO_REPROGRAMACION, SEMANA, RESPUESTA, AUTORIZADO, OBSERVACION_EXCEPCIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -245,6 +248,7 @@ public class ExportarExcel extends javax.swing.JDialog {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("NUMERO_REGISTRO");
                 registro[1] = rs.getString("GCC_APR");
                 registro[2] = rs.getString("NOMBRE_PROYECTO");

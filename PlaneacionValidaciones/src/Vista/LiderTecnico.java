@@ -22,7 +22,6 @@ public class LiderTecnico extends javax.swing.JFrame {
         cargar_tabla_lider();
         ancho_columnas();
         centrar_datos();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -36,9 +35,9 @@ public class LiderTecnico extends javax.swing.JFrame {
         txt_id_tipo = new javax.swing.JTextField();
         txt_nombre_tipo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla_tecnico = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        tabla_lideres = new javax.swing.JTable();
+        btn_grabar = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -86,7 +85,7 @@ public class LiderTecnico extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tabla_tecnico.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_lideres.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -94,27 +93,27 @@ public class LiderTecnico extends javax.swing.JFrame {
 
             }
         ));
-        tabla_tecnico.setRowHeight(23);
-        tabla_tecnico.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabla_lideres.setRowHeight(23);
+        tabla_lideres.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabla_tecnicoMouseClicked(evt);
+                tabla_lideresMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabla_tecnico);
+        jScrollPane1.setViewportView(tabla_lideres);
 
-        jButton1.setBackground(new java.awt.Color(102, 255, 255));
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_grabar.setBackground(new java.awt.Color(102, 255, 255));
+        btn_grabar.setText("Guardar");
+        btn_grabar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_grabarActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(102, 255, 0));
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_eliminar.setBackground(new java.awt.Color(102, 255, 0));
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_eliminarActionPerformed(evt);
             }
         });
 
@@ -127,9 +126,9 @@ public class LiderTecnico extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_grabar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -145,10 +144,10 @@ public class LiderTecnico extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_grabar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -157,7 +156,7 @@ public class LiderTecnico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_grabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_grabarActionPerformed
 
         if (txt_id_tipo.getText().equals("")) {
             if (txt_nombre_tipo.getText().equals("")) {
@@ -167,10 +166,11 @@ public class LiderTecnico extends javax.swing.JFrame {
                 conexion.coneccionbase();
 
                 String nombre = txt_nombre_tipo.getText();
+
                 boolean resultado = conexion.insert_lider(nombre.toUpperCase());
 
                 if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "LIDER INSERTADO");
+                    JOptionPane.showMessageDialog(null, "REGISTRO INSERTADO");
                     LimpiarCampos();
                     cargar_tabla_lider();
                     ancho_columnas();
@@ -192,32 +192,32 @@ public class LiderTecnico extends javax.swing.JFrame {
             boolean resultado = conexion.upgrade_lider(id, nombre);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "LIDER ACTUALIZADO");
+                JOptionPane.showMessageDialog(null, "REGISTRO ACTUALIZADO");
                 LimpiarCampos();
                 cargar_tabla_lider();
                 ancho_columnas();
                 centrar_datos();
                 conexion.cerrar();
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
                 LimpiarCampos();
             }
 
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_grabarActionPerformed
 
-    private void tabla_tecnicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_tecnicoMouseClicked
+    private void tabla_lideresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_lideresMouseClicked
 
-        int rec = this.tabla_tecnico.getSelectedRow();
+        int rec = this.tabla_lideres.getSelectedRow();
 
-        this.txt_id_tipo.setText(tabla_tecnico.getValueAt(rec, 0).toString());
-        this.txt_nombre_tipo.setText(tabla_tecnico.getValueAt(rec, 1).toString());
+        this.txt_id_tipo.setText(tabla_lideres.getValueAt(rec, 0).toString());
+        this.txt_nombre_tipo.setText(tabla_lideres.getValueAt(rec, 1).toString());
 
-    }//GEN-LAST:event_tabla_tecnicoMouseClicked
+    }//GEN-LAST:event_tabla_lideresMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
 
         if (txt_id_tipo.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
@@ -230,44 +230,47 @@ public class LiderTecnico extends javax.swing.JFrame {
             boolean resultado = conexion.delete_lider(id);
 
             if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "LIDER ELIMINADO");
+                JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
                 LimpiarCampos();
                 cargar_tabla_lider();
                 ancho_columnas();
                 centrar_datos();
                 conexion.cerrar();
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL ELIMINADO");
+                JOptionPane.showMessageDialog(null, "REGISTRO AL ELIMINADO");
                 LimpiarCampos();
             }
         }
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_eliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btn_eliminar;
+    private javax.swing.JButton btn_grabar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabla_tecnico;
+    private javax.swing.JTable tabla_lideres;
     private javax.swing.JTextField txt_id_tipo;
     private javax.swing.JTextField txt_nombre_tipo;
     // End of variables declaration//GEN-END:variables
 
+    // METODO PARA LIMPIAR CAMPOS
     public void LimpiarCampos() {
         txt_id_tipo.setText("");
         txt_nombre_tipo.setText("");
     }
 
+    // METODO PARA CARGAR DATOS
     void cargar_tabla_lider() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
+        // TITULOS DE TABLA DE DATOS
         String[] titulos = {"ID", "NOMBRE"};
         String[] registro = new String[2];
         String query = "";
@@ -277,6 +280,7 @@ public class LiderTecnico extends javax.swing.JFrame {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
+        // QUERY DE BASE DE DATOS
         query = "SELECT "
                 + "ID_LIDER AS ID, "
                 + "NOMBRE_LIDER AS NOMBRE "
@@ -287,14 +291,16 @@ public class LiderTecnico extends javax.swing.JFrame {
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
+           
             while (rs.next()) {
 
+                // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("NOMBRE");
 
                 modelo.addRow(registro);
             }
-            tabla_tecnico.setModel(modelo);
+            tabla_lideres.setModel(modelo);
 
         } catch (SQLException ex) {
 
@@ -303,15 +309,17 @@ public class LiderTecnico extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA ORGANIZAR COLUMNAS
     public void ancho_columnas() {
-        tabla_tecnico.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tabla_tecnico.getColumnModel().getColumn(1).setPreferredWidth(400);
+        tabla_lideres.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tabla_lideres.getColumnModel().getColumn(1).setPreferredWidth(400);
     }
 
+    // METODO PARA CENTRAR DATOS DE TABLA
     public void centrar_datos() {
         Alinear = new DefaultTableCellRenderer();
         Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-        tabla_tecnico.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+        tabla_lideres.getColumnModel().getColumn(0).setCellRenderer(Alinear);
         // tabla_tecnico.getColumnModel().getColumn(1).setCellRenderer(Alinear);
 
     }

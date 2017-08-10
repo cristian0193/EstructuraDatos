@@ -1,7 +1,6 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import static Vista.Principal.conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -254,16 +253,19 @@ public class TipoValidacion extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nombre_tipo;
     // End of variables declaration//GEN-END:variables
 
+    // METODO PARA LIMPIAR CAMPOS
     public void LimpiarCampos() {
         txt_id_tipo.setText("");
         txt_nombre_tipo.setText("");
     }
 
+    // METODO PARA CARGAR DATOS
     void cargar_tabla_tipo() {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
+         // TITULOS DE TABLA DE DATOS
         String[] titulos = {"ID", "NOMBRE"};
         String[] registro = new String[2];
         String query = "";
@@ -273,6 +275,7 @@ public class TipoValidacion extends javax.swing.JFrame {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
+        // QUERY DE BASE DE DATOS
         query = "SELECT "
                 + "ID_TIPO AS ID, "
                 + "NOMBRE_TIPO AS NOMBRE "
@@ -285,6 +288,7 @@ public class TipoValidacion extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("NOMBRE");
 
@@ -299,11 +303,13 @@ public class TipoValidacion extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA ORGANIZAR COLUMNAS
     public void ancho_columnas() {
         tabla_tipo.getColumnModel().getColumn(0).setPreferredWidth(50);
         tabla_tipo.getColumnModel().getColumn(1).setPreferredWidth(400);
     }
 
+    // METODO PARA CENTRAR DATOS DE TABLA
     public void centrar_datos() {
         Alinear = new DefaultTableCellRenderer();
         Alinear.setHorizontalAlignment(SwingConstants.CENTER);

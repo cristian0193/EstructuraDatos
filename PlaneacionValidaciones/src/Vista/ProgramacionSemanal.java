@@ -33,7 +33,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_reprogramadas = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_buscar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tabla_no_programada = new javax.swing.JTable();
@@ -94,6 +94,8 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
         ));
         tabla_reprogramadas.setEnabled(false);
         tabla_reprogramadas.setRowHeight(22);
+        tabla_reprogramadas.setRowMargin(2);
+        tabla_reprogramadas.setSurrendersFocusOnKeystroke(true);
         jScrollPane1.setViewportView(tabla_reprogramadas);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -116,13 +118,13 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("Semana :");
 
-        jButton1.setBackground(new java.awt.Color(102, 255, 0));
-        jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton1.setText("Consultar");
-        jButton1.setToolTipText("Realiza la consulta segun la semana seleccionada");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_buscar.setBackground(new java.awt.Color(102, 255, 0));
+        btn_buscar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btn_buscar.setText("Consultar");
+        btn_buscar.setToolTipText("Realiza la consulta segun la semana seleccionada");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_buscarActionPerformed(evt);
             }
         });
 
@@ -138,6 +140,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
         ));
         tabla_no_programada.setEnabled(false);
         tabla_no_programada.setRowHeight(22);
+        tabla_no_programada.setRowMargin(2);
         jScrollPane4.setViewportView(tabla_no_programada);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -186,7 +189,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(combo_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -202,7 +205,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(combo_semana)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)))
+                        .addComponent(btn_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -215,7 +218,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         
         int index_semana = combo_semana.getSelectedIndex();
         int index_ano = combo_ano.getSelectedIndex();
@@ -233,12 +236,12 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
             
         }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_buscarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_buscar;
     private javax.swing.JComboBox combo_ano;
     private javax.swing.JComboBox combo_semana;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -253,6 +256,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
     private javax.swing.JTable tabla_reprogramadas;
     // End of variables declaration//GEN-END:variables
 
+// METODO PARA CARGAR VALIDACIONES PROGRAMADAS    
 void cargar_tabla_programadas(String SEMANA, String ANO) {
 
         conexion = new ConexioSQLite();
@@ -311,6 +315,7 @@ void cargar_tabla_programadas(String SEMANA, String ANO) {
         }
     }
 
+// METODO PARA CARGAR VALIDACIONES REPROGRAMADAS
 void cargar_tabla_reprogramadas(String SEMANA, String ANO) {
 
         conexion = new ConexioSQLite();
@@ -370,6 +375,7 @@ void cargar_tabla_reprogramadas(String SEMANA, String ANO) {
         }
     }
 
+// METODO PARA CARGAR VALIDACIONES NO PROGRAMDAS
 void cargar_tabla_noprogramadas(String SEMANA, String ANO) {
 
         conexion = new ConexioSQLite();
@@ -396,7 +402,7 @@ void cargar_tabla_noprogramadas(String SEMANA, String ANO) {
                 + "FECHA_REPROGRAMACION AS FECHA "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE (ESTADO_PROYECTO = 'Programado' AND NO_PROGRAMADA = 'No Programada') "
+                + "WHERE (ESTADO_PROYECTO = 'Programado' AND NO_PROGRAMADA = 'Ejecutada No Programada') "
                 + "AND SEMANA = " + SEMANA + " "    
                 + "AND (FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31') "
                 + "ORDER BY FECHA_REPROGRAMACION ASC;";
@@ -414,7 +420,7 @@ void cargar_tabla_noprogramadas(String SEMANA, String ANO) {
                 registro[5] = rs.getString("MAQUINA");
                 registro[6] = rs.getString("LOTE");
                 registro[7] = rs.getString("TURNO");
-                registro[8] = "No Programado";
+                registro[8] = "Ejecutada No Programada";
                 registro[9] = rs.getString("FECHA");
 
                 modelo.addRow(registro);

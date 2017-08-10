@@ -21,8 +21,7 @@ public class Principal extends javax.swing.JFrame {
     public static int valor = 0;
 
     public Principal() {
-        initComponents();
-        PrerequisitoCalificacion calificacion = new PrerequisitoCalificacion();
+        initComponents();        
         this.setLocationRelativeTo(null);
         cargar_tabla();
         cargar_lista_tipo();
@@ -59,7 +58,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txt_GCC = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btn_pre_proceso = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txt_observaciones_proyecto = new javax.swing.JTextArea();
@@ -83,7 +82,7 @@ public class Principal extends javax.swing.JFrame {
         txt_estado_proyecto = new javax.swing.JTextField();
         btn_limpiar = new javax.swing.JButton();
         combo_lote = new javax.swing.JComboBox();
-        jButton3 = new javax.swing.JButton();
+        btn_pre_calificacion = new javax.swing.JButton();
         lb_respuesta = new javax.swing.JLabel();
         txt_respuesta = new javax.swing.JTextField();
         lb_aprobador = new javax.swing.JLabel();
@@ -96,7 +95,7 @@ public class Principal extends javax.swing.JFrame {
         date_fecha_final = new com.toedter.calendar.JDateChooser();
         jLabel15 = new javax.swing.JLabel();
         txt_consulta_lider = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        btn_buscar = new javax.swing.JButton();
         txt_registro = new javax.swing.JTextField();
         combo_consulta = new javax.swing.JComboBox();
         jLabel16 = new javax.swing.JLabel();
@@ -196,14 +195,14 @@ public class Principal extends javax.swing.JFrame {
         jLabel11.setText("Turnos : ");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 50, 20));
 
-        jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setText("Prerequisitos de Proceso");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_pre_proceso.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btn_pre_proceso.setText("Prerequisitos de Proceso");
+        btn_pre_proceso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_pre_procesoActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 140, 220, 40));
+        jPanel2.add(btn_pre_proceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 140, 220, 40));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel10.setText("Observaciones : ( 4000 Max. Caracteres )");
@@ -359,14 +358,14 @@ public class Principal extends javax.swing.JFrame {
         combo_lote.setToolTipText("Lotes a Fabricar durante la calificacion.");
         jPanel2.add(combo_lote, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 140, -1));
 
-        jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton3.setText("Prerequisitos de Calificacion");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_pre_calificacion.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btn_pre_calificacion.setText("Prerequisitos de Calificacion");
+        btn_pre_calificacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_pre_calificacionActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 90, 220, 40));
+        jPanel2.add(btn_pre_calificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 90, 220, 40));
 
         lb_respuesta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lb_respuesta.setText("Respuesta :");
@@ -449,16 +448,16 @@ public class Principal extends javax.swing.JFrame {
         txt_consulta_lider.setEnabled(false);
         getContentPane().add(txt_consulta_lider, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 200, -1));
 
-        jButton5.setBackground(new java.awt.Color(102, 255, 255));
-        jButton5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton5.setText("Buscar");
-        jButton5.setToolTipText("Permite Buscar la informacion seleccioda en el filtro");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btn_buscar.setBackground(new java.awt.Color(102, 255, 255));
+        btn_buscar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btn_buscar.setText("Buscar");
+        btn_buscar.setToolTipText("Permite Buscar la informacion seleccioda en el filtro");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btn_buscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 200, 30));
+        getContentPane().add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 200, 30));
 
         txt_registro.setEditable(false);
         txt_registro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -518,13 +517,16 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_plantaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_pre_procesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pre_procesoActionPerformed
+        
+        //PERMITE VISUALIZAR LA PANTALLA DE PREREQUISITOS DE PROCESO
+        
         PrerequisitoProceso proceso = new PrerequisitoProceso();
         proceso.setVisible(true);
 
         proceso.txt_registro_principal.setText(txt_registro.getText());
         proceso.txt_fecha_propuesta.setText(txt_fecha_propuesta.getText());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_pre_procesoActionPerformed
 
     private void txt_turnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_turnosActionPerformed
         // TODO add your handling code here:
@@ -538,6 +540,7 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS OBLIGATORIOS (*)");
         } else {
 
+            // VERIFICA EL INGRESO DEL GCC/APR/PMV ENTRE OTROS
             int resultadoVerificacion = validacionIngresoGCCAPRLimpieza(txt_GCC.getText().toUpperCase());
 
             if (resultadoVerificacion == 0) {
@@ -547,9 +550,9 @@ public class Principal extends javax.swing.JFrame {
                 String lotes = combo_lote.getSelectedItem().toString();
                 String turnos = txt_turnos.getText();
 
-                if (!isNumeric(lotes)) {
+                if (!isNumeric(lotes)) { // VERIFICA SI EL LOTE INGRESADO ES NUMERICO
                     JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN LOTE\n EJEMPLO : 2, 3.4");
-                } else if (!isNumeric(turnos)) {
+                } else if (!isNumeric(turnos)) { // VERIFICA SI EL TURNO INGRESADO ES NUMERICO
                     JOptionPane.showMessageDialog(null, "INGRESE VALOR NUMERICO EN TURNO\n EJEMPLO : 2, 3.4");
                 } else {
 
@@ -559,13 +562,19 @@ public class Principal extends javax.swing.JFrame {
                     int lotesIngresados = 0;
                     int contadorSemanaAnterior = 0;
 
+                    
                     Date date = (Date) date_fecha_propuesta.getDate();
-                    int semana = numeroSemanas(date);
+                    int semana = numeroSemanas(date); // CALCULA EL DIA DE LA SEMANA DE LA AÑO PARA LA FECHA
                     tipo_validacion = combo_tipo.getSelectedItem().toString();
                     DateFormat formatoFecha = new SimpleDateFormat("YYYY");
-                    int año = Integer.parseInt(formatoFecha.format(date));
+                    int año = Integer.parseInt(formatoFecha.format(date)); // CALCULAR EL AÑO DE LA FECHA INGRESADA
+                    
+                    // VALIDACION DE SEMANAS REGISTRADAS EN LA SEMANA ( SI ES MAYOR A 3 VERDADERO)
                     contadorSemanas = contadorSemana(semana, tipo_validacion, año);
+                    
+                    // VALIDACION PARA CONTAR LOTES INGRESADOS EN VALIDACIONES DE TIPO PROCESO
                     contadorLote = contadorLotes(semana, tipo_validacion);
+                                        
                     lotesIngresados = Integer.parseInt(combo_lote.getSelectedItem().toString());
 
                     //VALIDACION CANTIDAD DE LOTES MAYORES A 3 (PROCESO)
@@ -574,6 +583,7 @@ public class Principal extends javax.swing.JFrame {
                     //VALIDACION DE FECHA SI LA VALIDACION DE PROCESO YA ESTA PROGRAMADA UN JUEVES, VIERNES O SABADO DE LA SEMANA ANTERIOR (PROCESO)
                     contadorSemanaAnterior = validacionSemanaProceso((semana - 1), año);
 
+                    // VALIDACION PARA EL ESTADO DEL REGISTRO
                     if (txt_estado_proyecto.getText().equals("Con Excepcion")) {
                         conexion = new ConexioSQLite();
                         conexion.coneccionbase();
@@ -586,6 +596,7 @@ public class Principal extends javax.swing.JFrame {
                         String lote = combo_lote.getSelectedItem().toString();
                         String turno = txt_turnos.getText();
 
+                        // CONVESION DE FECHA (DATE A STRING)
                         String formato = date_fecha_propuesta.getDateFormatString();
                         Date date_ingresada = (Date) date_fecha_propuesta.getDate();
                         SimpleDateFormat sdf = new SimpleDateFormat(formato);
@@ -599,6 +610,7 @@ public class Principal extends javax.swing.JFrame {
                         String autorizacion = txt_aprobador.getText();
                         String observaciones_proyecto = txt_observaciones_proyecto.getText();
 
+                        // REGISTRO DE LA CALIFICACION
                         boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones,
                                 "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                                 "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
@@ -620,6 +632,7 @@ public class Principal extends javax.swing.JFrame {
                             LimpiarCampos();
                         }
                     } else {
+                        // VALIDACION PARA CALIFICACION TIPO PROCESO ( SI LOTES SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO)
                         if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
                                     + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -648,6 +661,7 @@ public class Principal extends javax.swing.JFrame {
                             acuerdo.setVisible(true);
                             this.hide();
 
+                        // VALIDACION PARA CALIFICACION TIPO PROCESO (SI LA SEMANA ANTERIOR HAY PROGRAMADA CALIFICACION Jueves, viernes, Sabado o Domingo VERDADERO)
                         } else if (tipo_validacion.equals("PROCESO") && contadorSemanaAnterior > 0) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
                                     + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -676,6 +690,7 @@ public class Principal extends javax.swing.JFrame {
                             acuerdo.setVisible(true);
                             this.hide();
 
+                        // VALIDACION PARA CALIFICACION TIPO EQUIPOS ( SI EQUIPOS SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO)     
                         } else if (tipo_validacion.equals("EQUIPOS") && contadorSemanas >= 3) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                                     + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -704,7 +719,8 @@ public class Principal extends javax.swing.JFrame {
                             acuerdo.setVisible(true);
                             this.hide();
 
-                        } else if (tipo_validacion.equals("L&S") && contadorSemanas >= 1) {
+                        // VALIDACION PARA CALIFICACION TIPO L&S ( SI LIMPIEZA SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO)     
+                        } else if (tipo_validacion.equals("L&S") && contadorSemanas >= 2) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                                     + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
@@ -732,6 +748,7 @@ public class Principal extends javax.swing.JFrame {
                             acuerdo.setVisible(true);
                             this.hide();
 
+                        // VALIDACION PARA CALIFICACION TIPO CSV ( SI CSV SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO) 
                         } else if (tipo_validacion.equals("CSV") && contadorSemanas >= 3) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                                     + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -760,6 +777,7 @@ public class Principal extends javax.swing.JFrame {
                             acuerdo.setVisible(true);
                             this.hide();
 
+                        // VALIDACION PARA CALIFICACION TIPO NO GXP ( SI NO GXP SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO) 
                         } else if (tipo_validacion.equals("NO GXP") && contadorSemanas >= 3) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                                     + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -876,7 +894,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_fecha_propuestaActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
 
         int index = combo_consulta.getSelectedIndex();
 
@@ -943,7 +961,7 @@ public class Principal extends javax.swing.JFrame {
             }
         }
 
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void btn_refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refrescarActionPerformed
         cargar_tabla();
@@ -1062,6 +1080,7 @@ public class Principal extends javax.swing.JFrame {
                             //VALIDACION DE FECHA SI LA VALIDACION DE PROCESO YA ESTA PROGRAMADA UN JUEVES, VIERNES O SABADO DE LA SEMANA ANTERIOR (PROCESO)
                             contadorSemanaAnterior = validacionSemanaProceso((semana - 1), año);
 
+                            
                             if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
                                 JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
                                         + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -1337,13 +1356,13 @@ public class Principal extends javax.swing.JFrame {
         LimpiarCampos();
     }//GEN-LAST:event_btn_limpiarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_pre_calificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pre_calificacionActionPerformed
         PrerequisitoCalificacion calificacion = new PrerequisitoCalificacion();
         calificacion.setVisible(true);
 
         calificacion.txt_registro_principal.setText(txt_registro.getText());
         calificacion.txt_fecha_propuesta.setText(txt_fecha_propuesta.getText());
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_pre_calificacionActionPerformed
 
     private void txt_respuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_respuestaActionPerformed
         // TODO add your handling code here:
@@ -1388,8 +1407,11 @@ public class Principal extends javax.swing.JFrame {
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_buscar;
     public javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_limpiar;
+    private javax.swing.JButton btn_pre_calificacion;
+    private javax.swing.JButton btn_pre_proceso;
     private javax.swing.JButton btn_refrescar;
     private javax.swing.JComboBox combo_consulta;
     public javax.swing.JComboBox combo_lider_tecnico;
@@ -1400,9 +1422,6 @@ public class Principal extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser date_fecha_final;
     private com.toedter.calendar.JDateChooser date_fecha_inicio;
     public com.toedter.calendar.JDateChooser date_fecha_propuesta;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     public javax.swing.JLabel jLabel11;
@@ -1881,7 +1900,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    // METODO PARA CARGAR JCOMBOBOX TIPO
+    // METODO PARA CARGAR LISTA TIPO
     public void cargar_lista_tipo() {
 
         conexion = new ConexioSQLite();
@@ -1908,7 +1927,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    // METODO PARA CARGAR JCOMBOBOX LIDER
+    // METODO PARA CARGAR LISTA LIDER
     public void cargar_lista_lider() {
 
         conexion = new ConexioSQLite();
@@ -1935,7 +1954,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    // METODO PARA CARGAR JCOMBOBOX PLANTA
+    // METODO PARA CARGAR LISTA PLANTA
     public void cargar_lista_planta() {
 
         conexion = new ConexioSQLite();
@@ -1962,7 +1981,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    // METODO PARA CARGAR JCOMBOBOX MAQUINA
+    // METODO PARA CARGAR LISTA MAQUINA
     public void cargar_lista_maquina() {
 
         conexion = new ConexioSQLite();
@@ -2061,10 +2080,10 @@ public class Principal extends javax.swing.JFrame {
         return contadorSemana;
     }
 
+    // METODO PARA VALIDAR REGISTRO GCC/APR/PVM ENTRE OTRAS
     public int validacionIngresoGCCAPRLimpieza(String cadena) {
 
-        String indicativoGCC = "";
-        String NumeroGCC = "";
+        String indicativoGCC,NumeroGCC;        
         String cadenaDiferente = cadena;
 
         if (cadenaDiferente.length() > 4) {
@@ -2106,13 +2125,14 @@ public class Principal extends javax.swing.JFrame {
 
     }
 
+    // METODO PARA VALIDAR SEMANA DE CALIFICACION DE TIPO PROCESO
     public int validacionSemanaProceso(int semana, int año) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
         int contadorDiaSemana = 0;
 
-        String query = "";
+        String query;
 
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
@@ -2157,6 +2177,7 @@ public class Principal extends javax.swing.JFrame {
 
     }
 
+    // METODO PARA CALCULAR DIA DE LA SEMANA (LUNES, MARTES, MIERCOLES, ....)
     public String DiaSemana(Date fecha) {
 
         Calendar calendar = Calendar.getInstance();

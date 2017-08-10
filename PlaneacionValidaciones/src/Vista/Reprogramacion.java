@@ -2,8 +2,6 @@ package Vista;
 
 import Conexion.ConexioSQLite;
 import static Vista.Programacion.Registro_Lote;
-import static Vista.Programacion.conexion;
-import static Vista.Programacion.txt_registro_pro;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -344,10 +342,10 @@ public class Reprogramacion extends javax.swing.JFrame {
 
             int validacionProgramacion = verificacionSemanas(fechaConverida, tipo_validacion);
 
-            //Validacion de semanas programadas Jueves, Vienes, Sabado y Domingo
+            // VALIDACION DE SEMANAS PROGRAMADAS (Jueves, Vienes, Sabado y Domingo)
             validacionProgramacionSemanaProceso = validacionSemanaProceso((semana - 1), año);
 
-            //Validacion de Lotes Permitidos
+            // VALIDACION DE LOTES PERMITIDOS
             contadorSemanas = contadorSemana(semana, tipo_validacion, año);
             contadorLote = contadorLotes(semana, tipo_validacion);
             lote = Registro_Lote(registro_pro);
@@ -526,48 +524,55 @@ public class Reprogramacion extends javax.swing.JFrame {
 
         int index = combo_consulta.getSelectedIndex();
 
-        if (index == 0) {
-            JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
-        } else if (index == 1) {
-            this.txt_fecha_inicio.setEnabled(true);
-            this.txt_fecha_final.setEnabled(true);
-            this.txt_lider_consulta.setEditable(false);
-            this.txt_lider_consulta.setEnabled(false);
-            this.txt_palabra_clave_consulta.setEditable(false);
-            this.txt_palabra_clave_consulta.setEnabled(false);
-            this.txt_gcc.setEditable(false);
-            this.txt_gcc.setEnabled(false);
-        } else if (index == 2) {
-            this.txt_fecha_inicio.setEnabled(true);
-            this.txt_fecha_final.setEnabled(true);
-            this.txt_lider_consulta.setEditable(false);
-            this.txt_palabra_clave_consulta.setEditable(false);
-            this.txt_gcc.setEditable(false);
-            this.txt_gcc.setEnabled(false);
-        } else if (index == 3) {
-            this.txt_lider_consulta.setEditable(true);
-            this.txt_lider_consulta.setEnabled(true);
-            this.txt_fecha_inicio.setEnabled(false);
-            this.txt_fecha_final.setEnabled(false);
-            this.txt_palabra_clave_consulta.setEnabled(false);
-            this.txt_gcc.setEditable(false);
-            this.txt_gcc.setEnabled(false);
-        } else if (index == 4) {
-            this.txt_palabra_clave_consulta.setEditable(true);
-            this.txt_palabra_clave_consulta.setEnabled(true);
-            this.txt_lider_consulta.setEnabled(false);
-            this.txt_fecha_inicio.setEnabled(false);
-            this.txt_fecha_final.setEnabled(false);
-            this.txt_gcc.setEditable(false);
-            this.txt_gcc.setEnabled(false);
-        } else {
-            this.txt_palabra_clave_consulta.setEditable(false);
-            this.txt_palabra_clave_consulta.setEnabled(false);
-            this.txt_lider_consulta.setEnabled(false);
-            this.txt_fecha_inicio.setEnabled(false);
-            this.txt_fecha_final.setEnabled(false);
-            this.txt_gcc.setEditable(true);
-            this.txt_gcc.setEnabled(true);
+        switch (index) {
+            case 0:
+                JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
+                break;
+            case 1:
+                this.txt_fecha_inicio.setEnabled(true);
+                this.txt_fecha_final.setEnabled(true);
+                this.txt_lider_consulta.setEditable(false);
+                this.txt_lider_consulta.setEnabled(false);
+                this.txt_palabra_clave_consulta.setEditable(false);
+                this.txt_palabra_clave_consulta.setEnabled(false);
+                this.txt_gcc.setEditable(false);
+                this.txt_gcc.setEnabled(false);
+                break;
+            case 2:
+                this.txt_fecha_inicio.setEnabled(true);
+                this.txt_fecha_final.setEnabled(true);
+                this.txt_lider_consulta.setEditable(false);
+                this.txt_palabra_clave_consulta.setEditable(false);
+                this.txt_gcc.setEditable(false);
+                this.txt_gcc.setEnabled(false);
+                break;
+            case 3:
+                this.txt_lider_consulta.setEditable(true);
+                this.txt_lider_consulta.setEnabled(true);
+                this.txt_fecha_inicio.setEnabled(false);
+                this.txt_fecha_final.setEnabled(false);
+                this.txt_palabra_clave_consulta.setEnabled(false);
+                this.txt_gcc.setEditable(false);
+                this.txt_gcc.setEnabled(false);
+                break;
+            case 4:
+                this.txt_palabra_clave_consulta.setEditable(true);
+                this.txt_palabra_clave_consulta.setEnabled(true);
+                this.txt_lider_consulta.setEnabled(false);
+                this.txt_fecha_inicio.setEnabled(false);
+                this.txt_fecha_final.setEnabled(false);
+                this.txt_gcc.setEditable(false);
+                this.txt_gcc.setEnabled(false);
+                break;
+            default:
+                this.txt_palabra_clave_consulta.setEditable(false);
+                this.txt_palabra_clave_consulta.setEnabled(false);
+                this.txt_lider_consulta.setEnabled(false);
+                this.txt_fecha_inicio.setEnabled(false);
+                this.txt_fecha_final.setEnabled(false);
+                this.txt_gcc.setEditable(true);
+                this.txt_gcc.setEnabled(true);
+                break;
         }
 
     }//GEN-LAST:event_combo_consultaItemStateChanged
@@ -580,89 +585,82 @@ public class Reprogramacion extends javax.swing.JFrame {
 
         int index = combo_consulta.getSelectedIndex();
 
-        if (index == 0) {
-            JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
-        } else if (index == 1) {
-
-            if (this.txt_fecha_inicio.getDate() == null) {
-                JOptionPane.showMessageDialog(null, "INGRESE FECHA INICIAL");
-            } else if (this.txt_fecha_final.getDate() == null) {
-                JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
-            } else {
-                String formato1 = txt_fecha_inicio.getDateFormatString();
-                Date date1 = (Date) txt_fecha_inicio.getDate();
-                SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
-                String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
-
-                String formato2 = txt_fecha_final.getDateFormatString();
-                Date date2 = (Date) txt_fecha_final.getDate();
-                SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-                String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
-
-                consulta_rango_fechas_propuesta(fecha_ingresada_inicio, fecha_ingresada_final);
-                ancho_columnas();
-                centrar_datos();
-                conexion.cerrar();
-            }
-
-        } else if (index == 2) {
-
-            if (this.txt_fecha_inicio.getDate() == null) {
-                JOptionPane.showMessageDialog(null, "INGRESE FECHA INICIAL");
-            } else if (this.txt_fecha_final.getDate() == null) {
-                JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
-            } else {
-                String formato1 = txt_fecha_inicio.getDateFormatString();
-                Date date1 = (Date) txt_fecha_inicio.getDate();
-                SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
-                String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
-
-                String formato2 = txt_fecha_final.getDateFormatString();
-                Date date2 = (Date) txt_fecha_final.getDate();
-                SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-                String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
-
-                consulta_rango_fechas_reprogramada(fecha_ingresada_inicio, fecha_ingresada_final);
-                ancho_columnas();
-                centrar_datos();
-                conexion.cerrar();
-            }
-
-        } else if (index == 3) {
-
-            String lider = txt_lider_consulta.getText();
-
-            if (lider.equals("")) {
-                JOptionPane.showMessageDialog(null, "INGRESE LIDER TECNICO");
-            } else {
-                consulta_lider(lider);
-                ancho_columnas();
-                centrar_datos();
-                conexion.cerrar();
-            }
-
-        } else if (index == 4) {
-            String registro = txt_palabra_clave_consulta.getText();
-
-            if (registro.equals("")) {
-                JOptionPane.showMessageDialog(null, "INGRESE REGISTRO NUMERICO");
-            } else {
-                consulta_palabra_clave(registro);
-                ancho_columnas();
-                centrar_datos();
-                conexion.cerrar();
-            }
-        } else {
-            String gcc = txt_gcc.getText();
-
-            if (gcc.equals("")) {
-                JOptionPane.showMessageDialog(null, "INGRESE REGISTRO NUMERICO");
-            } else {
-                consulta_gcc(gcc);
-                ancho_columnas();
-                centrar_datos();
-                conexion.cerrar();
-            }
+        switch (index) {
+            case 0:
+                JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
+                break;
+            case 1:
+                if (this.txt_fecha_inicio.getDate() == null) {
+                    JOptionPane.showMessageDialog(null, "INGRESE FECHA INICIAL");
+                } else if (this.txt_fecha_final.getDate() == null) {
+                    JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
+                } else {
+                    String formato1 = txt_fecha_inicio.getDateFormatString();
+                    Date date1 = (Date) txt_fecha_inicio.getDate();
+                    SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
+                    String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
+                    
+                    String formato2 = txt_fecha_final.getDateFormatString();
+                    Date date2 = (Date) txt_fecha_final.getDate();
+                    SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                    String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
+                    
+                    consulta_rango_fechas_propuesta(fecha_ingresada_inicio, fecha_ingresada_final);
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                }   break;
+            case 2:
+                if (this.txt_fecha_inicio.getDate() == null) {
+                    JOptionPane.showMessageDialog(null, "INGRESE FECHA INICIAL");
+                } else if (this.txt_fecha_final.getDate() == null) {
+                    JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
+                } else {
+                    String formato1 = txt_fecha_inicio.getDateFormatString();
+                    Date date1 = (Date) txt_fecha_inicio.getDate();
+                    SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
+                    String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
+                    
+                    String formato2 = txt_fecha_final.getDateFormatString();
+                    Date date2 = (Date) txt_fecha_final.getDate();
+                    SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                    String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
+                    
+                    consulta_rango_fechas_reprogramada(fecha_ingresada_inicio, fecha_ingresada_final);
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                }   break;
+            case 3:
+                String lider = txt_lider_consulta.getText();
+                if (lider.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE LIDER TECNICO");
+                } else {
+                    consulta_lider(lider);
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                }   break;
+            case 4:
+                String registro = txt_palabra_clave_consulta.getText();
+                if (registro.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE REGISTRO NUMERICO");
+                } else {
+                    consulta_palabra_clave(registro);
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                }   break;
+            default:
+                String gcc = txt_gcc.getText();
+                if (gcc.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE REGISTRO NUMERICO");
+                } else {
+                    consulta_gcc(gcc);
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                }   break;
         }
 
 
@@ -711,6 +709,7 @@ public class Reprogramacion extends javax.swing.JFrame {
     public static javax.swing.JTextField txt_registro_repro;
     // End of variables declaration//GEN-END:variables
 
+    // METODO PARA LIMPIAR CAMPOS
     public void LimpiarCampos() {
         txt_registro_repro.setText("");
         date_nueva_fecha.setDate(null);
@@ -720,10 +719,10 @@ public class Reprogramacion extends javax.swing.JFrame {
         txt_fecha_propuesta2.setText("");
     }
 
+    // METODO PARA CALCULAR NUMERO DE SEMANA DE LA FECHA
     public int numeroSemanas(Date fecha) {
 
-        int semana = 0;
-        //Calendar calendar = Calendar.getInstance();
+        int semana = 0;        
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.setFirstDayOfWeek(calendar.MONDAY);
         calendar.setMinimalDaysInFirstWeek(7);
@@ -733,6 +732,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         return semana;
     }
 
+    // METODO PARA CARGAR TABLA DE REPROGRAMACION
     void cargar_tabla_reprogramaciones() {
 
         conexion = new ConexioSQLite();
@@ -784,6 +784,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         }
     }
 
+    // METODO DE CONSULTA DE RANGO DE FECHAS PROPUESTA
     void consulta_rango_fechas_propuesta(String fecha_inicio, String fecha_final) {
 
         conexion = new ConexioSQLite();
@@ -837,6 +838,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA CALCULAR NUMERO DE SEMANA DE LA FECHA REPROGRAMACION
     void consulta_rango_fechas_reprogramada(String fecha_inicio, String fecha_final) {
 
         conexion = new ConexioSQLite();
@@ -890,6 +892,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA CONSULTAR LIDER
     void consulta_lider(String lider) {
 
         conexion = new ConexioSQLite();
@@ -943,6 +946,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA CONSULTAR PALABRA CLAVE
     void consulta_palabra_clave(String palabra) {
 
         conexion = new ConexioSQLite();
@@ -995,6 +999,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA CONSULTAR GCC
     void consulta_gcc(String gcc) {
 
         conexion = new ConexioSQLite();
@@ -1119,6 +1124,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         return contadorSemana;
     }
 
+    // METODO PARA CONSULTAR DIA DE LA SEMANA POR FECHA
     public String DiaSemana(Date fecha) {
 
         Calendar calendar = Calendar.getInstance();
@@ -1136,6 +1142,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         return strDays[calendar.get(Calendar.DAY_OF_WEEK) - 1];
     }
 
+    // METODO PARA VALIDACION DE SEMANA ANTERIOR PARA CALIFICAICON DE PROCESO
     public int validacionSemanaProceso(int semana, int año) {
 
         conexion = new ConexioSQLite();
@@ -1187,6 +1194,7 @@ public class Reprogramacion extends javax.swing.JFrame {
 
     }
 
+    // METODO PARA CONSULTAR VERIFICACION DE LA SEMANA
     public int verificacionSemanas(String fecha, String tipo) {
 
         int resultado = 0;
@@ -1238,6 +1246,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         return resultado;
     }
 
+    // METODO PARA ORGANIZAR COLUMNAS
     public void ancho_columnas() {
         tabla_reprogramaciones.getColumnModel().getColumn(0).setPreferredWidth(30);
         tabla_reprogramaciones.getColumnModel().getColumn(1).setPreferredWidth(60);
@@ -1248,6 +1257,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         tabla_reprogramaciones.getColumnModel().getColumn(6).setPreferredWidth(250);
     }
 
+    // METODO PARA CENTRAR DATOS DE TABLA
     public void centrar_datos() {
         Alinear = new DefaultTableCellRenderer();
         Alinear.setHorizontalAlignment(SwingConstants.CENTER);

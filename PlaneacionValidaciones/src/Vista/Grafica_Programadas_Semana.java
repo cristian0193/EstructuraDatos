@@ -20,6 +20,7 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
     JPanel panel;
     ConexioSQLite conexion;
 
+    // METODO CONSTRUCTOR
     public Grafica_Programadas_Semana() {
         setTitle("Como Hacer Graficos con Java");
         setSize(800, 600);
@@ -29,6 +30,7 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
         init();
     }
 
+    // METODO PARA CARGAR COMPONENTES
     private void init() {
 
         panel = new JPanel();
@@ -44,7 +46,7 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
             dataset.setValue(contador_ejecutadas, "Ejecutadas", "" + i);
         }
 
-        // Creando el Grafico
+        // CREANDO GRAFICO
         JFreeChart chart = ChartFactory.createBarChart("Validaciones Realizadas", "Validaciones", "Cantidad",
                 dataset, PlotOrientation.VERTICAL, true, true, false);
         chart.setBackgroundPaint(Color.cyan);
@@ -53,12 +55,12 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
         p.setRangeGridlinePaint(Color.red);
         p.getAnnotations();
         
-        // Mostrar Grafico
-
+        // MOSTRAR GRAFICO
         ChartPanel chartPanel = new ChartPanel(chart);
         panel.add(chartPanel);
     }
 
+    // METODO PARA CONTAR VALIDACIONES EJECUTADAS EN LA SEMANA
     public int contador_ejecutadas(int semana) {
 
         conexion = new ConexioSQLite();
@@ -70,6 +72,7 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
+        // QUERY DE BASE DE DATOS
         query = "SELECT COUNT(ESTADO_PROYECTO) AS EJECUTADAS FROM PLANEACIONES_VALIDACION WHERE SEMANA = " + semana + " AND ESTADO_PROYECTO = 'Ejecutada'; ";
 
         System.out.println(query);
@@ -78,6 +81,8 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
+               
+                // REGISTROS CONSULTADOS
                 cont_ejecutadas = Integer.parseInt(rs.getString("EJECUTADAS"));
             }
             conexion.cerrar();
@@ -88,17 +93,19 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
         return cont_ejecutadas;
     }
 
+    // METODO PARA CONTAR VALIDACIONES PROGRAMADAS EN LA SEMANA
     public int contador_programadas(int semana) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String query = "";
+        String query;
         int cont_ejecutadas = 0;
 
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
+        // QUERY DE BASE DE DATOS
         query = "SELECT COUNT(ESTADO_PROYECTO) AS PROGRAMADAS FROM PLANEACIONES_VALIDACION WHERE SEMANA = " + semana + " AND (ESTADO_PROYECTO NOT IN ('En Creacion'));";
 
         System.out.println(query);
@@ -107,6 +114,8 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
+                
+                // REGISTROS CONSULTADOS
                 cont_ejecutadas = Integer.parseInt(rs.getString("PROGRAMADAS"));
             }
             conexion.cerrar();
@@ -117,6 +126,7 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
         return cont_ejecutadas;
     }
 
+    // METODO PARA EJECUTAR
     public static void main(String args[]) {
         new Grafica_Programadas_Semana().setVisible(true);
     }

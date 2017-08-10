@@ -14,7 +14,6 @@ public class AcuerdoCalidad extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_lista_autorizado();
-//        this.registro.setVisible(false);
         this.gcc.setVisible(false);
         this.nombre.setVisible(false);
         this.tipo.setVisible(false);
@@ -313,7 +312,7 @@ public class AcuerdoCalidad extends javax.swing.JFrame {
                     excepciones.txt_estado_proyecto.setText("Con Excepcion");
                     this.hide();
                     excepciones.setVisible(true);
-//                    excepciones.btn_actualizar.setEnabled(false);
+
                 } else {
                     excepciones.lb_respuesta.setVisible(true);
                     excepciones.lb_aprobador.setVisible(true);
@@ -338,7 +337,7 @@ public class AcuerdoCalidad extends javax.swing.JFrame {
                     excepciones.txt_estado_proyecto.setText("Con Excepcion");
                     this.hide();
                     excepciones.setVisible(true);
-//                    excepciones.btn_guardar.setEnabled(false);
+
                 }
 
             }
@@ -381,7 +380,7 @@ public class AcuerdoCalidad extends javax.swing.JFrame {
     private javax.swing.JTextArea txt_observaciones_expciones;
     // End of variables declaration//GEN-END:variables
 
-// METODO PARA CARGAR JCOMBOBOX TIPO
+// METODO PARA CARGAR LISTA DE AUTORIZADO
     public void cargar_lista_autorizado() {
 
         conexion = new ConexioSQLite();

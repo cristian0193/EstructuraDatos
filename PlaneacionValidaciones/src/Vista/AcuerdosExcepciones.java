@@ -12,9 +12,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class AcuerdosExcepciones extends javax.swing.JFrame {
 
-    public static ConexioSQLite conexion;
-    public static DefaultTableModel modelo;
-    public static DefaultTableCellRenderer Alinear;
+    public ConexioSQLite conexion;
+    public DefaultTableModel modelo;
+    public DefaultTableCellRenderer Alinear;
 
     public AcuerdosExcepciones() {
         initComponents();
@@ -36,8 +36,8 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
         txt_nombre_autorizado = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_aprobadores = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_guardar = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -101,19 +101,19 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_aprobadores);
 
-        jButton1.setBackground(new java.awt.Color(102, 255, 255));
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_guardar.setBackground(new java.awt.Color(102, 255, 255));
+        btn_guardar.setText("Guardar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_guardarActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(102, 255, 0));
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_eliminar.setBackground(new java.awt.Color(102, 255, 0));
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_eliminarActionPerformed(evt);
             }
         });
 
@@ -127,9 +127,9 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -142,8 +142,8 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_guardar, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(btn_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                 .addContainerGap())
@@ -152,7 +152,10 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+
+        String nombre, id;
+        boolean resultado;
 
         if (txt_id_autorizado.getText().equals("")) {
             if (txt_nombre_autorizado.getText().equals("")) {
@@ -161,8 +164,8 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
                 conexion = new ConexioSQLite();
                 conexion.coneccionbase();
 
-                String nombre = txt_nombre_autorizado.getText();
-                boolean resultado = conexion.insert_autorizado(nombre.toUpperCase());
+                nombre = txt_nombre_autorizado.getText();
+                resultado = conexion.insert_autorizado(nombre.toUpperCase());
 
                 if (resultado == true) {
                     JOptionPane.showMessageDialog(null, "AUTORIZADO INSERTADA");
@@ -180,10 +183,10 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
 
-            String id = txt_id_autorizado.getText();
-            String nombre = txt_nombre_autorizado.getText();
+            id = txt_id_autorizado.getText();
+            nombre = txt_nombre_autorizado.getText();
 
-            boolean resultado = conexion.upgrade_autorizado(id, nombre);
+            resultado = conexion.upgrade_autorizado(id, nombre);
 
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "AUTORIZADO ACTUALIZADO");
@@ -198,21 +201,23 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
             }
         }
 
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void tabla_aprobadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_aprobadoresMouseClicked
 
-        int rec = this.tabla_aprobadores.getSelectedRow();
+        // CAPTURA DE DATOS AL SER SELECCIONADO EN TABLA
+        int rec;
+
+        rec = this.tabla_aprobadores.getSelectedRow();
 
         this.txt_id_autorizado.setText(tabla_aprobadores.getValueAt(rec, 0).toString());
         this.txt_nombre_autorizado.setText(tabla_aprobadores.getValueAt(rec, 1).toString());
 
     }//GEN-LAST:event_tabla_aprobadoresMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
 
-         if (txt_id_autorizado.getText().equals("")) {
+        if (txt_id_autorizado.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "SELECCIONE DE LA TABLA");
         } else {
             conexion = new ConexioSQLite();
@@ -235,12 +240,12 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
             }
         }
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_eliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btn_eliminar;
+    private javax.swing.JButton btn_guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -251,11 +256,13 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nombre_autorizado;
     // End of variables declaration//GEN-END:variables
 
+    // METODO PARA LIMPIAR CAMPOS
     public void LimpiarCampos() {
         txt_id_autorizado.setText("");
         txt_nombre_autorizado.setText("");
     }
 
+    // METODO PARA CARGAR LISTA AUTORIZADOS
     void cargar_tabla_autorizados() {
 
         conexion = new ConexioSQLite();
@@ -263,7 +270,7 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
 
         String[] titulos = {"ID", "NOMBRE"};
         String[] registro = new String[2];
-        String query = "";
+        String query;
 
         modelo = new DefaultTableModel(null, titulos);
 
@@ -296,16 +303,17 @@ public class AcuerdosExcepciones extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA ORGANIZAR COLUMNAS
     public void ancho_columnas() {
         tabla_aprobadores.getColumnModel().getColumn(0).setPreferredWidth(50);
         tabla_aprobadores.getColumnModel().getColumn(1).setPreferredWidth(400);
     }
 
+    // METODO PARA CENTRAR DATOS DE TABLA
     public void centrar_datos() {
         Alinear = new DefaultTableCellRenderer();
         Alinear.setHorizontalAlignment(SwingConstants.CENTER);
         tabla_aprobadores.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-        // tabla_tecnico.getColumnModel().getColumn(1).setCellRenderer(Alinear);
     }
 
 }

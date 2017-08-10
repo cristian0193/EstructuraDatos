@@ -93,8 +93,10 @@ public class ClaveAdminNoProgramada extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if (txt_clave.getText().equals("IngenieriaQA1")) {                    
-            PrincipalNoProgramadas  noprogramadas = new PrincipalNoProgramadas();
+        //VALIDACION DE CONTRASEÑA
+        
+        if (txt_clave.getText().equals("IngenieriaQA1")) {
+            PrincipalNoProgramadas noprogramadas = new PrincipalNoProgramadas();
             noprogramadas.setVisible(true);
             this.hide();
         } else {

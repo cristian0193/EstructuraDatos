@@ -11,8 +11,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class PrerequisitoProceso extends javax.swing.JFrame {
@@ -61,20 +59,20 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         combo_pre_CG = new javax.swing.JComboBox();
         jLabel16 = new javax.swing.JLabel();
         combo_pre_FP = new javax.swing.JComboBox();
-        txt_pre_diagrama = new javax.swing.JTextField();
+        txt_pre_flujograma = new javax.swing.JTextField();
         txt_pre_FMEA = new javax.swing.JTextField();
-        txt_pre_PR = new javax.swing.JTextField();
-        txt_pre_PF = new javax.swing.JTextField();
-        txt_pre_RM = new javax.swing.JTextField();
-        txt_pre_PC = new javax.swing.JTextField();
-        txt_pre_CG = new javax.swing.JTextField();
-        txt_pre_FP = new javax.swing.JTextField();
-        txt_pre_calificacion = new javax.swing.JTextField();
+        txt_pre_esp_equipo = new javax.swing.JTextField();
+        txt_pre_estabilidad = new javax.swing.JTextField();
+        txt_pre_HFM_emitida = new javax.swing.JTextField();
+        txt_pre_SOP = new javax.swing.JTextField();
+        txt_pre_muestras = new javax.swing.JTextField();
+        txt_pre_materiales = new javax.swing.JTextField();
+        txt_pre_protocolos = new javax.swing.JTextField();
         txt_pre_HFM = new javax.swing.JTextField();
         txt_pre_especificacion = new javax.swing.JTextField();
-        txt_pre_test = new javax.swing.JTextField();
-        txt_pre_protocolo = new javax.swing.JTextField();
-        txt_pre_materiales = new javax.swing.JTextField();
+        txt_pre_metodo_analisis = new javax.swing.JTextField();
+        txt_pre_protocolo_IQOQPQ = new javax.swing.JTextField();
+        txt_pre_protocolo_CSV = new javax.swing.JTextField();
         txt_pre_DP = new javax.swing.JTextField();
         txt_fecha_protocolo = new javax.swing.JTextField();
         txt_fecha_especificacion = new javax.swing.JTextField();
@@ -238,33 +236,33 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             }
         });
 
-        txt_pre_diagrama.setEditable(false);
+        txt_pre_flujograma.setEditable(false);
 
         txt_pre_FMEA.setEditable(false);
 
-        txt_pre_PR.setEditable(false);
+        txt_pre_esp_equipo.setEditable(false);
 
-        txt_pre_PF.setEditable(false);
+        txt_pre_estabilidad.setEditable(false);
 
-        txt_pre_RM.setEditable(false);
+        txt_pre_HFM_emitida.setEditable(false);
 
-        txt_pre_PC.setEditable(false);
+        txt_pre_SOP.setEditable(false);
 
-        txt_pre_CG.setEditable(false);
+        txt_pre_muestras.setEditable(false);
 
-        txt_pre_FP.setEditable(false);
+        txt_pre_materiales.setEditable(false);
 
-        txt_pre_calificacion.setEditable(false);
+        txt_pre_protocolos.setEditable(false);
 
         txt_pre_HFM.setEditable(false);
 
         txt_pre_especificacion.setEditable(false);
 
-        txt_pre_test.setEditable(false);
+        txt_pre_metodo_analisis.setEditable(false);
 
-        txt_pre_protocolo.setEditable(false);
+        txt_pre_protocolo_IQOQPQ.setEditable(false);
 
-        txt_pre_materiales.setEditable(false);
+        txt_pre_protocolo_CSV.setEditable(false);
 
         txt_pre_DP.setEditable(false);
 
@@ -341,12 +339,12 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                                 .addComponent(combo_pre_protocolo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txt_pre_materiales, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_pre_protocolo, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_pre_test, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_pre_protocolo_CSV, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_pre_protocolo_IQOQPQ, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_pre_metodo_analisis, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_pre_especificacion, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_pre_HFM, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_pre_calificacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                            .addComponent(txt_pre_protocolos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
                             .addComponent(txt_pre_DP)
                             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -355,9 +353,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                                 .addComponent(txt_fecha_protocolo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txt_fecha_especificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txt_fecha_metodo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8))))
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel23)))
@@ -368,7 +364,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(combo_pre_FP, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_pre_FP, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_pre_materiales, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -403,13 +399,13 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_pre_CG)
-                            .addComponent(txt_pre_PC)
-                            .addComponent(txt_pre_PF)
-                            .addComponent(txt_pre_PR)
+                            .addComponent(txt_pre_muestras)
+                            .addComponent(txt_pre_SOP)
+                            .addComponent(txt_pre_estabilidad)
+                            .addComponent(txt_pre_esp_equipo)
                             .addComponent(txt_pre_FMEA)
-                            .addComponent(txt_pre_diagrama)
-                            .addComponent(txt_pre_RM, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))))
+                            .addComponent(txt_pre_flujograma)
+                            .addComponent(txt_pre_HFM_emitida, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_fecha_diagrama_proceso, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -434,7 +430,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel9)
                                     .addComponent(combo_pre_diagrama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_pre_diagrama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_pre_flujograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_fecha_diagrama_proceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -446,28 +442,28 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel11)
                                     .addComponent(combo_pre_PR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_pre_PR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_pre_esp_equipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel12)
                                     .addComponent(combo_pre_PF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_pre_PF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_pre_estabilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel13)
                                     .addComponent(combo_pre_RM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_pre_RM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_pre_HFM_emitida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_fecha_hoja_maestra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel14)
                                     .addComponent(combo_pre_PC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_pre_PC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_pre_SOP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel15)
                                     .addComponent(combo_pre_CG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_pre_CG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txt_pre_muestras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -486,18 +482,18 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel5)
                                             .addComponent(combo_pre_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_pre_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(txt_pre_metodo_analisis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(txt_pre_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txt_pre_protocolos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(combo_pre_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txt_pre_protocolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_pre_protocolo_IQOQPQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6)
                                     .addComponent(combo_pre_protocolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txt_pre_materiales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_pre_protocolo_CSV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7)
                                     .addComponent(combo_pre_materiales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
@@ -507,7 +503,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
                                     .addComponent(combo_pre_DP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_pre_FP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_pre_materiales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(combo_pre_FP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -764,34 +760,36 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
     private javax.swing.JTextField txt_fecha_producto;
     public javax.swing.JTextField txt_fecha_propuesta;
     private javax.swing.JTextField txt_fecha_protocolo;
-    private javax.swing.JTextField txt_pre_CG;
     private javax.swing.JTextField txt_pre_DP;
     private javax.swing.JTextField txt_pre_FMEA;
-    private javax.swing.JTextField txt_pre_FP;
     private javax.swing.JTextField txt_pre_HFM;
-    private javax.swing.JTextField txt_pre_PC;
-    private javax.swing.JTextField txt_pre_PF;
-    private javax.swing.JTextField txt_pre_PR;
-    private javax.swing.JTextField txt_pre_RM;
-    private javax.swing.JTextField txt_pre_calificacion;
-    private javax.swing.JTextField txt_pre_diagrama;
+    private javax.swing.JTextField txt_pre_HFM_emitida;
+    private javax.swing.JTextField txt_pre_SOP;
+    private javax.swing.JTextField txt_pre_esp_equipo;
     private javax.swing.JTextField txt_pre_especificacion;
+    private javax.swing.JTextField txt_pre_estabilidad;
+    private javax.swing.JTextField txt_pre_flujograma;
     private javax.swing.JTextField txt_pre_materiales;
-    private javax.swing.JTextField txt_pre_protocolo;
-    private javax.swing.JTextField txt_pre_test;
+    private javax.swing.JTextField txt_pre_metodo_analisis;
+    private javax.swing.JTextField txt_pre_muestras;
+    private javax.swing.JTextField txt_pre_protocolo_CSV;
+    private javax.swing.JTextField txt_pre_protocolo_IQOQPQ;
+    private javax.swing.JTextField txt_pre_protocolos;
     public javax.swing.JTextField txt_registro_principal;
     // End of variables declaration//GEN-END:variables
 
+    // METODO PARA CONSULTAR PREREQUISITOS DE PROCESO POR REGISTRO
     public boolean consulta_pre_proceso(String registro) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String query = "";
+        String query;
 
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
+        // QUERY DE BASE DE DATOS
         query = "SELECT "
                 + "PRE_PRO_CALIFICACION_IQOQPQ AS CALIFICACION, "
                 + "PRE_PRO_ENTRENAMIENTO_HFM AS ENTRENAMIENTO, "
@@ -817,6 +815,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                // REGISTROS CONSULTADOS
                 combo_pre_calificacion.setSelectedItem(rs.getString("CALIFICACION"));
                 combo_pre_HFM.setSelectedItem(rs.getString("ENTRENAMIENTO"));
                 combo_pre_especificacion.setSelectedItem(rs.getString("ESPECIFICACION"));
@@ -841,158 +840,223 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA VALIDAR COLORES POR REQUISITO
     public void coloresCampos() {
 
         //VALIDACION CALIFICACION IQOQPQ
-        if (combo_pre_calificacion.getSelectedIndex() == 0) {
-            txt_pre_calificacion.setBackground(Color.GRAY);
-        } else if (combo_pre_calificacion.getSelectedIndex() == 1) {
-            txt_pre_calificacion.setBackground(Color.RED);
-        } else {
-            txt_pre_calificacion.setBackground(Color.GREEN);
+        switch (combo_pre_calificacion.getSelectedIndex()) {
+            case 0:
+                txt_pre_protocolos.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_protocolos.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_protocolos.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION HFM
-        if (combo_pre_HFM.getSelectedIndex() == 0) {
-            txt_pre_HFM.setBackground(Color.GRAY);
-        } else if (combo_pre_HFM.getSelectedIndex() == 1) {
-            txt_pre_HFM.setBackground(Color.RED);
-        } else {
-            txt_pre_HFM.setBackground(Color.GREEN);
+        switch (combo_pre_HFM.getSelectedIndex()) {
+            case 0:
+                txt_pre_HFM.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_HFM.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_HFM.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION ESPECIFICACION
-        if (combo_pre_especificacion.getSelectedIndex() == 0) {
-            txt_pre_especificacion.setBackground(Color.GRAY);
-        } else if (combo_pre_especificacion.getSelectedIndex() == 1) {
-            txt_pre_especificacion.setBackground(Color.RED);
-        } else {
-            txt_pre_especificacion.setBackground(Color.GREEN);
+        switch (combo_pre_especificacion.getSelectedIndex()) {
+            case 0:
+                txt_pre_especificacion.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_especificacion.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_especificacion.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION TEST
-        if (combo_pre_test.getSelectedIndex() == 0) {
-            txt_pre_test.setBackground(Color.GRAY);
-        } else if (combo_pre_test.getSelectedIndex() == 1) {
-            txt_pre_test.setBackground(Color.RED);
-        } else {
-            txt_pre_test.setBackground(Color.GREEN);
+        switch (combo_pre_test.getSelectedIndex()) {
+            case 0:
+                txt_pre_metodo_analisis.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_metodo_analisis.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_metodo_analisis.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION PROTOCOLO
-        if (combo_pre_protocolo.getSelectedIndex() == 0) {
-            txt_pre_protocolo.setBackground(Color.GRAY);
-        } else if (combo_pre_protocolo.getSelectedIndex() == 1) {
-            txt_pre_protocolo.setBackground(Color.RED);
-        } else {
-            txt_pre_protocolo.setBackground(Color.GREEN);
+        switch (combo_pre_protocolo.getSelectedIndex()) {
+            case 0:
+                txt_pre_protocolo_IQOQPQ.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_protocolo_IQOQPQ.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_protocolo_IQOQPQ.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION MATERIALES
-        if (combo_pre_materiales.getSelectedIndex() == 0) {
-            txt_pre_materiales.setBackground(Color.GRAY);
-        } else if (combo_pre_materiales.getSelectedIndex() == 1) {
-            txt_pre_materiales.setBackground(Color.RED);
-        } else {
-            txt_pre_materiales.setBackground(Color.GREEN);
+        switch (combo_pre_materiales.getSelectedIndex()) {
+            case 0:
+                txt_pre_protocolo_CSV.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_protocolo_CSV.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_protocolo_CSV.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION DP
-        if (combo_pre_DP.getSelectedIndex() == 0) {
-            txt_pre_DP.setBackground(Color.GRAY);
-        } else if (combo_pre_DP.getSelectedIndex() == 1) {
-            txt_pre_DP.setBackground(Color.RED);
-        } else {
-            txt_pre_DP.setBackground(Color.GREEN);
+        switch (combo_pre_DP.getSelectedIndex()) {
+            case 0:
+                txt_pre_DP.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_DP.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_DP.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION DIAGRAMA
-        if (combo_pre_diagrama.getSelectedIndex() == 0) {
-            txt_pre_diagrama.setBackground(Color.GRAY);
-        } else if (combo_pre_diagrama.getSelectedIndex() == 1) {
-            txt_pre_diagrama.setBackground(Color.RED);
-        } else {
-            txt_pre_diagrama.setBackground(Color.GREEN);
+        switch (combo_pre_diagrama.getSelectedIndex()) {
+            case 0:
+                txt_pre_flujograma.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_flujograma.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_flujograma.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION FMEA
-        if (combo_pre_FMEA.getSelectedIndex() == 0) {
-            txt_pre_FMEA.setBackground(Color.GRAY);
-        } else if (combo_pre_FMEA.getSelectedIndex() == 1) {
-            txt_pre_FMEA.setBackground(Color.RED);
-        } else {
-            txt_pre_FMEA.setBackground(Color.GREEN);
+        switch (combo_pre_FMEA.getSelectedIndex()) {
+            case 0:
+                txt_pre_FMEA.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_FMEA.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_FMEA.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION PR
-        if (combo_pre_PR.getSelectedIndex() == 0) {
-            txt_pre_PR.setBackground(Color.GRAY);
-        } else if (combo_pre_PR.getSelectedIndex() == 1) {
-            txt_pre_PR.setBackground(Color.RED);
-        } else {
-            txt_pre_PR.setBackground(Color.GREEN);
+        switch (combo_pre_PR.getSelectedIndex()) {
+            case 0:
+                txt_pre_esp_equipo.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_esp_equipo.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_esp_equipo.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION PF
-        if (combo_pre_PF.getSelectedIndex() == 0) {
-            txt_pre_PF.setBackground(Color.GRAY);
-        } else if (combo_pre_PF.getSelectedIndex() == 1) {
-            txt_pre_PF.setBackground(Color.RED);
-        } else {
-            txt_pre_PF.setBackground(Color.GREEN);
+        switch (combo_pre_PF.getSelectedIndex()) {
+            case 0:
+                txt_pre_estabilidad.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_estabilidad.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_estabilidad.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION RM
-        if (combo_pre_RM.getSelectedIndex() == 0) {
-            txt_pre_RM.setBackground(Color.GRAY);
-        } else if (combo_pre_RM.getSelectedIndex() == 1) {
-            txt_pre_RM.setBackground(Color.RED);
-        } else {
-            txt_pre_RM.setBackground(Color.GREEN);
+        switch (combo_pre_RM.getSelectedIndex()) {
+            case 0:
+                txt_pre_HFM_emitida.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_HFM_emitida.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_HFM_emitida.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION PC
-        if (combo_pre_PC.getSelectedIndex() == 0) {
-            txt_pre_PC.setBackground(Color.GRAY);
-        } else if (combo_pre_PC.getSelectedIndex() == 1) {
-            txt_pre_PC.setBackground(Color.RED);
-        } else {
-            txt_pre_PC.setBackground(Color.GREEN);
+        switch (combo_pre_PC.getSelectedIndex()) {
+            case 0:
+                txt_pre_SOP.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_SOP.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_SOP.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION CG
-        if (combo_pre_CG.getSelectedIndex() == 0) {
-            txt_pre_CG.setBackground(Color.GRAY);
-        } else if (combo_pre_CG.getSelectedIndex() == 1) {
-            txt_pre_CG.setBackground(Color.RED);
-        } else {
-            txt_pre_CG.setBackground(Color.GREEN);
+        switch (combo_pre_CG.getSelectedIndex()) {
+            case 0:
+                txt_pre_muestras.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_muestras.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_muestras.setBackground(Color.GREEN);
+                break;
         }
 
         //VALIDACION FP
-        if (combo_pre_FP.getSelectedIndex() == 0) {
-            txt_pre_FP.setBackground(Color.GRAY);
-        } else if (combo_pre_FP.getSelectedIndex() == 1) {
-            txt_pre_FP.setBackground(Color.RED);
-        } else {
-            txt_pre_FP.setBackground(Color.GREEN);
+        switch (combo_pre_FP.getSelectedIndex()) {
+            case 0:
+                txt_pre_materiales.setBackground(Color.GRAY);
+                break;
+            case 1:
+                txt_pre_materiales.setBackground(Color.RED);
+                break;
+            default:
+                txt_pre_materiales.setBackground(Color.GREEN);
+                break;
         }
 
     }
 
+    // METODO PARA CALCULAR FECHAS ESPERADAS POR DOCUMENTOS PREREQUISITOS
     public void fechasProximas() {
 
         try {
-            String fecha_propuesta = "";
+            // CONVERSION DE FECHA PROPUESTA (STRING A DATE)
+            String fecha_propuesta;
             fecha_propuesta = txt_fecha_propuesta.getText();
             SimpleDateFormat convertifecha = new SimpleDateFormat("yyyy-MM-dd");
             Date fechafinal = convertifecha.parse(fecha_propuesta);
 
+            // SUMA DE DIAS A FECHA PROPUESTA
             Date fechaSuma1 = sumarRestarDiasFecha(fechafinal, -15);           
             DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd");
             String fechaConverida1 = fechaHora.format(fechaSuma1);
             txt_fecha_protocolo.setText(fechaConverida1);
             
+            // SUMA DE DIAS A FECHA PROPUESTA
             Date fechaSuma2 = sumarRestarDiasFecha(fechafinal, -20);           
             DateFormat fechaHora2 = new SimpleDateFormat("yyyy-MM-dd");
             String fechaConverida2 = fechaHora2.format(fechaSuma2);            
@@ -1008,6 +1072,7 @@ public class PrerequisitoProceso extends javax.swing.JFrame {
         }
     }
 
+    // METODO PARA RESTAR DIAS A FECHA PROPUESTA
     public Date sumarRestarDiasFecha(Date fecha, int dias) {
 
         Calendar calendar = Calendar.getInstance();
