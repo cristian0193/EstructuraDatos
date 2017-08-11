@@ -622,7 +622,7 @@ public class EstadoProyectoEHS extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "PRE", "EST.EHS", "FECHA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "IMPACTO", "EST.EHS", "FECHA", "OBSERVACIONES"};
         String[] registro = new String[9];
         String query = "";
 
@@ -684,7 +684,7 @@ public class EstadoProyectoEHS extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "PRE", "EST.EHS", "FECHA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "IMPACTO", "EST.EHS", "FECHA", "OBSERVACIONES"};
         String[] registro = new String[9];
         String query = "";
 
@@ -746,7 +746,7 @@ public class EstadoProyectoEHS extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "PRE", "EST.EHS", "FECHA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "IMPACTO", "EST.EHS", "FECHA", "OBSERVACIONES"};
         String[] registro = new String[9];
         String query = "";
 
@@ -808,7 +808,7 @@ public class EstadoProyectoEHS extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "PRE", "EST.EHS", "FECHA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "IMPACTO", "EST.EHS", "FECHA", "OBSERVACIONES"};
         String[] registro = new String[9];
         String query = "";
 
@@ -870,7 +870,7 @@ public class EstadoProyectoEHS extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "PRE", "EST.EHS", "FECHA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "IMPACTO", "EST.EHS", "FECHA", "OBSERVACIONES"};
         String[] registro = new String[9];
         String query = "";
 
@@ -928,7 +928,7 @@ public class EstadoProyectoEHS extends javax.swing.JFrame {
     // METODO PARA ORGANIZAR COLUMNAS
     public void ancho_columnas() {
         tabla_proyectos.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tabla_proyectos.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tabla_proyectos.getColumnModel().getColumn(1).setPreferredWidth(100);
         tabla_proyectos.getColumnModel().getColumn(2).setPreferredWidth(200);
         tabla_proyectos.getColumnModel().getColumn(3).setPreferredWidth(130);
         tabla_proyectos.getColumnModel().getColumn(4).setPreferredWidth(100);
