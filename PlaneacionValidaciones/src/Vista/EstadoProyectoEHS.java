@@ -332,7 +332,7 @@ public class EstadoProyectoEHS extends javax.swing.JFrame {
         rec = this.tabla_proyectos.getSelectedRow();
 
         this.txt_registro_pro.setText(tabla_proyectos.getValueAt(rec, 0).toString());
-        this.txt_observaciones_programacion.setText(tabla_proyectos.getValueAt(rec, 7).toString());
+        this.txt_observaciones_programacion.setText(tabla_proyectos.getValueAt(rec, 8).toString());
 
     }//GEN-LAST:event_tabla_proyectosMouseClicked
 
@@ -561,7 +561,7 @@ public class EstadoProyectoEHS extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "PRE", "EST.EHS", "FECHA", "OBSERVACIONES"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "IMPACTO", "EST.EHS", "FECHA", "OBSERVACIONES"};
         String[] registro = new String[9];
         String query = "";
 

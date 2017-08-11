@@ -847,6 +847,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 if (estado.equals("Cerrada")) {
                     if (prerequisito.equals("SI") && impacto.equals("En Proceso")) {
                         contador = 0;
+                    }    else if (prerequisito.equals("SI") && impacto.equals("")) {
+                        contador = 0;    
                     } else if (prerequisito.equals("SI") && impacto.equals("Completo")) {
                         contador = 1;
                     } else {
