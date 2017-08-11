@@ -358,7 +358,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 if (validacionProgramacion >= 1 || validacionProgramacionSemanaProceso > 0 || resultadoTotalLotes > 3 || contadorSemanas > 3) {
 
                     int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEMANA YA TIENE LA CAPACIADAD DE VALIDACIONES PROGRAMADAS COMPLETAS "
-                            + "\n PARA TIPO : " + tipo_validacion + " \n ¿ desea reprogramar ?", "Capacidad Completa", JOptionPane.QUESTION_MESSAGE);
+                            + "\n PARA TIPO : " + tipo_validacion + " \n ¿ desea reprogramar ?", "Capacidad Completa", JOptionPane.INFORMATION_MESSAGE);
 
                     if (JOptionPane.OK_OPTION == confirmado) {
 
@@ -430,7 +430,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 if (validacionProgramacion >= 1 || contadorSemanas > 3) {
 
                     int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEMANA YA TIENE LA CAPACIADAD DE VALIDACIONES PROGRAMADAS COMPLETAS "
-                            + "\n PARA TIPO : " + tipo_validacion + " \n ¿ desea reprogramar ?", "Capacidad Completa", JOptionPane.QUESTION_MESSAGE);
+                            + "\n PARA TIPO : " + tipo_validacion + " \n ¿ desea reprogramar ?", "Capacidad Completa", JOptionPane.INFORMATION_MESSAGE);
 
                     if (JOptionPane.OK_OPTION == confirmado) {
 
