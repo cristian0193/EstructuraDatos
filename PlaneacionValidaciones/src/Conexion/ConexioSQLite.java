@@ -810,6 +810,36 @@ public class ConexioSQLite {
             return false;
 
         }
+    }   
+    
+     //METODO DE ACTUALIZAR ESTADOS
+    public boolean upgrade_estado_EHS(
+            String REGISTRO,
+            String ESTADO,
+            String OBSERVACION) {
+
+        try {
+
+            query = "UPDATE"
+                    + " PLANEACIONES_VALIDACION"
+                    + " SET "
+                    + "  ESTADO_EHS = '" + ESTADO + "',"
+                    + "  OBSERVACIONES_VALIDACION = '" + OBSERVACION + "'"
+                    + " WHERE"
+                    + "  NUMERO_REGISTRO = " + REGISTRO + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println("ACTUALIZADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ACTUALIZADO ...");
+            return false;
+
+        }
     }    
     
         //METODO PARA INSERTAR AUTORIZADO

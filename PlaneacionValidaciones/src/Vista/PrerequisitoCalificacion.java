@@ -107,9 +107,9 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("RU No GxP :");
+        jLabel4.setText("Impacto en EHS :");
 
-        combo_pre_RU.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Aplica", "Pendiente", "Completo" }));
+        combo_pre_RU.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NO", "Pendiente", "SI" }));
         combo_pre_RU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_pre_RUActionPerformed(evt);

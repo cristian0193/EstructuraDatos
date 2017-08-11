@@ -384,16 +384,16 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="RU No GxP :"/>
+            <Property name="text" type="java.lang.String" value="Impacto en EHS :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_pre_RU">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
-                <StringItem index="0" value="No Aplica"/>
+                <StringItem index="0" value="NO"/>
                 <StringItem index="1" value="Pendiente"/>
-                <StringItem index="2" value="Completo"/>
+                <StringItem index="2" value="SI"/>
               </StringArray>
             </Property>
           </Properties>

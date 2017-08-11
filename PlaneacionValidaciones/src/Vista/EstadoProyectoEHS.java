@@ -12,15 +12,13 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class EstadoProyecto extends javax.swing.JFrame {
+public class EstadoProyectoEHS extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
     public static DefaultTableCellRenderer Alinear;
-    public static int validacion_pendiente_cal = 0;
-    public static int validacion_pendiente_pro = 0;
 
-    public EstadoProyecto() {
+    public EstadoProyectoEHS() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla_estados();
@@ -51,6 +49,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
         btn_refrescar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txt_gcc = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        combo_estado_ehs_consulta = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_observaciones_programacion = new javax.swing.JTextArea();
         txt_registro_pro = new javax.swing.JTextField();
@@ -68,7 +68,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ESTADO DE PROYECTO DE VALIDACION Ó CALIFICACION");
+        jLabel1.setText("ESTADO DE PROYECTO DE VALIDACION Ó CALIFICACION EN EHS");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 40));
 
         jLabel6.setText("Numero Registro :");
@@ -121,7 +121,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
         txt_lider_consulta.setToolTipText("Lider encargado de la ejecucion del proyecto");
         txt_lider_consulta.setEnabled(false);
 
-        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "FECHA PROPUESTA", "LIDER TECNICO", "ESTADO", "GCC" }));
+        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "FECHA PROPUESTA", "LIDER TECNICO", "ESTADO PROYECTO", "GCC", "ESTADO EHS" }));
         combo_consulta.setToolTipText("Permite Seleccioar el Filtro con el que se realiara la consulta");
         combo_consulta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -156,6 +156,12 @@ public class EstadoProyecto extends javax.swing.JFrame {
         txt_gcc.setToolTipText("Lider encargado de la ejecucion del proyecto");
         txt_gcc.setEnabled(false);
 
+        jLabel9.setText("Estado :");
+
+        combo_estado_ehs_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "SI", "Pendiente" }));
+        combo_estado_ehs_consulta.setToolTipText("Filtro para verificacion por estado");
+        combo_estado_ehs_consulta.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -178,10 +184,14 @@ public class EstadoProyecto extends javax.swing.JFrame {
                     .addComponent(combo_estado_consulta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_lider_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_gcc, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txt_gcc, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(combo_estado_ehs_consulta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +220,11 @@ public class EstadoProyecto extends javax.swing.JFrame {
                             .addComponent(txt_fecha_final, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btn_refrescar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btn_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(combo_estado_ehs_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -256,7 +270,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
         jLabel8.setText("Cambio de Estado :");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 120, 20));
 
-        combo_estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "No Ejecutada", "Cerrada" }));
+        combo_estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "En Proceso", "Completo" }));
         combo_estado.setToolTipText("Seleccion de Estado para Cambio en la validacion");
         getContentPane().add(combo_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 170, -1));
 
@@ -278,7 +292,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
-        
+
         if (txt_registro_pro.getText().equals("")) {
             JOptionPane.showMessageDialog(null, " SELECCIONE UN REGISTRO DE LA TABLA");
         } else if (combo_estado.getSelectedIndex() == 0) {
@@ -292,7 +306,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
             String observacion = txt_observaciones_programacion.getText();
 
             // EJECUCIÓN DE ACTUALIZACION
-            boolean resultado = conexion.upgrade_estado(num_registro, estado, observacion);
+            boolean resultado = conexion.upgrade_estado_EHS(num_registro, estado, observacion);
 
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
@@ -312,10 +326,10 @@ public class EstadoProyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_actualizarActionPerformed
 
     private void tabla_proyectosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_proyectosMouseClicked
-        
+
         // CAPTURA DE DATOS AL SER SELECCIONADO EN TABLA
         int rec;
-        
+
         rec = this.tabla_proyectos.getSelectedRow();
 
         this.txt_registro_pro.setText(tabla_proyectos.getValueAt(rec, 0).toString());
@@ -323,8 +337,20 @@ public class EstadoProyecto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tabla_proyectosMouseClicked
 
+    private void btn_refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refrescarActionPerformed
+
+        // ACCION DEL BOTON REFRESCAR
+        cargar_tabla_estados();
+        ancho_columnas();
+        centrar_datos();
+    }//GEN-LAST:event_btn_refrescarActionPerformed
+
+    private void combo_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_consultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_consultaActionPerformed
+
     private void combo_consultaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_consultaItemStateChanged
-       
+
         int index = combo_consulta.getSelectedIndex();
 
         switch (index) {
@@ -339,6 +365,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 this.combo_estado_consulta.setEnabled(false);
                 this.txt_gcc.setEditable(false);
                 this.txt_gcc.setEnabled(false);
+                this.combo_estado_ehs_consulta.setEditable(false);
+                this.combo_estado_ehs_consulta.setEnabled(false);
                 break;
             case 2:
                 this.txt_lider_consulta.setEditable(true);
@@ -348,6 +376,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 this.combo_estado_consulta.setEnabled(false);
                 this.txt_gcc.setEditable(false);
                 this.txt_gcc.setEnabled(false);
+                this.combo_estado_ehs_consulta.setEditable(false);
+                this.combo_estado_ehs_consulta.setEnabled(false);
                 break;
             case 3:
                 this.combo_estado_consulta.setEditable(true);
@@ -358,8 +388,10 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 this.txt_fecha_final.setEnabled(false);
                 this.txt_gcc.setEditable(false);
                 this.txt_gcc.setEnabled(false);
+                this.combo_estado_ehs_consulta.setEditable(false);
+                this.combo_estado_ehs_consulta.setEnabled(false);
                 break;
-            default:
+            case 4:
                 this.combo_estado_consulta.setEditable(false);
                 this.combo_estado_consulta.setEnabled(false);
                 this.txt_lider_consulta.setEnabled(false);
@@ -368,14 +400,23 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 this.txt_fecha_final.setEnabled(false);
                 this.txt_gcc.setEditable(true);
                 this.txt_gcc.setEnabled(true);
+                this.combo_estado_ehs_consulta.setEditable(false);
+                this.combo_estado_ehs_consulta.setEnabled(false);
+                break;
+            default:
+                this.combo_estado_consulta.setEditable(false);
+                this.combo_estado_consulta.setEnabled(false);
+                this.txt_lider_consulta.setEnabled(false);
+                this.txt_lider_consulta.setEditable(false);
+                this.txt_fecha_inicio.setEnabled(false);
+                this.txt_fecha_final.setEnabled(false);
+                this.txt_gcc.setEditable(false);
+                this.txt_gcc.setEnabled(false);
+                this.combo_estado_ehs_consulta.setEditable(true);
+                this.combo_estado_ehs_consulta.setEnabled(true);
                 break;
         }
-
     }//GEN-LAST:event_combo_consultaItemStateChanged
-
-    private void combo_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_consultaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo_consultaActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
 
@@ -392,30 +433,31 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 } else if (this.txt_fecha_final.getDate() == null) {
                     JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
                 } else {
-                    
+
                     // CONVERSION DE FECHAS (DATE A STRING)
                     String formato1 = txt_fecha_inicio.getDateFormatString();
                     Date date1 = (Date) txt_fecha_inicio.getDate();
                     SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
                     String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
-                    
+
                     // CONVERSION DE FECHAS (DATE A STRING)
                     String formato2 = txt_fecha_final.getDateFormatString();
                     Date date2 = (Date) txt_fecha_final.getDate();
                     SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
                     String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
-                    
+
                     // EJECUCIÓN DE CONSULTA A LA BASE DE DATOS
                     consulta_rango_fechas_propuesta(fecha_ingresada_inicio, fecha_ingresada_final);
                     ancho_columnas();
                     centrar_datos();
                     conexion.cerrar();
-                }   break;
+                }
+                break;
             case 2:
-                
-                // CONSULTA POR LIDER                
+
+                // CONSULTA POR LIDER
                 String lider = txt_lider_consulta.getText();
-                                
+
                 if (lider.equals("")) {
                     JOptionPane.showMessageDialog(null, "INGRESE LIDER TECNICO");
                 } else {
@@ -423,26 +465,28 @@ public class EstadoProyecto extends javax.swing.JFrame {
                     ancho_columnas();
                     centrar_datos();
                     conexion.cerrar();
-                }   break;
+                }
+                break;
             case 3:
-                
+
                 // CONSULTA POR ESTADO
                 int registro = combo_estado_consulta.getSelectedIndex();
-                
+
                 if (registro == 0) {
-                    JOptionPane.showMessageDialog(null, "SELECCIONAR UN ESTADO");
+                    JOptionPane.showMessageDialog(null, "SELECCIONE UN ESTADO");
                 } else {
                     String registros = combo_estado_consulta.getSelectedItem().toString();
                     consulta_estado(registros);
                     ancho_columnas();
                     centrar_datos();
                     conexion.cerrar();
-                }   break;
-            default:
-                
+                }
+                break;
+            case 4:
+
                 // CONSULTA POR GCC
                 String gcc = txt_gcc.getText();
-                
+
                 if (gcc.equals("")) {
                     JOptionPane.showMessageDialog(null, "INGRESE NUMERO GCC");
                 } else {
@@ -450,19 +494,25 @@ public class EstadoProyecto extends javax.swing.JFrame {
                     ancho_columnas();
                     centrar_datos();
                     conexion.cerrar();
-                }   break;
+                }
+                break;
+            default:
+
+                // CONSULTA POR ESTADO EHS
+                int estado_ehs = combo_estado_ehs_consulta.getSelectedIndex();
+
+                if (estado_ehs == 0) {
+                    JOptionPane.showMessageDialog(null, "SELECCIONE UN ESTADO");
+                } else {
+                    String registros = combo_estado_ehs_consulta.getSelectedItem().toString();
+                    consulta_estado_EHS(registros);
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                }
+                break;
         }
-
     }//GEN-LAST:event_btn_buscarActionPerformed
-
-    private void btn_refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refrescarActionPerformed
-        
-        // ACCION DEL BOTON REFRESCAR
-        
-        cargar_tabla_estados();
-        ancho_columnas();
-        centrar_datos();
-    }//GEN-LAST:event_btn_refrescarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -472,6 +522,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
     private javax.swing.JComboBox combo_consulta;
     private javax.swing.JComboBox combo_estado;
     private javax.swing.JComboBox combo_estado_consulta;
+    private javax.swing.JComboBox combo_estado_ehs_consulta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel18;
@@ -483,6 +534,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -509,8 +561,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "PRE", "EST.EHS", "FECHA", "OBSERVACIONES"};
+        String[] registro = new String[9];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -524,17 +576,16 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
-                + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
-                + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
+                + "PRE_CAL_RU_NO_GXP AS PRE, "
+                + "ESTADO_EHS AS EHS, "
+                + "FECHA_PROPUESTA AS FECHA, "
                 + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'Programado' "
-                + "OR ESTADO_PROYECTO = 'Reprogramado' "
-                + "OR ESTADO_PROYECTO = 'Ejecutada' "
-                + "OR ESTADO_PROYECTO = 'Ejecutada No Programada' "
-                + "ORDER BY FECHA_PROPUESTA";        
+                + "WHERE (PRE_CAL_RU_NO_GXP = 'SI' "
+                + "OR PRE_CAL_RU_NO_GXP = 'Pendiente') "
+                + "ORDER BY FECHA_PROPUESTA";
 
         try {
             Statement st = cn.createStatement();
@@ -546,10 +597,11 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("REPROGRAMA");
-                registro[6] = rs.getString("ESTADO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[4] = rs.getString("ESTADO");
+                registro[5] = rs.getString("PRE");
+                registro[6] = rs.getString("EHS");
+                registro[7] = rs.getString("FECHA");
+                registro[8] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -570,8 +622,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "PRE", "EST.EHS", "FECHA", "OBSERVACIONES"};
+        String[] registro = new String[9];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -585,17 +637,18 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
-                + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
-                + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
+                + "PRE_CAL_RU_NO_GXP AS PRE, "
+                + "ESTADO_EHS AS EHS, "
+                + "FECHA_PROPUESTA AS FECHA, "
                 + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' AND"
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','Cerrada','Reprogramada')) "
+                + "(PRE_CAL_RU_NO_GXP = 'SI' OR PRE_CAL_RU_NO_GXP = 'Pendiente') "
                 + "ORDER BY FECHA_PROPUESTA";
-        
+
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -606,10 +659,11 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("REPROGRAMA");
-                registro[6] = rs.getString("ESTADO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[4] = rs.getString("ESTADO");
+                registro[5] = rs.getString("PRE");
+                registro[6] = rs.getString("EHS");
+                registro[7] = rs.getString("FECHA");
+                registro[8] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -630,8 +684,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "PRE", "EST.EHS", "FECHA", "OBSERVACIONES"};
+        String[] registro = new String[9];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -645,15 +699,16 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
-                + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
-                + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
+                + "PRE_CAL_RU_NO_GXP AS PRE, "
+                + "ESTADO_EHS AS EHS, "
+                + "FECHA_PROPUESTA AS FECHA, "
                 + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' AND "
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','Cerrada','Reprogramada')) "
+                + "(PRE_CAL_RU_NO_GXP = 'SI' OR PRE_CAL_RU_NO_GXP = 'Pendiente') "
                 + "ORDER BY FECHA_PROPUESTA";
 
         try {
@@ -666,10 +721,11 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("REPROGRAMA");
-                registro[6] = rs.getString("ESTADO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[4] = rs.getString("ESTADO");
+                registro[5] = rs.getString("PRE");
+                registro[6] = rs.getString("EHS");
+                registro[7] = rs.getString("FECHA");
+                registro[8] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -690,8 +746,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "PRE", "EST.EHS", "FECHA", "OBSERVACIONES"};
+        String[] registro = new String[9];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -705,16 +761,18 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
-                + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
-                + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
+                + "PRE_CAL_RU_NO_GXP AS PRE, "
+                + "ESTADO_EHS AS EHS, "
+                + "FECHA_PROPUESTA AS FECHA, "
                 + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "ESTADO_PROYECTO = '" + estado + "' "
+                + "ESTADO_PROYECTO = '" + estado + "' AND"
+                + "(PRE_CAL_RU_NO_GXP = 'SI' OR PRE_CAL_RU_NO_GXP = 'Pendiente') "
                 + "ORDER BY FECHA_PROPUESTA";
-        
+
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -725,10 +783,73 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("REPROGRAMA");
-                registro[6] = rs.getString("ESTADO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[4] = rs.getString("ESTADO");
+                registro[5] = rs.getString("PRE");
+                registro[6] = rs.getString("EHS");
+                registro[7] = rs.getString("FECHA");
+                registro[8] = rs.getString("OBSERVACIONES");
+
+                modelo.addRow(registro);
+            }
+            tabla_proyectos.setModel(modelo);
+            conexion.cerrar();
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    // METODO PARA CONSULTAR ESTADO DE EHS
+    void consulta_estado_EHS(String estado) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        // TITULOS DE TABLA DE DATOS
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "PRE", "EST.EHS", "FECHA", "OBSERVACIONES"};
+        String[] registro = new String[9];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        // QUERY DE BASE DE DATOS
+        query = "SELECT "
+                + "NUMERO_REGISTRO AS NUM, "
+                + "GCC_APR AS GCC, "
+                + "NOMBRE_PROYECTO AS PROYECTO, "
+                + "LIDER_TECNICO AS LIDER, "
+                + "ESTADO_PROYECTO AS ESTADO, "
+                + "PRE_CAL_RU_NO_GXP AS PRE, "
+                + "ESTADO_EHS AS EHS, "
+                + "FECHA_PROPUESTA AS FECHA, "
+                + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE "
+                + "PRE_CAL_RU_NO_GXP = '" + estado + "' "
+                + "ORDER BY FECHA_PROPUESTA";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                // REGISTROS CONSULTADOS
+                registro[0] = rs.getString("NUM");
+                registro[1] = rs.getString("GCC");
+                registro[2] = rs.getString("PROYECTO");
+                registro[3] = rs.getString("LIDER");
+                registro[4] = rs.getString("ESTADO");
+                registro[5] = rs.getString("PRE");
+                registro[6] = rs.getString("EHS");
+                registro[7] = rs.getString("FECHA");
+                registro[8] = rs.getString("OBSERVACIONES");
+
 
                 modelo.addRow(registro);
             }
@@ -749,8 +870,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "EST.PROYECTO", "PRE", "EST.EHS", "FECHA", "OBSERVACIONES"};
+        String[] registro = new String[9];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -764,15 +885,16 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
-                + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
-                + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
+                + "PRE_CAL_RU_NO_GXP AS PRE, "
+                + "ESTADO_EHS AS EHS, "
+                + "FECHA_PROPUESTA AS FECHA, "
                 + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "GCC_APR = '" + gcc.toUpperCase().trim() + "' AND "
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','Cerrada','Reprogramada')) "
+                + "(PRE_CAL_RU_NO_GXP = 'SI' OR PRE_CAL_RU_NO_GXP = 'Pendiente') "
                 + "ORDER BY FECHA_PROPUESTA";
 
         try {
@@ -785,10 +907,11 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("REPROGRAMA");
-                registro[6] = rs.getString("ESTADO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[4] = rs.getString("ESTADO");
+                registro[5] = rs.getString("PRE");
+                registro[6] = rs.getString("EHS");
+                registro[7] = rs.getString("FECHA");
+                registro[8] = rs.getString("OBSERVACIONES");
 
                 modelo.addRow(registro);
             }
@@ -801,13 +924,13 @@ public class EstadoProyecto extends javax.swing.JFrame {
 
         }
     }
-    
+
     // METODO PARA ORGANIZAR COLUMNAS
     public void ancho_columnas() {
         tabla_proyectos.getColumnModel().getColumn(0).setPreferredWidth(50);
         tabla_proyectos.getColumnModel().getColumn(1).setPreferredWidth(150);
         tabla_proyectos.getColumnModel().getColumn(2).setPreferredWidth(200);
-        tabla_proyectos.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tabla_proyectos.getColumnModel().getColumn(3).setPreferredWidth(130);
         tabla_proyectos.getColumnModel().getColumn(4).setPreferredWidth(100);
         tabla_proyectos.getColumnModel().getColumn(5).setPreferredWidth(100);
         tabla_proyectos.getColumnModel().getColumn(6).setPreferredWidth(100);
