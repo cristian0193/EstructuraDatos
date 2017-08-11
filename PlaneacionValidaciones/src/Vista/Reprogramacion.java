@@ -670,6 +670,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         cargar_tabla_reprogramaciones();
         ancho_columnas();
         centrar_datos();
+        LimpiarCampos();
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

@@ -278,7 +278,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
-        
+
         if (txt_registro_pro.getText().equals("")) {
             JOptionPane.showMessageDialog(null, " SELECCIONE UN REGISTRO DE LA TABLA");
         } else if (combo_estado.getSelectedIndex() == 0) {
@@ -289,21 +289,31 @@ public class EstadoProyecto extends javax.swing.JFrame {
 
             String num_registro = txt_registro_pro.getText();
             String estado = combo_estado.getSelectedItem().toString();
-            String observacion = txt_observaciones_programacion.getText();
 
-            // EJECUCIÓN DE ACTUALIZACION
-            boolean resultado = conexion.upgrade_estado(num_registro, estado, observacion);
+            int EHS = validacionEHS(num_registro,estado);
 
-            if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                LimpiarCampos();
-                cargar_tabla_estados();
-                ancho_columnas();
-                centrar_datos();
-                conexion.cerrar();
+            if (EHS == 1) {
+
+                String observacion = txt_observaciones_programacion.getText();
+
+                // EJECUCIÓN DE ACTUALIZACION
+                boolean resultado = conexion.upgrade_estado(num_registro, estado, observacion);
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                    LimpiarCampos();
+                    cargar_tabla_estados();
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                    LimpiarCampos();
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                LimpiarCampos();
+                JOptionPane.showMessageDialog(null, "NO SE PERMITE EL CIERRE DEL PROYECTO \n "
+                        + "POR PENDIENTES EN VALIDACIÓN DE EHS",
+                        "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -312,10 +322,10 @@ public class EstadoProyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_actualizarActionPerformed
 
     private void tabla_proyectosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_proyectosMouseClicked
-        
+
         // CAPTURA DE DATOS AL SER SELECCIONADO EN TABLA
         int rec;
-        
+
         rec = this.tabla_proyectos.getSelectedRow();
 
         this.txt_registro_pro.setText(tabla_proyectos.getValueAt(rec, 0).toString());
@@ -324,7 +334,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_tabla_proyectosMouseClicked
 
     private void combo_consultaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_consultaItemStateChanged
-       
+
         int index = combo_consulta.getSelectedIndex();
 
         switch (index) {
@@ -392,30 +402,31 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 } else if (this.txt_fecha_final.getDate() == null) {
                     JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
                 } else {
-                    
+
                     // CONVERSION DE FECHAS (DATE A STRING)
                     String formato1 = txt_fecha_inicio.getDateFormatString();
                     Date date1 = (Date) txt_fecha_inicio.getDate();
                     SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
                     String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
-                    
+
                     // CONVERSION DE FECHAS (DATE A STRING)
                     String formato2 = txt_fecha_final.getDateFormatString();
                     Date date2 = (Date) txt_fecha_final.getDate();
                     SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
                     String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
-                    
+
                     // EJECUCIÓN DE CONSULTA A LA BASE DE DATOS
                     consulta_rango_fechas_propuesta(fecha_ingresada_inicio, fecha_ingresada_final);
                     ancho_columnas();
                     centrar_datos();
                     conexion.cerrar();
-                }   break;
+                }
+                break;
             case 2:
-                
+
                 // CONSULTA POR LIDER                
                 String lider = txt_lider_consulta.getText();
-                                
+
                 if (lider.equals("")) {
                     JOptionPane.showMessageDialog(null, "INGRESE LIDER TECNICO");
                 } else {
@@ -423,12 +434,13 @@ public class EstadoProyecto extends javax.swing.JFrame {
                     ancho_columnas();
                     centrar_datos();
                     conexion.cerrar();
-                }   break;
+                }
+                break;
             case 3:
-                
+
                 // CONSULTA POR ESTADO
                 int registro = combo_estado_consulta.getSelectedIndex();
-                
+
                 if (registro == 0) {
                     JOptionPane.showMessageDialog(null, "SELECCIONAR UN ESTADO");
                 } else {
@@ -437,12 +449,13 @@ public class EstadoProyecto extends javax.swing.JFrame {
                     ancho_columnas();
                     centrar_datos();
                     conexion.cerrar();
-                }   break;
+                }
+                break;
             default:
-                
+
                 // CONSULTA POR GCC
                 String gcc = txt_gcc.getText();
-                
+
                 if (gcc.equals("")) {
                     JOptionPane.showMessageDialog(null, "INGRESE NUMERO GCC");
                 } else {
@@ -450,18 +463,19 @@ public class EstadoProyecto extends javax.swing.JFrame {
                     ancho_columnas();
                     centrar_datos();
                     conexion.cerrar();
-                }   break;
+                }
+                break;
         }
 
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void btn_refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refrescarActionPerformed
-        
+
         // ACCION DEL BOTON REFRESCAR
-        
         cargar_tabla_estados();
         ancho_columnas();
         centrar_datos();
+        LimpiarCampos();
     }//GEN-LAST:event_btn_refrescarActionPerformed
 
 
@@ -534,7 +548,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "OR ESTADO_PROYECTO = 'Reprogramado' "
                 + "OR ESTADO_PROYECTO = 'Ejecutada' "
                 + "OR ESTADO_PROYECTO = 'Ejecutada No Programada' "
-                + "ORDER BY FECHA_PROPUESTA";        
+                + "ORDER BY FECHA_PROPUESTA";
 
         try {
             Statement st = cn.createStatement();
@@ -595,7 +609,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' AND"
                 + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','Cerrada','Reprogramada')) "
                 + "ORDER BY FECHA_PROPUESTA";
-        
+
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -714,7 +728,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "WHERE "
                 + "ESTADO_PROYECTO = '" + estado + "' "
                 + "ORDER BY FECHA_PROPUESTA";
-        
+
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -801,7 +815,56 @@ public class EstadoProyecto extends javax.swing.JFrame {
 
         }
     }
-    
+
+    // METODO PARA VALIDAR SI UNA VALIDACION EHS SE ENCUENTRA OK O PENDIENTE
+    public int validacionEHS(String gcc, String estado) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String query;
+        int contador = 0;
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        // QUERY DE BASE DE DATOS
+        query = "SELECT ESTADO_EHS AS EHS, PRE_CAL_RU_NO_GXP AS PRE "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE "
+                + "NUMERO_REGISTRO = '" + gcc.toUpperCase().trim() + "'";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                // REGISTROS CONSULTADOS
+                String impacto = rs.getString("EHS");
+                String prerequisito = rs.getString("PRE");
+
+                if (estado.equals("Cerrada")) {
+                    if (prerequisito.equals("SI") && impacto.equals("En Proceso")) {
+                        contador = 0;
+                    } else if (prerequisito.equals("SI") && impacto.equals("Completo")) {
+                        contador = 1;
+                    } else {
+                        contador = 1;
+                    }
+                } else {
+                    contador = 1;
+                }
+
+            }
+            conexion.cerrar();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return contador;
+    }
+
     // METODO PARA ORGANIZAR COLUMNAS
     public void ancho_columnas() {
         tabla_proyectos.getColumnModel().getColumn(0).setPreferredWidth(50);
