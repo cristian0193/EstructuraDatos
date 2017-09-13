@@ -1680,7 +1680,7 @@ public class Principal extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "(ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion') "
-                + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' "
+                + "AND LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' "
                 + "ORDER BY NUMERO_REGISTRO DESC";
         try {
             Statement st = cn.createStatement();
@@ -1743,7 +1743,7 @@ public class Principal extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "(ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion') "
-                + "NUMERO_REGISTRO = " + registro + " "
+                + "AND NUMERO_REGISTRO = " + registro + " "
                 + "ORDER BY NUMERO_REGISTRO DESC";
         System.out.println(query);
         try {
@@ -1806,7 +1806,7 @@ public class Principal extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "(ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion') "
-                + "GCC_APR = '" + gcc + "' "
+                + "AND GCC_APR = '" + gcc + "' "
                 + "ORDER BY NUMERO_REGISTRO DESC";
         System.out.println(query);
         try {
@@ -1869,7 +1869,7 @@ public class Principal extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "(ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion') "
-                + "NOMBRE_PROYECTO LIKE '%" + proyecto + "%' "
+                + "AND NOMBRE_PROYECTO LIKE '%" + proyecto + "%' "
                 + "ORDER BY NUMERO_REGISTRO DESC";
         System.out.println(query);
         try {

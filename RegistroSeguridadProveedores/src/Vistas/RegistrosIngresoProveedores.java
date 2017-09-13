@@ -78,6 +78,8 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
         txt_estado = new javax.swing.JTextField();
         combo_marca = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
+        btn_conuslta = new javax.swing.JButton();
+        lb_prueba = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_registro = new javax.swing.JTable();
         jLabel18 = new javax.swing.JLabel();
@@ -125,7 +127,7 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
                 combo_conductorItemStateChanged(evt);
             }
         });
-        jPanel1.add(combo_conductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 274, -1));
+        jPanel1.add(combo_conductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 210, -1));
 
         txt_ficha.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txt_ficha.setForeground(new java.awt.Color(255, 0, 0));
@@ -310,6 +312,15 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
         jLabel11.setText("SALE :");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 200, 50, 21));
 
+        btn_conuslta.setText("...");
+        btn_conuslta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_conusltaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_conuslta, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 40, 20));
+        jPanel1.add(lb_prueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 210, 20));
+
         tabla_registro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -407,7 +418,7 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -450,7 +461,7 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1205, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 29, Short.MAX_VALUE))
@@ -950,6 +961,13 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_combo_marcaItemStateChanged
+
+    private void btn_conusltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conusltaActionPerformed
+        
+        new ConsultarConductor(null, true).setVisible(true);
+        
+        
+    }//GEN-LAST:event_btn_conusltaActionPerformed
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -987,11 +1005,12 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_conuslta;
     public javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton btn_refrescar;
     private javax.swing.JComboBox combo_autorizo;
-    private javax.swing.JComboBox combo_conductor;
+    public javax.swing.JComboBox combo_conductor;
     private javax.swing.JComboBox combo_consulta;
     private javax.swing.JComboBox combo_guarda;
     private javax.swing.JComboBox combo_marca;
@@ -1025,6 +1044,7 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JLabel lb_prueba;
     private javax.swing.JTable tabla_registro;
     private javax.swing.JTextField txt_consulta_autorizo;
     private javax.swing.JTextField txt_consulta_cedula;
@@ -1563,7 +1583,7 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
-        query = "SELECT * FROM CONDUCTORES ";
+        query = "SELECT * FROM CONDUCTORES ORDER BY NOMBRE_CONDUCTOR ASC";
 
         System.out.println(query);
         try {

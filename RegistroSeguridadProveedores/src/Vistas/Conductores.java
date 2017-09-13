@@ -371,7 +371,7 @@ public class Conductores extends javax.swing.JFrame {
                 + "PLACA_VEHICULO AS PLACA "
                 + "FROM "
                 + "CONDUCTORES "
-                + "ORDER BY ID_CONDUCTOR DESC";
+                + "ORDER BY NOMBRE_CONDUCTOR ASC";
 
         try {
             Statement st = cn.createStatement();
