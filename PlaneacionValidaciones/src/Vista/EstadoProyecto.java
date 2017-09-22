@@ -541,7 +541,9 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
-                + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
+                + "OBSERVACION_EXCEPCIONES AS OBSER_REPRO, "
+                + "OBSERVACION_REPROGRAMACION AS EXPECIONES, "
+                + "OBSERVACIONES_VALIDACION AS OBSER_VAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE ESTADO_PROYECTO = 'Programada' "
@@ -555,6 +557,19 @@ public class EstadoProyecto extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                String com_repro = "";
+                String com_registro = "";
+                String com_excepciones = "";
+                String comentario_final = "";
+
+                com_registro = rs.getString("OBSER_VAL");
+                com_repro = rs.getString("OBSER_REPRO");
+                com_excepciones = rs.getString("EXPECIONES");
+
+                comentario_final = "REGISTRO : " + com_registro + "\n"
+                        + "REPROGRAMACION : " + com_repro + "\n"
+                        + "EXCEPCION : " + com_excepciones + "";
+                
                 // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
@@ -563,7 +578,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("REPROGRAMA");
                 registro[6] = rs.getString("ESTADO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[7] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -602,7 +617,9 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
-                + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
+                + "OBSERVACION_EXCEPCIONES AS OBSER_REPRO, "
+                + "OBSERVACION_REPROGRAMACION AS EXPECIONES, "
+                + "OBSERVACIONES_VALIDACION AS OBSER_VAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
@@ -615,6 +632,19 @@ public class EstadoProyecto extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                String com_repro = "";
+                String com_registro = "";
+                String com_excepciones = "";
+                String comentario_final = "";
+
+                com_registro = rs.getString("OBSER_VAL");
+                com_repro = rs.getString("OBSER_REPRO");
+                com_excepciones = rs.getString("EXPECIONES");
+
+                comentario_final = "REGISTRO : " + com_registro + "\n"
+                        + "REPROGRAMACION : " + com_repro + "\n"
+                        + "EXCEPCION : " + com_excepciones + "";
+                
                 // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
@@ -623,7 +653,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("REPROGRAMA");
                 registro[6] = rs.getString("ESTADO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[7] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -662,7 +692,9 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
-                + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
+                + "OBSERVACION_EXCEPCIONES AS OBSER_REPRO, "
+                + "OBSERVACION_REPROGRAMACION AS EXPECIONES, "
+                + "OBSERVACIONES_VALIDACION AS OBSER_VAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
@@ -675,6 +707,19 @@ public class EstadoProyecto extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                String com_repro = "";
+                String com_registro = "";
+                String com_excepciones = "";
+                String comentario_final = "";
+
+                com_registro = rs.getString("OBSER_VAL");
+                com_repro = rs.getString("OBSER_REPRO");
+                com_excepciones = rs.getString("EXPECIONES");
+
+                comentario_final = "REGISTRO : " + com_registro + "\n"
+                        + "REPROGRAMACION : " + com_repro + "\n"
+                        + "EXCEPCION : " + com_excepciones + "";
+                
                 // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
@@ -683,7 +728,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("REPROGRAMA");
                 registro[6] = rs.getString("ESTADO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[7] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -722,7 +767,9 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
-                + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
+                + "OBSERVACION_EXCEPCIONES AS OBSER_REPRO, "
+                + "OBSERVACION_REPROGRAMACION AS EXPECIONES, "
+                + "OBSERVACIONES_VALIDACION AS OBSER_VAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
@@ -735,6 +782,19 @@ public class EstadoProyecto extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                String com_repro = "";
+                String com_registro = "";
+                String com_excepciones = "";
+                String comentario_final = "";
+
+                com_registro = rs.getString("OBSER_VAL");
+                com_repro = rs.getString("OBSER_REPRO");
+                com_excepciones = rs.getString("EXPECIONES");
+
+                comentario_final = "REGISTRO : " + com_registro + "\n"
+                        + "REPROGRAMACION : " + com_repro + "\n"
+                        + "EXCEPCION : " + com_excepciones + "";
+                
                 // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
@@ -743,7 +803,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("REPROGRAMA");
                 registro[6] = rs.getString("ESTADO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[7] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -782,7 +842,9 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
-                + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
+                + "OBSERVACION_EXCEPCIONES AS OBSER_REPRO, "
+                + "OBSERVACION_REPROGRAMACION AS EXPECIONES, "
+                + "OBSERVACIONES_VALIDACION AS OBSER_VAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
@@ -795,6 +857,19 @@ public class EstadoProyecto extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                String com_repro = "";
+                String com_registro = "";
+                String com_excepciones = "";
+                String comentario_final = "";
+
+                com_registro = rs.getString("OBSER_VAL");
+                com_repro = rs.getString("OBSER_REPRO");
+                com_excepciones = rs.getString("EXPECIONES");
+
+                comentario_final = "REGISTRO : " + com_registro + "\n"
+                        + "REPROGRAMACION : " + com_repro + "\n"
+                        + "EXCEPCION : " + com_excepciones + "";
+                
                 // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
@@ -803,7 +878,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("REPROGRAMA");
                 registro[6] = rs.getString("ESTADO");
-                registro[7] = rs.getString("OBSERVACIONES");
+                registro[7] = comentario_final;
 
                 modelo.addRow(registro);
             }
