@@ -755,7 +755,9 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
-                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
+                 + "OBSERVACION_EXCEPCIONES AS OBSER_REPRO, "
+                + "OBSERVACION_REPROGRAMACION AS EXPECIONES, "
+                + "OBSERVACIONES_VALIDACION AS OBSER_VAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE ESTADO_PROYECTO = 'No Ejecutada' "
@@ -766,13 +768,26 @@ public class Reprogramacion extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                String com_repro = "";
+                String com_registro = "";
+                String com_excepciones = "";
+                String comentario_final = "";
+
+                com_registro = rs.getString("OBSER_VAL");
+                com_repro = rs.getString("OBSER_REPRO");
+                com_excepciones = rs.getString("EXPECIONES");
+
+                comentario_final = "REGISTRO : " + com_registro + "\n"
+                        + "REPROGRAMACION : " + com_repro + "\n"
+                        + "EXCEPCION : " + com_excepciones + "";
+                
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("TIPO");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -807,25 +822,40 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
-                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
+                + "OBSERVACION_EXCEPCIONES AS OBSER_REPRO, "
+                + "OBSERVACION_REPROGRAMACION AS EXPECIONES, "
+                + "OBSERVACIONES_VALIDACION AS OBSER_VAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' AND"
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado','Con Excepcion')) "
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programada','Con Excepcion')) "
                 + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                String com_repro = "";
+                String com_registro = "";
+                String com_excepciones = "";
+                String comentario_final = "";
+
+                com_registro = rs.getString("OBSER_VAL");
+                com_repro = rs.getString("OBSER_REPRO");
+                com_excepciones = rs.getString("EXPECIONES");
+
+                comentario_final = "REGISTRO : " + com_registro + "\n"
+                        + "REPROGRAMACION : " + com_repro + "\n"
+                        + "EXCEPCION : " + com_excepciones + "";
+                
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("TIPO");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -861,25 +891,40 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
-                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
+                + "OBSERVACION_EXCEPCIONES AS OBSER_REPRO, "
+                + "OBSERVACION_REPROGRAMACION AS EXPECIONES, "
+                + "OBSERVACIONES_VALIDACION AS OBSER_VAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "FECHA_REPROGRAMACION BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "' AND"
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado','Con Excepcion')) "
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programada','Con Excepcion')) "
                 + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                String com_repro = "";
+                String com_registro = "";
+                String com_excepciones = "";
+                String comentario_final = "";
+
+                com_registro = rs.getString("OBSER_VAL");
+                com_repro = rs.getString("OBSER_REPRO");
+                com_excepciones = rs.getString("EXPECIONES");
+
+                comentario_final = "REGISTRO : " + com_registro + "\n"
+                        + "REPROGRAMACION : " + com_repro + "\n"
+                        + "EXCEPCION : " + com_excepciones + "";
+                
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("TIPO");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -915,25 +960,40 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
-                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
+                + "OBSERVACION_EXCEPCIONES AS OBSER_REPRO, "
+                + "OBSERVACION_REPROGRAMACION AS EXPECIONES, "
+                + "OBSERVACIONES_VALIDACION AS OBSER_VAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' AND "
-                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programado','Con Excepcion')) "
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','Ejecutada','No Programada','Cerrada','Programada','Con Excepcion')) "
                 + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                String com_repro = "";
+                String com_registro = "";
+                String com_excepciones = "";
+                String comentario_final = "";
+
+                com_registro = rs.getString("OBSER_VAL");
+                com_repro = rs.getString("OBSER_REPRO");
+                com_excepciones = rs.getString("EXPECIONES");
+
+                comentario_final = "REGISTRO : " + com_registro + "\n"
+                        + "REPROGRAMACION : " + com_repro + "\n"
+                        + "EXCEPCION : " + com_excepciones + "";
+                
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("TIPO");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -969,7 +1029,9 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
-                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
+                + "OBSERVACION_EXCEPCIONES AS OBSER_REPRO, "
+                + "OBSERVACION_REPROGRAMACION AS EXPECIONES, "
+                + "OBSERVACIONES_VALIDACION AS OBSER_VAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
@@ -981,13 +1043,26 @@ public class Reprogramacion extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                String com_repro = "";
+                String com_registro = "";
+                String com_excepciones = "";
+                String comentario_final = "";
+
+                com_registro = rs.getString("OBSER_VAL");
+                com_repro = rs.getString("OBSER_REPRO");
+                com_excepciones = rs.getString("EXPECIONES");
+
+                comentario_final = "REGISTRO : " + com_registro + "\n"
+                        + "REPROGRAMACION : " + com_repro + "\n"
+                        + "EXCEPCION : " + com_excepciones + "";
+                
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("TIPO");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -1022,7 +1097,9 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS FECHA_REPRO, "
-                + "OBSERVACION_REPROGRAMACION AS OBSERVACIONES "
+                + "OBSERVACION_EXCEPCIONES AS OBSER_REPRO, "
+                + "OBSERVACION_REPROGRAMACION AS EXPECIONES, "
+                + "OBSERVACIONES_VALIDACION AS OBSER_VAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
@@ -1034,13 +1111,26 @@ public class Reprogramacion extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
+                String com_repro = "";
+                String com_registro = "";
+                String com_excepciones = "";
+                String comentario_final = "";
+
+                com_registro = rs.getString("OBSER_VAL");
+                com_repro = rs.getString("OBSER_REPRO");
+                com_excepciones = rs.getString("EXPECIONES");
+
+                comentario_final = "REGISTRO : " + com_registro + "\n"
+                        + "REPROGRAMACION : " + com_repro + "\n"
+                        + "EXCEPCION : " + com_excepciones + "";
+                
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("TIPO");
                 registro[4] = rs.getString("FECHA_ACTUAL");
                 registro[5] = rs.getString("FECHA_REPRO");
-                registro[6] = rs.getString("OBSERVACIONES");
+                registro[6] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -1069,7 +1159,7 @@ public class Reprogramacion extends javax.swing.JFrame {
         query = "SELECT SUM(LOTE) AS LOTES_CONTADOS FROM PLANEACIONES_VALIDACION "
                 + "WHERE SEMANA = " + semana + " "
                 + "AND TIPO_VALIDACION = '" + tipo + "' "
-                + " AND (ESTADO_PROYECTO = 'Programado')";
+                + " AND (ESTADO_PROYECTO = 'Programada')";
 
         System.out.println(query);
         try {
@@ -1108,7 +1198,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + " FROM PLANEACIONES_VALIDACION "
                 + " WHERE SEMANA = " + semana + ""
                 + " AND TIPO_VALIDACION = '" + tipo + "'"
-                + " AND (ESTADO_PROYECTO = 'Programado')"
+                + " AND (ESTADO_PROYECTO = 'Programada')"
                 + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
 
         System.out.println(query);
@@ -1159,7 +1249,7 @@ public class Reprogramacion extends javax.swing.JFrame {
                 + " FROM PLANEACIONES_VALIDACION "
                 + " WHERE SEMANA = " + semana + ""
                 + " AND TIPO_VALIDACION = 'PROCESO'"
-                + " AND (ESTADO_PROYECTO = 'Programado' OR ESTADO_PROYECTO = 'Ejecutada' OR ESTADO_PROYECTO = 'Cerrada')"
+                + " AND (ESTADO_PROYECTO = 'Programada' OR ESTADO_PROYECTO = 'Ejecutada' OR ESTADO_PROYECTO = 'Cerrada')"
                 + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
 
         System.out.println(query);
@@ -1215,7 +1305,7 @@ public class Reprogramacion extends javax.swing.JFrame {
             ConexioSQLite con = new ConexioSQLite();
             Connection cn = con.Conectar();
 
-            query = "SELECT COUNT(*) as TOTAL FROM PLANEACIONES_VALIDACION WHERE SEMANA = '" + semana + "' AND TIPO_VALIDACION = '" + tipo + "' AND ESTADO_PROYECTO = 'Programado';";
+            query = "SELECT COUNT(*) as TOTAL FROM PLANEACIONES_VALIDACION WHERE SEMANA = '" + semana + "' AND TIPO_VALIDACION = '" + tipo + "' AND ESTADO_PROYECTO = 'Programada';";
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);

@@ -136,7 +136,7 @@ public class EstadoProyectoEHS extends javax.swing.JFrame {
 
         jLabel15.setText("Filtro :");
 
-        combo_estado_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "Programado", "Ejecutada No Programada" }));
+        combo_estado_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "Programada", "Ejecutada No Programada" }));
         combo_estado_consulta.setToolTipText("Filtro para verificacion por estado");
         combo_estado_consulta.setEnabled(false);
 

@@ -390,7 +390,7 @@ public class EstadoValidaciones extends javax.swing.JFrame {
                     + "FECHA_PROPUESTA AS FECHA_ACTUAL "
                     + "FROM "
                     + "PLANEACIONES_VALIDACION "
-                    + "WHERE (ESTADO_PROYECTO = 'Programado' AND RESPUESTA = 'SI')"
+                    + "WHERE (ESTADO_PROYECTO = 'Programada' AND RESPUESTA = 'SI')"
                     + "AND SEMANA = " + SEMANA + " "    
                     + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
                     + "ORDER BY FECHA_REPROGRAMACION ASC;";

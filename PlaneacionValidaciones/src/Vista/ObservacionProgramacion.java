@@ -110,7 +110,7 @@ public class ObservacionProgramacion extends javax.swing.JFrame {
         registro = this.txt_registro_principal.getText();
         observaciones = this.txt_observaciones.getText();
               
-        boolean resultado = conexion.upgrade_programacion(registro, "Programado", observaciones);
+        boolean resultado = conexion.upgrade_programacion(registro, "Programada", observaciones);
         
         if(resultado){
             JOptionPane.showMessageDialog(null, "PROYECTO PROGRAMADO","Informativo", JOptionPane.INFORMATION_MESSAGE);            

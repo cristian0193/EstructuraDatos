@@ -128,7 +128,7 @@ public class ObservacionReprogramacion extends javax.swing.JFrame {
         fecha = this.txt_fecha.getText();
         observaciones = this.txt_observaciones.getText();
         
-        boolean resultado = conexion.upgrade_reprogramacion(registro,"Programado",fecha,observaciones);
+        boolean resultado = conexion.upgrade_reprogramacion(registro,"Programada",fecha,observaciones);
         
         if(resultado){
             JOptionPane.showMessageDialog(null, "PROYECTO REPROGRAMADO","Informativo", JOptionPane.INFORMATION_MESSAGE);            

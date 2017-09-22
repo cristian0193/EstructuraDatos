@@ -279,7 +279,7 @@
               <StringArray count="4">
                 <StringItem index="0" value="Seleccionar"/>
                 <StringItem index="1" value="Ejecutada"/>
-                <StringItem index="2" value="Programado"/>
+                <StringItem index="2" value="Programada"/>
                 <StringItem index="3" value="Ejecutada No Programada"/>
               </StringArray>
             </Property>
