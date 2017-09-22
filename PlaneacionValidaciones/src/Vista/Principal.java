@@ -2088,8 +2088,8 @@ public class Principal extends javax.swing.JFrame {
 
         if (cadenaDiferente.length() > 4) {
 
-            indicativoGCC = cadena.substring(0, 4);
-            NumeroGCC = cadena.substring(4);
+            indicativoGCC = cadena.substring(0, 5);
+            NumeroGCC = cadena.substring(5);
 
             if (indicativoGCC.equals("GCC-") || !cadenaDiferente.equals("")) {
 
@@ -2118,7 +2118,7 @@ public class Principal extends javax.swing.JFrame {
                 return valor;
             }
         } else {
-            JOptionPane.showMessageDialog(null, "RECUERDE QUE LOS INDICATIVOS DEBEN SER MAYOR A 3 CARACTERES \n Ej: (GCC- ; LA- ; PMV ; CO-)");
+            JOptionPane.showMessageDialog(null, "RECUERDE QUE LOS INDICATIVOS DEBEN SER MAYOR A 3 CARACTERES \n Ej: (GCC- ; LA- ; PMV ; CO- ; DP- ; CAPA-)");
             valor = 0;
             return valor;
         }

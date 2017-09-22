@@ -28,7 +28,7 @@ public class EstadoValidaciones extends javax.swing.JFrame {
         combo_semana = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabla_programadas = new javax.swing.JTable();
+        tabla_ejecutadas = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_no_ejecutada = new javax.swing.JTable();
@@ -36,7 +36,7 @@ public class EstadoValidaciones extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tabla_cerradas = new javax.swing.JTable();
+        tabla_con_excepciones = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         combo_ano = new javax.swing.JComboBox();
 
@@ -52,7 +52,7 @@ public class EstadoValidaciones extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ejecutadas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
-        tabla_programadas.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_ejecutadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -60,9 +60,9 @@ public class EstadoValidaciones extends javax.swing.JFrame {
 
             }
         ));
-        tabla_programadas.setEnabled(false);
-        tabla_programadas.setRowHeight(22);
-        jScrollPane2.setViewportView(tabla_programadas);
+        tabla_ejecutadas.setEnabled(false);
+        tabla_ejecutadas.setRowHeight(22);
+        jScrollPane2.setViewportView(tabla_ejecutadas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -127,7 +127,7 @@ public class EstadoValidaciones extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Con Excepciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
-        tabla_cerradas.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_con_excepciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -135,9 +135,9 @@ public class EstadoValidaciones extends javax.swing.JFrame {
 
             }
         ));
-        tabla_cerradas.setEnabled(false);
-        tabla_cerradas.setRowHeight(22);
-        jScrollPane3.setViewportView(tabla_cerradas);
+        tabla_con_excepciones.setEnabled(false);
+        tabla_con_excepciones.setRowHeight(22);
+        jScrollPane3.setViewportView(tabla_con_excepciones);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -230,6 +230,11 @@ public class EstadoValidaciones extends javax.swing.JFrame {
             cargar_tabla_no_ejecutadas(semana,ano);
             cargar_tabla_con_excepciones(semana,ano);
             
+            ancho_columnas_ejecutada();
+            ancho_columnas_no_ejecutada();
+            ancho_columnas_con_excepciones();
+            
+            
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -247,9 +252,9 @@ public class EstadoValidaciones extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable tabla_cerradas;
+    private javax.swing.JTable tabla_con_excepciones;
+    private javax.swing.JTable tabla_ejecutadas;
     private javax.swing.JTable tabla_no_ejecutada;
-    private javax.swing.JTable tabla_programadas;
     // End of variables declaration//GEN-END:variables
 
     // METODO PARA CARGAR VALIDACIONES EJECUTADAS 
@@ -258,8 +263,8 @@ public class EstadoValidaciones extends javax.swing.JFrame {
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
 
-            String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
-            String[] registro = new String[10];
+            String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER", "MAQUINA","LOTE", "FECHA"};
+            String[] registro = new String[7];
             String query = "";
 
             modelo = new DefaultTableModel(null, titulos);
@@ -271,12 +276,9 @@ public class EstadoValidaciones extends javax.swing.JFrame {
                     + "GCC_APR AS GCC, "
                     + "NOMBRE_PROYECTO AS PROYECTO, "
                     + "TIPO_VALIDACION AS TIPO, "
-                    + "LIDER_TECNICO AS LIDER, "
-                    + "PLANTA AS PLANTA, "                
+                    + "LIDER_TECNICO AS LIDER, "                
                     + "MAQUINA AS MAQUINA, "
-                    + "LOTE AS LOTE, "
-                    + "TURNOS AS TURNO, "
-                    + "ESTADO_PROYECTO AS ESTADO, "               
+                    + "LOTE AS LOTE, "             
                     + "FECHA_PROPUESTA AS FECHA_ACTUAL "
                     + "FROM "
                     + "PLANEACIONES_VALIDACION "
@@ -294,16 +296,13 @@ public class EstadoValidaciones extends javax.swing.JFrame {
                     registro[1] = rs.getString("PROYECTO");
                     registro[2] = rs.getString("TIPO");
                     registro[3] = rs.getString("LIDER");
-                    registro[4] = rs.getString("PLANTA");
-                    registro[5] = rs.getString("MAQUINA");
-                    registro[6] = rs.getString("LOTE");
-                    registro[7] = rs.getString("TURNO");
-                    registro[8] = rs.getString("ESTADO");
-                    registro[9] = rs.getString("FECHA_ACTUAL");
+                    registro[4] = rs.getString("MAQUINA");
+                    registro[5] = rs.getString("LOTE");
+                    registro[6] = rs.getString("FECHA_ACTUAL");
 
                     modelo.addRow(registro);
                 }
-                tabla_programadas.setModel(modelo);
+                tabla_ejecutadas.setModel(modelo);
 
             } catch (SQLException ex) {
 
@@ -318,8 +317,8 @@ public class EstadoValidaciones extends javax.swing.JFrame {
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
 
-            String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
-            String[] registro = new String[10];
+            String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER", "MAQUINA","LOTE", "FECHA"};
+            String[] registro = new String[7];
             String query = "";
 
             modelo = new DefaultTableModel(null, titulos);
@@ -331,12 +330,9 @@ public class EstadoValidaciones extends javax.swing.JFrame {
                     + "GCC_APR AS GCC, "
                     + "NOMBRE_PROYECTO AS PROYECTO, "
                     + "TIPO_VALIDACION AS TIPO, "
-                    + "LIDER_TECNICO AS LIDER, "
-                    + "PLANTA AS PLANTA, "                
+                    + "LIDER_TECNICO AS LIDER, "               
                     + "MAQUINA AS MAQUINA, "
-                    + "LOTE AS LOTE, "
-                    + "TURNOS AS TURNO, "
-                    + "ESTADO_PROYECTO AS ESTADO, "               
+                    + "LOTE AS LOTE, "              
                     + "FECHA_PROPUESTA AS FECHA_ACTUAL "
                     + "FROM "
                     + "PLANEACIONES_VALIDACION "
@@ -354,12 +350,9 @@ public class EstadoValidaciones extends javax.swing.JFrame {
                     registro[1] = rs.getString("PROYECTO");
                     registro[2] = rs.getString("TIPO");
                     registro[3] = rs.getString("LIDER");
-                    registro[4] = rs.getString("PLANTA");
-                    registro[5] = rs.getString("MAQUINA");
-                    registro[6] = rs.getString("LOTE");
-                    registro[7] = rs.getString("TURNO");
-                    registro[8] = rs.getString("ESTADO");
-                    registro[9] = rs.getString("FECHA_ACTUAL");
+                    registro[4] = rs.getString("MAQUINA");
+                    registro[5] = rs.getString("LOTE");
+                    registro[6] = rs.getString("FECHA_ACTUAL");
 
                     modelo.addRow(registro);
                 }
@@ -378,8 +371,8 @@ public class EstadoValidaciones extends javax.swing.JFrame {
             conexion = new ConexioSQLite();
             conexion.coneccionbase();
 
-            String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
-            String[] registro = new String[10];
+            String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER", "MAQUINA","LOTE", "FECHA"};
+            String[] registro = new String[7];
             String query = "";
 
             modelo = new DefaultTableModel(null, titulos);
@@ -391,12 +384,9 @@ public class EstadoValidaciones extends javax.swing.JFrame {
                     + "GCC_APR AS GCC, "
                     + "NOMBRE_PROYECTO AS PROYECTO, "
                     + "TIPO_VALIDACION AS TIPO, "
-                    + "LIDER_TECNICO AS LIDER, "
-                    + "PLANTA AS PLANTA, "                
+                    + "LIDER_TECNICO AS LIDER, "               
                     + "MAQUINA AS MAQUINA, "
-                    + "LOTE AS LOTE, "
-                    + "TURNOS AS TURNO, "
-                    + "ESTADO_PROYECTO AS ESTADO, "               
+                    + "LOTE AS LOTE, "              
                     + "FECHA_PROPUESTA AS FECHA_ACTUAL "
                     + "FROM "
                     + "PLANEACIONES_VALIDACION "
@@ -414,16 +404,13 @@ public class EstadoValidaciones extends javax.swing.JFrame {
                     registro[1] = rs.getString("PROYECTO");
                     registro[2] = rs.getString("TIPO");
                     registro[3] = rs.getString("LIDER");
-                    registro[4] = rs.getString("PLANTA");
-                    registro[5] = rs.getString("MAQUINA");
-                    registro[6] = rs.getString("LOTE");
-                    registro[7] = rs.getString("TURNO");
-                    registro[8] = rs.getString("ESTADO");
-                    registro[9] = rs.getString("FECHA_ACTUAL");
+                    registro[4] = rs.getString("MAQUINA");
+                    registro[5] = rs.getString("LOTE");
+                    registro[6] = rs.getString("FECHA_ACTUAL");
 
                     modelo.addRow(registro);
                 }
-                tabla_cerradas.setModel(modelo);
+                tabla_con_excepciones.setModel(modelo);
 
             } catch (SQLException ex) {
 
@@ -431,5 +418,38 @@ public class EstadoValidaciones extends javax.swing.JFrame {
 
             }
         }
+    
+    // METODO PARA ORGANIZAR COLUMNAS
+    public void ancho_columnas_ejecutada() {
+        tabla_ejecutadas.getColumnModel().getColumn(0).setPreferredWidth(120);
+        tabla_ejecutadas.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tabla_ejecutadas.getColumnModel().getColumn(2).setPreferredWidth(80);
+        tabla_ejecutadas.getColumnModel().getColumn(3).setPreferredWidth(120);
+        tabla_ejecutadas.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tabla_ejecutadas.getColumnModel().getColumn(5).setPreferredWidth(50);
+        tabla_ejecutadas.getColumnModel().getColumn(6).setPreferredWidth(100);             
+    }
+    
+    // METODO PARA ORGANIZAR COLUMNAS
+    public void ancho_columnas_no_ejecutada() {
+        tabla_no_ejecutada.getColumnModel().getColumn(0).setPreferredWidth(120);
+        tabla_no_ejecutada.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tabla_no_ejecutada.getColumnModel().getColumn(2).setPreferredWidth(80);
+        tabla_no_ejecutada.getColumnModel().getColumn(3).setPreferredWidth(120);
+        tabla_no_ejecutada.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tabla_no_ejecutada.getColumnModel().getColumn(5).setPreferredWidth(50);
+        tabla_no_ejecutada.getColumnModel().getColumn(6).setPreferredWidth(100);             
+    }
+    
+    // METODO PARA ORGANIZAR COLUMNAS
+    public void ancho_columnas_con_excepciones() {
+        tabla_con_excepciones.getColumnModel().getColumn(0).setPreferredWidth(120);
+        tabla_con_excepciones.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tabla_con_excepciones.getColumnModel().getColumn(2).setPreferredWidth(80);
+        tabla_con_excepciones.getColumnModel().getColumn(3).setPreferredWidth(120);
+        tabla_con_excepciones.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tabla_con_excepciones.getColumnModel().getColumn(5).setPreferredWidth(50);
+        tabla_con_excepciones.getColumnModel().getColumn(6).setPreferredWidth(100);             
+    }
 
 }

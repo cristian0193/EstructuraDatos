@@ -342,7 +342,7 @@ public class Programacion extends javax.swing.JFrame {
                             }
 
                         } else {
-                            boolean resultado = conexion.upgrade_programacion(registro_pro, "Programado", observacion);
+                            boolean resultado = conexion.upgrade_programacion(registro_pro, "Programada", observacion);
 
                             if (resultado == true) {
                                 JOptionPane.showMessageDialog(null, "PROYECTO PROGRAMADO");
@@ -706,7 +706,7 @@ public class Programacion extends javax.swing.JFrame {
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
                 + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' AND"
-                + "(ESTADO_PROYECTO NOT IN ('Reprogramado','No Ejecutada','No Programada','Cerrada','Programado','Ejecutada')) "
+                + "(ESTADO_PROYECTO NOT IN ('Reprogramado','No Ejecutada','No Programada','Cerrada','Programada','Ejecutada')) "
                 + "ORDER BY FECHA_PROPUESTA";
         try {
             Statement st = cn.createStatement();
@@ -1033,7 +1033,7 @@ public class Programacion extends javax.swing.JFrame {
             ConexioSQLite con = new ConexioSQLite();
             Connection cn = con.Conectar();
 
-            query = "SELECT COUNT(*) as TOTAL FROM PLANEACIONES_VALIDACION WHERE SEMANA = '" + semana + "' AND TIPO_VALIDACION = '" + tipo + "' AND ESTADO_PROYECTO = 'Programado';";
+            query = "SELECT COUNT(*) as TOTAL FROM PLANEACIONES_VALIDACION WHERE SEMANA = '" + semana + "' AND TIPO_VALIDACION = '" + tipo + "' AND ESTADO_PROYECTO = 'Programada';";
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -1093,7 +1093,7 @@ public class Programacion extends javax.swing.JFrame {
                 + " FROM PLANEACIONES_VALIDACION "
                 + " WHERE SEMANA = " + semana + ""
                 + " AND TIPO_VALIDACION = 'PROCESO'"
-                + " AND (ESTADO_PROYECTO = 'Programado' OR ESTADO_PROYECTO = 'Ejecutada' OR ESTADO_PROYECTO = 'Cerrada')"
+                + " AND (ESTADO_PROYECTO = 'Programada' OR ESTADO_PROYECTO = 'Ejecutada' OR ESTADO_PROYECTO = 'Cerrada')"
                 + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
 
         System.out.println(query);
@@ -1162,7 +1162,7 @@ public class Programacion extends javax.swing.JFrame {
         query = "SELECT SUM(LOTE) AS LOTES_CONTADOS FROM PLANEACIONES_VALIDACION "
                 + "WHERE SEMANA = " + semana + " "
                 + "AND TIPO_VALIDACION = '" + tipo + "' "
-                + " AND (ESTADO_PROYECTO = 'Programado')";
+                + " AND (ESTADO_PROYECTO = 'Programada')";
 
         System.out.println(query);
         try {
@@ -1201,7 +1201,7 @@ public class Programacion extends javax.swing.JFrame {
                 + " FROM PLANEACIONES_VALIDACION "
                 + " WHERE SEMANA = " + semana + ""
                 + " AND TIPO_VALIDACION = '" + tipo + "'"
-                + " AND (ESTADO_PROYECTO = 'Programado')"
+                + " AND (ESTADO_PROYECTO = 'Programada')"
                 + " AND (strftime('%Y',FECHA_PROPUESTA)) = '" + año + "'";
 
         System.out.println(query);

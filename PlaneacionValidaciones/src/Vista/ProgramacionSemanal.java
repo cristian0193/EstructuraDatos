@@ -234,6 +234,10 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
             cargar_tabla_reprogramadas(semana,ano);
             cargar_tabla_noprogramadas(semana,ano);
             
+            ancho_columnas_programadas();
+            ancho_columnas_no_programadas();
+            ancho_columnas_reprogramada();
+            
         }
         
     }//GEN-LAST:event_btn_buscarActionPerformed
@@ -262,8 +266,8 @@ void cargar_tabla_programadas(String SEMANA, String ANO) {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
-        String[] registro = new String[10];
+        String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","MAQUINA","LOTE", "FECHA"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -275,16 +279,13 @@ void cargar_tabla_programadas(String SEMANA, String ANO) {
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "TIPO_VALIDACION AS TIPO, "
-                + "LIDER_TECNICO AS LIDER, "
-                + "PLANTA AS PLANTA, "                
+                + "LIDER_TECNICO AS LIDER, "              
                 + "MAQUINA AS MAQUINA, "
-                + "LOTE AS LOTE, "
-                + "TURNOS AS TURNO, "
-                + "ESTADO_PROYECTO AS ESTADO, "               
+                + "LOTE AS LOTE, "              
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'Programado' "
+                + "WHERE ESTADO_PROYECTO = 'Programada' "
                 + "AND SEMANA = " + SEMANA + " " 
                 + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
                 + "ORDER BY FECHA_PROPUESTA ASC;";
@@ -297,12 +298,9 @@ void cargar_tabla_programadas(String SEMANA, String ANO) {
                 registro[1] = rs.getString("PROYECTO");
                 registro[2] = rs.getString("TIPO");
                 registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("PLANTA");
-                registro[5] = rs.getString("MAQUINA");
-                registro[6] = rs.getString("LOTE");
-                registro[7] = rs.getString("TURNO");
-                registro[8] = rs.getString("ESTADO");
-                registro[9] = rs.getString("FECHA_ACTUAL");
+                registro[4] = rs.getString("MAQUINA");
+                registro[5] = rs.getString("LOTE");
+                registro[6] = rs.getString("FECHA_ACTUAL");
 
                 modelo.addRow(registro);                  
             }
@@ -321,8 +319,8 @@ void cargar_tabla_reprogramadas(String SEMANA, String ANO) {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
-        String[] registro = new String[10];
+        String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER", "MAQUINA","LOTE", "FECHA"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -334,12 +332,9 @@ void cargar_tabla_reprogramadas(String SEMANA, String ANO) {
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "TIPO_VALIDACION AS TIPO, "
-                + "LIDER_TECNICO AS LIDER, "
-                + "PLANTA AS PLANTA, "                
+                + "LIDER_TECNICO AS LIDER, "              
                 + "MAQUINA AS MAQUINA, "
-                + "LOTE AS LOTE, "
-                + "TURNOS AS TURNO, "
-                + "ESTADO_PROYECTO AS ESTADO, "               
+                + "LOTE AS LOTE, "             
                 + "FECHA_REPROGRAMACION AS FECHA "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
@@ -357,12 +352,9 @@ void cargar_tabla_reprogramadas(String SEMANA, String ANO) {
                 registro[1] = rs.getString("PROYECTO");
                 registro[2] = rs.getString("TIPO");
                 registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("PLANTA");
-                registro[5] = rs.getString("MAQUINA");
-                registro[6] = rs.getString("LOTE");
-                registro[7] = rs.getString("TURNO");
-                registro[8] = rs.getString("ESTADO");
-                registro[9] = rs.getString("FECHA");
+                registro[4] = rs.getString("MAQUINA");
+                registro[5] = rs.getString("LOTE");
+                registro[6] = rs.getString("FECHA");
 
                 modelo.addRow(registro);
             }
@@ -381,8 +373,8 @@ void cargar_tabla_noprogramadas(String SEMANA, String ANO) {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER","PLANTA", "MAQUINA","LOTE", "TURNO", "ESTADO", "FECHA"};
-        String[] registro = new String[10];
+        String[] titulos = {"GCC", "PROYECTO", "TIPO","LIDER", "MAQUINA","LOTE", "FECHA"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -394,15 +386,13 @@ void cargar_tabla_noprogramadas(String SEMANA, String ANO) {
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "TIPO_VALIDACION AS TIPO, "
-                + "LIDER_TECNICO AS LIDER, "
-                + "PLANTA AS PLANTA, "                
+                + "LIDER_TECNICO AS LIDER, "              
                 + "MAQUINA AS MAQUINA, "
-                + "LOTE AS LOTE, "
-                + "TURNOS AS TURNO, "              
-                + "FECHA_REPROGRAMACION AS FECHA "
+                + "LOTE AS LOTE, "               
+                + "FECHA_PROPUESTA AS FECHA "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE (ESTADO_PROYECTO = 'Programado' AND NO_PROGRAMADA = 'Ejecutada No Programada') "
+                + "WHERE (ESTADO_PROYECTO = 'Programada' AND NO_PROGRAMADA = 'Ejecutada No Programada') "
                 + "AND SEMANA = " + SEMANA + " "    
                 + "AND (FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31') "
                 + "ORDER BY FECHA_REPROGRAMACION ASC;";
@@ -416,12 +406,9 @@ void cargar_tabla_noprogramadas(String SEMANA, String ANO) {
                 registro[1] = rs.getString("PROYECTO");
                 registro[2] = rs.getString("TIPO");
                 registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("PLANTA");
-                registro[5] = rs.getString("MAQUINA");
-                registro[6] = rs.getString("LOTE");
-                registro[7] = rs.getString("TURNO");
-                registro[8] = "Ejecutada No Programada";
-                registro[9] = rs.getString("FECHA");
+                registro[4] = rs.getString("MAQUINA");
+                registro[5] = rs.getString("LOTE");
+                registro[6] = rs.getString("FECHA");
 
                 modelo.addRow(registro);
             }
@@ -432,5 +419,38 @@ void cargar_tabla_noprogramadas(String SEMANA, String ANO) {
             JOptionPane.showMessageDialog(null, ex);
 
         }
+    }
+
+ // METODO PARA ORGANIZAR COLUMNAS
+    public void ancho_columnas_programadas() {
+        tabla_programadas.getColumnModel().getColumn(0).setPreferredWidth(120);
+        tabla_programadas.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tabla_programadas.getColumnModel().getColumn(2).setPreferredWidth(80);
+        tabla_programadas.getColumnModel().getColumn(3).setPreferredWidth(120);
+        tabla_programadas.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tabla_programadas.getColumnModel().getColumn(5).setPreferredWidth(50);
+        tabla_programadas.getColumnModel().getColumn(6).setPreferredWidth(100);             
+    }
+    
+  // METODO PARA ORGANIZAR COLUMNAS
+    public void ancho_columnas_no_programadas() {
+        tabla_no_programada.getColumnModel().getColumn(0).setPreferredWidth(120);
+        tabla_no_programada.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tabla_no_programada.getColumnModel().getColumn(2).setPreferredWidth(80);
+        tabla_no_programada.getColumnModel().getColumn(3).setPreferredWidth(120);
+        tabla_no_programada.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tabla_no_programada.getColumnModel().getColumn(5).setPreferredWidth(50);
+        tabla_no_programada.getColumnModel().getColumn(6).setPreferredWidth(100);             
+    }
+    
+      // METODO PARA ORGANIZAR COLUMNAS
+    public void ancho_columnas_reprogramada() {
+        tabla_reprogramadas.getColumnModel().getColumn(0).setPreferredWidth(120);
+        tabla_reprogramadas.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tabla_reprogramadas.getColumnModel().getColumn(2).setPreferredWidth(80);
+        tabla_reprogramadas.getColumnModel().getColumn(3).setPreferredWidth(120);
+        tabla_reprogramadas.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tabla_reprogramadas.getColumnModel().getColumn(5).setPreferredWidth(50);
+        tabla_reprogramadas.getColumnModel().getColumn(6).setPreferredWidth(100);             
     }
 }

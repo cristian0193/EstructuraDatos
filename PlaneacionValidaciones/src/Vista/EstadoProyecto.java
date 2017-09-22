@@ -136,7 +136,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
 
         jLabel15.setText("Filtro :");
 
-        combo_estado_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "Programado", "Ejecutada No Programada" }));
+        combo_estado_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Ejecutada", "Programada", "Ejecutada No Programada" }));
         combo_estado_consulta.setToolTipText("Filtro para verificacion por estado");
         combo_estado_consulta.setEnabled(false);
 
@@ -544,7 +544,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "OBSERVACIONES_VALIDACION AS OBSERVACIONES "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ESTADO_PROYECTO = 'Programado' "
+                + "WHERE ESTADO_PROYECTO = 'Programada' "
                 + "OR ESTADO_PROYECTO = 'Reprogramado' "
                 + "OR ESTADO_PROYECTO = 'Ejecutada' "
                 + "OR ESTADO_PROYECTO = 'Ejecutada No Programada' "
@@ -714,7 +714,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
         Connection cn = con.Conectar();
 
         // QUERY DE BASE DE DATOS
-        query = "SELECT "
+        query = " SELECT "
                 + "NUMERO_REGISTRO AS NUM, "
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
@@ -726,7 +726,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "ESTADO_PROYECTO = '" + estado + "' "
+                + "ESTADO_PROYECTO = '" + estado + "' AND "
+                + "(ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','Cerrada','Reprogramada')) "
                 + "ORDER BY FECHA_PROPUESTA";
 
         try {
