@@ -60,7 +60,7 @@ public class export_excel {
 	    
             private void createColumna(WritableSheet sheet,String columna,int number_columna)throws WriteException {
 			//creamos el tipo de letra
-			WritableFont times10pt = new WritableFont(WritableFont.TAHOMA, 14);
+			WritableFont times10pt = new WritableFont(WritableFont.ARIAL, 12);
 			// definimos el formato d ela celda
 			WritableCellFormat	times = new WritableCellFormat(times10pt);
 			// Permite si se ajusta autom�ticamente a las c�lulas
@@ -82,7 +82,7 @@ public class export_excel {
 
 	    private void createFilas(WritableSheet sheet,int number_columna,int filas,String name_filas)throws WriteException {
 			//creamos el tipo de letra
-			WritableFont times10pt = new WritableFont(WritableFont.ARIAL, 12);
+			WritableFont times10pt = new WritableFont(WritableFont.ARIAL, 11);
 			times10pt.setColour(Colour.GOLD);
 			// definimos el formato d ela celda
 			WritableCellFormat	times = new WritableCellFormat(times10pt);
@@ -90,7 +90,7 @@ public class export_excel {
 			// Permite si se ajusta autom�ticamente a las c�lulas
 			//times.setWrap(true);
 			// crea una negrita con subrayado
-			WritableFont times10ptBoldUnderline = new WritableFont(WritableFont.ARIAL, 12, WritableFont.NO_BOLD, false,UnderlineStyle.NO_UNDERLINE);
+			WritableFont times10ptBoldUnderline = new WritableFont(WritableFont.ARIAL, 11, WritableFont.NO_BOLD, false,UnderlineStyle.NO_UNDERLINE);
 			fomato_fila = new WritableCellFormat(times10ptBoldUnderline);
 			// Permite que se ajusta autom�ticamente a las c�lulas
 			//fomato_fila.setWrap(true);
