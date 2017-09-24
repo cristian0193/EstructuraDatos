@@ -83,6 +83,8 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         txt_fecha_propuesta = new javax.swing.JTextField();
+        btnTodosNA = new javax.swing.JButton();
+        btnTodosCompletos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(970, 620));
@@ -500,6 +502,26 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
         txt_fecha_propuesta.setForeground(new java.awt.Color(255, 0, 0));
         txt_fecha_propuesta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        btnTodosNA.setBackground(new java.awt.Color(102, 102, 102));
+        btnTodosNA.setForeground(new java.awt.Color(255, 255, 255));
+        btnTodosNA.setText("Seleccionar Todos N/A");
+        btnTodosNA.setEnabled(false);
+        btnTodosNA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTodosNAActionPerformed(evt);
+            }
+        });
+
+        btnTodosCompletos.setBackground(new java.awt.Color(102, 102, 102));
+        btnTodosCompletos.setForeground(new java.awt.Color(255, 255, 255));
+        btnTodosCompletos.setText("Seleccionar Todos Completos");
+        btnTodosCompletos.setEnabled(false);
+        btnTodosCompletos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTodosCompletosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -512,16 +534,21 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
                         .addComponent(btn_cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_registro_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_fecha_propuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel17)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txt_registro_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel18)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txt_fecha_propuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTodosCompletos)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnTodosNA))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,16 +560,19 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(3, 3, 3))
-                        .addComponent(txt_fecha_propuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_fecha_propuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTodosNA)
+                            .addComponent(btnTodosCompletos)))
                     .addComponent(txt_registro_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("");
@@ -608,6 +638,8 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
                 coloresCampos();
                 btn_actualizar.setEnabled(true);
                 btn_cargar.setEnabled(false);
+                btnTodosCompletos.setEnabled(true);
+                btnTodosNA.setEnabled(true);
                 fechasProximas();
                 JOptionPane.showMessageDialog(null, "INFORMACION CARGADA");
             } else {
@@ -667,7 +699,17 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_actualizarActionPerformed
 
+    private void btnTodosCompletosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodosCompletosActionPerformed
+        TodosCompletos();
+    }//GEN-LAST:event_btnTodosCompletosActionPerformed
+
+    private void btnTodosNAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodosNAActionPerformed
+        TodosNA();
+    }//GEN-LAST:event_btnTodosNAActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTodosCompletos;
+    private javax.swing.JButton btnTodosNA;
     private javax.swing.JButton btn_actualizar;
     private javax.swing.JButton btn_cargar;
     private javax.swing.JComboBox combo_pre_BR;
@@ -1011,5 +1053,39 @@ public class PrerequisitoCalificacion extends javax.swing.JFrame {
 
         return calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
 
+    }
+    
+    public void TodosCompletos(){
+      combo_pre_BR.setSelectedIndex(2);
+      combo_pre_RU.setSelectedIndex(2);
+      combo_pre_SOP.setSelectedIndex(2);
+      combo_pre_certificado.setSelectedIndex(2);
+      combo_pre_entrenamiento.setSelectedIndex(2);
+      combo_pre_especificacion.setSelectedIndex(2);
+      combo_pre_hoja.setSelectedIndex(2);
+      combo_pre_libro.setSelectedIndex(2);
+      combo_pre_manual.setSelectedIndex(2);
+      combo_pre_materiales.setSelectedIndex(2);
+      combo_pre_planos.setSelectedIndex(2);
+      combo_pre_protocolos.setSelectedIndex(2);
+      combo_pre_recursos.setSelectedIndex(2);
+      combo_pre_rutinas.setSelectedIndex(2);      
+    }
+    
+    public void TodosNA(){
+      combo_pre_BR.setSelectedIndex(0);
+      combo_pre_RU.setSelectedIndex(0);
+      combo_pre_SOP.setSelectedIndex(0);
+      combo_pre_certificado.setSelectedIndex(0);
+      combo_pre_entrenamiento.setSelectedIndex(0);
+      combo_pre_especificacion.setSelectedIndex(0);
+      combo_pre_hoja.setSelectedIndex(0);
+      combo_pre_libro.setSelectedIndex(0);
+      combo_pre_manual.setSelectedIndex(0);
+      combo_pre_materiales.setSelectedIndex(0);
+      combo_pre_planos.setSelectedIndex(0);
+      combo_pre_protocolos.setSelectedIndex(0);
+      combo_pre_recursos.setSelectedIndex(0);
+      combo_pre_rutinas.setSelectedIndex(0);      
     }
 }
