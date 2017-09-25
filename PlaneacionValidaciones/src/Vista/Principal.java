@@ -610,6 +610,8 @@ public class Principal extends javax.swing.JFrame {
                         String autorizacion = txt_aprobador.getText();
                         String observaciones_proyecto = txt_observaciones_proyecto.getText();
 
+                        nombre = nombre.replace("'"," ").replace("ñ","n").replace("-"," ");
+                        
                         // REGISTRO DE LA CALIFICACION
                         boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones,
                                 "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
@@ -832,6 +834,8 @@ public class Principal extends javax.swing.JFrame {
                             String autorizacion = txt_aprobador.getText();
                             String observaciones_proyecto = txt_observaciones_proyecto.getText();
 
+                             nombre = nombre.replace("'"," ").replace("ñ","n").replace("-"," ");
+                            
                             boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones,
                                     "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                                     "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
@@ -1015,6 +1019,10 @@ public class Principal extends javax.swing.JFrame {
                         SimpleDateFormat sdf = new SimpleDateFormat(formato);
                         String fecha_ingresada = String.valueOf(sdf.format(date));
 
+                        nombre = nombre.replace("'"," ").replace("ñ","n").replace("-"," ");
+                        
+                        System.out.println(""+nombre);
+                        
                         boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana);
 
                         if (resultado == true) {
@@ -1053,6 +1061,8 @@ public class Principal extends javax.swing.JFrame {
                             SimpleDateFormat sdf = new SimpleDateFormat(formato);
                             String fecha_ingresada = String.valueOf(sdf.format(date));
 
+                            nombre = nombre.replace("'"," ").replace("ñ","n").replace("-"," ");
+                            
                             boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana);
 
                             if (resultado == true) {
@@ -1268,6 +1278,8 @@ public class Principal extends javax.swing.JFrame {
                                 SimpleDateFormat sdf = new SimpleDateFormat(formato);
                                 String fecha_ingresada = String.valueOf(sdf.format(date));
 
+                                 nombre = nombre.replace("'"," ").replace("ñ","n").replace("-"," ");
+                                
                                 boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semanaFinal);
 
                                 if (resultado == true) {
