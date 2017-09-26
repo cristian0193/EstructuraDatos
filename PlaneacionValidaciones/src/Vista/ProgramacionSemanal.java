@@ -60,7 +60,6 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
 
             }
         ));
-        tabla_programadas.setEnabled(false);
         tabla_programadas.setRowHeight(22);
         tabla_programadas.setRowMargin(2);
         jScrollPane2.setViewportView(tabla_programadas);
@@ -92,7 +91,6 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
 
             }
         ));
-        tabla_reprogramadas.setEnabled(false);
         tabla_reprogramadas.setRowHeight(22);
         tabla_reprogramadas.setRowMargin(2);
         tabla_reprogramadas.setSurrendersFocusOnKeystroke(true);
@@ -138,7 +136,6 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
 
             }
         ));
-        tabla_no_programada.setEnabled(false);
         tabla_no_programada.setRowHeight(22);
         tabla_no_programada.setRowMargin(2);
         jScrollPane4.setViewportView(tabla_no_programada);

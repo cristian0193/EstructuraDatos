@@ -60,7 +60,6 @@ public class EstadoValidaciones extends javax.swing.JFrame {
 
             }
         ));
-        tabla_ejecutadas.setEnabled(false);
         tabla_ejecutadas.setRowHeight(22);
         jScrollPane2.setViewportView(tabla_ejecutadas);
 
@@ -91,7 +90,6 @@ public class EstadoValidaciones extends javax.swing.JFrame {
 
             }
         ));
-        tabla_no_ejecutada.setEnabled(false);
         tabla_no_ejecutada.setRowHeight(22);
         jScrollPane1.setViewportView(tabla_no_ejecutada);
 
@@ -135,7 +133,6 @@ public class EstadoValidaciones extends javax.swing.JFrame {
 
             }
         ));
-        tabla_con_excepciones.setEnabled(false);
         tabla_con_excepciones.setRowHeight(22);
         jScrollPane3.setViewportView(tabla_con_excepciones);
 
