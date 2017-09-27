@@ -102,7 +102,7 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         txt_consultar_empresa = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1240, 630));
         setResizable(false);
 
