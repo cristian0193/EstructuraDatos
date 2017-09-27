@@ -102,7 +102,7 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         txt_consultar_empresa = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1240, 630));
         setResizable(false);
 
@@ -964,9 +964,10 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
 
     private void btn_conusltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conusltaActionPerformed
         
-        new ConsultarConductor(null, true).setVisible(true);
-        
-        
+        ConsultarConductor frame = new ConsultarConductor();
+        frame.setVisible(true);
+        this.dispose();
+                
     }//GEN-LAST:event_btn_conusltaActionPerformed
 //    /**
 //     * @param args the command line arguments

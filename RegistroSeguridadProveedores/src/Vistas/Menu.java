@@ -84,6 +84,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem6.setText("Ingreso y Salida de Interbodegas");
+        jMenuItem6.setEnabled(false);
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -104,6 +105,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu3.add(jMenuItem5);
 
         jMenuItem7.setText("Consulta de Salidas Interbodegas");
+        jMenuItem7.setEnabled(false);
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -194,6 +196,9 @@ public class Menu extends javax.swing.JFrame {
        
         RegistrosIngresoProveedores ingreso = new RegistrosIngresoProveedores();
         ingreso.setVisible(true);
+
+   //String valor = txt_id_proyecto_pre.getText();          
+//        new RegistrosIngresoProveedores(null, true,"").setVisible(true);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
