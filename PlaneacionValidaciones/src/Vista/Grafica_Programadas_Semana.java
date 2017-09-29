@@ -1,13 +1,14 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
+import java.awt.Button;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;import javax.swing.JPanel;
+;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -17,8 +18,9 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class Grafica_Programadas_Semana extends javax.swing.JFrame {
 
-    JPanel panel;
+    private JPanel panel;
     ConexioSQLite conexion;
+    
 
     // METODO CONSTRUCTOR
     public Grafica_Programadas_Semana() {
@@ -34,10 +36,11 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
     private void init() {
 
         panel = new JPanel();
+        
         getContentPane().add(panel);
-        // Fuente de Datos
+ 
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
+       
         for (int i = 33; i <= 37; i++) {
             int contador_programadas = contador_programadas(i);
             int contador_ejecutadas = contador_ejecutadas(i);

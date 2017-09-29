@@ -389,7 +389,7 @@ void cargar_tabla_noprogramadas(String SEMANA, String ANO) {
                 + "FECHA_PROPUESTA AS FECHA "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE (ESTADO_PROYECTO = 'Programada' AND NO_PROGRAMADA = 'Ejecutada No Programada') "
+                + "WHERE ((NO_PROGRAMADA = 'Ejecutada No Programada') AND (ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','Cerrada','Reprogramada'))) "
                 + "AND SEMANA = " + SEMANA + " "    
                 + "AND (FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31') "
                 + "ORDER BY FECHA_REPROGRAMACION ASC;";
