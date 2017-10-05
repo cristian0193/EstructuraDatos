@@ -361,6 +361,7 @@ public class Menu extends javax.swing.JFrame {
         try {
             String sep = File.separator;
             File path = new File("src" + sep + "Documentos" + sep + "Modelo de Gobierno.pdf");
+            System.out.println(""+path);
             Desktop.getDesktop().open(path);
         } catch (IOException ex) {
             ex.printStackTrace();

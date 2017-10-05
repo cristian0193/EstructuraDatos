@@ -1,5 +1,7 @@
 package Conexion;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,41 +15,43 @@ public class ConexioSQLite {
     public static Statement sentencia;
     public static ResultSet resultado;
     public static String query = "";
-
+    final File archivo = new File("Z:\\ValidacionesSQLite.db");
+    final String cmd = "net use Z: \\\\concocacimp1\\APP_VAL";
+    
 //METODO DE CONEXION
-    public void coneccionbase() {
-
-        try {
+    public void coneccionbase() {        
+        
+        try {            
+            Runtime.getRuntime().exec(cmd);
             Class.forName("org.sqlite.JDBC");
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-
-        try {
-            conectar = DriverManager.getConnection("jdbc:sqlite:ValidacionesSQLite.db");
+            conectar = DriverManager.getConnection("jdbc:sqlite:"+archivo);                      
             sentencia = conectar.createStatement();
-            System.out.println("CONECTO BIEN ...");
-        } catch (Exception e) {
+        } catch (IOException ioe) {
+            JOptionPane.showMessageDialog(null, "Ya tiene Z:/ Creado Error : \n "+ioe );
+        } catch (ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
-            System.out.println("CONECTO MAL ....");
         }
+        
     }
 
 //METODO CONECTAR TABLAS
     public Connection Conectar() {
 
-        try {
+        try {       
+            Runtime.getRuntime().exec(cmd);
             Class.forName("org.sqlite.JDBC");
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+            conectar = DriverManager.getConnection("jdbc:sqlite:"+archivo); 
+        } catch (IOException ioe) {
+            JOptionPane.showMessageDialog(null, "Ya tiene Z:/ Creado Error : \n "+ioe );
+            System.out.println();
+        } catch (ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
-        try {
-            conectar = DriverManager.getConnection("jdbc:sqlite:ValidacionesSQLite.db");
-            System.out.println("CONECTO BIEN TABLA ........");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        
         return conectar;
     }
 
