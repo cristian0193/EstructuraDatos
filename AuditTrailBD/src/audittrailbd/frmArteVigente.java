@@ -1,21 +1,25 @@
 package audittrailbd;
 
 import Conexion.ConexioMySql;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  *
@@ -25,6 +29,8 @@ public class frmArteVigente extends javax.swing.JFrame {
 
     public static ConexioMySql conexion;
     DefaultTableModel modelo;
+    private static final String ALGO = "AES";
+    private static final String keyStr = "Z8LSq0wWwB5v+6YJzurcP463H3F12iZh74fDj4S74oUH4EONkiKb2FmiWUbtFh97GG/c/lbDE47mvw6j94yXxKHOpoqu6zpLKMKPcOoSppcVWb2q34qENBJkudXUh4MWcreondLmLL2UyydtFKuU9Sa5VgY/CzGaVGJABK2ZR94=";
 
     public frmArteVigente() {
         initComponents();
@@ -245,92 +251,76 @@ public class frmArteVigente extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
 
-        String id = txtID.getText();
-        String cod_producto = txtCodigoProducto.getText();
-        String desc_producto = txtDescripcionProducto.getText();
-        String cod_material = txtCodigoMaterial.getText();
-        String desc_material = txtDescripcionMaterial.getText();
-        String arte = txtArteVigente.getText();
-        String tipo = txtTipoEtiqueta.getText();
-        String motivo = txtMotivoCambio.getText();
-        String usuario = lbUsuario.getText();
-
-        boolean resultado = conexion.upgradeArteVigente(id, cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
-
-        String mensaje;
-        String sHostName;
-        String sSistemaOperativo;
-        InetAddress address;
-
         try {
-            sSistemaOperativo = System.getProperty("os.name");
-            address = InetAddress.getLocalHost();
-            String IP_local = address.getHostAddress();
-            Date fecha1 = new Date();
-            String fecha = fecha1.toLocaleString();
-
-            mensaje = id + ";" + cod_producto + ";" + desc_producto + ";" + cod_material + ";" + desc_material + ";" + arte + ";" + tipo + ";" + motivo + ";" + usuario + ";" + IP_local + ";" + sSistemaOperativo + ";" + fecha;
-
-            escribirLog(mensaje);
-
-        } catch (UnknownHostException ex) {
+            String id = txtID.getText();
+            String cod_producto = txtCodigoProducto.getText();
+            String desc_producto = txtDescripcionProducto.getText();
+            String cod_material = txtCodigoMaterial.getText();
+            String desc_material = txtDescripcionMaterial.getText();
+            String arte = txtArteVigente.getText();
+            String tipo = txtTipoEtiqueta.getText();
+            String motivo = txtMotivoCambio.getText();
+            String usuario = lbUsuario.getText();
+            
+            String encriptacion = "";
+            
+            boolean resultado = conexion.upgradeArteVigente(id, cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
+            
+            String log = registroLog(id, cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
+            
+            encriptacion = Encriptar("UPDATE : " + log);
+            
+            escribirLog(encriptacion);
+            
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "ARTE VIGENTE ACTUALIZADA");
+                LimpiarCampos();
+                cargar_tabla();
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                LimpiarCampos();
+            }
+        } catch (Exception ex) {
             Logger.getLogger(frmArteVigente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        if (resultado == true) {
-            JOptionPane.showMessageDialog(null, "ARTE VIGENTE ACTUALIZADA");
-            LimpiarCampos();
-            cargar_tabla();
-            conexion.cerrar();
-        } else {
-            JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-            LimpiarCampos();
         }
 
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        String id = txtID.getText();
-        String cod_producto = txtCodigoProducto.getText();
-        String desc_producto = txtDescripcionProducto.getText();
-        String cod_material = txtCodigoMaterial.getText();
-        String desc_material = txtDescripcionMaterial.getText();
-        String arte = txtArteVigente.getText();
-        String tipo = txtTipoEtiqueta.getText();
-        String motivo = txtMotivoCambio.getText();
-        String usuario = lbUsuario.getText();
-
-        boolean resultado = conexion.insertarArteVigente(cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
-
-        String mensaje;
-        String sHostName;
-        String sSistemaOperativo;
-        InetAddress address;
-
         try {
-            sSistemaOperativo = System.getProperty("os.name");
-            address = InetAddress.getLocalHost();
-            String IP_local = address.getHostAddress();
-            Date fecha1 = new Date();
-            String fecha = fecha1.toLocaleString();
-
-            mensaje = id + ";" + cod_producto + ";" + desc_producto + ";" + cod_material + ";" + desc_material + ";" + arte + ";" + tipo + ";" + motivo + ";" + usuario + ";" + IP_local + ";" + sSistemaOperativo + ";" + fecha;
-
-            escribirLog(mensaje);
-
-        } catch (UnknownHostException ex) {
+            String id = txtID.getText();
+            String cod_producto = txtCodigoProducto.getText();
+            String desc_producto = txtDescripcionProducto.getText();
+            String cod_material = txtCodigoMaterial.getText();
+            String desc_material = txtDescripcionMaterial.getText();
+            String arte = txtArteVigente.getText();
+            String tipo = txtTipoEtiqueta.getText();
+            String motivo = txtMotivoCambio.getText();
+            String usuario = lbUsuario.getText();
+            
+            String encriptacion = "";
+            
+            boolean resultado = conexion.insertarArteVigente(cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
+            
+            String log = registroLog(id, cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
+            
+            encriptacion = Encriptar("INSERT : " + log);
+            
+            escribirLog(encriptacion);
+            
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "ARTE VIGENTE GUARDADA");
+                LimpiarCampos();
+                cargar_tabla();
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
+                LimpiarCampos();
+            }
+        } catch (Exception ex) {
             Logger.getLogger(frmArteVigente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        if (resultado == true) {
-            JOptionPane.showMessageDialog(null, "ARTE VIGENTE GUARDADA");
-            LimpiarCampos();
-            cargar_tabla();
-            conexion.cerrar();
-        } else {
-            JOptionPane.showMessageDialog(null, "ERROR AL INSERTADAR");
-            LimpiarCampos();
         }
 
 
@@ -338,46 +328,38 @@ public class frmArteVigente extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-        String id = txtID.getText();
-        String cod_producto = txtCodigoProducto.getText();
-        String desc_producto = txtDescripcionProducto.getText();
-        String cod_material = txtCodigoMaterial.getText();
-        String desc_material = txtDescripcionMaterial.getText();
-        String arte = txtArteVigente.getText();
-        String tipo = txtTipoEtiqueta.getText();
-        String motivo = txtMotivoCambio.getText();
-        String usuario = lbUsuario.getText();
-
-        boolean resultado = conexion.deleteArteVigente(id, cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
-
-        String mensaje;
-        String sHostName;
-        String sSistemaOperativo;
-        InetAddress address;
-
         try {
-            sSistemaOperativo = System.getProperty("os.name");
-            address = InetAddress.getLocalHost();
-            String IP_local = address.getHostAddress();
-            Date fecha1 = new Date();
-            String fecha = fecha1.toLocaleString();
-
-            mensaje = id + ";" + cod_producto + ";" + desc_producto + ";" + cod_material + ";" + desc_material + ";" + arte + ";" + tipo + ";" + motivo + ";" + usuario + ";" + IP_local + ";" + sSistemaOperativo + ";" + fecha;
-
-            escribirLog(mensaje);
-
-        } catch (UnknownHostException ex) {
+            String id = txtID.getText();
+            String cod_producto = txtCodigoProducto.getText();
+            String desc_producto = txtDescripcionProducto.getText();
+            String cod_material = txtCodigoMaterial.getText();
+            String desc_material = txtDescripcionMaterial.getText();
+            String arte = txtArteVigente.getText();
+            String tipo = txtTipoEtiqueta.getText();
+            String motivo = txtMotivoCambio.getText();
+            String usuario = lbUsuario.getText();
+            
+            String encriptacion = "";
+            
+            boolean resultado = conexion.deleteArteVigente(id, cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
+            
+            String log = registroLog(id, cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
+            
+            encriptacion = Encriptar("DELETE : " + log);
+            
+            escribirLog(encriptacion);
+            
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "ARTE VIGENTE ELIMINADA");
+                LimpiarCampos();
+                cargar_tabla();
+                conexion.cerrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
+                LimpiarCampos();
+            }
+        } catch (Exception ex) {
             Logger.getLogger(frmArteVigente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        if (resultado == true) {
-            JOptionPane.showMessageDialog(null, "ARTE VIGENTE ELIMINADA");
-            LimpiarCampos();
-            cargar_tabla();
-            conexion.cerrar();
-        } else {
-            JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
-            LimpiarCampos();
         }
 
 
@@ -525,7 +507,7 @@ public class frmArteVigente extends javax.swing.JFrame {
         BufferedWriter br;
 
         try {
-            br = new BufferedWriter(new FileWriter("C:\\Users\\CRODRIGUEZ\\Documents\\NetBeansProjects\\EstructuraDatos\\AuditTrailBD\\log.txt",true));
+            br = new BufferedWriter(new FileWriter("C:\\Users\\CRODRIGUEZ\\Documents\\NetBeansProjects\\EstructuraDatos\\AuditTrailBD\\audit_trail.log", true));
 
             br.write(mensaje);
             br.newLine();
@@ -538,30 +520,59 @@ public class frmArteVigente extends javax.swing.JFrame {
         }
     }
 
-    public static void leerLog() {
-        BufferedReader br;
+    public String registroLog(String id,
+            String cod_producto,
+            String desc_producto,
+            String cod_material,
+            String desc_material,
+            String arte,
+            String tipo,
+            String motivo,
+            String usuario) {
+
+        String mensaje = "";
+        String sSistemaOperativo;
+        InetAddress address;
 
         try {
-            br = new BufferedReader(new FileReader("archivo.txt"));
-            String line = br.readLine();
-            String cad = "";
-            while (line != null) {
-                cad = cad.concat(line);
-                System.out.println(line);
-                if (line.isEmpty()) {
-                    System.out.println("Salto de línea");
-                }
-                line = br.readLine();
-            }
-            System.out.println("Mostrar Cadena Acumuladora:");
-            System.out.println(cad);
-            br.close();
-        } catch (Exception e) {
-            System.out.println("Excepción Generada");
-        } finally {
+            sSistemaOperativo = System.getProperty("os.name");
+            address = InetAddress.getLocalHost();
+            String IP_local = address.getHostAddress();
+            Date fecha1 = new Date();
+            String fecha = fecha1.toLocaleString();
 
+            mensaje = id + ";" + cod_producto + ";" + desc_producto + ";" + cod_material + ";" + desc_material + ";" + arte + ";" + tipo + ";" + motivo + ";" + usuario + ";" + IP_local + ";" + sSistemaOperativo + ";" + fecha;
+
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(frmArteVigente.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        return mensaje;
     }
 
+  public static String Encriptar(String texto) {
+ 
+        String secretKey = "qualityinfosolutions"; //llave para encriptar datos
+        String base64EncryptedString = "";
+ 
+        try {
+ 
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] digestOfPassword = md.digest(secretKey.getBytes("utf-8"));
+            byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
+ 
+            SecretKey key = new SecretKeySpec(keyBytes, "DESede");
+            Cipher cipher = Cipher.getInstance("DESede");
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+ 
+            byte[] plainTextBytes = texto.getBytes("utf-8");
+            byte[] buf = cipher.doFinal(plainTextBytes);
+            byte[] base64Bytes = Base64.encodeBase64(buf);
+            base64EncryptedString = new String(base64Bytes);
+ 
+        } catch (Exception ex) {
+        }
+        return base64EncryptedString;
+}
+    
 }
