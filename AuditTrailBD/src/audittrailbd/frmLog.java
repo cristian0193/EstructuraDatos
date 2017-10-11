@@ -184,7 +184,6 @@ public class frmLog extends javax.swing.JFrame {
         } finally {
 
         }
-
     }
 
      public static void descrifraLog() {

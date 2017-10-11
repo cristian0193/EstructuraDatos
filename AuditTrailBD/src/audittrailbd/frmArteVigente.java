@@ -261,17 +261,17 @@ public class frmArteVigente extends javax.swing.JFrame {
             String tipo = txtTipoEtiqueta.getText();
             String motivo = txtMotivoCambio.getText();
             String usuario = lbUsuario.getText();
-            
+
             String encriptacion = "";
-            
+
             boolean resultado = conexion.upgradeArteVigente(id, cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
-            
+
             String log = registroLog(id, cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
-            
+
             encriptacion = Encriptar("UPDATE : " + log);
-            
+
             escribirLog(encriptacion);
-            
+
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "ARTE VIGENTE ACTUALIZADA");
                 LimpiarCampos();
@@ -299,17 +299,17 @@ public class frmArteVigente extends javax.swing.JFrame {
             String tipo = txtTipoEtiqueta.getText();
             String motivo = txtMotivoCambio.getText();
             String usuario = lbUsuario.getText();
-            
+
             String encriptacion = "";
-            
+
             boolean resultado = conexion.insertarArteVigente(cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
-            
+
             String log = registroLog(id, cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
-            
+
             encriptacion = Encriptar("INSERT : " + log);
-            
+
             escribirLog(encriptacion);
-            
+
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "ARTE VIGENTE GUARDADA");
                 LimpiarCampos();
@@ -338,17 +338,17 @@ public class frmArteVigente extends javax.swing.JFrame {
             String tipo = txtTipoEtiqueta.getText();
             String motivo = txtMotivoCambio.getText();
             String usuario = lbUsuario.getText();
-            
+
             String encriptacion = "";
-            
+
             boolean resultado = conexion.deleteArteVigente(id, cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
-            
+
             String log = registroLog(id, cod_producto, desc_producto, cod_material, desc_material, arte, tipo, motivo, usuario);
-            
+
             encriptacion = Encriptar("DELETE : " + log);
-            
+
             escribirLog(encriptacion);
-            
+
             if (resultado == true) {
                 JOptionPane.showMessageDialog(null, "ARTE VIGENTE ELIMINADA");
                 LimpiarCampos();
@@ -550,29 +550,29 @@ public class frmArteVigente extends javax.swing.JFrame {
         return mensaje;
     }
 
-  public static String Encriptar(String texto) {
- 
+    public static String Encriptar(String texto) {
+
         String secretKey = "qualityinfosolutions"; //llave para encriptar datos
         String base64EncryptedString = "";
- 
+
         try {
- 
+
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] digestOfPassword = md.digest(secretKey.getBytes("utf-8"));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
- 
+
             SecretKey key = new SecretKeySpec(keyBytes, "DESede");
             Cipher cipher = Cipher.getInstance("DESede");
             cipher.init(Cipher.ENCRYPT_MODE, key);
- 
+
             byte[] plainTextBytes = texto.getBytes("utf-8");
             byte[] buf = cipher.doFinal(plainTextBytes);
             byte[] base64Bytes = Base64.encodeBase64(buf);
             base64EncryptedString = new String(base64Bytes);
- 
+
         } catch (Exception ex) {
         }
         return base64EncryptedString;
-}
-    
+    }
+
 }
