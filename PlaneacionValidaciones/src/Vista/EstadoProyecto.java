@@ -290,26 +290,62 @@ public class EstadoProyecto extends javax.swing.JFrame {
             String num_registro = txt_registro_pro.getText();
             String estado = combo_estado.getSelectedItem().toString();
 
-            int EHS = validacionEHS(num_registro,estado);
+            int EHS = validacionEHS(num_registro, estado);
 
             if (EHS == 1) {
 
                 String observacion = txt_observaciones_programacion.getText();
 
-                // EJECUCIÓN DE ACTUALIZACION
-                boolean resultado = conexion.upgrade_estado(num_registro, estado, observacion);
+                if (this.txt_fecha_inicio.getDate() == null || this.txt_fecha_final.getDate() == null) {
 
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                    LimpiarCampos();
-                    cargar_tabla_estados();
-                    ancho_columnas();
-                    centrar_datos();
-                    conexion.cerrar();
+                    // EJECUCIÓN DE ACTUALIZACION
+                    boolean resultado = conexion.upgrade_estado(num_registro, estado, observacion);
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                        LimpiarCampos();
+                        cargar_tabla_estados();
+                        ancho_columnas();
+                        centrar_datos();
+
+                        conexion.cerrar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                        LimpiarCampos();
+                    }
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                    LimpiarCampos();
+
+                    // CONVERSION DE FECHAS (DATE A STRING)
+                    String formato1 = txt_fecha_inicio.getDateFormatString();
+                    Date date1 = (Date) txt_fecha_inicio.getDate();
+                    SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
+                    String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
+
+                    // CONVERSION DE FECHAS (DATE A STRING)
+                    String formato2 = txt_fecha_final.getDateFormatString();
+                    Date date2 = (Date) txt_fecha_final.getDate();
+                    SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                    String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
+
+                    // EJECUCIÓN DE ACTUALIZACION
+                    boolean resultado = conexion.upgrade_estado(num_registro, estado, observacion);
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
+                        LimpiarCampos();
+                        cargar_tabla_estados();
+                        consulta_rango_fechas_propuesta(fecha_ingresada_inicio, fecha_ingresada_final);
+                        ancho_columnas();
+                        centrar_datos();
+
+                        conexion.cerrar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                        LimpiarCampos();
+                    }
                 }
+
             } else {
                 JOptionPane.showMessageDialog(null, "NO SE PERMITE EL CIERRE DEL PROYECTO \n "
                         + "POR PENDIENTES EN VALIDACIÓN DE EHS",
@@ -329,7 +365,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
         rec = this.tabla_proyectos.getSelectedRow();
 
         this.txt_registro_pro.setText(tabla_proyectos.getValueAt(rec, 0).toString());
-        this.txt_observaciones_programacion.setText(tabla_proyectos.getValueAt(rec, 7).toString());
+        this.txt_observaciones_programacion.setText(tabla_proyectos.getValueAt(rec, 8).toString());
 
     }//GEN-LAST:event_tabla_proyectosMouseClicked
 
@@ -338,9 +374,6 @@ public class EstadoProyecto extends javax.swing.JFrame {
         int index = combo_consulta.getSelectedIndex();
 
         switch (index) {
-            case 0:
-                JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCIÓN");
-                break;
             case 1:
                 this.txt_fecha_inicio.setEnabled(true);
                 this.txt_fecha_final.setEnabled(true);
@@ -369,7 +402,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 this.txt_gcc.setEditable(false);
                 this.txt_gcc.setEnabled(false);
                 break;
-            default:
+            case 4:
                 this.combo_estado_consulta.setEditable(false);
                 this.combo_estado_consulta.setEnabled(false);
                 this.txt_lider_consulta.setEnabled(false);
@@ -378,6 +411,16 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 this.txt_fecha_final.setEnabled(false);
                 this.txt_gcc.setEditable(true);
                 this.txt_gcc.setEnabled(true);
+                break;
+             default:
+                this.combo_estado_consulta.setEditable(false);
+                this.combo_estado_consulta.setEnabled(false);
+                this.txt_lider_consulta.setEnabled(false);
+                this.txt_lider_consulta.setEditable(false);
+                this.txt_fecha_inicio.setEnabled(false);
+                this.txt_fecha_final.setEnabled(false);
+                this.txt_gcc.setEditable(false);
+                this.txt_gcc.setEnabled(false);
                 break;
         }
 
@@ -523,8 +566,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "TIPO", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
+        String[] registro = new String[9];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -538,6 +581,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
@@ -566,19 +610,20 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 com_repro = rs.getString("OBSER_REPRO");
                 com_excepciones = rs.getString("EXPECIONES");
 
-                comentario_final = "REGISTRO : " + com_registro + "\n"
-                        + "REPROGRAMACION : " + com_repro + "\n"
-                        + "EXCEPCION : " + com_excepciones + "";
-                
+                comentario_final = "" + com_registro + "\n"
+                        + "" + com_repro + "\n"
+                        + "" + com_excepciones + "";
+
                 // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("REPROGRAMA");
-                registro[6] = rs.getString("ESTADO");
-                registro[7] = comentario_final;
+                registro[4] = rs.getString("TIPO");
+                registro[5] = rs.getString("FECHA_ACTUAL");
+                registro[6] = rs.getString("REPROGRAMA");
+                registro[7] = rs.getString("ESTADO");
+                registro[8] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -599,8 +644,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "TIPO", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
+        String[] registro = new String[9];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -614,6 +659,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
@@ -641,19 +687,20 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 com_repro = rs.getString("OBSER_REPRO");
                 com_excepciones = rs.getString("EXPECIONES");
 
-                comentario_final = "REGISTRO : " + com_registro + "\n"
-                        + "REPROGRAMACION : " + com_repro + "\n"
-                        + "EXCEPCION : " + com_excepciones + "";
-                
+                comentario_final = "" + com_registro + "\n"
+                        + "" + com_repro + "\n"
+                        + "" + com_excepciones + "";
+
                 // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("REPROGRAMA");
-                registro[6] = rs.getString("ESTADO");
-                registro[7] = comentario_final;
+                registro[4] = rs.getString("TIPO");
+                registro[5] = rs.getString("FECHA_ACTUAL");
+                registro[6] = rs.getString("REPROGRAMA");
+                registro[7] = rs.getString("ESTADO");
+                registro[8] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -674,8 +721,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "TIPO", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
+        String[] registro = new String[9];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -689,6 +736,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
@@ -716,19 +764,20 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 com_repro = rs.getString("OBSER_REPRO");
                 com_excepciones = rs.getString("EXPECIONES");
 
-                comentario_final = "REGISTRO : " + com_registro + "\n"
-                        + "REPROGRAMACION : " + com_repro + "\n"
-                        + "EXCEPCION : " + com_excepciones + "";
-                
+                comentario_final = "" + com_registro + "\n"
+                        + "" + com_repro + "\n"
+                        + "" + com_excepciones + "";
+
                 // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("REPROGRAMA");
-                registro[6] = rs.getString("ESTADO");
-                registro[7] = comentario_final;
+                registro[4] = rs.getString("TIPO");
+                registro[5] = rs.getString("FECHA_ACTUAL");
+                registro[6] = rs.getString("REPROGRAMA");
+                registro[7] = rs.getString("ESTADO");
+                registro[8] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -749,8 +798,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "TIPO", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
+        String[] registro = new String[9];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -764,6 +813,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
@@ -791,19 +841,20 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 com_repro = rs.getString("OBSER_REPRO");
                 com_excepciones = rs.getString("EXPECIONES");
 
-                comentario_final = "REGISTRO : " + com_registro + "\n"
-                        + "REPROGRAMACION : " + com_repro + "\n"
-                        + "EXCEPCION : " + com_excepciones + "";
-                
+                comentario_final = "" + com_registro + "\n"
+                        + "" + com_repro + "\n"
+                        + "" + com_excepciones + "";
+
                 // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("REPROGRAMA");
-                registro[6] = rs.getString("ESTADO");
-                registro[7] = comentario_final;
+                registro[4] = rs.getString("TIPO");
+                registro[5] = rs.getString("FECHA_ACTUAL");
+                registro[6] = rs.getString("REPROGRAMA");
+                registro[7] = rs.getString("ESTADO");
+                registro[8] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -824,8 +875,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
         conexion.coneccionbase();
 
         // TITULOS DE TABLA DE DATOS
-        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
-        String[] registro = new String[8];
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "TIPO", "FECHA ACTUAL", "REPROGRAMA", "ESTADO", "OBSERVACIONES"};
+        String[] registro = new String[9];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -839,6 +890,7 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 + "GCC_APR AS GCC, "
                 + "NOMBRE_PROYECTO AS PROYECTO, "
                 + "LIDER_TECNICO AS LIDER, "
+                + "TIPO_VALIDACION AS TIPO, "
                 + "FECHA_PROPUESTA AS FECHA_ACTUAL, "
                 + "FECHA_REPROGRAMACION AS REPROGRAMA, "
                 + "ESTADO_PROYECTO AS ESTADO, "
@@ -866,19 +918,20 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 com_repro = rs.getString("OBSER_REPRO");
                 com_excepciones = rs.getString("EXPECIONES");
 
-                comentario_final = "REGISTRO : " + com_registro + "\n"
-                        + "REPROGRAMACION : " + com_repro + "\n"
-                        + "EXCEPCION : " + com_excepciones + "";
-                
+                comentario_final = "" + com_registro + "\n"
+                        + "" + com_repro + "\n"
+                        + "" + com_excepciones + "";
+
                 // REGISTROS CONSULTADOS
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
                 registro[2] = rs.getString("PROYECTO");
                 registro[3] = rs.getString("LIDER");
-                registro[4] = rs.getString("FECHA_ACTUAL");
-                registro[5] = rs.getString("REPROGRAMA");
-                registro[6] = rs.getString("ESTADO");
-                registro[7] = comentario_final;
+                registro[4] = rs.getString("TIPO");
+                registro[5] = rs.getString("FECHA_ACTUAL");
+                registro[6] = rs.getString("REPROGRAMA");
+                registro[7] = rs.getString("ESTADO");
+                registro[8] = comentario_final;
 
                 modelo.addRow(registro);
             }
@@ -923,8 +976,8 @@ public class EstadoProyecto extends javax.swing.JFrame {
                 if (estado.equals("Cerrada")) {
                     if (prerequisito.equals("SI") && impacto.equals("En Proceso")) {
                         contador = 0;
-                    }    else if (prerequisito.equals("SI") && impacto.equals("")) {
-                        contador = 0;    
+                    } else if (prerequisito.equals("SI") && impacto.equals("")) {
+                        contador = 0;
                     } else if (prerequisito.equals("SI") && impacto.equals("Completo")) {
                         contador = 1;
                     } else {

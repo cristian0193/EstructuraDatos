@@ -1,6 +1,7 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,9 +20,13 @@ public class Principal extends javax.swing.JFrame {
     public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
     public static int valor = 0;
+    public static int validacion_pendiente_cal = 0;
+    public static int validacion_pendiente_pro = 0;
+    public static int Validacion_cal = 0;
+    public static int Validacion_pro = 0;
 
     public Principal() {
-        initComponents();        
+        initComponents();
         this.setLocationRelativeTo(null);
         cargar_tabla();
         cargar_lista_tipo();
@@ -43,6 +48,7 @@ public class Principal extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        txt_registro = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txt_proyecto = new javax.swing.JTextField();
@@ -96,7 +102,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         txt_consulta_lider = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
-        txt_registro = new javax.swing.JTextField();
         combo_consulta = new javax.swing.JComboBox();
         jLabel16 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -121,25 +126,38 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1030, 670));
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTRO DE VALIDACIONES");
 
+        txt_registro.setEditable(false);
+        txt_registro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        txt_registro.setForeground(new java.awt.Color(255, 0, 0));
+        txt_registro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_registro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_registroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 983, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 921, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(txt_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 11, 905, 50));
@@ -354,7 +372,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel2.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 90, 30));
 
-        combo_lote.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "0", "1", "2", "3" }));
+        combo_lote.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "1", "2", "3" }));
         combo_lote.setToolTipText("Lotes a Fabricar durante la calificacion.");
         jPanel2.add(combo_lote, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 140, -1));
 
@@ -459,12 +477,6 @@ public class Principal extends javax.swing.JFrame {
         });
         getContentPane().add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 200, 30));
 
-        txt_registro.setEditable(false);
-        txt_registro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        txt_registro.setForeground(new java.awt.Color(255, 0, 0));
-        txt_registro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(txt_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 10, 70, 50));
-
         combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "LIDER TECNICO", "REGISTRO", "GCC", "PROYECTO" }));
         combo_consulta.setToolTipText("Permite seleccionar el Filtro para la consulta de informacion");
         combo_consulta.addItemListener(new java.awt.event.ItemListener() {
@@ -518,9 +530,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_combo_plantaActionPerformed
 
     private void btn_pre_procesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pre_procesoActionPerformed
-        
+
         //PERMITE VISUALIZAR LA PANTALLA DE PREREQUISITOS DE PROCESO
-        
         PrerequisitoProceso proceso = new PrerequisitoProceso();
         proceso.setVisible(true);
 
@@ -562,19 +573,18 @@ public class Principal extends javax.swing.JFrame {
                     int lotesIngresados = 0;
                     int contadorSemanaAnterior = 0;
 
-                    
                     Date date = (Date) date_fecha_propuesta.getDate();
                     int semana = numeroSemanas(date); // CALCULA EL DIA DE LA SEMANA DE LA AÑO PARA LA FECHA
                     tipo_validacion = combo_tipo.getSelectedItem().toString();
                     DateFormat formatoFecha = new SimpleDateFormat("YYYY");
                     int año = Integer.parseInt(formatoFecha.format(date)); // CALCULAR EL AÑO DE LA FECHA INGRESADA
-                    
+
                     // VALIDACION DE SEMANAS REGISTRADAS EN LA SEMANA ( SI ES MAYOR A 3 VERDADERO)
                     contadorSemanas = contadorSemana(semana, tipo_validacion, año);
-                    
+
                     // VALIDACION PARA CONTAR LOTES INGRESADOS EN VALIDACIONES DE TIPO PROCESO
                     contadorLote = contadorLotes(semana, tipo_validacion);
-                                        
+
                     lotesIngresados = Integer.parseInt(combo_lote.getSelectedItem().toString());
 
                     //VALIDACION CANTIDAD DE LOTES MAYORES A 3 (PROCESO)
@@ -610,8 +620,8 @@ public class Principal extends javax.swing.JFrame {
                         String autorizacion = txt_aprobador.getText();
                         String observaciones_proyecto = txt_observaciones_proyecto.getText();
 
-                        nombre = nombre.replace("'"," ").replace("ñ","n").replace("-"," ");
-                        
+                        nombre = nombre.replace("'", " ").replace("ñ", "n").replace("-", " ");
+
                         // REGISTRO DE LA CALIFICACION
                         boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones,
                                 "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
@@ -663,7 +673,7 @@ public class Principal extends javax.swing.JFrame {
                             acuerdo.setVisible(true);
                             this.hide();
 
-                        // VALIDACION PARA CALIFICACION TIPO PROCESO (SI LA SEMANA ANTERIOR HAY PROGRAMADA CALIFICACION Jueves, viernes, Sabado o Domingo VERDADERO)
+                            // VALIDACION PARA CALIFICACION TIPO PROCESO (SI LA SEMANA ANTERIOR HAY PROGRAMADA CALIFICACION Jueves, viernes, Sabado o Domingo VERDADERO)
                         } else if (tipo_validacion.equals("PROCESO") && contadorSemanaAnterior > 0) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
                                     + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -692,7 +702,7 @@ public class Principal extends javax.swing.JFrame {
                             acuerdo.setVisible(true);
                             this.hide();
 
-                        // VALIDACION PARA CALIFICACION TIPO EQUIPOS ( SI EQUIPOS SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO)     
+                            // VALIDACION PARA CALIFICACION TIPO EQUIPOS ( SI EQUIPOS SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO)     
                         } else if (tipo_validacion.equals("EQUIPOS") && contadorSemanas >= 3) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                                     + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -721,7 +731,7 @@ public class Principal extends javax.swing.JFrame {
                             acuerdo.setVisible(true);
                             this.hide();
 
-                        // VALIDACION PARA CALIFICACION TIPO L&S ( SI LIMPIEZA SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO)     
+                            // VALIDACION PARA CALIFICACION TIPO L&S ( SI LIMPIEZA SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO)     
                         } else if (tipo_validacion.equals("L&S") && contadorSemanas >= 2) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                                     + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -750,7 +760,7 @@ public class Principal extends javax.swing.JFrame {
                             acuerdo.setVisible(true);
                             this.hide();
 
-                        // VALIDACION PARA CALIFICACION TIPO CSV ( SI CSV SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO) 
+                            // VALIDACION PARA CALIFICACION TIPO CSV ( SI CSV SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO) 
                         } else if (tipo_validacion.equals("CSV") && contadorSemanas >= 3) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                                     + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -779,7 +789,7 @@ public class Principal extends javax.swing.JFrame {
                             acuerdo.setVisible(true);
                             this.hide();
 
-                        // VALIDACION PARA CALIFICACION TIPO NO GXP ( SI NO GXP SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO) 
+                            // VALIDACION PARA CALIFICACION TIPO NO GXP ( SI NO GXP SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO) 
                         } else if (tipo_validacion.equals("NO GXP") && contadorSemanas >= 3) {
                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                                     + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -834,8 +844,8 @@ public class Principal extends javax.swing.JFrame {
                             String autorizacion = txt_aprobador.getText();
                             String observaciones_proyecto = txt_observaciones_proyecto.getText();
 
-                             nombre = nombre.replace("'"," ").replace("ñ","n").replace("-"," ");
-                            
+                            nombre = nombre.replace("'", " ").replace("ñ", "n").replace("-", " ");
+
                             boolean resultado = conexion.insert(gcc.toUpperCase(), nombre.toUpperCase(), tipo, lider, planta, maquina, lote, turno, fecha_ingresada, estado, observaciones,
                                     "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
                                     "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente", "Pendiente",
@@ -968,8 +978,16 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void btn_refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refrescarActionPerformed
-        cargar_tabla();
+
+        if (txt_registro.getText().equals("")) {
+            cargar_tabla();
+        } else {
+            cargar_tabla();
+            estado_prerequisitos(txt_registro.getText());
+        }
+
         conexion.cerrar();
+
     }//GEN-LAST:event_btn_refrescarActionPerformed
 
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
@@ -1019,10 +1037,10 @@ public class Principal extends javax.swing.JFrame {
                         SimpleDateFormat sdf = new SimpleDateFormat(formato);
                         String fecha_ingresada = String.valueOf(sdf.format(date));
 
-                        nombre = nombre.replace("'"," ").replace("ñ","n").replace("-"," ");
-                        
-                        System.out.println(""+nombre);
-                        
+                        nombre = nombre.replace("'", " ").replace("ñ", "n").replace("-", " ");
+
+                        System.out.println("" + nombre);
+
                         boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana);
 
                         if (resultado == true) {
@@ -1061,8 +1079,8 @@ public class Principal extends javax.swing.JFrame {
                             SimpleDateFormat sdf = new SimpleDateFormat(formato);
                             String fecha_ingresada = String.valueOf(sdf.format(date));
 
-                            nombre = nombre.replace("'"," ").replace("ñ","n").replace("-"," ");
-                            
+                            nombre = nombre.replace("'", " ").replace("ñ", "n").replace("-", " ");
+
                             boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana);
 
                             if (resultado == true) {
@@ -1090,7 +1108,6 @@ public class Principal extends javax.swing.JFrame {
                             //VALIDACION DE FECHA SI LA VALIDACION DE PROCESO YA ESTA PROGRAMADA UN JUEVES, VIERNES O SABADO DE LA SEMANA ANTERIOR (PROCESO)
                             contadorSemanaAnterior = validacionSemanaProceso((semana - 1), año);
 
-                            
                             if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
                                 JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
                                         + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
@@ -1278,8 +1295,8 @@ public class Principal extends javax.swing.JFrame {
                                 SimpleDateFormat sdf = new SimpleDateFormat(formato);
                                 String fecha_ingresada = String.valueOf(sdf.format(date));
 
-                                 nombre = nombre.replace("'"," ").replace("ñ","n").replace("-"," ");
-                                
+                                nombre = nombre.replace("'", " ").replace("ñ", "n").replace("-", " ");
+
                                 boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semanaFinal);
 
                                 if (resultado == true) {
@@ -1304,57 +1321,71 @@ public class Principal extends javax.swing.JFrame {
 
         int index = combo_consulta.getSelectedIndex();
 
-        if (index == 0) {
-            JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
-        } else if (index == 1) {
-            this.date_fecha_inicio.setEnabled(true);
-            this.date_fecha_final.setEnabled(true);
-            this.txt_consulta_lider.setEditable(false);
-            this.txt_consulta_lider.setEnabled(false);
-            this.txt_consulta_proyecto.setEditable(false);
-            this.txt_consulta_gcc.setEditable(false);
-            this.txt_consulta_proyecto.setEnabled(false);
-            this.txt_consulta_gcc.setEnabled(false);
-        } else if (index == 2) {
-            this.txt_consulta_lider.setEditable(true);
-            this.txt_consulta_lider.setEnabled(true);
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_registro.setEnabled(false);
-            this.txt_consulta_proyecto.setEditable(false);
-            this.txt_consulta_gcc.setEditable(false);
-            this.txt_consulta_proyecto.setEnabled(false);
-            this.txt_consulta_gcc.setEnabled(false);
-        } else if (index == 3) {
-            this.txt_consulta_registro.setEditable(true);
-            this.txt_consulta_registro.setEnabled(true);
-            this.txt_consulta_lider.setEnabled(false);
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_proyecto.setEditable(false);
-            this.txt_consulta_gcc.setEditable(false);
-            this.txt_consulta_proyecto.setEnabled(false);
-            this.txt_consulta_gcc.setEnabled(false);
-        } else if (index == 4) {
-            this.txt_consulta_registro.setEditable(false);
-            this.txt_consulta_registro.setEnabled(false);
-            this.txt_consulta_lider.setEnabled(false);
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_proyecto.setEditable(false);
-            this.txt_consulta_gcc.setEditable(true);
-            this.txt_consulta_proyecto.setEnabled(false);
-            this.txt_consulta_gcc.setEnabled(true);
-        } else {
-            this.txt_consulta_registro.setEditable(false);
-            this.txt_consulta_registro.setEnabled(false);
-            this.txt_consulta_lider.setEnabled(false);
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_proyecto.setEditable(true);
-            this.txt_consulta_gcc.setEditable(false);
-            this.txt_consulta_proyecto.setEnabled(true);
-            this.txt_consulta_gcc.setEnabled(false);
+        switch (index) {
+            case 1:
+                this.date_fecha_inicio.setEnabled(true);
+                this.date_fecha_final.setEnabled(true);
+                this.txt_consulta_lider.setEditable(false);
+                this.txt_consulta_lider.setEnabled(false);
+                this.txt_consulta_proyecto.setEditable(false);
+                this.txt_consulta_gcc.setEditable(false);
+                this.txt_consulta_proyecto.setEnabled(false);
+                this.txt_consulta_gcc.setEnabled(false);
+                break;
+            case 2:
+                this.txt_consulta_lider.setEditable(true);
+                this.txt_consulta_lider.setEnabled(true);
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_registro.setEnabled(false);
+                this.txt_consulta_proyecto.setEditable(false);
+                this.txt_consulta_gcc.setEditable(false);
+                this.txt_consulta_proyecto.setEnabled(false);
+                this.txt_consulta_gcc.setEnabled(false);
+                break;
+            case 3:
+                this.txt_consulta_registro.setEditable(true);
+                this.txt_consulta_registro.setEnabled(true);
+                this.txt_consulta_lider.setEnabled(false);
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_proyecto.setEditable(false);
+                this.txt_consulta_gcc.setEditable(false);
+                this.txt_consulta_proyecto.setEnabled(false);
+                this.txt_consulta_gcc.setEnabled(false);
+                break;
+            case 4:
+                this.txt_consulta_registro.setEditable(false);
+                this.txt_consulta_registro.setEnabled(false);
+                this.txt_consulta_lider.setEnabled(false);
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_proyecto.setEditable(false);
+                this.txt_consulta_gcc.setEditable(true);
+                this.txt_consulta_proyecto.setEnabled(false);
+                this.txt_consulta_gcc.setEnabled(true);
+                break;
+            case 5:
+                this.txt_consulta_registro.setEditable(false);
+                this.txt_consulta_registro.setEnabled(false);
+                this.txt_consulta_lider.setEnabled(false);
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_proyecto.setEditable(true);
+                this.txt_consulta_gcc.setEditable(false);
+                this.txt_consulta_proyecto.setEnabled(true);
+                this.txt_consulta_gcc.setEnabled(false);
+                break;
+            default:
+                this.txt_consulta_registro.setEditable(false);
+                this.txt_consulta_registro.setEnabled(false);
+                this.txt_consulta_lider.setEnabled(false);
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_proyecto.setEditable(false);
+                this.txt_consulta_gcc.setEditable(false);
+                this.txt_consulta_proyecto.setEnabled(false);
+                this.txt_consulta_gcc.setEnabled(false);
         }
 
 
@@ -1383,6 +1414,10 @@ public class Principal extends javax.swing.JFrame {
     private void txt_aprobadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_aprobadorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_aprobadorActionPerformed
+
+    private void txt_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_registroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_registroActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -2095,7 +2130,7 @@ public class Principal extends javax.swing.JFrame {
     // METODO PARA VALIDAR REGISTRO GCC/APR/PVM ENTRE OTRAS
     public int validacionIngresoGCCAPRLimpieza(String cadena) {
 
-        String indicativoGCC,NumeroGCC;        
+        String indicativoGCC, NumeroGCC;
         String cadenaDiferente = cadena;
 
         if (cadenaDiferente.length() > 4) {
@@ -2205,6 +2240,172 @@ public class Principal extends javax.swing.JFrame {
             "Sabado"};
 
         return strDays[calendar.get(Calendar.DAY_OF_WEEK) - 1];
+    }
+
+    // METODO PARA VALIDAR CANTIDAD DE LOTES
+    public void estado_prerequisitos(String registro) {
+
+        if (registro.equals("")) {
+
+        } else {
+            Validacion_cal = Validar_Prerequisitos_Calificacion(registro);
+            Validacion_pro = Validar_Prerequisitos_Proceso(registro);
+
+            if (Validacion_cal == 0) {
+                btn_pre_calificacion.setBackground(Color.GREEN);
+            } else {
+                btn_pre_calificacion.setBackground(Color.RED);
+            }
+
+            if (Validacion_pro == 0) {
+                btn_pre_proceso.setBackground(Color.GREEN);
+            } else {
+                btn_pre_proceso.setBackground(Color.RED);
+            }
+        }
+
+    }
+
+    public static int Validar_Prerequisitos_Calificacion(String numero) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+        validacion_pendiente_cal = 0;
+
+        String[] registro = new String[14];
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "PRE_CAL_ESPECIFICACION_EQUIPO AS ESPECIFICACION, "
+                + "PRE_CAL_PROTOCOLOS AS PROTOCOLO, "
+                + "PRE_CAL_RU_NO_GXP AS NO_GXP, "
+                + "PRE_CAL_LIBRO_PARAMETROS AS LIBRO, "
+                + "PRE_CAL_BR_ACTUALIZADO AS BR, "
+                + "PRE_CAL_SOP AS SOP, "
+                + "PRE_CAL_HOJA_VIDA AS HOJA, "
+                + "PRE_CAL_RUTINA_MANTENIMIENTO AS RUTINA, "
+                + "PRE_CAL_CERTIFICADO_MATERIALES AS CERTIFICADO, "
+                + "PRE_CAL_PLANOS AS PLANO, "
+                + "PRE_CAL_MANUALES AS MANUALES, "
+                + "PRE_CAL_MATERIALES AS MATERIAL, "
+                + "PRE_CAL_RECURSOS AS RECURSOS, "
+                + "PRE_CAL_ENTRENAMIENTOS AS ENTRENAMIENTO "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE NUMERO_REGISTRO = " + numero + "";
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ESPECIFICACION");
+                registro[1] = rs.getString("PROTOCOLO");
+                registro[2] = rs.getString("NO_GXP");
+                registro[3] = rs.getString("LIBRO");
+                registro[4] = rs.getString("BR");
+                registro[5] = rs.getString("SOP");
+                registro[6] = rs.getString("HOJA");
+                registro[7] = rs.getString("RUTINA");
+                registro[8] = rs.getString("CERTIFICADO");
+                registro[9] = rs.getString("PLANO");
+                registro[10] = rs.getString("MANUALES");
+                registro[11] = rs.getString("MATERIAL");
+                registro[12] = rs.getString("RECURSOS");
+                registro[13] = rs.getString("ENTRENAMIENTO");
+            }
+
+            for (int i = 0; i < registro.length; i++) {
+
+                String estado = registro[i];
+
+                if (estado.equals("Pendiente")) {
+                    validacion_pendiente_cal += 1;
+                } else {
+                    validacion_pendiente_cal += 0;
+                }
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return validacion_pendiente_cal;
+
+    }
+
+    public static int Validar_Prerequisitos_Proceso(String numero) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+        validacion_pendiente_pro = 0;
+
+        String[] registro = new String[15];
+        String query = "";
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "PRE_PRO_CALIFICACION_IQOQPQ AS CALIFICACION, "
+                + "PRE_PRO_ENTRENAMIENTO_HFM AS ENTRENAMIENTO, "
+                + "PRE_PRO_ENTRENAMIENTO_ESPECIFICACION AS ESPECIFICACION, "
+                + "PRE_PRO_ENTRENAMIENTO_TEST AS TEST, "
+                + "PRE_PRO_ENTRENAMIENTO_PROTOCOLO AS PROTOCOLO, "
+                + "PRE_PRO_MATERIALES AS MATERIAL, "
+                + "PRE_PRO_DP AS DP, "
+                + "PRE_PRO_DIAGRAMA AS DIAGRAMA, "
+                + "PRE_PRO_FMEA AS FMEA, "
+                + "PRE_PRO_PR AS PR, "
+                + "PRE_PRO_PF AS PF, "
+                + "PRE_PRO_RM AS RM, "
+                + "PRE_PRO_PC AS PC, "
+                + "PRE_PRO_CG AS CG, "
+                + "PRE_PRO_FP AS FP "
+                + "FROM "
+                + "PLANEACIONES_VALIDACION "
+                + "WHERE NUMERO_REGISTRO = " + numero + "";
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("CALIFICACION");
+                registro[1] = rs.getString("ENTRENAMIENTO");
+                registro[2] = rs.getString("ESPECIFICACION");
+                registro[3] = rs.getString("TEST");
+                registro[4] = rs.getString("PROTOCOLO");
+                registro[5] = rs.getString("MATERIAL");
+                registro[6] = rs.getString("DP");
+                registro[7] = rs.getString("DIAGRAMA");
+                registro[8] = rs.getString("FMEA");
+                registro[9] = rs.getString("PR");
+                registro[10] = rs.getString("PF");
+                registro[11] = rs.getString("RM");
+                registro[12] = rs.getString("PC");
+                registro[13] = rs.getString("CG");
+                registro[14] = rs.getString("FP");
+            }
+
+            for (int i = 0; i < registro.length; i++) {
+
+                String estado = registro[i];
+
+                if (estado.equals("Pendiente")) {
+                    validacion_pendiente_pro += 1;
+                } else {
+                    validacion_pendiente_pro += 0;
+                }
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return validacion_pendiente_pro;
+
     }
 
 }

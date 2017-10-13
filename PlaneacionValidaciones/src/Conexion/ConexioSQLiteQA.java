@@ -7,52 +7,44 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class ConexioSQLite {
+public class ConexioSQLiteQA {
 
     public static Connection conectar = null;
     public static Statement sentencia;
     public static ResultSet resultado;
     public static String query = "";
     final File archivo = new File("ValidacionesSQLite.db");
-    //final String cmd = "net use V: \\\\concocacimp1\\APP_VAL";
-
+    
 //METODO DE CONEXION
-    public void coneccionbase() {
+    public void coneccionbase() {        
+        
+        try {            
 
-        try {
-            //Runtime.getRuntime().exec(cmd);
             Class.forName("org.sqlite.JDBC");
-            conectar = DriverManager.getConnection("jdbc:sqlite:" + archivo);
+            conectar = DriverManager.getConnection("jdbc:sqlite:"+archivo);                      
             sentencia = conectar.createStatement();
         } catch (ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-        } //catch (IOException ex) {
-            //Logger.getLogger(ConexioSQLite.class.getName()).log(Level.SEVERE, null, ex);
-        //}
-
+        }
+        
     }
 
 //METODO CONECTAR TABLAS
     public Connection Conectar() {
 
-        try {
-            //Runtime.getRuntime().exec(cmd);
+        try {       
             Class.forName("org.sqlite.JDBC");
-            conectar = DriverManager.getConnection("jdbc:sqlite:" + archivo);
-        } catch (ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            conectar = DriverManager.getConnection("jdbc:sqlite:"+archivo); 
+        }  catch (ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
-        } //catch (IOException ex) {
-            //Logger.getLogger(ConexioSQLite.class.getName()).log(Level.SEVERE, null, ex);
-        //}
-
+        }
+        
         return conectar;
     }
 
@@ -113,7 +105,7 @@ public class ConexioSQLite {
             int SEMANA,
             String RESPUESTA,
             String AUTORIZADO,
-            String OBSERVACION_EXCEPCIONES) {
+            String  OBSERVACION_EXCEPCIONES) {
 
         try {
 
@@ -160,8 +152,8 @@ public class ConexioSQLite {
                     + "OBSERVACION_REPROGRAMACION, "
                     + "SEMANA, "
                     + "RESPUESTA, "
-                    + "AUTORIZADO, "
-                    + "OBSERVACION_EXCEPCIONES ) "
+                     + "AUTORIZADO, "
+                     + "OBSERVACION_EXCEPCIONES ) "
                     + "VALUES "
                     + "(NULL,'" + GCC + "' ,'" + NOMBRE + "', '" + TIPO + "', '" + LIDER + "', '" + PLANTA + "', '" + MAQUINA + "',"
                     + "" + LOTE + ", " + TURNO + ",'" + FECHA_PROPUESTA + "' , '" + ESTADO + "', '" + OBSERVACION + "',"
@@ -238,7 +230,7 @@ public class ConexioSQLite {
             int SEMANA,
             String RESPUESTA,
             String AUTORIZADO,
-            String OBSERVACION_EXCEPCIONES,
+            String  OBSERVACION_EXCEPCIONES,
             String NO_PROGRAMADAS) {
 
         try {
@@ -318,7 +310,9 @@ public class ConexioSQLite {
 
         }
     }
-
+    
+    
+    
     //METODO DE ACTUALIZAR REGISTROS
     public boolean upgrade(String REGISTRO,
             String GCC,
@@ -368,117 +362,6 @@ public class ConexioSQLite {
         }
     }
 
-    //METODO DE ACTUALIZAR REGISTROS
-    public boolean upgrade_no_programadas(String REGISTRO,
-            String GCC,
-            String NOMBRE,
-            String TIPO,
-            String LIDER,
-            String PLANTA,
-            String MAQUINA,
-            String LOTE,
-            String TURNO,
-            String FECHA_PROPUESTA,
-            String ESTADO,
-            String OBSERVACION,
-            String PRE_CAL_ESPECIFICACION_EQUIPO,
-            String PRE_CAL_PROTOCOLOS,
-            String PRE_CAL_RU_NO_GXP,
-            String PRE_CAL_LIBRO_PARAMETROS,
-            String PRE_CAL_BR_ACTUALIZADO,
-            String PRE_CAL_SOP,
-            String PRE_CAL_HOJA_VIDA,
-            String PRE_CAL_RUTINA_MANTENIMIENTO,
-            String PRE_CAL_CERTIFICADO_MATERIALES,
-            String PRE_CAL_PLANOS,
-            String PRE_CAL_MANUALES,
-            String PRE_CAL_MATERIALES,
-            String PRE_CAL_RECURSOS,
-            String PRE_CAL_ENTRENAMIENTOS,
-            String PRE_PRO_CALIFICACION_IQOQPQ,
-            String PRE_PRO_ENTRENAMIENTO_HFM,
-            String PRE_PRO_ENTRENAMIENTO_ESPECIFICACION,
-            String PRE_PRO_ENTRENAMIENTO_TEST,
-            String PRE_PRO_ENTRENAMIENTO_PROTOCOLO,
-            String PRE_PRO_MATERIALES,
-            String PRE_PRO_DP,
-            String PRE_PRO_DIAGRAMA,
-            String PRE_PRO_FMEA,
-            String PRE_PRO_PR,
-            String PRE_PRO_PF,
-            String PRE_PRO_RM,
-            String PRE_PRO_PC,
-            String PRE_PRO_CG,
-            String PRE_PRO_FP,
-            int SEMANA,
-            String ESTADO_NO_PROGRAMADO) {
-
-        try {
-
-            query = "UPDATE"
-                    + " PLANEACIONES_VALIDACION"
-                    + " SET "
-                    + "  GCC_APR = '" + GCC + "',"
-                    + "  NOMBRE_PROYECTO = '" + NOMBRE + "',"
-                    + "  TIPO_VALIDACION = '" + TIPO + "',"
-                    + "  LIDER_TECNICO = '" + LIDER + "',"
-                    + "  PLANTA = '" + PLANTA + "',"
-                    + "  MAQUINA = '" + MAQUINA + "',"
-                    + "  LOTE = '" + LOTE + "',"
-                    + "  TURNOS = '" + TURNO + "',"
-                    + "  FECHA_PROPUESTA = '" + FECHA_PROPUESTA + "',"
-                    + "  ESTADO_PROYECTO = '" + ESTADO + "',"
-                    + "  OBSERVACIONES_VALIDACION = '" + OBSERVACION + "',"
-                    + "  PRE_CAL_ESPECIFICACION_EQUIPO = '" + PRE_CAL_ESPECIFICACION_EQUIPO + "',"
-                    + "  PRE_CAL_PROTOCOLOS = '" + PRE_CAL_PROTOCOLOS + "',"
-                    + "  PRE_CAL_RU_NO_GXP = '" + PRE_CAL_RU_NO_GXP + "',"
-                    + "  PRE_CAL_LIBRO_PARAMETROS = '" + PRE_CAL_LIBRO_PARAMETROS + "',"
-                    + "  PRE_CAL_BR_ACTUALIZADO = '" + PRE_CAL_BR_ACTUALIZADO + "',"
-                    + "  PRE_CAL_SOP = '" + PRE_CAL_SOP + "',"
-                    + "  PRE_CAL_HOJA_VIDA = '" + PRE_CAL_HOJA_VIDA + "',"
-                    + "  PRE_CAL_RUTINA_MANTENIMIENTO = '" + PRE_CAL_RUTINA_MANTENIMIENTO + "',"
-                    + "  PRE_CAL_CERTIFICADO_MATERIALES = '" + PRE_CAL_CERTIFICADO_MATERIALES + "',"
-                    + "  PRE_CAL_PLANOS = '"+ PRE_CAL_PLANOS + "',"
-                    + "  PRE_CAL_MANUALES = '" + PRE_CAL_MANUALES + "',"
-                    + "  PRE_CAL_MATERIALES = '" + PRE_CAL_MATERIALES + "',"
-                    + "  PRE_CAL_RECURSOS = '" + PRE_CAL_RECURSOS + "',"
-                    + "  PRE_CAL_ENTRENAMIENTOS = '" + PRE_CAL_ENTRENAMIENTOS + "',"
-                    + "  PRE_PRO_CALIFICACION_IQOQPQ = '" + PRE_PRO_CALIFICACION_IQOQPQ + "',"
-                    + "  PRE_PRO_ENTRENAMIENTO_HFM = '" + PRE_PRO_ENTRENAMIENTO_HFM + "',"
-                    + "  PRE_PRO_ENTRENAMIENTO_ESPECIFICACION = '" + PRE_PRO_ENTRENAMIENTO_ESPECIFICACION + "',"
-                    + "  PRE_PRO_ENTRENAMIENTO_TEST = '" + PRE_PRO_ENTRENAMIENTO_TEST + "',"
-                    + "  PRE_PRO_ENTRENAMIENTO_PROTOCOLO = '" + PRE_PRO_ENTRENAMIENTO_PROTOCOLO + "',"
-                    + "  PRE_PRO_MATERIALES = '" + PRE_PRO_MATERIALES + "',"
-                    + "  PRE_PRO_DP = '" + PRE_PRO_DP + "',"
-                    + "  PRE_PRO_DIAGRAMA = '" + PRE_PRO_DIAGRAMA + "',"
-                    + "  PRE_PRO_FMEA = '" + PRE_PRO_FMEA + "',"
-                    + "  PRE_PRO_PR = '" + PRE_PRO_PR + "',"
-                    + "  PRE_PRO_PF = '" + PRE_PRO_PF + "',"
-                    + "  PRE_PRO_RM = '" + PRE_PRO_RM + "',"
-                    + "  PRE_PRO_PC = '" + PRE_PRO_PC + "',"
-                    + "  PRE_PRO_CG = '" + PRE_PRO_CG + "',"
-                    + "  PRE_PRO_FP = '" + PRE_PRO_FP + "',"
-                    + "  SEMANA = '" + SEMANA + "',"
-                    + "  NO_PROGRAMADA = '" + ESTADO_NO_PROGRAMADO + "'"
-                    + " WHERE"
-                    + "  NUMERO_REGISTRO = " + REGISTRO + ";";
-
-            System.out.println(query);
-            sentencia.executeUpdate(query);
-            System.out.println("ACTUALIZADO ...");
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e.getMessage());
-            System.out.println("NO ACTUALIZADO ...");
-            return false;
-
-        }
-    }
-
-        
     //METODO DE ACTUALIZAR PREREQUISITOS CALIFICACION
     public boolean upgrade_pre_calificacion(String REGISTRO,
             String ESPECIFICACION,
@@ -656,7 +539,7 @@ public class ConexioSQLite {
         }
     }
 
-    //METODO PARA PROGRAMAR VALIDACION
+     //METODO PARA PROGRAMAR VALIDACION
     public boolean upgrade_reprogramacion(String REGISTRO,
             String ESTADO,
             String FECHA,
@@ -686,7 +569,7 @@ public class ConexioSQLite {
 
         }
     }
-
+    
     //METODO PARA INSERTAR TIPO VALIDACION
     public boolean insert_tipo(
             String NOMBRE) {
@@ -711,7 +594,7 @@ public class ConexioSQLite {
         }
 
     }
-
+        
     //METODO PARA ACTUALIZAR TIPO VALIDACION
     public boolean upgrade_tipo(String ID,
             String NOMBRE) {
@@ -738,7 +621,7 @@ public class ConexioSQLite {
         }
 
     }
-
+    
     //METODO PARA INSERTAR LIDER TECNICO
     public boolean insert_lider(
             String NOMBRE) {
@@ -762,8 +645,8 @@ public class ConexioSQLite {
 
         }
 
-    }
-
+    }   
+    
     //METODO PARA ACTUALIZAR LIDER TECNICO
     public boolean upgrade_lider(String ID,
             String NOMBRE) {
@@ -790,7 +673,7 @@ public class ConexioSQLite {
         }
 
     }
-
+         
     //METODO PARA INSERTAR PLANTAS
     public boolean insert_planta(
             String NOMBRE) {
@@ -814,8 +697,8 @@ public class ConexioSQLite {
 
         }
 
-    }
-
+    }   
+    
     //METODO PARA ACTUALIZAR PLANTAS
     public boolean upgrade_planta(String ID,
             String NOMBRE) {
@@ -842,7 +725,7 @@ public class ConexioSQLite {
         }
 
     }
-
+        
     //METODO PARA INSERTAR MAQUINA
     public boolean insert_maquina(
             String NOMBRE) {
@@ -866,8 +749,8 @@ public class ConexioSQLite {
 
         }
 
-    }
-
+    }   
+    
     //METODO PARA ACTUALIZAR MAQUINA
     public boolean upgrade_maquina(String ID,
             String NOMBRE) {
@@ -894,8 +777,9 @@ public class ConexioSQLite {
         }
 
     }
-
-    //METODO DE ACTUALIZAR ESTADOS
+    
+    
+      //METODO DE ACTUALIZAR ESTADOS
     public boolean upgrade_estado(
             String REGISTRO,
             String ESTADO,
@@ -923,9 +807,9 @@ public class ConexioSQLite {
             return false;
 
         }
-    }
-
-    //METODO DE ACTUALIZAR ESTADOS
+    }   
+    
+     //METODO DE ACTUALIZAR ESTADOS
     public boolean upgrade_estado_EHS(
             String REGISTRO,
             String ESTADO,
@@ -953,9 +837,9 @@ public class ConexioSQLite {
             return false;
 
         }
-    }
-
-    //METODO PARA INSERTAR AUTORIZADO
+    }    
+    
+        //METODO PARA INSERTAR AUTORIZADO
     public boolean insert_autorizado(
             String NOMBRE) {
 
@@ -978,8 +862,8 @@ public class ConexioSQLite {
 
         }
 
-    }
-
+    }   
+    
     //METODO PARA ACTUALIZAR AUTORIZADO
     public boolean upgrade_autorizado(String ID,
             String NOMBRE) {
@@ -1006,7 +890,8 @@ public class ConexioSQLite {
         }
 
     }
-
+    
+    
     //METODO PARA ELIMINAR TIPO VALIDACION
     public boolean delete_lider(String REGISTRO) {
 
@@ -1027,7 +912,7 @@ public class ConexioSQLite {
 
         }
     }
-
+        
     //METODO PARA ELIMINAR TIPO VALIDACION
     public boolean delete_maquinas(String REGISTRO) {
 
@@ -1048,7 +933,7 @@ public class ConexioSQLite {
 
         }
     }
-
+    
     //METODO PARA ELIMINAR TIPO VALIDACION
     public boolean delete_planta(String REGISTRO) {
 
@@ -1069,7 +954,7 @@ public class ConexioSQLite {
 
         }
     }
-
+    
     //METODO PARA ELIMINAR TIPO VALIDACION
     public boolean delete_tipo(String REGISTRO) {
 
@@ -1090,8 +975,8 @@ public class ConexioSQLite {
 
         }
     }
-
-    //METODO PARA ELIMINAR AUTORIZADO
+    
+     //METODO PARA ELIMINAR AUTORIZADO
     public boolean delete_autorizado(String REGISTRO) {
 
         try {
@@ -1111,17 +996,17 @@ public class ConexioSQLite {
 
         }
     }
-
-    //METODO PARA ELIMINAR AUTORIZADO
+    
+      //METODO PARA ELIMINAR AUTORIZADO
     public boolean eliminacion_masiva(String fechaIncial, String fechaFinal) {
 
         try {
 
-            query = "DELETE FROM PLANEACIONES_VALIDACION  WHERE FECHA_PROPUESTA BETWEEN '" + fechaIncial + "' AND '" + fechaFinal + "'";
+            query = "DELETE FROM PLANEACIONES_VALIDACION  WHERE FECHA_PROPUESTA BETWEEN '"+fechaIncial+"' AND '"+fechaFinal+"'";
 
             sentencia.executeUpdate(query);
             System.out.println("ELIMINADO ...");
-
+            
             return true;
 
         } catch (SQLException e) {
@@ -1133,25 +1018,4 @@ public class ConexioSQLite {
         }
     }
     
-     //METODO PARA ELIMINAR TIPO VALIDACION
-    public boolean delete_registro_validacion(String REGISTRO) {
-
-        try {
-
-            query = "DELETE FROM PLANEACIONES_VALIDACION  WHERE NUMERO_REGISTRO = " + REGISTRO + "";
-
-            sentencia.executeUpdate(query);
-            System.out.println("ELIMINADO ...");
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e.getMessage());
-            System.out.println("NO ELIMINADO ...");
-            return false;
-
-        }
-    }
-
 }

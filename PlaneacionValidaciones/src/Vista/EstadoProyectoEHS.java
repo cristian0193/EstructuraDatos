@@ -354,9 +354,6 @@ public class EstadoProyectoEHS extends javax.swing.JFrame {
         int index = combo_consulta.getSelectedIndex();
 
         switch (index) {
-            case 0:
-                JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCIÓN");
-                break;
             case 1:
                 this.txt_fecha_inicio.setEnabled(true);
                 this.txt_fecha_final.setEnabled(true);
@@ -403,7 +400,7 @@ public class EstadoProyectoEHS extends javax.swing.JFrame {
                 this.combo_estado_ehs_consulta.setEditable(false);
                 this.combo_estado_ehs_consulta.setEnabled(false);
                 break;
-            default:
+            case 5:
                 this.combo_estado_consulta.setEditable(false);
                 this.combo_estado_consulta.setEnabled(false);
                 this.txt_lider_consulta.setEnabled(false);
@@ -414,6 +411,18 @@ public class EstadoProyectoEHS extends javax.swing.JFrame {
                 this.txt_gcc.setEnabled(false);
                 this.combo_estado_ehs_consulta.setEditable(true);
                 this.combo_estado_ehs_consulta.setEnabled(true);
+                break;
+            default:
+                this.combo_estado_consulta.setEditable(false);
+                this.combo_estado_consulta.setEnabled(false);
+                this.txt_lider_consulta.setEnabled(false);
+                this.txt_lider_consulta.setEditable(false);
+                this.txt_fecha_inicio.setEnabled(false);
+                this.txt_fecha_final.setEnabled(false);
+                this.txt_gcc.setEditable(false);
+                this.txt_gcc.setEnabled(false);
+                this.combo_estado_ehs_consulta.setEditable(false);
+                this.combo_estado_ehs_consulta.setEnabled(false);
                 break;
         }
     }//GEN-LAST:event_combo_consultaItemStateChanged

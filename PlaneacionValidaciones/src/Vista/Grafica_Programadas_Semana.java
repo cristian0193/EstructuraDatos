@@ -1,14 +1,20 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ItemListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JOptionPane;import javax.swing.JPanel;
-;
+import javax.swing.BoxLayout;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -18,9 +24,11 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class Grafica_Programadas_Semana extends javax.swing.JFrame {
 
+    private JFrame frame;
     private JPanel panel;
+    private JComboBox comboSemanaInicio;
+    private JComboBox comboSemanaFin;
     ConexioSQLite conexion;
-    
 
     // METODO CONSTRUCTOR
     public Grafica_Programadas_Semana() {
@@ -28,19 +36,18 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
         setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setVisible(true);
+        setVisible(true);             
         init();
     }
 
     // METODO PARA CARGAR COMPONENTES
     private void init() {
 
-        panel = new JPanel();
-        
+        panel = new JPanel();        
         getContentPane().add(panel);
- 
+        
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-       
+
         for (int i = 33; i <= 37; i++) {
             int contador_programadas = contador_programadas(i);
             int contador_ejecutadas = contador_ejecutadas(i);
@@ -57,10 +64,11 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
         CategoryPlot p = chart.getCategoryPlot();
         p.setRangeGridlinePaint(Color.red);
         p.getAnnotations();
-        
+
         // MOSTRAR GRAFICO
         ChartPanel chartPanel = new ChartPanel(chart);
         panel.add(chartPanel);
+
     }
 
     // METODO PARA CONTAR VALIDACIONES EJECUTADAS EN LA SEMANA
@@ -84,7 +92,7 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-               
+
                 // REGISTROS CONSULTADOS
                 cont_ejecutadas = Integer.parseInt(rs.getString("EJECUTADAS"));
             }
@@ -117,7 +125,7 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                
+
                 // REGISTROS CONSULTADOS
                 cont_ejecutadas = Integer.parseInt(rs.getString("PROGRAMADAS"));
             }

@@ -5,13 +5,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class Menu extends javax.swing.JFrame {
-
+    
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -40,6 +40,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         menu_maquina1 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         menu_tipo_validacion = new javax.swing.JMenuItem();
         menu_lider_tecnico = new javax.swing.JMenuItem();
@@ -209,6 +210,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem14);
 
+        jMenuItem15.setText("Eliminación Registro Unico (Admin)");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem15);
+
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Administracion");
@@ -284,29 +293,29 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-
+        
         Principal principal = new Principal();
         principal.setVisible(true);
-
+        
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-
+        
         ClaveAdminReprogramar clave = new ClaveAdminReprogramar();
         clave.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-
+        
         ClaveAdminProgramar clave = new ClaveAdminProgramar();
         clave.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
-
+        
 
     }//GEN-LAST:event_jMenu4ActionPerformed
 
@@ -315,7 +324,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void menu_tipo_validacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tipo_validacionActionPerformed
-
+        
         ClaveAdministradorTipo tipo = new ClaveAdministradorTipo();
         tipo.setVisible(true);
 
@@ -338,7 +347,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_maquinaActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-
+        
         ProgramacionSemanal programacion = new ProgramacionSemanal();
         programacion.setVisible(true);
 
@@ -350,18 +359,18 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-
+        
         EstadoValidaciones cierre = new EstadoValidaciones();
         cierre.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-
+        
         try {
             String sep = File.separator;
             File path = new File("src" + sep + "Documentos" + sep + "Modelo de Gobierno.pdf");
-            System.out.println(""+path);
+            System.out.println("" + path);
             Desktop.getDesktop().open(path);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -370,27 +379,27 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void menu_maquina1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_maquina1ActionPerformed
-
+        
         new ExportarExcel(this, true).setVisible(true);
 
     }//GEN-LAST:event_menu_maquina1ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-
+        
         ClaveAdminNoProgramada noprogramada = new ClaveAdminNoProgramada();
         noprogramada.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void menu_maquina2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_maquina2ActionPerformed
-
+        
         ClaveAdminExcepciones excepciones = new ClaveAdminExcepciones();
         excepciones.setVisible(true);
 
     }//GEN-LAST:event_menu_maquina2ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-
+        
         try {
             String sep = File.separator;
             File path = new File("src" + sep + "Documentos" + sep + "Manual.pdf");
@@ -398,12 +407,12 @@ public class Menu extends javax.swing.JFrame {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
+        
 
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-
+        
         ClaveAdminEliminarDatos eliminacion = new ClaveAdminEliminarDatos();
         eliminacion.setVisible(true);
 
@@ -413,6 +422,14 @@ public class Menu extends javax.swing.JFrame {
         ClaveAdministradorEHS ehs = new ClaveAdministradorEHS();
         ehs.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        
+        ClaveAdminEliminaValidacion eliminar = new ClaveAdminEliminaValidacion();
+        eliminar.setVisible(true);
+        
+
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -466,6 +483,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
