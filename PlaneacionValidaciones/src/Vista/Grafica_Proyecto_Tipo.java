@@ -21,7 +21,7 @@ public class Grafica_Proyecto_Tipo extends javax.swing.JFrame {
 
     // METODO CONSTRUCTOR
     public Grafica_Proyecto_Tipo() {
-        setTitle("Como Hacer Graficos con Java");
+        setTitle("Tipo de Validacion vs Proyectos");
         setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

@@ -1,16 +1,11 @@
 package Vista;
 
 import Conexion.ConexioSQLite;
-import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ItemListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -24,50 +19,68 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class Grafica_Programadas_Semana extends javax.swing.JFrame {
 
-    private JFrame frame;
     private JPanel panel;
-    private JComboBox comboSemanaInicio;
-    private JComboBox comboSemanaFin;
     ConexioSQLite conexion;
 
     // METODO CONSTRUCTOR
     public Grafica_Programadas_Semana() {
-        setTitle("Como Hacer Graficos con Java");
-        setSize(800, 600);
+        setTitle("Validaciones Programadas vs Ejecutadas");
+        setSize(800, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setVisible(true);             
+        setVisible(true);
         init();
     }
 
     // METODO PARA CARGAR COMPONENTES
     private void init() {
 
-        panel = new JPanel();        
+        panel = new JPanel();
         getContentPane().add(panel);
-        
+
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        for (int i = 33; i <= 37; i++) {
-            int contador_programadas = contador_programadas(i);
-            int contador_ejecutadas = contador_ejecutadas(i);
+        String inicio_semana = JOptionPane.showInputDialog("Ingrese Semana Inicial : ");
+        String fin_semana = JOptionPane.showInputDialog("Ingrese Semana Final : ");
 
-            dataset.setValue(contador_programadas, "Programadas", "" + i);
-            dataset.setValue(contador_ejecutadas, "Ejecutadas", "" + i);
+        if (inicio_semana.equals("") || fin_semana.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Valor en Semana (Inicio o Fin)");
+            init();
+        } else if (isNumeric(inicio_semana) == false || isNumeric(fin_semana) == false) {
+            JOptionPane.showMessageDialog(null, "Ingrese Solo Valores Numericos");
+            init();
+        } else {
+
+            int inicio = Integer.parseInt(inicio_semana);
+            int fin = Integer.parseInt(fin_semana);
+
+            if (inicio <= fin) {
+                for (int i = inicio; i <= fin; i++) {
+                    int contador_programadas = contador_programadas(i);
+                    int contador_ejecutadas = contador_ejecutadas(i);
+
+                    dataset.setValue(contador_programadas, "Programadas", "" + i);
+                    dataset.setValue(contador_ejecutadas, "Ejecutadas", "" + i);
+                }
+
+                // CREANDO GRAFICO
+                JFreeChart chart = ChartFactory.createBarChart("Validaciones Realizadas", "Validaciones", "Cantidad",
+                        dataset, PlotOrientation.VERTICAL, true, true, false);
+                chart.setBackgroundPaint(Color.cyan);
+                chart.getTitle().setPaint(Color.black);
+                CategoryPlot p = chart.getCategoryPlot();
+                p.setRangeGridlinePaint(Color.red);
+                p.getAnnotations();
+
+                // MOSTRAR GRAFICO
+                ChartPanel chartPanel = new ChartPanel(chart);
+                panel.add(chartPanel);
+            }else{
+                JOptionPane.showMessageDialog(null, "Recuerde que la semana inicio debe ser menor o igual semana fin");
+                init();
+            }
+
         }
-
-        // CREANDO GRAFICO
-        JFreeChart chart = ChartFactory.createBarChart("Validaciones Realizadas", "Validaciones", "Cantidad",
-                dataset, PlotOrientation.VERTICAL, true, true, false);
-        chart.setBackgroundPaint(Color.cyan);
-        chart.getTitle().setPaint(Color.black);
-        CategoryPlot p = chart.getCategoryPlot();
-        p.setRangeGridlinePaint(Color.red);
-        p.getAnnotations();
-
-        // MOSTRAR GRAFICO
-        ChartPanel chartPanel = new ChartPanel(chart);
-        panel.add(chartPanel);
 
     }
 
@@ -135,6 +148,15 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
         return cont_ejecutadas;
+    }
+
+    private static boolean isNumeric(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
     }
 
     // METODO PARA EJECUTAR
