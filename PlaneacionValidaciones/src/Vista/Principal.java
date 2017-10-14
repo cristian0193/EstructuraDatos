@@ -646,8 +646,8 @@ public class Principal extends javax.swing.JFrame {
                     } else {
                         // VALIDACION PARA CALIFICACION TIPO PROCESO ( SI LOTES SUMADOS DE LA SEMANA SON MAYOR A 3 VERDADERO)
                         if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
-                            JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
-                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO POR "
+                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
                             JOptionPane.showMessageDialog(null, "SE ACTIVARA EL REGISTRO CON EXCEPCIONES POR FAVOR JUSTIFIQUE EL INGRESO"
                                     + " DE LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
@@ -675,9 +675,9 @@ public class Principal extends javax.swing.JFrame {
 
                             // VALIDACION PARA CALIFICACION TIPO PROCESO (SI LA SEMANA ANTERIOR HAY PROGRAMADA CALIFICACION Jueves, viernes, Sabado o Domingo VERDADERO)
                         } else if (tipo_validacion.equals("PROCESO") && contadorSemanaAnterior > 0) {
-                            JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
-                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
-
+                             JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO POR "
+                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                             
                             JOptionPane.showMessageDialog(null, "SE ACTIVARA EL REGISTRO CON EXCEPCIONES POR FAVOR JUSTIFIQUE EL INGRESO"
                                     + " DE LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
 
@@ -1109,8 +1109,8 @@ public class Principal extends javax.swing.JFrame {
                             contadorSemanaAnterior = validacionSemanaProceso((semana - 1), año);
 
                             if (tipo_validacion.equals("PROCESO") && resultadoTotalLotes > 3) {
-                                JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
-                                        + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                                 JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO POR "
+                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
                                 JOptionPane.showMessageDialog(null, "SE ACTIVARA EL REGISTRO CON EXCEPCIONES POR FAVOR JUSTIFIQUE EL INGRESO"
                                         + " DE LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
@@ -1137,9 +1137,9 @@ public class Principal extends javax.swing.JFrame {
                                 this.hide();
 
                             } else if (tipo_validacion.equals("PROCESO") && contadorSemanaAnterior > 0) {
-                                JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO"
-                                        + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO COMPLETOS ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
-
+                                JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA VALIDACIONES DE PROCESO POR "
+                                    + "\n CANTIDAD DE LOTES O CAPACIDAD DE LABORATORIO ", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
+                                
                                 JOptionPane.showMessageDialog(null, "SE ACTIVARA EL REGISTRO CON EXCEPCIONES POR FAVOR JUSTIFIQUE EL INGRESO"
                                         + " DE LA CALIFICACION O VALIDACION", "Informativo", JOptionPane.INFORMATION_MESSAGE);
 

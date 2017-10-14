@@ -676,13 +676,8 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                     
                     DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd");
                     Date fecha = (Date) date_fecha_propuesta.getDate();
-                    String fecha_ingresada_convertido = fechaHora.format(fecha);
                     int semana = numeroSemanas(fecha);
                     
-                    String fecha_actual = txt_fecha_propuesta.getText();
-
-                    if (fecha_actual.equals(fecha_ingresada_convertido)) {
-
                         int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEGURO QUE DESEA ACTUALIZAR EL REGISTRO ? "
                                 + "\n EL SIGUIENTE REGISTRO PRESENTARA LOS SIGUIENTE CAMBIOS : "
                                 + "\n ESTADO PROYECTO -> EJECUTADA "
@@ -732,42 +727,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
 
                         }
 
-                    } else {
-                        Date fecha_calendario = (Date) date_fecha_propuesta.getDate();
-                        int semana2 = numeroSemanas(fecha_calendario);
-
-                        conexion = new ConexioSQLite();
-                        conexion.coneccionbase();
-                        String registro = txt_registro.getText();
-                        String gcc = txt_GCC.getText();
-                        String nombre = txt_proyecto.getText();
-                        String tipo = combo_tipo.getSelectedItem().toString();
-                        String lider = combo_lider_tecnico.getSelectedItem().toString();
-                        String planta = combo_planta.getSelectedItem().toString();
-                        String maquina = combo_maquina.getSelectedItem().toString();
-                        String lote = combo_lote.getSelectedItem().toString();
-                        String turno = txt_turnos.getText();
-                        String estado = txt_estado_proyecto.getText();
-                        String observaciones = txt_observaciones_proyecto.getText();
-
-                        String formato = date_fecha_propuesta.getDateFormatString();
-                        Date date = (Date) date_fecha_propuesta.getDate();
-                        SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                        String fecha_ingresada = String.valueOf(sdf.format(date));
-
-                        boolean resultado = conexion.upgrade(registro, gcc.toUpperCase().trim(), nombre.toUpperCase(), tipo, lider.toUpperCase().trim(), planta, maquina, lote, turno, fecha_ingresada, estado, observaciones.toUpperCase(), semana2);
-
-                        if (resultado == true) {
-                            JOptionPane.showMessageDialog(null, "PROYECTO ACTUALIZADO");
-                            LimpiarCampos();
-                            cargar_tabla();
-                            conexion.cerrar();
-                        } else {
-                            JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
-                            LimpiarCampos();
-                        }
-                    }
-                }
+                   }
             }
         }
 

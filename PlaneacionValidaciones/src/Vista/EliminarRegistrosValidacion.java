@@ -280,53 +280,71 @@ public class EliminarRegistrosValidacion extends javax.swing.JFrame {
 
             if (this.txt_fecha_inicio.getDate() == null || this.txt_fecha_final.getDate() == null) {
 
-                // EJECUCIÓN DE ACTUALIZACION
-               boolean resultado = conexion.delete_registro_validacion(txt_registro_pro.getText());
+                int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEGURO QUE LA ELIMINACIÓN DEL REGISTRO? ",
+                         "Confirmacion de Eliminacion", JOptionPane.INFORMATION_MESSAGE);
 
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
-                    LimpiarCampos();
-                    cargar_tabla();                    
-                    ancho_columnas();
-                    centrar_datos();
-                    conexion.cerrar();
+                if (JOptionPane.OK_OPTION == confirmado) {
+
+                    // EJECUCIÓN DE ELIMINACION
+                    boolean resultado = conexion.delete_registro_validacion(txt_registro_pro.getText());
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
+                        LimpiarCampos();
+                        cargar_tabla();
+                        ancho_columnas();
+                        centrar_datos();
+                        conexion.cerrar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
+                        LimpiarCampos();
+                    }
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
-                    LimpiarCampos();
+
                 }
 
             } else {
 
-                // CONVERSION DE FECHAS (DATE A STRING)
-                String formato1 = txt_fecha_inicio.getDateFormatString();
-                Date date1 = (Date) txt_fecha_inicio.getDate();
-                SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
-                String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
+                int confirmado = JOptionPane.showConfirmDialog(null, "ESTA SEGURO QUE LA ELIMINACIÓN DEL REGISTRO? ",
+                         "Confirmacion de Eliminacion", JOptionPane.INFORMATION_MESSAGE);
 
-                // CONVERSION DE FECHAS (DATE A STRING)
-                String formato2 = txt_fecha_final.getDateFormatString();
-                Date date2 = (Date) txt_fecha_final.getDate();
-                SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-                String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
+                if (JOptionPane.OK_OPTION == confirmado) {
 
-                boolean resultado = conexion.delete_registro_validacion(txt_registro_pro.getText());
+                    // CONVERSION DE FECHAS (DATE A STRING)
+                    String formato1 = txt_fecha_inicio.getDateFormatString();
+                    Date date1 = (Date) txt_fecha_inicio.getDate();
+                    SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
+                    String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
 
-                if (resultado == true) {
-                    JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
-                    LimpiarCampos();
-                    cargar_tabla();
-                    consulta_rango_fechas_propuesta(fecha_ingresada_inicio, fecha_ingresada_final);
-                    ancho_columnas();
-                    centrar_datos();
-                    conexion.cerrar();
+                    // CONVERSION DE FECHAS (DATE A STRING)
+                    String formato2 = txt_fecha_final.getDateFormatString();
+                    Date date2 = (Date) txt_fecha_final.getDate();
+                    SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                    String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
+
+                    boolean resultado = conexion.delete_registro_validacion(txt_registro_pro.getText());
+
+                    if (resultado == true) {
+                        JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
+                        LimpiarCampos();
+                        cargar_tabla();
+                        consulta_rango_fechas_propuesta(fecha_ingresada_inicio, fecha_ingresada_final);
+                        ancho_columnas();
+                        centrar_datos();
+                        conexion.cerrar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
+                        LimpiarCampos();
+                    }
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
-                    LimpiarCampos();
+
                 }
+
             }
 
         }
-
 
     }//GEN-LAST:event_btn_programarActionPerformed
 
@@ -556,7 +574,6 @@ public class EliminarRegistrosValidacion extends javax.swing.JFrame {
                 registro[5] = rs.getString("ESTADO");
                 registro[6] = rs.getString("TIPO");
 
-
                 modelo.addRow(registro);
             }
             tabla_proyectos.setModel(modelo);
@@ -646,7 +663,7 @@ public class EliminarRegistrosValidacion extends javax.swing.JFrame {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE "
-                + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' "                
+                + "LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' "
                 + " ORDER BY NUMERO_REGISTRO";
         try {
             Statement st = cn.createStatement();
@@ -681,7 +698,7 @@ public class EliminarRegistrosValidacion extends javax.swing.JFrame {
         String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "TIPO"};
         String[] registro = new String[7];
         String query = "";
-        
+
         modelo = new DefaultTableModel(null, titulos);
 
         ConexioSQLite con = new ConexioSQLite();
@@ -731,7 +748,7 @@ public class EliminarRegistrosValidacion extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-         String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "TIPO"};
+        String[] titulos = {"NUM", "GCC", "PROYECTO", "LIDER", "FECHA ACTUAL", "ESTADO", "TIPO"};
         String[] registro = new String[7];
         String query = "";
 
@@ -758,7 +775,6 @@ public class EliminarRegistrosValidacion extends javax.swing.JFrame {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-
 
                 registro[0] = rs.getString("NUM");
                 registro[1] = rs.getString("GCC");
