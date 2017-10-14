@@ -36,6 +36,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -182,6 +183,14 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem9);
+
+        jMenuItem16.setText("Grafica Programadas vs Ejecutadas (Todos)");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem16);
 
         jMenuBar1.add(jMenu3);
 
@@ -447,6 +456,13 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        
+     Grafica_Programadas_Semana graficas = new Grafica_Programadas_Semana();
+     graficas.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -501,6 +517,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

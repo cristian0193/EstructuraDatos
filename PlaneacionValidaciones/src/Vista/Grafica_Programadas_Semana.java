@@ -6,8 +6,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -24,7 +22,7 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
 
     // METODO CONSTRUCTOR
     public Grafica_Programadas_Semana() {
-        setTitle("Validaciones Programadas vs Ejecutadas");
+        setTitle("Validaciones Programadas vs Ejecutadas o Cerradas");
         setSize(800, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -60,7 +58,7 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
                     int contador_ejecutadas = contador_ejecutadas(i);
 
                     dataset.setValue(contador_programadas, "Programadas", "" + i);
-                    dataset.setValue(contador_ejecutadas, "Ejecutadas", "" + i);
+                    dataset.setValue(contador_ejecutadas, "Ejecutadas o Cerradas", "" + i);
                 }
 
                 // CREANDO GRAFICO
@@ -97,7 +95,7 @@ public class Grafica_Programadas_Semana extends javax.swing.JFrame {
         Connection cn = con.Conectar();
 
         // QUERY DE BASE DE DATOS
-        query = "SELECT COUNT(ESTADO_PROYECTO) AS EJECUTADAS FROM PLANEACIONES_VALIDACION WHERE SEMANA = " + semana + " AND ESTADO_PROYECTO = 'Ejecutada'; ";
+        query = "SELECT COUNT(ESTADO_PROYECTO) AS EJECUTADAS FROM PLANEACIONES_VALIDACION WHERE SEMANA = " + semana + " AND (ESTADO_PROYECTO = 'Ejecutada' OR ESTADO_PROYECTO = 'Cerrada'); ";
 
         System.out.println(query);
         try {
