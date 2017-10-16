@@ -5,8 +5,8 @@ import javax.swing.JOptionPane;
 public class Ejercicio_8 {
 
     public static String menu;
-    public static int seleccion;
-    public static double numero1, numero2, resultado;
+    public static int seleccion,numero1, numero2 ;
+    public static double resultadoDivision,resultado;
 
     public static void main(String[] args) {
 
@@ -15,11 +15,13 @@ public class Ejercicio_8 {
 
             switch (seleccion) {
                 case 1:
-                    numero1 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el primero numero (3 cifras): "));
-                    numero2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el segundo numero (3 cifras): "));
+                    numero1 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el primero numero (3 cifras): "));
+                    numero2 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el segundo numero (3 cifras): "));
 
-                    division(numero1,numero2);
+                    resultadoDivision = division(numero1, numero2);                                        
                     
+                    JOptionPane.showMessageDialog(null, "El Resultado es : " + resultadoDivision);
+
                     break;
                 default:
                     break;
@@ -29,20 +31,16 @@ public class Ejercicio_8 {
 
     }
 
-    public static double division(double numero1, double numero2) {
+    public static double division(int numero1, int numero2) {
 
-        if (numero1 >= 100 && numero1 <= 999) {
-            JOptionPane.showMessageDialog(null, "El primer valor ingresado no es de (3 cifras) ");
-        } else if (numero2 >= 100 && numero2 <= 999) {
-            JOptionPane.showMessageDialog(null, "El segundo valor ingresado no es de (3 cifras) ");
-        }else{
-           
+        resultado = 0;
+
             try {
                 resultado = numero1/numero2;
             } catch (ArithmeticException e) {
                 JOptionPane.showMessageDialog(null, "Java realizó la validación de la división y no es posible realizarla porque la división por cero (0) no existe");
-            }                                    
-        }
+                resultado = 0;
+            }
 
         return resultado;
     }

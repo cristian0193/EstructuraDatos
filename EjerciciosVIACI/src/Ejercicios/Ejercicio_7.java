@@ -1,3 +1,8 @@
+/* Construir un programa el cual haga uso de condicional if para ingresar dos (2) apellidos e identificar 
+cuando los dos apellidos sean iguales y cuando sean diferentes; por ende se debe imprimir los siguientes mensajes 
+como resultado de la comparación: Los dos apellidos son iguales, los dos apellidos son diferentes, 
+el programa debe ser compilado y ejecutado. No olvidar el operador equals.*/
+
 package Ejercicios;
 
 import javax.swing.JOptionPane;

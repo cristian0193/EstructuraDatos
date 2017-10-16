@@ -1,6 +1,7 @@
 /* La empresa Asesoramos Al Instante  S.A  desea llevar la contabilidad de los gastos que tiene en una semana de trabajo.
 La aplicación debe permitir introducir los gastos generados en cada uno de los cinco (5)días laborables 
 y los gastos totales causados en los cinco (5) días de la semana.*/
+
 package Ejercicios;
 
 import javax.swing.JOptionPane;
