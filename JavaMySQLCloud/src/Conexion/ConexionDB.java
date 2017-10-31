@@ -20,12 +20,13 @@ public class ConexionDB {
         try {
             Class.forName("com.mysql.jdbc.Driver"); // identificamos el nombre le JDBC
             
-            String url = "jdbc:mysql://db4free.net:3306/mysqlcloudbtest";
-            String usuarioMysql = "mysqlcloudtest";
-            String contrasena = "123456";
+            String url = "jdbc:mysql://sql10.freesqldatabase.com:3306/sql10202266";
+            String usuarioMysql = "sql10202266";
+            String contrasena = "XFGGVSR64a";
             
             // pasamos la ruta del driver para la conexion a la base de datos, en este caso es una base de datos local.
             conectar = DriverManager.getConnection(url,usuarioMysql,contrasena); 
+            System.out.println("Conecto");
         } catch (ClassNotFoundException | SQLException e) { 
             JOptionPane.showMessageDialog(null, "ERROR al Conectar : " + e.getMessage());
         } 

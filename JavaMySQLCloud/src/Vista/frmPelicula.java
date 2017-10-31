@@ -20,6 +20,7 @@ public class frmPelicula extends javax.swing.JFrame {
     public frmPelicula() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cargar_tabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -317,15 +318,15 @@ public class frmPelicula extends javax.swing.JFrame {
 
         query = "SELECT * "
                 + "FROM "
-                + "pelicula "
-                + "ORDER BY ID DESC";
+                + "PELICULA "
+                + "ORDER BY ID_PELICULA DESC";
 
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
 
-                registro[0] = rs.getString("ID");
+                registro[0] = rs.getString("ID_PELICULA");
                 registro[1] = rs.getString("TITULO");
                 registro[2] = rs.getString("CATEGORIA");
                 registro[3] = rs.getString("FORMATO");

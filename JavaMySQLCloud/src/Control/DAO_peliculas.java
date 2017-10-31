@@ -26,7 +26,7 @@ public class DAO_peliculas {
                 conexionDB = new ConexionDB();
                 conexion = conexionDB.Conectar(); // se realiza la conexion a la base de datos
 
-                query = "INSERT INTO Pelicula (ID_PELICULA,TITULO,CATEGORIA,FORMATO,GENERO) VALUES "
+                    query = "INSERT INTO PELICULA (ID_PELICULA,TITULO,CATEGORIA,FORMATO,GENERO) VALUES "
                         + "(NULL,"
                         + "'" + pelicula.getTitulo() + "',"
                         + "'" + pelicula.getCategoria() + "',"
@@ -56,7 +56,7 @@ public class DAO_peliculas {
                 conexionDB = new ConexionDB();
                 conexion = conexionDB.Conectar(); // se realiza la conexion a la base de datos
 
-                query = "UPDATE Pelicula SET "
+                query = "UPDATE PELICULA SET "
                         + " TITULO = '" + pelicula.getTitulo() + "',"
                         + " CATEGORIA = '" + pelicula.getCategoria() + "',"
                         + " FORMATO = '" + pelicula.getFormato() + "',"
@@ -88,7 +88,7 @@ public class DAO_peliculas {
                 conexionDB = new ConexionDB();
                 conexion = conexionDB.Conectar();
 
-                query = "DELETE FROM Pelicula WHERE ID_PELICULA = '" + pelicula.getId() + "'";
+                query = "DELETE FROM PELICULA WHERE ID_PELICULA = '" + pelicula.getId() + "'";
 
                 declaracion = conexion.createStatement(); // se prepara el espacio en memoria para ejecutar el query
                 declaracion.executeUpdate(query); // se ejecuta la consulta.
