@@ -12,7 +12,7 @@ public class ConexionDB {
     public static Connection conectar = null;
     public static Statement sentencia;
     public static ResultSet resultado;
-    public static String query = "";    
+    public static String query = "";
 
 //METODO DE CONEXION
     public Connection Conectar() { // metodo para generar la conexion a la base de datos.
@@ -20,9 +20,9 @@ public class ConexionDB {
         try {
             Class.forName("com.mysql.jdbc.Driver"); // identificamos el nombre le JDBC
             
-            String url = "jdbc:mysql://sql10.freesqldatabase.com:3306/sql10202266";
-            String usuarioMysql = "sql10202266";
-            String contrasena = "XFGGVSR64a";
+            String url = "jdbc:mysql://sql10.freesqldatabase.com:3306/sql10205140";
+            String usuarioMysql = "sql10205140";
+            String contrasena = "H7vnwKV4In";
             
             // pasamos la ruta del driver para la conexion a la base de datos, en este caso es una base de datos local.
             conectar = DriverManager.getConnection(url,usuarioMysql,contrasena); 

@@ -162,6 +162,11 @@ public class frmPelicula extends javax.swing.JFrame {
             }
         ));
         tbPeliculas.setRowHeight(23);
+        tbPeliculas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbPeliculasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbPeliculas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -210,17 +215,15 @@ public class frmPelicula extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
 
-        String id = txtID.getText();
-        String cod_producto = txtTitulo.getText();
-        String desc_producto = txtCategoria.getText();
-        String cod_material = txtFormato.getText();
-        String desc_material = txtGenero.getText();
+        String id2 = txtID.getText();
+        String titulo2 = txtTitulo.getText();
+        String categoria2 = txtCategoria.getText();
+        String formato2 = txtFormato.getText();
+        String genero2 = txtGenero.getText();
 
-        pelicula = new Pelicula(id, titulo, categoria, formato, genero);
+        pelicula = new Pelicula(id2, titulo2, categoria2, formato2, genero2);
 
-        daoPeliculas.insertarPelicula(pelicula);
-
-        daoPeliculas.actualizacionPelicula(pelicula);
+       daoPeliculas.actualizacionPelicula(pelicula);
 
         LimpiarCampos();
         cargar_tabla();
@@ -240,6 +243,17 @@ public class frmPelicula extends javax.swing.JFrame {
         cargar_tabla();
 
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tbPeliculasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPeliculasMouseClicked
+      
+        int rec = tbPeliculas.getSelectedRow();
+        
+        this.txtID.setText(tbPeliculas.getValueAt(rec, 0).toString());
+        this.txtTitulo.setText(tbPeliculas.getValueAt(rec, 1).toString());
+        this.txtCategoria.setText(tbPeliculas.getValueAt(rec, 2).toString());
+        this.txtFormato.setText(tbPeliculas.getValueAt(rec, 3).toString());
+        this.txtGenero.setText(tbPeliculas.getValueAt(rec, 4).toString());
+    }//GEN-LAST:event_tbPeliculasMouseClicked
 
     
     public static void main(String args[]) {
