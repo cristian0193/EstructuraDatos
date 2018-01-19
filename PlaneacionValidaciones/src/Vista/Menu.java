@@ -5,13 +5,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class Menu extends javax.swing.JFrame {
-    
+
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -36,7 +36,12 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -140,7 +145,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem5);
 
-        jMenuItem6.setText("Reprogramar Validacion (Admin)");
+        jMenuItem6.setText("Reprogramar Validacion");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -184,13 +189,49 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem9);
 
-        jMenuItem16.setText("Grafica Programadas vs Ejecutadas (Todos)");
-        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+        jMenu6.setText("Graficas KPI's");
+
+        jMenuItem3.setText("Programadas vs Ejecutadas (Todos)");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem16ActionPerformed(evt);
+                jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem16);
+        jMenu6.add(jMenuItem3);
+
+        jMenuItem18.setText("Programadas vs No Ejecutadas (Todos)");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem18);
+
+        jMenuItem19.setText("Ejecutadas Programadas vs Ejecutadas No Ejecutadas (Todos)");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem19);
+
+        jMenuItem20.setText("Ejecutadas No Programadas vs Tipo (Todos)");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem20);
+
+        jMenuItem21.setText("Ejecutadas Proyectos vs Tipo (Todos)");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem21);
+
+        jMenu3.add(jMenu6);
 
         jMenuBar1.add(jMenu3);
 
@@ -311,29 +352,29 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        
+
         Principal principal = new Principal();
         principal.setVisible(true);
-        
+
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        
-        ClaveAdminReprogramar clave = new ClaveAdminReprogramar();
-        clave.setVisible(true);
+
+        Reprogramacion reprogramar = new Reprogramacion();
+        reprogramar.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        
+
         ClaveAdminProgramar clave = new ClaveAdminProgramar();
         clave.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
-        
+
 
     }//GEN-LAST:event_jMenu4ActionPerformed
 
@@ -342,7 +383,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void menu_tipo_validacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tipo_validacionActionPerformed
-        
+
         ClaveAdministradorTipo tipo = new ClaveAdministradorTipo();
         tipo.setVisible(true);
 
@@ -365,7 +406,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_maquinaActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        
+
         ProgramacionSemanal programacion = new ProgramacionSemanal();
         programacion.setVisible(true);
 
@@ -377,14 +418,14 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        
+
         EstadoValidaciones cierre = new EstadoValidaciones();
         cierre.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        
+
         try {
             String sep = File.separator;
             File path = new File("src" + sep + "Documentos" + sep + "Modelo de Gobierno.pdf");
@@ -397,27 +438,27 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void menu_maquina1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_maquina1ActionPerformed
-        
+
         new ExportarExcel(this, true).setVisible(true);
 
     }//GEN-LAST:event_menu_maquina1ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        
+
         ClaveAdminNoProgramada noprogramada = new ClaveAdminNoProgramada();
         noprogramada.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void menu_maquina2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_maquina2ActionPerformed
-        
+
         ClaveAdminExcepciones excepciones = new ClaveAdminExcepciones();
         excepciones.setVisible(true);
 
     }//GEN-LAST:event_menu_maquina2ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        
+
         try {
             String sep = File.separator;
             File path = new File("src" + sep + "Documentos" + sep + "Manual.pdf");
@@ -425,12 +466,12 @@ public class Menu extends javax.swing.JFrame {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
+
 
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        
+
         ClaveAdminEliminarDatos eliminacion = new ClaveAdminEliminarDatos();
         eliminacion.setVisible(true);
 
@@ -442,26 +483,45 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        
+
         ClaveAdminEliminaValidacion eliminar = new ClaveAdminEliminaValidacion();
         eliminar.setVisible(true);
-        
+
 
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-      
+
         ProgramacionGeneral general = new ProgramacionGeneral();
         general.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
-    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        
-     Grafica_Programadas_Semana graficas = new Grafica_Programadas_Semana();
-     graficas.setVisible(true);
-        
-    }//GEN-LAST:event_jMenuItem16ActionPerformed
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        Grafica_Programadas_Ejecutadas graficas = new Grafica_Programadas_Ejecutadas();
+        graficas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        Grafica_Programadas_NoEjecutadas graficas = new Grafica_Programadas_NoEjecutadas();
+        graficas.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        Grafica_EjeProgramadas_EjeNoProgramadas graficas = new Grafica_EjeProgramadas_EjeNoProgramadas();
+        graficas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        Grafica_EjecutadasNoProgramadas_Tipo graficas = new Grafica_EjecutadasNoProgramadas_Tipo();
+        graficas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        Grafica_Proyecto_Tipo graficas = new Grafica_Proyecto_Tipo();
+        graficas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -509,6 +569,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -517,8 +578,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

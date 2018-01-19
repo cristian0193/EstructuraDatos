@@ -5,18 +5,16 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class ProgramacionSemanal extends javax.swing.JFrame {
+public class ProgramacionSemanalOriginal extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     DefaultTableModel modelo;
     
-    public ProgramacionSemanal() {
+    public ProgramacionSemanalOriginal() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -27,20 +25,20 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        combo_semana = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_programadas = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_reprogramadas = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
         btn_buscar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tabla_no_programada = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        date_fecha_Inicio = new com.toedter.calendar.JDateChooser();
-        jLabel7 = new javax.swing.JLabel();
-        date_fecha_final = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
+        combo_ano = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -48,6 +46,9 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PROGRAMACION SEMANAL");
+
+        combo_semana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53" }));
+        combo_semana.setToolTipText("Seleccion de Semana para verificacion de reporte");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Programadas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
@@ -112,6 +113,9 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setText("Semana :");
+
         btn_buscar.setBackground(new java.awt.Color(102, 255, 0));
         btn_buscar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btn_buscar.setText("Consultar");
@@ -153,15 +157,11 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel6.setText("Fecha Inicio :");
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setText("Año :");
 
-        date_fecha_Inicio.setDateFormatString("yyyy-MM-dd");
-        date_fecha_Inicio.setMinSelectableDate(new java.util.Date(-62135747930000L));
-
-        jLabel7.setText("Fecha Final :");
-
-        date_fecha_final.setDateFormatString("yyyy-MM-dd");
-        date_fecha_final.setMinSelectableDate(new java.util.Date(-62135747930000L));
+        combo_ano.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "2016", "2017", "2018", "2019", "2020" }));
+        combo_ano.setToolTipText("Seleccion de Semana para verificacion de reporte");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,15 +177,15 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(combo_semana, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(combo_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(date_fecha_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(date_fecha_final, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
                                 .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -195,15 +195,14 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(date_fecha_Inicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(date_fecha_final, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(combo_ano))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(combo_semana)
+                        .addComponent(btn_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -218,26 +217,20 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         
-        if (this.date_fecha_Inicio.getDate() == null) {
-            JOptionPane.showMessageDialog(null, "INGRESE FECHA INICIAL");
-        } else if (this.date_fecha_final.getDate() == null) {
-            JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
-        } else {
-
-            String formato1 = date_fecha_Inicio.getDateFormatString();
-            Date date1 = (Date) date_fecha_Inicio.getDate();
-            SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
-            String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
-
-            String formato2 = date_fecha_final.getDateFormatString();
-            Date date2 = (Date) date_fecha_final.getDate();
-            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-            String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
-
-            cargar_tabla_programadas(fecha_ingresada_inicio, fecha_ingresada_final);
-            cargar_tabla_reprogramadas(fecha_ingresada_inicio, fecha_ingresada_final);
-            cargar_tabla_noprogramadas(fecha_ingresada_inicio, fecha_ingresada_final);
-                    
+        int index_semana = combo_semana.getSelectedIndex();
+        int index_ano = combo_ano.getSelectedIndex();
+        
+        if(index_semana == 0){
+            JOptionPane.showMessageDialog(null, "SELECCIONE UNA SEMANA");
+        }else if (index_ano == 0){
+            JOptionPane.showMessageDialog(null, "SELECCIONE UN AÑO");                
+        }else{
+            String semana = combo_semana.getSelectedItem().toString();
+            String ano = combo_ano.getSelectedItem().toString();
+            cargar_tabla_programadas(semana,ano);
+            cargar_tabla_reprogramadas(semana,ano);
+            cargar_tabla_noprogramadas(semana,ano);
+            
             ancho_columnas_programadas();
             ancho_columnas_no_programadas();
             ancho_columnas_reprogramada();
@@ -248,11 +241,11 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;
-    public com.toedter.calendar.JDateChooser date_fecha_Inicio;
-    public com.toedter.calendar.JDateChooser date_fecha_final;
+    private javax.swing.JComboBox combo_ano;
+    private javax.swing.JComboBox combo_semana;
     private javax.swing.JLabel jLabel1;
-    public javax.swing.JLabel jLabel6;
-    public javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
@@ -265,7 +258,7 @@ public class ProgramacionSemanal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 // METODO PARA CARGAR VALIDACIONES PROGRAMADAS    
-void cargar_tabla_programadas(String fecha_inicial, String fecha_final) {
+void cargar_tabla_programadas(String SEMANA, String ANO) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -290,7 +283,8 @@ void cargar_tabla_programadas(String fecha_inicial, String fecha_final) {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE ESTADO_PROYECTO = 'Programada' "
-                + "AND FECHA_PROPUESTA BETWEEN '" + fecha_inicial + "' AND '" + fecha_final + "' "
+                + "AND SEMANA = " + SEMANA + " " 
+                + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
                 + "ORDER BY FECHA_PROPUESTA ASC;";
         try {
             Statement st = cn.createStatement();
@@ -317,7 +311,7 @@ void cargar_tabla_programadas(String fecha_inicial, String fecha_final) {
     }
 
 // METODO PARA CARGAR VALIDACIONES REPROGRAMADAS
-void cargar_tabla_reprogramadas(String fecha_inicial, String fecha_final) {
+void cargar_tabla_reprogramadas(String SEMANA, String ANO) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -342,7 +336,8 @@ void cargar_tabla_reprogramadas(String fecha_inicial, String fecha_final) {
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
                 + "WHERE ESTADO_PROYECTO = 'Reprogramado' "
-                + "AND FECHA_PROPUESTA BETWEEN '" + fecha_inicial + "' AND '" + fecha_final + "' "
+                + "AND SEMANA = " + SEMANA + " " 
+                + "AND FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31' "
                 + "ORDER BY FECHA_REPROGRAMACION ASC;";
 
         try {
@@ -370,7 +365,7 @@ void cargar_tabla_reprogramadas(String fecha_inicial, String fecha_final) {
     }
 
 // METODO PARA CARGAR VALIDACIONES NO PROGRAMDAS
-void cargar_tabla_noprogramadas(String fecha_inicial, String fecha_final) {
+void cargar_tabla_noprogramadas(String SEMANA, String ANO) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
@@ -394,8 +389,9 @@ void cargar_tabla_noprogramadas(String fecha_inicial, String fecha_final) {
                 + "FECHA_PROPUESTA AS FECHA "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE ((NO_PROGRAMADA = 'Ejecutada No Programada') AND (ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','Cerrada','Reprogramada'))) "                  
-                + "AND FECHA_PROPUESTA BETWEEN '" + fecha_inicial + "' AND '" + fecha_final + "' "
+                + "WHERE ((NO_PROGRAMADA = 'Ejecutada No Programada') AND (ESTADO_PROYECTO NOT IN ('En Creacion','No Ejecutada','Cerrada','Reprogramada'))) "
+                + "AND SEMANA = " + SEMANA + " "    
+                + "AND (FECHA_PROPUESTA BETWEEN '" + ANO + "-01-01' AND '" + ANO + "-12-31') "
                 + "ORDER BY FECHA_REPROGRAMACION ASC;";
 
         try {

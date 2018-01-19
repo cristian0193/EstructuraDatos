@@ -13,15 +13,15 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 
-public class Grafica_Proyecto_Tipo extends javax.swing.JFrame {
+public class Grafica_EjecutadasNoProgramadas_Tipo extends javax.swing.JFrame {
 
     JPanel panel;
     ConexioSQLite conexion;
     DefaultPieDataset dataset;
 
     // METODO CONSTRUCTOR
-    public Grafica_Proyecto_Tipo() {
-        setTitle("Tipo de Validacion vs Proyectos");
+    public Grafica_EjecutadasNoProgramadas_Tipo() {
+        setTitle("Ejecutadas No Programadas vs Tipo");
         setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -59,10 +59,10 @@ public class Grafica_Proyecto_Tipo extends javax.swing.JFrame {
 
             if (inicio <= fin) {
 
-                cadena_tipo_validacion(inicio_semana,fin_semana,anos);
+                cadena_tipo_validacion(inicio_semana, fin_semana, anos);
 
                 // Creando el Grafico
-                JFreeChart chart = ChartFactory.createPieChart("Proyectos x Tipo", dataset, true, true, false);
+                JFreeChart chart = ChartFactory.createPieChart("Ejecutadas No Programadas x Tipo", dataset, true, true, false);
 
                 chart.setBackgroundPaint(Color.white);
                 chart.getTitle().setPaint(Color.black);
@@ -88,18 +88,18 @@ public class Grafica_Proyecto_Tipo extends javax.swing.JFrame {
 
         String query;
         String tipo_calificacion;
-        double cantidades;
+        double eje_no_programadas;
 
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
         // QUERY DE BASE DE DATOS
-        query = " SELECT TIPO_VALIDACION AS TIPO_VALIDACIONES,COUNT(TIPO_VALIDACION) AS CONTADOR "
-                + " FROM PLANEACIONES_VALIDACION "
-                + " WHERE (SEMANA >= " + semana_inicial + " AND SEMANA <= " + semana_fin + ") "
-                + " AND FECHA_PROPUESTA BETWEEN '" + anos + "-01-01' AND '" + anos + "-12-31' "
-                + " AND (ESTADO_PROYECTO = 'Programada' OR ESTADO_PROYECTO = 'No Ejecutada' OR ESTADO_PROYECTO = 'Ejecutada' OR ESTADO_PROYECTO = 'Cerrada' OR ESTADO_PROYECTO = 'Reprogramado') "
-                + " GROUP BY TIPO_VALIDACION;";
+        query = " SELECT COUNT(ESTADO_PROYECTO) AS PROGRAMADAS, TIPO_VALIDACION\n"
+                + "FROM PLANEACIONES_VALIDACION "
+                + "WHERE (SEMANA >= " + semana_inicial + " AND SEMANA <= " + semana_fin + ") "
+                + "AND FECHA_PROPUESTA BETWEEN '" + anos + "-01-01' AND '" + anos + "-12-31' "
+                + "AND (NO_PROGRAMADA = 'Ejecutada No Programada') "
+                + "GROUP BY TIPO_VALIDACION;";
 
         System.out.println(query);
         try {
@@ -109,9 +109,9 @@ public class Grafica_Proyecto_Tipo extends javax.swing.JFrame {
             while (rs.next()) {
 
                 // REGISTROS CONSULTADOS
-                tipo_calificacion = rs.getString("TIPO_VALIDACIONES");
-                cantidades = Double.parseDouble(rs.getString("CONTADOR"));
-                dataset.setValue(tipo_calificacion + "\n " + cantidades , cantidades);
+                tipo_calificacion = rs.getString("TIPO_VALIDACION");
+                eje_no_programadas = Double.parseDouble(rs.getString("PROGRAMADAS"));
+                dataset.setValue(tipo_calificacion + "\n " + eje_no_programadas, eje_no_programadas);
             }
             conexion.cerrar();
         } catch (SQLException ex) {
@@ -119,7 +119,7 @@ public class Grafica_Proyecto_Tipo extends javax.swing.JFrame {
         }
 
     }
-    
+
     private static boolean isNumeric(String cadena) {
         try {
             Integer.parseInt(cadena);
@@ -131,6 +131,6 @@ public class Grafica_Proyecto_Tipo extends javax.swing.JFrame {
 
     // METODO PARA EJECUTAR
     public static void main(String args[]) {
-        new Grafica_Proyecto_Tipo().setVisible(true);
+        new Grafica_EjecutadasNoProgramadas_Tipo().setVisible(true);
     }
 }

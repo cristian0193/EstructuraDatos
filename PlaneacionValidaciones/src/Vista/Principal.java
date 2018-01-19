@@ -1191,7 +1191,7 @@ public class Principal extends javax.swing.JFrame {
                                 acuerdo.setVisible(true);
                                 this.hide();
 
-                            } else if (tipo_validacion.equals("L&S") && contadorSemanas >= 1) {
+                            } else if (tipo_validacion.equals("L&S") && contadorSemanas >= 2) {
                                 JOptionPane.showMessageDialog(null, "ESTA SEMANA NO TIENE CAPACIDAD PARA "
                                         + "\n CALIFICACIONES DE TIPO : " + tipo_validacion + "", "Capacidad Completa", JOptionPane.ERROR_MESSAGE);
 
@@ -1985,7 +1985,7 @@ public class Principal extends javax.swing.JFrame {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
-        query = "SELECT * FROM LIDER ";
+        query = "SELECT * FROM LIDER ORDER BY NOMBRE_LIDER ASC";
 
         System.out.println(query);
         try {

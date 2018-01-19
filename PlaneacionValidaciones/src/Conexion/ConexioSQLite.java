@@ -17,41 +17,56 @@ public class ConexioSQLite {
     public static Statement sentencia;
     public static ResultSet resultado;
     public static String query = "";
+    //final File archivo = new File("V:\\ValidacionesSQLite.db");
+    //final String cmd = "net use V: \\\\concocacimp1\\APP_VAL";
+    
     final File archivo = new File("ValidacionesSQLite.db");
     //final String cmd = "net use V: \\\\concocacimp1\\APP_VAL";
+    
 
 //METODO DE CONEXION
     public void coneccionbase() {
 
-        try {
-            //Runtime.getRuntime().exec(cmd);
-            Class.forName("org.sqlite.JDBC");
-            conectar = DriverManager.getConnection("jdbc:sqlite:" + archivo);
-            sentencia = conectar.createStatement();
-        } catch (ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        } //catch (IOException ex) {
-            //Logger.getLogger(ConexioSQLite.class.getName()).log(Level.SEVERE, null, ex);
-        //}
+//        try {
+//            Runtime.getRuntime().exec(cmd);
+//            Class.forName("org.sqlite.JDBC");
+//            conectar = DriverManager.getConnection("jdbc:sqlite:" + archivo);
+//            sentencia = conectar.createStatement();
+//        } catch (ClassNotFoundException e) {
+//            JOptionPane.showMessageDialog(null, e.getMessage());
+//        } catch (SQLException e) {
+//            System.err.println(e.getMessage());
+//        } catch (IOException ex) {
+//            Logger.getLogger(ConexioSQLite.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+
+
+//        try {
+//            Runtime.getRuntime().exec(cmd);
+//            Class.forName("org.sqlite.JDBC");
+//            conectar = DriverManager.getConnection("jdbc:sqlite:" + archivo);
+//            sentencia = conectar.createStatement();
+//        } catch (ClassNotFoundException e) {
+//            JOptionPane.showMessageDialog(null, e.getMessage());
+//        } catch (SQLException e) {
+//            System.err.println(e.getMessage());
+//        } catch (IOException ex) {
+//            Logger.getLogger(ConexioSQLite.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }
 
 //METODO CONECTAR TABLAS
     public Connection Conectar() {
 
-        try {
-            //Runtime.getRuntime().exec(cmd);
+        try {    
             Class.forName("org.sqlite.JDBC");
             conectar = DriverManager.getConnection("jdbc:sqlite:" + archivo);
         } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
-        } //catch (IOException ex) {
-            //Logger.getLogger(ConexioSQLite.class.getName()).log(Level.SEVERE, null, ex);
-        //}
+        } 
 
         return conectar;
     }

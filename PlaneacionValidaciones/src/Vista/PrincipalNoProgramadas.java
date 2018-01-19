@@ -38,6 +38,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        txt_registro = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txt_proyecto = new javax.swing.JTextField();
@@ -88,7 +89,6 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         txt_consulta_lider = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
-        txt_registro = new javax.swing.JTextField();
         combo_consulta = new javax.swing.JComboBox();
         jLabel16 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -120,18 +120,25 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTRO DE VALIDACIÓN NO PROGRAMADAS");
 
+        txt_registro.setEditable(false);
+        txt_registro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        txt_registro.setForeground(new java.awt.Color(255, 0, 0));
+        txt_registro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addComponent(txt_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 983, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addComponent(txt_registro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 11, 905, 50));
@@ -403,12 +410,6 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 200, 30));
-
-        txt_registro.setEditable(false);
-        txt_registro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        txt_registro.setForeground(new java.awt.Color(255, 0, 0));
-        txt_registro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(txt_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 10, 70, 50));
 
         combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "LIDER TECNICO", "REGISTRO", "GCC", "PROYECTO" }));
         combo_consulta.addItemListener(new java.awt.event.ItemListener() {
@@ -953,7 +954,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "OBSERVACIONES_VALIDACION AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + " WHERE (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion' OR ESTADO_PROYECTO = 'No Ejecutada') "
+                + " WHERE (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion') "
                 + "ORDER BY NUMERO_REGISTRO DESC";
 
         try {
@@ -1015,7 +1016,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "OBSERVACIONES_VALIDACION AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion' OR ESTADO_PROYECTO = 'No Ejecutada') "
+                + "WHERE (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion') "
                 + "AND FECHA_PROPUESTA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
                 + "ORDER BY NUMERO_REGISTRO DESC";
         try {
@@ -1077,7 +1078,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "OBSERVACIONES_VALIDACION AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion' OR ESTADO_PROYECTO = 'No Ejecutada') "
+                + "WHERE (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion') "
                 + "AND LIDER_TECNICO LIKE '%" + lider.toUpperCase().trim() + "%' "
                 + "ORDER BY NUMERO_REGISTRO DESC";
         try {
@@ -1139,7 +1140,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "OBSERVACIONES_VALIDACION AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion' OR ESTADO_PROYECTO = 'No Ejecutada') "
+                + "WHERE (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion') "
                 + "AND NUMERO_REGISTRO = " + registro + " "
                 + "ORDER BY NUMERO_REGISTRO DESC";
         System.out.println(query);
@@ -1201,7 +1202,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "OBSERVACIONES_VALIDACION AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion' OR ESTADO_PROYECTO = 'No Ejecutada') "
+                + "WHERE (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion') "
                 + "AND GCC_APR = '" + gcc + "' "
                 + "ORDER BY NUMERO_REGISTRO DESC";
         System.out.println(query);
@@ -1263,7 +1264,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
                 + "OBSERVACIONES_VALIDACION AS OBSERVACION "
                 + "FROM "
                 + "PLANEACIONES_VALIDACION "
-                + "WHERE (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion' OR ESTADO_PROYECTO = 'No Ejecutada') "
+                + "WHERE (ESTADO_PROYECTO = 'En Creacion' OR ESTADO_PROYECTO = 'Con Excepcion') "
                 + "AND NOMBRE_PROYECTO LIKE '%" + proyecto + "%' "
                 + "ORDER BY NUMERO_REGISTRO DESC";
         System.out.println(query);
@@ -1333,7 +1334,7 @@ public class PrincipalNoProgramadas extends javax.swing.JFrame {
         ConexioSQLite con = new ConexioSQLite();
         Connection cn = con.Conectar();
 
-        query = "SELECT * FROM LIDER ";
+        query = "SELECT * FROM LIDER ORDER BY NOMBRE_LIDER ASC";
 
         System.out.println(query);
         try {
