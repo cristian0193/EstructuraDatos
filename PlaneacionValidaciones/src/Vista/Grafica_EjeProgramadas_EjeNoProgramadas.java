@@ -2,6 +2,7 @@ package Vista;
 
 import Conexion.ConexioSQLite;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class Grafica_EjeProgramadas_EjeNoProgramadas extends javax.swing.JFrame {
@@ -22,8 +24,8 @@ public class Grafica_EjeProgramadas_EjeNoProgramadas extends javax.swing.JFrame 
 
     // METODO CONSTRUCTOR
     public Grafica_EjeProgramadas_EjeNoProgramadas() {
-        setTitle("Validaciones Ejecutadas Programadas vs Ejecutadas No Ejecutadas");
-        setSize(800, 500);
+        setTitle("Validaciones Ejecutadas Programadas vs Ejecutadas No Programadas");
+        setSize(1100, 630);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
@@ -67,16 +69,18 @@ public class Grafica_EjeProgramadas_EjeNoProgramadas extends javax.swing.JFrame 
                 dataset.setValue(contador_eje_no_ejecutadas, "Ejecutadas No Programadas", "Ejecutadas No Programadas");
 
                 // CREANDO GRAFICO
-                JFreeChart chart = ChartFactory.createBarChart("Validaciones Realizadas", "Validaciones", "Cantidad",
+                JFreeChart chart = ChartFactory.createBarChart("Ejecutadas Programadas vs Ejecutadas No Ejecutadas", "Validaciones", "Cantidad",
                         dataset, PlotOrientation.VERTICAL, true, true, false);
                 chart.setBackgroundPaint(Color.white);
                 chart.getTitle().setPaint(Color.black);
                 CategoryPlot p = chart.getCategoryPlot();
-                p.setRangeGridlinePaint(Color.red);
+                p.setRangeGridlinePaint(Color.white);
                 p.getAnnotations();
-
+                p.setBackgroundPaint(Color.white);
+                
                 // MOSTRAR GRAFICO
                 ChartPanel chartPanel = new ChartPanel(chart);
+                chartPanel.setPreferredSize(new Dimension(1050, 560));
                 panel.add(chartPanel);
             } else {
                 JOptionPane.showMessageDialog(null, "Recuerde que la semana inicio debe ser menor o igual semana fin");

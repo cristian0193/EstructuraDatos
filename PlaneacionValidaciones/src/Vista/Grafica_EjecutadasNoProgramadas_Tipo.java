@@ -2,6 +2,7 @@ package Vista;
 
 import Conexion.ConexioSQLite;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class Grafica_EjecutadasNoProgramadas_Tipo extends javax.swing.JFrame {
     // METODO CONSTRUCTOR
     public Grafica_EjecutadasNoProgramadas_Tipo() {
         setTitle("Ejecutadas No Programadas vs Tipo");
-        setSize(800, 600);
+        setSize(1100, 630);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
@@ -62,13 +63,14 @@ public class Grafica_EjecutadasNoProgramadas_Tipo extends javax.swing.JFrame {
                 cadena_tipo_validacion(inicio_semana, fin_semana, anos);
 
                 // Creando el Grafico
-                JFreeChart chart = ChartFactory.createPieChart("Ejecutadas No Programadas x Tipo", dataset, true, true, false);
+                JFreeChart chart = ChartFactory.createPieChart("Ejecutadas No Programadas vs Tipo", dataset, true, true, false);
 
                 chart.setBackgroundPaint(Color.white);
                 chart.getTitle().setPaint(Color.black);
 
                 // Mostrar Grafico
                 ChartPanel chartPanel = new ChartPanel(chart);
+                chartPanel.setPreferredSize(new Dimension(1050, 560));
                 panel.add(chartPanel);
 
             } else {

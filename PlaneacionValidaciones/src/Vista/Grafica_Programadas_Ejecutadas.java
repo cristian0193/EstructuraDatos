@@ -2,6 +2,7 @@ package Vista;
 
 import Conexion.ConexioSQLite;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class Grafica_Programadas_Ejecutadas extends javax.swing.JFrame {
@@ -23,7 +25,7 @@ public class Grafica_Programadas_Ejecutadas extends javax.swing.JFrame {
     // METODO CONSTRUCTOR
     public Grafica_Programadas_Ejecutadas() {
         setTitle("Validaciones Programadas vs Ejecutadas o Cerradas");
-        setSize(800, 500);
+        setSize(1100, 630);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
@@ -38,17 +40,16 @@ public class Grafica_Programadas_Ejecutadas extends javax.swing.JFrame {
 
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        
-        Object [] anos = {"2017","2018","2019","2020","2021"};
-        Object opcion = JOptionPane.showInputDialog(null,"Selecciona un año", "Elegir",JOptionPane.QUESTION_MESSAGE,null,anos, anos[0]);
-        
+        Object[] anos = {"2017", "2018", "2019", "2020", "2021"};
+        Object opcion = JOptionPane.showInputDialog(null, "Selecciona un año", "Elegir", JOptionPane.QUESTION_MESSAGE, null, anos, anos[0]);
+
         String inicio_semana = JOptionPane.showInputDialog("Ingrese Semana Inicial : ");
         String fin_semana = JOptionPane.showInputDialog("Ingrese Semana Final : ");
 
         if (opcion == null) {
             JOptionPane.showMessageDialog(null, "Debe Ingresar Valor para el Año");
             init();
-        }else if (inicio_semana.equals("") || fin_semana.equals("")) {
+        } else if (inicio_semana.equals("") || fin_semana.equals("")) {
             JOptionPane.showMessageDialog(null, "Debe Ingresar Valor en Semana (Inicio o Fin)");
             init();
         } else if (isNumeric(inicio_semana) == false || isNumeric(fin_semana) == false) {
@@ -61,26 +62,29 @@ public class Grafica_Programadas_Ejecutadas extends javax.swing.JFrame {
 
             if (inicio <= fin) {
                 for (int i = inicio; i <= fin; i++) {
-                    int contador_programadas = contador_programadas(i,opcion);
-                    int contador_ejecutadas = contador_ejecutadas(i,opcion);
+                    int contador_programadas = contador_programadas(i, opcion);
+                    int contador_ejecutadas = contador_ejecutadas(i, opcion);
 
                     dataset.setValue(contador_programadas, "Programadas", "" + i);
                     dataset.setValue(contador_ejecutadas, "Ejecutadas o Cerradas", "" + i);
                 }
 
                 // CREANDO GRAFICO
-                JFreeChart chart = ChartFactory.createBarChart("Validaciones Realizadas", "Validaciones", "Cantidad",
+                JFreeChart chart = ChartFactory.createBarChart("Validaciones Programadas vs Ejecutadas o Cerradas", "Validaciones", "Cantidad",
                         dataset, PlotOrientation.VERTICAL, true, true, false);
                 chart.setBackgroundPaint(Color.white);
                 chart.getTitle().setPaint(Color.black);
                 CategoryPlot p = chart.getCategoryPlot();
-                p.setRangeGridlinePaint(Color.red);
                 p.getAnnotations();
+                p.setBackgroundPaint(Color.white);
+                BarRenderer renderer = (BarRenderer) p.getRenderer();
+                renderer.setItemMargin(0.0);
 
                 // MOSTRAR GRAFICO
                 ChartPanel chartPanel = new ChartPanel(chart);
+                chartPanel.setPreferredSize(new Dimension(1050, 560));
                 panel.add(chartPanel);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Recuerde que la semana inicio debe ser menor o igual semana fin");
                 init();
             }

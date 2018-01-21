@@ -42,6 +42,8 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem22 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -93,7 +95,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
+                .addContainerGap(111, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -107,8 +109,10 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
         jMenu1.setText("Registro de Validacion");
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addVal.png"))); // NOI18N
         jMenuItem2.setText("Agregar/Actualizar Validacion (Todos)");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +121,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
         jMenuItem10.setText("Agregar Validacion No Programada (Admin)");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,8 +132,10 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/semana.png"))); // NOI18N
         jMenu5.setText("Verificacion Semanal");
 
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/estado.png"))); // NOI18N
         jMenuItem8.setText("Estado de Validaciones (Admin)");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +144,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem8);
 
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/programado.png"))); // NOI18N
         jMenuItem5.setText("Programar Validacion (Admin)");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +153,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem5);
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reprogramar.png"))); // NOI18N
         jMenuItem6.setText("Reprogramar Validacion");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +162,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem6);
 
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/seguridad.png"))); // NOI18N
         jMenuItem11.setText("Estado de Validacion EHS (Admin)");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,8 +173,10 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reporte.png"))); // NOI18N
         jMenu3.setText("Reportes Semanal");
 
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar.png"))); // NOI18N
         jMenuItem12.setText("Programacion General (Todos)");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,6 +185,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem12);
 
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar.png"))); // NOI18N
         jMenuItem7.setText("Programacion Semanal (Todos)");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +194,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem7);
 
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar.png"))); // NOI18N
         jMenuItem9.setText("Estado de Proyectos Ejecutados (Todos)");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,8 +203,10 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem9);
 
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/graficas.png"))); // NOI18N
         jMenu6.setText("Graficas KPI's");
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/graficos.png"))); // NOI18N
         jMenuItem3.setText("Programadas vs Ejecutadas (Todos)");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,6 +215,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem3);
 
+        jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/graficos.png"))); // NOI18N
         jMenuItem18.setText("Programadas vs No Ejecutadas (Todos)");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,6 +224,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem18);
 
+        jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/graficos.png"))); // NOI18N
         jMenuItem19.setText("Ejecutadas Programadas vs Ejecutadas No Ejecutadas (Todos)");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,6 +233,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem19);
 
+        jMenuItem20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/graficos.png"))); // NOI18N
         jMenuItem20.setText("Ejecutadas No Programadas vs Tipo (Todos)");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,7 +242,8 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem20);
 
-        jMenuItem21.setText("Ejecutadas Proyectos vs Tipo (Todos)");
+        jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/graficos.png"))); // NOI18N
+        jMenuItem21.setText("Ejecutadas Proyectos vs Tipo Circular (Todos)");
         jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem21ActionPerformed(evt);
@@ -231,12 +251,32 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem21);
 
+        jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/graficos.png"))); // NOI18N
+        jMenuItem22.setText("Ejecutadas Proyectos vs Tipo Barra (Todos)");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem22);
+
+        jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/graficos.png"))); // NOI18N
+        jMenuItem23.setText("Ejecutadas Proyectos vs Planta Barra (Todos)");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem23);
+
         jMenu3.add(jMenu6);
 
         jMenuBar1.add(jMenu3);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/herramienta.png"))); // NOI18N
         jMenu2.setText("Utilidades");
 
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/manual2.png"))); // NOI18N
         jMenuItem13.setText("Manual de Usuario");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,6 +285,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem13);
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/manual.png"))); // NOI18N
         jMenuItem4.setText("Modelo de Gobierno");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,6 +294,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem4);
 
+        menu_maquina1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exportar.png"))); // NOI18N
         menu_maquina1.setText("Exportar a Excel .XLS");
         menu_maquina1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,6 +303,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(menu_maquina1);
 
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
         jMenuItem14.setText("Eliminación Masiva de Datos (Admin)");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,6 +312,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem14);
 
+        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
         jMenuItem15.setText("Eliminación Registro Unico (Admin)");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,6 +323,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/admin.png"))); // NOI18N
         jMenu4.setText("Administracion");
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -291,7 +336,8 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        menu_tipo_validacion.setText("Ingresar Tipo Validacion (Admin)");
+        menu_tipo_validacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add.png"))); // NOI18N
+        menu_tipo_validacion.setText("Tipo Validacion (Admin)");
         menu_tipo_validacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_tipo_validacionActionPerformed(evt);
@@ -299,7 +345,8 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(menu_tipo_validacion);
 
-        menu_lider_tecnico.setText("Ingresar Lider Tecnico (Todos)");
+        menu_lider_tecnico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add.png"))); // NOI18N
+        menu_lider_tecnico.setText("Lider Tecnico (Todos)");
         menu_lider_tecnico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_lider_tecnicoActionPerformed(evt);
@@ -307,7 +354,8 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(menu_lider_tecnico);
 
-        menu_planta.setText("Ingresar Planta (Admin)");
+        menu_planta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add.png"))); // NOI18N
+        menu_planta.setText("Planta (Admin)");
         menu_planta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_plantaActionPerformed(evt);
@@ -315,7 +363,8 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(menu_planta);
 
-        menu_maquina.setText("Ingresar Maquina (Admin)");
+        menu_maquina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add.png"))); // NOI18N
+        menu_maquina.setText("Maquina (Admin)");
         menu_maquina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_maquinaActionPerformed(evt);
@@ -323,7 +372,8 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(menu_maquina);
 
-        menu_maquina2.setText("Ingresar Autorizado (Admin)");
+        menu_maquina2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add.png"))); // NOI18N
+        menu_maquina2.setText("Autorizado (Admin)");
         menu_maquina2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_maquina2ActionPerformed(evt);
@@ -343,7 +393,7 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -519,9 +569,20 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
-        Grafica_Proyecto_Tipo graficas = new Grafica_Proyecto_Tipo();
+        Grafica_Validaciones_Tipo_Circular graficas = new Grafica_Validaciones_Tipo_Circular();
         graficas.setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        Grafica_Validaciones_Tipo_Barra graficas = new Grafica_Validaciones_Tipo_Barra();
+        graficas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+       Grafica_Validaciones_Planta_Barra graficas = new Grafica_Validaciones_Planta_Barra();
+        graficas.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -583,6 +644,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

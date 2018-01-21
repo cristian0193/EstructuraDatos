@@ -51,8 +51,10 @@ public class ProgramacionGeneral extends javax.swing.JFrame {
 
             }
         ));
+        tabla_programacion_general.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tabla_programacion_general.setRowHeight(23);
         tabla_programacion_general.setRowMargin(2);
+        tabla_programacion_general.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         jScrollPane2.setViewportView(tabla_programacion_general);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

@@ -2,6 +2,7 @@ package Vista;
 
 import Conexion.ConexioSQLite;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,16 +14,16 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 
-public class Grafica_Proyecto_Tipo extends javax.swing.JFrame {
+public class Grafica_Validaciones_Tipo_Circular extends javax.swing.JFrame {
 
     JPanel panel;
     ConexioSQLite conexion;
     DefaultPieDataset dataset;
 
     // METODO CONSTRUCTOR
-    public Grafica_Proyecto_Tipo() {
-        setTitle("Tipo de Validacion vs Proyectos");
-        setSize(800, 600);
+    public Grafica_Validaciones_Tipo_Circular() {
+        setTitle("Validaciones vs Planta");
+        setSize(1100, 630);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
@@ -62,13 +63,14 @@ public class Grafica_Proyecto_Tipo extends javax.swing.JFrame {
                 cadena_tipo_validacion(inicio_semana,fin_semana,anos);
 
                 // Creando el Grafico
-                JFreeChart chart = ChartFactory.createPieChart("Proyectos x Tipo", dataset, true, true, false);
+                JFreeChart chart = ChartFactory.createPieChart("Validaciones vs Planta", dataset, true, true, false);
 
                 chart.setBackgroundPaint(Color.white);
                 chart.getTitle().setPaint(Color.black);
 
                 // Mostrar Grafico
                 ChartPanel chartPanel = new ChartPanel(chart);
+                chartPanel.setPreferredSize(new Dimension(1050, 560));
                 panel.add(chartPanel);
 
             } else {
@@ -131,6 +133,6 @@ public class Grafica_Proyecto_Tipo extends javax.swing.JFrame {
 
     // METODO PARA EJECUTAR
     public static void main(String args[]) {
-        new Grafica_Proyecto_Tipo().setVisible(true);
+        new Grafica_Validaciones_Tipo_Circular().setVisible(true);
     }
 }
