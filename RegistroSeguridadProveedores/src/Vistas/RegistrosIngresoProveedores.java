@@ -79,7 +79,7 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
         combo_marca = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         btn_conuslta = new javax.swing.JButton();
-        lb_prueba = new javax.swing.JLabel();
+        btn_conuslta1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_registro = new javax.swing.JTable();
         jLabel18 = new javax.swing.JLabel();
@@ -288,7 +288,7 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(255, 0, 0));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("(*)");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 90, 20, 20));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 90, 20, 20));
 
         txt_estado.setEditable(false);
         txt_estado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -313,13 +313,22 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 200, 50, 21));
 
         btn_conuslta.setText("...");
+        btn_conuslta.setToolTipText("Pulsa para Buscar un conductor");
         btn_conuslta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_conusltaActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_conuslta, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 40, 20));
-        jPanel1.add(lb_prueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 210, 20));
+        jPanel1.add(btn_conuslta, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 90, 40, -1));
+
+        btn_conuslta1.setText("...");
+        btn_conuslta1.setToolTipText("Pulsa para Buscar un conductor");
+        btn_conuslta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_conuslta1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_conuslta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 37, 40, -1));
 
         tabla_registro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -964,11 +973,17 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
 
     private void btn_conusltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conusltaActionPerformed
         
-        ConsultarConductor frame = new ConsultarConductor();
+        ConsultarAutorizado frame = new ConsultarAutorizado();
         frame.setVisible(true);
         this.dispose();
                 
     }//GEN-LAST:event_btn_conusltaActionPerformed
+
+    private void btn_conuslta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conuslta1ActionPerformed
+        ConsultarConductor frame = new ConsultarConductor();
+        frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_conuslta1ActionPerformed
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -1007,13 +1022,14 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_actualizar;
     private javax.swing.JButton btn_conuslta;
+    private javax.swing.JButton btn_conuslta1;
     public javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton btn_refrescar;
-    private javax.swing.JComboBox combo_autorizo;
+    public javax.swing.JComboBox combo_autorizo;
     public javax.swing.JComboBox combo_conductor;
     private javax.swing.JComboBox combo_consulta;
-    private javax.swing.JComboBox combo_guarda;
+    public javax.swing.JComboBox combo_guarda;
     private javax.swing.JComboBox combo_marca;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
@@ -1045,7 +1061,6 @@ public class RegistrosIngresoProveedores extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JLabel lb_prueba;
     private javax.swing.JTable tabla_registro;
     private javax.swing.JTextField txt_consulta_autorizo;
     private javax.swing.JTextField txt_consulta_cedula;
