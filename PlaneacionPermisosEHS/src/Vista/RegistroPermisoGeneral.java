@@ -74,19 +74,23 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
         radio_contratista = new javax.swing.JRadioButton();
         radio_personal = new javax.swing.JRadioButton();
         jLabel26 = new javax.swing.JLabel();
-        txt_consulta_registro = new javax.swing.JTextField();
+        txt_consulta_registro_cons = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        txt_consulta_registro1 = new javax.swing.JTextField();
+        txt_contratista = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
-        txt_consulta_registro2 = new javax.swing.JTextField();
+        txt_responsable = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         date_fecha_inicio = new com.toedter.calendar.JDateChooser();
         jLabel18 = new javax.swing.JLabel();
         date_fecha_final = new com.toedter.calendar.JDateChooser();
         jLabel29 = new javax.swing.JLabel();
-        txt_consulta_registro3 = new javax.swing.JTextField();
         txt_id = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        combo_consulta = new javax.swing.JComboBox();
+        jLabel31 = new javax.swing.JLabel();
+        txt_empresa = new javax.swing.JTextField();
+        txt_id_unico = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -357,12 +361,14 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel26.setText("ID Permiso General  :");
 
-        txt_consulta_registro.setToolTipText("Numero de Registro del proyecto");
+        txt_consulta_registro_cons.setToolTipText("Numero de Registro del proyecto");
+        txt_consulta_registro_cons.setEnabled(false);
 
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel27.setText("Nombre Contratista  :");
 
-        txt_consulta_registro1.setToolTipText("");
+        txt_contratista.setToolTipText("");
+        txt_contratista.setEnabled(false);
 
         btn_buscar.setBackground(new java.awt.Color(102, 255, 255));
         btn_buscar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -377,24 +383,25 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel28.setText("Responsable J&J  :");
 
-        txt_consulta_registro2.setToolTipText("");
+        txt_responsable.setToolTipText("");
+        txt_responsable.setEnabled(false);
 
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel17.setText("Fecha Inicial :");
 
         date_fecha_inicio.setToolTipText("");
         date_fecha_inicio.setDateFormatString("yyyy-MM-dd");
+        date_fecha_inicio.setEnabled(false);
 
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel18.setText("Fecha Final :");
 
         date_fecha_final.setToolTipText("");
         date_fecha_final.setDateFormatString("yyyy-MM-dd");
+        date_fecha_final.setEnabled(false);
 
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel29.setText("Empresa :");
-
-        txt_consulta_registro3.setToolTipText("");
+        jLabel29.setText("ID Unico :");
 
         txt_id.setEditable(false);
         txt_id.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -406,25 +413,50 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
             }
         });
 
+        jLabel21.setText("Seleccionar Filtro :");
+
+        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "ID PERMISO GENERAL", "ID UNICO", "CONTRATISTA", "RESPONSABLE JNJ", "EMPRESA" }));
+        combo_consulta.setToolTipText("Permite seleccionar el Filtro para la consulta de informacion");
+        combo_consulta.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo_consultaItemStateChanged(evt);
+            }
+        });
+        combo_consulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_consultaActionPerformed(evt);
+            }
+        });
+
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel31.setText("Empresa :");
+
+        txt_empresa.setToolTipText("");
+        txt_empresa.setEnabled(false);
+
+        txt_id_unico.setToolTipText("Numero de Registro del proyecto");
+        txt_id_unico.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(txt_id_permiso_general, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 936, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(126, 126, 126)
                         .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1)))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -436,26 +468,35 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
                                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(date_fecha_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(33, 33, 33)
+                        .addGap(118, 118, 118)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_consulta_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_consulta_registro_cons, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_consulta_registro3)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_consulta_registro2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_consulta_registro1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_id_unico, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_empresa, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_responsable, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_contratista, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(8, 8, 8)))
                 .addContainerGap())
         );
@@ -467,26 +508,39 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
                     .addComponent(txt_id_permiso_general, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_consulta_registro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_consulta_registro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_consulta_registro_cons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_consulta_registro3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_id_unico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txt_consulta_registro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_contratista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_responsable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_empresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -495,9 +549,9 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(date_fecha_final, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -703,6 +757,80 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tabla_generalMouseClicked
 
+    private void combo_consultaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_consultaItemStateChanged
+
+        int index = combo_consulta.getSelectedIndex();
+
+        switch (index) {
+            case 1:
+            this.date_fecha_inicio.setEnabled(true);
+            this.date_fecha_final.setEnabled(true);
+            this.txt_consulta_registro_cons.setEnabled(false);
+            this.txt_id_unico.setEnabled(false);
+            this.txt_contratista.setEnabled(false);
+            this.txt_responsable.setEnabled(false);
+            this.txt_empresa.setEnabled(false);            
+            break;
+            case 2:
+            this.date_fecha_inicio.setEnabled(false);
+            this.date_fecha_final.setEnabled(false);
+            this.txt_consulta_registro_cons.setEnabled(true);
+            this.txt_id_unico.setEnabled(false);
+            this.txt_contratista.setEnabled(false);
+            this.txt_responsable.setEnabled(false);
+            this.txt_empresa.setEnabled(false);
+            break;
+            case 3:
+            this.date_fecha_inicio.setEnabled(false);
+            this.date_fecha_final.setEnabled(false);
+            this.txt_consulta_registro_cons.setEnabled(false);
+            this.txt_id_unico.setEnabled(true);
+            this.txt_contratista.setEnabled(false);
+            this.txt_responsable.setEnabled(false);
+            this.txt_empresa.setEnabled(false);
+            break;
+            case 4:
+            this.date_fecha_inicio.setEnabled(false);
+            this.date_fecha_final.setEnabled(false);
+            this.txt_consulta_registro_cons.setEnabled(false);
+            this.txt_id_unico.setEnabled(false);
+            this.txt_contratista.setEnabled(true);
+            this.txt_responsable.setEnabled(false);
+            this.txt_empresa.setEnabled(false);
+            break;
+            case 5:
+            this.date_fecha_inicio.setEnabled(false);
+            this.date_fecha_final.setEnabled(false);
+            this.txt_consulta_registro_cons.setEnabled(false);
+            this.txt_id_unico.setEnabled(false);
+            this.txt_contratista.setEnabled(false);
+            this.txt_responsable.setEnabled(true);
+            this.txt_empresa.setEnabled(false);
+            break;
+            case 6:
+            this.date_fecha_inicio.setEnabled(false);
+            this.date_fecha_final.setEnabled(false);
+            this.txt_consulta_registro_cons.setEnabled(false);
+            this.txt_id_unico.setEnabled(false);
+            this.txt_contratista.setEnabled(false);
+            this.txt_responsable.setEnabled(false);
+            this.txt_empresa.setEnabled(true);
+            break;
+            default:
+            this.date_fecha_inicio.setEnabled(false);
+            this.date_fecha_final.setEnabled(false);
+            this.txt_consulta_registro_cons.setEnabled(false);
+            this.txt_id_unico.setEnabled(false);
+            this.txt_contratista.setEnabled(false);
+            this.txt_responsable.setEnabled(false);
+            this.txt_empresa.setEnabled(false);
+        }
+    }//GEN-LAST:event_combo_consultaItemStateChanged
+
+    private void combo_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_consultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_consultaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup agrupa_button;
@@ -711,6 +839,7 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
     public javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton btn_refrescar1;
+    private javax.swing.JComboBox combo_consulta;
     public javax.swing.JComboBox combo_contratista;
     public javax.swing.JComboBox combo_empresa;
     public javax.swing.JComboBox combo_lugar;
@@ -733,6 +862,7 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -742,6 +872,7 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     public javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel31;
     public javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -751,14 +882,15 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
     private javax.swing.JRadioButton radio_personal;
     private javax.swing.JTable tabla_general;
     public javax.swing.JTextField txt_actividad_proyecto;
-    private javax.swing.JTextField txt_consulta_registro;
-    private javax.swing.JTextField txt_consulta_registro1;
-    private javax.swing.JTextField txt_consulta_registro2;
-    private javax.swing.JTextField txt_consulta_registro3;
+    private javax.swing.JTextField txt_consulta_registro_cons;
+    private javax.swing.JTextField txt_contratista;
+    private javax.swing.JTextField txt_empresa;
     public javax.swing.JTextField txt_estado;
     public javax.swing.JTextField txt_fecha_creacion_actual;
     public javax.swing.JTextField txt_id;
     public javax.swing.JTextField txt_id_permiso_general;
+    private javax.swing.JTextField txt_id_unico;
+    private javax.swing.JTextField txt_responsable;
     // End of variables declaration//GEN-END:variables
 
     public void Limpiar() {
