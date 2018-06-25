@@ -10,16 +10,18 @@ import javax.swing.table.DefaultTableModel;
 
 public class Permisos extends javax.swing.JDialog {
 
-    public static String valor;
+    public static String valor, valor2;
     public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
 
-    public Permisos(java.awt.Frame parent, boolean modal, String numero) {
+    public Permisos(java.awt.Frame parent, boolean modal, String numero, String numero2) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         valor = numero;
+        valor2 = numero2;
         this.txt_id_general.setText(valor);
+        this.txt_id_unico.setText(valor2);
     }
 
     @SuppressWarnings("unchecked")
@@ -43,6 +45,8 @@ public class Permisos extends javax.swing.JDialog {
         chk_mani_carga_critica = new javax.swing.JCheckBox();
         chk_fuera_servicio = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txt_id_unico = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -54,7 +58,7 @@ public class Permisos extends javax.swing.JDialog {
         jLabel2.setText("ID Permiso General:");
 
         txt_id_general.setEditable(false);
-        txt_id_general.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_id_general.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txt_id_general.setForeground(new java.awt.Color(255, 0, 0));
         txt_id_general.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -202,23 +206,36 @@ public class Permisos extends javax.swing.JDialog {
             }
         });
 
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("ID Unico:");
+
+        txt_id_unico.setEditable(false);
+        txt_id_unico.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txt_id_unico.setForeground(new java.awt.Color(255, 0, 0));
+        txt_id_unico.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_id_general, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_id_general, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txt_id_unico, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -227,8 +244,12 @@ public class Permisos extends javax.swing.JDialog {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_id_general, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                        .addComponent(txt_id_unico, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                        .addComponent(txt_id_general, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -290,7 +311,7 @@ public class Permisos extends javax.swing.JDialog {
             int cantidad = 0;
             cantidad = contador_id_permisos("PA");
 
-            insertarPermisosEHS("ALTURAS", valor, "" + cantidad, "PA", "Solicitado");
+            insertarPermisosEHS("ALTURAS", valor, valor2, "" + cantidad, "PA", "Solicitado");
             permiso += "ID ALTURA : " + cantidad + "\n";
         }
 
@@ -298,7 +319,7 @@ public class Permisos extends javax.swing.JDialog {
             int cantidad = 0;
             cantidad = contador_id_permisos("PC");
 
-            insertarPermisosEHS("CALIENTE", valor, "" + cantidad, "PC", "Solicitado");
+            insertarPermisosEHS("CALIENTE", valor,valor2, "" + cantidad, "PC", "Solicitado");
             permiso += "ID CALIENTE : " + cantidad + "\n";
         }
 
@@ -306,7 +327,7 @@ public class Permisos extends javax.swing.JDialog {
             int cantidad = 0;
             cantidad = contador_id_permisos("PE");
 
-            insertarPermisosEHS("EXCAVACION", valor, "" + cantidad, "PE", "Solicitado");
+            insertarPermisosEHS("EXCAVACION", valor,valor2, "" + cantidad, "PE", "Solicitado");
             permiso += "ID EXCAVACION : " + cantidad + "\n";
         }
 
@@ -314,7 +335,7 @@ public class Permisos extends javax.swing.JDialog {
             int cantidad = 0;
             cantidad = contador_id_permisos("PL");
 
-            insertarPermisosEHS("LOTO", valor, "" + cantidad, "PL", "Solicitado");
+            insertarPermisosEHS("LOTO", valor,valor2, "" + cantidad, "PL", "Solicitado");
             permiso += "ID LOTO : " + cantidad + "\n";
         }
 
@@ -322,7 +343,7 @@ public class Permisos extends javax.swing.JDialog {
             int cantidad = 0;
             cantidad = contador_id_permisos("PEC");
 
-            insertarPermisosEHS("ESPACIO CONFINADO", valor, "" + cantidad, "PEC", "Solicitado");
+            insertarPermisosEHS("ESPACIO CONFINADO", valor,valor2, "" + cantidad, "PEC", "Solicitado");
             permiso += "ID ESPACIO CONFINADO : " + cantidad + "\n";
         }
 
@@ -330,7 +351,7 @@ public class Permisos extends javax.swing.JDialog {
             int cantidad = 0;
             cantidad = contador_id_permisos("PMC");
 
-            insertarPermisosEHS("MANIPULACION DE CARGA", valor, "" + cantidad, "PMC", "Solicitado");
+            insertarPermisosEHS("MANIPULACION DE CARGA", valor,valor2, "" + cantidad, "PMC", "Solicitado");
             permiso += "ID MANIPULACION DE CARGA : " + cantidad + "\n";
         }
 
@@ -338,7 +359,7 @@ public class Permisos extends javax.swing.JDialog {
             int cantidad = 0;
             cantidad = contador_id_permisos("PSB");
 
-            insertarPermisosEHS("SAFERY BYPASS", valor, "" + cantidad, "PSB", "Solicitado");
+            insertarPermisosEHS("SAFERY BYPASS", valor,valor2, "" + cantidad, "PSB", "Solicitado");
             permiso += "ID SAFERY BYPASS : " + cantidad + "\n";
         }
 
@@ -346,7 +367,7 @@ public class Permisos extends javax.swing.JDialog {
             int cantidad = 0;
             cantidad = contador_id_permisos("PAC");
 
-            insertarPermisosEHS("AREA CLASIFICADA", valor, "" + cantidad, "PAC", "Solicitado");
+            insertarPermisosEHS("AREA CLASIFICADA", valor,valor2, "" + cantidad, "PAC", "Solicitado");
             permiso += "ID AREA CLASIFICADA : " + cantidad + "\n";
         }
 
@@ -354,7 +375,7 @@ public class Permisos extends javax.swing.JDialog {
             int cantidad = 0;
             cantidad = contador_id_permisos("PRL");
 
-            insertarPermisosEHS("RUCTURA LINEA", valor, "" + cantidad, "PRL", "Solicitado");
+            insertarPermisosEHS("RUCTURA LINEA", valor,valor2, "" + cantidad, "PRL", "Solicitado");
             permiso += "ID RUCTURA LINEA : " + cantidad + "\n";
         }
 
@@ -362,7 +383,7 @@ public class Permisos extends javax.swing.JDialog {
             int cantidad = 0;
             cantidad = contador_id_permisos("PSR");
 
-            insertarPermisosEHS("SIN RIESGO", valor, "" + cantidad, "PSR", "Solicitado");
+            insertarPermisosEHS("SIN RIESGO", valor,valor2, "" + cantidad, "PSR", "Solicitado");
             permiso += "ID SIN RIESGO : " + cantidad + "\n";
         }
 
@@ -370,7 +391,7 @@ public class Permisos extends javax.swing.JDialog {
             int cantidad = 0;
             cantidad = contador_id_permisos("PMCC");
 
-            insertarPermisosEHS("MANIPULACION DE CARGA CRITICA ", valor, "" + cantidad, "PMCC", "Solicitado");
+            insertarPermisosEHS("MANIPULACION DE CARGA CRITICA ", valor,valor2, "" + cantidad, "PMCC", "Solicitado");
             permiso += "ID MANIPULACION DE CARGA CRITICA : " + cantidad + "\n";
         }
 
@@ -378,7 +399,7 @@ public class Permisos extends javax.swing.JDialog {
             int cantidad = 0;
             cantidad = contador_id_permisos("PFSRC");
 
-            insertarPermisosEHS("FUERA SERVICIO RED CONTRAINCENDIO", valor, "" + cantidad, "PFSRC", "Solicitado");
+            insertarPermisosEHS("FUERA SERVICIO RED CONTRAINCENDIO", valor,valor2, "" + cantidad, "PFSRC", "Solicitado");
             permiso += "ID FUERA SERVICIO RED CONTRAINCENDIO : " + cantidad + "\n";
         }
 
@@ -409,8 +430,10 @@ public class Permisos extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txt_id_general;
+    private javax.swing.JTextField txt_id_unico;
     // End of variables declaration//GEN-END:variables
 
     //METODO PARA LIMPIAR LOS CAMPOS 
@@ -462,12 +485,13 @@ public class Permisos extends javax.swing.JDialog {
 
     public void insertarPermisosEHS(String NOMBRE_PERMISO,
             String ID_GENERAL,
+            String ID_PERMISO_GENERAL,
             String ID_PERMISO,
             String INDICADOR_PERMISO,
             String ESTADO) {
 
         // REGISTRO DE LA CALIFICACION
-        boolean resultado = conexion.insertPermiso(NOMBRE_PERMISO, ID_GENERAL, ID_PERMISO, INDICADOR_PERMISO, ESTADO);
+        boolean resultado = conexion.insertPermiso(NOMBRE_PERMISO, ID_GENERAL,ID_PERMISO_GENERAL,ID_PERMISO, INDICADOR_PERMISO, ESTADO);
 
         if (resultado == true) {
             conexion.cerrar();

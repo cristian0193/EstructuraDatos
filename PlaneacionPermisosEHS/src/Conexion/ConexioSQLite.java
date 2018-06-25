@@ -59,26 +59,31 @@ public class ConexioSQLite {
     }
 
 //METODO DE INSERTAR
-    public boolean insertPermisoGeneral(String FECHA,
+    public boolean insertPermisoGeneral(String ID_PERMISO,
+            String FECHA,
             String EMPRESA,
             String LUGAR_TRABAJO,
             String ACTIVIDAD,
             String CONTRATISTAS,
             String RESPONSABLE_JNJ,
-            String ESTADO) {
+            String ESTADO,
+            String TIPO) {
         try {
             query = "INSERT INTO PERMISOS_GENERALES "
                     + "(ID, "
+                    + "ID_PERMISO, "
                     + "FECHA, "
                     + "EMPRESA, "
                     + "LUGAR_TRABAJO, "
                     + "ACTIVIDAD, "
                     + "CONTRATISTAS, "
                     + "RESPONSABLE_JNJ, "
-                    + "ESTADO ) "
+                    + "ESTADO, "
+                    + "TIPO_PERMISO) "
                     + "VALUES "
-                    + "(NULL,'" + FECHA + "' ,'" + EMPRESA + "', '" + LUGAR_TRABAJO + "', '" + ACTIVIDAD + "', '" + CONTRATISTAS + "', '" + RESPONSABLE_JNJ + "',"
-                    + "" + ESTADO + "') ";
+                    + "(NULL,'" + ID_PERMISO + "' ,'" + FECHA + "' ,'" + EMPRESA + "', '" + LUGAR_TRABAJO + "',"
+                    + "      '" + ACTIVIDAD + "', '" + CONTRATISTAS + "', '" + RESPONSABLE_JNJ + "',"
+                    + "      '" + ESTADO + "','" + TIPO + "') ";
            
             System.out.println(query);
 
@@ -98,26 +103,30 @@ public class ConexioSQLite {
 
     //METODO DE ACTUALIZAR REGISTROS
     public boolean upgradePermisoGeneral(String ID,
+            String ID_PERMISO,
             String FECHA,
             String EMPRESA,
             String LUGAR_TRABAJO,
             String ACTIVIDAD,
             String CONTRATISTAS,
-            String RESPONSABLE_JNJ,
-            String ESTADO) {
+            String RESPONSABLE_JNJ,            
+            String ESTADO,
+            String TIPO_PERMISO) {
 
         try {
 
             query = "UPDATE"
                     + " PERMISOS_GENERALES"
                     + " SET "
+                    + "  ID_PERMISO = '" + ID_PERMISO + "',"
                     + "  FECHA = '" + FECHA + "',"
                     + "  EMPRESA = '" + EMPRESA + "',"
                     + "  LUGAR_TRABAJO = '" + LUGAR_TRABAJO + "',"
                     + "  ACTIVIDAD = '" + ACTIVIDAD + "',"
                     + "  CONTRATISTAS = '" + CONTRATISTAS + "',"
                     + "  RESPONSABLE_JNJ = '" + RESPONSABLE_JNJ + "',"
-                    + "  ESTADO = '" + ESTADO + "'"                  
+                    + "  ESTADO = '" + ESTADO + "',"
+                    + "  TIPO_PERMISO = '" + TIPO_PERMISO + "'"                    
                     + " WHERE"
                     + "  ID = " + ID + ";";
 
@@ -138,6 +147,7 @@ public class ConexioSQLite {
    //METODO DE INSERTAR
     public boolean insertPermiso(String NOMBRE_PERMISO,
             String ID_GENERAL,
+            String ID_PERMISO_GENERAL,
             String ID_PERMISO,
             String INDICADOR_PERMISO,
             String ESTADO) {
@@ -147,11 +157,12 @@ public class ConexioSQLite {
                     + "NOMBRE_PERMISO, "
                     + "FECHA, "
                     + "ID_GENERAL, "
+                    + "ID_PERMISO_GENERAL, "
                     + "ID_PERMISO, "
                     + "INDICADOR_PERMISO, "
                     + "ESTADO) "
                     + "VALUES "
-                    + "(NULL,'" + NOMBRE_PERMISO + "' ,DATE('NOW'), '" + ID_GENERAL + "', '" + ID_PERMISO + "', '" + INDICADOR_PERMISO + "', '" + ESTADO + "') ";
+                    + "(NULL,'" + NOMBRE_PERMISO + "' ,DATE('NOW'), '" + ID_GENERAL + "','" + ID_PERMISO_GENERAL + "','" + ID_PERMISO + "', '" + INDICADOR_PERMISO + "', '" + ESTADO + "') ";
            
             System.out.println(query);
 
@@ -428,7 +439,7 @@ public class ConexioSQLite {
             String NOMBRE) {
 
         try {
-            query = "INSERT INTO CONTRATISTAS "
+            query = "INSERT INTO CONTRATISTA "
                     + "(ID, NOMBRE)"
                     + " VALUES "
                     + " (NULL,'" + NOMBRE.toUpperCase() + "')";
@@ -454,7 +465,7 @@ public class ConexioSQLite {
 
         try {
             query = "UPDATE"
-                    + " CONTRATISTAS "
+                    + " CONTRATISTA "
                     + " SET "
                     + "  NOMBRE = '" + NOMBRE + "'"
                     + " WHERE"
@@ -480,7 +491,7 @@ public class ConexioSQLite {
 
         try {
 
-            query = "DELETE FROM CONTRATISTAS WHERE ID = " + REGISTRO + "";
+            query = "DELETE FROM CONTRATISTA WHERE ID = " + REGISTRO + "";
 
             sentencia.executeUpdate(query);
             System.out.println("ELIMINADO ...");
