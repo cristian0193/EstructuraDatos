@@ -8,12 +8,15 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistroPermisoGeneral extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
+    public static DefaultTableCellRenderer Alinear;
 
     public RegistroPermisoGeneral() {
         initComponents();
@@ -92,7 +95,7 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
         txt_empresa = new javax.swing.JTextField();
         txt_id_unico = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         tabla_general.setModel(new javax.swing.table.DefaultTableModel(
@@ -415,7 +418,7 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
 
         jLabel21.setText("Seleccionar Filtro :");
 
-        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "ID PERMISO GENERAL", "ID UNICO", "CONTRATISTA", "RESPONSABLE JNJ", "EMPRESA" }));
+        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "ID PERMISO GENERAL", "ID UNICO", "CONTRATISTA", "RESPONSABLE JNJ", "EMPRESA", "TODOS" }));
         combo_consulta.setToolTipText("Permite seleccionar el Filtro para la consulta de informacion");
         combo_consulta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -678,6 +681,99 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
 
+        int index = combo_consulta.getSelectedIndex();
+
+        switch (index) {
+            case 0:
+                JOptionPane.showMessageDialog(null, "SELECCIONE UNA OPCION");
+                break;
+            case 1:
+                if (this.date_fecha_inicio.getDate() == null) {
+                    JOptionPane.showMessageDialog(null, "INGRESE FECHA INICIAL");
+                } else if (this.date_fecha_final.getDate() == null) {
+                    JOptionPane.showMessageDialog(null, "INGRESE FECHA FINAL");
+                } else {
+                    String formato1 = date_fecha_inicio.getDateFormatString();
+                    Date date1 = (Date) date_fecha_inicio.getDate();
+                    SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
+                    String fecha_ingresada_inicio = String.valueOf(sdf1.format(date1));
+
+                    String formato2 = date_fecha_final.getDateFormatString();
+                    Date date2 = (Date) date_fecha_final.getDate();
+                    SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                    String fecha_ingresada_final = String.valueOf(sdf2.format(date2));
+
+                    consulta_rango_fechas(fecha_ingresada_inicio, fecha_ingresada_final);
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                }
+                break;
+            case 2:
+                String id_permiso_general = txt_consulta_registro_cons.getText();
+                if (id_permiso_general.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE UN ID PERMISO GENERAL");
+                } else {
+                    consulta_id_permiso_general(id_permiso_general);
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                }
+                break;
+            case 3:
+                String id_unico = txt_id_unico.getText();
+                if (id_unico.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE UN ID UNICO");
+                } else {
+                    consulta_id(id_unico);
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                }
+                break;
+            case 4:
+                String contratista = txt_contratista.getText();
+                if (contratista.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE UN CONTRATISTA");
+                } else {
+                    consulta_contratista(contratista);
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                }
+                break;
+            case 5:
+                String responsable = txt_responsable.getText();
+                if (responsable.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE UN RESPONSABLE JNJ");
+                } else {
+                    consulta_responsable(responsable);
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                }
+                break;
+            case 6:
+                String empresa = txt_empresa.getText();
+                if (empresa.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE UNA EMPRESA");
+                } else {
+                    consulta_empresa(empresa);
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                }
+                break;
+            default:
+
+                cargar_tabla_general();
+                ancho_columnas();
+                centrar_datos();
+                conexion.cerrar();
+                break;
+        }
+
+        
 
     }//GEN-LAST:event_btn_buscarActionPerformed
 
@@ -1123,6 +1219,340 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
 
     }
     
+    public void consulta_rango_fechas(String fecha_inicio, String fecha_final) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ID", "ID P. GENERAL", "FECHA", "EMPRESA", "LUGAR", "ACTIVIDAD", "CONTRATISTA", "RESPONSABLE", "ESTADO"};
+        String[] registro = new String[9];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "ID, "
+                + "ID_PERMISO, "
+                + "FECHA, "
+                + "EMPRESA, "
+                + "LUGAR_TRABAJO AS LUGAR, "
+                + "ACTIVIDAD, "
+                + "CONTRATISTAS, "
+                + "RESPONSABLE_JNJ, "
+                + "ESTADO "
+                + "FROM "
+                + "PERMISOS_GENERALES "
+                + "WHERE (ESTADO = 'Solicitado') "
+                + "AND FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "ORDER BY ID DESC";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID");
+                registro[1] = rs.getString("ID_PERMISO");
+                registro[2] = rs.getString("FECHA");
+                registro[3] = rs.getString("EMPRESA");
+                registro[4] = rs.getString("LUGAR");
+                registro[5] = rs.getString("ACTIVIDAD");
+                registro[6] = rs.getString("CONTRATISTAS");
+                registro[7] = rs.getString("RESPONSABLE_JNJ");
+                registro[8] = rs.getString("ESTADO");
+
+                modelo.addRow(registro);
+            }
+            tabla_general.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    public void consulta_id(String id) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ID", "ID P. GENERAL", "FECHA", "EMPRESA", "LUGAR", "ACTIVIDAD", "CONTRATISTA", "RESPONSABLE", "ESTADO"};
+        String[] registro = new String[9];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "ID, "
+                + "ID_PERMISO, "
+                + "FECHA, "
+                + "EMPRESA, "
+                + "LUGAR_TRABAJO AS LUGAR, "
+                + "ACTIVIDAD, "
+                + "CONTRATISTAS, "
+                + "RESPONSABLE_JNJ, "
+                + "ESTADO "
+                + "FROM "
+                + "PERMISOS_GENERALES "
+                + "WHERE (ESTADO = 'Solicitado') "
+                + "AND ID = '" + id + "'; ";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID");
+                registro[1] = rs.getString("ID_PERMISO");
+                registro[2] = rs.getString("FECHA");
+                registro[3] = rs.getString("EMPRESA");
+                registro[4] = rs.getString("LUGAR");
+                registro[5] = rs.getString("ACTIVIDAD");
+                registro[6] = rs.getString("CONTRATISTAS");
+                registro[7] = rs.getString("RESPONSABLE_JNJ");
+                registro[8] = rs.getString("ESTADO");
+
+                modelo.addRow(registro);
+            }
+            tabla_general.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    public void consulta_id_permiso_general(String id_permiso) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ID", "ID P. GENERAL", "FECHA", "EMPRESA", "LUGAR", "ACTIVIDAD", "CONTRATISTA", "RESPONSABLE", "ESTADO"};
+        String[] registro = new String[9];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "ID, "
+                + "ID_PERMISO, "
+                + "FECHA, "
+                + "EMPRESA, "
+                + "LUGAR_TRABAJO AS LUGAR, "
+                + "ACTIVIDAD, "
+                + "CONTRATISTAS, "
+                + "RESPONSABLE_JNJ, "
+                + "ESTADO "
+                + "FROM "
+                + "PERMISOS_GENERALES "
+                + "WHERE (ESTADO = 'Solicitado') "
+                + "AND ID_PERMISO = '" + id_permiso + "'; ";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID");
+                registro[1] = rs.getString("ID_PERMISO");
+                registro[2] = rs.getString("FECHA");
+                registro[3] = rs.getString("EMPRESA");
+                registro[4] = rs.getString("LUGAR");
+                registro[5] = rs.getString("ACTIVIDAD");
+                registro[6] = rs.getString("CONTRATISTAS");
+                registro[7] = rs.getString("RESPONSABLE_JNJ");
+                registro[8] = rs.getString("ESTADO");
+
+                modelo.addRow(registro);
+            }
+            tabla_general.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    public void consulta_contratista(String contratista) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ID", "ID P. GENERAL", "FECHA", "EMPRESA", "LUGAR", "ACTIVIDAD", "CONTRATISTA", "RESPONSABLE", "ESTADO"};
+        String[] registro = new String[9];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "ID, "
+                + "ID_PERMISO, "
+                + "FECHA, "
+                + "EMPRESA, "
+                + "LUGAR_TRABAJO AS LUGAR, "
+                + "ACTIVIDAD, "
+                + "CONTRATISTAS, "
+                + "RESPONSABLE_JNJ, "
+                + "ESTADO "
+                + "FROM "
+                + "PERMISOS_GENERALES "
+                + "WHERE (ESTADO = 'Solicitado') "
+                + "AND CONTRATISTAS LIKE '%" + contratista.toUpperCase() + "%' "
+                + "ORDER BY ID DESC";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID");
+                registro[1] = rs.getString("ID_PERMISO");
+                registro[2] = rs.getString("FECHA");
+                registro[3] = rs.getString("EMPRESA");
+                registro[4] = rs.getString("LUGAR");
+                registro[5] = rs.getString("ACTIVIDAD");
+                registro[6] = rs.getString("CONTRATISTAS");
+                registro[7] = rs.getString("RESPONSABLE_JNJ");
+                registro[8] = rs.getString("ESTADO");
+
+                modelo.addRow(registro);
+            }
+            tabla_general.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    public void consulta_responsable(String responsable) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ID", "ID P. GENERAL", "FECHA", "EMPRESA", "LUGAR", "ACTIVIDAD", "CONTRATISTA", "RESPONSABLE", "ESTADO"};
+        String[] registro = new String[9];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "ID, "
+                + "ID_PERMISO, "
+                + "FECHA, "
+                + "EMPRESA, "
+                + "LUGAR_TRABAJO AS LUGAR, "
+                + "ACTIVIDAD, "
+                + "CONTRATISTAS, "
+                + "RESPONSABLE_JNJ, "
+                + "ESTADO "
+                + "FROM "
+                + "PERMISOS_GENERALES "
+                + "WHERE (ESTADO = 'Solicitado') "
+                + "AND RESPONSABLE_JNJ LIKE '%" + responsable.toUpperCase() + "%' "
+                + "ORDER BY ID DESC";
+        System.out.println(query);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID");
+                registro[1] = rs.getString("ID_PERMISO");
+                registro[2] = rs.getString("FECHA");
+                registro[3] = rs.getString("EMPRESA");
+                registro[4] = rs.getString("LUGAR");
+                registro[5] = rs.getString("ACTIVIDAD");
+                registro[6] = rs.getString("CONTRATISTAS");
+                registro[7] = rs.getString("RESPONSABLE_JNJ");
+                registro[8] = rs.getString("ESTADO");
+
+                modelo.addRow(registro);
+            }
+            tabla_general.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    public void consulta_empresa(String empresa) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ID", "ID P. GENERAL", "FECHA", "EMPRESA", "LUGAR", "ACTIVIDAD", "CONTRATISTA", "RESPONSABLE", "ESTADO"};
+        String[] registro = new String[9];
+        String query = "";
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "ID, "
+                + "ID_PERMISO, "
+                + "FECHA, "
+                + "EMPRESA, "
+                + "LUGAR_TRABAJO AS LUGAR, "
+                + "ACTIVIDAD, "
+                + "CONTRATISTAS, "
+                + "RESPONSABLE_JNJ, "
+                + "ESTADO "
+                + "FROM "
+                + "PERMISOS_GENERALES "
+                + "WHERE (ESTADO = 'Solicitado') "
+                + "AND EMPRESA LIKE '%" + empresa.toUpperCase() + "%' "
+                + "ORDER BY ID DESC";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID");
+                registro[1] = rs.getString("ID_PERMISO");
+                registro[2] = rs.getString("FECHA");
+                registro[3] = rs.getString("EMPRESA");
+                registro[4] = rs.getString("LUGAR");
+                registro[5] = rs.getString("ACTIVIDAD");
+                registro[6] = rs.getString("CONTRATISTAS");
+                registro[7] = rs.getString("RESPONSABLE_JNJ");
+                registro[8] = rs.getString("ESTADO");
+
+                modelo.addRow(registro);
+            }
+            tabla_general.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+    
     public void ancho_columnas() {
         tabla_general.getColumnModel().getColumn(0).setPreferredWidth(50);
         tabla_general.getColumnModel().getColumn(1).setPreferredWidth(120);
@@ -1133,6 +1563,13 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
         tabla_general.getColumnModel().getColumn(6).setPreferredWidth(200);
         tabla_general.getColumnModel().getColumn(7).setPreferredWidth(150);
         tabla_general.getColumnModel().getColumn(8).setPreferredWidth(100);
+    }    
+
+    public void centrar_datos() {
+        Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+        tabla_general.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+        tabla_general.getColumnModel().getColumn(1).setCellRenderer(Alinear);
     }
 
 }

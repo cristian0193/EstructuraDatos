@@ -12,13 +12,13 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class ConsultaPermisoGeneral extends javax.swing.JFrame {
+public class ConsultaPermiso extends javax.swing.JFrame {
 
     public static ConexioSQLite conexion;
     public static DefaultTableModel modelo;
     public static DefaultTableCellRenderer Alinear;
 
-    public ConsultaPermisoGeneral() {
+    public ConsultaPermiso() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -42,12 +42,12 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         tabla_permiso_general = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        txt_id_permiso_general = new javax.swing.JTextField();
+        txt_id_permiso = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        txt_contratista = new javax.swing.JTextField();
+        txt_descripcion = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
-        txt_responsable = new javax.swing.JTextField();
+        txt_id_general = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         date_fecha_inicio = new com.toedter.calendar.JDateChooser();
         jLabel18 = new javax.swing.JLabel();
@@ -55,7 +55,7 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         txt_id_unico = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
-        txt_empresa = new javax.swing.JTextField();
+        txt_permiso_general = new javax.swing.JTextField();
         combo_consulta = new javax.swing.JComboBox();
         jLabel15 = new javax.swing.JLabel();
 
@@ -87,7 +87,8 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         jPopupMenu1.add(jMenuItem3);
 
         menu_permisos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        menu_permisos.setText("Ver Permisos Asociados");
+        menu_permisos.setText("Ver Permiso General Asociado");
+        menu_permisos.setToolTipText("");
         menu_permisos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_permisosActionPerformed(evt);
@@ -98,7 +99,6 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        tabla_permiso_general.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tabla_permiso_general.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -111,25 +111,24 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
             }
         ));
         tabla_permiso_general.setComponentPopupMenu(jPopupMenu1);
-        tabla_permiso_general.setRowHeight(35);
-        tabla_permiso_general.setRowMargin(3);
+        tabla_permiso_general.setRowHeight(30);
         jScrollPane1.setViewportView(tabla_permiso_general);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CIERRE DE PERMISOS GENERALES E INDIVIDUALES");
+        jLabel1.setText("CIERRE DE PERMISOS INDIVIDUALES");
 
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel26.setText("ID Permiso General  :");
+        jLabel26.setText("ID Permiso :");
 
-        txt_id_permiso_general.setToolTipText("Numero de Registro del proyecto");
-        txt_id_permiso_general.setEnabled(false);
+        txt_id_permiso.setToolTipText("Numero de Registro del proyecto");
+        txt_id_permiso.setEnabled(false);
 
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel27.setText("Nombre Contratista  :");
+        jLabel27.setText("Descripción del Permiso : ");
 
-        txt_contratista.setToolTipText("Numero de Registro del proyecto");
-        txt_contratista.setEnabled(false);
+        txt_descripcion.setToolTipText("Numero de Registro del proyecto");
+        txt_descripcion.setEnabled(false);
 
         btn_buscar.setBackground(new java.awt.Color(102, 255, 255));
         btn_buscar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -142,10 +141,10 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         });
 
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel28.setText("Responsable J&J  :");
+        jLabel28.setText("ID General :");
 
-        txt_responsable.setToolTipText("Numero de Registro del proyecto");
-        txt_responsable.setEnabled(false);
+        txt_id_general.setToolTipText("Numero de Registro del proyecto");
+        txt_id_general.setEnabled(false);
 
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel17.setText("Fecha Inicial :");
@@ -168,12 +167,12 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         txt_id_unico.setEnabled(false);
 
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel30.setText("Empresa :");
+        jLabel30.setText("ID Permiso General :");
 
-        txt_empresa.setToolTipText("Numero de Registro del proyecto");
-        txt_empresa.setEnabled(false);
+        txt_permiso_general.setToolTipText("Numero de Registro del proyecto");
+        txt_permiso_general.setEnabled(false);
 
-        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "ID PERMISO GENERAL", "ID UNICO", "CONTRATISTA", "RESPONSABLE JNJ", "EMPRESA", "TODOS" }));
+        combo_consulta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "RANGO DE FECHAS", "ID UNICO", "ID PERMISO", "DESCRIPCION DEL PERMISO", "ID GENERAL", "ID PERMISO GENERAL", "TODOS" }));
         combo_consulta.setToolTipText("Permite seleccionar el Filtro para la consulta de informacion");
         combo_consulta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -205,9 +204,9 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
                                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(date_fecha_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(106, 106, 106)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -216,19 +215,17 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txt_id_permiso_general, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(79, 79, 79)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txt_id_permiso, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(68, 68, 68)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_responsable, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                            .addComponent(txt_contratista, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                            .addComponent(txt_empresa))
+                            .addComponent(txt_id_general, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(txt_descripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(txt_permiso_general))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_buscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,27 +264,27 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txt_contratista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txt_responsable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_id_general, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txt_id_permiso_general, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_id_unico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txt_id_unico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txt_id_permiso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_empresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_permiso_general, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -324,17 +321,6 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
                 }
                 break;
             case 2:
-                String id_permiso_general = txt_id_permiso_general.getText();
-                if (id_permiso_general.equals("")) {
-                    JOptionPane.showMessageDialog(null, "INGRESE UN ID PERMISO GENERAL");
-                } else {
-                    consulta_id_permiso_general(id_permiso_general);
-                    ancho_columnas();
-                    centrar_datos();
-                    conexion.cerrar();
-                }
-                break;
-            case 3:
                 String id_unico = txt_id_unico.getText();
                 if (id_unico.equals("")) {
                     JOptionPane.showMessageDialog(null, "INGRESE UN ID UNICO");
@@ -344,42 +330,53 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
                     centrar_datos();
                     conexion.cerrar();
                 }
+
+                break;
+            case 3:
+                String id_permiso_general = txt_id_permiso.getText();
+                if (id_permiso_general.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE UN ID PERMISO GENERAL");
+                } else {
+                    consulta_id_permiso(id_permiso_general);
+                    ancho_columnas();
+                    centrar_datos();
+                    conexion.cerrar();
+                }
                 break;
             case 4:
-                String contratista = txt_contratista.getText();
-                if (contratista.equals("")) {
-                    JOptionPane.showMessageDialog(null, "INGRESE UN CONTRATISTA");
+                String descripcion = txt_descripcion.getText();
+                if (descripcion.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE UNA DESCRIPCION DEL PERMISO");
                 } else {
-                    consulta_contratista(contratista);
+                    consulta_descripcion_permiso(descripcion);
                     ancho_columnas();
                     centrar_datos();
                     conexion.cerrar();
                 }
                 break;
             case 5:
-                String responsable = txt_responsable.getText();
-                if (responsable.equals("")) {
-                    JOptionPane.showMessageDialog(null, "INGRESE UN RESPONSABLE JNJ");
+                String id_general = txt_id_general.getText();
+                if (id_general.equals("")) {
+                    JOptionPane.showMessageDialog(null, "INGRESE UN ID GENERAL");
                 } else {
-                    consulta_responsable(responsable);
+                    consulta_id_general(id_general);
                     ancho_columnas();
                     centrar_datos();
                     conexion.cerrar();
                 }
                 break;
             case 6:
-                String empresa = txt_empresa.getText();
+                String empresa = txt_permiso_general.getText();
                 if (empresa.equals("")) {
-                    JOptionPane.showMessageDialog(null, "INGRESE UNA EMPRESA");
+                    JOptionPane.showMessageDialog(null, "INGRESE UN ID PERMISO GENERAL");
                 } else {
-                    consulta_empresa(empresa);
+                    consulta_id_permiso_general(empresa);
                     ancho_columnas();
                     centrar_datos();
                     conexion.cerrar();
                 }
                 break;
             default:
-
                 cargar_tabla_general();
                 ancho_columnas();
                 centrar_datos();
@@ -392,18 +389,12 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
 
     private void menu_permisosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_permisosActionPerformed
 
-        int rec = this.tabla_permiso_general.getSelectedRow();
+        int rec = 0;
+        rec = this.tabla_permiso_general.getSelectedRow();
+        String id = tabla_permiso_general.getValueAt(rec, 0).toString();
+        String id_permiso_general = tabla_permiso_general.getValueAt(rec, 4).toString();
 
-        if (rec == -1) {
-            JOptionPane.showMessageDialog(null, "Seleccione una Fila");
-        } else {
-
-            String id = tabla_permiso_general.getValueAt(rec, 0).toString();
-            String id_general = tabla_permiso_general.getValueAt(rec, 1).toString();
-
-            new DetallePermiso(null, true, id, id_general).setVisible(true);
-        }
-
+        new DetallePermisoGeneral(null, true, id, id_permiso_general).setVisible(true);
 
     }//GEN-LAST:event_menu_permisosActionPerformed
 
@@ -415,65 +406,65 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
             case 1:
                 this.date_fecha_inicio.setEnabled(true);
                 this.date_fecha_final.setEnabled(true);
-                this.txt_id_permiso_general.setEnabled(false);
+                this.txt_id_permiso.setEnabled(false);
                 this.txt_id_unico.setEnabled(false);
-                this.txt_contratista.setEnabled(false);
-                this.txt_responsable.setEnabled(false);
-                this.txt_empresa.setEnabled(false);
+                this.txt_descripcion.setEnabled(false);
+                this.txt_id_general.setEnabled(false);
+                this.txt_permiso_general.setEnabled(false);
                 break;
             case 2:
                 this.date_fecha_inicio.setEnabled(false);
                 this.date_fecha_final.setEnabled(false);
-                this.txt_id_permiso_general.setEnabled(true);
-                this.txt_id_unico.setEnabled(false);
-                this.txt_contratista.setEnabled(false);
-                this.txt_responsable.setEnabled(false);
-                this.txt_empresa.setEnabled(false);
+                this.txt_id_permiso.setEnabled(false);
+                this.txt_id_unico.setEnabled(true);
+                this.txt_descripcion.setEnabled(false);
+                this.txt_id_general.setEnabled(false);
+                this.txt_permiso_general.setEnabled(false);
                 break;
             case 3:
                 this.date_fecha_inicio.setEnabled(false);
                 this.date_fecha_final.setEnabled(false);
-                this.txt_id_permiso_general.setEnabled(false);
-                this.txt_id_unico.setEnabled(true);
-                this.txt_contratista.setEnabled(false);
-                this.txt_responsable.setEnabled(false);
-                this.txt_empresa.setEnabled(false);
+                this.txt_id_permiso.setEnabled(true);
+                this.txt_id_unico.setEnabled(false);
+                this.txt_descripcion.setEnabled(false);
+                this.txt_id_general.setEnabled(false);
+                this.txt_permiso_general.setEnabled(false);                                
                 break;
             case 4:
                 this.date_fecha_inicio.setEnabled(false);
                 this.date_fecha_final.setEnabled(false);
-                this.txt_id_permiso_general.setEnabled(false);
+                this.txt_id_permiso.setEnabled(false);
                 this.txt_id_unico.setEnabled(false);
-                this.txt_contratista.setEnabled(true);
-                this.txt_responsable.setEnabled(false);
-                this.txt_empresa.setEnabled(false);
+                this.txt_descripcion.setEnabled(true);
+                this.txt_id_general.setEnabled(false);
+                this.txt_permiso_general.setEnabled(false);
                 break;
             case 5:
                 this.date_fecha_inicio.setEnabled(false);
                 this.date_fecha_final.setEnabled(false);
-                this.txt_id_permiso_general.setEnabled(false);
+                this.txt_id_permiso.setEnabled(false);
                 this.txt_id_unico.setEnabled(false);
-                this.txt_contratista.setEnabled(false);
-                this.txt_responsable.setEnabled(true);
-                this.txt_empresa.setEnabled(false);
+                this.txt_descripcion.setEnabled(false);
+                this.txt_id_general.setEnabled(true);
+                this.txt_permiso_general.setEnabled(false);
                 break;
             case 6:
                 this.date_fecha_inicio.setEnabled(false);
                 this.date_fecha_final.setEnabled(false);
-                this.txt_id_permiso_general.setEnabled(false);
+                this.txt_id_permiso.setEnabled(false);
                 this.txt_id_unico.setEnabled(false);
-                this.txt_contratista.setEnabled(false);
-                this.txt_responsable.setEnabled(false);
-                this.txt_empresa.setEnabled(true);
+                this.txt_descripcion.setEnabled(false);
+                this.txt_id_general.setEnabled(false);
+                this.txt_permiso_general.setEnabled(true);
                 break;
             default:
                 this.date_fecha_inicio.setEnabled(false);
                 this.date_fecha_final.setEnabled(false);
-                this.txt_id_permiso_general.setEnabled(false);
+                this.txt_id_permiso.setEnabled(false);
                 this.txt_id_unico.setEnabled(false);
-                this.txt_contratista.setEnabled(false);
-                this.txt_responsable.setEnabled(false);
-                this.txt_empresa.setEnabled(false);
+                this.txt_descripcion.setEnabled(false);
+                this.txt_id_general.setEnabled(false);
+                this.txt_permiso_general.setEnabled(false);
         }
 
     }//GEN-LAST:event_combo_consultaItemStateChanged
@@ -483,7 +474,7 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_combo_consultaActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
+        
         // int rec = 0;
         int rec = this.tabla_permiso_general.getSelectedRow();
 
@@ -497,7 +488,7 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
 
                 String id = tabla_permiso_general.getValueAt(rec, 0).toString();
 
-                boolean resultado = conexion.upgrade_cierre_permiso_general(id);
+                boolean resultado = conexion.upgrade_cierre_permiso(id);
 
                 if (resultado == true) {
                     JOptionPane.showMessageDialog(null, "ESTADO ACTUALIZADO 'CERRADO'");
@@ -513,12 +504,11 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
 
             }
         }
-
-
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-
+       
         // int rec = 0;
         int rec = this.tabla_permiso_general.getSelectedRow();
 
@@ -532,7 +522,7 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
 
                 String id = tabla_permiso_general.getValueAt(rec, 0).toString();
 
-                boolean resultado = conexion.upgrade_anular_permiso_general(id);
+                boolean resultado = conexion.upgrade_anular_permiso(id);
 
                 if (resultado == true) {
                     JOptionPane.showMessageDialog(null, "ESTADO ACTUALIZADO 'ANULADO'");
@@ -548,14 +538,14 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
 
             }
         }
-
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-
+      
         // int rec = 0;
         int rec = this.tabla_permiso_general.getSelectedRow();
-
+        
         if (rec == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione una Fila");
         } else {
@@ -566,7 +556,7 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
 
                 String id = tabla_permiso_general.getValueAt(rec, 0).toString();
 
-                boolean resultado = conexion.upgrade_perdido_permiso_general(id);
+                boolean resultado = conexion.upgrade_perdido_permiso(id);
 
                 if (resultado == true) {
                     JOptionPane.showMessageDialog(null, "ESTADO ACTUALIZADO 'PERDIDO'");
@@ -582,7 +572,7 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
 
             }
         }
-
+        
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
 
@@ -608,19 +598,19 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem menu_permisos;
     private javax.swing.JTable tabla_permiso_general;
-    private javax.swing.JTextField txt_contratista;
-    private javax.swing.JTextField txt_empresa;
-    private javax.swing.JTextField txt_id_permiso_general;
+    private javax.swing.JTextField txt_descripcion;
+    private javax.swing.JTextField txt_id_general;
+    private javax.swing.JTextField txt_id_permiso;
     private javax.swing.JTextField txt_id_unico;
-    private javax.swing.JTextField txt_responsable;
+    private javax.swing.JTextField txt_permiso_general;
     // End of variables declaration//GEN-END:variables
 
     public void cargar_tabla_general() {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"ID", "ID P. GENERAL", "FECHA", "EMPRESA", "LUGAR", "ACTIVIDAD", "CONTRATISTA", "RESPONSABLE", "ESTADO"};
-        String[] registro = new String[9];
+        String[] titulos = {"ID", "ID PERMISO", "NOMBRE_PERMISO", "ID UNICO GENERAL", "ID P.GENERAL", "FECHA","ESTADO"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -631,16 +621,14 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         query = "SELECT "
                 + "ID, "
                 + "ID_PERMISO, "
+                + "NOMBRE_PERMISO, "
+                + "ID_GENERAL, "
+                + "ID_PERMISO_GENERAL, "
                 + "FECHA, "
-                + "EMPRESA, "
-                + "LUGAR_TRABAJO AS LUGAR, "
-                + "ACTIVIDAD, "
-                + "CONTRATISTAS, "
-                + "RESPONSABLE_JNJ, "
                 + "ESTADO "
                 + "FROM "
-                + "PERMISOS_GENERALES "
-                + "WHERE (ESTADO = 'Solicitado') "
+                + "PERMISOS "
+                + "WHERE (ESTADO = 'Solicitado' OR ESTADO = 'Perdido' OR ESTADO = 'Anulado' OR ESTADO = 'Cerrado') "
                 + "ORDER BY ID DESC";
 
         try {
@@ -650,13 +638,11 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
 
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("ID_PERMISO");
-                registro[2] = rs.getString("FECHA");
-                registro[3] = rs.getString("EMPRESA");
-                registro[4] = rs.getString("LUGAR");
-                registro[5] = rs.getString("ACTIVIDAD");
-                registro[6] = rs.getString("CONTRATISTAS");
-                registro[7] = rs.getString("RESPONSABLE_JNJ");
-                registro[8] = rs.getString("ESTADO");
+                registro[2] = rs.getString("NOMBRE_PERMISO");
+                registro[3] = rs.getString("ID_GENERAL");
+                registro[4] = rs.getString("ID_PERMISO_GENERAL");
+                registro[5] = rs.getString("FECHA");
+                registro[6] = rs.getString("ESTADO");
 
                 modelo.addRow(registro);
             }
@@ -674,8 +660,8 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"ID", "ID P. GENERAL", "FECHA", "EMPRESA", "LUGAR", "ACTIVIDAD", "CONTRATISTA", "RESPONSABLE", "ESTADO"};
-        String[] registro = new String[9];
+        String[] titulos = {"ID", "ID PERMISO", "NOMBRE_PERMISO", "ID UNICO GENERAL", "ID P.GENERAL", "FECHA","ESTADO"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -686,16 +672,14 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         query = "SELECT "
                 + "ID, "
                 + "ID_PERMISO, "
+                + "NOMBRE_PERMISO, "
+                + "ID_GENERAL, "
+                + "ID_PERMISO_GENERAL, "
                 + "FECHA, "
-                + "EMPRESA, "
-                + "LUGAR_TRABAJO AS LUGAR, "
-                + "ACTIVIDAD, "
-                + "CONTRATISTAS, "
-                + "RESPONSABLE_JNJ, "
                 + "ESTADO "
                 + "FROM "
-                + "PERMISOS_GENERALES "
-                + "WHERE (ESTADO = 'Solicitado') "
+                + "PERMISOS "                
+                + "WHERE (ESTADO = 'Solicitado' OR ESTADO = 'Perdido' OR ESTADO = 'Anulado' OR ESTADO = 'Cerrado') "
                 + "AND FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
                 + "ORDER BY ID DESC";
 
@@ -706,13 +690,11 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
 
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("ID_PERMISO");
-                registro[2] = rs.getString("FECHA");
-                registro[3] = rs.getString("EMPRESA");
-                registro[4] = rs.getString("LUGAR");
-                registro[5] = rs.getString("ACTIVIDAD");
-                registro[6] = rs.getString("CONTRATISTAS");
-                registro[7] = rs.getString("RESPONSABLE_JNJ");
-                registro[8] = rs.getString("ESTADO");
+                registro[2] = rs.getString("NOMBRE_PERMISO");
+                registro[3] = rs.getString("ID_GENERAL");
+                registro[4] = rs.getString("ID_PERMISO_GENERAL");
+                registro[5] = rs.getString("FECHA");
+                registro[6] = rs.getString("ESTADO");
 
                 modelo.addRow(registro);
             }
@@ -730,8 +712,8 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"ID", "ID P. GENERAL", "FECHA", "EMPRESA", "LUGAR", "ACTIVIDAD", "CONTRATISTA", "RESPONSABLE", "ESTADO"};
-        String[] registro = new String[9];
+        String[] titulos = {"ID", "ID PERMISO", "NOMBRE_PERMISO", "ID UNICO GENERAL", "ID P.GENERAL", "FECHA","ESTADO"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -742,16 +724,14 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         query = "SELECT "
                 + "ID, "
                 + "ID_PERMISO, "
+                + "NOMBRE_PERMISO, "
+                + "ID_GENERAL, "
+                + "ID_PERMISO_GENERAL, "
                 + "FECHA, "
-                + "EMPRESA, "
-                + "LUGAR_TRABAJO AS LUGAR, "
-                + "ACTIVIDAD, "
-                + "CONTRATISTAS, "
-                + "RESPONSABLE_JNJ, "
                 + "ESTADO "
                 + "FROM "
-                + "PERMISOS_GENERALES "
-                + "WHERE (ESTADO = 'Solicitado') "
+                + "PERMISOS " 
+                + "WHERE (ESTADO = 'Solicitado' OR ESTADO = 'Perdido' OR ESTADO = 'Anulado' OR ESTADO = 'Cerrado') "
                 + "AND ID = '" + id + "'; ";
 
         try {
@@ -761,14 +741,13 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
 
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("ID_PERMISO");
-                registro[2] = rs.getString("FECHA");
-                registro[3] = rs.getString("EMPRESA");
-                registro[4] = rs.getString("LUGAR");
-                registro[5] = rs.getString("ACTIVIDAD");
-                registro[6] = rs.getString("CONTRATISTAS");
-                registro[7] = rs.getString("RESPONSABLE_JNJ");
-                registro[8] = rs.getString("ESTADO");
-
+                registro[2] = rs.getString("NOMBRE_PERMISO");
+                registro[3] = rs.getString("ID_GENERAL");
+                registro[4] = rs.getString("ID_PERMISO_GENERAL");
+                registro[5] = rs.getString("FECHA");
+                registro[6] = rs.getString("ESTADO");
+                
+                
                 modelo.addRow(registro);
             }
             tabla_permiso_general.setModel(modelo);
@@ -780,13 +759,13 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         }
     }
 
-    public void consulta_id_permiso_general(String id_permiso) {
+    public void consulta_id_permiso(String id_permiso) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"ID", "ID P. GENERAL", "FECHA", "EMPRESA", "LUGAR", "ACTIVIDAD", "CONTRATISTA", "RESPONSABLE", "ESTADO"};
-        String[] registro = new String[9];
+        String[] titulos = {"ID", "ID PERMISO", "NOMBRE_PERMISO", "ID UNICO GENERAL", "ID P.GENERAL", "FECHA","ESTADO"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -797,16 +776,14 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         query = "SELECT "
                 + "ID, "
                 + "ID_PERMISO, "
+                + "NOMBRE_PERMISO, "
+                + "ID_GENERAL, "
+                + "ID_PERMISO_GENERAL, "
                 + "FECHA, "
-                + "EMPRESA, "
-                + "LUGAR_TRABAJO AS LUGAR, "
-                + "ACTIVIDAD, "
-                + "CONTRATISTAS, "
-                + "RESPONSABLE_JNJ, "
                 + "ESTADO "
                 + "FROM "
-                + "PERMISOS_GENERALES "
-                + "WHERE (ESTADO = 'Solicitado') "
+                + "PERMISOS " 
+                + "WHERE (ESTADO = 'Solicitado' OR ESTADO = 'Perdido' OR ESTADO = 'Anulado' OR ESTADO = 'Cerrado') "
                 + "AND ID_PERMISO = '" + id_permiso + "'; ";
 
         try {
@@ -816,14 +793,12 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
 
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("ID_PERMISO");
-                registro[2] = rs.getString("FECHA");
-                registro[3] = rs.getString("EMPRESA");
-                registro[4] = rs.getString("LUGAR");
-                registro[5] = rs.getString("ACTIVIDAD");
-                registro[6] = rs.getString("CONTRATISTAS");
-                registro[7] = rs.getString("RESPONSABLE_JNJ");
-                registro[8] = rs.getString("ESTADO");
-
+                registro[2] = rs.getString("NOMBRE_PERMISO");
+                registro[3] = rs.getString("ID_GENERAL");
+                registro[4] = rs.getString("ID_PERMISO_GENERAL");
+                registro[5] = rs.getString("FECHA");
+                registro[6] = rs.getString("ESTADO");
+                
                 modelo.addRow(registro);
             }
             tabla_permiso_general.setModel(modelo);
@@ -835,13 +810,13 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         }
     }
 
-    public void consulta_contratista(String contratista) {
+    public void consulta_descripcion_permiso(String permiso) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"ID", "ID P. GENERAL", "FECHA", "EMPRESA", "LUGAR", "ACTIVIDAD", "CONTRATISTA", "RESPONSABLE", "ESTADO"};
-        String[] registro = new String[9];
+        String[] titulos = {"ID", "ID PERMISO", "NOMBRE_PERMISO", "ID UNICO GENERAL", "ID P.GENERAL", "FECHA","ESTADO"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -852,17 +827,15 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         query = "SELECT "
                 + "ID, "
                 + "ID_PERMISO, "
+                + "NOMBRE_PERMISO, "
+                + "ID_GENERAL, "
+                + "ID_PERMISO_GENERAL, "
                 + "FECHA, "
-                + "EMPRESA, "
-                + "LUGAR_TRABAJO AS LUGAR, "
-                + "ACTIVIDAD, "
-                + "CONTRATISTAS, "
-                + "RESPONSABLE_JNJ, "
                 + "ESTADO "
                 + "FROM "
-                + "PERMISOS_GENERALES "
-                + "WHERE (ESTADO = 'Solicitado') "
-                + "AND CONTRATISTAS LIKE '%" + contratista.toUpperCase() + "%' "
+                + "PERMISOS " 
+                + "WHERE (ESTADO = 'Solicitado' OR ESTADO = 'Perdido' OR ESTADO = 'Anulado' OR ESTADO = 'Cerrado') "
+                + "AND NOMBRE_PERMISO LIKE '%" + permiso.toUpperCase() + "%' "
                 + "ORDER BY ID DESC";
 
         try {
@@ -872,13 +845,11 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
 
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("ID_PERMISO");
-                registro[2] = rs.getString("FECHA");
-                registro[3] = rs.getString("EMPRESA");
-                registro[4] = rs.getString("LUGAR");
-                registro[5] = rs.getString("ACTIVIDAD");
-                registro[6] = rs.getString("CONTRATISTAS");
-                registro[7] = rs.getString("RESPONSABLE_JNJ");
-                registro[8] = rs.getString("ESTADO");
+                registro[2] = rs.getString("NOMBRE_PERMISO");
+                registro[3] = rs.getString("ID_GENERAL");
+                registro[4] = rs.getString("ID_PERMISO_GENERAL");
+                registro[5] = rs.getString("FECHA");
+                registro[6] = rs.getString("ESTADO");
 
                 modelo.addRow(registro);
             }
@@ -891,13 +862,65 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         }
     }
 
-    public void consulta_responsable(String responsable) {
+    public void consulta_id_general(String id_general) {
 
         conexion = new ConexioSQLite();
         conexion.coneccionbase();
 
-        String[] titulos = {"ID", "ID P. GENERAL", "FECHA", "EMPRESA", "LUGAR", "ACTIVIDAD", "CONTRATISTA", "RESPONSABLE", "ESTADO"};
-        String[] registro = new String[9];
+        String[] titulos = {"ID", "ID PERMISO", "NOMBRE_PERMISO", "ID UNICO GENERAL", "ID P.GENERAL", "FECHA","ESTADO"};
+        String[] registro = new String[7];
+        String query = "";
+
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        query = "SELECT "
+                + "ID, "
+                + "ID_PERMISO, "
+                + "NOMBRE_PERMISO, "
+                + "ID_GENERAL, "
+                + "ID_PERMISO_GENERAL, "
+                + "FECHA, "
+                + "ESTADO "
+                + "FROM "
+                + "PERMISOS " 
+                + "WHERE (ESTADO = 'Solicitado' OR ESTADO = 'Perdido' OR ESTADO = 'Anulado' OR ESTADO = 'Cerrado') "
+                + "AND ID_GENERAL = '" + id_general + "'; ";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                registro[0] = rs.getString("ID");
+                registro[1] = rs.getString("ID_PERMISO");
+                registro[2] = rs.getString("NOMBRE_PERMISO");
+                registro[3] = rs.getString("ID_GENERAL");
+                registro[4] = rs.getString("ID_PERMISO_GENERAL");
+                registro[5] = rs.getString("FECHA");
+                registro[6] = rs.getString("ESTADO");
+                
+                modelo.addRow(registro);
+            }
+            tabla_permiso_general.setModel(modelo);
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    public void consulta_id_permiso_general(String id_permiso_general) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        String[] titulos = {"ID", "ID PERMISO", "NOMBRE_PERMISO", "ID UNICO GENERAL", "ID P.GENERAL", "FECHA","ESTADO"};
+        String[] registro = new String[7];
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
@@ -908,19 +931,16 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         query = "SELECT "
                 + "ID, "
                 + "ID_PERMISO, "
+                + "NOMBRE_PERMISO, "
+                + "ID_GENERAL, "
+                + "ID_PERMISO_GENERAL, "
                 + "FECHA, "
-                + "EMPRESA, "
-                + "LUGAR_TRABAJO AS LUGAR, "
-                + "ACTIVIDAD, "
-                + "CONTRATISTAS, "
-                + "RESPONSABLE_JNJ, "
                 + "ESTADO "
                 + "FROM "
-                + "PERMISOS_GENERALES "
-                + "WHERE (ESTADO = 'Solicitado') "
-                + "AND RESPONSABLE_JNJ LIKE '%" + responsable.toUpperCase() + "%' "
-                + "ORDER BY ID DESC";
-        System.out.println(query);
+                + "PERMISOS " 
+                + "WHERE (ESTADO = 'Solicitado' OR ESTADO = 'Perdido' OR ESTADO = 'Anulado' OR ESTADO = 'Cerrado') "
+                + "AND ID_PERMISO_GENERAL = '" + id_permiso_general + "'; ";
+
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -928,14 +948,12 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
 
                 registro[0] = rs.getString("ID");
                 registro[1] = rs.getString("ID_PERMISO");
-                registro[2] = rs.getString("FECHA");
-                registro[3] = rs.getString("EMPRESA");
-                registro[4] = rs.getString("LUGAR");
-                registro[5] = rs.getString("ACTIVIDAD");
-                registro[6] = rs.getString("CONTRATISTAS");
-                registro[7] = rs.getString("RESPONSABLE_JNJ");
-                registro[8] = rs.getString("ESTADO");
-
+                registro[2] = rs.getString("NOMBRE_PERMISO");
+                registro[3] = rs.getString("ID_GENERAL");
+                registro[4] = rs.getString("ID_PERMISO_GENERAL");
+                registro[5] = rs.getString("FECHA");
+                registro[6] = rs.getString("ESTADO");
+                
                 modelo.addRow(registro);
             }
             tabla_permiso_general.setModel(modelo);
@@ -945,74 +963,16 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
 
         }
-    }
-
-    public void consulta_empresa(String empresa) {
-
-        conexion = new ConexioSQLite();
-        conexion.coneccionbase();
-
-        String[] titulos = {"ID", "ID P. GENERAL", "FECHA", "EMPRESA", "LUGAR", "ACTIVIDAD", "CONTRATISTA", "RESPONSABLE", "ESTADO"};
-        String[] registro = new String[9];
-        String query = "";
-
-        modelo = new DefaultTableModel(null, titulos);
-
-        ConexioSQLite con = new ConexioSQLite();
-        Connection cn = con.Conectar();
-
-        query = "SELECT "
-                + "ID, "
-                + "ID_PERMISO, "
-                + "FECHA, "
-                + "EMPRESA, "
-                + "LUGAR_TRABAJO AS LUGAR, "
-                + "ACTIVIDAD, "
-                + "CONTRATISTAS, "
-                + "RESPONSABLE_JNJ, "
-                + "ESTADO "
-                + "FROM "
-                + "PERMISOS_GENERALES "
-                + "WHERE (ESTADO = 'Solicitado') "
-                + "AND EMPRESA LIKE '%" + empresa.toUpperCase() + "%' "
-                + "ORDER BY ID DESC";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-
-                registro[0] = rs.getString("ID");
-                registro[1] = rs.getString("ID_PERMISO");
-                registro[2] = rs.getString("FECHA");
-                registro[3] = rs.getString("EMPRESA");
-                registro[4] = rs.getString("LUGAR");
-                registro[5] = rs.getString("ACTIVIDAD");
-                registro[6] = rs.getString("CONTRATISTAS");
-                registro[7] = rs.getString("RESPONSABLE_JNJ");
-                registro[8] = rs.getString("ESTADO");
-
-                modelo.addRow(registro);
-            }
-            tabla_permiso_general.setModel(modelo);
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(null, ex);
-
-        }
-    }
-
+    }        
+        
     public void ancho_columnas() {
-        tabla_permiso_general.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tabla_permiso_general.getColumnModel().getColumn(1).setPreferredWidth(100);
-        tabla_permiso_general.getColumnModel().getColumn(2).setPreferredWidth(100);
-        tabla_permiso_general.getColumnModel().getColumn(3).setPreferredWidth(200);
-        tabla_permiso_general.getColumnModel().getColumn(4).setPreferredWidth(200);
-        tabla_permiso_general.getColumnModel().getColumn(5).setPreferredWidth(300);
-        tabla_permiso_general.getColumnModel().getColumn(6).setPreferredWidth(200);
-        tabla_permiso_general.getColumnModel().getColumn(7).setPreferredWidth(150);
-        tabla_permiso_general.getColumnModel().getColumn(8).setPreferredWidth(100);
+        tabla_permiso_general.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tabla_permiso_general.getColumnModel().getColumn(1).setPreferredWidth(30);
+        tabla_permiso_general.getColumnModel().getColumn(2).setPreferredWidth(500);
+        tabla_permiso_general.getColumnModel().getColumn(3).setPreferredWidth(80);
+        tabla_permiso_general.getColumnModel().getColumn(4).setPreferredWidth(80);
+        tabla_permiso_general.getColumnModel().getColumn(5).setPreferredWidth(100);
+        tabla_permiso_general.getColumnModel().getColumn(6).setPreferredWidth(100);
     }
 
     public void centrar_datos() {
@@ -1020,6 +980,10 @@ public class ConsultaPermisoGeneral extends javax.swing.JFrame {
         Alinear.setHorizontalAlignment(SwingConstants.CENTER);
         tabla_permiso_general.getColumnModel().getColumn(0).setCellRenderer(Alinear);
         tabla_permiso_general.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+        tabla_permiso_general.getColumnModel().getColumn(3).setCellRenderer(Alinear);
+        tabla_permiso_general.getColumnModel().getColumn(4).setCellRenderer(Alinear);
+        tabla_permiso_general.getColumnModel().getColumn(5).setCellRenderer(Alinear);
+        tabla_permiso_general.getColumnModel().getColumn(6).setCellRenderer(Alinear);
     }
-
+    
 }

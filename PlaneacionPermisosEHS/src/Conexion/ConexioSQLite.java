@@ -579,9 +579,7 @@ public class ConexioSQLite {
 
         }
     }
-    
-    
-        
+                
     //METODO PARA ELIMINAR CONTRATISTA
     public boolean eliminacion_masiva(String fechaIncial, String fechaFinal) {
 
@@ -623,5 +621,149 @@ public class ConexioSQLite {
 
         }
     }
+    
+    public boolean upgrade_cierre_permiso_general(String ID) {
 
+        try {
+            query = "UPDATE"
+                    + " PERMISOS_GENERALES "
+                    + " SET "
+                    + "  ESTADO = 'Cerrado'"
+                    + " WHERE"
+                    + "  ID = " + ID + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+    }
+    
+    public boolean upgrade_anular_permiso_general(String ID) {
+
+        try {
+            query = "UPDATE"
+                    + " PERMISOS_GENERALES "
+                    + " SET "
+                    + "  ESTADO = 'Anulado'"
+                    + " WHERE"
+                    + "  ID = " + ID + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+    }
+
+    public boolean upgrade_perdido_permiso_general(String ID) {
+
+        try {
+            query = "UPDATE"
+                    + " PERMISOS_GENERALES "
+                    + " SET "
+                    + "  ESTADO = 'Perdido'"
+                    + " WHERE"
+                    + "  ID = " + ID + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+    }
+    
+     public boolean upgrade_cierre_permiso(String ID) {
+
+        try {
+            query = "UPDATE"
+                    + " PERMISOS "
+                    + " SET "
+                    + "  ESTADO = 'Cerrado'"
+                    + " WHERE"
+                    + "  ID = " + ID + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+    }
+    
+    public boolean upgrade_anular_permiso(String ID) {
+
+        try {
+            query = "UPDATE"
+                    + " PERMISOS "
+                    + " SET "
+                    + "  ESTADO = 'Anulado'"
+                    + " WHERE"
+                    + "  ID = " + ID + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+    }
+
+    public boolean upgrade_perdido_permiso(String ID) {
+
+        try {
+            query = "UPDATE"
+                    + " PERMISOS "
+                    + " SET "
+                    + "  ESTADO = 'Perdido'"
+                    + " WHERE"
+                    + "  ID = " + ID + ";";
+
+            sentencia.executeUpdate(query);
+            System.out.println("INSERTADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO INSERTADO ...");
+            return false;
+
+        }
+    }
+    
 }
