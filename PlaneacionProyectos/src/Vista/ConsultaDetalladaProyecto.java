@@ -645,7 +645,7 @@ public class ConsultaDetalladaProyecto extends javax.swing.JDialog {
         conexion.coneccionbase();
 
         String[] titulos = {"TRABAJO", "ITEM", "COTIZACION", "COSTOS", "PD", "S", "F", "C", "N/C"};
-        String[] registro = new String[9];
+        String[] registro = new String[9];    
         String query = "";
 
         modelo = new DefaultTableModel(null, titulos);
