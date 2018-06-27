@@ -109,7 +109,7 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
 
             }
         ));
-        tabla_general.setRowHeight(24);
+        tabla_general.setRowHeight(30);
         tabla_general.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_generalMouseClicked(evt);
@@ -278,7 +278,7 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
         jTextArea2.setText("PA - Alturas\nPC - Caliente\nPE - Excavación\nPL - Loto\nPEC - Espacios Confinados\nPMC - Manipulación de Carga\nPSB - Safery Bypass\nPAC - Areas Clasificadas\nPRL - Roctura de Linea\nPSR - Sin Riesgo\nPMCC - Manipulación de Carga Criticas\nPFSRC - Fuera de Servicio Red Contra.");
         jScrollPane3.setViewportView(jTextArea2);
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 60, 290, 230));
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 60, 300, 230));
 
         jButton1.setText("Actualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -444,34 +444,30 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(txt_id_permiso_general, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 936, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
+                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(txt_id_permiso_general, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 936, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(126, 126, 126)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(4, 4, 4)
                                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(date_fecha_final, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(date_fecha_final, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(date_fecha_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(118, 118, 118)
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -481,7 +477,7 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
                                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txt_id_unico, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -495,13 +491,15 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txt_responsable, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_contratista, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)))
-                .addContainerGap())
+                            .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1265, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -516,44 +514,42 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_consulta_registro_cons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_id_unico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_contratista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_responsable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_empresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(date_fecha_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(date_fecha_final, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(date_fecha_final, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_consulta_registro_cons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_id_unico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_contratista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_responsable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_empresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(combo_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btn_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -640,29 +636,55 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
             String responsable = combo_responsable.getSelectedItem().toString();
             String estado = txt_estado.getText();
 
-            String formato = date_fecha_creacion.getDateFormatString();
-            Date date_ingresada = (Date) date_fecha_creacion.getDate();
-            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-            String fecha_ingresada = String.valueOf(sdf.format(date_ingresada));
+            if (date_fecha_creacion.getDate() == null) {
 
-            if (radio_contratista.isSelected()) {
-                tipo = "CONTRATISTA";
-            } else if (radio_personal.isSelected()) {
-                tipo = "PERSONAL JNJ";
-            }
+                String fecha_actual = txt_fecha_creacion_actual.getText();
+                
+                if (radio_contratista.isSelected()) {
+                    tipo = "CONTRATISTA";
+                } else if (radio_personal.isSelected()) {
+                    tipo = "PERSONAL JNJ";
+                }
 
-            boolean resultado = conexion.upgradePermisoGeneral(id, id_permiso, fecha_ingresada, empresa, lugar, actividad, contratista, responsable, estado, tipo);
+                boolean resultado = conexion.upgradePermisoGeneral(id, id_permiso, fecha_actual, empresa, lugar, actividad, contratista, responsable, estado, tipo);
 
-            if (resultado == true) {
-                JOptionPane.showMessageDialog(null, "PERMISO ACTUALIZADO");
-                cargar_tabla_general();
-                ancho_columnas();
-                Limpiar();
-                conexion.cerrar();
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "PERMISO ACTUALIZADO");
+                    cargar_tabla_general();
+                    ancho_columnas();
+                    Limpiar();
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR PERMISO");
+                    Limpiar();
+                }
+                
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR PERMISO");
-                Limpiar();
+                String formato = date_fecha_creacion.getDateFormatString();
+                Date date_ingresada = (Date) date_fecha_creacion.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                String fecha_ingresada = String.valueOf(sdf.format(date_ingresada));
+
+                if (radio_contratista.isSelected()) {
+                    tipo = "CONTRATISTA";
+                } else if (radio_personal.isSelected()) {
+                    tipo = "PERSONAL JNJ";
+                }
+
+                boolean resultado = conexion.upgradePermisoGeneral(id, id_permiso, fecha_ingresada, empresa, lugar, actividad, contratista, responsable, estado, tipo);
+
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "PERMISO ACTUALIZADO");
+                    cargar_tabla_general();
+                    ancho_columnas();
+                    Limpiar();
+                    conexion.cerrar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR PERMISO");
+                    Limpiar();
+                }
             }
+
         }
 
     }//GEN-LAST:event_btn_guardarActionPerformed
@@ -773,7 +795,6 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
                 break;
         }
 
-        
 
     }//GEN-LAST:event_btn_buscarActionPerformed
 
@@ -859,67 +880,67 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
 
         switch (index) {
             case 1:
-            this.date_fecha_inicio.setEnabled(true);
-            this.date_fecha_final.setEnabled(true);
-            this.txt_consulta_registro_cons.setEnabled(false);
-            this.txt_id_unico.setEnabled(false);
-            this.txt_contratista.setEnabled(false);
-            this.txt_responsable.setEnabled(false);
-            this.txt_empresa.setEnabled(false);            
-            break;
+                this.date_fecha_inicio.setEnabled(true);
+                this.date_fecha_final.setEnabled(true);
+                this.txt_consulta_registro_cons.setEnabled(false);
+                this.txt_id_unico.setEnabled(false);
+                this.txt_contratista.setEnabled(false);
+                this.txt_responsable.setEnabled(false);
+                this.txt_empresa.setEnabled(false);
+                break;
             case 2:
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_registro_cons.setEnabled(true);
-            this.txt_id_unico.setEnabled(false);
-            this.txt_contratista.setEnabled(false);
-            this.txt_responsable.setEnabled(false);
-            this.txt_empresa.setEnabled(false);
-            break;
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_registro_cons.setEnabled(true);
+                this.txt_id_unico.setEnabled(false);
+                this.txt_contratista.setEnabled(false);
+                this.txt_responsable.setEnabled(false);
+                this.txt_empresa.setEnabled(false);
+                break;
             case 3:
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_registro_cons.setEnabled(false);
-            this.txt_id_unico.setEnabled(true);
-            this.txt_contratista.setEnabled(false);
-            this.txt_responsable.setEnabled(false);
-            this.txt_empresa.setEnabled(false);
-            break;
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_registro_cons.setEnabled(false);
+                this.txt_id_unico.setEnabled(true);
+                this.txt_contratista.setEnabled(false);
+                this.txt_responsable.setEnabled(false);
+                this.txt_empresa.setEnabled(false);
+                break;
             case 4:
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_registro_cons.setEnabled(false);
-            this.txt_id_unico.setEnabled(false);
-            this.txt_contratista.setEnabled(true);
-            this.txt_responsable.setEnabled(false);
-            this.txt_empresa.setEnabled(false);
-            break;
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_registro_cons.setEnabled(false);
+                this.txt_id_unico.setEnabled(false);
+                this.txt_contratista.setEnabled(true);
+                this.txt_responsable.setEnabled(false);
+                this.txt_empresa.setEnabled(false);
+                break;
             case 5:
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_registro_cons.setEnabled(false);
-            this.txt_id_unico.setEnabled(false);
-            this.txt_contratista.setEnabled(false);
-            this.txt_responsable.setEnabled(true);
-            this.txt_empresa.setEnabled(false);
-            break;
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_registro_cons.setEnabled(false);
+                this.txt_id_unico.setEnabled(false);
+                this.txt_contratista.setEnabled(false);
+                this.txt_responsable.setEnabled(true);
+                this.txt_empresa.setEnabled(false);
+                break;
             case 6:
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_registro_cons.setEnabled(false);
-            this.txt_id_unico.setEnabled(false);
-            this.txt_contratista.setEnabled(false);
-            this.txt_responsable.setEnabled(false);
-            this.txt_empresa.setEnabled(true);
-            break;
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_registro_cons.setEnabled(false);
+                this.txt_id_unico.setEnabled(false);
+                this.txt_contratista.setEnabled(false);
+                this.txt_responsable.setEnabled(false);
+                this.txt_empresa.setEnabled(true);
+                break;
             default:
-            this.date_fecha_inicio.setEnabled(false);
-            this.date_fecha_final.setEnabled(false);
-            this.txt_consulta_registro_cons.setEnabled(false);
-            this.txt_id_unico.setEnabled(false);
-            this.txt_contratista.setEnabled(false);
-            this.txt_responsable.setEnabled(false);
-            this.txt_empresa.setEnabled(false);
+                this.date_fecha_inicio.setEnabled(false);
+                this.date_fecha_final.setEnabled(false);
+                this.txt_consulta_registro_cons.setEnabled(false);
+                this.txt_id_unico.setEnabled(false);
+                this.txt_contratista.setEnabled(false);
+                this.txt_responsable.setEnabled(false);
+                this.txt_empresa.setEnabled(false);
         }
     }//GEN-LAST:event_combo_consultaItemStateChanged
 
@@ -1000,7 +1021,9 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
         txt_actividad_proyecto.setText("");
         combo_contratista.setSelectedIndex(0);
         combo_responsable.setSelectedIndex(0);
+        txt_fecha_creacion_actual.setText("");
         this.btn_asignar_permisos.setEnabled(false);
+        
     }
 
     public void cargar_tabla_general() {
@@ -1218,7 +1241,7 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
         }
 
     }
-    
+
     public void consulta_rango_fechas(String fecha_inicio, String fecha_final) {
 
         conexion = new ConexioSQLite();
@@ -1552,7 +1575,7 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
 
         }
     }
-    
+
     public void ancho_columnas() {
         tabla_general.getColumnModel().getColumn(0).setPreferredWidth(50);
         tabla_general.getColumnModel().getColumn(1).setPreferredWidth(120);
@@ -1563,7 +1586,7 @@ public class RegistroPermisoGeneral extends javax.swing.JFrame {
         tabla_general.getColumnModel().getColumn(6).setPreferredWidth(200);
         tabla_general.getColumnModel().getColumn(7).setPreferredWidth(150);
         tabla_general.getColumnModel().getColumn(8).setPreferredWidth(100);
-    }    
+    }
 
     public void centrar_datos() {
         Alinear = new DefaultTableCellRenderer();

@@ -41,29 +41,29 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txt_altura = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        txt_caliente = new javax.swing.JTextField();
+        txt_excavacion = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        txt_loto = new javax.swing.JTextField();
+        txt_espacio_confinado = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        txt_manipulacion_carga = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        txt_safery_bypass = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        txt_areas_clasificadas = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
+        txt_roctura_linea = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        txt_sin_riesgo = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        txt_manipulacion_carga_critica = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
+        txt_fuera_red_contraincendio = new javax.swing.JTextField();
         txt_total_perdidos = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btn_buscar = new javax.swing.JButton();
@@ -88,7 +88,7 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Total Permisos Solicitados");
 
@@ -104,11 +104,11 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
         txt_anulados.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_anulados.setText("0");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Total Permisos Anulados");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Total Permisos Perdidos");
 
@@ -124,7 +124,7 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
         txt_cerrada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_cerrada.setText("0");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Total Permisos Cerrados");
 
@@ -134,24 +134,24 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("ALTURAS :");
 
-        jTextField5.setEditable(false);
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField5.setText("0");
+        txt_altura.setEditable(false);
+        txt_altura.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txt_altura.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_altura.setText("0");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("CALIENTE :");
 
-        jTextField6.setEditable(false);
-        jTextField6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField6.setText("0");
+        txt_caliente.setEditable(false);
+        txt_caliente.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txt_caliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_caliente.setText("0");
 
-        jTextField7.setEditable(false);
-        jTextField7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField7.setText("0");
+        txt_excavacion.setEditable(false);
+        txt_excavacion.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txt_excavacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_excavacion.setText("0");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -161,24 +161,24 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("LOTO :");
 
-        jTextField8.setEditable(false);
-        jTextField8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField8.setText("0");
+        txt_loto.setEditable(false);
+        txt_loto.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txt_loto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_loto.setText("0");
 
-        jTextField9.setEditable(false);
-        jTextField9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jTextField9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField9.setText("0");
+        txt_espacio_confinado.setEditable(false);
+        txt_espacio_confinado.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txt_espacio_confinado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_espacio_confinado.setText("0");
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("ESPACIOS CONFINADOS :");
 
-        jTextField10.setEditable(false);
-        jTextField10.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jTextField10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField10.setText("0");
+        txt_manipulacion_carga.setEditable(false);
+        txt_manipulacion_carga.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txt_manipulacion_carga.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_manipulacion_carga.setText("0");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -188,55 +188,55 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel14.setText("SAFERY BYPASS :");
 
-        jTextField11.setEditable(false);
-        jTextField11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jTextField11.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField11.setText("0");
+        txt_safery_bypass.setEditable(false);
+        txt_safery_bypass.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txt_safery_bypass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_safery_bypass.setText("0");
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel15.setText("ALTURAS :");
+        jLabel15.setText("AREAS CLASIFICADAS :");
 
-        jTextField12.setEditable(false);
-        jTextField12.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jTextField12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField12.setText("0");
+        txt_areas_clasificadas.setEditable(false);
+        txt_areas_clasificadas.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txt_areas_clasificadas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_areas_clasificadas.setText("0");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel16.setText("ALTURAS :");
+        jLabel16.setText("ROCTURA DE LINEA :");
 
-        jTextField13.setEditable(false);
-        jTextField13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jTextField13.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField13.setText("0");
+        txt_roctura_linea.setEditable(false);
+        txt_roctura_linea.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txt_roctura_linea.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_roctura_linea.setText("0");
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText("SIN RIESGO :");
 
-        jTextField14.setEditable(false);
-        jTextField14.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jTextField14.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField14.setText("0");
+        txt_sin_riesgo.setEditable(false);
+        txt_sin_riesgo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txt_sin_riesgo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_sin_riesgo.setText("0");
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel20.setText("MANIPULACIÓN DE CARGA CRITICA :");
 
-        jTextField15.setEditable(false);
-        jTextField15.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jTextField15.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField15.setText("0");
+        txt_manipulacion_carga_critica.setEditable(false);
+        txt_manipulacion_carga_critica.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txt_manipulacion_carga_critica.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_manipulacion_carga_critica.setText("0");
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel21.setText("FUERA DE SERVICIO RED CONTRAINCENDIO :");
 
-        jTextField16.setEditable(false);
-        jTextField16.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jTextField16.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField16.setText("0");
+        txt_fuera_red_contraincendio.setEditable(false);
+        txt_fuera_red_contraincendio.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txt_fuera_red_contraincendio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_fuera_red_contraincendio.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -248,7 +248,7 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_manipulacion_carga, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,55 +256,55 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_loto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_excavacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_caliente, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txt_altura, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txt_espacio_confinado, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_sin_riesgo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_fuera_red_contraincendio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_manipulacion_carga_critica, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(205, 205, 205)
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25))
+                        .addComponent(txt_safery_bypass, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_areas_clasificadas, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_roctura_linea, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,51 +313,51 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_safery_bypass, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_areas_clasificadas, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_roctura_linea, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_sin_riesgo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_manipulacion_carga_critica, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_fuera_red_contraincendio, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_altura, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_caliente, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_excavacion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_loto, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_espacio_confinado, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_manipulacion_carga, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
@@ -368,7 +368,7 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
         txt_total_perdidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_total_perdidos.setText("0");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Total Permisos");
 
@@ -377,28 +377,35 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_solicitado)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_perdidos, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3)
-                            .addComponent(txt_cerrada)
-                            .addComponent(txt_anulados, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(txt_solicitado, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(13, 13, 13)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(txt_perdidos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txt_anulados, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txt_cerrada, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
+                        .addGap(96, 96, 96)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txt_total_perdidos, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,7 +434,7 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_cerrada, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(51, 51, 51)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_total_perdidos, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -448,11 +455,11 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1311, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -462,9 +469,8 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(date_fecha_final, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
-                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -507,6 +513,19 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
             consulta_rango_fechas_anulado(fecha_ingresada_inicio, fecha_ingresada_final);
             consulta_rango_fechas_cerrado(fecha_ingresada_inicio, fecha_ingresada_final);
             consulta_rango_fechas_total(fecha_ingresada_inicio, fecha_ingresada_final);
+            consulta_rango_fechas_alturas(fecha_ingresada_inicio, fecha_ingresada_final);
+            consulta_rango_fechas_alturas(fecha_ingresada_inicio, fecha_ingresada_final);
+            consulta_rango_fechas_caliente(fecha_ingresada_inicio, fecha_ingresada_final);
+            consulta_rango_fechas_excavacion(fecha_ingresada_inicio, fecha_ingresada_final);
+            consulta_rango_fechas_loto(fecha_ingresada_inicio, fecha_ingresada_final);
+            consulta_rango_fechas_espacio_confinado(fecha_ingresada_inicio, fecha_ingresada_final);
+            consulta_rango_fechas_manipulacion_carga(fecha_ingresada_inicio, fecha_ingresada_final);
+            consulta_rango_fechas_Safery_bypass(fecha_ingresada_inicio, fecha_ingresada_final);
+            consulta_rango_fechas_areas_clasificadas(fecha_ingresada_inicio, fecha_ingresada_final);
+            consulta_rango_fechas_roctura_linea(fecha_ingresada_inicio, fecha_ingresada_final);
+            consulta_rango_fechas_sin_riesgo(fecha_ingresada_inicio, fecha_ingresada_final);
+            consulta_rango_fechas_manipulacion_carga_critica(fecha_ingresada_inicio, fecha_ingresada_final);
+            consulta_rango_fechas_fuera_servicio_red(fecha_ingresada_inicio, fecha_ingresada_final);
             conexion.cerrar();
         }
 
@@ -539,21 +558,21 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txt_altura;
     private javax.swing.JTextField txt_anulados;
+    private javax.swing.JTextField txt_areas_clasificadas;
+    private javax.swing.JTextField txt_caliente;
     private javax.swing.JTextField txt_cerrada;
+    private javax.swing.JTextField txt_espacio_confinado;
+    private javax.swing.JTextField txt_excavacion;
+    private javax.swing.JTextField txt_fuera_red_contraincendio;
+    private javax.swing.JTextField txt_loto;
+    private javax.swing.JTextField txt_manipulacion_carga;
+    private javax.swing.JTextField txt_manipulacion_carga_critica;
     private javax.swing.JTextField txt_perdidos;
+    private javax.swing.JTextField txt_roctura_linea;
+    private javax.swing.JTextField txt_safery_bypass;
+    private javax.swing.JTextField txt_sin_riesgo;
     private javax.swing.JTextField txt_solicitado;
     private javax.swing.JTextField txt_total_perdidos;
     // End of variables declaration//GEN-END:variables
@@ -606,9 +625,9 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
         try {
             Statement st2 = cn.createStatement();
             ResultSet rs2 = st2.executeQuery(query2);
-          
-                txt_cerrada.setText(rs2.getString("CERRADO"));
-            
+
+            txt_cerrada.setText(rs2.getString("CERRADO"));
+
             conexion.cerrar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -635,14 +654,14 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
         try {
             Statement st3 = cn.createStatement();
             ResultSet rs3 = st3.executeQuery(query3);
-            
-                txt_perdidos.setText(rs3.getString("PERDIDOS"));
-            
+
+            txt_perdidos.setText(rs3.getString("PERDIDOS"));
+
             conexion.cerrar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-     
+
     }
 
     public void consulta_rango_fechas_anulado(String fecha_inicio, String fecha_final) {
@@ -664,9 +683,9 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
         try {
             Statement st4 = cn.createStatement();
             ResultSet rs4 = st4.executeQuery(query4);
-            
-                txt_anulados.setText(rs4.getString("ANULADO"));
-            
+
+            txt_anulados.setText(rs4.getString("ANULADO"));
+
             conexion.cerrar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -694,6 +713,342 @@ public class TotalPermisosCerrados extends javax.swing.JDialog {
             ResultSet rs5 = st5.executeQuery(query5);
 
             txt_total_perdidos.setText(rs5.getString("TOTAL"));
+
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public void consulta_rango_fechas_alturas(String fecha_inicio, String fecha_final) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        String query = "";
+
+        query = "SELECT "
+                + "COUNT(ID) AS PA "
+                + "FROM "
+                + "PERMISOS "
+                + "WHERE FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "AND INDICADOR_PERMISO = 'PA'";
+        try {
+            Statement st5 = cn.createStatement();
+            ResultSet rs5 = st5.executeQuery(query);
+
+            txt_altura.setText(rs5.getString("PA"));
+
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public void consulta_rango_fechas_caliente(String fecha_inicio, String fecha_final) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        String query = "";
+
+        query = "SELECT "
+                + "COUNT(ID) AS PC "
+                + "FROM "
+                + "PERMISOS "
+                + "WHERE FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "AND INDICADOR_PERMISO = 'PC'";
+        try {
+            Statement st5 = cn.createStatement();
+            ResultSet rs5 = st5.executeQuery(query);
+
+            txt_caliente.setText(rs5.getString("PC"));
+
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public void consulta_rango_fechas_excavacion(String fecha_inicio, String fecha_final) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        String query = "";
+
+        query = "SELECT "
+                + "COUNT(ID) AS PE "
+                + "FROM "
+                + "PERMISOS "
+                + "WHERE FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "AND INDICADOR_PERMISO = 'PE'";
+        try {
+            Statement st5 = cn.createStatement();
+            ResultSet rs5 = st5.executeQuery(query);
+
+            txt_excavacion.setText(rs5.getString("PE"));
+
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public void consulta_rango_fechas_loto(String fecha_inicio, String fecha_final) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        String query = "";
+
+        query = "SELECT "
+                + "COUNT(ID) AS PL "
+                + "FROM "
+                + "PERMISOS "
+                + "WHERE FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "AND INDICADOR_PERMISO = 'PL'";
+        try {
+            Statement st5 = cn.createStatement();
+            ResultSet rs5 = st5.executeQuery(query);
+
+            txt_loto.setText(rs5.getString("PL"));
+
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public void consulta_rango_fechas_espacio_confinado(String fecha_inicio, String fecha_final) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        String query = "";
+
+        query = "SELECT "
+                + "COUNT(ID) AS PEC "
+                + "FROM "
+                + "PERMISOS "
+                + "WHERE FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "AND INDICADOR_PERMISO = 'PEC'";
+        try {
+            Statement st5 = cn.createStatement();
+            ResultSet rs5 = st5.executeQuery(query);
+
+            txt_espacio_confinado.setText(rs5.getString("PEC"));
+
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public void consulta_rango_fechas_manipulacion_carga(String fecha_inicio, String fecha_final) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        String query = "";
+
+        query = "SELECT "
+                + "COUNT(ID) AS PMC "
+                + "FROM "
+                + "PERMISOS "
+                + "WHERE FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "AND INDICADOR_PERMISO = 'PMC'";
+        try {
+            Statement st5 = cn.createStatement();
+            ResultSet rs5 = st5.executeQuery(query);
+
+            txt_manipulacion_carga.setText(rs5.getString("PMC"));
+
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public void consulta_rango_fechas_Safery_bypass(String fecha_inicio, String fecha_final) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        String query = "";
+
+        query = "SELECT "
+                + "COUNT(ID) AS PSB "
+                + "FROM "
+                + "PERMISOS "
+                + "WHERE FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "AND INDICADOR_PERMISO = 'PSB'";
+        try {
+            Statement st5 = cn.createStatement();
+            ResultSet rs5 = st5.executeQuery(query);
+
+            txt_safery_bypass.setText(rs5.getString("PSB"));
+
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public void consulta_rango_fechas_areas_clasificadas(String fecha_inicio, String fecha_final) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        String query = "";
+
+        query = "SELECT "
+                + "COUNT(ID) AS PAC "
+                + "FROM "
+                + "PERMISOS "
+                + "WHERE FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "AND INDICADOR_PERMISO = 'PAC'";
+        try {
+            Statement st5 = cn.createStatement();
+            ResultSet rs5 = st5.executeQuery(query);
+
+            txt_areas_clasificadas.setText(rs5.getString("PAC"));
+
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public void consulta_rango_fechas_roctura_linea(String fecha_inicio, String fecha_final) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        String query = "";
+
+        query = "SELECT "
+                + "COUNT(ID) AS PRL "
+                + "FROM "
+                + "PERMISOS "
+                + "WHERE FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "AND INDICADOR_PERMISO = 'PRL'";
+        try {
+            Statement st5 = cn.createStatement();
+            ResultSet rs5 = st5.executeQuery(query);
+
+            txt_roctura_linea.setText(rs5.getString("PRL"));
+
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public void consulta_rango_fechas_sin_riesgo(String fecha_inicio, String fecha_final) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        String query = "";
+
+        query = "SELECT "
+                + "COUNT(ID) AS PSR "
+                + "FROM "
+                + "PERMISOS "
+                + "WHERE FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "AND INDICADOR_PERMISO = 'PSR'";
+        try {
+            Statement st5 = cn.createStatement();
+            ResultSet rs5 = st5.executeQuery(query);
+
+            txt_sin_riesgo.setText(rs5.getString("PSR"));
+
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public void consulta_rango_fechas_manipulacion_carga_critica(String fecha_inicio, String fecha_final) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        String query = "";
+
+        query = "SELECT "
+                + "COUNT(ID) AS PMCC "
+                + "FROM "
+                + "PERMISOS "
+                + "WHERE FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "AND INDICADOR_PERMISO = 'PMCC'";
+        try {
+            Statement st5 = cn.createStatement();
+            ResultSet rs5 = st5.executeQuery(query);
+
+            txt_manipulacion_carga_critica.setText(rs5.getString("PMCC"));
+
+            conexion.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public void consulta_rango_fechas_fuera_servicio_red(String fecha_inicio, String fecha_final) {
+
+        conexion = new ConexioSQLite();
+        conexion.coneccionbase();
+
+        ConexioSQLite con = new ConexioSQLite();
+        Connection cn = con.Conectar();
+
+        String query = "";
+
+        query = "SELECT "
+                + "COUNT(ID) AS PFSRC "
+                + "FROM "
+                + "PERMISOS "
+                + "WHERE FECHA BETWEEN '" + fecha_inicio + "' AND '" + fecha_final + "'"
+                + "AND INDICADOR_PERMISO = 'PFSRC'";
+        try {
+            Statement st5 = cn.createStatement();
+            ResultSet rs5 = st5.executeQuery(query);
+
+            txt_fuera_red_contraincendio.setText(rs5.getString("PFSRC"));
 
             conexion.cerrar();
         } catch (SQLException ex) {

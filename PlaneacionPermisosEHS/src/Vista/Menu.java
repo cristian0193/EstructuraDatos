@@ -26,9 +26,10 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        menu_maquina1 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         menu_tipo_validacion = new javax.swing.JMenuItem();
         menu_planta = new javax.swing.JMenuItem();
@@ -128,17 +129,8 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/herramienta.png"))); // NOI18N
         jMenu2.setText("Utilidades");
 
-        menu_maquina1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exportar.png"))); // NOI18N
-        menu_maquina1.setText("Exportar a Excel .XLS");
-        menu_maquina1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_maquina1ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(menu_maquina1);
-
         jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
-        jMenuItem14.setText("Eliminación Masiva de Datos (Admin)");
+        jMenuItem14.setText("Eliminación Masiva de Datos Permiso Individual");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem14ActionPerformed(evt);
@@ -146,14 +138,32 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem14);
 
+        jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
+        jMenuItem17.setText("Eliminación Masiva de Datos Permiso General");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem17);
+
         jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
-        jMenuItem15.setText("Eliminación Registro Unico (Admin)");
+        jMenuItem15.setText("Eliminación Registro Permiso Individual");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem15ActionPerformed(evt);
             }
         });
         jMenu2.add(jMenuItem15);
+
+        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
+        jMenuItem16.setText("Eliminación Registro Permiso General");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem16);
 
         jMenuBar1.add(jMenu2);
 
@@ -264,12 +274,8 @@ public class Menu extends javax.swing.JFrame {
 
         ConsultaPermisoGeneral generalPermiso = new ConsultaPermisoGeneral();
         generalPermiso.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem8ActionPerformed
-
-    private void menu_maquina1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_maquina1ActionPerformed
-
-    }//GEN-LAST:event_menu_maquina1ActionPerformed
 
     private void menu_maquina2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_maquina2ActionPerformed
         AdminResponsableJJ responsable = new AdminResponsableJJ();
@@ -278,12 +284,15 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_maquina2ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-
+       
+        new EliminacionMasivaPermiso(null, true).setVisible(true);
 
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
 
+        EliminarRegistrosPermiso permiso = new EliminarRegistrosPermiso();
+        permiso.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
@@ -293,10 +302,22 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        
-         new TotalPermisosCerrados(null, true).setVisible(true);
-        
+
+        new TotalPermisosCerrados(null, true).setVisible(true);
+
     }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+
+        EliminarRegistrosPermisoGenerales permisoGeneral = new EliminarRegistrosPermisoGenerales();
+        permisoGeneral.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+       
+        new EliminacionMasivaPermisoGenerales(null, true).setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,12 +369,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JMenuItem menu_maquina;
-    public javax.swing.JMenuItem menu_maquina1;
     public javax.swing.JMenuItem menu_maquina2;
     public javax.swing.JMenuItem menu_planta;
     public javax.swing.JMenuItem menu_tipo_validacion;

@@ -404,9 +404,8 @@ public class Permisos extends javax.swing.JDialog {
         }
 
             mensaje = permiso;
-            JOptionPane.showMessageDialog(null, mensaje);
+            new CodigosGenerados(null, true, mensaje).setVisible(true);            
 
-            JOptionPane.showMessageDialog(null, "PERMISOS CREADOS EXITOSAMENTE");
             LimpiarCampos();
             this.hide();
         

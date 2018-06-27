@@ -580,12 +580,11 @@ public class ConexioSQLite {
         }
     }
                 
-    //METODO PARA ELIMINAR CONTRATISTA
-    public boolean eliminacion_masiva(String fechaIncial, String fechaFinal) {
+    public boolean eliminacion_masiva_permisos(String fechaIncial, String fechaFinal) {
 
         try {
 
-            query = "DELETE FROM PLANEACIONES_VALIDACION  WHERE FECHA_PROPUESTA BETWEEN '" + fechaIncial + "' AND '" + fechaFinal + "'";
+            query = "DELETE FROM PERMISOS WHERE FECHA BETWEEN '" + fechaIncial + "' AND '" + fechaFinal + "'";
 
             sentencia.executeUpdate(query);
             System.out.println("ELIMINADO ...");
@@ -601,12 +600,51 @@ public class ConexioSQLite {
         }
     }
     
-     //METODO PARA ELIMINAR CONTRATISTA
-    public boolean delete_registro_validacion(String REGISTRO) {
+    public boolean eliminacion_masiva_permisos_general(String fechaIncial, String fechaFinal) {
 
         try {
 
-            query = "DELETE FROM PLANEACIONES_VALIDACION  WHERE NUMERO_REGISTRO = " + REGISTRO + "";
+            query = "DELETE FROM PERMISOS_GENERALES  WHERE FECHA BETWEEN '" + fechaIncial + "' AND '" + fechaFinal + "'";
+
+            sentencia.executeUpdate(query);
+            System.out.println("ELIMINADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ELIMINADO ...");
+            return false;
+
+        }
+    }
+    
+    public boolean delete_registro_permiso(String ID) {
+
+        try {
+
+            query = "DELETE FROM PERMISOS  WHERE ID = " + ID + "";
+
+            sentencia.executeUpdate(query);
+            System.out.println("ELIMINADO ...");
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+            System.out.println("NO ELIMINADO ...");
+            return false;
+
+        }
+    }
+    
+     public boolean delete_registro_permiso_general(String ID) {
+
+        try {
+
+            query = "DELETE FROM PERMISOS_GENERALES  WHERE ID = " + ID + "";
 
             sentencia.executeUpdate(query);
             System.out.println("ELIMINADO ...");
